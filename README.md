@@ -1,15 +1,16 @@
-# QED-KLPT
-## Kindergarten Learning Progressions Toolkit
+# Kindergarten Learning Progression Toolkit
 
-The KLPT is a Queensland Government initiative that provides teachers and educators with a voluntary, formative, child-centred assessment toolkit. It supports high-quality assessment practices and informs the planning cycle.
+The Kindergarten Learning Progression Toolkit (KLPT) provides kindergarten teachers and educators with a formative, child-centred assessment toolkit. It supports high-quality assessment practices and informs the planning cycle.
 
-The KLPT has been developed in response to an identified need to enrich children's holistic learning development during the early years. The toolkit is designed to support teachers and educators in planning and practice by enhancing how they gather evidence and monitor what children 'know' and can 'do' with respect to 5 core skills:
+Delivery of the KLPT forms part of Queensland’s commitment to the Preschool Outcomes Measure under the Preschool Reform Agreement (PRA) between the Australian Government and state and territory governments.
 
-- language and literacy
-- executive function
-- social and emotional learning
-- physicality
-- mathematics and numeracy.
+The toolkit is designed to support teachers and educators in planning and practice by enhancing how they gather evidence and monitor what children 'know' and can 'do' with respect to 5 core skills:
+
+- Language and literacy
+- Executive function
+- Social and emotional learning
+- Physicality
+- Mathematics and numeracy
 
 The KLPT is designed to complement and support existing practice. It gives teachers and educators a shared language for observation and assessment to support reflection and professional conversations. The focus is on each child's individual learning journey, and it is not designed to compare or benchmark children.
 
