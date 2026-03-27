@@ -1,0 +1,9 @@
+container:
+  cssClass: canvas-slide-container
+  style: x
+title:
+  cssClass: vision-title
+  style: x
+body:
+- pattern: \[(.*?)\]
+  replacement: <span class='canvas-highlighted-text'>$1</span>
