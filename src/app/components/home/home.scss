@@ -1,3 +1,117 @@
 :host {
   display: block;
 }
+
+.home-hero {
+  min-height: clamp(28rem, 68vh, 42rem);
+  background:
+    linear-gradient(90deg, rgba(79, 42, 111, 0.88), rgba(111, 63, 151, 0.62) 45%, rgba(111, 63, 151, 0.2)),
+    linear-gradient(135deg, #8053a4 0%, #efe7f5 52%, #48b7a5 100%);
+  color: #ffffff;
+}
+
+.home-hero__overlay {
+  display: flex;
+  min-height: inherit;
+  align-items: center;
+  padding: clamp(3rem, 8vw, 7rem) var(--page-gutter);
+}
+
+.home-hero__content {
+  width: min(100%, var(--content-max));
+  margin: 0 auto;
+}
+
+.home-hero h1,
+.home-hero p {
+  color: #ffffff;
+}
+
+.home-hero h1 {
+  max-width: 46rem;
+}
+
+.home-hero p:not(.eyebrow) {
+  max-width: 38rem;
+  font-size: 1.1rem;
+}
+
+.home-hero .eyebrow {
+  color: #f8d76a;
+}
+
+.home-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-block-start: 1.75rem;
+}
+
+.feature-card:nth-child(2) .feature-card__icon {
+  background: #f5e9f7;
+  color: #b85bc4;
+}
+
+.feature-card:nth-child(3) .feature-card__icon {
+  background: #fde8f2;
+  color: var(--klpt-pink);
+}
+
+.feature-card:nth-child(4) .feature-card__icon {
+  background: #e6f6ed;
+  color: #3aa864;
+}
+
+.feature-card:nth-child(5) .feature-card__icon {
+  background: #fff0d0;
+  color: #c98200;
+}
+
+.feature-card:nth-child(6) .feature-card__icon {
+  background: #dff4f1;
+  color: var(--klpt-mint);
+}
+
+.foundations {
+  display: grid;
+  grid-template-columns: minmax(14rem, 0.7fr) minmax(0, 1.3fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+.resource-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.resource-card {
+  border: 1px solid var(--klpt-border);
+  border-radius: 8px;
+  background: var(--klpt-surface);
+  padding: 1.25rem;
+  box-shadow: var(--klpt-shadow);
+}
+
+.resource-card p {
+  margin: 0;
+}
+
+.resource-card__meta {
+  color: var(--klpt-purple);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+@media (max-width: 46rem) {
+  .home-hero {
+    min-height: 34rem;
+  }
+
+  .home-hero__actions .button {
+    width: 100%;
+  }
+
+  .foundations {
+    grid-template-columns: 1fr;
+  }
+}
