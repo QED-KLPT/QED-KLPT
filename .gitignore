@@ -30,16 +30,18 @@ ng-serve*.log
 !.vscode/mcp.json
 .history/*
 
-# Miscellaneous
+# GitHub Pages / Jekyll
 _site/
-/.angular/cache
 .sass-cache/
 .jekyll-cache/
 .jekyll-metadata
-/connect.lock
-/coverage
 /vendor
 Gemfile.lock
+
+# Miscellaneous
+/.angular/cache
+/connect.lock
+/coverage
 /libpeerconnection.log
 testem.log
 /typings
