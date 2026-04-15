@@ -47,31 +47,6 @@
   margin-block-start: 1.75rem;
 }
 
-.feature-card:nth-child(2) .feature-card__icon {
-  background: #f5e9f7;
-  color: #b85bc4;
-}
-
-.feature-card:nth-child(3) .feature-card__icon {
-  background: #fde8f2;
-  color: var(--klpt-pink);
-}
-
-.feature-card:nth-child(4) .feature-card__icon {
-  background: #e6f6ed;
-  color: #3aa864;
-}
-
-.feature-card:nth-child(5) .feature-card__icon {
-  background: #fff0d0;
-  color: #c98200;
-}
-
-.feature-card:nth-child(6) .feature-card__icon {
-  background: #dff4f1;
-  color: var(--klpt-mint);
-}
-
 .foundations {
   display: grid;
   grid-template-columns: minmax(14rem, 0.7fr) minmax(0, 1.3fr);
