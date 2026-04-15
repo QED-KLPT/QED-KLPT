@@ -1,0 +1,23 @@
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1rem max(1rem, calc((100vw - 72rem) / 2));
+  border-bottom: 1px solid #d9dee5;
+  background: #ffffff;
+}
+
+.site-header__brand {
+  color: #111827;
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+@media (max-width: 40rem) {
+  .site-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

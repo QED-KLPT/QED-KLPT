@@ -1,0 +1,18 @@
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.site-nav__link {
+  border-radius: 8px;
+  color: #334155;
+  padding: 0.5rem 0.75rem;
+  text-decoration: none;
+}
+
+.site-nav__link:hover,
+.site-nav__link--active {
+  background: #e8f1ff;
+  color: #0f172a;
+}
