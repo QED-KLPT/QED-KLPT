@@ -1,0 +1,62 @@
+:host {
+  display: block;
+}
+
+.domain-card {
+  display: grid;
+  min-height: 10.5rem;
+  align-content: start;
+  border: 1px solid var(--klpt-border);
+  border-radius: 8px;
+  background: var(--klpt-surface);
+  padding: 1.4rem;
+  color: inherit;
+  box-shadow: 0 1px 0 rgba(79, 42, 111, 0.04);
+  text-decoration: none;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.domain-card:hover,
+.domain-card:focus-visible {
+  border-color: color-mix(in srgb, var(--klpt-purple) 50%, var(--klpt-border));
+  box-shadow: var(--klpt-shadow);
+  transform: translateY(-2px);
+}
+
+.domain-card:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--klpt-gold) 65%, transparent);
+  outline-offset: 3px;
+}
+
+.domain-card__icon {
+  display: inline-grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  place-items: center;
+  border-radius: 8px;
+  margin-block-end: 1rem;
+  background: var(--domain-card-accent-bg, var(--klpt-purple-soft));
+  color: var(--domain-card-accent, var(--klpt-purple));
+  font-weight: 800;
+}
+
+.domain-card__content {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.domain-card__title {
+  color: var(--klpt-ink);
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.domain-card__description {
+  color: var(--klpt-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}

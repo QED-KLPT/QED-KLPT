@@ -29,41 +29,13 @@
       </div>
 
       <div class="card-grid">
-        <article class="feature-card">
-          <span class="feature-card__icon">L</span>
-          <h3>Language and Literacy</h3>
-          <p>Support vocabulary, phonological awareness, and early reading and writing skills.</p>
-        </article>
-
-        <article class="feature-card">
-          <span class="feature-card__icon">E</span>
-          <h3>Executive Function</h3>
-          <p>Develop working memory, attention, cognitive flexibility, and problem-solving skills.</p>
-        </article>
-
-        <article class="feature-card">
-          <span class="feature-card__icon">S</span>
-          <h3>Social-Emotional Learning</h3>
-          <p>Foster self-awareness, emotion regulation, empathy, and positive relationships.</p>
-        </article>
-
-        <article class="feature-card">
-          <span class="feature-card__icon">P</span>
-          <h3>Physicality</h3>
-          <p>Enhance gross and fine motor skills, coordination, and physical confidence.</p>
-        </article>
-
-        <article class="feature-card">
-          <span class="feature-card__icon">M</span>
-          <h3>Mathematics and Numeracy</h3>
-          <p>Build number sense, pattern recognition, spatial reasoning, and mathematical thinking.</p>
-        </article>
-
-        <article class="feature-card">
-          <span class="feature-card__icon">C</span>
-          <h3>Child-Centred Assessment</h3>
-          <p>Focus on meaningful observation and assessment without narrowing learning.</p>
-        </article>
+        @for (domain of domains; track domain.title) {
+          <app-domain-card
+            [title]="domain.title"
+            [description]="domain.description"
+            [url]="domain.url"
+          />
+        }
       </div>
     </div>
   </section>

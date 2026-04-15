@@ -147,32 +147,6 @@ select {
   gap: 1.25rem;
 }
 
-.feature-card {
-  min-height: 10.5rem;
-  border: 1px solid var(--klpt-border);
-  border-radius: 8px;
-  background: var(--klpt-surface);
-  padding: 1.4rem;
-  box-shadow: 0 1px 0 rgba(79, 42, 111, 0.04);
-}
-
-.feature-card__icon {
-  display: inline-grid;
-  width: 2.25rem;
-  height: 2.25rem;
-  place-items: center;
-  border-radius: 8px;
-  margin-block-end: 1rem;
-  background: var(--klpt-purple-soft);
-  color: var(--klpt-purple);
-  font-weight: 800;
-}
-
-.feature-card p {
-  margin: 0;
-  font-size: 0.95rem;
-}
-
 @media (max-width: 52rem) {
   .card-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
