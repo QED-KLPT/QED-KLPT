@@ -20,32 +20,32 @@ export class Home {
     {
       title: 'Language and Literacy',
       description: 'Support vocabulary, phonological awareness, and early reading and writing skills.',
-      url: '/about',
+      url: '/learning-domains/language-and-literacy',
     },
     {
       title: 'Executive Function',
       description: 'Develop working memory, attention, cognitive flexibility, and problem-solving skills.',
-      url: '/about',
+      url: '/learning-domains/executive-function',
     },
     {
       title: 'Social-Emotional Learning',
       description: 'Foster self-awareness, emotion regulation, empathy, and positive relationships.',
-      url: '/about',
+      url: '/learning-domains/social-and-emotional-learning',
     },
     {
       title: 'Physicality',
       description: 'Enhance gross and fine motor skills, coordination, and physical confidence.',
-      url: '/about',
+      url: '/learning-domains/physicality',
     },
     {
       title: 'Mathematics and Numeracy',
       description: 'Build number sense, pattern recognition, spatial reasoning, and mathematical thinking.',
-      url: '/about',
+      url: '/learning-domains/mathematics-and-numeracy',
     },
     {
       title: 'Child-Centred Assessment',
       description: 'Focus on meaningful observation and assessment without narrowing learning.',
-      url: '/about',
+      url: '/klpt-tool',
     },
   ];
 }
