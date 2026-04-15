@@ -1,0 +1,12 @@
+{
+  "name": "youtube-player",
+  "version": "1.0.0",
+  "description": "Reusable Angular component for YouTube video display with title and description support",
+  "author": "",
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/core": "^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0",
+    "@angular/common": "^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0",
+    "@angular/platform-browser": "^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0"
+  }
+}
