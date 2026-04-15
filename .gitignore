@@ -31,10 +31,15 @@ ng-serve*.log
 .history/*
 
 # Miscellaneous
+_site/
 /.angular/cache
 .sass-cache/
+.jekyll-cache/
+.jekyll-metadata
 /connect.lock
 /coverage
+/vendor
+Gemfile.lock
 /libpeerconnection.log
 testem.log
 /typings
