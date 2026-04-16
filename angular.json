@@ -35,7 +35,10 @@
                 "output": "assets"
               }
             ],
-            "styles": ["src/styles.scss"]
+            "styles": [
+              "src/assets/styles/doe-base.scss",
+              "src/assets/styles/styles.scss"
+            ]
           },
           "configurations": {
             "production": {
