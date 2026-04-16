@@ -57,6 +57,20 @@ npm run build
 
 Build artifacts are written to the `dist/` directory.
 
+### Deploying
+
+First build the output to a local folder.
+
+```bash
+npm run github-build
+```
+
+Then deploy to GitHub Pages.
+
+```bash
+npm run github-deploy
+```
+
 ### Running unit tests
 
 To execute unit tests with the Vitest test runner, run:
