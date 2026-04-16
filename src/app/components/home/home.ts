@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { DomainCard } from '../../shared/domain-card/domain-card';
+import { DomainCard } from '../shared/domain-card/domain-card';
 
 type DomainSummary = {
   title: string;

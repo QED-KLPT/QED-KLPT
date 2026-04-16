@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { YoutubePlayerModule } from '../../shared/youtube-player/youtube-player.module';
+import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
 
 @Component({
   selector: 'app-quality-observations',
