@@ -1,5 +1,17 @@
-<a class="domain-card" [routerLink]="url">
-  <span class="domain-card__icon" aria-hidden="true">{{ initial }}</span>
+<a
+  class="domain-card"
+  [routerLink]="url"
+  [style.--domain-card-bg]="background"
+  [style.--domain-card-hover-border]="hoverBorderColor"
+>
+  @if (imageSrc) {
+    <span class="domain-card__icon domain-card__icon--image" aria-hidden="true">
+      <img [src]="imageSrc" [alt]="imageAlt" />
+    </span>
+  } @else {
+    <span class="domain-card__icon" aria-hidden="true">{{ initial }}</span>
+  }
+
   <span class="domain-card__content">
     <span class="domain-card__title">{{ title }}</span>
     <span class="domain-card__description">{{ description }}</span>

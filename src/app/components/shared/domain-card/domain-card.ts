@@ -12,6 +12,10 @@ export class DomainCard {
   @Input({ required: true }) title = '';
   @Input({ required: true }) description = '';
   @Input({ required: true }) url = '/';
+  @Input() imageAlt = '';
+  @Input() imageSrc = '';
+  @Input() background = '';
+  @Input() hoverBorderColor = '';
 
   get initial(): string {
     return this.title.trim().charAt(0).toUpperCase();
