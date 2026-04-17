@@ -5,9 +5,10 @@ type DesignCard = {
   title: string;
   description: string;
   url: string;
-  imageAlt?: string;
+  imageAlt: string;
   background: string;
   hoverBorderColor: string;
+  imageSrc: string;
 };
 
 @Component({
@@ -26,6 +27,8 @@ export class Physicality {
       url: '/learning-domains/physicality/stable-movement',
       background: 'linear-gradient(180deg, #fbfff6 0%, #d9f7be 100%)',
       hoverBorderColor: '#94d2bd',
+      imageAlt: 'Child standing on one foot for balance',
+      imageSrc: 'assets/img/physicality-stable-movement.svg',
     },
     {
       title: 'Environment Awareness',
@@ -34,6 +37,8 @@ export class Physicality {
       url: '/learning-domains/physicality/environment-awareness',
       background: 'linear-gradient(180deg, #f7fff9 0%, #ccfbf1 100%)',
       hoverBorderColor: '#6ee7b7',
+      imageAlt: 'Child looking around curiously',
+      imageSrc: 'assets/img/physicality-environment-awareness.svg',
     },
     {
       title: 'Object Control',
@@ -42,6 +47,8 @@ export class Physicality {
       url: '/learning-domains/physicality/object-control',
       background: 'linear-gradient(180deg, #fffaf5 0%, #ffedd5 100%)',
       hoverBorderColor: '#fca5a5',
+      imageAlt: 'Child hitting a ball with a bat',
+      imageSrc: 'assets/img/physicality-object-control.svg',
     },
     {
       title: 'Gross Motor',
@@ -50,6 +57,8 @@ export class Physicality {
       url: '/learning-domains/physicality/gross-motor',
       background: 'linear-gradient(180deg, #fbfff6 0%, #e7f6d8 100%)',
       hoverBorderColor: '#b7d894',
+      imageAlt: 'Child jumping with arms raised',
+      imageSrc: 'assets/img/physicality-gross-motor.svg',
     },
     {
       title: 'Fine Motor',
@@ -58,6 +67,8 @@ export class Physicality {
       url: '/learning-domains/physicality/fine-motor',
       background: 'linear-gradient(180deg, #f9f5ff 0%, #ede9fe 100%)',
       hoverBorderColor: '#c4b5fd',
+      imageAlt: 'Child holding crayons to draw',
+      imageSrc: 'assets/img/physicality-fine-motor.svg',
     },
     {
       title: 'Sensory Learning',
@@ -66,6 +77,8 @@ export class Physicality {
       url: '/learning-domains/physicality/sensory-learning',
       background: 'linear-gradient(180deg, #fff5f5 0%, #ffe3e3 100%)',
       hoverBorderColor: '#fbbf94',
+      imageAlt: 'Child touching different textured shapes',
+      imageSrc: 'assets/img/physicality-sensory-learning.svg',
     },
   ];
 }
