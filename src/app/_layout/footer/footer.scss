@@ -5,11 +5,7 @@
 
 .site-footer__graphic {
   height: 0.65rem;
-  background:
-    linear-gradient(90deg, var(--klpt-mint) 0 28%, transparent 28%),
-    linear-gradient(90deg, transparent 28%, var(--klpt-gold) 28% 45%, transparent 45%),
-    linear-gradient(90deg, transparent 45%, var(--klpt-pink) 45% 62%, transparent 62%),
-    var(--doe-cyan-300);
+  background: var(--doe-color-accent);
 }
 
 .site-footer__inner {
@@ -65,13 +61,38 @@
   color: rgba(255, 255, 255, 0.88);
   font-size: 0.95rem;
   font-weight: 600;
-  text-decoration: none;
+}
+
+.site-footer__links a,
+.site-footer__social span {
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
 }
 
 .site-footer__links a:hover,
-.site-footer__social a:hover,
+.site-footer__links a:focus-visible,
+.site-footer__social a:hover span,
+.site-footer__social a:focus-visible span,
+.site-footer__qgov:focus-visible,
 .site-footer__qgov:hover {
-  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+.site-footer__social a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.site-footer__social i {
+  width: 1.1rem;
+  color: #ffffff;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
 }
 
 .site-footer__phone {
