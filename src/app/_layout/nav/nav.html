@@ -8,7 +8,8 @@
           [routerLinkActiveOptions]="{ exact: true }"
           class="doe-primary-nav__link"
         >
-          Home
+          <i class="fa-regular fa-house doe-primary-nav__home-icon" aria-hidden="true"></i>
+          <span class="doe-primary-nav__home-text">Home</span>
         </a>
       </li>
 
@@ -18,10 +19,10 @@
         </a>
         <ul class="doe-primary-nav__submenu" aria-label="Foundations">
           <li>
-            <a routerLink="/foundations/quality-observations">Quality observations</a>
+            <a routerLink="/foundations/quality-observations" (click)="closeMenu($event)">Quality observations</a>
           </li>
           <li>
-            <a routerLink="/foundations/analysing-data">Analysing data</a>
+            <a routerLink="/foundations/analysing-data" (click)="closeMenu($event)">Analysing data</a>
           </li>
         </ul>
       </li>
@@ -32,19 +33,19 @@
         </a>
         <ul class="doe-primary-nav__submenu" aria-label="Learning domains">
           <li>
-            <a routerLink="/learning-domains/language-and-literacy">Language and literacy</a>
+            <a routerLink="/learning-domains/language-and-literacy" (click)="closeMenu($event)">Language and literacy</a>
           </li>
           <li>
-            <a routerLink="/learning-domains/executive-function">Executive function</a>
+            <a routerLink="/learning-domains/executive-function" (click)="closeMenu($event)">Executive function</a>
           </li>
           <li>
-            <a routerLink="/learning-domains/social-and-emotional-learning">Social and emotional learning</a>
+            <a routerLink="/learning-domains/social-and-emotional-learning" (click)="closeMenu($event)">Social and emotional learning</a>
           </li>
           <li>
-            <a routerLink="/learning-domains/physicality">Physicality</a>
+            <a routerLink="/learning-domains/physicality" (click)="closeMenu($event)">Physicality</a>
           </li>
           <li>
-            <a routerLink="/learning-domains/mathematics-and-numeracy">Mathematics and numeracy</a>
+            <a routerLink="/learning-domains/mathematics-and-numeracy" (click)="closeMenu($event)">Mathematics and numeracy</a>
           </li>
         </ul>
       </li>

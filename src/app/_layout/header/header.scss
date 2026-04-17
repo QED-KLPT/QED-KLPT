@@ -35,6 +35,14 @@
   list-style: none;
 }
 
+.doe-header__site-tools {
+  width: 100%;
+}
+
+.doe-header__site-tools-list > li:last-child {
+  margin-left: auto;
+}
+
 .doe-header__site-tools a {
   color: #fff;
   font-size: 0.9rem;
