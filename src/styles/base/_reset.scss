@@ -1,0 +1,14 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light;
+  font-family: var(--font-body);
+}
+
+body {
+  margin: 0;
+  background: var(--klpt-cream);
+  color: var(--klpt-ink);
+}
