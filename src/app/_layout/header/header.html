@@ -1,16 +1,37 @@
-<header class="site-header">
-  <a class="site-header__brand" routerLink="/" aria-label="QED KLPT home">
-    <img
-      class="site-header__logo"
-      src="assets/img/klpt-logo.png"
-      alt=""
-      aria-hidden="true"
-    />
-    <span>
-      <strong>KLPT</strong>
-      <small>Kindergarten Learning Progressions Toolkit</small>
-    </span>
-  </a>
+<header class="doe-header" role="banner">
+  <div class="doe-header__pre">
+    <div class="doe-header__container doe-header__pre-inner">
+      <nav class="doe-header__site-tools" aria-label="Site tools">
+        <ul class="doe-header__site-tools-list">
+          <li>
+            <a href="https://qed.qld.gov.au/">QLD Education website</a>
+          </li>
+          <li>
+            <a href="https://qed.qld.gov.au/contact-us">Contact us</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <div class="doe-header__masthead">
+    <div class="doe-header__container doe-header__masthead-inner">
+      <a class="doe-header__brand" href="https://qed.qld.gov.au/" aria-label="Department of Education">
+        <img
+          class="doe-header__brand-logo"
+          src="assets/img/Queensland_Government_logo_logotype_blue.png"
+          alt="Queensland Government"
+        />
+        <span class="doe-header__brand-title">Department of Education</span>
+      </a>
+
+      <!-- <form class="doe-header__search" role="search" aria-label="Site search">
+        <label class="doe-header__search-label" for="site-search">Search</label>
+        <input id="site-search" name="search" type="search" placeholder="Search" />
+        <button type="submit" aria-label="Submit search">Search</button>
+      </form> -->
+    </div>
+  </div>
 
   <app-nav />
 </header>
