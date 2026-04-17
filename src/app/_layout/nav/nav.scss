@@ -39,7 +39,7 @@
   padding: 0.85rem 1rem;
   font-size: 0.96rem;
   font-weight: 400;
-  line-height: 1.2;
+  line-height: 1;
   text-decoration: none;
 }
 
@@ -54,6 +54,7 @@
   border-inline: 0.32rem solid transparent;
   border-top: 0.4rem solid currentColor;
   margin-left: 0.55rem;
+  transform: translateY(0.08rem);
 }
 
 .doe-primary-nav__link:hover,
