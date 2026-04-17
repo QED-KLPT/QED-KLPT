@@ -1,99 +1,130 @@
-.site-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem;
-  align-items: center;
+:host {
+  display: block;
 }
 
-.site-nav__group {
+.doe-primary-nav {
+  background: var(--doe-color-primary);
+  color: #fff;
+}
+
+.doe-primary-nav__container {
+  width: min(var(--doe-container-width), calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+.doe-primary-nav__list,
+.doe-primary-nav__submenu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.doe-primary-nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+.doe-primary-nav__item {
   position: relative;
 }
 
-.site-nav__link,
-.site-nav__menu-link {
-  border-radius: 8px;
-  color: var(--klpt-ink);
-  font-size: 0.92rem;
-  font-weight: 700;
+.doe-primary-nav__link {
+  display: inline-flex;
+  min-height: 3.15rem;
+  align-items: center;
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+  color: #fff;
+  padding: 0.85rem 1rem;
+  font-size: 0.96rem;
+  font-weight: 400;
+  line-height: 1.2;
   text-decoration: none;
 }
 
-.site-nav__link {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.55rem 0.75rem;
+.doe-primary-nav__item:last-child .doe-primary-nav__link {
+  border-right: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-.site-nav__link:hover,
-.site-nav__link--active,
-.site-nav__group--active > .site-nav__link {
-  background: var(--klpt-purple-soft);
-  color: var(--klpt-purple);
+.doe-primary-nav__item--has-menu > .doe-primary-nav__link::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-inline: 0.32rem solid transparent;
+  border-top: 0.4rem solid currentColor;
+  margin-left: 0.55rem;
 }
 
-.site-nav__menu {
+.doe-primary-nav__link:hover,
+.doe-primary-nav__link:focus-visible,
+.doe-primary-nav__link--active,
+.doe-primary-nav__item--active > .doe-primary-nav__link {
+  background: var(--doe-color-primary-dark);
+  color: #fff;
+}
+
+.doe-primary-nav__submenu {
   position: absolute;
-  z-index: 10;
+  z-index: 20;
   top: 100%;
   left: 0;
   display: grid;
-  min-width: 14.5rem;
-  gap: 0.2rem;
-  border: 1px solid var(--klpt-border);
-  border-radius: 8px;
-  background: var(--klpt-surface);
-  padding: 0.45rem;
-  box-shadow: var(--klpt-shadow);
+  min-width: 17rem;
+  border: 1px solid var(--doe-color-border);
+  border-top: 0;
+  background: #fff;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
   opacity: 0;
   pointer-events: none;
-  transform: translateY(0.15rem);
+  transform: translateY(0.2rem);
   transition:
     opacity 140ms ease,
     transform 140ms ease;
 }
 
-.site-nav__group:hover .site-nav__menu,
-.site-nav__group:focus-within .site-nav__menu {
+.doe-primary-nav__item:hover .doe-primary-nav__submenu,
+.doe-primary-nav__item:focus-within .doe-primary-nav__submenu {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
 }
 
-.site-nav__menu-link {
+.doe-primary-nav__submenu a {
   display: block;
-  padding: 0.65rem 0.75rem;
+  color: var(--doe-color-text);
+  padding: 0.78rem 1rem;
+  text-decoration: none;
 }
 
-.site-nav__menu-link:hover,
-.site-nav__menu-link:focus-visible {
-  background: var(--klpt-purple-soft);
-  color: var(--klpt-purple);
+.doe-primary-nav__submenu a:hover,
+.doe-primary-nav__submenu a:focus-visible {
+  background: #f2f6fb;
+  color: var(--doe-color-primary-dark);
 }
 
 @media (max-width: 48rem) {
-  .site-nav {
-    align-items: stretch;
-    flex-direction: column;
-    width: 100%;
+  .doe-primary-nav__list {
+    display: grid;
   }
 
-  .site-nav__link {
+  .doe-primary-nav__link {
     width: 100%;
+    border-right: 1px solid rgba(255, 255, 255, 0.18);
   }
 
-  .site-nav__menu {
+  .doe-primary-nav__submenu {
     position: static;
     display: none;
     min-width: 0;
-    margin-block-start: 0.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
     box-shadow: none;
     opacity: 1;
     pointer-events: auto;
     transform: none;
   }
 
-  .site-nav__group:hover .site-nav__menu,
-  .site-nav__group:focus-within .site-nav__menu {
+  .doe-primary-nav__item:hover .doe-primary-nav__submenu,
+  .doe-primary-nav__item:focus-within .doe-primary-nav__submenu {
     display: grid;
   }
 }
