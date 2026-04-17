@@ -36,14 +36,15 @@
 
 .domain-card__icon {
   display: inline-grid;
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 2.75rem;
+  height: 2.75rem;
   place-items: center;
   border-radius: 8px;
   margin-block-end: 1rem;
   background: var(--domain-card-accent-bg, var(--klpt-purple-soft));
   color: var(--domain-card-accent, var(--klpt-purple));
   font-weight: 800;
+  font-size: 1.2rem;
 }
 
 .domain-card__icon--image {

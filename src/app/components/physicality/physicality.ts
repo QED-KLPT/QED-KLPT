@@ -54,7 +54,7 @@ export class Physicality {
     {
       title: 'Fine Motor',
       description:
-        'Small muscle control for drawing, writing, building, and detailed manipulation tasks.',
+        'Small muscle control for drawing, writing, building, and detailed manipulation tasks. Developing precision in hand movements and coordination.',
       url: '/learning-domains/physicality/fine-motor',
       background: 'linear-gradient(180deg, #f9f5ff 0%, #ede9fe 100%)',
       hoverBorderColor: '#c4b5fd',

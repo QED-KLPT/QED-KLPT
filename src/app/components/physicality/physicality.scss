@@ -5,4 +5,15 @@
 .domain-card {
   height: 10.5rem;
   align-content: center;
+
+  .domain-card__content {
+    min-height: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .domain-card__description {
+    min-height: 2.8rem;
+  }
 }

@@ -18,6 +18,11 @@ export class DomainCard {
   @Input() hoverBorderColor = '';
 
   get initial(): string {
-    return this.title.trim().charAt(0).toUpperCase();
+    const title = this.title.trim();
+    const words = title.split(/\s+/);
+    if (words.length >= 2) {
+      return (words[0][0] + words[1][0]).toUpperCase();
+    }
+    return title.substring(0, 2).toUpperCase();
   }
 }
