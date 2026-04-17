@@ -77,15 +77,27 @@
   text-decoration: none;
 }
 
-.doe-header__brand-logo {
+.doe-header__brand-mark {
   display: block;
-  width: min(16rem, 45vw);
-  height: auto;
+  flex: 0 0 auto;
+  width: min(10rem, 46vw);
+  height: 3.25rem;
+  background: var(--doe-color-primary);
+  mask-image: url("/assets/img/queensland-coat-of-arms.svg");
+  mask-position: right center;
+  mask-repeat: no-repeat;
+  mask-size: auto 100%;
+  -webkit-mask-image: url("/assets/img/queensland-coat-of-arms.svg");
+  -webkit-mask-position: right center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: auto 100%;
 }
 
 .doe-header__brand-title {
-  display: block;
-  border-left: 1px solid var(--doe-color-border);
+  display: flex;
+  align-self: stretch;
+  align-items: center;
+  border-left: 2px solid var(--doe-color-accent);
   padding-left: 1rem;
   color: var(--doe-color-primary);
   font-size: 1.25rem;
@@ -147,7 +159,17 @@
     gap: 0.75rem;
   }
 
+  .doe-header__brand-mark {
+    width: min(18rem, 82vw);
+    height: 3rem;
+    mask-position: center;
+    mask-size: contain;
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
+  }
+
   .doe-header__brand-title {
+    align-self: auto;
     border-left: 0;
     padding-left: 0;
   }
