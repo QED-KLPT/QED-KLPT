@@ -1,10 +1,19 @@
-<section class="section section--cream page-placeholder">
+<section class="section section--cream">
   <div class="section__inner">
     <p class="eyebrow">Learning domain</p>
     <h1>Physicality</h1>
-    <p>
-      Placeholder content for gross motor, fine motor, coordination, confidence,
-      and active participation.
-    </p>
+    <div class="card-grid">
+      @for (card of cards; track card.title) {
+        <app-domain-card
+          [title]="card.title"
+          [description]="card.description"
+          [url]="card.url"
+          [background]="card.background"
+          [hoverBorderColor]="card.hoverBorderColor"
+          [imageSrc]="card.imageSrc"
+          [imageAlt]="card.imageAlt"
+        />
+      }
+    </div>
   </div>
 </section>
