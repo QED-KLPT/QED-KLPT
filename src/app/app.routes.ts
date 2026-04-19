@@ -2,16 +2,22 @@ import { Routes } from '@angular/router';
 import { About } from './components/about/about';
 import { AnalysingData } from './components/analysing-data/analysing-data';
 import { Contact } from './components/contact/contact';
+import { EnvironmentAwareness } from './components/physicality/environment-awareness/environment-awareness';
 import { ExecutiveFunction } from './components/executive-function/executive-function';
+import { FineMotor } from './components/physicality/fine-motor/fine-motor';
 import { Foundations } from './components/foundations/foundations';
+import { GrossMotor } from './components/physicality/gross-motor/gross-motor';
 import { Home } from './components/home/home';
 import { KlptTool } from './components/klpt-tool/klpt-tool';
 import { LanguageAndLiteracy } from './components/language-and-literacy/language-and-literacy';
 import { LearningDomains } from './components/learning-domains/learning-domains';
 import { MathematicsAndNumeracy } from './components/mathematics-and-numeracy/mathematics-and-numeracy';
+import { ObjectControl } from './components/physicality/object-control/object-control';
 import { Physicality } from './components/physicality/physicality';
 import { QualityObservations } from './components/quality-observations/quality-observations';
+import { SensoryLearning } from './components/physicality/sensory-learning/sensory-learning';
 import { SocialAndEmotionalLearning } from './components/social-and-emotional-learning/social-and-emotional-learning';
+import { StableMovement } from './components/physicality/stable-movement/stable-movement';
 
 export const routes: Routes = [
   { path: '', component: Home, title: 'Home' },
@@ -27,6 +33,36 @@ export const routes: Routes = [
     title: 'Social and emotional learning',
   },
   { path: 'learning-domains/physicality', component: Physicality, title: 'Physicality' },
+  {
+    path: 'learning-domains/physicality/stable-movement',
+    component: StableMovement,
+    title: 'Stable Movement',
+  },
+  {
+    path: 'learning-domains/physicality/environment-awareness',
+    component: EnvironmentAwareness,
+    title: 'Environment Awareness',
+  },
+  {
+    path: 'learning-domains/physicality/object-control',
+    component: ObjectControl,
+    title: 'Object Control',
+  },
+  {
+    path: 'learning-domains/physicality/gross-motor',
+    component: GrossMotor,
+    title: 'Gross Motor',
+  },
+  {
+    path: 'learning-domains/physicality/fine-motor',
+    component: FineMotor,
+    title: 'Fine Motor',
+  },
+  {
+    path: 'learning-domains/physicality/sensory-learning',
+    component: SensoryLearning,
+    title: 'Sensory Learning',
+  },
   {
     path: 'learning-domains/mathematics-and-numeracy',
     component: MathematicsAndNumeracy,
