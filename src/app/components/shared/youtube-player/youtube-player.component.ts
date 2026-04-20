@@ -2,7 +2,7 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-youtube-player',
+  selector: 'app-youtube-player',  
   templateUrl: './youtube-player.component.html',
   styleUrls: ['./youtube-player.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -12,6 +12,7 @@ export class YoutubePlayerComponent {
   @Input() title: string = '';
   @Input() description: string = '';
   @Input() youtubeUrl: string = '';
+  @Input() transcript: string | string[] = 'Show transcript here...';
 
   sanitizedUrl: SafeResourceUrl | null = null;
 
