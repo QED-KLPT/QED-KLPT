@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { DomainCard } from '../shared/domain-card/domain-card';
+import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
 
 type DesignCard = {
   title: string;
@@ -13,7 +14,7 @@ type DesignCard = {
 
 @Component({
   selector: 'app-physicality',
-  imports: [DomainCard],
+  imports: [DomainCard, YoutubePlayerModule],
   templateUrl: './physicality.html',
   styleUrl: './physicality.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
