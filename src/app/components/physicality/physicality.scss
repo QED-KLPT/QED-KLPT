@@ -6,3 +6,20 @@
   height: 10.5rem;
   align-content: center;
 }
+
+.videos-row {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  app-youtube-player {
+    flex: 1 1 45%;
+    min-width: 320px;
+    width: 100%;
+
+    @media (max-width: 768px) {
+      flex: 1 1 100%;
+    }
+  }
+}
