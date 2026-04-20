@@ -1,0 +1,11 @@
+<div class="transcript-section">
+  <button (click)="toggleTranscript()" class="transcript-toggle">
+    {{ showTranscript ? 'Hide Transcript' : 'View Transcript' }}
+  </button>
+
+  <div *ngIf="showTranscript" class="transcript">
+    <p *ngFor="let line of transcriptLines">
+      {{ line }}
+    </p>
+  </div>
+</div>
