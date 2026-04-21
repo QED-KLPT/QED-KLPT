@@ -1,9 +1,10 @@
 :host {
   display: block;
+  --doe-primary-nav-rule-height: 8px;
 }
 
 .doe-primary-nav {
-  --doe-primary-nav-rule-height: 8px;
+  // --doe-primary-nav-rule-height: 8px;
 
   position: relative;
   overflow-x: clip;
