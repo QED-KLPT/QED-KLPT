@@ -1,8 +1,8 @@
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Component, DestroyRef, inject } from '@angular/core';
+import { ApplicationRef, Component, DestroyRef, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SwUpdate, VersionReadyEvent } from '@angular/service-worker';
-import { filter } from 'rxjs';
+import { filter, first } from 'rxjs';
 import { Footer } from './_layout/footer/footer';
 import { Header } from './_layout/header/header';
 
@@ -13,6 +13,7 @@ import { Header } from './_layout/header/header';
   styleUrl: './app.scss',
 })
 export class App {
+  private readonly appRef = inject(ApplicationRef);
   private readonly swUpdate = inject(SwUpdate);
   private readonly destroyRef = inject(DestroyRef);
 
@@ -31,6 +32,16 @@ export class App {
       )
       .subscribe(() => {
         this.showUpdateNotice = true;
+      });
+
+    this.appRef.isStable
+      .pipe(first((isStable) => isStable), takeUntilDestroyed(this.destroyRef))
+      .subscribe(async () => {
+        try {
+          await this.swUpdate.checkForUpdate();
+        } catch (error) {
+          console.error('Unable to check for site updates.', error);
+        }
       });
   }
 
