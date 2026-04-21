@@ -3,8 +3,48 @@
     <p class="eyebrow">Foundations</p>
     <h1>Analysing data</h1>
     <p>
-      Placeholder guidance for turning observation evidence into patterns,
-      insights, and practical next steps for planning.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
+      erat a ante venenatis dapibus posuere velit aliquet. Praesent commodo
+      cursus magna, vel scelerisque nisl consectetur et.
     </p>
+    <p class="intro-copy">
+      Nulla vitae elit libero, a pharetra augue. Curabitur blandit tempus
+      porttitor. Cras mattis consectetur purus sit amet fermentum. Donec
+      ullamcorper nulla non metus auctor fringilla, et gravida nisl facilisis
+      in.
+    </p>
+  </div>
+</section>
+
+<section class="section section--white analysing-data-content">
+  <div class="section__inner">
+    <div class="content-header">
+      <h2>Mock content layout</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed posuere
+        consectetur est at lobortis. Integer posuere erat a ante venenatis
+        dapibus posuere velit aliquet. Aenean eu leo quam.
+      </p>
+    </div>
+
+    <div class="video-columns">
+      <article class="video-column" *ngFor="let column of videoColumns">
+        <header class="video-column__header">
+          <h3>{{ column.heading }}</h3>
+          <p>{{ column.intro }}</p>
+        </header>
+
+        <div class="video-stack">
+          <app-youtube-player
+            *ngFor="let video of column.videos"
+            [title]="video.title"
+            [description]="video.description"
+            [youtubeUrl]="video.youtubeUrl"
+            [transcript]="video.transcript"
+          >
+          </app-youtube-player>
+        </div>
+      </article>
+    </div>
   </div>
 </section>
