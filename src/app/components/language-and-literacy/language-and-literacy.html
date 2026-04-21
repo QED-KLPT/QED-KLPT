@@ -16,37 +16,35 @@
   </div>
 </section>
 
-<section class="section section--white">
+<section class="section section--white learning-literacy-data-content">
   <div class="section__inner">
-    <h2>Home Languages</h2>
-    <p>
+    <div class="content-header">
+      <h2>Mock content layout</h2>
+      <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed posuere
         consectetur est at lobortis. Integer posuere erat a ante venenatis
         dapibus posuere velit aliquet. Aenean eu leo quam.
-    </p>
-    <div class="videos-row">
-      <app-youtube-player
-        title="KLPT-home languages"
-        description="KLPT Home languages"
-        [youtubeUrl]="'https://www.youtube.com/watch?v=XneIolMk42s'"
-      >
-    </app-youtube-player>
+      </p>
     </div>
-  </div>
-    <div class="section__inner">
-    <h2>Language and Literacy</h2>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed posuere
-        consectetur est at lobortis. Integer posuere erat a ante venenatis
-        dapibus posuere velit aliquet. Aenean eu leo quam.
-    </p> 
-    <div class="videos-row">
-      <app-youtube-player
-        title="KLPT-learning areas"
-        description="KLPT Learning areas"
-        [youtubeUrl]="'https://www.youtube.com/watch?v=oyQmlHPgKPE'"
-      >
-      </app-youtube-player>
+
+    <div class="video-columns">
+      <article class="video-column" *ngFor="let column of videoColumns">
+        <header class="video-column__header">
+          <h3>{{ column.heading }}</h3>
+          <p>{{ column.intro }}</p>
+        </header>
+
+        <div class="video-stack">
+          <app-youtube-player
+            *ngFor="let video of column.videos"
+            [title]="video.title"
+            [description]="video.description"
+            [youtubeUrl]="video.youtubeUrl"
+            [transcript]="video.transcript"
+          >
+          </app-youtube-player>
+        </div>
+      </article>
     </div>
   </div>
 </section>
