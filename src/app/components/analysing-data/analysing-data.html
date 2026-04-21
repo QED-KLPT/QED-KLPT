@@ -26,25 +26,22 @@
         dapibus posuere velit aliquet. Aenean eu leo quam.
       </p>
     </div>
-
     <div class="video-columns">
-      <article class="video-column" *ngFor="let column of videoColumns">
+      @for (column of videoColumns; track column.heading) {
+      <article class="video-column">
         <header class="video-column__header">
           <h3>{{ column.heading }}</h3>
           <p>{{ column.intro }}</p>
         </header>
-
         <div class="video-stack">
-          <app-youtube-player
-            *ngFor="let video of column.videos"
-            [title]="video.title"
-            [description]="video.description"
-            [youtubeUrl]="video.youtubeUrl"
-            [transcript]="video.transcript"
-          >
+          @for (video of column.videos; track video.title) {
+          <app-youtube-player [title]="video.title" [description]="video.description" [youtubeUrl]="video.youtubeUrl"
+            [transcript]="video.transcript">
           </app-youtube-player>
+          }
         </div>
       </article>
+      }
     </div>
   </div>
 </section>
