@@ -1,0 +1,92 @@
+{
+  "pages": {
+    "language-and-literacy": {
+      "columns": [
+        {
+          "heading": "Home Languages",
+          "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vehicula, nibh vel sagittis hendrerit, lectus turpis volutpat nisl, et volutpat est erat non purus.",
+          "videos": [
+            {
+              "slot": "home-languages-primary",
+              "title": "KLPT-home languages",
+              "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus at sapien non purus fermentum dignissim.",
+              "youtubeUrl": "https://www.youtube.com/watch?v=XneIolMk42s",
+              "transcriptFile": "assets/content/transcripts/language-and-literacy/home-languages-primary.txt"
+            }
+          ]
+        },
+        {
+          "heading": "Language and Literacy",
+          "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.",
+          "videos": [
+            {
+              "slot": "language-and-literacy-primary",
+              "title": "KLPT-learning areas",
+              "description": "Nullam quis risus eget urna mollis ornare vel eu leo. Vestibulum id ligula porta felis euismod semper.",
+              "youtubeUrl": "https://www.youtube.com/watch?v=oyQmlHPgKPE",
+              "transcriptFile": "assets/content/transcripts/language-and-literacy/language-and-literacy-primary.txt"
+            }
+          ]
+        }
+      ]
+    },
+    "analysing-data": {
+      "columns": [
+        {
+          "heading": "Observation snapshots",
+          "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vehicula, nibh vel sagittis hendrerit, lectus turpis volutpat nisl, et volutpat est erat non purus.",
+          "videos": [
+            {
+              "slot": "observation-snapshots-patterns",
+              "title": "Pattern spotting in everyday routines",
+              "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus at sapien non purus fermentum dignissim.",
+              "youtubeUrl": "https://www.youtube.com/watch?v=RCmiHUNHa8c",
+              "transcriptFile": "assets/content/transcripts/analysing-data/observation-snapshots-patterns.txt"
+            },
+            {
+              "slot": "observation-snapshots-notes",
+              "title": "Connecting notes to next steps",
+              "description": "Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui.",
+              "youtubeUrl": "https://www.youtube.com/watch?v=t_TQXaHyjZM",
+              "transcriptFile": "assets/content/transcripts/analysing-data/observation-snapshots-notes.txt"
+            },
+            {
+              "slot": "observation-snapshots-trends",
+              "title": "Interpreting trends across the week",
+              "description": "Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum.",
+              "youtubeUrl": "https://www.youtube.com/watch?v=Rg_Bk8mhsQI",
+              "transcriptFile": "assets/content/transcripts/analysing-data/observation-snapshots-trends.txt"
+            }
+          ]
+        },
+        {
+          "heading": "Planning responses",
+          "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.",
+          "videos": [
+            {
+              "slot": "planning-responses-participation",
+              "title": "Analysing group participation",
+              "description": "Nullam quis risus eget urna mollis ornare vel eu leo. Vestibulum id ligula porta felis euismod semper.",
+              "youtubeUrl": "https://www.youtube.com/watch?v=1BbO3pI1GVk",
+              "transcriptFile": "assets/content/transcripts/analysing-data/planning-responses-participation.txt"
+            },
+            {
+              "slot": "planning-responses-conversations",
+              "title": "Using evidence in reflective conversations",
+              "description": "Donec ullamcorper nulla non metus auctor fringilla. Morbi leo risus, porta ac consectetur ac.",
+              "youtubeUrl": "https://www.youtube.com/watch?v=XneIolMk42s",
+              "transcriptFile": "assets/content/transcripts/analysing-data/planning-responses-conversations.txt"
+            },
+            {
+              "slot": "planning-responses-intentional-teaching",
+              "title": "Turning insights into intentional teaching",
+              "description": "Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.",
+              "youtubeUrl": "https://www.youtube.com/watch?v=oyQmlHPgKPE",
+              "transcriptFile": "assets/content/transcripts/analysing-data/planning-responses-intentional-teaching.txt"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
