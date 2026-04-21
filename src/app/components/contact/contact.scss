@@ -1,3 +1,31 @@
 :host {
   display: block;
 }
+
+.contact-hero__lead {
+  max-width: 54rem;
+}
+
+.contact-content {
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.5rem, 4vw, 3rem);
+}
+
+.contact-panel h2 {
+  margin-bottom: 0.85rem;
+}
+
+.contact-panel p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 64rem) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}

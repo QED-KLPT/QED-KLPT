@@ -25,6 +25,7 @@ import { QualityObservations } from './components/quality-observations/quality-o
 import { SensoryLearning } from './components/physicality/sensory-learning/sensory-learning';
 import { SocialAndEmotionalLearning } from './components/social-and-emotional-learning/social-and-emotional-learning';
 import { StableMovement } from './components/physicality/stable-movement/stable-movement';
+import { TestingAlerts } from './components/testing-alerts/testing-alerts';
 
 export const routes: Routes = [
   { path: '', component: Home, title: 'Home' },
@@ -113,5 +114,6 @@ export const routes: Routes = [
   { path: 'klpt-tool', component: KlptTool, title: 'KLPT tool' },
   { path: 'about', component: About, title: 'About' },
   { path: 'contact', component: Contact, title: 'Contact' },
+  { path: 'testing-alerts', component: TestingAlerts, title: 'Testing Alerts' },
   { path: '**', redirectTo: '' },
 ];
