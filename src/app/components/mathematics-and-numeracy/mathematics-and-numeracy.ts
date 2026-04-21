@@ -22,9 +22,9 @@ type DesignCard = {
 export class MathematicsAndNumeracy {
   protected readonly cards: DesignCard[] = [
     {
-      title: 'Numbers',
+      title: 'Lorem Ipsum Dolor',
       description:
-        'Developing number recognition, counting skills, and understanding the relationship between numbers and quantities in everyday contexts.',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       url: '/learning-domains/mathematics-and-numeracy/numbers',
       background: 'linear-gradient(180deg, #fbfff6 0%, #d9f7be 100%)',
       hoverBorderColor: '#94d2bd',
@@ -32,9 +32,9 @@ export class MathematicsAndNumeracy {
       imageSrc: 'assets/img/mathematics-numeracy-numbers.svg',
     },
     {
-      title: 'Quantity',
+      title: 'Ut enim Adipiscing',
       description:
-        'Understanding more and less, developing comparative language, and exploring quantity through hands-on exploration and grouping activities.',
+        'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat Duis aute irure dolor.',
       url: '/learning-domains/mathematics-and-numeracy/quantity',
       background: 'linear-gradient(180deg, #f7fff9 0%, #ccfbf1 100%)',
       hoverBorderColor: '#6ee7b7',
@@ -42,9 +42,9 @@ export class MathematicsAndNumeracy {
       imageSrc: 'assets/img/mathematics-numeracy-quantity.svg',
     },
     {
-      title: 'Concepts of Time',
+      title: 'Dui Sagittis Vestibulum',
       description:
-        'Developing understanding of daily routines, sequencing events, and using time-related language to describe when things happen.',
+        'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur Excepteur sint occaecat cupidatat.',
       url: '/learning-domains/mathematics-and-numeracy/concepts-of-time',
       background: 'linear-gradient(180deg, #fffaf5 0%, #ffedd5 100%)',
       hoverBorderColor: '#fca5a5',
@@ -52,9 +52,9 @@ export class MathematicsAndNumeracy {
       imageSrc: 'assets/img/mathematics-numeracy-concepts-of-time.svg',
     },
     {
-      title: 'Length',
+      title: 'Proident Simulant',
       description:
-        'Exploring measurement through direct comparison, developing understanding of standard and non-standard units for measuring length and distance.',
+        'Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum Sed ut perspiciatis unde.',
       url: '/learning-domains/mathematics-and-numeracy/length',
       background: 'linear-gradient(180deg, #fbfff6 0%, #e7f6d8 100%)',
       hoverBorderColor: '#b7d894',
@@ -62,9 +62,9 @@ export class MathematicsAndNumeracy {
       imageSrc: 'assets/img/mathematics-numeracy-length.svg',
     },
     {
-      title: 'Distance',
+      title: 'Nemo Enim Ipsam',
       description:
-        'Understanding how far things move, developing spatial reasoning, and using comparative language to describe how distances change.',
+        'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit sed consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.',
       url: '/learning-domains/mathematics-and-numeracy/distance',
       background: 'linear-gradient(180deg, #f9f5ff 0%, #ede9fe 100%)',
       hoverBorderColor: '#c4b5fd',
@@ -72,9 +72,9 @@ export class MathematicsAndNumeracy {
       imageSrc: 'assets/img/mathematics-numeracy-distance.svg',
     },
     {
-      title: 'Capacity',
+      title: 'At vero eos et Accusamus',
       description:
-        'Exploring volume and capacity through filling and emptying containers, developing understanding of how much things hold and comparative measurement language.',
+        'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas.' ,
       url: '/learning-domains/mathematics-and-numeracy/capacity',
       background: 'linear-gradient(180deg, #fff5f5 0%, #ffe3e3 100%)',
       hoverBorderColor: '#fbbf94',
@@ -82,9 +82,9 @@ export class MathematicsAndNumeracy {
       imageSrc: 'assets/img/mathematics-numeracy-capacity.svg',
     },
     {
-      title: 'Area',
+      title: 'Nam libero Tempore',
       description:
-        'Understanding surface area, developing spatial measurement skills, and using non-standard units to covering and tiling activities.',
+        'Nam libero tempore cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus omnis voluptas assumenda est.',
       url: '/learning-domains/mathematics-and-numeracy/area',
       background: 'linear-gradient(180deg, #fbfff6 0%, #d9f7be 100%)',
       hoverBorderColor: '#86efac',
