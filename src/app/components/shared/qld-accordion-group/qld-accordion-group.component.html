@@ -1,0 +1,16 @@
+<div class="qld__accordion-group" [class.qld__accordion-group--dark]="dark">
+  @if (shouldShowToggle) {
+    <div class="qld__accordion__toggle">
+      <button
+        type="button"
+        [class]="toggleBtnClasses"
+        (click)="handleToggleAll()"
+        [attr.aria-expanded]="allExpanded"
+      >
+        {{ toggleAllLabel }}
+      </button>
+    </div>
+  }
+  <ng-content></ng-content>
+</div>
+

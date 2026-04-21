@@ -1,0 +1,188 @@
+<section class="section section--white">
+  <div class="section__inner">
+    <h2>Testing Accordians</h2>
+    <p>The following demos showcase the <code>app-qld-accordion-group</code> and <code>app-qld-accordion-item</code> components with various attributes and configurations.</p>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>1. Basic Single Accordion</h3>
+      <p>A single accordion item in a group, default closed state.</p>
+      <app-qld-accordion-group>
+        <app-qld-accordion-item title="Accordion heading 1">
+          <p>Here is some accordion content. This demonstrates a basic single accordion item.</p>
+        </app-qld-accordion-item>
+      </app-qld-accordion-group>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-accordion-group&gt;
+  &lt;app-qld-accordion-item title="Accordion heading 1"&gt;
+    &lt;p&gt;Here is some accordion content...&lt;/p&gt;
+  &lt;/app-qld-accordion-item&gt;
+&lt;/app-qld-accordion-group&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>2. Pre-expanded Accordion</h3>
+      <p>An accordion item that starts in the expanded state on page load.</p>
+      <app-qld-accordion-group>
+        <app-qld-accordion-item title="Accordion heading 1" [expanded]="true">
+          <p>This accordion is already open when the page loads. Useful for highlighting important content.</p>
+        </app-qld-accordion-item>
+      </app-qld-accordion-group>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-accordion-item title="Accordion heading 1" [expanded]="true"&gt;
+  &lt;p&gt;This accordion is already open...&lt;/p&gt;
+&lt;/app-qld-accordion-item&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>3. Dark Variant Accordion</h3>
+      <p>An accordion item with the dark background variant applied.</p>
+      <app-qld-accordion-group>
+        <app-qld-accordion-item title="Dark accordion heading" [dark]="true">
+          <p>This accordion uses the dark variant styling. The background and text colors are adjusted for dark themes.</p>
+        </app-qld-accordion-item>
+      </app-qld-accordion-group>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-accordion-item title="Dark accordion heading" [dark]="true"&gt;
+  &lt;p&gt;This accordion uses the dark variant...&lt;/p&gt;
+&lt;/app-qld-accordion-item&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>4. Alt Background Variant</h3>
+      <p>An accordion item with the alt background variant for different visual contexts.</p>
+      <app-qld-accordion-group>
+        <app-qld-accordion-item title="Alt background accordion" [alt]="true">
+          <p>This accordion uses the alt variant styling. It provides a different visual treatment suitable for alternate content sections.</p>
+        </app-qld-accordion-item>
+      </app-qld-accordion-group>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-accordion-item title="Alt background accordion" [alt]="true"&gt;
+  &lt;p&gt;This accordion uses the alt variant...&lt;/p&gt;
+&lt;/app-qld-accordion-item&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>5. Accordion Group with Multiple Items</h3>
+      <p>A group of three accordions where only one panel can be open at a time.</p>
+      <app-qld-accordion-group>
+        <app-qld-accordion-item title="Accordion heading 1">
+          <p>Content for accordion item one. Clicking this will close any other open panel.</p>
+        </app-qld-accordion-item>
+        <app-qld-accordion-item title="Accordion heading 2">
+          <p>Content for accordion item two. Only one panel remains open at a time in a group.</p>
+        </app-qld-accordion-item>
+        <app-qld-accordion-item title="Accordion heading 3">
+          <p>Content for accordion item three. The group manages the open/close state coordination.</p>
+        </app-qld-accordion-item>
+      </app-qld-accordion-group>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-accordion-group&gt;
+  &lt;app-qld-accordion-item title="Accordion heading 1"&gt;...&lt;/app-qld-accordion-item&gt;
+  &lt;app-qld-accordion-item title="Accordion heading 2"&gt;...&lt;/app-qld-accordion-item&gt;
+  &lt;app-qld-accordion-item title="Accordion heading 3"&gt;...&lt;/app-qld-accordion-item&gt;
+&lt;/app-qld-accordion-group&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>6. Group with "Open All" Toggle</h3>
+      <p>An accordion group with the toggle all button enabled. Shows when 3 or more items are present.</p>
+      <app-qld-accordion-group [toggleAll]="true">
+        <app-qld-accordion-item title="Accordion heading 1">
+          <p>Click the "Open all" button above to expand every panel at once.</p>
+        </app-qld-accordion-item>
+        <app-qld-accordion-item title="Accordion heading 2">
+          <p>Click "Close all" to collapse every panel. The button label toggles automatically.</p>
+        </app-qld-accordion-item>
+        <app-qld-accordion-item title="Accordion heading 3">
+          <p>You can also click individual headers to toggle specific panels while others remain open.</p>
+        </app-qld-accordion-item>
+      </app-qld-accordion-group>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-accordion-group [toggleAll]="true"&gt;
+  &lt;app-qld-accordion-item title="Accordion heading 1"&gt;...&lt;/app-qld-accordion-item&gt;
+  &lt;app-qld-accordion-item title="Accordion heading 2"&gt;...&lt;/app-qld-accordion-item&gt;
+  &lt;app-qld-accordion-item title="Accordion heading 3"&gt;...&lt;/app-qld-accordion-item&gt;
+&lt;/app-qld-accordion-group&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>7. Dark Group</h3>
+      <p>An entire accordion group with the dark background variant applied to all items.</p>
+      <app-qld-accordion-group [dark]="true">
+        <app-qld-accordion-item title="Dark group heading 1">
+          <p>This entire group uses dark styling. All items inherit the dark theme.</p>
+        </app-qld-accordion-item>
+        <app-qld-accordion-item title="Dark group heading 2">
+          <p>The dark variant provides higher contrast for use on light page backgrounds.</p>
+        </app-qld-accordion-item>
+        <app-qld-accordion-item title="Dark group heading 3">
+          <p>Each item in the dark group maintains proper accessibility with ARIA attributes.</p>
+        </app-qld-accordion-item>
+      </app-qld-accordion-group>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-accordion-group [dark]="true"&gt;
+  &lt;app-qld-accordion-item title="Dark group heading 1"&gt;...&lt;/app-qld-accordion-item&gt;
+  &lt;app-qld-accordion-item title="Dark group heading 2"&gt;...&lt;/app-qld-accordion-item&gt;
+  &lt;app-qld-accordion-item title="Dark group heading 3"&gt;...&lt;/app-qld-accordion-item&gt;
+&lt;/app-qld-accordion-group&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>8. Pre-expanded First Item</h3>
+      <p>A group where the first item starts expanded while others remain closed.</p>
+      <app-qld-accordion-group>
+        <app-qld-accordion-item title="First item expanded" [expanded]="true">
+          <p>This first item is pre-expanded. Clicking other items will close this one.</p>
+        </app-qld-accordion-item>
+        <app-qld-accordion-item title="Second item">
+          <p>This item starts closed. Clicking it will expand this panel and close the first.</p>
+        </app-qld-accordion-item>
+        <app-qld-accordion-item title="Third item">
+          <p>This item also starts closed. Only one panel can be open at a time.</p>
+        </app-qld-accordion-item>
+      </app-qld-accordion-group>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-accordion-item title="First item expanded" [expanded]="true"&gt;...&lt;/app-qld-accordion-item&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>9. Mixed Dark and Alt Variants</h3>
+      <p>A group with individual items using different variants (dark, alt, default).</p>
+      <app-qld-accordion-group>
+        <app-qld-accordion-item title="Dark variant item" [dark]="true">
+          <p>This item uses the dark background variant.</p>
+        </app-qld-accordion-item>
+        <app-qld-accordion-item title="Alt variant item" [alt]="true">
+          <p>This item uses the alt background variant.</p>
+        </app-qld-accordion-item>
+        <app-qld-accordion-item title="Default variant item">
+          <p>This item uses the default styling.</p>
+        </app-qld-accordion-item>
+      </app-qld-accordion-group>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-accordion-item title="Dark variant item" [dark]="true"&gt;...&lt;/app-qld-accordion-item&gt;
+&lt;app-qld-accordion-item title="Alt variant item" [alt]="true"&gt;...&lt;/app-qld-accordion-item&gt;
+&lt;app-qld-accordion-item title="Default variant item"&gt;...&lt;/app-qld-accordion-item&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>10. Accordion with Rich Content</h3>
+      <p>An accordion containing links, lists, and formatted text to demonstrate content flexibility.</p>
+      <app-qld-accordion-group>
+        <app-qld-accordion-item title="Rich content accordion">
+          <p>This accordion contains <a href="#">a hyperlink</a> and formatted text.</p>
+          <ul style="margin-block-start: 0.5rem;">
+            <li>First list item</li>
+            <li>Second list item with <strong>bold text</strong></li>
+            <li>Third list item</li>
+          </ul>
+          <p style="margin-block-start: 0.5rem;">You can include any HTML content inside an accordion panel.</p>
+        </app-qld-accordion-item>
+        <app-qld-accordion-item title="Another rich item">
+          <h4 style="margin-block-start: 0;">Sub-heading in accordion</h4>
+          <p>This demonstrates that headings and other block elements work inside accordions.</p>
+          <blockquote style="margin-block-start: 0.5rem; padding-left: 1rem; border-left: 3px solid var(--klpt-purple);">
+            <p>"Accordions should be used sparingly for primary content on a page."</p>
+            <cite style="display: block; margin-block-start: 0.25rem; font-size: 0.875rem;">— Queensland Government Design System</cite>
+          </blockquote>
+        </app-qld-accordion-item>
+      </app-qld-accordion-group>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-accordion-item title="Rich content accordion"&gt;
+  &lt;p&gt;This contains &lt;a href="#"&gt;a hyperlink&lt;/a&gt;&lt;/p&gt;
+  &lt;ul&gt;...&lt;/ul&gt;
+&lt;/app-qld-accordion-item&gt;</code></pre>
+    </section>
+
+  </div>
+</section>

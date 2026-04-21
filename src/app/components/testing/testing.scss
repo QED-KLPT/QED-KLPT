@@ -1,0 +1,34 @@
+.testing-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    margin-bottom: 0.75rem;
+  }
+}
+
+.testing-link {
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  background-color: var(--klpt-cream, #fbf8eb);
+  color: var(--doe-blue-600, #005eb8);
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+
+  &:hover {
+    background-color: var(--klpt-purple-soft, #efe7f5);
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--klpt-gold, #f6b71a);
+    outline-offset: 2px;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}

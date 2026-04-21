@@ -26,6 +26,8 @@ import { SensoryLearning } from './components/physicality/sensory-learning/senso
 import { SocialAndEmotionalLearning } from './components/social-and-emotional-learning/social-and-emotional-learning';
 import { StableMovement } from './components/physicality/stable-movement/stable-movement';
 import { TestingAlerts } from './components/testing-alerts/testing-alerts';
+import { TestingAccordians } from './components/testing-accordians/testing-accordians';
+import { Testing } from './components/testing/testing';
 
 export const routes: Routes = [
   { path: '', component: Home, title: 'Home' },
@@ -115,5 +117,7 @@ export const routes: Routes = [
   { path: 'about', component: About, title: 'About' },
   { path: 'contact', component: Contact, title: 'Contact' },
   { path: 'testing-alerts', component: TestingAlerts, title: 'Testing Alerts' },
+  { path: 'testing-accordians', component: TestingAccordians, title: 'Testing Accordions' },
+  { path: 'testing', component: Testing, title: 'Testing Hub' },
   { path: '**', redirectTo: '' },
 ];

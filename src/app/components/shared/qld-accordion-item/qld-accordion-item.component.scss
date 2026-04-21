@@ -1,0 +1,96 @@
+:host {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.qld__accordion {
+  position: relative;
+  border: 1px solid var(--klpt-border, #ddd7e6);
+  margin-bottom: 0.5rem;
+
+  &--dark {
+    border-color: var(--doe-border, #d0dae5);
+
+    .qld__accordion__title {
+      color: var(--doe-color-heading, #24335a);
+    }
+
+    .qld__accordion__body {
+      background-color: var(--doe-surface, #fafafa);
+    }
+  }
+
+  &--alt {
+    border-color: var(--klpt-border, #ddd7e6);
+
+    .qld__accordion__title {
+      background-color: var(--klpt-cream, #fbf8eb);
+    }
+
+    .qld__accordion__body {
+      background-color: var(--klpt-surface, #ffffff);
+    }
+  }
+
+  &--closed {
+    .qld__accordion__icon {
+      transform: rotate(0deg);
+    }
+  }
+
+  &--open {
+    .qld__accordion__icon {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem;
+    margin: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+    text-decoration: underline;
+    text-underline-offset: var(--doe-color-link-underline-offset, 0.125rem);
+    text-decoration-thickness: var(--doe-color-link-underline-thickness, 1px);
+    color: var(--doe-blue-600, #005eb8);
+    font-family: var(--font-body, "Open Sans", sans-serif);
+    gap: 1rem;
+    text-align: left;
+
+    &:hover {
+      background-color: var(--klpt-cream, #fbf8eb);
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--klpt-gold, #f6b71a);
+      outline-offset: 2px;
+    }
+
+    &-text {
+      flex: 1;
+    }
+  }
+
+  &__icon {
+    font-size: 0.875rem;
+    transition: transform 0.25s ease-in;
+    flex-shrink: 0;
+  }
+
+  &__body {
+    overflow: hidden;
+    transition: max-height 0.25s ease-in, opacity 0.25s ease-in;
+
+    &-wrapper {
+      padding: 1rem;
+    }
+  }
+}
