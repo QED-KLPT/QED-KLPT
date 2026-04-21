@@ -1,0 +1,45 @@
+<div
+  role="region"
+  [attr.aria-label]="ariaLabel"
+  [class]="alertClasses"
+  [class.qld__page-alerts--dismissible]="dismissible"
+>
+  <div class="qld__page-alerts__icon" aria-hidden="true">
+    <i class="{{ iconClass }}" aria-hidden="true"></i>
+  </div>
+  @if (headingLevel === 4) {
+    <h4 class="qld__page-alerts--heading qld__display-lg">{{ title }}</h4>
+  } @else {
+    <h2 class="qld__page-alerts--heading qld__display-lg">{{ title }}</h2>
+  }
+  <div class="qld__page-alerts__content">
+    <ng-content></ng-content>
+    @if (showMore) {
+      <div class="qld__page-alerts__toggle">
+        <button
+          type="button"
+          class="qld__page-alerts__more"
+          (click)="toggleShowMore()"
+          [attr.aria-expanded]="showMoreExpanded"
+        >
+          {{ showMoreLabelText }}
+        </button>
+        @if (showMoreExpanded) {
+          <div class="qld__page-alerts__more-content">
+            <ng-content select="[qld-more]"></ng-content>
+          </div>
+        }
+      </div>
+    }
+  </div>
+  @if (dismissible) {
+    <button
+      type="button"
+      class="qld__page-alerts__close"
+      (click)="close()"
+      aria-label="Close alert"
+    >
+      &times;
+    </button>
+  }
+</div>
