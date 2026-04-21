@@ -7,3 +7,19 @@
 
   <app-footer />
 </div>
+
+@if (showUpdateNotice) {
+  <aside class="update-snackbar" aria-live="polite" aria-atomic="true">
+    <div class="update-snackbar__content">
+      <p>A site update is available. Refresh to load the latest version.</p>
+      <div class="update-snackbar__actions">
+        <button type="button" class="update-snackbar__button update-snackbar__button--secondary" (click)="dismissUpdateNotice()">
+          Later
+        </button>
+        <button type="button" class="update-snackbar__button update-snackbar__button--primary" (click)="refreshForUpdate()">
+          {{ isRefreshing ? 'Refreshing...' : 'Refresh' }}
+        </button>
+      </div>
+    </div>
+  </aside>
+}
