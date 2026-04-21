@@ -34,7 +34,7 @@
       </p>
     </div>
 
-    <div class="video-columns">
+    <div class="video-columns" *ngIf="videoColumns$ | async as videoColumns; else loadingState">
       <article class="video-column" *ngFor="let column of videoColumns">
         <header class="video-column__header">
           <h3>{{ column.heading }}</h3>
@@ -53,6 +53,10 @@
         </div>
       </article>
     </div>
+
+    <ng-template #loadingState>
+      <p>Loading curated videos...</p>
+    </ng-template>
   </div>
 </section>
 
