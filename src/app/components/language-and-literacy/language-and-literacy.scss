@@ -2,12 +2,48 @@
   display: block;
 }
 
-.page-placeholder {
-  min-height: 0;
+.domain-hero {
+  padding-block: clamp(2.75rem, 6vw, 5rem);
 }
 
-.intro-copy {
+.domain-hero--language {
+  background: linear-gradient(180deg, #fff8ee 0%, #ffe9d3 100%);
+}
+
+.domain-hero__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(14rem, 0.8fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: center;
+}
+
+.domain-hero__copy {
+  max-width: 44rem;
+  padding-left: 1rem;
+  border-left: 4px solid #efb777;
+}
+
+.domain-hero .eyebrow {
+  color: #9c6420;
+}
+
+.domain-hero__copy h1 {
+  margin-bottom: 0.85rem;
+}
+
+.domain-hero__lead {
   max-width: 54rem;
+}
+
+.domain-hero__art {
+  display: flex;
+  justify-content: center;
+}
+
+.domain-hero__art img {
+  width: min(100%, 17rem);
+  height: auto;
+  filter: drop-shadow(0 14px 28px rgba(156, 100, 32, 0.12));
 }
 
 .learning-literacy-data-content {
@@ -58,6 +94,18 @@
 }
 
 @media (max-width: 64rem) {
+  .domain-hero__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .domain-hero__art {
+    justify-content: flex-start;
+  }
+
+  .domain-hero__art img {
+    width: min(15rem, 60vw);
+  }
+
   .video-columns {
     grid-template-columns: 1fr;
   }

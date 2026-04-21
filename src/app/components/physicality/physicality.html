@@ -1,8 +1,33 @@
-<section class="section section--white">
+<section class="section domain-hero domain-hero--physicality">
   <div class="section__inner">
-    <h2>Physicality</h2>
+    <div class="domain-hero__layout">
+      <div class="domain-hero__copy">
+        <p class="eyebrow">Learning domain</p>
+        <h1>Physicality</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+          posuere erat a ante venenatis dapibus posuere velit aliquet. Praesent
+          commodo cursus magna, vel scelerisque nisl consectetur et.
+        </p>
+        <p class="domain-hero__lead">
+          Donec ullamcorper nulla non metus auctor fringilla. Curabitur blandit
+          tempus porttitor. Cras mattis consectetur purus sit amet fermentum.
+        </p>
+      </div>
+
+      <div class="domain-hero__art">
+        <img src="assets/img/domain-physicality.svg" alt="Physicality illustration" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--white domain-overview">
+  <div class="section__inner">
+    <h2>Physicality overview</h2>
     <p>
-      Watch the video to understand the key elements of physicality, and how to observe these in everyday contexts.
+      Watch the video to understand the key elements of physicality, and how to
+      observe these in everyday contexts.
     </p>
     <div class="videos-row">
       <app-youtube-player
@@ -15,10 +40,12 @@
   </div>
 </section>
 
-<section class="section section--cream">
+<section class="section section--cream domain-pathways">
   <div class="section__inner">
-    <p class="eyebrow">Learning domain</p>
-    <h1>Physicality</h1>
+    <div class="section__intro">
+      <p class="eyebrow">Explore the progression</p>
+      <h2>Physicality pathways</h2>
+    </div>
     <div class="card-grid">
       @for (card of cards; track card.title) {
         <app-domain-card
