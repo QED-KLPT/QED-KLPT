@@ -349,9 +349,12 @@
     transition: max-height 240ms ease;
   }
 
-  .doe-primary-nav__submenu--open,
-  .doe-primary-nav__item:hover .doe-primary-nav__submenu,
-  .doe-primary-nav__item:focus-within .doe-primary-nav__submenu {
+  .doe-primary-nav__item:hover .doe-primary-nav__submenu:not(.doe-primary-nav__submenu--open),
+  .doe-primary-nav__item:focus-within .doe-primary-nav__submenu:not(.doe-primary-nav__submenu--open) {
+    max-height: 0;
+  }
+
+  .doe-primary-nav__submenu--open {
     max-height: 24rem;
   }
 
