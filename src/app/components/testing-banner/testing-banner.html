@@ -1,0 +1,105 @@
+<section class="section section--white">
+  <div class="section__inner">
+    <h2>Testing Banners</h2>
+    <p>The following demos showcase the <code>app-qld-banner</code> component with various variants, backgrounds, and configurations following the Queensland Government Design System.</p>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>1. Default White Banner (No Breadcrumbs)</h3>
+      <p>A minimal banner with just a title on a white background. Used for simple page headers without navigation context.</p>
+      <app-qld-banner variant="default" title="Default White Banner"></app-qld-banner>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-banner variant="default" title="Default White Banner"&gt;&lt;/app-qld-banner&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>2. Default Banner with Breadcrumbs</h3>
+      <p>A default banner with breadcrumb navigation showing the page hierarchy. The standard pattern for content pages.</p>
+      <app-qld-banner variant="default" title="Default Banner with Breadcrumbs" [breadcrumbs]="defaultBreadcrumbs"></app-qld-banner>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-banner variant="default" title="Default Banner with Breadcrumbs"
+  [breadcrumbs]="defaultBreadcrumbs"&gt;&lt;/app-qld-banner&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>3. Light Background Banner</h3>
+      <p>A default banner with a light grey background for subtle visual distinction. Useful when you want to separate the header from page content.</p>
+      <app-qld-banner variant="default" title="Light Background Banner" background="light" [breadcrumbs]="defaultBreadcrumbs"></app-qld-banner>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-banner variant="default" title="Light Background Banner"
+  background="light"
+  [breadcrumbs]="defaultBreadcrumbs"&gt;&lt;/app-qld-banner&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>4. Alternate Background Banner</h3>
+      <p>A default banner with an alternate background color variant. Provides more visual weight than the light variant.</p>
+      <app-qld-banner variant="default" title="Alternate Background Banner" background="alt" [breadcrumbs]="defaultBreadcrumbs"></app-qld-banner>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-banner variant="default" title="Alternate Background Banner"
+  background="alt"
+  [breadcrumbs]="defaultBreadcrumbs"&gt;&lt;/app-qld-banner&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>5. Dark Background Banner</h3>
+      <p>A default banner with a dark background and white text. Creates strong visual contrast for important page headers.</p>
+      <app-qld-banner variant="default" title="Dark Background Banner" background="dark" [breadcrumbs]="darkBreadcrumbs"></app-qld-banner>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-banner variant="default" title="Dark Background Banner"
+  background="dark"
+  [breadcrumbs]="darkBreadcrumbs"&gt;&lt;/app-qld-banner&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>6. Basic Banner with Abstract</h3>
+      <p>A basic banner variant that includes a primary heading and an abstract/description paragraph. Ideal for pages needing brief context.</p>
+      <app-qld-banner variant="basic" title="Basic Banner Example" [breadcrumbs]="defaultBreadcrumbs" [abstractText]="basicAbstract"></app-qld-banner>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-banner variant="basic" title="Basic Banner Example"
+  [breadcrumbs]="defaultBreadcrumbs"
+  [abstractText]="basicAbstract"&gt;&lt;/app-qld-banner&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>7. Basic Banner with Background Image</h3>
+      <p>A basic banner with a background image overlay. The abstract text sits on top of the image for visual impact.</p>
+      <app-qld-banner variant="basic" title="Basic Banner with Image" background="dark" [breadcrumbs]="defaultBreadcrumbs" [abstractText]="basicAbstract"></app-qld-banner>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-banner variant="basic" title="Basic Banner with Image"
+  background="dark"
+  [breadcrumbs]="defaultBreadcrumbs"
+  [abstractText]="basicAbstract"&gt;&lt;/app-qld-banner&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>8. Advanced Banner with Hero Image</h3>
+      <p>An advanced banner with a hero image on the left and content on the right. The two-column layout is responsive, stacking vertically on mobile.</p>
+      <app-qld-banner variant="advanced" title="Advanced Banner with Hero" [breadcrumbs]="defaultBreadcrumbs" [abstractText]="advancedAbstract" [heroImageUrl]="heroImageUrl" [heroImageAlt]="heroImageAlt"></app-qld-banner>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-banner variant="advanced" title="Advanced Banner with Hero"
+  [breadcrumbs]="defaultBreadcrumbs"
+  [abstractText]="advancedAbstract"
+  [heroImageUrl]="heroImageUrl"
+  [heroImageAlt]="heroImageAlt"&gt;&lt;/app-qld-banner&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>9. Advanced Banner with CTAs</h3>
+      <p>An advanced banner with primary and secondary call-to-action buttons. Used when you need to guide users toward specific actions.</p>
+      <app-qld-banner variant="advanced" title="Advanced Banner with CTAs" [breadcrumbs]="defaultBreadcrumbs" [abstractText]="advancedAbstract" [heroImageUrl]="heroImageUrl" [heroImageAlt]="heroImageAlt" [ctaPrimary]="ctaPrimary" [ctaSecondary]="ctaSecondary"></app-qld-banner>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-banner variant="advanced" title="Advanced Banner with CTAs"
+  [breadcrumbs]="defaultBreadcrumbs"
+  [abstractText]="advancedAbstract"
+  [heroImageUrl]="heroImageUrl"
+  [heroImageAlt]="heroImageAlt"
+  [ctaPrimary]="ctaPrimary"
+  [ctaSecondary]="ctaSecondary"&gt;&lt;/app-qld-banner&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>10. Advanced Banner with Icon Tiles</h3>
+      <p>An advanced banner with icon tile navigation. Each tile is a clickable link with an icon, ideal for quick access to key sections or contact methods.</p>
+      <app-qld-banner variant="advanced" title="Advanced Banner with Icon Tiles" [breadcrumbs]="defaultBreadcrumbs" [abstractText]="advancedAbstract" [heroImageUrl]="heroImageUrl" [heroImageAlt]="heroImageAlt" [ctaPrimary]="ctaPrimary" [iconTiles]="iconTiles"></app-qld-banner>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-banner variant="advanced" title="Advanced Banner with Icon Tiles"
+  [breadcrumbs]="defaultBreadcrumbs"
+  [abstractText]="advancedAbstract"
+  [heroImageUrl]="heroImageUrl"
+  [heroImageAlt]="heroImageAlt"
+  [ctaPrimary]="ctaPrimary"
+  [iconTiles]="iconTiles"&gt;&lt;/app-qld-banner&gt;</code></pre>
+    </section>
+
+  </div>
+</section>
