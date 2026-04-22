@@ -10,9 +10,33 @@
   border-radius: 4px;
 }
 
-.transcript {
+.transcript-shell {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 260ms ease,
+    opacity 220ms ease,
+    margin-top 260ms ease;
+}
+
+.transcript-shell--open {
+  grid-template-rows: 1fr;
+  opacity: 1;
   margin-top: 10px;
+}
+
+.transcript {
+  overflow: hidden;
   padding: 10px;
   border-left: 3px solid #ccc;
   background: #fafafa;
+}
+
+.transcript p:first-child {
+  margin-top: 0;
+}
+
+.transcript p:last-child {
+  margin-bottom: 0;
 }
