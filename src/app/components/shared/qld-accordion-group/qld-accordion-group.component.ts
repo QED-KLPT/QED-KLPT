@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, ContentChildren, Input, QueryList } from '@angular/core';
+import { AfterContentInit, ChangeDetectionStrategy, Component, ContentChildren, Input, QueryList } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { QldAccordionItemComponent } from '../qld-accordion-item/qld-accordion-item.component';
 
 @Component({
@@ -11,10 +12,21 @@ import { QldAccordionItemComponent } from '../qld-accordion-item/qld-accordion-i
 export class QldAccordionGroupComponent {
   @Input() dark = false;
   @Input() toggleAll = false;
+  @Input() singleOpen = true;
 
   @ContentChildren(QldAccordionItemComponent) items!: QueryList<QldAccordionItemComponent>;
 
   allExpanded = false;
+  private itemSubscriptions = new Subscription();
+
+  ngAfterContentInit(): void {
+    this.bindItemToggles();
+    this.items.changes.subscribe(() => {
+      this.bindItemToggles();
+      this.syncAllExpandedState();
+    });
+    this.syncAllExpandedState();
+  }
 
   handleToggleAll(): void {
     this.allExpanded = !this.allExpanded;
@@ -69,5 +81,34 @@ export class QldAccordionGroupComponent {
   get accordionGroupClass(): string {
     const base = 'qld__accordion-group';
     return this.dark ? (base + ' ' + base + '--dark') : base;
+  }
+
+  handleItemToggle(item: QldAccordionItemComponent, isOpen: boolean): void {
+    if (this.singleOpen && isOpen && this.items) {
+      for (const sibling of this.items.toArray()) {
+        if (sibling !== item) {
+          sibling.collapse();
+        }
+      }
+    }
+
+    this.syncAllExpandedState();
+  }
+
+  private bindItemToggles(): void {
+    this.itemSubscriptions.unsubscribe();
+    this.itemSubscriptions = new Subscription();
+
+    if (!this.items) {
+      return;
+    }
+
+    for (const item of this.items.toArray()) {
+      this.itemSubscriptions.add(item.toggled.subscribe((isOpen) => this.handleItemToggle(item, isOpen)));
+    }
+  }
+
+  private syncAllExpandedState(): void {
+    this.allExpanded = this.items?.length > 0 && this.items.toArray().every((item) => item.isOpen);
   }
 }
