@@ -1,0 +1,22 @@
+<nav [class]="breadcrumbClasses" aria-label="breadcrumb">
+  <ol class="qld__link-list qld__link-list--inline">
+    @if (showHomeIcon) {
+      <li class="qld__breadcrumbs__item">
+        <a [href]="homeHref" class="qld__breadcrumbs__link qld__breadcrumbs__home" aria-label="{{ homeLabel }}">
+          <i class="fa-light fa-house" aria-hidden="true"></i>
+        </a>
+      </li>
+    }
+    @for (crumb of items; track crumb.label) {
+      <li class="qld__breadcrumbs__item">
+        @if (crumb.current) {
+          <span aria-current="page">{{ crumb.label }}</span>
+        } @else if (crumb.href) {
+          <a [href]="crumb.href" class="qld__breadcrumbs__link">{{ crumb.label }}</a>
+        } @else {
+          <span>{{ crumb.label }}</span>
+        }
+      </li>
+    }
+  </ol>
+</nav>
