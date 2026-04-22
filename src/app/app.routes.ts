@@ -27,7 +27,7 @@ import { SocialAndEmotionalLearning } from './components/social-and-emotional-le
 import { StableMovement } from './components/physicality/stable-movement/stable-movement';
 import { TestingAlerts } from './components/testing-alerts/testing-alerts';
 import { TestingAccordians } from './components/testing-accordians/testing-accordians';
-import { TestingTextarea } from './components/testing-textarea/testing-textarea';
+import { TestingTextarea } from './components/testing/text-area/text-area';
 import { Testing } from './components/testing/testing';
 
 export const routes: Routes = [
@@ -119,7 +119,7 @@ export const routes: Routes = [
   { path: 'contact', component: Contact, title: 'Contact' },
   { path: 'testing-alerts', component: TestingAlerts, title: 'Testing Alerts' },
   { path: 'testing-accordians', component: TestingAccordians, title: 'Testing Accordions' },
-  { path: 'testing-textarea', component: TestingTextarea, title: 'Testing Text Area' },
+  { path: 'testing-text-area', component: TestingTextarea, title: 'Testing Text Area' },
   { path: 'testing', component: Testing, title: 'Testing Hub' },
   { path: '**', redirectTo: '' },
 ];
