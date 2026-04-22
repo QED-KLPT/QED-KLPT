@@ -18,7 +18,10 @@ export class App {
   private readonly destroyRef = inject(DestroyRef);
 
   protected showUpdateNotice = false;
+  protected showUpdateFailureNotice = false;
   protected isRefreshing = false;
+  protected updateFailureMessage =
+    'An update was detected, but the hosting service returned mixed files. Please wait a few minutes and try again.';
 
   constructor() {
     console.info('[SW] App bootstrapped.');
@@ -56,6 +59,8 @@ export class App {
       )
       .subscribe((event) => {
         console.error('Site update installation failed.', event.error);
+        this.showUpdateNotice = false;
+        this.showUpdateFailureNotice = true;
       });
 
     merge(
@@ -83,6 +88,10 @@ export class App {
     this.showUpdateNotice = false;
   }
 
+  protected dismissUpdateFailureNotice(): void {
+    this.showUpdateFailureNotice = false;
+  }
+
   protected async refreshForUpdate(): Promise<void> {
     if (this.isRefreshing) {
       return;
@@ -102,6 +111,7 @@ export class App {
   private async checkForSiteUpdate(): Promise<void> {
     try {
       console.info('[SW] Checking for update...');
+      this.showUpdateFailureNotice = false;
       const hasUpdate = await this.swUpdate.checkForUpdate();
       console.info('[SW] checkForUpdate() completed.', { hasUpdate });
     } catch (error) {

@@ -77,6 +77,11 @@
   padding: 1rem 1rem 0.95rem;
 }
 
+.update-snackbar--warning .update-snackbar__content {
+  border-color: rgba(180, 83, 9, 0.28);
+  background: #fffaf0;
+}
+
 .update-snackbar__content p {
   margin: 0;
   color: var(--doe-color-text);

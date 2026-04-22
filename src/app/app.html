@@ -27,3 +27,16 @@
     </div>
   </aside>
 }
+
+@if (showUpdateFailureNotice) {
+  <aside class="update-snackbar update-snackbar--warning" aria-live="polite" aria-atomic="true">
+    <div class="update-snackbar__content">
+      <p>{{ updateFailureMessage }}</p>
+      <div class="update-snackbar__actions">
+        <button type="button" class="update-snackbar__button update-snackbar__button--secondary" (click)="dismissUpdateFailureNotice()">
+          Dismiss
+        </button>
+      </div>
+    </div>
+  </aside>
+}
