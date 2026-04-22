@@ -104,12 +104,14 @@
 }
 
 .doe-primary-nav__link--active,
-.doe-primary-nav__item--active > .doe-primary-nav__link {
+.doe-primary-nav__item--active > .doe-primary-nav__link,
+.doe-primary-nav__item--active > .doe-primary-nav__item-row > .doe-primary-nav__link {
   color: var(--doe-color-primary-dark);
 }
 
 .doe-primary-nav__link--active::after,
-.doe-primary-nav__item--active > .doe-primary-nav__link::after {
+.doe-primary-nav__item--active > .doe-primary-nav__link::after,
+.doe-primary-nav__item--active > .doe-primary-nav__item-row > .doe-primary-nav__link::after {
   background: var(--doe-primary-nav-background);
 }
 
@@ -121,7 +123,8 @@
 .doe-primary-nav__link:hover .doe-primary-nav__home-icon,
 .doe-primary-nav__link:focus-visible .doe-primary-nav__home-icon,
 .doe-primary-nav__link--active .doe-primary-nav__home-icon,
-.doe-primary-nav__item--active > .doe-primary-nav__link .doe-primary-nav__home-icon {
+.doe-primary-nav__item--active > .doe-primary-nav__link .doe-primary-nav__home-icon,
+.doe-primary-nav__item--active > .doe-primary-nav__item-row > .doe-primary-nav__link .doe-primary-nav__home-icon {
   color: currentColor;
 }
 
