@@ -31,6 +31,7 @@ import { TestingAccordians } from './components/testing-accordians/testing-accor
 import { TestingTextarea } from './components/testing/text-area/text-area';
 import { TestingCheckbox } from './components/testing/checkbox/checkbox';
 import { Testing } from './components/testing/testing';
+import { TestingCards } from './components/testing-cards/testing-cards';
 
 export const routes: Routes = [
   { path: '', component: Home, title: 'Home' },
@@ -125,5 +126,6 @@ export const routes: Routes = [
   { path: 'testing-text-area', component: TestingTextarea, title: 'Testing Text Area' },
   { path: 'testing-checkbox', component: TestingCheckbox, title: 'Testing Checkbox' },
   { path: 'testing', component: Testing, title: 'Testing Hub' },
+  { path: 'testing/testing-cards', component: TestingCards, title: 'Testing Cards' },
   { path: '**', redirectTo: '' },
 ];
