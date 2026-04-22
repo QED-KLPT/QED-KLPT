@@ -29,93 +29,255 @@ import { StableMovement } from './components/physicality/stable-movement/stable-
 import { TestingAlerts } from './components/testing-alerts/testing-alerts';
 import { TestingAccordians } from './components/testing-accordians/testing-accordians';
 import { Testing } from './components/testing/testing';
+import { UsingTheKlpt } from './components/using-the-klpt/using-the-klpt';
 
 export const routes: Routes = [
   { path: '', component: Home, title: 'Home' },
-  { path: 'foundations', component: Foundations, title: 'Foundations' },
-  { path: 'foundations/quality-observations', component: QualityObservations, title: 'Quality observations' },
-  { path: 'foundations/analysing-data', component: AnalysingData, title: 'Analysing data' },
-  { path: 'learning-domains', component: LearningDomains, title: 'Learning domains' },
-  { path: 'learning-domains/language-and-literacy', component: LanguageAndLiteracy, title: 'Language and literacy' },
-  { path: 'learning-domains/executive-function', component: ExecutiveFunction, title: 'Executive function' },
   {
-    path: 'learning-domains/social-and-emotional-learning',
+    path: 'foundations',
+    pathMatch: 'full',
+    redirectTo: 'foundations/analysing-and-interpreting-observational-data',
+  },
+  {
+    path: 'foundations/conducting-and-documenting-quality-observations',
+    component: QualityObservations,
+    title: 'Conducting and documenting quality observations',
+  },
+  {
+    path: 'foundations/analysing-and-interpreting-observational-data',
+    component: AnalysingData,
+    title: 'Analysing and interpreting observational data',
+  },
+  {
+    path: 'learning-domain-tool',
+    pathMatch: 'full',
+    redirectTo: 'learning-domain-tool/using-the-klpt',
+  },
+  {
+    path: 'learning-domain-tool/using-the-klpt',
+    component: UsingTheKlpt,
+    title: 'Using the KLPT',
+  },
+  {
+    path: 'learning-domain-tool/learning-domains',
+    component: LearningDomains,
+    title: 'Learning domains',
+  },
+  {
+    path: 'learning-domain-tool/learning-domains/language-and-literacy',
+    component: LanguageAndLiteracy,
+    title: 'Language and literacy',
+  },
+  {
+    path: 'learning-domain-tool/learning-domains/executive-function',
+    component: ExecutiveFunction,
+    title: 'Executive function',
+  },
+  {
+    path: 'learning-domain-tool/learning-domains/social-and-emotional-learning',
     component: SocialAndEmotionalLearning,
     title: 'Social and emotional learning',
   },
-  { path: 'learning-domains/physicality', component: Physicality, title: 'Physicality' },
   {
-    path: 'learning-domains/physicality/stable-movement',
+    path: 'learning-domain-tool/learning-domains/physicality',
+    component: Physicality,
+    title: 'Physicality',
+  },
+  {
+    path: 'learning-domain-tool/learning-domains/physicality/stable-movement',
     component: StableMovement,
     title: 'Stable Movement',
   },
   {
-    path: 'learning-domains/physicality/environment-awareness',
+    path: 'learning-domain-tool/learning-domains/physicality/environment-awareness',
     component: EnvironmentAwareness,
     title: 'Environment Awareness',
   },
   {
-    path: 'learning-domains/physicality/object-control',
+    path: 'learning-domain-tool/learning-domains/physicality/object-control',
     component: ObjectControl,
     title: 'Object Control',
   },
   {
-    path: 'learning-domains/physicality/gross-motor',
+    path: 'learning-domain-tool/learning-domains/physicality/gross-motor',
     component: GrossMotor,
     title: 'Gross Motor',
   },
   {
-    path: 'learning-domains/physicality/fine-motor',
+    path: 'learning-domain-tool/learning-domains/physicality/fine-motor',
     component: FineMotor,
     title: 'Fine Motor',
   },
   {
-    path: 'learning-domains/physicality/sensory-learning',
+    path: 'learning-domain-tool/learning-domains/physicality/sensory-learning',
     component: SensoryLearning,
     title: 'Sensory Learning',
   },
   {
-    path: 'learning-domains/mathematics-and-numeracy',
+    path: 'learning-domain-tool/learning-domains/mathematics-and-numeracy',
     component: MathematicsAndNumeracy,
     title: 'Mathematics and numeracy',
   },
   {
-    path: 'learning-domains/mathematics-and-numeracy/numbers',
+    path: 'learning-domain-tool/learning-domains/mathematics-and-numeracy/numbers',
     component: Numbers,
     title: 'Numbers',
   },
   {
-    path: 'learning-domains/mathematics-and-numeracy/quantity',
+    path: 'learning-domain-tool/learning-domains/mathematics-and-numeracy/quantity',
     component: Quantity,
     title: 'Quantity',
   },
   {
-    path: 'learning-domains/mathematics-and-numeracy/concepts-of-time',
+    path: 'learning-domain-tool/learning-domains/mathematics-and-numeracy/concepts-of-time',
     component: ConceptsOfTime,
     title: 'Concepts of time',
   },
   {
-    path: 'learning-domains/mathematics-and-numeracy/length',
+    path: 'learning-domain-tool/learning-domains/mathematics-and-numeracy/length',
     component: Length,
     title: 'Length',
   },
   {
-    path: 'learning-domains/mathematics-and-numeracy/distance',
+    path: 'learning-domain-tool/learning-domains/mathematics-and-numeracy/distance',
     component: Distance,
     title: 'Distance',
   },
   {
-    path: 'learning-domains/mathematics-and-numeracy/capacity',
+    path: 'learning-domain-tool/learning-domains/mathematics-and-numeracy/capacity',
     component: Capacity,
     title: 'Capacity',
   },
   {
-    path: 'learning-domains/mathematics-and-numeracy/area',
+    path: 'learning-domain-tool/learning-domains/mathematics-and-numeracy/area',
     component: Area,
     title: 'Area',
   },
-  { path: 'klpt-tool', component: KlptTool, title: 'KLPT tool' },
-  { path: 'practice-supports', component: PracticeSupports, title: 'Practice supports' },
+  {
+    path: 'learning-domain-tool/observation-support-tool',
+    component: KlptTool,
+    title: 'Observation Support Tool',
+  },
+  {
+    path: 'learning-domain-tool/practice-support',
+    component: PracticeSupports,
+    title: 'Practice Support',
+  },
+  {
+    path: 'foundations/quality-observations',
+    pathMatch: 'full',
+    redirectTo: 'foundations/conducting-and-documenting-quality-observations',
+  },
+  {
+    path: 'foundations/analysing-data',
+    pathMatch: 'full',
+    redirectTo: 'foundations/analysing-and-interpreting-observational-data',
+  },
+  {
+    path: 'learning-domains',
+    pathMatch: 'full',
+    redirectTo: 'learning-domain-tool/learning-domains',
+  },
+  {
+    path: 'learning-domains/language-and-literacy',
+    pathMatch: 'full',
+    redirectTo: 'learning-domain-tool/learning-domains/language-and-literacy',
+  },
+  {
+    path: 'learning-domains/executive-function',
+    pathMatch: 'full',
+    redirectTo: 'learning-domain-tool/learning-domains/executive-function',
+  },
+  {
+    path: 'learning-domains/social-and-emotional-learning',
+    pathMatch: 'full',
+    redirectTo: 'learning-domain-tool/learning-domains/social-and-emotional-learning',
+  },
+  {
+    path: 'learning-domains/physicality',
+    pathMatch: 'full',
+    redirectTo: 'learning-domain-tool/learning-domains/physicality',
+  },
+  {
+    path: 'learning-domains/physicality/stable-movement',
+    pathMatch: 'full',
+    redirectTo: 'learning-domain-tool/learning-domains/physicality/stable-movement',
+  },
+  {
+    path: 'learning-domains/physicality/environment-awareness',
+    pathMatch: 'full',
+    redirectTo: 'learning-domain-tool/learning-domains/physicality/environment-awareness',
+  },
+  {
+    path: 'learning-domains/physicality/object-control',
+    pathMatch: 'full',
+    redirectTo: 'learning-domain-tool/learning-domains/physicality/object-control',
+  },
+  {
+    path: 'learning-domains/physicality/gross-motor',
+    pathMatch: 'full',
+    redirectTo: 'learning-domain-tool/learning-domains/physicality/gross-motor',
+  },
+  {
+    path: 'learning-domains/physicality/fine-motor',
+    pathMatch: 'full',
+    redirectTo: 'learning-domain-tool/learning-domains/physicality/fine-motor',
+  },
+  {
+    path: 'learning-domains/physicality/sensory-learning',
+    pathMatch: 'full',
+    redirectTo: 'learning-domain-tool/learning-domains/physicality/sensory-learning',
+  },
+  {
+    path: 'learning-domains/mathematics-and-numeracy',
+    pathMatch: 'full',
+    redirectTo: 'learning-domain-tool/learning-domains/mathematics-and-numeracy',
+  },
+  {
+    path: 'learning-domains/mathematics-and-numeracy/numbers',
+    pathMatch: 'full',
+    redirectTo: 'learning-domain-tool/learning-domains/mathematics-and-numeracy/numbers',
+  },
+  {
+    path: 'learning-domains/mathematics-and-numeracy/quantity',
+    pathMatch: 'full',
+    redirectTo: 'learning-domain-tool/learning-domains/mathematics-and-numeracy/quantity',
+  },
+  {
+    path: 'learning-domains/mathematics-and-numeracy/concepts-of-time',
+    pathMatch: 'full',
+    redirectTo: 'learning-domain-tool/learning-domains/mathematics-and-numeracy/concepts-of-time',
+  },
+  {
+    path: 'learning-domains/mathematics-and-numeracy/length',
+    pathMatch: 'full',
+    redirectTo: 'learning-domain-tool/learning-domains/mathematics-and-numeracy/length',
+  },
+  {
+    path: 'learning-domains/mathematics-and-numeracy/distance',
+    pathMatch: 'full',
+    redirectTo: 'learning-domain-tool/learning-domains/mathematics-and-numeracy/distance',
+  },
+  {
+    path: 'learning-domains/mathematics-and-numeracy/capacity',
+    pathMatch: 'full',
+    redirectTo: 'learning-domain-tool/learning-domains/mathematics-and-numeracy/capacity',
+  },
+  {
+    path: 'learning-domains/mathematics-and-numeracy/area',
+    pathMatch: 'full',
+    redirectTo: 'learning-domain-tool/learning-domains/mathematics-and-numeracy/area',
+  },
+  {
+    path: 'klpt-tool',
+    pathMatch: 'full',
+    redirectTo: 'learning-domain-tool/observation-support-tool',
+  },
+  {
+    path: 'practice-supports',
+    pathMatch: 'full',
+    redirectTo: 'learning-domain-tool/practice-support',
+  },
   { path: 'about', component: About, title: 'About' },
   { path: 'contact', component: Contact, title: 'Contact' },
   { path: 'testing-alerts', component: TestingAlerts, title: 'Testing Alerts' },
