@@ -13,7 +13,8 @@
   </h2>
   <div
     class="qld__accordion__body"
-    [class.qld__accordion--closed]="!isOpen"
+    [class.qld__accordion__body--closed]="!isOpen"
+    [class.qld__accordion__body--open]="isOpen"
     [id]="bodyId"
     role="region"
     [attr.aria-labelledby]="headingId"

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-qld-accordion-item',
@@ -8,35 +8,42 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class QldAccordionItemComponent {
+  private static nextId = 0;
+  private readonly instanceId = QldAccordionItemComponent.nextId++;
+
   @Input({ required: true }) title!: string;
-  @Input() expanded = false;
   @Input() dark = false;
   @Input() alt = false;
+  @Output() toggled = new EventEmitter<boolean>();
 
   isOpen = false;
 
-  constructor() {
-    this.isOpen = this.expanded;
+  @Input()
+  set expanded(value: boolean) {
+    this.isOpen = value;
   }
 
   toggle(): void {
     this.isOpen = !this.isOpen;
+    this.toggled.emit(this.isOpen);
   }
 
   expand(): void {
     this.isOpen = true;
+    this.toggled.emit(true);
   }
 
   collapse(): void {
     this.isOpen = false;
+    this.toggled.emit(false);
   }
 
   get bodyId(): string {
-    return 'accordion-body-' + Math.random().toString(36).substring(2, 9);
+    return `accordion-body-${this.instanceId}`;
   }
 
   get headingId(): string {
-    return 'accordion-heading-' + Math.random().toString(36).substring(2, 9);
+    return `accordion-heading-${this.instanceId}`;
   }
 
   get accordionClasses(): string {

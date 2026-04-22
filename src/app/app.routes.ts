@@ -20,6 +20,7 @@ import { MathematicsAndNumeracy } from './components/mathematics-and-numeracy/ma
 import { Numbers } from './components/mathematics-and-numeracy/numbers/numbers';
 import { ObjectControl } from './components/physicality/object-control/object-control';
 import { Physicality } from './components/physicality/physicality';
+import { PracticeSupports } from './components/practice-supports/practice-supports';
 import { Quantity } from './components/mathematics-and-numeracy/quantity/quantity';
 import { QualityObservations } from './components/quality-observations/quality-observations';
 import { SensoryLearning } from './components/physicality/sensory-learning/sensory-learning';
@@ -114,6 +115,7 @@ export const routes: Routes = [
     title: 'Area',
   },
   { path: 'klpt-tool', component: KlptTool, title: 'KLPT tool' },
+  { path: 'practice-supports', component: PracticeSupports, title: 'Practice supports' },
   { path: 'about', component: About, title: 'About' },
   { path: 'contact', component: Contact, title: 'Contact' },
   { path: 'testing-alerts', component: TestingAlerts, title: 'Testing Alerts' },

@@ -113,10 +113,26 @@
   }
 
   &__body {
+    display: grid;
+    grid-template-rows: 1fr;
     overflow: hidden;
-    transition: max-height 0.25s ease-in, opacity 0.25s ease-in;
+    opacity: 1;
+    transition:
+      grid-template-rows 220ms ease,
+      opacity 180ms ease;
+
+    &--closed {
+      grid-template-rows: 0fr;
+      opacity: 0;
+    }
+
+    &--open {
+      grid-template-rows: 1fr;
+      opacity: 1;
+    }
 
     &-wrapper {
+      min-height: 0;
       padding: 0 1.25rem 1.25rem;
       border-top: 1px solid var(--klpt-border, #ddd7e6);
       padding-block-start: 1rem;
