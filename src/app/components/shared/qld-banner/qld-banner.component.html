@@ -1,0 +1,86 @@
+<section [class]="bannerClasses">
+  @if (breadcrumbs.length > 0) {
+    <nav [class]="mobileBreadcrumbClasses" aria-label="breadcrumb">
+      <ol class="qld__link-list qld__link-list--inline">
+        @for (crumb of breadcrumbs; track crumb.label) {
+          <li class="qld__breadcrumbs__item">
+            @if (crumb.current) {
+              <span aria-current="page">{{ crumb.label }}</span>
+            } @else if (crumb.href) {
+              <a [href]="crumb.href" class="qld__breadcrumbs__link">{{ crumb.label }}</a>
+            } @else {
+              <span>{{ crumb.label }}</span>
+            }
+          </li>
+        }
+      </ol>
+    </nav>
+  }
+
+  <div class="qld__banner__wrapper">
+    <div class="qld__banner__main row">
+      @if (hasHero) {
+        <div class="qld__banner__hero col-xs-12 col-md-6 col-lg-5">
+          <div class="qld__banner__image" [style.background-image]="heroImageStyle"
+               [attr.role]="hasHeroImage ? 'img' : null"
+               [attr.aria-label]="hasHeroImage ? heroImageAlt : null">
+          </div>
+        </div>
+      }
+
+      <div [class]="contentColumnClasses">
+        @if (breadcrumbs.length > 0) {
+          <nav [class]="desktopBreadcrumbClasses" aria-label="breadcrumb">
+            <ol class="qld__link-list qld__link-list--inline">
+              @for (crumb of breadcrumbs; track crumb.label) {
+                <li class="qld__breadcrumbs__item">
+                  @if (crumb.current) {
+                    <span aria-current="page">{{ crumb.label }}</span>
+                  } @else if (crumb.href) {
+                    <a [href]="crumb.href" class="qld__breadcrumbs__link">{{ crumb.label }}</a>
+                  } @else {
+                    <span>{{ crumb.label }}</span>
+                  }
+                </li>
+              }
+            </ol>
+          </nav>
+        }
+
+        <h1 [class]="headingClass">{{ title }}</h1>
+
+        @if (hasSecondaryHeading) {
+          <h2 class="qld__banner__heading-secondary">{{ secondaryHeading }}</h2>
+        }
+
+        @if (hasAbstract) {
+          <div class="qld__banner__content--body qld__abstract">
+            <p>{{ abstractText }}</p>
+          </div>
+        }
+
+        @if (hasCtas) {
+          <div class="qld__banner__cta">
+            @if (ctaPrimary) {
+              <a [href]="ctaPrimary.href" class="qld__btn qld__btn--primary">{{ ctaPrimary.label }}</a>
+            }
+            @if (ctaSecondary) {
+              <a [href]="ctaSecondary.href" class="qld__btn qld__btn--secondary">{{ ctaSecondary.label }}</a>
+            }
+          </div>
+        }
+
+        @if (hasIconTiles) {
+          <div class="qld__banner__icon-tiles">
+            @for (tile of iconTiles; track tile.label) {
+              <a [href]="tile.href" class="qld__banner__icon-tile">
+                <i [class]="tile.icon" aria-hidden="true"></i>
+                <span>{{ tile.label }}</span>
+              </a>
+            }
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
