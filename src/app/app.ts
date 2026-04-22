@@ -21,9 +21,20 @@ export class App {
   protected isRefreshing = false;
 
   constructor() {
+    console.info('[SW] App bootstrapped.');
+
     if (!this.swUpdate.isEnabled) {
+      console.info('[SW] Service worker updates are disabled in this build.');
       return;
     }
+
+    console.info('[SW] Service worker updates are enabled.');
+
+    this.swUpdate.versionUpdates
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((event) => {
+        console.info('[SW] Version event received:', event);
+      });
 
     this.swUpdate.versionUpdates
       .pipe(
@@ -31,6 +42,7 @@ export class App {
         takeUntilDestroyed(this.destroyRef),
       )
       .subscribe(() => {
+        console.info('[SW] New version is ready. Showing update notice.');
         this.showUpdateNotice = true;
       });
 
@@ -52,6 +64,7 @@ export class App {
     )
       .pipe(first(), takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {
+        console.info('[SW] Initial update check trigger fired.');
         void this.checkForSiteUpdate();
       });
 
@@ -61,6 +74,7 @@ export class App {
         takeUntilDestroyed(this.destroyRef),
       )
       .subscribe(() => {
+        console.info('[SW] Document became visible. Re-checking for updates.');
         void this.checkForSiteUpdate();
       });
   }
@@ -87,7 +101,9 @@ export class App {
 
   private async checkForSiteUpdate(): Promise<void> {
     try {
-      await this.swUpdate.checkForUpdate();
+      console.info('[SW] Checking for update...');
+      const hasUpdate = await this.swUpdate.checkForUpdate();
+      console.info('[SW] checkForUpdate() completed.', { hasUpdate });
     } catch (error) {
       console.error('Unable to check for site updates.', error);
     }
