@@ -1,0 +1,89 @@
+<section class="section section--white">
+  <div class="section__inner">
+    <h2>Testing Buttons</h2>
+    <p>The following demos showcase the <code>app-qld-button</code> component with various variants, sizes, and configurations following the Queensland Government Design System.</p>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>1. Primary Button (Default)</h3>
+      <p>The default primary button is the most prominent action. It uses a solid blue background with white text for main calls-to-action like "Submit" or "Save".</p>
+      <app-qld-button variant="primary">Primary Button</app-qld-button>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-button variant="primary"&gt;Primary Button&lt;/app-qld-button&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>2. Secondary Button</h3>
+      <p>The secondary button uses an outline style with a colored border. It provides an alternative action that is less prominent than the primary button, such as "Cancel" or "Back".</p>
+      <app-qld-button variant="secondary">Secondary Button</app-qld-button>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-button variant="secondary"&gt;Secondary Button&lt;/app-qld-button&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>3. Tertiary Button (Underlined)</h3>
+      <p>The tertiary button is the least visually prominent option. It appears as underlined text, used for low-emphasis actions like "Learn more" or "Skip".</p>
+      <app-qld-button variant="tertiary">Tertiary Button</app-qld-button>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-button variant="tertiary"&gt;Tertiary Button&lt;/app-qld-button&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>4. Primary with Leading Icon</h3>
+      <p>A primary button with an icon placed before the text. Useful for actions like "Save" or "Upload" where a visual cue reinforces the action.</p>
+      <app-qld-button variant="primary" [iconLead]="true">
+        <i class="fa-light fa-save" aria-hidden="true"></i>Save
+      </app-qld-button>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-button variant="primary" iconLead="true"&gt;
+  &lt;i class="fa-light fa-save" aria-hidden="true"&gt;&lt;/i&gt;Save
+&lt;/app-qld-button&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>5. Primary with Trailing Icon</h3>
+      <p>A primary button with an icon placed after the text. Commonly used for navigation actions like "Next" or "View details".</p>
+      <app-qld-button variant="primary" [iconTrail]="true">
+        Next<i class="fa-light fa-arrow-right" aria-hidden="true"></i>
+      </app-qld-button>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-button variant="primary" iconTrail="true"&gt;
+  Next&lt;i class="fa-light fa-arrow-right" aria-hidden="true"&gt;&lt;/i&gt;
+&lt;/app-qld-button&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>6. Secondary with Leading Icon</h3>
+      <p>A secondary (outlined) button with a leading icon. Combines the alternative action style with visual context for clarity.</p>
+      <app-qld-button variant="secondary" [iconLead]="true">
+        <i class="fa-light fa-download" aria-hidden="true"></i>Download
+      </app-qld-button>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-button variant="secondary" iconLead="true"&gt;
+  &lt;i class="fa-light fa-download" aria-hidden="true"&gt;&lt;/i&gt;Download
+&lt;/app-qld-button&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>7. Disabled Primary Button</h3>
+      <p>A disabled primary button with reduced opacity and a not-allowed cursor. Used when an action is temporarily unavailable, such as before form validation passes.</p>
+      <app-qld-button variant="primary" [disabled]="true">Disabled Primary</app-qld-button>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-button variant="primary" [disabled]="true"&gt;Disabled Primary&lt;/app-qld-button&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>8. Disabled Tertiary Button</h3>
+      <p>A disabled tertiary button in its underlined text style. The underline is removed when disabled to indicate the action is unavailable.</p>
+      <app-qld-button variant="tertiary" [disabled]="true">Disabled Tertiary</app-qld-button>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-button variant="tertiary" [disabled]="true"&gt;Disabled Tertiary&lt;/app-qld-button&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>9. Large Primary Button</h3>
+      <p>A larger primary button with increased height and font size. Used for prominent actions that need extra visual weight, such as a main form submission.</p>
+      <app-qld-button variant="primary" size="lg">Large Primary Button</app-qld-button>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-button variant="primary" size="lg"&gt;Large Primary Button&lt;/app-qld-button&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>10. Small Secondary Button</h3>
+      <p>A compact secondary button with reduced height and font size. Ideal for dense layouts or when space is limited, such as in toolbars or data tables.</p>
+      <app-qld-button variant="secondary" size="sm">Small Secondary</app-qld-button>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-button variant="secondary" size="sm"&gt;Small Secondary&lt;/app-qld-button&gt;</code></pre>
+    </section>
+
+  </div>
+</section>
