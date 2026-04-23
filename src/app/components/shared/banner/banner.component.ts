@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
-export type QldBannerVariant = 'default' | 'basic' | 'advanced';
-export type QldBannerBackground = 'white' | 'light' | 'alt' | 'dark' | 'dark-alt';
+export type BannerVariant = 'default' | 'basic' | 'advanced';
+export type BannerBackground = 'white' | 'light' | 'alt' | 'dark' | 'dark-alt';
 
 export interface BreadcrumbItem {
   label: string;
@@ -21,19 +21,19 @@ export interface IconTile {
 }
 
 @Component({
-  selector: 'app-qld-banner',
+  selector: 'app-banner',
   imports: [],
-  templateUrl: './qld-banner.component.html',
-  styleUrl: './qld-banner.component.scss',
+  templateUrl: './banner.component.html',
+  styleUrl: './banner.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class QldBannerComponent {
-  @Input({ required: true }) variant: QldBannerVariant = 'default';
+export class BannerComponent {
+  @Input({ required: true }) variant: BannerVariant = 'default';
   @Input() title = '';
   @Input() breadcrumbs: BreadcrumbItem[] = [];
   @Input() abstractText = '';
   @Input() secondaryHeading = '';
-  @Input() background: QldBannerBackground = 'white';
+  @Input() background: BannerBackground = 'white';
   @Input() heroImageUrl = '';
   @Input() heroImageAlt = '';
   @Input() ctaPrimary: CtaButton | null = null;

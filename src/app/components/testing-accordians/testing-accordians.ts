@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { QldAccordionGroupComponent } from '../shared/qld-accordion-group/qld-accordion-group.component';
-import { QldAccordionItemComponent } from '../shared/qld-accordion-item/qld-accordion-item.component';
+import { AccordionGroupComponent } from '../shared/accordion-group/accordion-group.component';
+import { AccordionItemComponent } from '../shared/accordion-item/accordion-item.component';
 
 export interface AccordionDemoItem {
   id: string;
@@ -12,7 +12,7 @@ export interface AccordionDemoItem {
 
 @Component({
   selector: 'app-testing-accordians',
-  imports: [QldAccordionGroupComponent, QldAccordionItemComponent],
+  imports: [AccordionGroupComponent, AccordionItemComponent],
   templateUrl: './testing-accordians.html',
   styleUrl: './testing-accordians.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

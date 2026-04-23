@@ -6,18 +6,18 @@ export interface BreadcrumbItem {
   current?: boolean;
 }
 
-export type QldBreadcrumbVariant = 'default' | 'alt';
+export type BreadcrumbVariant = 'default' | 'alt';
 
 @Component({
-  selector: 'app-qld-breadcrumb',
+  selector: 'app-breadcrumb',
   imports: [],
-  templateUrl: './qld-breadcrumb.component.html',
-  styleUrl: './qld-breadcrumb.component.scss',
+  templateUrl: './breadcrumb.component.html',
+  styleUrl: './breadcrumb.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class QldBreadcrumbComponent {
+export class BreadcrumbComponent {
   @Input({ required: true }) items!: BreadcrumbItem[];
-  @Input() variant: QldBreadcrumbVariant = 'default';
+  @Input() variant: BreadcrumbVariant = 'default';
   @Input() showHomeIcon = false;
 
   get breadcrumbClasses(): string {

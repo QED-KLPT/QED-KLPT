@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { QldCardComponent, FooterLink, FooterTag } from '../shared/qld-card/qld-card.component';
+import { CardComponent, FooterLink, FooterTag } from '../shared/card/card.component';
 
 @Component({
   selector: 'app-testing-cards',
-  imports: [QldCardComponent],
+  imports: [CardComponent],
   templateUrl: './testing-cards.html',
   styleUrl: './testing-cards.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

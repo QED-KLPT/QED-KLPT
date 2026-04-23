@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { QldBreadcrumbComponent, BreadcrumbItem } from '../shared/qld-breadcrumb/qld-breadcrumb.component';
+import { BreadcrumbComponent, BreadcrumbItem } from '../shared/breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-testing-breadcrumbs',
-  imports: [QldBreadcrumbComponent],
+  imports: [BreadcrumbComponent],
   templateUrl: './testing-breadcrumbs.html',
   styleUrl: './testing-breadcrumbs.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

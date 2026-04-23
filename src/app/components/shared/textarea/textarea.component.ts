@@ -1,24 +1,25 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-qld-checkbox',
+  selector: 'app-textarea',
   imports: [],
-  templateUrl: './qld-checkbox.component.html',
-  styleUrl: './qld-checkbox.component.scss',
+  templateUrl: './textarea.component.html',
+  styleUrl: './textarea.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class QldCheckboxComponent {
+export class TextareaComponent {
   @Input({ required: true }) label!: string;
-  @Input() checked = false;
+  @Input() hint?: string;
+  @Input() placeholder?: string;
+  @Input() rows = 5;
   @Input() disabled = false;
-  @Input() indeterminate = false;
+  @Input() block = false;
   @Input() optional = false;
   @Input() required = false;
-  @Input() hint?: string;
   @Input() error?: string;
   @Input() success?: string;
 
-  private _id = `checkbox-${Math.random().toString(36).substring(2, 9)}`;
+  private _id = `textarea-${Math.random().toString(36).substring(2, 9)}`;
 
   get id(): string {
     return this._id;
@@ -36,18 +37,26 @@ export class QldCheckboxComponent {
     return `${this.id}-success-message`;
   }
 
-  get ariaDescribedBy(): string | null {
+  get ariaDescribedBy(): string {
     const parts: string[] = [];
     if (this.hint) parts.push(this.hintId);
     if (this.error) parts.push(this.errorId);
-    return parts.length > 0 ? parts.join(' ') : null;
+    return parts.join(' ');
   }
 
   get inputClasses(): string {
-    const classes: string[] = ['qld__control-input__input'];
+    const classes: string[] = ['qld__text-input'];
+
+    if (this.block) {
+      classes.push('qld__text-input--block');
+    }
 
     if (this.error) {
-      classes.push('qld__input--error');
+      classes.push('qld__text-input--error');
+    }
+
+    if (this.success) {
+      classes.push('qld__text-input--valid');
     }
 
     return classes.join(' ');

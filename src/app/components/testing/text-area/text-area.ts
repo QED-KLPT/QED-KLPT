@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { QldTextareaComponent } from '../../shared/qld-textarea/qld-textarea.component';
+import { TextareaComponent } from '../../shared/textarea/textarea.component';
 
 export interface TextareaDemoItem {
   label: string;
@@ -16,7 +16,7 @@ export interface TextareaDemoItem {
 
 @Component({
   selector: 'app-testing-textarea',
-  imports: [QldTextareaComponent],
+  imports: [TextareaComponent],
   templateUrl: './text-area.html',
   styleUrl: './text-area.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { QldCheckboxComponent } from '../../shared/qld-checkbox/qld-checkbox.component';
+import { CheckboxComponent } from '../../shared/checkbox/checkbox.component';
 
 export interface CheckboxDemoItem {
   label: string;
@@ -14,7 +14,7 @@ export interface CheckboxDemoItem {
 
 @Component({
   selector: 'app-testing-checkbox',
-  imports: [QldCheckboxComponent],
+  imports: [CheckboxComponent],
   templateUrl: './checkbox.html',
   styleUrl: './checkbox.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
