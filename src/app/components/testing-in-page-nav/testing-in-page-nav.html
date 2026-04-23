@@ -1,0 +1,85 @@
+<section class="section section--white">
+  <div class="section__inner">
+    <h2>Testing In-Page Navigation</h2>
+    <p>The following demos showcase the <code>app-in-page-nav</code> component with various configurations following the Queensland Government Design System.</p>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>1. Default In-Page Navigation</h3>
+      <p>A basic in-page navigation with the default "On this page" heading and a standard set of links. Used as a table of contents on lengthy pages to provide structural overview.</p>
+      <app-in-page-nav [items]="basicLinks"></app-in-page-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-in-page-nav [items]="basicLinks"&gt;&lt;/app-in-page-nav&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>2. Custom Heading</h3>
+      <p>The heading can be customized to match the context of your page. Common alternatives include "Contents", "Table of Contents", or "This Section".</p>
+      <app-in-page-nav heading="Contents" [items]="customHeadingLinks"></app-in-page-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-in-page-nav heading="Contents" [items]="customHeadingLinks"&gt;&lt;/app-in-page-nav&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>3. Short Navigation (3 Links)</h3>
+      <p>In-page navigation works well with any number of links. For shorter pages with only a few sections, a minimal nav keeps the interface clean.</p>
+      <app-in-page-nav [items]="shortLinks"></app-in-page-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-in-page-nav [items]="shortLinks"&gt;&lt;/app-in-page-nav&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>4. Long Navigation (10+ Links)</h3>
+      <p>For very long pages with many sections, the in-page navigation provides a quick way for users to jump to any part of the content. Consider using this when pages exceed 2000 words.</p>
+      <app-in-page-nav [items]="longLinks"></app-in-page-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-in-page-nav [items]="longLinks"&gt;&lt;/app-in-page-nav&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>5. Dark Background Variant</h3>
+      <p>The dark variant uses a lighter border color and link styling suitable for placement on dark backgrounds. This ensures sufficient contrast and visual harmony.</p>
+      <div style="background: var(--doe-color-heading, #24335a); padding: 1.5rem; border-radius: 8px;">
+        <app-in-page-nav [items]="h2OnlyLinks" variant="dark"></app-in-page-nav>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;div style="background: dark;"&gt;
+  &lt;app-in-page-nav [items]="links" variant="dark"&gt;&lt;/app-in-page-nav&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>6. Section-Specific Navigation (H2 Only)</h3>
+      <p>When content is organized primarily into H2 sections without significant subsections, include only H2 headings in the navigation to keep it simple and scannable.</p>
+      <app-in-page-nav [items]="h2OnlyLinks"></app-in-page-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-in-page-nav [items]="h2OnlyLinks"&gt;&lt;/app-in-page-nav&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>7. Navigation with Descriptive Links</h3>
+      <p>Link text should clearly describe the section it navigates to. Longer, more descriptive labels help users understand what each section contains before clicking.</p>
+      <app-in-page-nav [items]="descriptiveLinks"></app-in-page-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-in-page-nav [items]="descriptiveLinks"&gt;&lt;/app-in-page-nav&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>8. Nested Section Navigation</h3>
+      <p>For pages with both H2 and H3 sections, include all relevant heading levels. This provides a complete structural overview of the page content hierarchy.</p>
+      <app-in-page-nav [items]="nestedLinks"></app-in-page-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-in-page-nav [items]="nestedLinks"&gt;&lt;/app-in-page-nav&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>9. Sticky Positioning</h3>
+      <p>For very long pages, the in-page navigation can be made sticky so it remains visible as users scroll. This is achieved by wrapping the component in a container with <code>position: sticky</code>.</p>
+      <div style="max-height: 200px; overflow-y: auto;">
+        <app-in-page-nav [items]="stickyLinks"></app-in-page-nav>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;div style="max-height: 200px; overflow-y: auto;"&gt;
+  &lt;app-in-page-nav [items]="stickyLinks"&gt;&lt;/app-in-page-nav&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>10. Accessibility-Focused Navigation</h3>
+      <p>This example demonstrates proper ARIA attributes. The component automatically wraps content in a <code>&lt;nav&gt;</code> element with an <code>aria-label</code> attribute for assistive technology discovery. Each link text clearly describes its destination section.</p>
+      <app-in-page-nav [items]="accessibilityLinks" heading="On this page"></app-in-page-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-in-page-nav [items]="accessibilityLinks" heading="On this page"&gt;&lt;/app-in-page-nav&gt;</code></pre>
+    </section>
+
+  </div>
+</section>
