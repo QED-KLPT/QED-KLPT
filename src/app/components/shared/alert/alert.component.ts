@@ -1,16 +1,16 @@
 import { ChangeDetectionStrategy, Component, ElementRef, Input, Renderer2 } from '@angular/core';
 
-export type QldAlertType = 'info' | 'success' | 'error' | 'warning';
-export type QldAlertState = 'default' | 'light' | 'alt' | 'dark' | 'dark-alt';
+export type AlertType = 'info' | 'success' | 'error' | 'warning';
+export type AlertState = 'default' | 'light' | 'alt' | 'dark' | 'dark-alt';
 
-const ICON_MAP: Record<QldAlertType, string> = {
+const ICON_MAP: Record<AlertType, string> = {
   info: 'fas fa-circle-info',
   success: 'fas fa-check-circle',
   error: 'fas fa-circle-xmark',
   warning: 'fas fa-triangle-exclamation',
 };
 
-const TYPE_LABEL: Record<QldAlertType, string> = {
+const TYPE_LABEL: Record<AlertType, string> = {
   info: 'Information',
   success: 'Success',
   error: 'Error',
@@ -18,15 +18,15 @@ const TYPE_LABEL: Record<QldAlertType, string> = {
 };
 
 @Component({
-  selector: 'app-qld-alert',
+  selector: 'app-alert',
   imports: [],
-  templateUrl: './qld-alert.component.html',
-  styleUrl: './qld-alert.component.scss',
+  templateUrl: './alert.component.html',
+  styleUrl: './alert.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class QldAlertComponent {
-  @Input({ required: true }) type!: QldAlertType;
-  @Input() state: QldAlertState = 'default';
+export class AlertComponent {
+  @Input({ required: true }) type!: AlertType;
+  @Input() state: AlertState = 'default';
   @Input() title = '';
   @Input() dismissible = false;
   @Input() showMore = false;

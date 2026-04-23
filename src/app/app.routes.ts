@@ -33,7 +33,12 @@ import { TestingCheckbox } from './components/testing/checkbox/checkbox';
 import { Testing } from './components/testing/testing';
 import { TestingCards } from './components/testing-cards/testing-cards';
 import { TestingBanner } from './components/testing-banner/testing-banner';
+<<<<<<< HEAD
 import { TestingButtons } from './components/testing-buttons/testing-buttons';
+=======
+import { TestingBreadcrumbs } from './components/testing-breadcrumbs/testing-breadcrumbs';
+import { TestingCallout } from './components/testing-callout/testing-callout';
+>>>>>>> dev
 
 export const routes: Routes = [
   { path: '', component: Home, title: 'Home' },
@@ -130,6 +135,11 @@ export const routes: Routes = [
   { path: 'testing', component: Testing, title: 'Testing Hub' },
   { path: 'testing/testing-cards', component: TestingCards, title: 'Testing Cards' },
   { path: 'testing/testing-banner', component: TestingBanner, title: 'Testing Banner' },
+<<<<<<< HEAD
   { path: 'testing/testing-buttons', component: TestingButtons, title: 'Testing Buttons' },
+=======
+  { path: 'testing/testing-breadcrumbs', component: TestingBreadcrumbs, title: 'Testing Breadcrumbs' },
+  { path: 'testing/testing-callout', component: TestingCallout, title: 'Testing Callout' },
+>>>>>>> dev
   { path: '**', redirectTo: '' },
 ];

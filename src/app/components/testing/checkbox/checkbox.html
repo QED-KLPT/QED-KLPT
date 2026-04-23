@@ -1,81 +1,81 @@
 <section class="section section--white">
   <div class="section__inner">
     <h2>Testing Checkbox</h2>
-    <p>The following demos showcase the <code>app-qld-checkbox</code> component with various attributes and configurations.</p>
+    <p>The following demos showcase the <code>app-checkbox</code> component with various attributes and configurations.</p>
 
     <section style="margin-block-end: 2rem;">
       <h3>1. Basic Checkbox</h3>
       <p>A simple checkbox with a label only, no additional options.</p>
-      <app-qld-checkbox [label]="demo1Item.label"></app-qld-checkbox>
-      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-checkbox label="Agree to terms"&gt;&lt;/app-qld-checkbox&gt;</code></pre>
+      <app-checkbox [label]="demo1Item.label"></app-checkbox>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-checkbox label="Agree to terms"&gt;&lt;/app-checkbox&gt;</code></pre>
     </section>
 
     <section style="margin-block-end: 2rem;">
       <h3>2. Checked State</h3>
       <p>A checkbox that is pre-checked by default.</p>
-      <app-qld-checkbox [label]="demo2Item.label" [checked]="true"></app-qld-checkbox>
-      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-checkbox label="Subscribe to newsletter" [checked]="true"&gt;&lt;/app-qld-checkbox&gt;</code></pre>
+      <app-checkbox [label]="demo2Item.label" [checked]="true"></app-checkbox>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-checkbox label="Subscribe to newsletter" [checked]="true"&gt;&lt;/app-checkbox&gt;</code></pre>
     </section>
 
     <section style="margin-block-end: 2rem;">
       <h3>3. Required Field</h3>
       <p>A checkbox with a required indicator (asterisk) and aria-required attribute.</p>
-      <app-qld-checkbox [label]="demo3Item.label" [required]="demo3Required"></app-qld-checkbox>
-      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-checkbox label="I confirm the information is correct" [required]="true"&gt;&lt;/app-qld-checkbox&gt;</code></pre>
+      <app-checkbox [label]="demo3Item.label" [required]="demo3Required"></app-checkbox>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-checkbox label="I confirm the information is correct" [required]="true"&gt;&lt;/app-checkbox&gt;</code></pre>
     </section>
 
     <section style="margin-block-end: 2rem;">
       <h3>4. Optional Field</h3>
       <p>A checkbox with an "(Optional)" indicator in the label.</p>
-      <app-qld-checkbox [label]="demo4Item.label" [optional]="true"></app-qld-checkbox>
-      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-checkbox label="Receive marketing materials" [optional]="true"&gt;&lt;/app-qld-checkbox&gt;</code></pre>
+      <app-checkbox [label]="demo4Item.label" [optional]="true"></app-checkbox>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-checkbox label="Receive marketing materials" [optional]="true"&gt;&lt;/app-checkbox&gt;</code></pre>
     </section>
 
     <section style="margin-block-end: 2rem;">
       <h3>5. With Hint Text</h3>
       <p>A checkbox with hint text below the label, linked via aria-describedby.</p>
-      <app-qld-checkbox [label]="demo5Item.label" [hint]="demo5Item.hint"></app-qld-checkbox>
-      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-checkbox label="Enable notifications"
-  hint="You can change this setting at any time in your account preferences."&gt;&lt;/app-qld-checkbox&gt;</code></pre>
+      <app-checkbox [label]="demo5Item.label" [hint]="demo5Item.hint"></app-checkbox>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-checkbox label="Enable notifications"
+  hint="You can change this setting at any time in your account preferences."&gt;&lt;/app-checkbox&gt;</code></pre>
     </section>
 
     <section style="margin-block-end: 2rem;">
       <h3>6. Error State</h3>
       <p>A checkbox with an error message displayed in red, using the qld__checkbox--error class.</p>
-      <app-qld-checkbox [label]="demo6Item.label" [error]="demo6Item.error"></app-qld-checkbox>
-      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-checkbox label="Accept privacy policy"
-  error="You must accept the privacy policy to continue."&gt;&lt;/app-qld-checkbox&gt;</code></pre>
+      <app-checkbox [label]="demo6Item.label" [error]="demo6Item.error"></app-checkbox>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-checkbox label="Accept privacy policy"
+  error="You must accept the privacy policy to continue."&gt;&lt;/app-checkbox&gt;</code></pre>
     </section>
 
     <section style="margin-block-end: 2rem;">
       <h3>7. Success/Valid State</h3>
       <p>A checked checkbox indicating a verified or completed state.</p>
-      <app-qld-checkbox [label]="demo7Item.label" [checked]="true"></app-qld-checkbox>
-      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-checkbox label="Terms verified" [checked]="true"&gt;&lt;/app-qld-checkbox&gt;</code></pre>
+      <app-checkbox [label]="demo7Item.label" [checked]="true"></app-checkbox>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-checkbox label="Terms verified" [checked]="true"&gt;&lt;/app-checkbox&gt;</code></pre>
     </section>
 
     <section style="margin-block-end: 2rem;">
       <h3>8. Disabled State</h3>
       <p>A non-interactive disabled checkbox that cannot be toggled.</p>
-      <app-qld-checkbox [label]="demo8Item.label" [disabled]="true"></app-qld-checkbox>
-      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-checkbox label="Disable this option" [disabled]="true"&gt;&lt;/app-qld-checkbox&gt;</code></pre>
+      <app-checkbox [label]="demo8Item.label" [disabled]="true"></app-checkbox>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-checkbox label="Disable this option" [disabled]="true"&gt;&lt;/app-checkbox&gt;</code></pre>
     </section>
 
     <section style="margin-block-end: 2rem;">
       <h3>9. Indeterminate State</h3>
       <p>A checkbox in a partial/indeterminate state, often used for "select all" parent checkboxes.</p>
-      <app-qld-checkbox [label]="demo9Item.label" [indeterminate]="true"></app-qld-checkbox>
-      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-checkbox label="Select all options" [indeterminate]="true"&gt;&lt;/app-qld-checkbox&gt;</code></pre>
+      <app-checkbox [label]="demo9Item.label" [indeterminate]="true"></app-checkbox>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-checkbox label="Select all options" [indeterminate]="true"&gt;&lt;/app-checkbox&gt;</code></pre>
     </section>
 
     <section style="margin-block-end: 2rem;">
       <h3>10. Complex Form</h3>
       <p>A checkbox combining multiple features: required label, hint text, and error message.</p>
-      <app-qld-checkbox [label]="demo10Item.label" [required]="true" [hint]="demo10Item.hint" [error]="demo10Item.error"></app-qld-checkbox>
-      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-checkbox label="Consent to data processing"
+      <app-checkbox [label]="demo10Item.label" [required]="true" [hint]="demo10Item.hint" [error]="demo10Item.error"></app-checkbox>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-checkbox label="Consent to data processing"
   [required]="true"
   hint="Your data will be processed in accordance with the GDPR regulations."
-  error="Consent is required to proceed with your application."&gt;&lt;/app-qld-checkbox&gt;</code></pre>
+  error="Consent is required to proceed with your application."&gt;&lt;/app-checkbox&gt;</code></pre>
     </section>
 
   </div>

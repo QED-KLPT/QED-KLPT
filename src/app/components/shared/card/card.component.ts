@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
-export type QldCardType = 'no-action' | 'single-action' | 'multi-action';
-export type QldCardVariant = 'default' | 'arrow' | 'stacked-icon' | 'leading-icon' | 'image';
-export type QldCardFeatureAlign = 'left' | 'right';
+export type CardType = 'no-action' | 'single-action' | 'multi-action';
+export type CardVariant = 'default' | 'arrow' | 'stacked-icon' | 'leading-icon' | 'image';
+export type CardFeatureAlign = 'left' | 'right';
 
 export interface FooterLink {
   label: string;
@@ -16,23 +16,23 @@ export interface FooterTag {
 }
 
 @Component({
-  selector: 'app-qld-card',
+  selector: 'app-card',
   imports: [],
-  templateUrl: './qld-card.component.html',
-  styleUrl: './qld-card.component.scss',
+  templateUrl: './card.component.html',
+  styleUrl: './card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class QldCardComponent {
+export class CardComponent {
   @Input({ required: true }) title!: string;
   @Input() description = '';
-  @Input() type: QldCardType = 'single-action';
-  @Input() variant: QldCardVariant = 'default';
+  @Input() type: CardType = 'single-action';
+  @Input() variant: CardVariant = 'default';
   @Input() imageUrl = '';
   @Input() imageAlt = '';
   @Input() footerLinks: FooterLink[] = [];
   @Input() footerTags: FooterTag[] = [];
   @Input() dark = false;
-  @Input() featureAlign: QldCardFeatureAlign = 'left';
+  @Input() featureAlign: CardFeatureAlign = 'left';
   @Input() href = '';
 
   get cardClasses(): string {

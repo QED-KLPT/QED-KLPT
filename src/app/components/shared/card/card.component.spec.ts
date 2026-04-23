@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { QldCardComponent, FooterLink, FooterTag } from './qld-card.component';
+import { CardComponent, FooterLink, FooterTag } from './card.component';
 
-describe('QldCardComponent', () => {
-  let fixture: ComponentFixture<QldCardComponent>;
-  let component: QldCardComponent;
+describe('CardComponent', () => {
+  let fixture: ComponentFixture<CardComponent>;
+  let component: CardComponent;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [QldCardComponent],
+      imports: [CardComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(QldCardComponent);
+    fixture = TestBed.createComponent(CardComponent);
     component = fixture.componentInstance;
     component.title = 'Test Title';
     component.description = 'Test Description';

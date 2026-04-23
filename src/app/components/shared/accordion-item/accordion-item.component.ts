@@ -1,15 +1,15 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-qld-accordion-item',
+  selector: 'app-accordion-item',
   imports: [],
-  templateUrl: './qld-accordion-item.component.html',
-  styleUrl: './qld-accordion-item.component.scss',
+  templateUrl: './accordion-item.component.html',
+  styleUrl: './accordion-item.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class QldAccordionItemComponent {
+export class AccordionItemComponent {
   private static nextId = 0;
-  private readonly instanceId = QldAccordionItemComponent.nextId++;
+  private readonly instanceId = AccordionItemComponent.nextId++;
 
   @Input({ required: true }) title!: string;
   @Input() dark = false;
