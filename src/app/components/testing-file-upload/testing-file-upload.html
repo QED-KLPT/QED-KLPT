@@ -1,0 +1,225 @@
+<section class="section section--white">
+  <div class="section__inner">
+    <h2>Testing File Upload</h2>
+    <p>The following demos showcase the <code>app-file-upload</code> component with various configurations and states based on the Queensland Government Design System file upload patterns.</p>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>1. Basic Upload Field</h3>
+      <p>A simple file upload field with a label, hint text, and select button. Single file upload with no constraints specified.</p>
+      <app-file-upload
+        label="Upload your document"
+        hint="Select a file from your device to upload."
+        (filesSelected)="onExample1Files($event)"
+        (fileRemoved)="onExample1Removed($event)"
+      ></app-file-upload>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-file-upload
+  label="Upload your document"
+  hint="Select a file from your device to upload."
+  (filesSelected)="onExample1Files($event)"
+  (fileRemoved)="onExample1Removed($event)"&gt;&lt;/app-file-upload&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>2. Drag and Drop</h3>
+      <p>A file upload with drag-and-drop support and file type constraints. Users can either drag files onto the drop zone or click to select files.</p>
+      <app-file-upload
+        label="Upload images"
+        hint="Drag and drop your image files here or use the button below."
+        [description]="example2Description"
+        accept=".jpg,.jpeg,.png,.gif"
+        [maxSize]="5"
+        (filesSelected)="onExample2Files($event)"
+        (fileRemoved)="onExample2Removed($event)"
+      ></app-file-upload>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-file-upload
+  label="Upload images"
+  hint="Drag and drop your image files here or use the button below."
+  [description]="example2Description"
+  accept=".jpg,.jpeg,.png,.gif"
+  [maxSize]="5"
+  (filesSelected)="onExample2Files($event)"
+  (fileRemoved)="onExample2Removed($event)"&gt;&lt;/app-file-upload&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>3. Multiple Files</h3>
+      <p>A file upload that allows selecting multiple files at once. Users can upload up to 5 files in a single selection.</p>
+      <app-file-upload
+        label="Upload project files"
+        hint="You can select multiple files at once."
+        [description]="example3Description"
+        accept=".docx,.pdf,.xlsx"
+        [maxFiles]="5"
+        [multiple]="true"
+        (filesSelected)="onExample3Files($event)"
+        (fileRemoved)="onExample3Removed($event)"
+      ></app-file-upload>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-file-upload
+  label="Upload project files"
+  hint="You can select multiple files at once."
+  [description]="example3Description"
+  accept=".docx,.pdf,.xlsx"
+  [maxFiles]="5"
+  [multiple]="true"
+  (filesSelected)="onExample3Files($event)"
+  (fileRemoved)="onExample3Removed($event)"&gt;&lt;/app-file-upload&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>4. With File Size Limit</h3>
+      <p>A file upload with a strict maximum file size constraint. Files exceeding the limit will show an error state.</p>
+      <app-file-upload
+        label="Upload report"
+        hint="Reports must be under 10MB in size."
+        [description]="example4Description"
+        accept=".pdf,.docx"
+        [maxSize]="10"
+        (filesSelected)="onExample4Files($event)"
+        (fileRemoved)="onExample4Removed($event)"
+      ></app-file-upload>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-file-upload
+  label="Upload report"
+  hint="Reports must be under 10MB in size."
+  [description]="example4Description"
+  accept=".pdf,.docx"
+  [maxSize]="10"
+  (filesSelected)="onExample4Files($event)"
+  (fileRemoved)="onExample4Removed($event)"&gt;&lt;/app-file-upload&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>5. Required Field</h3>
+      <p>A required file upload field indicated by an asterisk. This is used when a file upload is mandatory for form submission.</p>
+      <app-file-upload
+        label="Upload supporting documents *"
+        hint="Please upload all required supporting documentation."
+        [description]="example5Description"
+        accept=".pdf,.jpg,.png"
+        [maxSize]="5"
+        [required]="true"
+        (filesSelected)="onExample5Files($event)"
+        (fileRemoved)="onExample5Removed($event)"
+      ></app-file-upload>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-file-upload
+  label="Upload supporting documents *"
+  hint="Please upload all required supporting documentation."
+  [description]="example5Description"
+  accept=".pdf,.jpg,.png"
+  [maxSize]="5"
+  [required]="true"
+  (filesSelected)="onExample5Files($event)"
+  (fileRemoved)="onExample5Removed($event)"&gt;&lt;/app-file-upload&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>6. Disabled State</h3>
+      <p>A disabled file upload field where users cannot interact with it. Used when the upload is not yet available or has been restricted.</p>
+      <app-file-upload
+        label="Upload evidence files"
+        hint="This upload is currently disabled."
+        [description]="example6Description"
+        accept=".mp4,.mov"
+        [maxSize]="50"
+        [disabled]="true"
+      ></app-file-upload>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-file-upload
+  label="Upload evidence files"
+  hint="This upload is currently disabled."
+  [description]="example6Description"
+  accept=".mp4,.mov"
+  [maxSize]="50"
+  [disabled]="true"&gt;&lt;/app-file-upload&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>7. Uploading (Loading Spinner)</h3>
+      <p>A file upload in the uploading state. The dropzone is disabled and a loading spinner replaces the upload icon to indicate processing.</p>
+      <app-file-upload
+        label="Upload batch files"
+        hint="Files are being processed. Please wait."
+        [description]="example7Description"
+        accept=".csv,.xlsx"
+        [maxSize]="20"
+        [uploading]="true"
+      ></app-file-upload>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-file-upload
+  label="Upload batch files"
+  hint="Files are being processed. Please wait."
+  [description]="example7Description"
+  accept=".csv,.xlsx"
+  [maxSize]="20"
+  [uploading]="true"&gt;&lt;/app-file-upload&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>8. Error State</h3>
+      <p>A file upload showing error states with retry and remove options. Errors can occur due to network issues, invalid file types, or size limits.</p>
+      <app-file-upload
+        label="Upload compliance documents"
+        hint="Some files failed to upload. Please retry or remove them."
+        [description]="example8Description"
+        accept=".pdf,.docx"
+        [maxSize]="15"
+        (filesSelected)="onExample8Files($event)"
+        (fileRemoved)="onExample8Removed($event)"
+      ></app-file-upload>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-file-upload
+  label="Upload compliance documents"
+  hint="Some files failed to upload. Please retry or remove them."
+  [description]="example8Description"
+  accept=".pdf,.docx"
+  [maxSize]="15"
+  (filesSelected)="onExample8Files($event)"
+  (fileRemoved)="onExample8Removed($event)"&gt;&lt;/app-file-upload&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>9. Dark Variant</h3>
+      <p>A dark-themed file upload component for use on dark backgrounds or in dark mode interfaces.</p>
+      <app-file-upload
+        label="Upload media assets"
+        hint="Drag and drop your files or click to select."
+        [description]="example9Description"
+        accept=".jpg,.png,.svg"
+        [maxSize]="10"
+        [dark]="true"
+        (filesSelected)="onExample9Files($event)"
+        (fileRemoved)="onExample9Removed($event)"
+      ></app-file-upload>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-file-upload
+  label="Upload media assets"
+  hint="Drag and drop your files or click to select."
+  [description]="example9Description"
+  accept=".jpg,.png,.svg"
+  [maxSize]="10"
+  [dark]="true"
+  (filesSelected)="onExample9Files($event)"
+  (fileRemoved)="onExample9Removed($event)"&gt;&lt;/app-file-upload&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>10. Complete Upload Flow</h3>
+      <p>A file upload demonstrating the full lifecycle: selecting files, loading state, complete status, and successful uploads with file count summary.</p>
+      <app-file-upload
+        label="Upload assessment materials"
+        hint="Select your assessment files to upload."
+        [description]="example10Description"
+        accept=".pdf,.docx,.xlsx"
+        [maxFiles]="3"
+        [multiple]="true"
+        (filesSelected)="onExample10Files($event)"
+        (fileRemoved)="onExample10Removed($event)"
+      ></app-file-upload>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-file-upload
+  label="Upload assessment materials"
+  hint="Select your assessment files to upload."
+  [description]="example10Description"
+  accept=".pdf,.docx,.xlsx"
+  [maxFiles]="3"
+  [multiple]="true"
+  (filesSelected)="onExample10Files($event)"
+  (fileRemoved)="onExample10Removed($event)"&gt;&lt;/app-file-upload&gt;</code></pre>
+    </section>
+
+  </div>
+</section>
