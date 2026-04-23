@@ -1,0 +1,118 @@
+<section class="section section--white">
+  <div class="section__inner">
+    <h2>Testing Callouts</h2>
+    <p>The following demos showcase the <code>app-qld-callout</code> component with various palettes and configurations following the Queensland Government Design System.</p>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>1. Default Callout</h3>
+      <p>A basic callout with the default palette — blue accent border and light blue background. Used for standard important information.</p>
+      <app-qld-callout [title]="defaultTitle" [message]="defaultMessage"></app-qld-callout>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-callout
+  title="Important Notice"
+  message="This is a callout with the default palette..."&gt;&lt;/app-qld-callout&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>2. Light Palette Callout</h3>
+      <p>A callout using the light palette variant with a softer background shade. Useful for less prominent but still important information.</p>
+      <app-qld-callout [title]="lightTitle" [message]="lightMessage" variant="light"></app-qld-callout>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-callout
+  title="Updated Information"
+  message="This callout uses the light palette..."
+  variant="light"&gt;&lt;/app-qld-callout&gt;</code></pre>
+    </section>
+
+
+    <section style="margin-block-end: 2rem;">
+      <h3>3. Alt Palette Callout</h3>
+      <p>The alt palette uses a neutral grey tone. Ideal for supplementary information that does not need strong visual emphasis.</p>
+      <app-qld-callout [title]="altTitle" [message]="altMessage" variant="alt"></app-qld-callout>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-callout
+  title="General Information"
+  message="The alt palette uses a neutral grey tone..."
+  variant="alt"&gt;&lt;/app-qld-callout&gt;</code></pre>
+    </section>
+
+
+    <section style="margin-block-end: 2rem;">
+      <h3>4. Dark Palette Callout</h3>
+      <p>A callout with a dark blue background and white text. Creates strong visual contrast for critical announcements.</p>
+      <app-qld-callout [title]="darkTitle" [message]="darkMessage" variant="dark"></app-qld-callout>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-callout
+  title="System Maintenance"
+  message="This callout uses the dark palette..."
+  variant="dark"&gt;&lt;/app-qld-callout&gt;</code></pre>
+    </section>
+
+
+    <section style="margin-block-end: 2rem;">
+      <h3>5. Dark-alt Palette Callout</h3>
+      <p>The dark-alt variant uses a deeper blue background — the most visually prominent palette option for urgent notifications.</p>
+      <app-qld-callout [title]="darkAltTitle" [message]="darkAltMessage" variant="dark-alt"></app-qld-callout>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-callout
+  title="Scheduled Downtime"
+  message="The dark-alt variant uses a deeper blue..."
+  variant="dark-alt"&gt;&lt;/app-qld-callout&gt;</code></pre>
+    </section>
+
+
+    <section style="margin-block-end: 2rem;">
+      <h3>6. Screen Reader Only Heading</h3>
+      <p>A callout with a heading that is visually hidden but available to screen readers. The title remains in the markup for assistive technologies.</p>
+      <app-qld-callout [title]="srTitle" [message]="srMessage" [srHeading]="true"></app-qld-callout>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-callout
+  title="Accessibility Heading"
+  message="This callout has a screen-reader-only heading..."
+  srHeading&gt;&lt;/app-qld-callout&gt;</code></pre>
+    </section>
+
+
+    <section style="margin-block-end: 2rem;">
+      <h3>7. Callout with Links</h3>
+      <p>A callout containing hyperlinks within the message text. Useful for directing users to related resources or documentation.</p>
+      <app-qld-callout [title]="linkTitle" [message]="linkMessage"></app-qld-callout>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-callout
+  title="External Resources"
+  message='Callouts can contain links. Visit the &lt;a href="#"&gt;QLD Government website&lt;/a&gt; for more information.'&gt;&lt;/app-qld-callout&gt;</code></pre>
+    </section>
+
+
+    <section style="margin-block-end: 2rem;">
+      <h3>8. Multi-paragraph Callout (ng-content)</h3>
+      <p>A callout using <code>&lt;ng-content&gt;</code> to project rich HTML content including multiple paragraphs and formatted text.</p>
+      <app-qld-callout [title]="multiParaTitle">
+        <div [innerHTML]="multiContent"></div>
+      </app-qld-callout>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-callout title="Detailed Guidance"&gt;
+  &lt;p&gt;This callout contains multiple paragraphs...&lt;/p&gt;
+  &lt;p&gt;The second paragraph expands on the details...&lt;/p&gt;
+&lt;/app-qld-callout&gt;</code></pre>
+    </section>
+
+
+    <section style="margin-block-end: 2rem;">
+      <h3>9. Callout with Checklist</h3>
+      <p>A callout containing a bulleted list via <code>&lt;ng-content&gt;</code>. Ideal for checklists, examples, and case studies.</p>
+      <app-qld-callout [title]="checklistTitle" variant="light">
+        <div [innerHTML]="checklistContent"></div>
+      </app-qld-callout>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-callout title="Assessment Checklist" variant="light"&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Review the assessment criteria&lt;/li&gt;
+    &lt;li&gt;Gather evidence from observations&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/app-qld-callout&gt;</code></pre>
+    </section>
+
+
+    <section style="margin-block-end: 2rem;">
+      <h3>10. Minimal Callout (no message)</h3>
+      <p>A callout with only a title and no message content. Demonstrates the component handling an empty message gracefully.</p>
+      <app-qld-callout [title]="emptyTitle" [message]="emptyMessage"></app-qld-callout>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-callout
+  title="Minimal Callout"
+  message=""&gt;&lt;/app-qld-callout&gt;</code></pre>
+    </section>
+
+  </div>
+</section>
