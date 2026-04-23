@@ -3,6 +3,7 @@ import { About } from './components/about/about';
 import { AnalysingData } from './components/analysing-data/analysing-data';
 import { Area } from './components/mathematics-and-numeracy/area/area';
 import { Capacity } from './components/mathematics-and-numeracy/capacity/capacity';
+import { CognitiveFlexibility } from './components/executive-function/cognitive-flexibility/cognitive-flexibility';
 import { ConceptsOfTime } from './components/mathematics-and-numeracy/concepts-of-time/concepts-of-time';
 import { Contact } from './components/contact/contact';
 import { Distance } from './components/mathematics-and-numeracy/distance/distance';
@@ -12,6 +13,7 @@ import { FineMotor } from './components/physicality/fine-motor/fine-motor';
 import { Foundations } from './components/foundations/foundations';
 import { GrossMotor } from './components/physicality/gross-motor/gross-motor';
 import { Home } from './components/home/home';
+import { InhibitoryControl } from './components/executive-function/inhibitory-control/inhibitory-control';
 import { KlptTool } from './components/klpt-tool/klpt-tool';
 import { LanguageAndLiteracy } from './components/language-and-literacy/language-and-literacy';
 import { LearningDomains } from './components/learning-domains/learning-domains';
@@ -20,9 +22,11 @@ import { MathematicsAndNumeracy } from './components/mathematics-and-numeracy/ma
 import { Numbers } from './components/mathematics-and-numeracy/numbers/numbers';
 import { ObjectControl } from './components/physicality/object-control/object-control';
 import { Physicality } from './components/physicality/physicality';
+import { PlanningOrganization } from './components/executive-function/planning-organization/planning-organization';
 import { PracticeSupports } from './components/practice-supports/practice-supports';
 import { Quantity } from './components/mathematics-and-numeracy/quantity/quantity';
 import { QualityObservations } from './components/quality-observations/quality-observations';
+import { SelfRegulation } from './components/executive-function/self-regulation/self-regulation';
 import { SensoryLearning } from './components/physicality/sensory-learning/sensory-learning';
 import { SocialAndEmotionalLearning } from './components/social-and-emotional-learning/social-and-emotional-learning';
 import { StableMovement } from './components/physicality/stable-movement/stable-movement';
@@ -36,6 +40,8 @@ import { TestingBanner } from './components/testing-banner/testing-banner';
 import { TestingButtons } from './components/testing-buttons/testing-buttons';
 import { TestingBreadcrumbs } from './components/testing-breadcrumbs/testing-breadcrumbs';
 import { TestingCallout } from './components/testing-callout/testing-callout';
+import { WorkingMemory } from './components/executive-function/working-memory/working-memory';
+import { AttentionFocus } from './components/executive-function/attention-focus/attention-focus';
 
 export const routes: Routes = [
   { path: '', component: Home, title: 'Home' },
@@ -45,6 +51,12 @@ export const routes: Routes = [
   { path: 'learning-domains', component: LearningDomains, title: 'Learning domains' },
   { path: 'learning-domains/language-and-literacy', component: LanguageAndLiteracy, title: 'Language and literacy' },
   { path: 'learning-domains/executive-function', component: ExecutiveFunction, title: 'Executive function' },
+  { path: 'learning-domains/executive-function/inhibitory-control', component: InhibitoryControl, title: 'Lorem Ipsum' },
+  { path: 'learning-domains/executive-function/working-memory', component: WorkingMemory, title: 'Dolor Sit Amet' },
+  { path: 'learning-domains/executive-function/cognitive-flexibility', component: CognitiveFlexibility, title: 'Sed Do Eiusmod' },
+  { path: 'learning-domains/executive-function/self-regulation', component: SelfRegulation, title: 'Tempor Incididunt' },
+  { path: 'learning-domains/executive-function/planning-organization', component: PlanningOrganization, title: 'Consectetur Adipiscing' },
+  { path: 'learning-domains/executive-function/attention-focus', component: AttentionFocus, title: 'Ut Labore Et Dolore' },
   {
     path: 'learning-domains/social-and-emotional-learning',
     component: SocialAndEmotionalLearning,
