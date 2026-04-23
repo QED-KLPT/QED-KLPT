@@ -34,6 +34,7 @@ import { Testing } from './components/testing/testing';
 import { TestingCards } from './components/testing-cards/testing-cards';
 import { TestingBanner } from './components/testing-banner/testing-banner';
 import { TestingBreadcrumbs } from './components/testing-breadcrumbs/testing-breadcrumbs';
+import { TestingCallout } from './components/testing-callout/testing-callout';
 
 export const routes: Routes = [
   { path: '', component: Home, title: 'Home' },
@@ -131,5 +132,6 @@ export const routes: Routes = [
   { path: 'testing/testing-cards', component: TestingCards, title: 'Testing Cards' },
   { path: 'testing/testing-banner', component: TestingBanner, title: 'Testing Banner' },
   { path: 'testing/testing-breadcrumbs', component: TestingBreadcrumbs, title: 'Testing Breadcrumbs' },
+  { path: 'testing/testing-callout', component: TestingCallout, title: 'Testing Callout' },
   { path: '**', redirectTo: '' },
 ];
