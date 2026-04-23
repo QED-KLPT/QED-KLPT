@@ -1,0 +1,85 @@
+<section class="section section--white">
+  <div class="section__inner">
+    <h2>Testing Loading Spinner</h2>
+    <p>The following demos showcase the <code>app-loading-spinner</code> component with various configurations following the Queensland Government Design System.</p>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>1. Default Vertical</h3>
+      <p>The default loading spinner displays vertically with the spinner icon above the label text. This is the standard orientation for most use cases.</p>
+      <app-loading-spinner label="Loading..."></app-loading-spinner>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-loading-spinner label="Loading..."&gt;&lt;/app-loading-spinner&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>2. Landscape (Horizontal)</h3>
+      <p>The landscape variant displays the spinner icon inline with the label text, useful for compact layouts or inline loading states.</p>
+      <app-loading-spinner label="Loading..." [landscape]="true"></app-loading-spinner>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-loading-spinner label="Loading..." [landscape]="true"&gt;&lt;/app-loading-spinner&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>3. Dark Theme</h3>
+      <p>The dark theme variant is designed for use on dark backgrounds, with adjusted colors for the spinner wheel and label text.</p>
+      <div style="background: #1b1b1b; padding: 2rem; border-radius: 4px;">
+        <app-loading-spinner label="Loading..." [dark]="true"></app-loading-spinner>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;div style="background: #1b1b1b; padding: 2rem;"&gt;<br/>&nbsp;&nbsp;&lt;app-loading-spinner label="Loading..." [dark]="true"&gt;&lt;/app-loading-spinner&gt;<br/>&lt;/div&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>4. Icon Only</h3>
+      <p>The icon-only variant hides the visible label text while maintaining accessibility through the role="status" attribute for screen readers.</p>
+      <app-loading-spinner [iconOnly]="true"></app-loading-spinner>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-loading-spinner [iconOnly]="true"&gt;&lt;/app-loading-spinner&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>5. Small Size</h3>
+      <p>The small size variant reduces the spinner wheel to 1rem, suitable for use within buttons or compact UI elements.</p>
+      <app-loading-spinner label="Loading..." [size]="'sm'"></app-loading-spinner>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-loading-spinner label="Loading..." [size]="'sm'"&gt;&lt;/app-loading-spinner&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>6. Medium Size (Default)</h3>
+      <p>The medium size is the default spinner wheel size at 2rem, providing a balanced appearance for most contexts.</p>
+      <app-loading-spinner label="Loading..." [size]="'md'"></app-loading-spinner>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-loading-spinner label="Loading..." [size]="'md'"&gt;&lt;/app-loading-spinner&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>7. Large Size</h3>
+      <p>The large size variant increases the spinner wheel to 3rem, ideal for prominent loading states or empty page placeholders.</p>
+      <app-loading-spinner label="Loading..." [size]="'lg'"></app-loading-spinner>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-loading-spinner label="Loading..." [size]="'lg'"&gt;&lt;/app-loading-spinner&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>8. Dark + Landscape</h3>
+      <p>Combines the dark theme with landscape orientation for use on dark backgrounds where horizontal layout is preferred.</p>
+      <div style="background: #1b1b1b; padding: 2rem; border-radius: 4px;">
+        <app-loading-spinner label="Processing..." [dark]="true" [landscape]="true"></app-loading-spinner>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;div style="background: #1b1b1b; padding: 2rem;"&gt;<br/>&nbsp;&nbsp;&lt;app-loading-spinner label="Processing..." [dark]="true" [landscape]="true"&gt;&lt;/app-loading-spinner&gt;<br/>&lt;/div&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>9. Inside a Card</h3>
+      <p>The loading spinner can be embedded within an app-card component to indicate loading states in card-based layouts.</p>
+      <app-card title="Loading Data" description="Please wait while content is being loaded..." type="no-action">
+        <app-loading-spinner label="Fetching data..."></app-loading-spinner>
+      </app-card>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-card title="Loading Data"<br/>&nbsp;&nbsp;description="Please wait..."<br/>&nbsp;&nbsp;type="no-action"&gt;<br/>&nbsp;&nbsp;&lt;app-loading-spinner label="Fetching data..."&gt;&lt;/app-loading-spinner&gt;<br/>&lt;/app-card&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>10. Centered in Container</h3>
+      <p>The spinner can be centered within a container using flexbox utilities for full-page or section loading states.</p>
+      <div style="display: flex; justify-content: center; align-items: center; min-height: 200px; border: 1px solid #ddd; border-radius: 4px;">
+        <app-loading-spinner label="Loading content..."></app-loading-spinner>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;div style="display: flex;<br/>&nbsp;&nbsp;justify-content: center;<br/>&nbsp;&nbsp;align-items: center;<br/>&nbsp;&nbsp;min-height: 200px;"&gt;<br/>&nbsp;&nbsp;&lt;app-loading-spinner label="Loading content..."&gt;&lt;/app-loading-spinner&gt;<br/>&lt;/div&gt;</code></pre>
+    </section>
+
+  </div>
+</section>
