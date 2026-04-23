@@ -1,18 +1,18 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
-export type QldCalloutVariant = 'default' | 'light' | 'alt' | 'dark' | 'dark-alt';
+export type CalloutVariant = 'default' | 'light' | 'alt' | 'dark' | 'dark-alt';
 
 @Component({
-  selector: 'app-qld-callout',
+  selector: 'app-callout',
   imports: [],
-  templateUrl: './qld-callout.component.html',
-  styleUrl: './qld-callout.component.scss',
+  templateUrl: './callout.component.html',
+  styleUrl: './callout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class QldCalloutComponent {
+export class CalloutComponent {
   @Input() title = '';
   @Input() message = '';
-  @Input() variant: QldCalloutVariant = 'default';
+  @Input() variant: CalloutVariant = 'default';
   @Input() srHeading = false;
 
   get calloutClasses(): string {

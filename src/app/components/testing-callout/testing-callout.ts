@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { QldCalloutComponent } from '../shared/qld-callout/qld-callout.component';
+import { CalloutComponent } from '../shared/callout/callout.component';
 
 @Component({
   selector: 'app-testing-callout',
-  imports: [QldCalloutComponent],
+  imports: [CalloutComponent],
   templateUrl: './testing-callout.html',
   styleUrl: './testing-callout.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
