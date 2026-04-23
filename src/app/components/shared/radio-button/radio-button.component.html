@@ -1,0 +1,40 @@
+<div class="qld__form-group">
+  <label [attr.for]="id" class="qld__label">
+    {{ label }}
+    @if (optional) {
+      <span class="qld__label--optional">(Optional)</span>
+    }
+  </label>
+
+  @if (hint) {
+    <span class="qld__hint-text" [id]="hintId">{{ hint }}</span>
+  }
+
+  @if (error) {
+    <span class="qld__input--error" [id]="errorId">
+      <svg
+        class="qld__icon qld__icon--lead qld__icon--sm"
+        role="img"
+        aria-label="Error: "
+      >
+        <use href="./?a=169317:dist/mysource_files/img/QLD-icons.svg#status-error"></use>
+      </svg>
+      {{ error }}
+    </span>
+  }
+
+  <div class="qld__control-input qld__control-input--block">
+    <input
+      type="radio"
+      [id]="id"
+      [class]="inputClasses"
+      [disabled]="disabled"
+      [attr.aria-describedby]="ariaDescribedBy"
+      [attr.aria-required]="required ? 'true' : null"
+      [attr.aria-invalid]="isInvalid ? 'true' : null"
+    />
+    <label [attr.for]="id" class="qld__control-input__text">
+      {{ label }}
+    </label>
+  </div>
+</div>

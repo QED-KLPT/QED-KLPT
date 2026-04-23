@@ -43,6 +43,7 @@ import { TestingCallout } from './components/testing-callout/testing-callout';
 import { TestingDirectionLinks } from './components/testing-direction-links/testing-direction-links';
 import { TestingFileUpload } from './components/testing-file-upload/testing-file-upload';
 import { TestingFooter } from './components/testing-footer/testing-footer';
+import { TestingForms } from './components/testing-forms/testing-forms';
 import { WorkingMemory } from './components/executive-function/working-memory/working-memory';
 import { AttentionFocus } from './components/executive-function/attention-focus/attention-focus';
 
@@ -153,5 +154,6 @@ export const routes: Routes = [
   { path: 'testing/testing-direction-links', component: TestingDirectionLinks, title: 'Testing Direction Links' },
   { path: 'testing/testing-file-upload', component: TestingFileUpload, title: 'Testing File Upload' },
   { path: 'testing/testing-footer', component: TestingFooter, title: 'Testing Footer' },
+  { path: 'testing/testing-forms', component: TestingForms, title: 'Testing Forms' },
   { path: '**', redirectTo: '' },
 ];

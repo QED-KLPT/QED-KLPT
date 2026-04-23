@@ -1,0 +1,215 @@
+<section class="section section--white">
+  <div class="section__inner">
+    <h2>Testing Forms</h2>
+    <p>The following demos showcase form components based on the Queensland Government Design System, including text inputs, radio buttons, select boxes, and fieldsets.</p>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>1. Basic Text Input</h3>
+      <p>A simple text input field with a label only, no additional options or constraints.</p>
+      <div class="qld__form-group">
+        <label for="demo1-email" class="qld__label">Email address</label>
+        <input type="email" id="demo1-email" class="qld__text-input qld__field-width--half" placeholder="">
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;div class="qld__form-group"&gt;
+  &lt;label for="email" class="qld__label"&gt;Email address&lt;/label&gt;
+  &lt;input type="email" id="email" class="qld__text-input qld__field-width--half"&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>2. Text Input with Hint Text</h3>
+      <p>A text input with hint text below the label, providing additional guidance to users. Linked via aria-describedby for accessibility.</p>
+      <div class="qld__form-group">
+        <label for="demo2-tfn" class="qld__label">What is your tax file number (TFN)?</label>
+        <span class="qld__hint-text" id="demo2-tfn-hint">Tax file numbers are 9 digits</span>
+        <input type="text" id="demo2-tfn" class="qld__text-input qld__field-width--md qld__text-input--number" inputmode="numeric" aria-describedby="demo2-tfn-hint">
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;div class="qld__form-group"&gt;
+  &lt;label for="tfn" class="qld__label"&gt;What is your tax file number (TFN)?&lt;/label&gt;
+  &lt;span class="qld__hint-text" id="tfn-hint"&gt;Tax file numbers are 9 digits&lt;/span&gt;
+  &lt;input type="text" id="tfn" class="qld__text-input qld__field-width--md qld__text-input--number"
+    inputmode="numeric" aria-describedby="tfn-hint"&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>3. Required Field</h3>
+      <p>A text input with a required indicator (red asterisk) and aria-required attribute. Used when user input is mandatory.</p>
+      <div class="qld__form-group">
+        <label for="demo3-name" class="qld__label qld__label--required">Full name</label>
+        <input type="text" id="demo3-name" class="qld__text-input qld__field-width--half" aria-required="true">
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;div class="qld__form-group"&gt;
+  &lt;label for="name" class="qld__label qld__label--required"&gt;Full name&lt;/label&gt;
+  &lt;input type="text" id="name" class="qld__text-input qld__field-width--half" aria-required="true"&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>4. Optional Field</h3>
+      <p>A text input with an "(Optional)" indicator in the label, clearly communicating to users that this field is not mandatory.</p>
+      <div class="qld__form-group">
+        <label for="demo4-phone" class="qld__label">Phone number<span class="qld__label--optional"> (Optional)</span></label>
+        <input type="tel" id="demo4-phone" class="qld__text-input qld__field-width--half">
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;div class="qld__form-group"&gt;
+  &lt;label for="phone" class="qld__label"&gt;Phone number&lt;span class="qld__label--optional"&gt; (Optional)&lt;/span&gt;&lt;/label&gt;
+  &lt;input type="tel" id="phone" class="qld__text-input qld__field-width--half"&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>5. Error State</h3>
+      <p>A text input with an error message displayed in red, using the qld__text-input--error class. Provides immediate feedback to users.</p>
+      <div class="qld__form-group">
+        <label for="demo5-email" class="qld__label">Email address</label>
+        <span class="qld__input--error" id="demo5-email-error">
+          <svg class="qld__icon qld__icon--lead qld__icon--sm" role="img" aria-label="Error: ">
+            <use href="./?a=169317:dist/mysource_files/img/QLD-icons.svg#status-error"></use>
+          </svg>
+          Please enter a valid email address.
+        </span>
+        <input type="email" id="demo5-email" class="qld__text-input qld__field-width--half qld__text-input--error" aria-describedby="demo5-email-error" aria-invalid="true">
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;div class="qld__form-group"&gt;
+  &lt;label for="email" class="qld__label"&gt;Email address&lt;/label&gt;
+  &lt;span class="qld__input--error" id="email-error"&gt;
+    &lt;svg class="qld__icon qld__icon--lead qld__icon--sm" role="img" aria-label="Error: "&gt;
+      &lt;use href="./?a=169317:dist/mysource_files/img/QLD-icons.svg#status-error"&gt;&lt;/use&gt;
+    &lt;/svg&gt;
+    Please enter a valid email address.
+  &lt;/span&gt;
+  &lt;input type="email" id="email" class="qld__text-input qld__field-width--half qld__text-input--error"
+    aria-describedby="email-error" aria-invalid="true"&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>6. Success/Valid State</h3>
+      <p>A text input with a success message displayed in green, using the qld__text-input--valid class to indicate valid input.</p>
+      <div class="qld__form-group">
+        <label for="demo6-email" class="qld__label">Email address</label>
+        <span class="qld__input--success" id="demo6-email-success">This email address is available.</span>
+        <input type="email" id="demo6-email" class="qld__text-input qld__field-width--half qld__text-input--valid" aria-describedby="demo6-email-success">
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;div class="qld__form-group"&gt;
+  &lt;label for="email" class="qld__label"&gt;Email address&lt;/label&gt;
+  &lt;span class="qld__input--success" id="email-success"&gt;This email address is available.&lt;/span&gt;
+  &lt;input type="email" id="email" class="qld__text-input qld__field-width--half qld__text-input--valid"
+    aria-describedby="email-success"&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>7. Radio Button Group</h3>
+      <p>A group of radio buttons within a fieldset, allowing users to select one option from multiple choices. Uses qld__fieldset and qld__fieldset__legend.</p>
+      <app-radio-group label="Do you have a Queensland driver's licence?" name="licence" [options]="demo7Options"></app-radio-group>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-radio-group
+  label="Do you have a Queensland driver's licence?"
+  name="licence"
+  [options]="[
+    {{ '{' }} label: 'Yes', value: 'yes' {{ '}' }},
+    {{ '{' }} label: 'No', value: 'no' {{ '}' }}
+  ]"&gt;&lt;/app-radio-group&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>8. Select Box / Dropdown</h3>
+      <p>A select box presenting multiple options in a constrained space. Useful when space is limited or there are many options.</p>
+      <app-select-box label="Choose an option" name="demo8" [options]="demo8Options"></app-select-box>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-select-box
+  label="Choose an option"
+  name="demo8"
+  [options]="[
+    {{ '{' }} label: 'Choose an option...', value: '' {{ '}' }},
+    {{ '{' }} label: 'Option one', value: 'option1' {{ '}' }},
+    {{ '{' }} label: 'Option two', value: 'option2' {{ '}' }}
+  ]"&gt;&lt;/app-select-box&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>9. Fieldset with Grouped Fields</h3>
+      <p>A fieldset grouping related form fields together, with a legend providing context. Commonly used for address blocks or personal information sections.</p>
+      <fieldset class="qld__fieldset">
+        <legend class="qld__fieldset__legend">Your address</legend>
+        <div class="qld__form-group">
+          <label for="demo9-line1" class="qld__label qld__label--required">Street address</label>
+          <input type="text" id="demo9-line1" class="qld__text-input qld__field-width--half" aria-required="true">
+        </div>
+        <div class="qld__form-group">
+          <label for="demo9-line2" class="qld__label">Unit or suite number<span class="qld__label--optional"> (Optional)</span></label>
+          <input type="text" id="demo9-line2" class="qld__text-input qld__field-width--half">
+        </div>
+        <div class="qld__form-group">
+          <label for="demo9-suburb" class="qld__label qld__label--required">Suburb or locality</label>
+          <input type="text" id="demo9-suburb" class="qld__text-input qld__field-width--half" aria-required="true">
+        </div>
+        <div class="qld__form-group">
+          <label for="demo9-postcode" class="qld__label qld__label--required">Postcode</label>
+          <input type="text" id="demo9-postcode" class="qld__text-input qld__field-width--half qld__text-input--number" inputmode="numeric" aria-required="true">
+        </div>
+      </fieldset>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;fieldset class="qld__fieldset"&gt;
+  &lt;legend class="qld__fieldset__legend"&gt;Your address&lt;/legend&gt;
+  &lt;div class="qld__form-group"&gt;
+    &lt;label for="line1" class="qld__label qld__label--required"&gt;Street address&lt;/label&gt;
+    &lt;input type="text" id="line1" class="qld__text-input qld__field-width--half" aria-required="true"&gt;
+  &lt;/div&gt;
+  &lt;div class="qld__form-group"&gt;
+    &lt;label for="line2" class="qld__label"&gt;Unit or suite number&lt;span class="qld__label--optional"&gt; (Optional)&lt;/span&gt;&lt;/label&gt;
+    &lt;input type="text" id="line2" class="qld__text-input qld__field-width--half"&gt;
+  &lt;/div&gt;
+  &lt;div class="qld__form-group"&gt;
+    &lt;label for="suburb" class="qld__label qld__label--required"&gt;Suburb or locality&lt;/label&gt;
+    &lt;input type="text" id="suburb" class="qld__text-input qld__field-width--half" aria-required="true"&gt;
+  &lt;/div&gt;
+  &lt;div class="qld__form-group"&gt;
+    &lt;label for="postcode" class="qld__label qld__label--required"&gt;Postcode&lt;/label&gt;
+    &lt;input type="text" id="postcode" class="qld__text-input qld__field-width--half qld__text-input--number"
+      inputmode="numeric" aria-required="true"&gt;
+  &lt;/div&gt;
+&lt;/fieldset&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>10. Complete Form Example</h3>
+      <p>A complete form combining multiple elements: radio buttons for gender selection, select boxes for learning domain and assessment type, a text input for notes, and a checkbox for consent.</p>
+      <fieldset class="qld__fieldset">
+        <legend class="qld__fieldset__legend">Child assessment form</legend>
+
+        <div style="margin-block-end: 1rem;">
+          <fieldset class="qld__fieldset">
+            <legend class="qld__fieldset__legend">Gender</legend>
+            <app-radio-group label="" name="gender" [options]="demo10GenderOptions"></app-radio-group>
+          </fieldset>
+        </div>
+
+        <div style="margin-block-end: 1rem;">
+          <app-select-box label="Learning domain" name="domain" [options]="demo10DomainOptions"></app-select-box>
+        </div>
+
+        <div style="margin-block-end: 1rem;">
+          <app-select-box label="Assessment type" name="assessment" [options]="demo10AssessmentOptions"></app-select-box>
+        </div>
+
+        <div style="margin-block-end: 1rem;">
+          <app-textarea label="Assessment notes" hint="Provide any additional observations about the child's progress." [rows]="4"></app-textarea>
+        </div>
+
+        <div style="margin-block-end: 1rem;">
+          <app-checkbox label="I confirm this assessment is accurate" [required]="true"></app-checkbox>
+        </div>
+
+      </fieldset>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;fieldset class="qld__fieldset"&gt;
+  &lt;legend class="qld__fieldset__legend"&gt;Child assessment form&lt;/legend&gt;
+  &lt;app-radio-group name="gender" [options]="genderOptions"&gt;&lt;/app-radio-group&gt;
+  &lt;app-select-box label="Learning domain" [options]="domainOptions"&gt;&lt;/app-select-box&gt;
+  &lt;app-select-box label="Assessment type" [options]="assessmentOptions"&gt;&lt;/app-select-box&gt;
+  &lt;app-textarea label="Assessment notes" hint="Provide additional observations." rows="4"&gt;&lt;/app-textarea&gt;
+  &lt;app-checkbox label="I confirm this assessment is accurate" required&gt;&lt;/app-checkbox&gt;
+&lt;/fieldset&gt;</code></pre>
+    </section>
+
+  </div>
+</section>
