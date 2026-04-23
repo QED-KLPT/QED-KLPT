@@ -1,0 +1,81 @@
+<section class="section section--white">
+  <div class="section__inner">
+    <h2>Testing Breadcrumbs</h2>
+    <p>The following demos showcase the <code>app-breadcrumb</code> component with various configurations following the Queensland Government Design System.</p>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>1. Simple Breadcrumb (Two Items)</h3>
+      <p>A basic two-item breadcrumb trail showing Home and the current page. The simplest form of navigation context.</p>
+      <app-breadcrumb [items]="simpleBreadcrumbs"></app-breadcrumb>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-breadcrumb [items]="simpleBreadcrumbs"&gt;&lt;/app-breadcrumb&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>2. Breadcrumb with Home Icon</h3>
+      <p>Breadcrumbs prefixed with a home icon link for quick return to the homepage. Useful when space allows and visual cues are preferred.</p>
+      <app-breadcrumb [items]="withHomeIconBreadcrumbs" [showHomeIcon]="true"></app-breadcrumb>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-breadcrumb [items]="withHomeIconBreadcrumbs"
+  [showHomeIcon]="true"&gt;&lt;/app-breadcrumb&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>3. Three-Level Deep Breadcrumb</h3>
+      <p>A three-level breadcrumb trail showing a typical content hierarchy: Home &gt; Section &gt; Subsection.</p>
+      <app-breadcrumb [items]="threeLevelBreadcrumbs"></app-breadcrumb>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-breadcrumb [items]="threeLevelBreadcrumbs"&gt;&lt;/app-breadcrumb&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>4. Four-Level Deep Breadcrumb</h3>
+      <p>A four-level breadcrumb trail for deeper content hierarchies, common in documentation or complex navigation structures.</p>
+      <app-breadcrumb [items]="fourLevelBreadcrumbs"></app-breadcrumb>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-breadcrumb [items]="fourLevelBreadcrumbs"&gt;&lt;/app-breadcrumb&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>5. Five-Level Deep Breadcrumb</h3>
+      <p>A maximum depth breadcrumb trail demonstrating how the component handles deeply nested pages. Items wrap naturally on smaller screens.</p>
+      <app-breadcrumb [items]="fiveLevelBreadcrumbs"></app-breadcrumb>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-breadcrumb [items]="fiveLevelBreadcrumbs"&gt;&lt;/app-breadcrumb&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>6. Alt Variant (Dark Background)</h3>
+      <p>Breadcrumbs styled for dark backgrounds using the alt variant. White text with lighter separators, designed for use on dark banner sections.</p>
+      <div style="background: #353535; padding: 1rem; border-radius: 6px;">
+        <app-breadcrumb [items]="altBreadcrumbs" variant="alt"></app-breadcrumb>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-breadcrumb [items]="altBreadcrumbs"
+  variant="alt"&gt;&lt;/app-breadcrumb&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>7. Breadcrumb Without Home Link</h3>
+      <p>Breadcrumbs that start from a non-Home section. All items are linked except the current page, which is marked with aria-current.</p>
+      <app-breadcrumb [items]="noHomeBreadcrumbs"></app-breadcrumb>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-breadcrumb [items]="noHomeBreadcrumbs"&gt;&lt;/app-breadcrumb&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>8. Breadcrumb with FontAwesome Icons</h3>
+      <p>Breadcrumb items can include FontAwesome icons alongside text for visual distinction between navigation levels.</p>
+      <app-breadcrumb [items]="iconBreadcrumbs"></app-breadcrumb>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-breadcrumb [items]="iconBreadcrumbs"&gt;&lt;/app-breadcrumb&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>9. Single Item (Current Page Only)</h3>
+      <p>A breadcrumb with only the current page item. Useful for top-level pages where no navigation trail is needed beyond identifying the current location.</p>
+      <app-breadcrumb [items]="singleItemBreadcrumbs"></app-breadcrumb>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-breadcrumb [items]="singleItemBreadcrumbs"&gt;&lt;/app-breadcrumb&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>10. Partial Navigation Trail</h3>
+      <p>A breadcrumb where some items have hrefs and others don't. Items without hrefs render as plain text, useful for intermediate sections that aren't directly linkable.</p>
+      <app-breadcrumb [items]="partialBreadcrumbs"></app-breadcrumb>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-breadcrumb [items]="partialBreadcrumbs"&gt;&lt;/app-breadcrumb&gt;</code></pre>
+    </section>
+
+  </div>
+</section>

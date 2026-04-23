@@ -1,20 +1,20 @@
 import { AfterContentInit, ChangeDetectionStrategy, Component, ContentChildren, Input, QueryList } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { QldAccordionItemComponent } from '../qld-accordion-item/qld-accordion-item.component';
+import { AccordionItemComponent } from '../accordion-item/accordion-item.component';
 
 @Component({
-  selector: 'app-qld-accordion-group',
+  selector: 'app-accordion-group',
   imports: [],
-  templateUrl: './qld-accordion-group.component.html',
-  styleUrl: './qld-accordion-group.component.scss',
+  templateUrl: './accordion-group.component.html',
+  styleUrl: './accordion-group.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class QldAccordionGroupComponent {
+export class AccordionGroupComponent {
   @Input() dark = false;
   @Input() toggleAll = false;
   @Input() singleOpen = true;
 
-  @ContentChildren(QldAccordionItemComponent) items!: QueryList<QldAccordionItemComponent>;
+  @ContentChildren(AccordionItemComponent) items!: QueryList<AccordionItemComponent>;
 
   allExpanded = false;
   private itemSubscriptions = new Subscription();
@@ -83,7 +83,7 @@ export class QldAccordionGroupComponent {
     return this.dark ? (base + ' ' + base + '--dark') : base;
   }
 
-  handleItemToggle(item: QldAccordionItemComponent, isOpen: boolean): void {
+  handleItemToggle(item: AccordionItemComponent, isOpen: boolean): void {
     if (this.singleOpen && isOpen && this.items) {
       for (const sibling of this.items.toArray()) {
         if (sibling !== item) {

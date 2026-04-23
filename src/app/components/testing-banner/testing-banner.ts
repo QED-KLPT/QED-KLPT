@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { QldBannerComponent, BreadcrumbItem, CtaButton, IconTile } from '../shared/qld-banner/qld-banner.component';
+import { BannerComponent, BreadcrumbItem, CtaButton, IconTile } from '../shared/banner/banner.component';
 
 @Component({
   selector: 'app-testing-banner',
-  imports: [QldBannerComponent],
+  imports: [BannerComponent],
   templateUrl: './testing-banner.html',
   styleUrl: './testing-banner.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

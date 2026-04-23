@@ -1,81 +1,81 @@
 <section class="section section--white">
   <div class="section__inner">
     <h2>Testing Text Area</h2>
-    <p>The following demos showcase the <code>app-qld-textarea</code> component with various attributes and configurations.</p>
+    <p>The following demos showcase the <code>app-textarea</code> component with various attributes and configurations.</p>
 
     <section style="margin-block-end: 2rem;">
       <h3>1. Basic Text Area</h3>
       <p>A simple textarea with a label only, no additional options.</p>
-      <app-qld-textarea [label]="demo1Item.label"></app-qld-textarea>
-      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-textarea label="Message"&gt;&lt;/app-qld-textarea&gt;</code></pre>
+      <app-textarea [label]="demo1Item.label"></app-textarea>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-textarea label="Message"&gt;&lt;/app-textarea&gt;</code></pre>
     </section>
 
     <section style="margin-block-end: 2rem;">
       <h3>2. With Placeholder</h3>
       <p>A textarea with placeholder text shown inside the field to guide the user.</p>
-      <app-qld-textarea [label]="demo2Item.label" [placeholder]="demo2Item.placeholder"></app-qld-textarea>
-      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-textarea label="Message" placeholder="Enter your message here..."&gt;&lt;/app-qld-textarea&gt;</code></pre>
+      <app-textarea [label]="demo2Item.label" [placeholder]="demo2Item.placeholder"></app-textarea>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-textarea label="Message" placeholder="Enter your message here..."&gt;&lt;/app-textarea&gt;</code></pre>
     </section>
 
     <section style="margin-block-end: 2rem;">
       <h3>3. Required Field</h3>
       <p>A textarea with a required indicator (asterisk) and aria-required attribute.</p>
-      <app-qld-textarea [label]="demo3Item.label" [required]="demo3Required"></app-qld-textarea>
-      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-textarea label="Feedback" [required]="true"&gt;&lt;/app-qld-textarea&gt;</code></pre>
+      <app-textarea [label]="demo3Item.label" [required]="demo3Required"></app-textarea>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-textarea label="Feedback" [required]="true"&gt;&lt;/app-textarea&gt;</code></pre>
     </section>
 
     <section style="margin-block-end: 2rem;">
       <h3>4. Optional Field</h3>
       <p>A textarea with an "(Optional)" indicator in the label.</p>
-      <app-qld-textarea [label]="demo4Item.label" [optional]="true"></app-qld-textarea>
-      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-textarea label="Comments" [optional]="true"&gt;&lt;/app-qld-textarea&gt;</code></pre>
+      <app-textarea [label]="demo4Item.label" [optional]="true"></app-textarea>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-textarea label="Comments" [optional]="true"&gt;&lt;/app-textarea&gt;</code></pre>
     </section>
 
     <section style="margin-block-end: 2rem;">
       <h3>5. With Hint Text</h3>
       <p>A textarea with hint text below the label, linked via aria-describedby.</p>
-      <app-qld-textarea [label]="demo5Item.label" [hint]="demo5Item.hint"></app-qld-textarea>
-      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-textarea label="Additional Information"
-  hint="Provide any extra details that might help us understand your request better."&gt;&lt;/app-qld-textarea&gt;</code></pre>
+      <app-textarea [label]="demo5Item.label" [hint]="demo5Item.hint"></app-textarea>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-textarea label="Additional Information"
+  hint="Provide any extra details that might help us understand your request better."&gt;&lt;/app-textarea&gt;</code></pre>
     </section>
 
     <section style="margin-block-end: 2rem;">
       <h3>6. Error State</h3>
       <p>A textarea with an error message displayed in red, using the qld__text-input--error class.</p>
-      <app-qld-textarea [label]="demo6Item.label" [error]="demo6Item.error"></app-qld-textarea>
-      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-textarea label="Problem Description"
-  error="Please describe the problem you are experiencing."&gt;&lt;/app-qld-textarea&gt;</code></pre>
+      <app-textarea [label]="demo6Item.label" [error]="demo6Item.error"></app-textarea>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-textarea label="Problem Description"
+  error="Please describe the problem you are experiencing."&gt;&lt;/app-textarea&gt;</code></pre>
     </section>
 
     <section style="margin-block-end: 2rem;">
       <h3>7. Success/Valid State</h3>
       <p>A textarea with a success message displayed in green, using the qld__text-input--valid class.</p>
-      <app-qld-textarea [label]="demo7Item.label" [success]="demo7Item.success"></app-qld-textarea>
-      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-textarea label="Resolution Notes"
-  success="Your notes have been saved successfully."&gt;&lt;/app-qld-textarea&gt;</code></pre>
+      <app-textarea [label]="demo7Item.label" [success]="demo7Item.success"></app-textarea>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-textarea label="Resolution Notes"
+  success="Your notes have been saved successfully."&gt;&lt;/app-textarea&gt;</code></pre>
     </section>
 
     <section style="margin-block-end: 2rem;">
       <h3>8. Disabled State</h3>
       <p>A non-interactive disabled textarea that cannot be edited.</p>
-      <app-qld-textarea [label]="demo8Item.label" [disabled]="true"></app-qld-textarea>
-      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-textarea label="Notes" [disabled]="true"&gt;&lt;/app-qld-textarea&gt;</code></pre>
+      <app-textarea [label]="demo8Item.label" [disabled]="true"></app-textarea>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-textarea label="Notes" [disabled]="true"&gt;&lt;/app-textarea&gt;</code></pre>
     </section>
 
     <section style="margin-block-end: 2rem;">
       <h3>9. Block Variant</h3>
       <p>A full-width textarea that expands to fill the available width using qld__text-input--block.</p>
-      <app-qld-textarea [label]="demo9Item.label" [block]="true"></app-qld-textarea>
-      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-textarea label="Full-width Message" [block]="true"&gt;&lt;/app-qld-textarea&gt;</code></pre>
+      <app-textarea [label]="demo9Item.label" [block]="true"></app-textarea>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-textarea label="Full-width Message" [block]="true"&gt;&lt;/app-textarea&gt;</code></pre>
     </section>
 
     <section style="margin-block-end: 2rem;">
       <h3>10. Complex Form</h3>
       <p>A textarea combining multiple features: required label, hint text, and error message.</p>
-      <app-qld-textarea [label]="demo10Item.label" [hint]="demo10Item.hint" [error]="demo10Item.error"></app-qld-textarea>
-      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-textarea label="Detailed Feedback"
+      <app-textarea [label]="demo10Item.label" [hint]="demo10Item.hint" [error]="demo10Item.error"></app-textarea>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-textarea label="Detailed Feedback"
   hint="Include as much detail as possible to help us address your concerns."
-  error="A detailed description is required for us to investigate this issue."&gt;&lt;/app-qld-textarea&gt;</code></pre>
+  error="A detailed description is required for us to investigate this issue."&gt;&lt;/app-textarea&gt;</code></pre>
     </section>
 
   </div>
