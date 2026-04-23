@@ -44,6 +44,7 @@ import { TestingDirectionLinks } from './components/testing-direction-links/test
 import { TestingFileUpload } from './components/testing-file-upload/testing-file-upload';
 import { TestingFooter } from './components/testing-footer/testing-footer';
 import { TestingForms } from './components/testing-forms/testing-forms';
+import { TestingGlobalAlert } from './components/testing-global-alert/testing-global-alert';
 import { WorkingMemory } from './components/executive-function/working-memory/working-memory';
 import { AttentionFocus } from './components/executive-function/attention-focus/attention-focus';
 
@@ -155,5 +156,6 @@ export const routes: Routes = [
   { path: 'testing/testing-file-upload', component: TestingFileUpload, title: 'Testing File Upload' },
   { path: 'testing/testing-footer', component: TestingFooter, title: 'Testing Footer' },
   { path: 'testing/testing-forms', component: TestingForms, title: 'Testing Forms' },
+  { path: 'testing/testing-global-alert', component: TestingGlobalAlert, title: 'Testing Global Alert' },
   { path: '**', redirectTo: '' },
 ];

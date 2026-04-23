@@ -1,0 +1,121 @@
+<section class="section section--white">
+  <div class="section__inner">
+    <h2>Testing Global Alert</h2>
+    <p>The following demos showcase the <code>app-global-alert</code> component with various types, configurations, and usage patterns following the Queensland Government Design System.</p>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>1. Critical Alert with Action</h3>
+      <p>A critical alert indicating an immediate threat to human life. Includes a dismissible close button and action link for more information.</p>
+      <app-global-alert type="critical" message="This website is currently undergoing testing." actionLabel="Learn more" actionHref="#"></app-global-alert>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-global-alert type="critical"
+  message="This website is currently undergoing testing."
+  actionLabel="Learn more"
+  actionHref="#"&gt;&lt;/app-global-alert&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>2. Warning Alert with Action</h3>
+      <p>A warning alert for events that have happened or are about to happen, posing a threat to or seriously affecting a service.</p>
+      <app-global-alert type="warning" message="Scheduled maintenance will occur on April 25, 2026 from 10pm to 2am." actionLabel="Learn more" actionHref="#"></app-global-alert>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-global-alert type="warning"
+  message="Scheduled maintenance will occur on April 25, 2026 from 10pm to 2am."
+  actionLabel="Learn more"
+  actionHref="#"&gt;&lt;/app-global-alert&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>3. General Information Alert with Action</h3>
+      <p>A general information alert for low-level alerts, minor problems with the service, or important updates affecting content across an entire site.</p>
+      <app-global-alert type="general" message="The KLPT assessment portal has been updated with new features." actionLabel="Learn more" actionHref="#"></app-global-alert>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-global-alert type="general"
+  message="The KLPT assessment portal has been updated with new features."
+  actionLabel="Learn more"
+  actionHref="#"&gt;&lt;/app-global-alert&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>4. Critical Alert Without Action</h3>
+      <p>A critical alert without an action link, used when the urgent notice only requires awareness and no further interaction is needed.</p>
+      <app-global-alert type="critical" message="Emergency: Severe weather warning in effect for your region."></app-global-alert>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-global-alert type="critical"
+  message="Emergency: Severe weather warning in effect for your region."&gt;&lt;/app-global-alert&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>5. Warning Alert Without Action</h3>
+      <p>A warning alert without an action link, suitable for ongoing situations that users should be aware of but don't require immediate follow-up.</p>
+      <app-global-alert type="warning" message="Service disruptions may occur during the upcoming holiday period."></app-global-alert>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-global-alert type="warning"
+  message="Service disruptions may occur during the upcoming holiday period."&gt;&lt;/app-global-alert&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>6. General Information Without Action</h3>
+      <p>A general information alert without an action link, ideal for persistent informational notices that don't require user interaction.</p>
+      <app-global-alert type="general" message="New professional development resources are now available in the practice supports section."></app-global-alert>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-global-alert type="general"
+  message="New professional development resources are now available in the practice supports section."&gt;&lt;/app-global-alert&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>7. Critical Alert with Rich HTML Content</h3>
+      <p>A critical alert using projected content (ng-content) for rich HTML including bold text and links, matching the QLD Design System pattern.</p>
+      <app-global-alert type="critical" actionLabel="View details" actionHref="#">
+        <strong>Emergency:</strong> This website is currently undergoing critical testing.
+      </app-global-alert>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-global-alert type="critical"
+  actionLabel="View details"
+  actionHref="#"&gt;
+  &lt;strong&gt;Emergency:&lt;/strong&gt; This website is currently undergoing critical testing.
+&lt;/app-global-alert&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>8. Warning Alert - Non-dismissible</h3>
+      <p>A warning alert that cannot be dismissed, used when the user must see the message (e.g., mandatory maintenance notice).</p>
+      <app-global-alert type="warning" message="System maintenance scheduled for April 25, 2026. All services will be unavailable." actionLabel="Learn more" actionHref="#" [dismissible]="false"></app-global-alert>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-global-alert type="warning"
+  message="System maintenance scheduled for April 25, 2026."
+  actionLabel="Learn more"
+  actionHref="#"
+  [dismissible]="false"&gt;&lt;/app-global-alert&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>9. General Information - Non-dismissible</h3>
+      <p>A general information alert that cannot be dismissed, suitable for persistent notices like cookie policy updates or terms of service changes.</p>
+      <app-global-alert type="general" message="Our privacy policy has been updated. Please review the changes at your earliest convenience." [dismissible]="false"></app-global-alert>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-global-alert type="general"
+  message="Our privacy policy has been updated. Please review the changes."
+  [dismissible]="false"&gt;&lt;/app-global-alert&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>10. All Three Types Side by Side</h3>
+      <p>A visual comparison showing all three alert types (critical, warning, general) to demonstrate the distinct color coding and iconography.</p>
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
+        <app-global-alert type="critical" message="Critical: Immediate threat to human life." actionLabel="View details" actionHref="#"></app-global-alert>
+        <app-global-alert type="warning" message="Warning: Event affecting service operations." actionLabel="Learn more" actionHref="#"></app-global-alert>
+        <app-global-alert type="general" message="Information: Minor update or notification." actionLabel="Learn more" actionHref="#"></app-global-alert>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;!-- Critical --&gt;
+&lt;app-global-alert type="critical"
+  message="Critical: Immediate threat to human life."
+  actionLabel="View details"
+  actionHref="#"&gt;&lt;/app-global-alert&gt;
+
+&lt;!-- Warning --&gt;
+&lt;app-global-alert type="warning"
+  message="Warning: Event affecting service operations."
+  actionLabel="Learn more"
+  actionHref="#"&gt;&lt;/app-global-alert&gt;
+
+&lt;!-- General --&gt;
+&lt;app-global-alert type="general"
+  message="Information: Minor update or notification."
+  actionLabel="Learn more"
+  actionHref="#"&gt;&lt;/app-global-alert&gt;</code></pre>
+    </section>
+
+  </div>
+</section>
