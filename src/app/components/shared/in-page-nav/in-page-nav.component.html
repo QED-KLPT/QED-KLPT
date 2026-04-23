@@ -1,0 +1,8 @@
+<nav class="{{ navClasses }}" aria-label="In page navigation">
+  <h2 class="qld__inpage-nav-links__heading">{{ heading }}</h2>
+  <ul class="qld__link-list">
+    @for (item of items; track item.href) {
+      <li><a [attr.href]="item.href">{{ item.label }}</a></li>
+    }
+  </ul>
+</nav>

@@ -1,0 +1,95 @@
+:host {
+  display: block;
+}
+
+.qld__inpage-nav-links {
+  font-size: 1rem;
+  line-height: 1.5;
+  padding-left: 1.5rem;
+  border-left: 4px solid var(--doe-blue-600, #005eb8);
+}
+
+.qld__inpage-nav-links .qld__inpage-nav-links__heading {
+  font-size: 1rem;
+  line-height: 1.25;
+  margin: 0;
+}
+
+* + .qld__inpage-nav-links {
+  margin-top: 2.3125rem;
+}
+
+.qld__inpage-nav-links a {
+  text-decoration: underline;
+  text-decoration-line: solid;
+  text-underline-offset: var(--QLD-underline__offset, 0.15em);
+  text-decoration-skip-ink: auto;
+  color: var(--doe-blue-600, #005eb8);
+}
+
+.qld__inpage-nav-links a:hover,
+.qld__inpage-nav-links a:focus {
+  text-decoration-color: var(--doe-blue-800, #003e96);
+  text-decoration-thickness: var(--QLD-underline__thickness-thick, 2px);
+}
+
+.qld__inpage-nav-links a:visited {
+  color: var(--doe-blue-600, #005eb8);
+  text-decoration-color: var(--doe-blue-600, #005eb8);
+}
+
+.qld__inpage-nav-links a:disabled,
+.qld__inpage-nav-links a[disabled] {
+  text-decoration: none;
+}
+
+.qld__inpage-nav-links > ul,
+.qld__inpage-nav-links > ol {
+  margin-top: 0.75rem;
+  list-style-type: none;
+  padding: 0;
+}
+
+.qld__inpage-nav-links > ul li,
+.qld__inpage-nav-links > ol li {
+  margin: 0;
+}
+
+.qld__inpage-nav-links > ul * + li,
+.qld__inpage-nav-links > ol * + li {
+  margin-left: 0;
+}
+
+.qld__inpage-nav-links > ul li + li,
+.qld__inpage-nav-links > ol li + li {
+  margin-top: 0.5rem;
+}
+
+/* Dark variant */
+.qld__inpage-nav-links--dark {
+  border-color: var(--doe-cyan-300, #84d3ff);
+}
+
+.qld__inpage-nav-links--dark a {
+  color: var(--doe-cyan-300, #84d3ff);
+}
+
+.qld__inpage-nav-links--dark a:hover,
+.qld__inpage-nav-links--dark a:focus {
+  text-decoration-color: #ffffff;
+}
+
+.qld__inpage-nav-links--dark a:visited {
+  color: var(--doe-cyan-300, #84d3ff);
+}
+
+.qld__inpage-nav-links--dark a:disabled,
+.qld__inpage-nav-links--dark a[disabled] {
+  text-decoration: none;
+}
+
+@media print {
+  .qld__inpage-nav-links {
+    display: none !important;
+  }
+}
