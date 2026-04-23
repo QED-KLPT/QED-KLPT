@@ -1,0 +1,111 @@
+<header class="klpt-header" role="banner">
+  <nav class="klpt-header__skip-links" aria-label="Skip links" tabindex="-1">
+    <a class="klpt-header__skip-link" href="#main-content">Skip to main content</a>
+    @if (showNavigation()) {
+      <a class="klpt-header__skip-link" href="#main-nav">Skip to main navigation</a>
+    }
+  </nav>
+
+  @if (showPreHeader() !== 'none') {
+    <div class="klpt-header__pre-header klpt-header__pre-header--{{ showPreHeader() }}">
+      <div class="klpt-header__container">
+        <a href="https://www.qld.gov.au/" class="klpt-header__pre-header-link">
+          <span class="klpt-header__pre-header-url">qld.gov.au</span>
+          <img class="klpt-header__pre-header-coa" src="assets/img/queensland-coat-of-arms.svg" alt="Queensland Government" />
+        </a>
+
+        <div class="klpt-header__pre-header-cta">
+          <a href="#contact" class="klpt-header__cta-link">
+            <i class="fa-solid fa-phone klpt-header__cta-icon" aria-hidden="true"></i>
+            <span class="klpt-header__cta-text">Contact us</span>
+          </a>
+        </div>
+
+        <div class="klpt-header__mobile-controls">
+          @if (showSearch()) {
+            <button type="button" class="klpt-header__toggle klpt-header__toggle--search"
+              [class.klpt-header__toggle--active]="searchOpen()"
+              (click)="toggleSearch()" aria-label="Toggle search">
+              <i class="fa-solid fa-search" aria-hidden="true"></i>
+            </button>
+          }
+          @if (showNavigation()) {
+            <button type="button" class="klpt-header__toggle klpt-header__toggle--menu"
+              [class.klpt-header__toggle--active]="isMenuOpen()"
+              (click)="toggleMenu()" aria-label="Toggle menu">
+              <i class="fa-solid fa-bars" aria-hidden="true"></i>
+            </button>
+          }
+        </div>
+      </div>
+    </div>
+  }
+
+  <div class="klpt-header__main" [class.klpt-header__main--contained]="contained()">
+    <div class="klpt-header__container">
+
+      <div class="klpt-header__brand">
+        <a href="/" class="klpt-header__brand-link">
+          @switch (brandType()) {
+            @case ('coat-of-arms') {
+              <div class="klpt-header__brand-image">
+                <img src="assets/img/queensland-coat-of-arms.svg" alt="" />
+              </div>
+            }
+            @case ('logo') {
+              <div class="klpt-header__brand-image">
+                <img [src]="brandImageUrl()" [alt]="siteName()" />
+              </div>
+            }
+            @case ('site-name') {
+            }
+          }
+
+          <div class="klpt-header__site-name">
+            <span class="klpt-header__heading">{{ siteName() }}</span>
+            @if (tagline()) {
+              <span class="klpt-header__subline">{{ tagline() }}</span>
+            }
+          </div>
+        </a>
+      </div>
+
+      @if (showSearch()) {
+        <div class="klpt-header__search" id="klpt-header-search" [class.klpt-header__search--open]="searchOpen()">
+          <form class="klpt-header__search-form" [action]="searchAction()" role="search">
+            <label class="klpt-header__search-label" for="header-search-input">{{ searchPlaceholder() }}</label>
+            <div class="klpt-header__search-inner">
+              <i class="fa-solid fa-search klpt-header__search-icon" aria-hidden="true"></i>
+              <input type="search" id="header-search-input" name="query" class="klpt-header__search-input" autocomplete="off" />
+              <button type="submit" class="klpt-header__search-btn" aria-label="Search">
+                <span>Search</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      }
+
+    </div>
+
+    @if (showNavigation()) {
+      <nav class="klpt-header__nav" id="main-nav" aria-label="Primary navigation">
+        <div class="klpt-header__container" [class.klpt-header__container--contained]="contained()">
+          <app-nav />
+        </div>
+      </nav>
+    }
+
+    @if (showSecondaryNav()) {
+      <nav class="klpt-header__secondary-nav" aria-label="Secondary navigation">
+        <div class="klpt-header__container" [class.klpt-header__container--contained]="contained()">
+          <ul class="klpt-header__secondary-nav-list">
+            <li><a href="#" class="klpt-header__secondary-nav-link">Section 1</a></li>
+            <li><a href="#" class="klpt-header__secondary-nav-link">Section 2</a></li>
+            <li><a href="#" class="klpt-header__secondary-nav-link">Section 3</a></li>
+          </ul>
+        </div>
+      </nav>
+    }
+
+  </div>
+</header>
