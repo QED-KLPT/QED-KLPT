@@ -40,6 +40,7 @@ import { TestingBanner } from './components/testing-banner/testing-banner';
 import { TestingButtons } from './components/testing-buttons/testing-buttons';
 import { TestingBreadcrumbs } from './components/testing-breadcrumbs/testing-breadcrumbs';
 import { TestingCallout } from './components/testing-callout/testing-callout';
+import { TestingDirectionLinks } from './components/testing-direction-links/testing-direction-links';
 import { WorkingMemory } from './components/executive-function/working-memory/working-memory';
 import { AttentionFocus } from './components/executive-function/attention-focus/attention-focus';
 
@@ -147,5 +148,6 @@ export const routes: Routes = [
   { path: 'testing/testing-buttons', component: TestingButtons, title: 'Testing Buttons' },
   { path: 'testing/testing-breadcrumbs', component: TestingBreadcrumbs, title: 'Testing Breadcrumbs' },
   { path: 'testing/testing-callout', component: TestingCallout, title: 'Testing Callout' },
+  { path: 'testing/testing-direction-links', component: TestingDirectionLinks, title: 'Testing Direction Links' },
   { path: '**', redirectTo: '' },
 ];
