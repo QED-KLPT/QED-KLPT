@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { QldHeader } from '../../shared/qld-header/qld-header';
+import { KlptHeader } from '../../shared/klpt-header/klpt-header';
 
 @Component({
   selector: 'app-testing-header',
-  imports: [QldHeader],
+  imports: [KlptHeader],
   templateUrl: './testing-header.html',
   styleUrl: './testing-header.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -11,86 +11,86 @@ import { QldHeader } from '../../shared/qld-header/qld-header';
 export class TestingHeader {
   readonly siteName = 'KLPT - Kindergarten Learning Progression Toolkit';
 
-  example1Code = `<qld-header
+  example1Code = `<klpt-header
   brandType="coat-of-arms"
   siteName="${this.siteName}"
   showPreHeader="dark"
   [showSearch]="true"
   [showNavigation]="true">
-</qld-header>`;
+</klpt-header>`;
 
-  example2Code = `<qld-header
+  example2Code = `<klpt-header
   brandType="coat-of-arms"
   siteName="${this.siteName}"
   showPreHeader="none"
   [showSearch]="true"
   [showNavigation]="true">
-</qld-header>`;
+</klpt-header>`;
 
-  example3Code = `<qld-header
+  example3Code = `<klpt-header
   brandType="logo"
   siteName="${this.siteName}"
   showPreHeader="dark"
   [showSearch]="true"
   [showNavigation]="true">
-</qld-header>`;
+</klpt-header>`;
 
-  example4Code = `<qld-header
+  example4Code = `<klpt-header
   brandType="site-name"
   siteName="${this.siteName}"
   showPreHeader="none"
   [showSearch]="true"
   [showNavigation]="true">
-</qld-header>`;
+</klpt-header>`;
 
-  example5Code = `<qld-header
+  example5Code = `<klpt-header
   brandType="coat-of-arms"
   siteName="${this.siteName}"
   showPreHeader="dark"
   [showSearch]="false"
   [showNavigation]="false">
-</qld-header>`;
+</klpt-header>`;
 
-  example6Code = `<qld-header
+  example6Code = `<klpt-header
   brandType="coat-of-arms"
   siteName="${this.siteName}"
   showPreHeader="dark"
   [showSearch]="true"
   [showNavigation]="false">
-</qld-header>`;
+</klpt-header>`;
 
-  example7Code = `<qld-header
+  example7Code = `<klpt-header
   brandType="coat-of-arms"
   siteName="${this.siteName}"
   showPreHeader="none"
   [showSearch]="false"
   [showNavigation]="true">
-</qld-header>`;
+</klpt-header>`;
 
-  example8Code = `<qld-header
+  example8Code = `<klpt-header
   brandType="coat-of-arms"
   siteName="${this.siteName}"
   tagline="Kindergarten Learning Progression Toolkit"
   showPreHeader="dark"
   [showSearch]="true"
   [showNavigation]="true">
-</qld-header>`;
+</klpt-header>`;
 
-  example9Code = `<qld-header
+  example9Code = `<klpt-header
   brandType="coat-of-arms"
   siteName="${this.siteName}"
   showPreHeader="dark"
   [showSearch]="true"
   [showNavigation]="true"
   showSecondaryNav="true">
-</qld-header>`;
+</klpt-header>`;
 
-  example10Code = `<qld-header
+  example10Code = `<klpt-header
   brandType="coat-of-arms"
   siteName="${this.siteName}"
   showPreHeader="dark"
   [showSearch]="true"
   [showNavigation]="true"
   contained="true">
-</qld-header>`;
+</klpt-header>`;
 }

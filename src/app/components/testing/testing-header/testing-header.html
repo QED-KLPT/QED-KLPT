@@ -1,138 +1,138 @@
 <section class="section section--white">
   <div class="section__inner">
     <h2>Testing Header</h2>
-    <p>The following demos showcase the <code>&lt;qld-header&gt;</code> component with various configurations following the Queensland Government Design System patterns.</p>
+    <p>The following demos showcase the <code>&lt;klpt-header&gt;</code> component with various configurations following the Queensland Government Design System patterns.</p>
 
     <section style="margin-block-end: 2rem;">
       <h3>1. Full Header (Pre-header + Coat of Arms + Search + Navigation)</h3>
       <p>The complete header with dark pre-header bar showing qld.gov.au, Coat of Arms branding, search functionality, and primary navigation. This is the standard pattern for most Queensland Government websites.</p>
-      <qld-header
+      <klpt-header
         brandType="coat-of-arms"
         [siteName]="siteName"
         showPreHeader="dark"
         [showSearch]="true"
         [showNavigation]="true">
-      </qld-header>
+      </klpt-header>
       <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>{{ example1Code }}</code></pre>
     </section>
 
     <section style="margin-block-end: 2rem;">
       <h3>2. Header Without Pre-header (Masthead + Navigation)</h3>
       <p>A simplified header without the dark pre-header utility bar. Used when the qld.gov.au government branding is not required.</p>
-      <qld-header
+      <klpt-header
         brandType="coat-of-arms"
         [siteName]="siteName"
         showPreHeader="none"
         [showSearch]="true"
         [showNavigation]="true">
-      </qld-header>
+      </klpt-header>
       <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>{{ example2Code }}</code></pre>
     </section>
 
     <section style="margin-block-end: 2rem;">
       <h3>3. Header with Custom Logo</h3>
       <p>Uses a custom logo image instead of the Queensland Coat of Arms. Suitable for agencies that have their own approved branding.</p>
-      <qld-header
+      <klpt-header
         brandType="logo"
         [siteName]="siteName"
         showPreHeader="dark"
         [showSearch]="true"
         [showNavigation]="true">
-      </qld-header>
+      </klpt-header>
       <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>{{ example3Code }}</code></pre>
     </section>
 
     <section style="margin-block-end: 2rem;">
       <h3>4. Header with Site Name Only</h3>
       <p>A text-only header without any branding image. Used for internal tools or applications where government branding is not applicable.</p>
-      <qld-header
+      <klpt-header
         brandType="site-name"
         [siteName]="siteName"
         showPreHeader="none"
         [showSearch]="true"
         [showNavigation]="true">
-      </qld-header>
+      </klpt-header>
       <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>{{ example4Code }}</code></pre>
     </section>
 
     <section style="margin-block-end: 2rem;">
       <h3>5. Compact Header (Pre-header + Brand Only)</h3>
       <p>A minimal header with just the pre-header and brand. No search or navigation - used for simple pages that don't require site-wide navigation.</p>
-      <qld-header
+      <klpt-header
         brandType="coat-of-arms"
         [siteName]="siteName"
         showPreHeader="dark"
         [showSearch]="false"
         [showNavigation]="false">
-      </qld-header>
+      </klpt-header>
       <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>{{ example5Code }}</code></pre>
     </section>
 
     <section style="margin-block-end: 2rem;">
       <h3>6. Header with Search but No Navigation</h3>
       <p>A header that includes the search functionality but omits the primary navigation bar. Useful for content-focused pages.</p>
-      <qld-header
+      <klpt-header
         brandType="coat-of-arms"
         [siteName]="siteName"
         showPreHeader="dark"
         [showSearch]="true"
         [showNavigation]="false">
-      </qld-header>
+      </klpt-header>
       <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>{{ example6Code }}</code></pre>
     </section>
 
     <section style="margin-block-end: 2rem;">
       <h3>7. Minimal Header (Brand + Hamburger Menu)</h3>
       <p>A mobile-first minimal header showing only the brand and hamburger menu toggle. Navigation appears as a slide-out drawer on mobile/tablet.</p>
-      <qld-header
+      <klpt-header
         brandType="coat-of-arms"
         [siteName]="siteName"
         showPreHeader="none"
         [showSearch]="false"
         [showNavigation]="true">
-      </qld-header>
+      </klpt-header>
       <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>{{ example7Code }}</code></pre>
     </section>
 
     <section style="margin-block-end: 2rem;">
       <h3>8. Header with Tagline</h3>
       <p>A header that includes a tagline/subheading beneath the site name. Used when additional context about the site is helpful.</p>
-      <qld-header
+      <klpt-header
         brandType="coat-of-arms"
         [siteName]="siteName"
         tagline="Kindergarten Learning Progression Toolkit"
         showPreHeader="dark"
         [showSearch]="true"
         [showNavigation]="true">
-      </qld-header>
+      </klpt-header>
       <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>{{ example8Code }}</code></pre>
     </section>
 
     <section style="margin-block-end: 2rem;">
       <h3>9. Header with Secondary Navigation Bar</h3>
       <p>A header with an additional secondary navigation bar below the primary nav. Used for sites with multiple content sections or user roles.</p>
-      <qld-header
+      <klpt-header
         brandType="coat-of-arms"
         [siteName]="siteName"
         showPreHeader="dark"
         [showSearch]="true"
         [showNavigation]="true"
         [showSecondaryNav]="true">
-      </qld-header>
+      </klpt-header>
       <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>{{ example9Code }}</code></pre>
     </section>
 
     <section style="margin-block-end: 2rem;">
       <h3>10. Contained Header (Narrower Width)</h3>
       <p>A header variant that is contained within a narrower width rather than full-bleed. Used for applications where content doesn't span the full viewport width.</p>
-      <qld-header
+      <klpt-header
         brandType="coat-of-arms"
         [siteName]="siteName"
         showPreHeader="dark"
         [showSearch]="true"
         [showNavigation]="true"
         [contained]="true">
-      </qld-header>
+      </klpt-header>
       <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>{{ example10Code }}</code></pre>
     </section>
 

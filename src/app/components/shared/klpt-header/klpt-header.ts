@@ -11,13 +11,13 @@ interface NavItem {
 }
 
 @Component({
-  selector: 'qld-header',
+  selector: 'klpt-header',
   imports: [Nav],
-  templateUrl: './qld-header.html',
-  styleUrl: './qld-header.scss',
+  templateUrl: './klpt-header.html',
+  styleUrl: './klpt-header.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class QldHeader {
+export class KlptHeader {
   readonly brandType = input<BrandType>('coat-of-arms');
   readonly siteName = input<string>('Site Name');
   readonly tagline = input<string>('');
