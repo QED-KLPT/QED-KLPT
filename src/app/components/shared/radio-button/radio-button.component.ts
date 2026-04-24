@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 export interface RadioOption {
   label: string;
   value: string;
+  disabled?: boolean;
 }
 
 @Component({
@@ -16,6 +17,7 @@ export class RadioButtonComponent {
   @Input({ required: true }) label!: string;
   @Input() name = '';
   @Input() hint?: string;
+  @Input() size: 'normal' | 'small' = 'normal';
   @Input() disabled = false;
   @Input() optional = false;
   @Input() required = false;
@@ -44,6 +46,9 @@ export class RadioButtonComponent {
 
   get inputClasses(): string {
     const classes: string[] = ['qld__control-input__input', 'qld__control-input-radio'];
+    if (this.size === 'small') {
+      classes.push('qld__control-input--small');
+    }
     if (this.error) {
       classes.push('qld__input--error');
     }
@@ -67,6 +72,9 @@ export class RadioGroupComponent {
   @Input() name = '';
   @Input({ required: true }) options!: RadioOption[];
   @Input() hint?: string;
+  @Input() size: 'normal' | 'small' = 'normal';
+  @Input() inline = false;
+  @Input() successMessage?: string;
   @Input() disabled = false;
   @Input() optional = false;
   @Input() required = false;
@@ -99,5 +107,43 @@ export class RadioGroupComponent {
 
   get isInvalid(): boolean {
     return !!this.error;
+  }
+
+  get groupClasses(): string {
+    const classes: string[] = ['qld_form-field', 'qld__control-group'];
+    if (this.size === 'small') {
+      classes.push('qld__margin-t-p');
+    }
+    if (this.inline) {
+      classes.push('qld__radio-group--inline');
+    }
+    return classes.join(' ');
+  }
+
+  get optionClasses(): string {
+    const classes: string[] = ['qld__control-input', 'qld__control-input--block'];
+    if (this.size === 'small') {
+      classes.push('qld__control-input--small');
+    }
+    if (this.inline) {
+      classes.splice(classes.indexOf('qld__control-input--block'), 1);
+    }
+    return classes.join(' ');
+  }
+
+  get inputClasses(): string {
+    const classes: string[] = ['qld__control-input__input', 'qld__control-input-radio'];
+    if (this.error) {
+      classes.push('qld__input--error');
+    }
+    return classes.join(' ');
+  }
+
+  get inputClassesValid(): string {
+    const classes: string[] = ['qld__control-input__input', 'qld__control-input-radio'];
+    if (this.successMessage) {
+      classes.push('qld__input--valid');
+    }
+    return classes.join(' ');
   }
 }

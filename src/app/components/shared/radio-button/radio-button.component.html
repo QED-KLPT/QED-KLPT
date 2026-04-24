@@ -1,5 +1,8 @@
 <div class="qld__form-group">
   <label [attr.for]="id" class="qld__label">
+    @if (required) {
+      <abbr title="required">*</abbr>
+    }
     {{ label }}
     @if (optional) {
       <span class="qld__label--optional">(Optional)</span>
@@ -29,6 +32,7 @@
       [id]="id"
       [class]="inputClasses"
       [disabled]="disabled"
+      [attr.aria-disabled]="disabled ? 'true' : null"
       [attr.aria-describedby]="ariaDescribedBy"
       [attr.aria-required]="required ? 'true' : null"
       [attr.aria-invalid]="isInvalid ? 'true' : null"
