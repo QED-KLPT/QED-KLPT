@@ -1,0 +1,106 @@
+<section class="section section--white">
+  <div class="section__inner">
+    <h2>Testing Direction Links</h2>
+    <p>The following demos showcase the <code>app-direction-link</code> component with various directions and configurations following the Queensland Government Design System.</p>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>1. Up Direction Link</h3>
+      <p>A direction link pointing upward, commonly used for "Back to top" links. The arrow appears on the left side of the text.</p>
+      <app-direction-link href="#top" direction="up">Back to top</app-direction-link>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-direction-link href="#top" direction="up"&gt;Back to top&lt;/app-direction-link&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>2. Down Direction Link</h3>
+      <p>A direction link pointing downward, used to guide users to scroll down or continue reading. The arrow appears on the left side of the text.</p>
+      <app-direction-link href="#content" direction="down">Read more</app-direction-link>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-direction-link href="#content" direction="down"&gt;Read more&lt;/app-direction-link&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>3. Left Direction Link</h3>
+      <p>A direction link pointing leftward, used for "Back" navigation or returning to a previous section. The arrow appears on the left side of the text.</p>
+      <app-direction-link href="#" direction="left">Back to previous</app-direction-link>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-direction-link href="#" direction="left"&gt;Back to previous&lt;/app-direction-link&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>4. Right Direction Link</h3>
+      <p>A direction link pointing rightward, the default and most common variant. Used for "Continue", "Next step", or forward navigation.</p>
+      <app-direction-link href="#" direction="right">Continue</app-direction-link>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-direction-link href="#" direction="right"&gt;Continue&lt;/app-direction-link&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>5. All Directions Together</h3>
+      <p>All four direction variants shown together, matching the Queensland Government Design System example. Useful for showing navigation through a process.</p>
+      <div style="display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap;">
+        <app-direction-link href="#" direction="up">Up</app-direction-link>
+        <app-direction-link href="#" direction="down">Down</app-direction-link>
+        <app-direction-link href="#" direction="left">Left</app-direction-link>
+        <app-direction-link href="#" direction="right">Right</app-direction-link>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-direction-link href="#" direction="up"&gt;Up&lt;/app-direction-link&gt;
+&lt;app-direction-link href="#" direction="down"&gt;Down&lt;/app-direction-link&gt;
+&lt;app-direction-link href="#" direction="left"&gt;Left&lt;/app-direction-link&gt;
+&lt;app-direction-link href="#" direction="right"&gt;Right&lt;/app-direction-link&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>6. Direction Links in a Sequential List</h3>
+      <p>Direction links used within an unordered list to guide users through sequential steps or navigation items.</p>
+      <ul style="list-style: none; padding: 0;">
+        <li style="margin-block-end: 0.75rem;"><app-direction-link href="#" direction="right">Step 1: Personal details</app-direction-link></li>
+        <li style="margin-block-end: 0.75rem;"><app-direction-link href="#" direction="right">Step 2: Assessment</app-direction-link></li>
+        <li style="margin-block-end: 0.75rem;"><app-direction-link href="#" direction="right">Step 3: Review</app-direction-link></li>
+        <li><app-direction-link href="#" direction="right">Step 4: Submit</app-direction-link></li>
+      </ul>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;ul style="list-style: none; padding: 0;"&gt;
+  &lt;li&gt;&lt;app-direction-link href="#" direction="right"&gt;Step 1&lt;/app-direction-link&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;app-direction-link href="#" direction="right"&gt;Step 2&lt;/app-direction-link&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;app-direction-link href="#" direction="right"&gt;Step 3&lt;/app-direction-link&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;app-direction-link href="#" direction="right"&gt;Step 4&lt;/app-direction-link&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>7. Direction Link with aria-label (Accessibility)</h3>
+      <p>When the visible text alone doesn't fully communicate the destination, an aria-label provides additional context for screen reader users.</p>
+      <app-direction-link href="/assessment/complete" direction="right" aria-label="Go to assessment completion page">Continue</app-direction-link>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-direction-link href="/assessment/complete" direction="right"
+  aria-label="Go to assessment completion page"&gt;Continue&lt;/app-direction-link&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>8. Direction Link on Dark Background</h3>
+      <p>Direction links automatically adapt their colors when placed on a dark background. The link text and arrow icon switch to light-colored tokens for proper contrast.</p>
+      <div class="qld__body--dark" style="padding: 1.5rem; border-radius: 6px;">
+        <app-direction-link href="#" direction="right">Continue to next section</app-direction-link>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;div class="qld__body--dark" style="padding: 1.5rem;"&gt;
+  &lt;app-direction-link href="#" direction="right"&gt;Continue to next section&lt;/app-direction-link&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>9. Direction Link Opening in New Tab</h3>
+      <p>Direction links can open in a new browser tab using the target attribute. This is appropriate for external resources or when you want to keep the current page open.</p>
+      <app-direction-link href="https://www.qld.gov.au" direction="right" target="_blank">Visit qld.gov.au</app-direction-link>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-direction-link href="https://www.qld.gov.au" direction="right" target="_blank"&gt;Visit qld.gov.au&lt;/app-direction-link&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>10. Mixed Direction Links in Navigation Context</h3>
+      <p>A realistic navigation pattern combining back (left), forward (right), and up direction links to show a breadcrumb-like flow through content.</p>
+      <div style="display: flex; gap: 2rem; align-items: center; flex-wrap: wrap;">
+        <app-direction-link href="#" direction="left">Previous</app-direction-link>
+        <app-direction-link href="#top" direction="up">Home</app-direction-link>
+        <app-direction-link href="#" direction="right">Next</app-direction-link>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-direction-link href="#" direction="left"&gt;Previous&lt;/app-direction-link&gt;
+&lt;app-direction-link href="#top" direction="up"&gt;Home&lt;/app-direction-link&gt;
+&lt;app-direction-link href="#" direction="right"&gt;Next&lt;/app-direction-link&gt;</code></pre>
+    </section>
+
+  </div>
+</section>

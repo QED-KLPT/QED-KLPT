@@ -1,0 +1,86 @@
+<div [class]="cardClasses">
+
+  @if (hasImage) {
+    <div class="qld__responsive-media-img--bg" role="img" [attr.aria-label]="imageAlt || title"></div>
+  }
+
+  @if (hasIcon) {
+    <div class="qld__card__icon" aria-hidden="true">
+      <i [class]="iconClass"></i>
+    </div>
+  }
+
+  <div class="qld__card__inner">
+    <div class="qld__card__content">
+      <div class="qld__card__content-inner">
+
+        @if (isClickable) {
+          <h3 class="qld__card__title">
+            <a [href]="href" class="qld__card--clickable__link">{{ title }}</a>
+          </h3>
+        } @else if (type === 'multi-action') {
+          <h3 class="qld__card__title">
+            @if (href) {
+              <a [href]="href" class="qld__card--clickable__link">{{ title }}</a>
+            } @else {
+              {{ title }}
+            }
+          </h3>
+        } @else {
+          <p class="qld__card__title">{{ title }}</p>
+        }
+
+        @if (description) {
+          <p class="qld__card__description">{{ description }}</p>
+        }
+
+      </div>
+
+      @if (hasArrow) {
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="qld__card--arrow-icon qld__icon qld__icon--md">
+          <use href="?a=169317:dist/mysource_files/img/QLD-icons.svg#arrow-right"></use>
+        </svg>
+      }
+
+    </div>
+
+    @if (hasFooter) {
+      <div class="qld__card__footer">
+        <hr class="qld__horizontal-rule" aria-hidden="true">
+        <div class="qld__card__footer-inner">
+
+          @if (footerLinks.length > 0) {
+            <ul class="qld__link-list">
+              @for (link of footerLinks; track link.label) {
+                <li>
+                  <a [href]="link.href" class="qld__card__footer-link">
+                    @if (link.icon) {
+                      <i [class]="link.icon" aria-hidden="true"></i>
+                    }
+                    <span>{{ link.label }}</span>
+                  </a>
+                </li>
+              }
+            </ul>
+          }
+
+          @if (footerTags.length > 0) {
+            <ul class="qld__card__tags qld__tag-list">
+              @for (tag of footerTags; track tag.label) {
+                <li>
+                  @if (tag.href) {
+                    <a [href]="tag.href" class="qld__tag qld__tag--link">{{ tag.label }}</a>
+                  } @else {
+                    <span class="qld__tag">{{ tag.label }}</span>
+                  }
+                </li>
+              }
+            </ul>
+          }
+
+        </div>
+      </div>
+    }
+
+  </div>
+</div>

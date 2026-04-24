@@ -1,0 +1,104 @@
+<section class="section section--white">
+  <div class="section__inner">
+    <h2>Testing In-Page Alert</h2>
+    <p>In-page alerts provide contextual feedback within content sections.</p>
+    <h2>Testing In-Page Alerts</h2>
+    <p>The following demos showcase the <code>app-alert</code> component (in-page alert) with various types, states, and configurations following the Queensland Government Design System.</p>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>1. Basic Info Alert</h3>
+      <p>Default appearance for general information that requires user attention.</p>
+      <app-alert type="info" title="Information title">This is a basic informational alert with standard styling.</app-alert>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-alert type="info" title="Information title"&gt;
+  This is a basic informational alert.
+&lt;/app-alert&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>2. Basic Success Alert</h3>
+      <p>Confirms a successful action or positive outcome.</p>
+      <app-alert type="success" title="Success title">Your form has been submitted successfully.</app-alert>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-alert type="success" title="Success title"&gt;
+  Your form has been submitted successfully.
+&lt;/app-alert&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>3. Basic Error Alert</h3>
+      <p>Indicates a blocking error that prevents the user from completing their task (uses h4 heading per QLD spec).</p>
+      <app-alert type="error" title="Error Title">Something went wrong. Please try again later.</app-alert>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-alert type="error" title="Error Title"&gt;
+  Something went wrong. Please try again later.
+&lt;/app-alert&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>4. Basic Warning Alert</h3>
+      <p>Draws attention to something urgent that the user should be aware of.</p>
+      <app-alert type="warning" title="Warning">Your password will expire soon. Please update it.</app-alert>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-alert type="warning" title="Warning"&gt;
+  Your password will expire soon. Please update it.
+&lt;/app-alert&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>5. Info Alert with Link</h3>
+      <p>Alert containing a hyperlink for further information or actions.</p>
+      <app-alert type="info" title="Information title">This is info <a href="#">link</a></app-alert>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-alert type="info" title="Information title"&gt;
+  This is info &lt;a href="#"&gt;link&lt;/a&gt;
+&lt;/app-alert&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>6. Success Alert with Expandable Content</h3>
+      <p>Success alert with a link and a clickable "Show more" toggle for additional details.</p>
+      <app-alert type="success" title="Success title" [showMore]="true" showMoreLabel="Show more" hideMoreLabel="Hide more">
+        Record saved <a href="#">view details</a>
+        <span qld-more style="display: block; margin-top: 0.5rem;">Additional details about the saved record can be found here. All changes have been persisted to the database.</span>
+      </app-alert>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-alert type="success" title="Success title" showMore
+  showMoreLabel="Show more" hideMoreLabel="Hide more"&gt;
+  Record saved &lt;a href="#"&gt;view details&lt;/a&gt;
+  &lt;span qld-more&gt;Additional details here...&lt;/span&gt;
+&lt;/app-alert&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>7. Error Alert with Detailed Message</h3>
+      <p>Form validation errors or blocking errors with recovery suggestions.</p>
+      <app-alert type="error" title="Error">The form contains 3 errors that must be corrected before you can proceed. Please review the fields marked in red.</app-alert>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-alert type="error" title="Error"&gt;
+  The form contains 3 errors that must be corrected...
+&lt;/app-alert&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>8. Critical Warning</h3>
+      <p>Urgent warning about potential consequences or risks of an action.</p>
+      <app-alert type="warning" title="Warning">Your storage is nearly full. You have less than 10% remaining. Please free up space or upgrade your plan.</app-alert>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-alert type="warning" title="Warning"&gt;
+  Your storage is nearly full. You have less than 10% remaining...
+&lt;/app-alert&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>9. Light State Info Alert</h3>
+      <p>Light palette variant with a softer background, useful on darker page sections.</p>
+      <app-alert type="info" title="Information title" state="light">An updated policy has been published. Please review the changes at your earliest convenience.</app-alert>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-alert type="info" title="Information title" state="light"&gt;
+  An updated policy has been published...
+&lt;/app-alert&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>10. Dark State Warning</h3>
+      <p>Dark palette variant for alerts on light backgrounds that need higher contrast.</p>
+      <app-alert type="warning" title="Warning" state="dark">Server maintenance scheduled for tonight from 2:00 AM to 4:00 AM AEST. Services may be temporarily unavailable.</app-alert>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-alert type="warning" title="Warning" state="dark"&gt;
+  Server maintenance scheduled for tonight...
+&lt;/app-alert&gt;</code></pre>
+    </section>
+
+  </div>
+</section>

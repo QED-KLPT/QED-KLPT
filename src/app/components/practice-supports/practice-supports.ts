@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { QldAccordionItemComponent } from '../shared/qld-accordion-item/qld-accordion-item.component';
+import { AccordionItemComponent } from '../shared/accordion-item/accordion-item.component';
 
 type PracticeSupportSection = {
   id: string;
@@ -16,7 +16,7 @@ type PracticeSupportSection = {
 
 @Component({
   selector: 'app-practice-supports',
-  imports: [RouterLink, QldAccordionItemComponent],
+  imports: [RouterLink, AccordionItemComponent],
   templateUrl: './practice-supports.html',
   styleUrl: './practice-supports.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,0 +1,9 @@
+<div [class]="calloutClasses" role="region" aria-label="{{ title || 'Callout' }}">
+  @if (title) {
+    <h3 [class]="headingClasses">{{ title }}</h3>
+  }
+  @if (message) {
+    <p>{{ message }}</p>
+  }
+  <ng-content></ng-content>
+</div>

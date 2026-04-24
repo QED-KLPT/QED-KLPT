@@ -1,0 +1,138 @@
+<div [class.qld__form-group]="true" [class.qld__form-group--file-upload]="true" [class.qld__margin-t-component]="hasFiles">
+  <label [id]="labelId" class="qld__label" [class.qld__label--required]="required">
+    {{ label }}
+  </label>
+
+  @if (hint) {
+    <span [id]="hintId" class="qld__form-hint">
+      {{ hint }}
+    </span>
+  }
+
+  <div [class]="wrapperClasses">
+    <div
+      class="qld__form-file-wrapper--inner"
+      (dragover)="onDragOver($event)"
+      (dragleave)="onDragLeave($event)"
+      (drop)="onDrop($event)"
+    >
+      <div class="qld__form-file-wrapper--content">
+        <span class="qld__form-file-icon fa-light fa-cloud-arrow-up" aria-hidden="true"></span>
+
+        <div class="qld__form-file-dropzone-area">
+          <div [class]="dropzoneClasses" role="group" aria-labelledby="{{ labelId }}">
+            <h3 class="qld__file-input-title">
+              {{ getUploadHeadingText() }}
+            </h3>
+
+            @if (getConstraintsList().length > 0) {
+              <ul class="qld__file-input-constraints" [attr.id]="descriptionAriaIds">
+                @for (constraint of getConstraintsList(); track $index) {
+                  <li>{{ constraint }}</li>
+                }
+              </ul>
+            }
+
+            <input
+              #fileInput
+              [id]="inputId"
+              class="qld__file-input"
+              type="file"
+              [attr.accept]="accept || null"
+              [attr.data-file-types]="accept || null"
+              [attr.data-max-size]="maxSize > 0 ? maxSize : null"
+              [attr.data-max-files]="maxFiles > 1 ? maxFiles : null"
+              [multiple]="multiple && maxFiles > 1 ? true : false"
+              [disabled]="isDisabled"
+              (change)="onFileSelected($event)"
+            />
+
+            <button
+              type="button"
+              class="qld__btn qld__form-file-button"
+              [disabled]="isDisabled"
+              (click)="fileInput?.click()"
+            >
+              {{ getUploadButtonText() }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    @if (hasFiles) {
+      <div class="qld__form-file-preview" role="list" aria-label="Uploaded files">
+        @for (uploadedFile of uploadedFiles; track $index) {
+          <div class="qld__form-file" [class.qld__form-file--loading]="uploadedFile.status === 'loading'" [class.qld__form-file--complete]="uploadedFile.status === 'complete'" [class.qld__form-file--success]="uploadedFile.status === 'success'" [class.qld__form-file--error]="uploadedFile.status === 'error'" role="listitem">
+            <div class="qld__form-file-info-wrapper">
+              <span class="qld__form-file-icon-area" aria-hidden="true">
+                @if (uploadedFile.status === 'loading') {
+                  <span class="qld__form-file-loader fa-light fa-spinner" aria-hidden="true"></span>
+                } @else if (uploadedFile.status === 'error') {
+                  <span class="qld__form-file-error-icon fa-light fa-circle-exclamation" aria-hidden="true"></span>
+                } @else {
+                  <span class="qld__form-file-type-icon" [class]="getFileIconClass(uploadedFile.file)" aria-hidden="true"></span>
+                }
+              </span>
+
+              <div class="qld__form-file-details">
+                <span class="qld__form-file-name" title="{{ uploadedFile.file.name }}">
+                  {{ truncateFileName(uploadedFile.file.name) }}
+                </span>
+                <span class="qld__form-file-size">
+                  {{ formatFileSize(uploadedFile.file.size) }}
+                </span>
+
+                @if (uploadedFile.status === 'loading') {
+                  <span class="qld__form-file-status qld__form-file-status--loading">
+                    Uploading...
+                  </span>
+                } @else if (uploadedFile.status === 'complete') {
+                  <span class="qld__form-file-status qld__form-file-status--complete">
+                    Upload complete
+                  </span>
+                } @else if (uploadedFile.status === 'success') {
+                  <span class="qld__form-file-status qld__form-file-status--success">
+                    Upload successful
+                  </span>
+                } @else if (uploadedFile.status === 'error') {
+                  <span class="qld__form-file-status qld__form-file-status--error">
+                    {{ uploadedFile.error || 'Upload failed' }}
+                  </span>
+                }
+              </div>
+            </div>
+
+            <div class="qld__form-file-actions">
+              @if (uploadedFile.status === 'loading') {
+                <button type="button" class="qld__btn qld__form-file-action-btn qld__form-file-action-btn--cancel" (click)="onFileRemoved($index)">
+                  Cancel
+                </button>
+              } @else if (uploadedFile.status === 'error') {
+                <button type="button" class="qld__btn qld__form-file-action-btn qld__form-file-action-btn--retry" (click)="onFileRetry($index)">
+                  Retry upload
+                </button>
+              } @else {
+                <button type="button" class="qld__btn qld__form-file-action-btn qld__form-file-action-btn--remove" (click)="onFileRemoved($index)">
+                  Remove
+                </button>
+              }
+            </div>
+          </div>
+        }
+
+        <div class="qld__form-file-summary" aria-live="polite">
+          @if (allUploaded) {
+            <span class="qld__form-file-summary-text">
+              {{ completeCount }} file{{ completeCount > 1 ? 's' : '' }} uploaded ({{ totalFileSize }})
+            </span>
+          } @else if (errorCount > 0) {
+            <span class="qld__form-file-summary-text qld__form-file-summary-text--error">
+              {{ errorCount }} file{{ errorCount > 1 ? 's' : '' }} with errors
+            </span>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</div>
