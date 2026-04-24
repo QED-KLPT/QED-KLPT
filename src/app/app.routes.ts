@@ -49,6 +49,7 @@ import { TestingInPageAlert } from './components/testing-in-page-alert/testing-i
 import { TestingHeader } from './components/testing/testing-header/testing-header';
 import { TestingLoadingSpinner } from './components/testing-loading-spinner/testing-loading-spinner';
 import { TestingHorizontalRule } from './components/testing-horizontal-rule/testing-horizontal-rule';
+import { TestingNavigationalHorizontal } from './components/testing-navigational-horizontal/testing-navigational-horizontal';
 import { WorkingMemory } from './components/executive-function/working-memory/working-memory';
 import { AttentionFocus } from './components/executive-function/attention-focus/attention-focus';
 
@@ -165,5 +166,6 @@ export const routes: Routes = [
   { path: 'testing/testing-header', component: TestingHeader, title: 'Testing Header' },
   { path: 'testing/testing-loading-spinner', component: TestingLoadingSpinner, title: 'Testing Loading Spinner' },
   { path: 'testing/testing-horizontal-rule', component: TestingHorizontalRule, title: 'Testing Horizontal Rule' },
+  { path: 'testing/testing-navigational-horizontal', component: TestingNavigationalHorizontal, title: 'Testing Navigational Horizontal' },
   { path: '**', redirectTo: '' },
 ];
