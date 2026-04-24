@@ -52,6 +52,7 @@ import { TestingHorizontalRule } from './components/testing-horizontal-rule/test
 import { TestingNavigationalHorizontal } from './components/testing-navigational-horizontal/testing-navigational-horizontal';
 import { TestingInPageNav } from './components/testing-in-page-nav/testing-in-page-nav';
 import { TestingNavigationVertical } from './components/testing-navigation-vertical/testing-navigation-vertical';
+import { TestingRadio } from './components/testing-radio/testing-radio';
 import { WorkingMemory } from './components/executive-function/working-memory/working-memory';
 import { AttentionFocus } from './components/executive-function/attention-focus/attention-focus';
 
@@ -171,5 +172,6 @@ export const routes: Routes = [
   { path: 'testing/testing-navigational-horizontal', component: TestingNavigationalHorizontal, title: 'Testing Navigational Horizontal' },
   { path: 'testing/testing-in-page-navigation', component: TestingInPageNav, title: 'Testing In-Page Navigation' },
   { path: 'testing/testing-navigation-vertical', component: TestingNavigationVertical, title: 'Testing Navigation Vertical' },
+  { path: 'testing/testing-radio', component: TestingRadio, title: 'Testing Radio' },
   { path: '**', redirectTo: '' },
 ];
