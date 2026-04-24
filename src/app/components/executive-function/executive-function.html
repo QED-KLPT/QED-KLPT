@@ -21,3 +21,43 @@
     </div>
   </div>
 </section>
+
+<section class="section section--white domain-overview">
+  <div class="section__inner">
+    <h2>Executive Function overview</h2>
+    <p>
+      Watch the video to understand the key elements of executive function, and how to
+      observe these in everyday contexts.
+    </p>
+    <div class="videos-row">
+      <app-youtube-player
+        title="KLPT-executive-function"
+        description="KLPT Executive Function"
+        [youtubeUrl]="'https://www.youtube.com/watch?v=1BbO3pI1GVk'"
+      >
+      </app-youtube-player>
+    </div>
+  </div>
+</section>
+
+<section class="section section--cream domain-pathways">
+  <div class="section__inner">
+    <div class="section__intro">
+      <p class="eyebrow">Explore the progression</p>
+      <h2>Executive Function pathways</h2>
+    </div>
+    <div class="card-grid">
+      @for (card of cards; track card.title) {
+        <app-domain-card
+          [title]="card.title"
+          [description]="card.description"
+          [url]="card.url"
+          [background]="card.background"
+          [hoverBorderColor]="card.hoverBorderColor"
+          [imageSrc]="card.imageSrc"
+          [imageAlt]="card.imageAlt"
+        />
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,188 @@
+:host {
+  display: block;
+}
+
+.qld__global-alert {
+  position: relative;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  &__main {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+
+    i {
+      font-size: 1.5rem;
+    }
+  }
+
+  &__content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-width: 0;
+  }
+
+  &__message {
+    flex: 1;
+    min-width: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+
+    strong {
+      font-weight: 700;
+    }
+
+    a {
+      text-decoration: underline;
+    }
+  }
+
+  &__action {
+    flex-shrink: 0;
+
+    a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      font-weight: 600;
+      text-decoration: underline;
+
+      i {
+        font-size: 0.875rem;
+      }
+    }
+  }
+
+  &__close {
+    flex-shrink: 0;
+
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.7;
+      color: inherit;
+
+      i {
+        font-size: 1rem;
+      }
+
+      &:hover,
+      &:focus-visible {
+        opacity: 1;
+
+        &:focus-visible {
+          outline: 3px solid var(--klpt-gold);
+          outline-offset: 2px;
+          border-radius: 2px;
+        }
+      }
+    }
+  }
+
+  /* ========== CRITICAL (red) ========== */
+  &--critical {
+    background-color: #ffe3e3;
+    color: #380a05;
+    border-bottom: 3px solid #cf4532;
+
+    .qld__global-alert__icon i {
+      color: #cf4532;
+    }
+
+    .qld__global-alert__action a {
+      color: #cf4532;
+    }
+
+    .qld__global-alert__close button {
+      color: #380a05;
+    }
+  }
+
+  /* ========== WARNING (amber) ========== */
+  &--warning {
+    background-color: #fff0c4;
+    color: #382509;
+    border-bottom: 3px solid #b57917;
+
+    .qld__global-alert__icon i {
+      color: #b57917;
+    }
+
+    .qld__global-alert__action a {
+      color: #b57917;
+    }
+
+    .qld__global-alert__close button {
+      color: #382509;
+    }
+  }
+
+  /* ========== GENERAL (blue) ========== */
+  &--general {
+    background-color: #e2eef7;
+    color: #213555;
+    border-bottom: 3px solid #005eb8;
+
+    .qld__global-alert__icon i {
+      color: #005eb8;
+    }
+
+    .qld__global-alert__action a {
+      color: #005eb8;
+    }
+
+    .qld__global-alert__close button {
+      color: #213555;
+    }
+  }
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 48rem) {
+  .qld__global-alert {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1rem;
+
+    &__main {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.75rem;
+    }
+
+    &__icon {
+      justify-content: center;
+    }
+
+    &__content {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    &__action {
+      justify-content: flex-start;
+    }
+
+    &__close {
+      align-self: flex-end;
+    }
+  }
+}

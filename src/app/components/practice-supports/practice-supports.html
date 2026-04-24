@@ -42,11 +42,11 @@
             @if (section.accordionItems.length) {
               <div class="support-section__accordion-group">
                 @for (item of section.accordionItems; track item.title) {
-                  <app-qld-accordion-item [title]="item.title" [alt]="true">
+                  <app-accordion-item [title]="item.title" [alt]="true">
                     @for (paragraph of item.body; track paragraph) {
                       <p>{{ paragraph }}</p>
                     }
-                  </app-qld-accordion-item>
+                  </app-accordion-item>
                 }
               </div>
             }

@@ -1,0 +1,189 @@
+.qld__footer {
+  background: var(--doe-blue-600);
+  color: #ffffff;
+}
+
+.qld__footer--dark {
+  background: var(--doe-color-primary-dark, #003e96);
+}
+
+.qld__footer--minimal {
+  background: var(--doe-blue-600);
+}
+
+.qld__footer__graphic {
+  height: 8px;
+  background: var(--doe-color-accent);
+}
+
+.qld__footer--minimal .qld__footer__graphic {
+  height: 4px;
+}
+
+.qld__footer__inner {
+  width: min(100%, var(--content-max));
+  margin: 0 auto;
+  padding: clamp(2rem, 5vw, 3.5rem) var(--page-gutter);
+}
+
+.qld__footer--minimal .qld__footer__inner {
+  padding: clamp(1.5rem, 3vw, 2.5rem) var(--page-gutter);
+}
+
+.qld__footer__title {
+  margin: 0 0 2rem;
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+}
+
+.qld__footer--minimal .qld__footer__title {
+  margin-bottom: 1.5rem;
+}
+
+.qld__footer__columns {
+  display: grid;
+  grid-template-columns: minmax(12rem, 1.2fr) minmax(10rem, 0.85fr) minmax(9rem, 0.8fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: start;
+}
+
+.qld__footer--minimal .qld__footer__columns {
+  grid-template-columns: minmax(10rem, 1fr);
+  gap: clamp(1rem, 3vw, 2rem);
+}
+
+.qld__footer h3 {
+  margin: 0 0 0.85rem;
+  color: #ffffff;
+  font-size: 1.05rem;
+}
+
+.qld__footer p {
+  max-width: none;
+  margin: 0 0 1rem;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.qld__footer a {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.qld__footer ul {
+  display: grid;
+  gap: 0.65rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.qld__footer__link {
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.qld__footer__link:hover,
+.qld__footer__link:focus-visible {
+  text-decoration-thickness: 2px;
+}
+
+.qld__footer__social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.qld__footer__social-link i {
+  width: 1.1rem;
+  color: #ffffff;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+}
+
+.qld__footer__social-link span {
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+.qld__footer__social-link:hover span,
+.qld__footer__social-link:focus-visible span {
+  text-decoration-thickness: 2px;
+}
+
+.qld__footer__phone {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.qld__footer__button {
+  display: inline-flex;
+  min-height: 2.65rem;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #ffffff;
+  border-radius: 4px;
+  margin-block-start: 1rem;
+  padding: 0.7rem 1.1rem;
+  text-decoration: none;
+}
+
+.qld__footer__button:hover,
+.qld__footer__button:focus-visible {
+  text-decoration-thickness: 2px;
+}
+
+.qld__footer__acknowledgement {
+  margin-block-start: clamp(2rem, 4vw, 3rem);
+  padding-block-start: clamp(1.5rem, 3vw, 2rem);
+  border-block-start: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.qld__footer--minimal .qld__footer__acknowledgement {
+  margin-block-start: 1.5rem;
+  padding-block-start: 1rem;
+}
+
+.qld__footer__copyright {
+  font-weight: 700;
+}
+
+.qld__footer__qgov {
+  display: inline-flex;
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+.qld__footer__qgov:focus-visible,
+.qld__footer__qgov:hover {
+  text-decoration-thickness: 2px;
+}
+
+@media (max-width: 58rem) {
+  .qld__footer__columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .qld__footer--minimal .qld__footer__columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 36rem) {
+  .qld__footer__columns {
+    grid-template-columns: 1fr;
+  }
+
+  .qld__footer--minimal .qld__footer__columns {
+    grid-template-columns: 1fr;
+  }
+}

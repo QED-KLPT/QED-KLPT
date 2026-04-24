@@ -1,0 +1,102 @@
+<section class="section section--white">
+  <div class="section__inner">
+    <h2>Testing Radio</h2>
+    <p>The following demos showcase the <code>app-radio-group</code> component with various states, sizes, and layouts following the Queensland Government Design System.</p>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>1. Default Vertical Radio Buttons</h3>
+      <p>The standard radio button group with a required legend, hint text, and vertically stacked options. This is the most common pattern for form selection.</p>
+      <app-radio-group label="Select your device" name="device-default" [options]="defaultOptions" hint="Select an option" [required]="true"></app-radio-group>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-radio-group label="Select your device"
+  [options]="defaultOptions"
+  hint="Select an option"
+  required&gt;&lt;/app-radio-group&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>2. Small Radio Buttons</h3>
+      <p>Smaller radio buttons that are less visually prominent. Useful for compact layouts like search result filters where you want to minimize visual weight.</p>
+      <app-radio-group label="Filter by device" name="device-small" [options]="smallOptions" hint="Select an option" size="small"></app-radio-group>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-radio-group label="Filter by device"
+  [options]="smallOptions"
+  hint="Select an option"
+  size="small"&gt;&lt;/app-radio-group&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>3. Inline/Horizontal Layout</h3>
+      <p>Radio buttons displayed horizontally in a row. Best for simple binary or ternary choices like yes/no/unsure where options are short.</p>
+      <app-radio-group label="Do you agree?" name="agree-inline" [options]="inlineOptions" hint="Choose one" [inline]="true"></app-radio-group>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-radio-group label="Do you agree?"
+  [options]="inlineOptions"
+  hint="Choose one"
+  inline&gt;&lt;/app-radio-group&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>4. Valid State</h3>
+      <p>A radio group with a valid/confirmed state indicated by a green success message and border. Used when the user has made an acceptable selection.</p>
+      <app-radio-group label="Select your device" name="device-valid" [options]="validOptions" successMessage="Selection confirmed"></app-radio-group>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-radio-group label="Select your device"
+  [options]="validOptions"
+  successMessage="Selection confirmed"&gt;&lt;/app-radio-group&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>5. Error State</h3>
+      <p>A radio group with an error state indicated by a red error message and bordered inputs. Used when the user must make a selection before proceeding.</p>
+      <app-radio-group label="Select your device" name="device-error" [options]="errorOptions" hint="Select an option" error="Please select a device"></app-radio-group>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-radio-group label="Select your device"
+  [options]="errorOptions"
+  hint="Select an option"
+  error="Please select a device"&gt;&lt;/app-radio-group&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>6. Disabled Radio Buttons</h3>
+      <p>All radio buttons in the group are disabled, indicating they are no longer available for selection. Useful for expired or invalid options.</p>
+      <app-radio-group label="Select your device" name="device-disabled" [options]="disabledOptions" hint="This option is no longer available" [disabled]="true"></app-radio-group>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-radio-group label="Select your device"
+  [options]="disabledOptions"
+  hint="This option is no longer available"
+  disabled&gt;&lt;/app-radio-group&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>7. Optional Label</h3>
+      <p>A radio group where the selection is not required, indicated by an "(Optional)" tag next to the legend. Users can choose to skip this question.</p>
+      <app-radio-group label="Preferred contact method" name="contact-optional" [options]="optionalOptions" hint="Choose how we can reach you" [optional]="true"></app-radio-group>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-radio-group label="Preferred contact method"
+  [options]="optionalOptions"
+  hint="Choose how we can reach you"
+  optional&gt;&lt;/app-radio-group&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>8. Mixed Enabled/Disabled Options</h3>
+      <p>A radio group where some individual options are disabled while others remain selectable. Useful for showing unavailable choices alongside active ones.</p>
+      <app-radio-group label="Select your device" name="device-mixed" [options]="mixedOptions" hint="Some options may be unavailable"></app-radio-group>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-radio-group label="Select your device"
+  [options]="mixedOptions"
+  hint="Some options may be unavailable"&gt;&lt;/app-radio-group&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>9. Required Without Hint</h3>
+      <p>A required radio group marked with an asterisk but without hint text. Used when the question is self-explanatory and no additional guidance is needed.</p>
+      <app-radio-group label="Select an option" name="required-no-hint" [options]="requiredNoHintOptions" [required]="true"></app-radio-group>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-radio-group label="Select an option"
+  [options]="requiredNoHintOptions"
+  required&gt;&lt;/app-radio-group&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>10. Minimal Radio Buttons</h3>
+      <p>A simple radio group with no legend, hint, or required marker. Used for compact inline selections where context is already clear from surrounding content.</p>
+      <app-radio-group label="Your opinion" name="minimal" [options]="minimalOptions"></app-radio-group>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-radio-group label="Your opinion"
+  [options]="minimalOptions"&gt;&lt;/app-radio-group&gt;</code></pre>
+    </section>
+
+  </div>
+</section>

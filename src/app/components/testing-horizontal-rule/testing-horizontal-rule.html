@@ -1,0 +1,108 @@
+<section class="section section--white">
+  <div class="section__inner">
+    <h2>Testing Horizontal Rule</h2>
+    <p>The following demos showcase the <code>app-horizontal-rule</code> component with various sizes and configurations following the Queensland Government Design System.</p>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>1. Small Horizontal Rule (Default)</h3>
+      <p>The default small horizontal rule. Used to separate elements within a container or component. Based on the general spacing between components like buttons or cards (32px).</p>
+      <app-horizontal-rule size="sm"></app-horizontal-rule>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-horizontal-rule size="sm"&gt;&lt;/app-horizontal-rule&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>2. Medium Horizontal Rule</h3>
+      <p>The medium horizontal rule. Used to separate content within a section, matching the spacing above an H2 element (48px).</p>
+      <app-horizontal-rule size="md"></app-horizontal-rule>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-horizontal-rule size="md"&gt;&lt;/app-horizontal-rule&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>3. Large Horizontal Rule</h3>
+      <p>The large horizontal rule. Used to separate sections of content, matching the default space between two sections of the same colour (64px).</p>
+      <app-horizontal-rule size="lg"></app-horizontal-rule>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-horizontal-rule size="lg"&gt;&lt;/app-horizontal-rule&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>4. Small on Light Background</h3>
+      <p>The small horizontal rule rendered on a light background. Horizontal rules work on any background colour in the QLD Design System.</p>
+      <div style="background: var(--doe-color-surface); padding: 1.5rem; border-radius: 6px;">
+        <app-horizontal-rule size="sm"></app-horizontal-rule>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;div style="background: var(--doe-color-surface); padding: 1.5rem;"&gt;
+  &lt;app-horizontal-rule size="sm"&gt;&lt;/app-horizontal-rule&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>5. Medium on Alt (Grey) Background</h3>
+      <p>The medium horizontal rule rendered on an alt/grey background. Demonstrates the rule's adaptability across different surface colours.</p>
+      <div style="background: var(--klpt-cream); padding: 1.5rem; border-radius: 6px;">
+        <app-horizontal-rule size="md"></app-horizontal-rule>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;div style="background: var(--klpt-cream); padding: 1.5rem;"&gt;
+  &lt;app-horizontal-rule size="md"&gt;&lt;/app-horizontal-rule&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>6. Large on Dark Background</h3>
+      <p>The large horizontal rule rendered on a dark background. The QLD Design System horizontal rules are designed to work with the border colour variables of each palette.</p>
+      <div style="background: var(--klpt-ink); padding: 1.5rem; border-radius: 6px;">
+        <app-horizontal-rule size="lg"></app-horizontal-rule>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;div style="background: var(--klpt-ink); padding: 1.5rem;"&gt;
+  &lt;app-horizontal-rule size="lg"&gt;&lt;/app-horizontal-rule&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>7. Decorative Horizontal Rule (aria-hidden)</h3>
+      <p>A decorative horizontal rule with <code>aria-hidden="true"</code>. Used when the rule is purely visual separation without conveying meaning. Screen readers will ignore this element.</p>
+      <app-horizontal-rule size="sm" [decorative]="true"></app-horizontal-rule>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-horizontal-rule size="sm" [decorative]="true"&gt;&lt;/app-horizontal-rule&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>8. Thematic Break (Screen Reader Announced)</h3>
+      <p>A thematic break horizontal rule without <code>aria-hidden</code>. Used when the rule indicates a shift in content or topic. Screen readers will announce this as a thematic break.</p>
+      <app-horizontal-rule size="md" [decorative]="false"></app-horizontal-rule>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-horizontal-rule size="md" [decorative]="false"&gt;&lt;/app-horizontal-rule&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>9. All Three Sizes Stacked</h3>
+      <p>All three horizontal rule sizes displayed together for comparison. Small (default), Medium, and Large — each with increasing line weight and vertical spacing.</p>
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
+        <app-horizontal-rule size="sm"></app-horizontal-rule>
+        <span style="font-size: 0.875rem; color: var(--klpt-muted);">Small (default)</span>
+        <app-horizontal-rule size="md"></app-horizontal-rule>
+        <span style="font-size: 0.875rem; color: var(--klpt-muted);">Medium</span>
+        <app-horizontal-rule size="lg"></app-horizontal-rule>
+        <span style="font-size: 0.875rem; color: var(--klpt-muted);">Large</span>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-horizontal-rule size="sm"&gt;&lt;/app-horizontal-rule&gt;
+&lt;app-horizontal-rule size="md"&gt;&lt;/app-horizontal-rule&gt;
+&lt;app-horizontal-rule size="lg"&gt;&lt;/app-horizontal-rule&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>10. Horizontal Rule Between Content Blocks</h3>
+      <p>A practical example showing horizontal rules used to separate content blocks, demonstrating the recommended usage pattern for visual organisation.</p>
+      <div style="display: flex; flex-direction: column; gap: 0;">
+        <p style="margin: 0; padding-block: 1rem;">First content block — this could be a paragraph, a list, or any other content.</p>
+        <app-horizontal-rule size="sm"></app-horizontal-rule>
+        <p style="margin: 0; padding-block: 1rem;">Second content block — the horizontal rule provides clear visual separation between sections.</p>
+        <app-horizontal-rule size="sm"></app-horizontal-rule>
+        <p style="margin: 0; padding-block: 1rem;">Third content block — consistent spacing improves readability and information hierarchy.</p>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;p&gt;First content block...&lt;/p&gt;
+&lt;app-horizontal-rule size="sm"&gt;&lt;/app-horizontal-rule&gt;
+&lt;p&gt;Second content block...&lt;/p&gt;
+&lt;app-horizontal-rule size="sm"&gt;&lt;/app-horizontal-rule&gt;
+&lt;p&gt;Third content block...&lt;/p&gt;</code></pre>
+    </section>
+
+  </div>
+</section>

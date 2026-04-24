@@ -1,0 +1,31 @@
+/* QGD Checkbox component styles */
+/* Follows Queensland Government Design System patterns:
+   https://www.designsystem.qld.gov.au/components/checkboxes */
+
+/* The qld__control-input--block class provides vertical stacking.
+   Custom styles enhance the native checkbox for QGD consistency. */
+
+.qld__control-input__input {
+  width: 20px;
+  height: 20px;
+  margin-inline-end: 8px;
+  vertical-align: middle;
+  cursor: pointer;
+  accent-color: var(--qld-blue, #0053a0);
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  &:focus {
+    outline: 3px solid var(--qld-focus, #ffbf47);
+    outline-offset: 2px;
+  }
+}
+
+.qld__input--error {
+  .qld__control-input__input {
+    border-color: var(--qld-error, #d83929);
+  }
+}

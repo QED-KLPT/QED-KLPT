@@ -1,0 +1,248 @@
+<section class="section section--white">
+  <div class="section__inner">
+    <h2>Testing Footer</h2>
+    <p>The following demos showcase the <code>app-footer-shared</code> component with various configurations and variants inspired by the Queensland Government Design System.</p>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>1. Default Footer</h3>
+      <p>The standard Queensland Government footer with all sections: contact information, quick links, social media links, and acknowledgement of traditional owners.</p>
+      <app-footer-shared
+        [title]="'Department of Education'"
+        [contactText]="defaultContactText"
+        [phoneNumber]="defaultPhoneText"
+        [phoneLabel]="'Phone:'"
+        [contactButtonText]="'Contact us'"
+        [contactButtonHref]="defaultContactHref"
+        [linkColumns]="defaultLinks"
+        [socialLinks]="defaultSocialLinksArr"
+        [acknowledgementText]="defaultAcknowledgement"
+        [copyrightText]="'© The State of Queensland (Department of Education) 2026'"
+        [qgovLink]="'Queensland Government'"
+        [qgovHref]="defaultQgovHref"
+      ></app-footer-shared>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-footer-shared
+  title="Department of Education"
+  [contactText]="Get in touch for enquiries..."
+  phoneNumber="13 QGOV (13 74 68)"
+  [linkColumns]="defaultLinks"
+  [socialLinks]="defaultSocialLinksArr"
+  acknowledgementText="The Department of Education acknowledges..."
+  copyrightText="© The State of Queensland (Department of Education) 2026"
+  qgovLink="Queensland Government"
+  [qgovHref]="'https://www.qld.gov.au/'"&gt;&lt;/app-footer-shared&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>2. Dark Footer</h3>
+      <p>A dark background variant using the 'dark' theme. Suitable for applications that need a deeper, more formal footer appearance.</p>
+      <app-footer-shared
+        variant="dark"
+        [title]="'Department of Education'"
+        [contactText]="defaultContactText"
+        phoneNumber="13 QGOV (13 74 68)"
+        contactButtonText="Contact us"
+        [contactButtonHref]="defaultContactHref"
+        [linkColumns]="defaultLinks"
+        [socialLinks]="defaultSocialLinksArr"
+        acknowledgementText="The Department of Education acknowledges the Traditional Owners of the lands, seas, skies and waterways from across Queensland."
+        copyrightText="© The State of Queensland (Department of Education) 2026"
+        qgovLink="Queensland Government"
+        [qgovHref]="defaultQgovHref"
+      ></app-footer-shared>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-footer-shared
+  variant="dark"
+  title="Department of Education"
+  [contactText]="Get in touch for enquiries..."
+  phoneNumber="13 QGOV (13 74 68)"
+  [linkColumns]="defaultLinks"
+  [socialLinks]="defaultSocialLinksArr"
+  acknowledgementText="The Department of Education acknowledges..."&gt;&lt;/app-footer-shared&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>3. Minimal Footer</h3>
+      <p>A simplified footer without optional link columns and social media. Best for internal tools or applications that need a lightweight footer.</p>
+      <app-footer-shared
+        variant="minimal"
+        [title]="'Your Application'"
+        [contactText]="'Need help? Get in touch.'"
+        phoneNumber="13 QGOV (13 74 68)"
+        contactButtonText="Contact us"
+        [contactButtonHref]="minimalContactHref"
+        [linkColumns]="minimalLinkColumns"
+        [socialLinks]="minimalSocialLinksArr"
+        acknowledgementText="The Department of Education acknowledges the Traditional Owners of the lands, seas, skies and waterways from across Queensland."
+        copyrightText="© The State of Queensland 2026"
+        qgovLink="Queensland Government"
+        [qgovHref]="minimalQgovHref"
+      ></app-footer-shared>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-footer-shared
+  variant="minimal"
+  title="Your Application"
+  [contactText]="Need help? Get in touch."
+  phoneNumber="13 QGOV (13 74 68)"
+  [linkColumns]="minimalLinks"
+  acknowledgementText="The Department of Education acknowledges..."&gt;&lt;/app-footer-shared&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>4. Contact Focused Footer</h3>
+      <p>A footer that emphasizes contact information with a prominent phone number and contact button. Ideal for service-oriented applications.</p>
+      <app-footer-shared
+        [title]="'Student Services'"
+        contactText="Get in touch for enquiries, feedback, complaints and compliments."
+        phoneNumber="13 QGOV (13 74 68)"
+        contactButtonText="Contact us"
+        [contactButtonHref]="'#'"
+        acknowledgementText="The Department of Education acknowledges the Traditional Owners of the lands, seas, skies and waterways from across Queensland."
+        copyrightText="© The State of Queensland 2026"
+        qgovLink="Queensland Government"
+        [qgovHref]="'https://www.qld.gov.au/'"
+      ></app-footer-shared>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-footer-shared
+  title="Student Services"
+  contactText="Get in touch for enquiries..."
+  phoneNumber="13 QGOV (13 74 68)"
+  contactButtonText="Contact us"
+  acknowledgementText="The Department of Education acknowledges..."&gt;&lt;/app-footer-shared&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>5. Multi-Column Links Footer</h3>
+      <p>A footer with multiple link columns for organizing many navigation options. Best for large portals or government websites.</p>
+      <app-footer-shared
+        [title]="'Queensland Government Portal'"
+        contactText="Get in touch for enquiries, feedback, complaints and compliments."
+        phoneNumber="13 QGOV (13 74 68)"
+        contactButtonText="Contact us"
+        [contactButtonHref]="'#'"
+        [linkColumns]="multiLinks"
+        acknowledgementText="The Department of Education acknowledges the Traditional Owners of the lands, seas, skies and waterways from across Queensland."
+        copyrightText="© The State of Queensland (Department of Education) 2026"
+        qgovLink="Queensland Government"
+        [qgovHref]="'https://www.qld.gov.au/'"
+      ></app-footer-shared>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-footer-shared
+  title="Queensland Government Portal"
+  [contactText]="Get in touch for enquiries..."
+  phoneNumber="13 QGOV (13 74 68)"
+  [linkColumns]="multiLinks"
+  acknowledgementText="The Department of Education acknowledges..."&gt;&lt;/app-footer-shared&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>6. Social Media Footer</h3>
+      <p>A footer with prominent social media links for community engagement. Best for public-facing applications that want to encourage social interaction.</p>
+      <app-footer-shared
+        [title]="'Community Connect'"
+        contactText="Stay connected with our community."
+        phoneNumber="13 QGOV (13 74 68)"
+        contactButtonText="Contact us"
+        [contactButtonHref]="'#'"
+        [linkColumns]="socialOnlyLinkColumns"
+        [socialLinks]="defaultSocialLinksArr"
+        acknowledgementText="The Department of Education acknowledges the Traditional Owners of the lands, seas, skies and waterways from across Queensland."
+        copyrightText="© The State of Queensland 2026"
+        qgovLink="Queensland Government"
+        [qgovHref]="'https://www.qld.gov.au/'"
+      ></app-footer-shared>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-footer-shared
+  title="Community Connect"
+  [contactText]="Stay connected with our community."
+  phoneNumber="13 QGOV (13 74 68)"
+  [linkColumns]="socialLinks"
+  [socialLinks]="defaultSocialLinksArr"
+  acknowledgementText="The Department of Education acknowledges..."&gt;&lt;/app-footer-shared&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>7. Acknowledgement Only Footer</h3>
+      <p>A minimal footer showing only the title and acknowledgement of traditional owners. Best for simple applications or pages that need legal compliance without extra content.</p>
+      <app-footer-shared
+        [title]="'Learning Portal'"
+        acknowledgementText="The Department of Education acknowledges the Traditional Owners of the lands, seas, skies and waterways from across Queensland. We pay our respects to the Elders past, present and emerging."
+        copyrightText="© The State of Queensland 2026"
+        qgovLink="Queensland Government"
+        [qgovHref]="'https://www.qld.gov.au/'"
+      ></app-footer-shared>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-footer-shared
+  title="Learning Portal"
+  acknowledgementText="The Department of Education acknowledges..."
+  copyrightText="© The State of Queensland 2026"
+  qgovLink="Queensland Government"&gt;&lt;/app-footer-shared&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>8. Simple Two-Column Footer</h3>
+      <p>A compact footer with just the title and navigation links. No social media, contact details, or acknowledgement. Best for internal tools and dashboards.</p>
+      <app-footer-shared
+        [title]="'Internal Dashboard'"
+        contactText="For support, contact the IT helpdesk."
+        phoneNumber="07 1234 5678"
+        contactButtonText="Get Help"
+        [contactButtonHref]="'#'"
+        [linkColumns]="simpleLinks"
+      ></app-footer-shared>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-footer-shared
+  title="Internal Dashboard"
+  contactText="For support, contact the IT helpdesk."
+  phoneNumber="07 1234 5678"
+  contactButtonText="Get Help"
+  [linkColumns]="simpleLinks"&gt;&lt;/app-footer-shared&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>9. Full Featured Footer</h3>
+      <p>A comprehensive footer with all sections including programs, legal links, and social media. Best for large educational institutions or government departments.</p>
+      <app-footer-shared
+        [title]="'Queensland Education Network'"
+        contactText="Get in touch for enquiries, feedback, complaints and compliments."
+        phoneNumber="13 QGOV (13 74 68)"
+        contactButtonText="Contact us"
+        [contactButtonHref]="'https://qed.qld.gov.au/contact-us'"
+        [linkColumns]="fullLinks"
+        [socialLinks]="defaultSocialLinksArr"
+        acknowledgementText="The Department of Education acknowledges the Traditional Owners of the lands, seas, skies and waterways from across Queensland. We pay our respects to the Elders past, present and emerging."
+        copyrightText="© The State of Queensland (Department of Education) 2026"
+        qgovLink="Queensland Government"
+        [qgovHref]="'https://www.qld.gov.au/'"
+      ></app-footer-shared>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-footer-shared
+  title="Queensland Education Network"
+  [contactText]="Get in touch for enquiries..."
+  phoneNumber="13 QGOV (13 74 68)"
+  [linkColumns]="fullLinks"
+  [socialLinks]="defaultSocialLinksArr"
+  acknowledgementText="The Department of Education acknowledges..."&gt;&lt;/app-footer-shared&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>10. Government Standard Footer</h3>
+      <p>The complete Queensland Government standard footer with all required sections: contact, legal links, social media, acknowledgement, and copyright. This is the recommended configuration for all Queensland Government applications.</p>
+      <app-footer-shared
+        [title]="'Department of Education'"
+        contactText="Get in touch for enquiries, feedback, complaints and compliments."
+        phoneNumber="13 QGOV (13 74 68)"
+        contactButtonText="Contact us"
+        [contactButtonHref]="'https://qed.qld.gov.au/contact-us'"
+        [linkColumns]="governmentLinks"
+        [socialLinks]="defaultSocialLinksArr"
+        acknowledgementText="The Department of Education acknowledges the Traditional Owners of the lands, seas, skies and waterways from across Queensland. We pay our respects to the Elders past, present and emerging, for they hold the memories, the traditions, the culture and hopes of Aboriginal and Torres Strait Islander peoples across the state."
+        copyrightText="© The State of Queensland (Department of Education) 2026"
+        qgovLink="Queensland Government"
+        [qgovHref]="'https://www.qld.gov.au/'"
+      ></app-footer-shared>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-footer-shared
+  title="Department of Education"
+  contactText="Get in touch for enquiries, feedback..."
+  phoneNumber="13 QGOV (13 74 68)"
+  contactButtonText="Contact us"
+  [linkColumns]="governmentLinks"
+  [socialLinks]="defaultSocialLinksArr"
+  acknowledgementText="The Department of Education acknowledges the Traditional Owners..."
+  copyrightText="© The State of Queensland (Department of Education) 2026"
+  qgovLink="Queensland Government"&gt;&lt;/app-footer-shared&gt;</code></pre>
+    </section>
+
+  </div>
+</section>

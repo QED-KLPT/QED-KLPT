@@ -1,0 +1,127 @@
+<section class="section section--white">
+  <div class="section__inner">
+    <h2>Testing CTA Links</h2>
+    <p>The following demos showcase the <code>app-cta-link</code> component with various variants, states, and configurations following the Queensland Government Design System.</p>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>1. Default CTA Link</h3>
+      <p>A simple and clear link to direct users to a preferred action. The default CTA uses bold text with an arrow icon that animates on hover.</p>
+      <app-cta-link href="#">Sign up</app-cta-link>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-cta-link href="#"&gt;Sign up&lt;/app-cta-link&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>2. View All CTA Link</h3>
+      <p>When a CTA link appears at the end of link columns or dropdown menus, it uses a modified icon style with an arrow encircled in a circle to be visually distinct from other links.</p>
+      <app-cta-link href="#" variant="view-all"><span class="qld__cta-link--view-all-icon--wrapper">View all</span></app-cta-link>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-cta-link href="#" variant="view-all"&gt;
+  &lt;span class="qld__cta-link--view-all-icon--wrapper"&gt;View all&lt;/span&gt;
+&lt;/app-cta-link&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>3. CTA in a List Context</h3>
+      <p>CTA links are commonly used within link lists to guide users toward a preferred action. The arrow icon provides visual direction.</p>
+      <ul style="list-style: none; padding: 0; margin-block-start: 1rem;">
+        <li style="margin-block-end: 0.75rem;"><app-cta-link href="#">Find out more</app-cta-link></li>
+        <li style="margin-block-end: 0.75rem;"><app-cta-link href="#">Apply now</app-cta-link></li>
+        <li><app-cta-link href="#">Contact us</app-cta-link></li>
+      </ul>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;ul style="list-style: none; padding: 0;"&gt;
+  &lt;li&gt;&lt;app-cta-link href="#"&gt;Find out more&lt;/app-cta-link&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;app-cta-link href="#"&gt;Apply now&lt;/app-cta-link&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;app-cta-link href="#"&gt;Contact us&lt;/app-cta-link&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>4. CTA with Leading Icon</h3>
+      <p>A CTA link can include an icon before the text for additional visual context. This is useful when the action needs a clear visual cue alongside the text.</p>
+      <app-cta-link href="#"><i class="fa-light fa-envelope" aria-hidden="true"></i> Subscribe to newsletter</app-cta-link>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-cta-link href="#"&gt;
+  &lt;i class="fa-light fa-envelope" aria-hidden="true"&gt;&lt;/i&gt;
+  Subscribe to newsletter
+&lt;/app-cta-link&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>5. Disabled CTA Link</h3>
+      <p>A disabled CTA link uses reduced opacity and a not-allowed cursor. Used when an action is temporarily unavailable, such as before form validation passes.</p>
+      <app-cta-link href="#" [disabled]="true">Unavailable action</app-cta-link>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-cta-link href="#" [disabled]="true"&gt;Unavailable action&lt;/app-cta-link&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>6. CTA on Dark Background</h3>
+      <p>CTA links automatically adapt their colors when placed on a dark background. The link text and arrow icon switch to light-colored tokens for proper contrast.</p>
+      <div class="qld__body--dark" style="padding: 1.5rem; border-radius: 6px;">
+        <app-cta-link href="#">Learn more</app-cta-link>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;div class="qld__body--dark" style="padding: 1.5rem;"&gt;
+  &lt;app-cta-link href="#"&gt;Learn more&lt;/app-cta-link&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>7. CTA with aria-label (Accessibility)</h3>
+      <p>When the link text alone doesn't fully communicate the destination, an aria-label provides additional context for screen reader users.</p>
+      <app-cta-link href="/signup" aria-label="Sign up for our monthly newsletter">Sign up</app-cta-link>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-cta-link href="/signup"
+  aria-label="Sign up for our monthly newsletter"&gt;
+  Sign up
+&lt;/app-cta-link&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>8. CTA Opening in New Tab</h3>
+      <p>CTA links can open in a new browser tab using the target attribute. This is appropriate for external resources or when you want to keep the current page open.</p>
+      <app-cta-link href="https://www.qld.gov.au" target="_blank">Visit qld.gov.au (opens in new tab)</app-cta-link>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-cta-link href="https://www.qld.gov.au"
+  target="_blank"&gt;Visit qld.gov.au&lt;/app-cta-link&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>9. View All in a Navigation List</h3>
+      <p>The View All variant is designed specifically for use at the end of navigation lists or link columns. The encircled arrow makes it visually distinct from regular list items.</p>
+      <ul style="list-style: none; padding: 0;">
+        <li style="margin-block-end: 0.5rem;"><app-cta-link href="#">Programs</app-cta-link></li>
+        <li style="margin-block-end: 0.5rem;"><app-cta-link href="#">Services</app-cta-link></li>
+        <li style="margin-block-end: 0.5rem;"><app-cta-link href="#">Resources</app-cta-link></li>
+        <li><app-cta-link href="#" variant="view-all"><span class="qld__cta-link--view-all-icon--wrapper">View all</span></app-cta-link></li>
+      </ul>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;ul style="list-style: none; padding: 0;"&gt;
+  &lt;li&gt;&lt;app-cta-link href="#"&gt;Programs&lt;/app-cta-link&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;app-cta-link href="#"&gt;Services&lt;/app-cta-link&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;app-cta-link href="#"&gt;Resources&lt;/app-cta-link&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;app-cta-link href="#" variant="view-all"&gt;
+      &lt;span class="qld__cta-link--view-all-icon--wrapper"&gt;View all&lt;/span&gt;
+    &lt;/app-cta-link&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>10. Multiple CTA Variants Side by Side</h3>
+      <p>Default and View All variants can be used together to show the visual difference between standard CTA links and navigation-focused "View all" links.</p>
+      <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+        <div>
+          <p style="font-size: 0.875rem; color: #636363; margin-block-end: 0.5rem;">Default:</p>
+          <app-cta-link href="#">Sign up</app-cta-link>
+        </div>
+        <div>
+          <p style="font-size: 0.875rem; color: #636363; margin-block-end: 0.5rem;">View All:</p>
+          <app-cta-link href="#" variant="view-all"><span class="qld__cta-link--view-all-icon--wrapper">View all</span></app-cta-link>
+        </div>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;!-- Default --&gt;
+&lt;app-cta-link href="#"&gt;Sign up&lt;/app-cta-link&gt;
+
+&lt;!-- View All --&gt;
+&lt;app-cta-link href="#" variant="view-all"&gt;
+  &lt;span class="qld__cta-link--view-all-icon--wrapper"&gt;View all&lt;/span&gt;
+&lt;/app-cta-link&gt;</code></pre>
+    </section>
+
+  </div>
+</section>
