@@ -1,0 +1,124 @@
+<section class="section section--white">
+  <div class="section__inner">
+    <h2>Testing Promotional Panels</h2>
+    <p>The following demos showcase the <code>app-promotional-panel</code> component with various types, backgrounds, and configurations following the Queensland Government Design System.</p>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>1. Indented Text Panel (Default)</h3>
+      <p>The default promotional panel with a large hero image on the right and content on the left. Best used when a hero image needs greater focus, such as advertising campaign imagery.</p>
+      <app-promotional-panel [title]="title1" [description]="description1" [imageUrl]="imageUrl1" [imageAlt]="imageAlt1" [ctaLabel]="ctaLabel1" [ctaHref]="'#'" imageAlign="right"></app-promotional-panel>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-promotional-panel [title]="title1"
+  [description]="description1"
+  [imageUrl]="imageUrl1"
+  [imageAlt]="imageAlt1"
+  [ctaLabel]="ctaLabel1"
+  [ctaHref]="'#'"&gt;&lt;/app-promotional-panel&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>2. Indented Image Panel (Larger Text)</h3>
+      <p>A panel with a smaller image container and larger text area. Ideal when there are many dot-points or paragraphs requiring more vertical height, especially for highlighting content without a call-to-action.</p>
+      <app-promotional-panel [title]="title2" [description]="description2" [imageUrl]="imageUrl2" [imageAlt]="imageAlt2" [ctaLabel]="ctaLabel2" [ctaHref]="'#'" imageAlign="right"></app-promotional-panel>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-promotional-panel [title]="title2"
+  [description]="description2"
+  [imageUrl]="imageUrl2"
+  [imageAlt]="imageAlt2"
+  [ctaLabel]="ctaLabel2"
+  imageAlign="right"&gt;&lt;/app-promotional-panel&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>3. Contained Image Panel (Image Left)</h3>
+      <p>A contained panel with equal visual weight between image and text, image aligned to the left. Works well for smaller content with one primary call-to-action.</p>
+      <app-promotional-panel [title]="title3" [description]="description3" [imageUrl]="imageUrl3" [imageAlt]="imageAlt3" [ctaLabel]="ctaLabel3" [ctaHref]="'#'" type="contained" imageAlign="left"></app-promotional-panel>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-promotional-panel [title]="title3"
+  [description]="description3"
+  [imageUrl]="imageUrl3"
+  [imageAlt]="imageAlt3"
+  [ctaLabel]="ctaLabel3"
+  type="contained"
+  imageAlign="left"&gt;&lt;/app-promotional-panel&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>4. Contained Image Panel (Image Right)</h3>
+      <p>A contained panel with image aligned to the right. Provides a more distinct visual break from surrounding page content, useful for newsletter signups or secondary CTAs.</p>
+      <app-promotional-panel [title]="title4" [description]="description4" [imageUrl]="imageUrl4" [imageAlt]="imageAlt4" [ctaLabel]="ctaLabel4" [ctaHref]="'#'" type="contained" imageAlign="right"></app-promotional-panel>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-promotional-panel [title]="title4"
+  [description]="description4"
+  [imageUrl]="imageUrl4"
+  [imageAlt]="imageAlt4"
+  [ctaLabel]="ctaLabel4"
+  type="contained"
+  imageAlign="right"&gt;&lt;/app-promotional-panel&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>5. Contained Panel (Dark Background)</h3>
+      <p>A contained panel with dark background and white text. Creates strong visual contrast, ideal for important announcements or key messages that need to stand out.</p>
+      <app-promotional-panel [title]="title5" [description]="description5" [imageUrl]="socialImageUrl" [imageAlt]="socialImageAlt" [ctaLabel]="ctaLabel5" [ctaHref]="'#'" type="contained" background="dark"></app-promotional-panel>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-promotional-panel [title]="title5"
+  [description]="description5"
+  [imageUrl]="socialImageUrl"
+  type="full-image"
+  background="dark"&gt;&lt;/app-promotional-panel&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>6. Indented Text Panel (Light Background)</h3>
+      <p>The default indented panel with a light blue background variant. Provides subtle visual distinction while maintaining the standard layout pattern.</p>
+      <app-promotional-panel [title]="title6" [description]="description6" [imageUrl]="imageUrl6" [imageAlt]="imageAlt6" [ctaLabel]="ctaLabel6" [ctaHref]="'#'" background="light"></app-promotional-panel>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-promotional-panel [title]="title6"
+  [description]="description6"
+  [imageUrl]="imageUrl6"
+  [ctaLabel]="ctaLabel6"
+  background="light"&gt;&lt;/app-promotional-panel&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>7. Indented Text Panel (Alternate Background)</h3>
+      <p>A panel with the alternate background color variant. Offers more visual weight than the light variant while staying within the neutral palette.</p>
+      <app-promotional-panel [title]="title7" [description]="description7" [imageUrl]="imageUrl7" [imageAlt]="imageAlt7" [ctaLabel]="ctaLabel7" [ctaHref]="'#'" background="alt"></app-promotional-panel>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-promotional-panel [title]="title7"
+  [description]="description7"
+  [imageUrl]="imageUrl7"
+  [ctaLabel]="ctaLabel7"
+  background="alt"&gt;&lt;/app-promotional-panel&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>8. Indented Text Panel (Dark Background)</h3>
+      <p>A dark-themed promotional panel with white text. Creates strong visual contrast and draws attention to the content, suitable for important announcements or key messages.</p>
+      <app-promotional-panel [title]="title8" [description]="description8" [imageUrl]="imageUrl8" [imageAlt]="imageAlt8" [ctaLabel]="ctaLabel8" [ctaHref]="'#'" background="dark"></app-promotional-panel>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-promotional-panel [title]="title8"
+  [description]="description8"
+  [imageUrl]="imageUrl8"
+  [ctaLabel]="ctaLabel8"
+  background="dark"&gt;&lt;/app-promotional-panel&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>9. Contained Panel with Icon</h3>
+      <p>A contained panel featuring a circular icon above the title. Useful for visually categorizing content and adding visual interest to the panel header.</p>
+      <app-promotional-panel [title]="title9" [description]="description9" [imageUrl]="imageUrl9" [imageAlt]="imageAlt9" [iconClass]="icon9" [ctaLabel]="ctaLabel9" [ctaHref]="'#'" type="contained"></app-promotional-panel>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-promotional-panel [title]="title9"
+  [description]="description9"
+  [imageUrl]="imageUrl9"
+  [iconClass]="icon9"
+  [ctaLabel]="ctaLabel9"
+  type="contained"&gt;&lt;/app-promotional-panel&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>10. Contained Panel (Light Background)</h3>
+      <p>A contained panel with a light background. Provides subtle visual distinction while maintaining the standard layout pattern, useful for secondary content areas.</p>
+      <app-promotional-panel [title]="title10" [description]="description10" [imageUrl]="natureImageUrl" [imageAlt]="natureImageAlt" [ctaLabel]="ctaLabel10" [ctaHref]="'#'" type="contained" background="light"></app-promotional-panel>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-promotional-panel [title]="title10"
+  [description]="description10"
+  [imageUrl]="natureImageUrl"
+  type="full-image"
+  background="light"&gt;&lt;/app-promotional-panel&gt;</code></pre>
+    </section>
+
+  </div>
+</section>

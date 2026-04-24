@@ -36,6 +36,7 @@ import { TestingTextarea } from './components/testing/text-area/text-area';
 import { TestingCheckbox } from './components/testing/checkbox/checkbox';
 import { Testing } from './components/testing/testing';
 import { TestingCards } from './components/testing-cards/testing-cards';
+import { TestingPromotionalPanel } from './components/testing-promotional-panel/testing-promotional-panel';
 import { TestingBanner } from './components/testing-banner/testing-banner';
 import { TestingButtons } from './components/testing-buttons/testing-buttons';
 import { TestingBreadcrumbs } from './components/testing-breadcrumbs/testing-breadcrumbs';
@@ -155,6 +156,7 @@ export const routes: Routes = [
   { path: 'testing-checkbox', component: TestingCheckbox, title: 'Testing Checkbox' },
   { path: 'testing', component: Testing, title: 'Testing Hub' },
   { path: 'testing/testing-cards', component: TestingCards, title: 'Testing Cards' },
+  { path: 'testing/testing-promotional-panel', component: TestingPromotionalPanel, title: 'Testing Promotional Panel' },
   { path: 'testing/testing-banner', component: TestingBanner, title: 'Testing Banner' },
   { path: 'testing/testing-buttons', component: TestingButtons, title: 'Testing Buttons' },
   { path: 'testing/testing-breadcrumbs', component: TestingBreadcrumbs, title: 'Testing Breadcrumbs' },
