@@ -52,6 +52,7 @@ import { TestingHorizontalRule } from './components/testing-horizontal-rule/test
 import { TestingNavigationalHorizontal } from './components/testing-navigational-horizontal/testing-navigational-horizontal';
 import { TestingInPageNav } from './components/testing-in-page-nav/testing-in-page-nav';
 import { TestingNavigationVertical } from './components/testing-navigation-vertical/testing-navigation-vertical';
+import { TestingNavigation } from './components/testing-navigation/testing-navigation';
 import { TestingRadio } from './components/testing-radio/testing-radio';
 import { TestingSelect } from './components/testing-select/testing-select';
 import { WorkingMemory } from './components/executive-function/working-memory/working-memory';
@@ -170,6 +171,7 @@ export const routes: Routes = [
   { path: 'testing/testing-header', component: TestingHeader, title: 'Testing Header' },
   { path: 'testing/testing-loading-spinner', component: TestingLoadingSpinner, title: 'Testing Loading Spinner' },
   { path: 'testing/testing-horizontal-rule', component: TestingHorizontalRule, title: 'Testing Horizontal Rule' },
+  { path: 'testing/testing-navigation', component: TestingNavigation, title: 'Testing Navigation' },
   { path: 'testing/testing-navigational-horizontal', component: TestingNavigationalHorizontal, title: 'Testing Navigational Horizontal' },
   { path: 'testing/testing-in-page-navigation', component: TestingInPageNav, title: 'Testing In-Page Navigation' },
   { path: 'testing/testing-navigation-vertical', component: TestingNavigationVertical, title: 'Testing Navigation Vertical' },

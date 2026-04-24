@@ -1,0 +1,113 @@
+<section class="section section--white">
+  <div class="section__inner">
+    <h2>Testing Navigation</h2>
+    <p>The following demos showcase various navigation patterns from the Queensland Government Design System, including horizontal main navigation, vertical side navigation, and in-page navigation components.</p>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>1. Simple Horizontal Navigation (Light)</h3>
+      <p>A basic horizontal navigation bar with simple text links and light theme. The active item is highlighted to indicate the current page. This is the standard pattern for primary site navigation with straightforward information architecture.</p>
+      <app-qld-main-nav [items]="horizontalLightItems" theme="light" activeItem="Learning domains"></app-qld-main-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-main-nav
+  [items]="horizontalLightItems"
+  theme="light"
+  activeItem="Learning domains"&gt;
+&lt;/app-qld-main-nav&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>2. Dark Horizontal Navigation</h3>
+      <p>A dark-themed horizontal navigation bar using the Queensland Government Design System dark variant. Suitable for sites that use a dark color scheme or want higher contrast navigation with better visibility.</p>
+      <app-qld-main-nav [items]="horizontalDarkItems" theme="dark" activeItem="KLPT tool"></app-qld-main-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-main-nav
+  [items]="horizontalDarkItems"
+  theme="dark"
+  activeItem="KLPT tool"&gt;
+&lt;/app-qld-main-nav&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>3. Horizontal Navigation with Icons</h3>
+      <p>Horizontal navigation with Font Awesome icons preceding each link label. Icons help users quickly identify menu items and reduce cognitive load. Best used sparingly for the most important navigation categories.</p>
+      <app-qld-main-nav [items]="horizontalIconItems" theme="light" activeItem="Learning domains"></app-qld-main-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-main-nav
+  [items]="horizontalIconItems"
+  theme="light"
+  activeItem="Learning domains"&gt;
+&lt;/app-qld-main-nav&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>4. Horizontal Navigation with Dropdowns</h3>
+      <p>A navigation item with a dropdown submenu containing child links. The submenu appears on hover for desktop and on click for mobile. Ideal for sites with a two-level information hierarchy that need to organize related pages.</p>
+      <app-qld-main-nav [items]="horizontalDropdownItems" theme="light" activeItem="Foundations"></app-qld-main-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-main-nav
+  [items]="horizontalDropdownItems"
+  theme="light"
+  activeItem="Foundations"&gt;
+&lt;/app-qld-main-nav&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>5. Mega Menu with Descriptions</h3>
+      <p>A mega menu where each sub-link includes a short description paragraph beneath it. This provides additional context to help users understand what each link leads to before clicking, improving content findability and user experience.</p>
+      <app-qld-main-nav [items]="horizontalMegaMenuItems" theme="light" activeItem="Foundations"></app-qld-main-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-main-nav
+  [items]="horizontalMegaMenuItems"
+  theme="light"
+  activeItem="Foundations"&gt;
+&lt;/app-qld-main-nav&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>6. Basic Vertical Navigation</h3>
+      <p>A simple flat list of navigation links displayed vertically. Used for side navigation panels that help users move between related pages within the same section or topic area of a website.</p>
+      <app-vertical-nav [items]="verticalBasicItems"></app-vertical-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-vertical-nav
+  [items]="verticalBasicItems"&gt;
+&lt;/app-vertical-nav&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>7. Vertical Navigation with Accordion Submenus</h3>
+      <p>Expandable and collapsible nested navigation sections. Click the chevron button to toggle submenu visibility. Uses aria-expanded for accessibility and helps organize large amounts of navigation content hierarchically.</p>
+      <app-vertical-nav [items]="verticalAccordionItems"></app-vertical-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-vertical-nav
+  [items]="verticalAccordionItems"&gt;
+&lt;/app-vertical-nav&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>8. Vertical Navigation with Icons and Active State</h3>
+      <p>Navigation links with Font Awesome icons alongside labels, combined with an active page state highlighted by a left border accent and purple background. The active item receives aria-current="page" styling for accessibility.</p>
+      <app-vertical-nav [items]="verticalIconActiveItems"></app-vertical-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-vertical-nav
+  [items]="verticalIconActiveItems"&gt;
+&lt;/app-vertical-nav&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>9. Default In-Page Navigation</h3>
+      <p>A basic in-page navigation with the default "On this page" heading and a standard set of links. Used as a table of contents on lengthy pages to provide structural overview and quick access to different sections.</p>
+      <app-in-page-nav [items]="inPageBasicItems"></app-in-page-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-in-page-nav
+  [items]="inPageBasicItems"&gt;
+&lt;/app-in-page-nav&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>10. In-Page Navigation with Custom Heading and Dark Variant</h3>
+      <p>The heading can be customized to match the context of your page. The dark variant uses lighter border color and link styling suitable for placement on dark backgrounds, ensuring sufficient contrast and visual harmony.</p>
+      <div style="background: var(--doe-color-heading, #24335a); padding: 1.5rem; border-radius: 8px;">
+        <app-in-page-nav heading="Contents" [items]="inPageCustomDarkItems" variant="dark"></app-in-page-nav>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;div style="background: var(--doe-color-heading);"&gt;
+  &lt;app-in-page-nav
+    heading="Contents"
+    [items]="inPageCustomDarkItems"
+    variant="dark"&gt;
+  &lt;/app-in-page-nav&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+  </div>
+</section>
