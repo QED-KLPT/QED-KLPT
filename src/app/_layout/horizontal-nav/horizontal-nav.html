@@ -1,0 +1,16 @@
+@if (hasItems()) {
+  <div class="doe-horizontal-nav">
+    <div class="doe-horizontal-nav__container">
+      <nav class="doe-horizontal-nav__menu" aria-label="Section navigation">
+        <a
+          *ngFor="let item of items()"
+          class="doe-horizontal-nav__link"
+          [class.doe-horizontal-nav__link--active]="isItemCurrent(item)"
+          [routerLink]="item.route"
+        >
+          {{ item.label }}
+        </a>
+      </nav>
+    </div>
+  </div>
+}
