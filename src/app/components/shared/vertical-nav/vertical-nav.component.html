@@ -1,0 +1,106 @@
+<div class="{{ getNavClasses() }}">
+  <nav aria-label="{{ ariaLabel }}" id="left-nav" class="{{ getNavContentClasses() }}">
+    @if (title) {
+      <div class="{{ getHeaderClasses() }}">
+        <span class="{{ getHeaderTextClasses() }}">{{ title }}</span>
+      </div>
+    }
+
+    <ul class="qld__link-list">
+      @for (item of items; track item.label) {
+        <li class="{{ getItemClasses(item) }}">
+          @if (isHeader(item)) {
+            <span class="{{ getHeaderTextClasses() }}">{{ item.label }}</span>
+          } @else if (item.href) {
+            <a class="{{ getLinkClasses(item) }}" [href]="item.href">
+              @if (item.icon) {
+                <span class="{{ getIconClasses() }}">
+                  <i [class]="item.icon" aria-hidden="true"></i>
+                </span>
+              }
+              <span class="{{ getHeaderTextClasses() }}">{{ item.label }}</span>
+            </a>
+          } @else {
+            <span class="{{ getHeaderTextClasses() }}">{{ item.label }}</span>
+          }
+
+          @if (hasChildren(item)) {
+            <button
+              type="button"
+              class="{{ getToggleClasses(item) }}"
+              [attr.aria-controls]="getSubmenuId(item)"
+              [attr.aria-expanded]="isExpanded(item)"
+              [attr.aria-label]="'Toggle navigation, ' + item.label"
+              (click)="toggleMenu(item)"
+            >
+              <svg class="{{ getChevronClasses() }}" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                @if (isExpanded(item)) {
+                  <use href="?a=169317:dist/mysource_files/img/QLD-icons.svg#chevron-up"></use>
+                } @else {
+                  <use href="?a=169317:dist/mysource_files/img/QLD-icons.svg#chevron-down"></use>
+                }
+              </svg>
+            </button>
+
+            <ul [id]="getSubmenuId(item)" class="{{ getSubmenuClasses(item) }}">
+              @for (child of item.children!; track child.label) {
+                <li>
+                  @if (child.href) {
+                    <a class="{{ getLinkClasses(child) }}" [href]="child.href">
+                      @if (child.icon) {
+                        <span class="{{ getIconClasses() }}">
+                          <i [class]="child.icon" aria-hidden="true"></i>
+                        </span>
+                      }
+                      <span class="{{ getHeaderTextClasses() }}">{{ child.label }}</span>
+                    </a>
+                  } @else {
+                    <span class="{{ getHeaderTextClasses() }}">{{ child.label }}</span>
+                  }
+
+                  @if (hasChildren(child)) {
+                    <button
+                      type="button"
+                      class="{{ getToggleClasses(child) }}"
+                      [attr.aria-controls]="getSubmenuId(child)"
+                      [attr.aria-expanded]="isExpanded(child)"
+                      [attr.aria-label]="'Toggle navigation, ' + child.label"
+                      (click)="toggleMenu(child)"
+                    >
+                      <svg class="{{ getChevronClasses() }}" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                        @if (isExpanded(child)) {
+                          <use href="?a=169317:dist/mysource_files/img/QLD-icons.svg#chevron-up"></use>
+                        } @else {
+                          <use href="?a=169317:dist/mysource_files/img/QLD-icons.svg#chevron-down"></use>
+                        }
+                      </svg>
+                    </button>
+
+                    <ul [id]="getSubmenuId(child)" class="{{ getSubmenuClasses(child) }}">
+                      @for (grandchild of child.children!; track grandchild.label) {
+                        <li>
+                          @if (grandchild.href) {
+                            <a class="{{ getLinkClasses(grandchild) }}" [href]="grandchild.href">
+                              @if (grandchild.icon) {
+                                <span class="{{ getIconClasses() }}">
+                                  <i [class]="grandchild.icon" aria-hidden="true"></i>
+                                </span>
+                              }
+                              <span class="{{ getHeaderTextClasses() }}">{{ grandchild.label }}</span>
+                            </a>
+                          } @else {
+                            <span class="{{ getHeaderTextClasses() }}">{{ grandchild.label }}</span>
+                          }
+                        </li>
+                      }
+                    </ul>
+                  }
+                </li>
+              }
+            </ul>
+          }
+        </li>
+      }
+    </ul>
+  </nav>
+</div>
