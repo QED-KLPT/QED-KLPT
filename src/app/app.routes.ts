@@ -56,6 +56,7 @@ import { TestingNavigationVertical } from './components/testing-navigation-verti
 import { TestingNavigation } from './components/testing-navigation/testing-navigation';
 import { TestingRadio } from './components/testing-radio/testing-radio';
 import { TestingSelect } from './components/testing-select/testing-select';
+import { TestingTables } from './components/testing-tables/testing-tables';
 import { WorkingMemory } from './components/executive-function/working-memory/working-memory';
 import { AttentionFocus } from './components/executive-function/attention-focus/attention-focus';
 
@@ -179,5 +180,6 @@ export const routes: Routes = [
   { path: 'testing/testing-navigation-vertical', component: TestingNavigationVertical, title: 'Testing Navigation Vertical' },
   { path: 'testing/testing-radio', component: TestingRadio, title: 'Testing Radio' },
   { path: 'testing/testing-select', component: TestingSelect, title: 'Testing Select' },
+  { path: 'testing/testing-tables', component: TestingTables, title: 'Testing Tables' },
   { path: '**', redirectTo: '' },
 ];
