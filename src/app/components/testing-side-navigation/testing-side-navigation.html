@@ -1,0 +1,128 @@
+<section class="section section--white">
+  <div class="section__inner">
+    <h2>Testing Side Navigation</h2>
+    <p>The following demos showcase the <code>app-qld-side-nav</code> component with various configurations following the Queensland Government Design System side navigation patterns.</p>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>1. Basic Flat List</h3>
+      <p>A simple side navigation with a flat list of links and no nesting. Used for straightforward navigation structures.</p>
+      <div style="max-width: 300px; margin-block-start: 1rem;">
+        <app-qld-side-nav [items]="flatListItems" title="In this section"></app-qld-side-nav>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-side-nav
+  [items]="flatListItems"
+  title="In this section"&gt;
+&lt;/app-qld-side-nav&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>2. With Accordion Toggle</h3>
+      <p>A side navigation with an accordion-style toggle button for mobile/collapsed state. The entire nav content can be collapsed on smaller screens.</p>
+      <div style="max-width: 300px; margin-block-start: 1rem;">
+        <app-qld-side-nav [items]="withAccordionToggleItems" title="In this section"></app-qld-side-nav>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-side-nav
+  [items]="withAccordionToggleItems"
+  title="In this section"&gt;
+&lt;/app-qld-side-nav&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>3. Active State</h3>
+      <p>A side navigation with one item marked as active using the <code>active</code> property. Active items are displayed as plain text (not links) with <code>aria-current="page"</code>.</p>
+      <div style="max-width: 300px; margin-block-start: 1rem;">
+        <app-qld-side-nav [items]="activeStateItems" title="In this section"></app-qld-side-nav>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-side-nav
+  [items]="activeStateItems"
+  title="In this section"&gt;
+&lt;/app-qld-side-nav&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>4. With Tick Icons</h3>
+      <p>A side navigation with SVG tick icons on each link item, following the QLD Design System pattern for verified/complete items.</p>
+      <div style="max-width: 300px; margin-block-start: 1rem;">
+        <app-qld-side-nav [items]="withTickIconsItems" title="In this section"></app-qld-side-nav>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-side-nav
+  [items]="withTickIconsItems"
+  title="In this section"&gt;
+&lt;/app-qld-side-nav&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>5. Two-Level Nesting</h3>
+      <p>A side navigation with parent items that expand to show child links. Supports up to 3 levels of hierarchy as recommended by the QLD Design System.</p>
+      <div style="max-width: 300px; margin-block-start: 1rem;">
+        <app-qld-side-nav [items]="twoLevelItems" title="In this section"></app-qld-side-nav>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-side-nav
+  [items]="twoLevelItems"
+  title="In this section"&gt;
+&lt;/app-qld-side-nav&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>6. Three-Level Deep Nesting</h3>
+      <p>A side navigation with three levels of nesting (grandparent &rarr; parent &rarr; child). This is the maximum recommended depth for side navigation.</p>
+      <div style="max-width: 300px; margin-block-start: 1rem;">
+        <app-qld-side-nav [items]="threeLevelItems" title="In this section"></app-qld-side-nav>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-side-nav
+  [items]="threeLevelItems"
+  title="In this section"&gt;
+&lt;/app-qld-side-nav&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>7. With Section Title</h3>
+      <p>A side navigation with a section title rendered as an <code>&lt;h2&gt;</code> element with the <code>qld__sidenav__title</code> class, followed by navigation links.</p>
+      <div style="max-width: 300px; margin-block-start: 1rem;">
+        <app-qld-side-nav [items]="withSectionTitleItems" title="In this section"></app-qld-side-nav>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-side-nav
+  [items]="withSectionTitleItems"
+  title="In this section"&gt;
+&lt;/app-qld-side-nav&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>8. Mixed Links and Plain Items</h3>
+      <p>A side navigation combining clickable links with plain text items (including an active state item). Plain items use <code>&lt;span&gt;</code> instead of <code>&lt;a&gt;</code>.</p>
+      <div style="max-width: 300px; margin-block-start: 1rem;">
+        <app-qld-side-nav [items]="mixedLinksPlainItems" title="In this section"></app-qld-side-nav>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-side-nav
+  [items]="mixedLinksPlainItems"
+  title="In this section"&gt;
+&lt;/app-qld-side-nav&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>9. Collapsed State</h3>
+      <p>A side navigation that starts in a collapsed state with the <code>[collapsed]="true"</code> input. The accordion toggle button shows a closed chevron initially.</p>
+      <div style="max-width: 300px; margin-block-start: 1rem;">
+        <app-qld-side-nav [items]="collapsedStateItems" title="In this section" [collapsed]="true"></app-qld-side-nav>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-side-nav
+  [items]="collapsedStateItems"
+  title="In this section"
+  [collapsed]="true"&gt;
+&lt;/app-qld-side-nav&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>10. Full Real-World Example</h3>
+      <p>A complete side navigation matching the QLD Design System demo: section title, nested items with children, tick icons on leaf items, and an active state indicator.</p>
+      <div style="max-width: 300px; margin-block-start: 1rem;">
+        <app-qld-side-nav [items]="fullRealWorldItems" title="In this section"></app-qld-side-nav>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-qld-side-nav
+  [items]="fullRealWorldItems"
+  title="In this section"&gt;
+&lt;/app-qld-side-nav&gt;</code></pre>
+    </section>
+
+  </div>
+</section>
