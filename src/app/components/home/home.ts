@@ -22,7 +22,7 @@ type DomainSummary = {
 export class Home {
   protected readonly domains: DomainSummary[] = [
     {
-      title: 'Language and Literacy',
+      title: 'Language and literacy',
       description: 'Support vocabulary, phonological awareness, and early reading and writing skills.',
       url: '/learning-domains/language-and-literacy',
       imageSrc: 'assets/img/domain-language-literacy.svg',
@@ -31,7 +31,7 @@ export class Home {
       hoverBorderColor: '#efb777',
     },
     {
-      title: 'Executive Function',
+      title: 'Executive function',
       description: 'Develop working memory, attention, cognitive flexibility, and problem-solving skills.',
       url: '/learning-domains/executive-function',
       imageSrc: 'assets/img/domain-executive-function.svg',
@@ -40,7 +40,7 @@ export class Home {
       hoverBorderColor: '#92ccd5',
     },
     {
-      title: 'Social-Emotional Learning',
+      title: 'Social-emotional learning',
       description: 'Foster self-awareness, emotion regulation, empathy, and positive relationships.',
       url: '/learning-domains/social-and-emotional-learning',
       imageSrc: 'assets/img/domain-social-emotional-learning.svg',
@@ -58,7 +58,7 @@ export class Home {
       hoverBorderColor: '#b7d894',
     },
     {
-      title: 'Mathematics and Numeracy',
+      title: 'Mathematics and numeracy',
       description: 'Build number sense, pattern recognition, spatial reasoning, and mathematical thinking.',
       url: '/learning-domains/mathematics-and-numeracy',
       imageSrc: 'assets/img/domain-mathematics-numeracy.svg',
