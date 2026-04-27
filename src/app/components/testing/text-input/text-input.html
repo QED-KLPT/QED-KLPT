@@ -1,0 +1,94 @@
+<section class="section section--white">
+  <div class="section__inner">
+    <h2>Testing Text Input</h2>
+    <p>The following demos showcase the <code>app-text-input</code> component with various input types, states, and configurations following the Queensland Government Design System.</p>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>1. Basic Text Input</h3>
+      <p>A simple text input with a label only, no additional options.</p>
+      <app-text-input [label]="demo1Item.label"></app-text-input>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-text-input label="Full name"&gt;&lt;/app-text-input&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>2. Email Input</h3>
+      <p>An email-type input with placeholder text to guide the user on the expected format.</p>
+      <app-text-input [label]="demo2Item.label" [placeholder]="demo2Item.placeholder" type="email"></app-text-input>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-text-input label="Email address"
+  placeholder="e.g. john.smith@example.com"
+  type="email"&gt;&lt;/app-text-input&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>3. Telephone Input</h3>
+      <p>A telephone-type input with placeholder text showing the expected phone number format.</p>
+      <app-text-input [label]="demo3Item.label" [placeholder]="demo3Item.placeholder" type="tel"></app-text-input>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-text-input label="Phone number"
+  placeholder="e.g. 04XX XXX XXX"
+  type="tel"&gt;&lt;/app-text-input&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>4. Password Input</h3>
+      <p>A password-type input that masks the entered characters for security.</p>
+      <app-text-input [label]="demo4Item.label" [placeholder]="demo4Item.placeholder" type="password"></app-text-input>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-text-input label="Password"
+  placeholder="Enter your password"
+  type="password"&gt;&lt;/app-text-input&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>5. URL Input</h3>
+      <p>A URL-type input with placeholder text showing the expected web address format.</p>
+      <app-text-input [label]="demo5Item.label" [placeholder]="demo5Item.placeholder" type="url"></app-text-input>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-text-input label="Website"
+  placeholder="https://example.com"
+  type="url"&gt;&lt;/app-text-input&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>6. Number Input</h3>
+      <p>A number-type input that restricts input to numeric values only.</p>
+      <app-text-input [label]="demo6Item.label" [placeholder]="demo6Item.placeholder" type="number"></app-text-input>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-text-input label="Age"
+  placeholder="Enter your age"
+  type="number"&gt;&lt;/app-text-input&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>7. With Hint Text</h3>
+      <p>A text input with hint text below the label, linked via aria-describedby for accessibility.</p>
+      <app-text-input [label]="demo7Item.label" [hint]="demo7Item.hint"></app-text-input>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-text-input label="Hint Text Example"
+  hint="Enter your mobile number with the area code included."&gt;&lt;/app-text-input&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>8. Error State</h3>
+      <p>A text input with an error message displayed in red, using the qld__text-input--error class.</p>
+      <app-text-input [label]="demo8Item.label" [placeholder]="demo8Item.placeholder" [error]="demo8Item.error"></app-text-input>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-text-input label="Error State"
+  placeholder="Enter your address"
+  error="Please provide a valid street address."&gt;&lt;/app-text-input&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>9. Success/Valid State</h3>
+      <p>A text input with a success message displayed in green, using the qld__text-input--valid class.</p>
+      <app-text-input [label]="demo9Item.label" [placeholder]="demo9Item.placeholder" [success]="demo9Item.success"></app-text-input>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-text-input label="Success State"
+  placeholder="Enter your username"
+  success="This username is available."&gt;&lt;/app-text-input&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>10. Disabled State</h3>
+      <p>A non-interactive disabled text input that cannot be edited.</p>
+      <app-text-input [label]="demo10Item.label" [placeholder]="demo10Item.placeholder" [disabled]="true"></app-text-input>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-text-input label="Disabled Field"
+  placeholder="This field is disabled"
+  [disabled]="true"&gt;&lt;/app-text-input&gt;</code></pre>
+    </section>
+
+  </div>
+</section>
