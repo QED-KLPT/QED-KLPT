@@ -22,9 +22,9 @@ type DesignCard = {
 export class SocialAndEmotionalLearning {
   protected readonly cards: DesignCard[] = [
     {
-      title: 'Self-Regulation',
+      title: 'Lorem Ipsum Dolor',
       description:
-        'Children develop the ability to manage their emotions, behaviors, and actions in different situations. They learn to pause, think before acting, and adapt to new environments.',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       url: '/learning-domains/social-and-emotional-learning/self-regulation',
       background: 'linear-gradient(180deg, #fff8fb 0%, #ffe5ee 100%)',
       hoverBorderColor: '#f9a8c4',
@@ -32,9 +32,9 @@ export class SocialAndEmotionalLearning {
       imageSrc: 'assets/img/domain-social-emotional-learning.svg',
     },
     {
-      title: 'Social Skills',
+      title: 'Sed Do Eiusmod Tempor',
       description:
-        'Children learn to interact positively with peers and adults. They develop skills in sharing, taking turns, cooperating, and resolving conflicts in age-appropriate ways.',
+        'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam.',
       url: '/learning-domains/social-and-emotional-learning/social-skills',
       background: 'linear-gradient(180deg, #fff5f9 0%, #ffd6e8 100%)',
       hoverBorderColor: '#f5a0b8',
@@ -42,9 +42,9 @@ export class SocialAndEmotionalLearning {
       imageSrc: 'assets/img/domain-social-emotional-learning.svg',
     },
     {
-      title: 'Emotional Awareness',
+      title: 'Ut Labore Et Dolore',
       description:
-        'Children begin to identify and express their own emotions. They develop empathy for others, recognizing feelings in peers and responding with compassion and support.',
+        'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni dolores eos.',
       url: '/learning-domains/social-and-emotional-learning/emotional-awareness',
       background: 'linear-gradient(180deg, #fff9fc 0%, #ffcce0 100%)',
       hoverBorderColor: '#f794b0',
@@ -52,9 +52,9 @@ export class SocialAndEmotionalLearning {
       imageSrc: 'assets/img/domain-social-emotional-learning.svg',
     },
     {
-      title: 'Relationship Building',
+      title: 'Consectetur Adipiscing',
       description:
-        'Children form positive attachments and friendships. They learn to trust adults, seek comfort when needed, and build meaningful connections with other children.',
+        'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum delenit atque corrupti.',
       url: '/learning-domains/social-and-emotional-learning/relationship-building',
       background: 'linear-gradient(180deg, #fff7f9 0%, #ffb8d6 100%)',
       hoverBorderColor: '#f38aa5',
@@ -62,9 +62,9 @@ export class SocialAndEmotionalLearning {
       imageSrc: 'assets/img/domain-social-emotional-learning.svg',
     },
     {
-      title: 'Social Understanding',
+      title: 'Duis aute Irure',
       description:
-        'Children develop an understanding of social rules, expectations, and cultural norms. They learn to navigate group settings and understand different perspectives.',
+        'Nam libero tempore cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere.',
       url: '/learning-domains/social-and-emotional-learning/social-understanding',
       background: 'linear-gradient(180deg, #fff5f7 0%, #ffa3c9 100%)',
       hoverBorderColor: '#ef7b96',
@@ -72,10 +72,10 @@ export class SocialAndEmotionalLearning {
       imageSrc: 'assets/img/domain-social-emotional-learning.svg',
     },
     {
-      title: 'Confidence and Independence',
+      title: 'Voluptate Velit Esse',
       description:
-        'Children develop a sense of self-efficacy and autonomy. They show willingness to try new activities, persist through challenges, and express confidence in their abilities.',
-      url: '/learning-domains/social-and-emotional-learning/confidence-independence',
+        'Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur vel illum.',
+      url: '/learning-domains/social-and-emotional-learning/ut-labore-et-dolore',
       background: 'linear-gradient(180deg, #fff3f5 0%, #ff90bc 100%)',
       hoverBorderColor: '#eb6d87',
       imageAlt: 'Confidence and Independence icon - child trying new activity',

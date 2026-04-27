@@ -29,6 +29,12 @@ import { QualityObservations } from './components/quality-observations/quality-o
 import { SelfRegulation } from './components/executive-function/self-regulation/self-regulation';
 import { SensoryLearning } from './components/physicality/sensory-learning/sensory-learning';
 import { SocialAndEmotionalLearning } from './components/social-and-emotional-learning/social-and-emotional-learning';
+import { SelfRegulation as SELSelfRegulation } from './components/social-and-emotional-learning/self-regulation/self-regulation';
+import { SocialSkills } from './components/social-and-emotional-learning/social-skills/social-skills';
+import { EmotionalAwareness } from './components/social-and-emotional-learning/emotional-awareness/emotional-awareness';
+import { RelationshipBuilding } from './components/social-and-emotional-learning/relationship-building/relationship-building';
+import { SocialUnderstanding } from './components/social-and-emotional-learning/social-understanding/social-understanding';
+import { ConfidenceIndependence } from './components/social-and-emotional-learning/confidence-independence/confidence-independence';
 import { StableMovement } from './components/physicality/stable-movement/stable-movement';
 import { TestingAlerts } from './components/testing-alerts/testing-alerts';
 import { TestingAccordians } from './components/testing-accordians/testing-accordians';
@@ -81,7 +87,37 @@ export const routes: Routes = [
   {
     path: 'learning-domains/social-and-emotional-learning',
     component: SocialAndEmotionalLearning,
-    title: 'Social and emotional learning',
+    title: 'Aliqua Ut Enim Ad Min',
+  },
+  {
+    path: 'learning-domains/social-and-emotional-learning/self-regulation',
+    component: SELSelfRegulation,
+    title: 'Lorem Ipsum Dolor',
+  },
+  {
+    path: 'learning-domains/social-and-emotional-learning/social-skills',
+    component: SocialSkills,
+    title: 'Sed Do Eiusmod Tempor',
+  },
+  {
+    path: 'learning-domains/social-and-emotional-learning/emotional-awareness',
+    component: EmotionalAwareness,
+    title: 'Ut Labore Et Dolore',
+  },
+  {
+    path: 'learning-domains/social-and-emotional-learning/relationship-building',
+    component: RelationshipBuilding,
+    title: 'Consectetur Adipiscing',
+  },
+  {
+    path: 'learning-domains/social-and-emotional-learning/social-understanding',
+    component: SocialUnderstanding,
+    title: 'Duis aute Irure',
+  },
+  {
+    path: 'learning-domains/social-and-emotional-learning/confidence-independence',
+    component: ConfidenceIndependence,
+    title: 'Voluptate Velit Esse',
   },
   { path: 'learning-domains/physicality', component: Physicality, title: 'Physicality' },
   {
