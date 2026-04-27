@@ -1,0 +1,106 @@
+<section class="section section--white">
+  <div class="section__inner">
+    <h2>Testing Tags</h2>
+    <p>The following demos showcase the <code>qld-tag</code> component with various types, variants, and configurations following the Queensland Government Design System.</p>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>1. Default Tag</h3>
+      <p>A basic non-interactive tag displayed as a pill shape. Used for simple categorization and labeling content.</p>
+      <qld-tag>Default tag</qld-tag>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;qld-tag&gt;Default tag&lt;/qld-tag&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>2. Large Default Tag</h3>
+      <p>A larger default tag variant with increased font size and padding. Used when tags need more visual prominence.</p>
+      <qld-tag size="large">Large default tag</qld-tag>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;qld-tag size="large"&gt;Large default tag&lt;/qld-tag&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>3. Link Tag</h3>
+      <p>An interactive tag styled as a link with transparent background and blue text. Clickable tags guide users to filtered content.</p>
+      <qld-tag type="link" (click)="linkClick($event, 'Link tag')">Link tag</qld-tag>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;qld-tag type="link" href="#"&gt;Link tag&lt;/qld-tag&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>4. Large Link Tag</h3>
+      <p>A large interactive link tag combining the link variant with increased size for emphasis in navigation contexts.</p>
+      <qld-tag type="link" size="large" (click)="linkClick($event, 'Large link tag')">Large link tag</qld-tag>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;qld-tag type="link" size="large" href="#"&gt;Large link tag&lt;/qld-tag&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>5. Info Tag (File Metadata)</h3>
+      <p>An info tag with a light blue background and border. Commonly used for file metadata like format, size, or type indicators.</p>
+      <qld-tag type="info">PDF, 2.4 MB</qld-tag>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;qld-tag type="info"&gt;PDF, 2.4 MB&lt;/qld-tag&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>6. Large Info Tag (Reading Time)</h3>
+      <p>A large info tag used for supplementary information like estimated reading time or content duration.</p>
+      <qld-tag type="info" size="large">Approx. 5 min read</qld-tag>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;qld-tag type="info" size="large"&gt;Approx. 5 min read&lt;/qld-tag&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>7. Filter Tag with Close Button</h3>
+      <p>A filter tag that includes a close button for removing the applied filter. Clicking the X emits a close event.</p>
+      <qld-tag type="filter" [closable]="true" (close)="handleClose('Mathematics')">Mathematics</qld-tag>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;qld-tag type="filter" closable (close)="handleClose()"&gt;Mathematics&lt;/qld-tag&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>8. Mixed Tags in a List</h3>
+      <p>A group of tags displayed within a tag list container. Useful for displaying multiple categories or labels together.</p>
+      <ul class="qld__tag-list" style="list-style: none; padding: 0; margin: 1rem 0; display: flex; flex-wrap: wrap; gap: 0.5rem;">
+        <li><qld-tag>Language</qld-tag></li>
+        <li><qld-tag type="info">Numeracy</qld-tag></li>
+        <li><qld-tag type="link" (click)="linkClick($event, 'Social')">Social</qld-tag></li>
+        <li><qld-tag size="large">Physicality</qld-tag></li>
+      </ul>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;ul class="qld__tag-list"&gt;
+  &lt;li&gt;&lt;qld-tag&gt;Language&lt;/qld-tag&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;qld-tag type="info"&gt;Numeracy&lt;/qld-tag&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;qld-tag type="link" href="#"&gt;Social&lt;/qld-tag&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;qld-tag size="large"&gt;Physicality&lt;/qld-tag&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>9. Filter Tag Wrapper with Title</h3>
+      <p>A filter tag group wrapped under a "Filtered by:" heading. Common pattern for search and filter result pages.</p>
+      <div style="margin: 1rem 0;">
+        <h4 style="margin-bottom: 0.5rem; font-size: 1rem;">Filtered by:</h4>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+          <qld-tag type="filter" [closable]="true" (close)="handleClose('Reading')">Reading</qld-tag>
+          <qld-tag type="filter" [closable]="true" (close)="handleClose('Writing')">Writing</qld-tag>
+          <qld-tag type="filter" [closable]="true" (close)="handleClose('Speaking')">Speaking</qld-tag>
+        </div>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;h4&gt;Filtered by:&lt;/h4&gt;
+&lt;qld-tag type="filter" closable (close)="handleClose()"&gt;Reading&lt;/qld-tag&gt;
+&lt;qld-tag type="filter" closable (close)="handleClose()"&gt;Writing&lt;/qld-tag&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>10. Tags on Dark Background</h3>
+      <p>Tags displayed within a dark background container. Demonstrates tag visibility and contrast on darker surfaces.</p>
+      <div class="qld__body--dark" style="padding: 1.5rem; border-radius: 6px;">
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+          <qld-tag type="link" (click)="linkClick($event, 'Link on dark')">Link tag</qld-tag>
+          <qld-tag type="info">Info tag</qld-tag>
+          <qld-tag size="large">Large tag</qld-tag>
+        </div>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;div class="qld__body--dark" style="padding: 1.5rem;"&gt;
+  &lt;qld-tag type="link" href="#"&gt;Link tag&lt;/qld-tag&gt;
+  &lt;qld-tag type="info"&gt;Info tag&lt;/qld-tag&gt;
+  &lt;qld-tag size="large"&gt;Large tag&lt;/qld-tag&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+  </div>
+</section>

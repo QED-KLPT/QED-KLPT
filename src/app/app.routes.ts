@@ -58,6 +58,7 @@ import { TestingNavigation } from './components/testing-navigation/testing-navig
 import { TestingRadio } from './components/testing-radio/testing-radio';
 import { TestingSelect } from './components/testing-select/testing-select';
 import { TestingTables } from './components/testing-tables/testing-tables';
+import { TestingTag } from './components/testing-tag/testing-tag';
 import { TestingSideNavigation } from './components/testing-side-navigation/testing-side-navigation';
 import { WorkingMemory } from './components/executive-function/working-memory/working-memory';
 import { AttentionFocus } from './components/executive-function/attention-focus/attention-focus';
@@ -184,6 +185,7 @@ export const routes: Routes = [
   { path: 'testing/testing-radio', component: TestingRadio, title: 'Testing Radio' },
   { path: 'testing/testing-select', component: TestingSelect, title: 'Testing Select' },
   { path: 'testing/testing-tables', component: TestingTables, title: 'Testing Tables' },
+  { path: 'testing/tag', component: TestingTag, title: 'Testing Tag' },
   { path: 'testing/side-navigation', component: TestingSideNavigation, title: 'Testing Side Navigation' },
   { path: '**', redirectTo: '' },
 ];
