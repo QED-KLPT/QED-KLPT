@@ -43,6 +43,7 @@
 
   <div class="klpt-header__main" [class.klpt-header__main--contained]="contained()">
     <div class="klpt-header__container">
+
       <div class="klpt-header__brand">
         <a href="/" class="klpt-header__brand-link">
           @switch (brandType()) {
@@ -83,15 +84,15 @@
           </form>
         </div>
       }
-      @if (showNavigation()) {
-        <div class="klpt-header__masthead-nav" id="main-nav">
-          <app-vertical-nav />
-        </div>
-      }
+
     </div>
 
     @if (showNavigation()) {
-      <app-horizontal-nav />
+      <nav class="klpt-header__nav" id="main-nav" aria-label="Primary navigation">
+        <div class="klpt-header__container" [class.klpt-header__container--contained]="contained()">
+          <app-nav />
+        </div>
+      </nav>
     }
 
     @if (showSecondaryNav()) {

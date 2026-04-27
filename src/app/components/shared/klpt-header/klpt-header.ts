@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
-import { HorizontalNav } from '../../../_layout/horizontal-nav/horizontal-nav';
-import { VerticalNav } from '../../../_layout/vertical-nav/vertical-nav';
+import { Nav } from '../../../_layout/nav/nav';
 
 export type BrandType = 'coat-of-arms' | 'logo' | 'site-name';
 export type PreHeaderStyle = 'dark' | 'light' | 'none';
@@ -13,7 +12,7 @@ interface NavItem {
 
 @Component({
   selector: 'klpt-header',
-  imports: [HorizontalNav, VerticalNav],
+  imports: [Nav],
   templateUrl: './klpt-header.html',
   styleUrl: './klpt-header.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

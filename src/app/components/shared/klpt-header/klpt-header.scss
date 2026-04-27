@@ -249,9 +249,13 @@
   background: var(--doe-color-primary-dark);
 }
 
-.klpt-header__masthead-nav {
-  width: 100%;
-  max-width: 25rem;
+/* Navigation */
+.klpt-header__nav {
+  background: var(--doe-color-primary);
+}
+
+.klpt-header__nav .klpt-header__container {
+  padding: 0;
 }
 
 /* Secondary navigation */
@@ -341,10 +345,6 @@
   .klpt-header__brand-image {
     width: min(18rem, 82vw);
     height: 3rem;
-  }
-
-  .klpt-header__masthead-nav {
-    max-width: none;
   }
 
   .klpt-header__secondary-nav-list {
