@@ -10,15 +10,55 @@
           commodo cursus magna, vel scelerisque nisl consectetur et.
         </p>
         <p class="domain-hero__lead">
-          Donec ullamcorper nulla non metus auctor fringilla. Cras mattis
-          consectetur purus sit amet fermentum. Curabitur blandit tempus
-          porttitor.
+          Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+          laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
+          architecto beatae vitae dicta sunt explicabo.
         </p>
       </div>
 
       <div class="domain-hero__art">
         <img src="assets/img/domain-social-emotional-learning.svg" alt="Social-Emotional Learning illustration" />
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--white domain-overview">
+  <div class="section__inner">
+    <h2>Social and Emotional Learning overview</h2>
+    <p>
+      Watch the video to understand the key elements of social and emotional learning, and how to
+      observe these in everyday contexts.
+    </p>
+    <div class="videos-row">
+      <app-youtube-player
+        title="KLPT-social-and-emotional-learning"
+        description="KLPT Social and Emotional Learning"
+        [youtubeUrl]="'https://www.youtube.com/watch?v=UmHCmYmNKNE'"
+      >
+      </app-youtube-player>
+    </div>
+  </div>
+</section>
+
+<section class="section section--cream domain-pathways">
+  <div class="section__inner">
+    <div class="section__intro">
+      <p class="eyebrow">Explore the progression</p>
+      <h2>Social and Emotional Learning pathways</h2>
+    </div>
+    <div class="card-grid">
+      @for (card of cards; track card.title) {
+        <app-domain-card
+          [title]="card.title"
+          [description]="card.description"
+          [url]="card.url"
+          [background]="card.background"
+          [hoverBorderColor]="card.hoverBorderColor"
+          [imageSrc]="card.imageSrc"
+          [imageAlt]="card.imageAlt"
+        />
+      }
     </div>
   </div>
 </section>
