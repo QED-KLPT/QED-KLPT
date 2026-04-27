@@ -130,7 +130,6 @@
   text-decoration: none;
 }
 
-<<<<<<< HEAD
 @media (min-width: 58.0625rem) {
   .site-footer__columns {
     align-items: stretch;
@@ -142,8 +141,6 @@
   }
 }
 
-@media (max-width: 58rem) {
-=======
 @media (max-width: 64rem) {
   .site-footer__title {
     margin-bottom: 1.5rem;
@@ -151,7 +148,6 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.18);
   }
 
->>>>>>> ded601e397a08f7882616e36446867e0dea845c0
   .site-footer__columns {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-template-areas:
