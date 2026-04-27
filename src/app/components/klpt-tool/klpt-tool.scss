@@ -2,6 +2,63 @@
   display: block;
 }
 
-.page-placeholder {
-  min-height: 34rem;
+.domain-hero--klpt-tool {
+  padding-block: clamp(2.75rem, 6vw, 5rem);
+  background: linear-gradient(180deg, #f7f9ff 0%, #e2e9ff 100%);
+}
+
+.domain-hero--klpt-tool .domain-hero__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(14rem, 0.8fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: center;
+}
+
+.domain-hero--klpt-tool .domain-hero__copy {
+  max-width: 44rem;
+  padding-left: 1rem;
+  border-left: 4px solid #abbbee;
+}
+
+.domain-hero--klpt-tool .eyebrow {
+  color: #4964a5;
+}
+
+.domain-hero--klpt-tool .domain-hero__copy h1 {
+  margin-bottom: 0.85rem;
+}
+
+@media (max-width: 64rem) {
+  .domain-hero--klpt-tool .domain-hero__layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.klpt-tool-intro {
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+
+  &__actions {
+    margin-top: 2rem;
+  }
+}
+
+.klpt-tool-video {
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+
+  .videos-row {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    app-youtube-player {
+      flex: 1 1 45%;
+      min-width: 320px;
+      width: 100%;
+
+      @media (max-width: 768px) {
+        flex: 1 1 100%;
+      }
+    }
+  }
 }
