@@ -141,6 +141,9 @@
 .doe-primary-nav__link:focus-visible {
   background: #e6e6e6;
   color: var(--doe-color-primary-dark);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
 }
 
 .doe-primary-nav__link:hover::after,
@@ -189,7 +192,10 @@
 .doe-primary-nav__submenu a:hover,
 .doe-primary-nav__submenu a:focus-visible {
   background: #f2f6fb;
-  color: var(--doe-color-primary-dark);
+  color: var(--doe-color-text);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
 }
 
 @media (max-width: 48rem) {
