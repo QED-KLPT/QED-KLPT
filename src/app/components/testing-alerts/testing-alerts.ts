@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { QldAlertComponent } from '../shared/qld-alert/qld-alert.component';
+import { AlertComponent } from '../shared/alert/alert.component';
 
 @Component({
   selector: 'app-testing-alerts',
-  imports: [QldAlertComponent],
+  imports: [AlertComponent],
   templateUrl: './testing-alerts.html',
   styleUrl: './testing-alerts.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

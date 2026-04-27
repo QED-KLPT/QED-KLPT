@@ -1,0 +1,155 @@
+<aside [attr.aria-label]="ariaLabel" [class]="getAsideClasses()">
+  <button
+    type="button"
+    [attr.id]="getToggleId()"
+    [class]="getToggleClasses()"
+    [attr.aria-controls]="getNavAriaControls()"
+    [attr.aria-expanded]="getToggleAriaExpanded()"
+    [attr.aria-selected]="getToggleAriaSelected()"
+    (click)="toggleMenu(items[0] || { label: 'default' })"
+  >
+    {{ title }}
+  </button>
+
+  @if (items.length > 0) {
+    <nav [id]="getNavId(items[0])" [attr.aria-label]="ariaLabel" [class]="getNavClasses(items[0])">
+      @for (item of items; track getItemKey(item)) {
+        @if (isTitle(item)) {
+          <h2 [class]="getTitleClasses()">
+            @if (item.href) {
+              <a [href]="item.href" [class]="getLinkClasses(item)">{{ item.label }}</a>
+            } @else {
+              <span [class]="getLinkClasses(item)">{{ item.label }}</span>
+            }
+          </h2>
+        } @else {
+          <li [class]="getListItemClasses(item)">
+            @if (item.href && !isCurrentPage(item)) {
+              <a [href]="item.href" [class]="getLinkClasses(item)">
+                @if (item.icon) {
+                  <svg class="{{ getIconClasses() }}" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                    <use [attr.href]="'#' + item.icon"></use>
+                  </svg>
+                }
+                {{ item.label }}
+              </a>
+            } @else if (isCurrentPage(item)) {
+              <span>{{ item.label }}</span>
+            } @else if (item.href) {
+              <a [href]="item.href" [class]="getLinkClasses(item)">
+                @if (item.icon) {
+                  <svg class="{{ getIconClasses() }}" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                    <use [attr.href]="'#' + item.icon"></use>
+                  </svg>
+                }
+                {{ item.label }}
+              </a>
+            } @else {
+              <span>{{ item.label }}</span>
+            }
+
+            @if (hasChildren(item)) {
+              <button
+                type="button"
+                [class]="getChevronClasses()"
+                [attr.aria-label]="'Toggle ' + item.label"
+                [attr.aria-expanded]="isExpanded(item) ? 'true' : 'false'"
+                (click)="toggleMenu(item)"
+              >
+                <svg class="{{ getChevronClasses() }}" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  @if (isExpanded(item)) {
+                    <use [attr.href]="getChevronOpenPath()"></use>
+                  } @else {
+                    <use [attr.href]="getChevronClosedPath()"></use>
+                  }
+                </svg>
+              </button>
+
+              @if (isExpanded(item)) {
+                <ul [class]="getLinkListClasses()">
+                  @for (child of item.children; track getItemKey(child)) {
+                    <li [class]="getListItemClasses(child)">
+                      @if (child.href && !isCurrentPage(child)) {
+                        <a [href]="child.href" [class]="getLinkClasses(child)">
+                          @if (child.icon) {
+                            <svg class="{{ getIconClasses() }}" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                              <use [attr.href]="'#' + child.icon"></use>
+                            </svg>
+                          }
+                          {{ child.label }}
+                        </a>
+                      } @else if (isCurrentPage(child)) {
+                        <span>{{ child.label }}</span>
+                      } @else if (child.href) {
+                        <a [href]="child.href" [class]="getLinkClasses(child)">
+                          @if (child.icon) {
+                            <svg class="{{ getIconClasses() }}" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                              <use [attr.href]="'#' + child.icon"></use>
+                            </svg>
+                          }
+                          {{ child.label }}
+                        </a>
+                      } @else {
+                        <span>{{ child.label }}</span>
+                      }
+
+                      @if (hasChildren(child)) {
+                        <button
+                          type="button"
+                          [class]="getChevronClasses()"
+                          [attr.aria-label]="'Toggle ' + child.label"
+                          [attr.aria-expanded]="isExpanded(child) ? 'true' : 'false'"
+                          (click)="toggleMenu(child)"
+                        >
+                          <svg class="{{ getChevronClasses() }}" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                            @if (isExpanded(child)) {
+                              <use [attr.href]="getChevronOpenPath()"></use>
+                            } @else {
+                              <use [attr.href]="getChevronClosedPath()"></use>
+                            }
+                          </svg>
+                        </button>
+
+                        @if (isExpanded(child)) {
+                          <ul [class]="getLinkListClasses()">
+                            @for (grandchild of child.children; track getItemKey(grandchild)) {
+                              <li [class]="getListItemClasses(grandchild)">
+                                @if (grandchild.href && !isCurrentPage(grandchild)) {
+                                  <a [href]="grandchild.href" [class]="getLinkClasses(grandchild)">
+                                    @if (grandchild.icon) {
+                                      <svg class="{{ getIconClasses() }}" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                                        <use [attr.href]="'#' + grandchild.icon"></use>
+                                      </svg>
+                                    }
+                                    {{ grandchild.label }}
+                                  </a>
+                                } @else if (isCurrentPage(grandchild)) {
+                                  <span>{{ grandchild.label }}</span>
+                                } @else if (grandchild.href) {
+                                  <a [href]="grandchild.href" [class]="getLinkClasses(grandchild)">
+                                    @if (grandchild.icon) {
+                                      <svg class="{{ getIconClasses() }}" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                                        <use [attr.href]="'#' + grandchild.icon"></use>
+                                      </svg>
+                                    }
+                                    {{ grandchild.label }}
+                                  </a>
+                                } @else {
+                                  <span>{{ grandchild.label }}</span>
+                                }
+                              </li>
+                            }
+                          </ul>
+                        }
+                      }
+                    </li>
+                  }
+                </ul>
+              }
+            }
+          </li>
+        }
+      }
+    </nav>
+  }
+</aside>

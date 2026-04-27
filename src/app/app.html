@@ -1,4 +1,8 @@
 <div class="app-shell">
+  <aside class="beta-ribbon" aria-label="Beta site notice">
+    <span>BETA</span>
+  </aside>
+
   <app-header />
 
   <main class="app-main" id="main-content">
@@ -18,6 +22,19 @@
         </button>
         <button type="button" class="update-snackbar__button update-snackbar__button--primary" (click)="refreshForUpdate()">
           {{ isRefreshing ? 'Refreshing...' : 'Refresh' }}
+        </button>
+      </div>
+    </div>
+  </aside>
+}
+
+@if (showUpdateFailureNotice) {
+  <aside class="update-snackbar update-snackbar--warning" aria-live="polite" aria-atomic="true">
+    <div class="update-snackbar__content">
+      <p>{{ updateFailureMessage }}</p>
+      <div class="update-snackbar__actions">
+        <button type="button" class="update-snackbar__button update-snackbar__button--secondary" (click)="dismissUpdateFailureNotice()">
+          Dismiss
         </button>
       </div>
     </div>

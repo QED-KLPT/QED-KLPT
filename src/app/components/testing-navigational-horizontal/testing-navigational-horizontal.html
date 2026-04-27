@@ -1,0 +1,77 @@
+<section class="section section--white">
+  <div class="section__inner">
+    <h2>Testing Navigational Horizontal</h2>
+    <p>The following demos showcase the <code>&lt;app-qld-main-nav&gt;</code> component with various configurations following the Queensland Government Design System horizontal navigation patterns.</p>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>1. Simple Light Navigation</h3>
+      <p>A basic horizontal navigation bar with a home icon and simple text links. The active item is highlighted with a darker color. This is the most common pattern for sites with straightforward information architecture.</p>
+      <app-qld-main-nav [items]="example1Items" theme="light" activeItem="Learning domains"></app-qld-main-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>{{ example1Code }}</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>2. Dark Navigation</h3>
+      <p>A dark-themed horizontal navigation bar using the Queensland Government Design System dark variant. Suitable for sites that use a dark primary color scheme or want higher contrast navigation.</p>
+      <app-qld-main-nav [items]="example2Items" theme="dark" activeItem="KLPT tool"></app-qld-main-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>{{ example2Code }}</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>3. Navigation with Icons</h3>
+      <p>Horizontal navigation with Font Awesome icons preceding each link label. Icons help users quickly identify menu items and reduce cognitive load. Best used sparingly for the most important navigation categories.</p>
+      <app-qld-main-nav [items]="example3Items" theme="light" activeItem="Learning domains"></app-qld-main-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>{{ example3Code }}</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>4. Simple Dropdown Menu</h3>
+      <p>A navigation item with a simple dropdown submenu containing child links. The submenu appears on hover for desktop and on click for mobile. Ideal for sites with a two-level information hierarchy.</p>
+      <app-qld-main-nav [items]="example4Items" theme="light" activeItem="Foundations"></app-qld-main-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>{{ example4Code }}</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>5. Mega Menu (3-Column)</h3>
+      <p>A mega menu variant that displays child links in a three-column grid layout. This pattern is useful when a navigation category has many subpages that need to be organized into logical groups for easy scanning.</p>
+      <app-qld-main-nav [items]="example5Items" theme="light" activeItem="Assessment planning"></app-qld-main-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>{{ example5Code }}</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>6. Mega Menu with Descriptions</h3>
+      <p>A mega menu where each sub-link includes a short description paragraph beneath it. This provides additional context to help users understand what each link leads to before clicking, improving findability.</p>
+      <app-qld-main-nav [items]="example6Items" theme="light" activeItem="Quality observations"></app-qld-main-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>{{ example6Code }}</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>7. Dark Mega Menu</h3>
+      <p>A dark-themed mega menu combining the dark navigation variant with a multi-column dropdown. Used when the entire site uses a dark color scheme and needs to display many subpages.</p>
+      <app-qld-main-nav [items]="example7Items" theme="dark" activeItem="Foundations"></app-qld-main-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>{{ example7Code }}</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>8. Navigation with Active States</h3>
+      <p>Demonstrates how active items are styled differently from inactive ones. The active link uses a darker color to indicate the current page, helping users orient themselves within the site structure.</p>
+      <app-qld-main-nav [items]="example8Items" theme="light" activeItem="Analysing data"></app-qld-main-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>{{ example8Code }}</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>9. Extended Navigation with Multiple Dropdowns</h3>
+      <p>A navigation bar with multiple items that have dropdown submenus. Each submenu operates independently, allowing users to navigate between different sections of the site without losing context.</p>
+      <app-qld-main-nav [items]="example9Items" theme="light" activeItem="Executive function"></app-qld-main-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>{{ example9Code }}</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>10. Mixed Icons and Dropdowns</h3>
+      <p>A combination navigation pattern that includes both icon-prefixed links and items with dropdown submenus. This flexible approach allows designers to use icons for visual emphasis while maintaining dropdown functionality for complex hierarchies.</p>
+      <app-qld-main-nav [items]="example10Items" theme="light" activeItem="Foundations"></app-qld-main-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>{{ example10Code }}</code></pre>
+    </section>
+
+  </div>
+</section>

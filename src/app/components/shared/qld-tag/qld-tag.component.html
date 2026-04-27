@@ -1,0 +1,14 @@
+<span [class]="tagClasses" [attr.href]="isInteractive ? href : null">
+  <ng-content />
+
+  @if (closable && type === 'filter') {
+    <button
+      type="button"
+      class="qld__tag__close"
+      (click)="onClose()"
+      aria-label="Remove tag"
+    >
+      <i class="fa-light fa-xmark" aria-hidden="true"></i>
+    </button>
+  }
+</span>

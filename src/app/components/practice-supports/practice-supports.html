@@ -1,0 +1,89 @@
+<section class="section practice-supports-hero">
+  <div class="section__inner practice-supports-hero__inner">
+    <div class="practice-supports-hero__copy">
+      <p class="eyebrow">Practice supports</p>
+      <h1>Practice supports for reflective, intentional teaching</h1>
+      <p class="practice-supports-hero__lead">
+        Use this page to move from observation to action. The prompts and domain supports below are designed to help
+        teams reflect on what they are noticing, choose responsive next steps, and download practical support material
+        for each learning area.
+      </p>
+      <div class="practice-supports-hero__actions" aria-label="Related pages">
+        <a class="button button--primary" routerLink="/learning-domain-tool/observation-support-tool">Open KLPT tool</a>
+        <a class="button button--secondary" routerLink="/learning-domain-tool/learning-domains">Browse learning domains</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--white practice-supports-content">
+  <div class="section__inner practice-supports-layout">
+    <div class="practice-supports-main">
+      @for (section of sections; track section.id) {
+        <section class="support-section" [id]="section.id" [attr.aria-labelledby]="section.id + '-title'">
+          <header class="support-section__header">
+            <h2 [id]="section.id + '-title'">{{ section.title }}</h2>
+          </header>
+
+          <div class="support-section__body">
+            <p class="support-section__summary">{{ section.summary }}</p>
+
+            @if (section.reflection.length) {
+              <div class="support-section__reflection">
+                <h3>Professional reflection questions</h3>
+                <ul>
+                  @for (prompt of section.reflection; track prompt) {
+                    <li>{{ prompt }}</li>
+                  }
+                </ul>
+              </div>
+            }
+
+            @if (section.accordionItems.length) {
+              <div class="support-section__accordion-group">
+                @for (item of section.accordionItems; track item.title) {
+                  <app-accordion-item [title]="item.title" [alt]="true">
+                    @for (paragraph of item.body; track paragraph) {
+                      <p>{{ paragraph }}</p>
+                    }
+                  </app-accordion-item>
+                }
+              </div>
+            }
+
+            <a class="support-section__download" href="#" (click)="$event.preventDefault()">
+              <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
+              <span>{{ section.pdfLabel }}</span>
+            </a>
+          </div>
+        </section>
+      }
+    </div>
+
+    <aside class="practice-supports-sidebar" aria-label="Supporting notes">
+      <article class="support-card support-card--mint">
+        <h2>How to use these supports</h2>
+        <p>
+          The practice supports are intentionally broad. They are not written for one specific observable behaviour, but
+          to offer options that educators can adapt using their professional judgement.
+        </p>
+        <p>
+          The strongest next steps usually come from combining observation evidence, knowledge of the child, and a clear
+          understanding of the learning domain.
+        </p>
+      </article>
+
+      <article class="support-card support-card--neutral">
+        <h2>Linking from the tool</h2>
+        <p>
+          This page is ready to support deep linking from the Observation Support Tool into the relevant learning domain
+          section when those connections are added.
+        </p>
+        <p>
+          In the meantime, educators can scroll or use the page headings to move between reflection prompts and domain
+          supports.
+        </p>
+      </article>
+    </aside>
+  </div>
+</section>

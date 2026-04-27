@@ -1,0 +1,21 @@
+.qld__radio-group {
+  .qld__control-input {
+    margin-bottom: 0.5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.qld__radio-group--inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+
+  .qld__control-input {
+    margin-bottom: 0;
+    display: inline-flex;
+    align-items: center;
+  }
+}

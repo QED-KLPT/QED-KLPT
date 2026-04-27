@@ -1,0 +1,11 @@
+.qld__side-nav {
+  width: 100%;
+
+  @media (min-width: 768px) {
+    width: auto;
+  }
+}
+
+.qld__side-nav__toggle {
+  cursor: pointer;
+}

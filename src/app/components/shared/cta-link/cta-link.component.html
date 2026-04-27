@@ -1,0 +1,9 @@
+<a
+  [attr.href]="isDisabled ? null : href"
+  class="{{ linkClasses }}"
+  [attr.aria-disabled]="isDisabled"
+  [attr.target]="target"
+  [attr.aria-label]="ariaLabel || undefined"
+>
+  <ng-content></ng-content>
+</a>

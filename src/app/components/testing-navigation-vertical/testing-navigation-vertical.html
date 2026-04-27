@@ -1,0 +1,82 @@
+<section class="section section--white">
+  <div class="section__inner">
+    <h2>Testing Vertical Navigation</h2>
+    <p>The following demos showcase the <code>app-vertical-nav</code> component with various configurations following the Queensland Government Design System vertical navigation patterns.</p>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>1. Basic Links Only</h3>
+      <p>A simple flat list of navigation links without icons, submenus, or headers. Used for straightforward single-level navigation.</p>
+      <app-vertical-nav [items]="basicLinks"></app-vertical-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-vertical-nav [items]="basicLinks"&gt;&lt;/app-vertical-nav&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>2. With Icons</h3>
+      <p>Navigation links with Font Awesome icons alongside labels for visual identification. Icons use the qld__left-nav__item-icon class styling.</p>
+      <app-vertical-nav [items]="withIcons"></app-vertical-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-vertical-nav [items]="withIcons"&gt;&lt;/app-vertical-nav&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>3. Accordion Submenus</h3>
+      <p>Expandable and collapsible nested navigation sections. Click the chevron button to toggle submenu visibility. Uses aria-expanded for accessibility.</p>
+      <app-vertical-nav [items]="accordionSubmenus"></app-vertical-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-vertical-nav [items]="accordionSubmenus"&gt;&lt;/app-vertical-nav&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>4. Active Page State</h3>
+      <p>Navigation with the current page highlighted using a left border accent and purple background. The active item receives aria-current="page" styling.</p>
+      <app-vertical-nav [items]="activePageState"></app-vertical-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-vertical-nav [items]="activePageState"&gt;&lt;/app-vertical-nav&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>5. Multi-Level Nesting</h3>
+      <p>Three-level deep submenu hierarchy demonstrating nested expandable sections. Each level has appropriate indentation and chevron controls.</p>
+      <app-vertical-nav [items]="multiLevelNesting"></app-vertical-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-vertical-nav [items]="multiLevelNesting"&gt;&lt;/app-vertical-nav&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>6. Section Headers</h3>
+      <p>Non-clickable section dividers that group related navigation items. Headers use uppercase styling with letter-spacing for visual separation.</p>
+      <app-vertical-nav [items]="sectionHeaders"></app-vertical-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-vertical-nav [items]="sectionHeaders"&gt;&lt;/app-vertical-nav&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>7. Mixed Active + Submenu</h3>
+      <p>Combination of active state and expandable sections. The Dashboard section is both the current page and expanded to show its children.</p>
+      <app-vertical-nav [items]="mixedActiveSubmenu"></app-vertical-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-vertical-nav [items]="mixedActiveSubmenu"&gt;&lt;/app-vertical-nav&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>8. With Title/Header</h3>
+      <p>Navigation panel with a heading label at the top. Useful for contextual navigation within a specific section of the application.</p>
+      <app-vertical-nav title="Design System" [items]="withTitle"></app-vertical-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-vertical-nav title="Design System"
+  [items]="withTitle"&gt;&lt;/app-vertical-nav&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>9. Compact/Slim Variant</h3>
+      <p>Reduced spacing for dense navigation with fewer items. Ideal for sidebars where space is limited and quick access to key pages is needed.</p>
+      <app-vertical-nav [items]="compactNav"></app-vertical-nav>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-vertical-nav [items]="compactNav"&gt;&lt;/app-vertical-nav&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>10. Dark Theme Variant</h3>
+      <p>Navigation with dark background styling using the KLPT purple theme. Demonstrates how the component adapts to different color schemes via CSS variables.</p>
+      <div style="background: var(--doe-color-heading, #24335a); padding: 1.5rem; border-radius: 8px;">
+        <app-vertical-nav [items]="darkThemeNav"></app-vertical-nav>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;div style="background: var(--doe-color-heading);"&gt;
+  &lt;app-vertical-nav [items]="darkThemeNav"&gt;&lt;/app-vertical-nav&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+  </div>
+</section>

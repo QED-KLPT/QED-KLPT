@@ -1,0 +1,126 @@
+<section class="section section--white">
+  <div class="section__inner">
+    <h2>Testing Select</h2>
+    <p>The following demos showcase the <code>app-select-box</code> component with various states, sizes, and configurations following the Queensland Government Design System.</p>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>1. Default Select</h3>
+      <p>A basic select dropdown with a label, hint text, and predefined options. The default pattern for single-choice form fields.</p>
+      <app-select-box label="Select an option" name="default-select" [options]="defaultOptions" hint="Choose from the list below"></app-select-box>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-select-box label="Select an option"
+  [options]="defaultOptions"
+  hint="Choose from the list below"&gt;&lt;/app-select-box&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>2. Filled Style Select</h3>
+      <p>A select with a filled background style, achieved by wrapping in the <code>qld__form-style-filled</code> container class. Provides a visually distinct input style used site-wide.</p>
+      <div class="qld__form-style-filled">
+        <app-select-box label="Select an option" name="filled-select" [options]="defaultOptions" hint="Filled style variant"></app-select-box>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;div class="qld__form-style-filled"&gt;
+  &lt;app-select-box label="Select an option"
+    [options]="defaultOptions"
+    hint="Filled style variant"&gt;&lt;/app-select-box&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>3. Block Width Select</h3>
+      <p>A select that spans the full width of its container using the <code>block</code> input. Useful for forms where consistent full-width alignment is desired.</p>
+      <app-select-box label="Select an option" name="block-select" [options]="defaultOptions" hint="Full-width select field" [block]="true"></app-select-box>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-select-box label="Select an option"
+  [options]="defaultOptions"
+  block&gt;&lt;/app-select-box&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>4. Half-Width Field</h3>
+      <p>A select constrained to half the container width using the <code>qld__field-width--half</code> class. Ideal for multi-column form layouts where fields sit side by side.</p>
+      <div class="qld__form-group">
+        <label for="half-select" class="qld__label">Select an option</label>
+        <span class="qld__hint-text" id="half-select-hint">Half-width field</span>
+        <select id="half-select" class="qld__select-control qld__field-width--half qld__text-input--block" aria-describedby="half-select-hint">
+          <option value="" disabled selected>Please select</option>
+          @for (option of defaultOptions; track option.value) {
+            <option [value]="option.value">{{ option.label }}</option>
+          }
+        </select>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;select class="qld__select-control qld__field-width--half
+  qld__text-input--block"&gt;
+  &lt;option value="" disabled selected&gt;Please select&lt;/option&gt;
+  &lt;option value="1"&gt;Option one&lt;/option&gt;
+  &lt;option value="2"&gt;Option two&lt;/option&gt;
+  &lt;option value="3"&gt;Option three&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>5. Disabled Select</h3>
+      <p>A disabled select dropdown that cannot be interacted with. Used when the field is temporarily unavailable or has been completed elsewhere.</p>
+      <app-select-box label="Select an option" name="disabled-select" [options]="disabledOptions" hint="This field is no longer available for selection" [disabled]="true"></app-select-box>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-select-box label="Select an option"
+  [options]="disabledOptions"
+  disabled&gt;&lt;/app-select-box&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>6. Required Select</h3>
+      <p>A required select field marked with a red asterisk and <code>aria-required="true"</code>. The user must make a selection before the form can be submitted.</p>
+      <app-select-box label="Select an option" name="required-select" [options]="requiredOptions" hint="This field is required" [required]="true"></app-select-box>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-select-box label="Select an option"
+  [options]="requiredOptions"
+  required&gt;&lt;/app-select-box&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>7. Optional Select</h3>
+      <p>A select field marked as optional with an "(Optional)" tag in the label. Users can skip this selection without error.</p>
+      <app-select-box label="Select an option" name="optional-select" [options]="optionalOptions" hint="This field is not required" [optional]="true"></app-select-box>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-select-box label="Select an option"
+  [options]="optionalOptions"
+  optional&gt;&lt;/app-select-box&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>8. Error State</h3>
+      <p>A select in an error state with a red border and error message. Used when the user has not made a valid selection or submitted an invalid choice.</p>
+      <app-select-box label="Select a category" name="error-select" [options]="errorOptions" hint="Please make a selection" error="Please select a category"></app-select-box>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-select-box label="Select a category"
+  [options]="errorOptions"
+  error="Please select a category"&gt;&lt;/app-select-box&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>9. Success/Valid State</h3>
+      <p>A select in a valid/success state with a green border and success message. Indicates the user has made an acceptable selection.</p>
+      <app-select-box label="Select a region" name="success-select" [options]="successOptions" hint="Region selection confirmed" success="Selection confirmed"></app-select-box>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;app-select-box label="Select a region"
+  [options]="successOptions"
+  success="Selection confirmed"&gt;&lt;/app-select-box&gt;</code></pre>
+    </section>
+
+    <section style="margin-block-end: 2rem;">
+      <h3>10. Complex Form with Multiple Selects</h3>
+      <p>A multi-field form demonstrating multiple select boxes in a realistic assessment context. Shows how selects work together in complex forms with different labels, hints, and options.</p>
+      <div style="display: grid; gap: 1.5rem;">
+        <app-select-box label="Learning domain" name="complex-domain" [options]="complexFormDomainOptions" hint="Select the relevant learning domain"></app-select-box>
+        <app-select-box label="Assessment type" name="complex-assessment" [options]="complexFormAssessmentOptions" hint="Choose the type of assessment"></app-select-box>
+        <app-select-box label="Status" name="complex-status" [options]="complexFormStatusOptions" hint="Current status of this assessment"></app-select-box>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;div style="display: grid; gap: 1.5rem;"&gt;
+  &lt;app-select-box label="Learning domain"
+    [options]="domainOptions"
+    hint="Select the relevant learning domain"&gt;&lt;/app-select-box&gt;
+  &lt;app-select-box label="Assessment type"
+    [options]="assessmentOptions"
+    hint="Choose the type of assessment"&gt;&lt;/app-select-box&gt;
+  &lt;app-select-box label="Status"
+    [options]="statusOptions"
+    hint="Current status of this assessment"&gt;&lt;/app-select-box&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+  </div>
+</section>

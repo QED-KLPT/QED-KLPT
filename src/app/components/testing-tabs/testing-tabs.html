@@ -1,0 +1,46 @@
+<section class="section section--white">
+  <div class="section__inner">
+    <h2>Testing Tabs</h2>
+    <p>The following demos showcase the Queensland Government Design System tab component with various configurations and content types.</p>
+
+    @for (title of titles; track title; let i = $index) {
+      <section style="margin-block-end: 2rem;">
+        <h3>{{ i + 1 }}. {{ title }}</h3>
+        <p>{{ descriptions[i] }}</p>
+
+        <!-- Tab Demo -->
+        <div class="qld__tab-container" style="margin-block: 1rem;">
+          <div class="qld__tabs" role="tablist">
+            @for (label of getTabLabels(i); track label; let j = $index) {
+              <button
+                type="button"
+                role="tab"
+                [class]="getTabButtonClasses(i, j)"
+                [attr.aria-selected]="i === i && j === activeTabs[i]"
+                [attr.tabindex]="j === activeTabs[i] ? 0 : -1"
+                (click)="selectTab(i, j)"
+              >
+                {{ label }}
+              </button>
+            }
+          </div>
+
+          @for (content of getTabContentHtml(i); track content; let j = $index) {
+            <div
+              [class]="getTabContentClasses(i, j)"
+              role="tabpanel"
+              [attr.aria-labelledby]="'tab-' + i + '-' + j + '-button'"
+              [id]="'tab-' + i + '-' + j"
+              tabindex="0"
+              [innerHTML]="content"
+            ></div>
+          }
+        </div>
+
+        <!-- Code Snippet -->
+        <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>{{ codeExamples[i] }}</code></pre>
+      </section>
+    }
+
+  </div>
+</section>

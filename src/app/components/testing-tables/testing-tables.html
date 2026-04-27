@@ -1,0 +1,439 @@
+<section class="section section--white">
+  <div class="section__inner">
+    <h2>Testing Tables</h2>
+    <p>The following demos showcase the Queensland Government Design System table component with various configurations and utility classes.</p>
+
+    <!-- 1. Basic Table -->
+    <section style="margin-block-end: 2rem;">
+      <h3>1. Basic Table</h3>
+      <p>A simple table with the base <code>qld__table</code> class. The most fundamental table structure with caption, header, body, and footer.</p>
+      <table class="qld__table">
+        <caption>Student Assessment Overview<span class="qld__caption">Table is ordered by child name</span></caption>
+        <thead>
+          <tr>
+            <th scope="col">Child Name</th>
+            <th scope="col">Subject Area</th>
+            <th scope="col">Progress Level</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (row of basicRows; track row.name) {
+            <tr>
+              <td>{{ row.name }}</td>
+              <td>{{ row.subject }}</td>
+              <td>{{ row.status }}</td>
+            </tr>
+          }
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>Total</td>
+            <td>5 children assessed</td>
+            <td>—</td>
+          </tr>
+        </tfoot>
+      </table>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;table class="qld__table"&gt;
+  &lt;caption&gt;Student Assessment Overview
+    &lt;span class="qld__caption"&gt;Table is ordered by child name&lt;/span&gt;
+  &lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th scope="col"&gt;Child Name&lt;/th&gt;
+      &lt;th scope="col"&gt;Subject Area&lt;/th&gt;
+      &lt;th scope="col"&gt;Progress Level&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;&lt;td&gt;...&lt;/td&gt;&lt;td&gt;...&lt;/td&gt;&lt;td&gt;...&lt;/td&gt;&lt;/tr&gt;
+  &lt;/tbody&gt;
+  &lt;tfoot&gt;&lt;tr&gt;&lt;td&gt;...&lt;/td&gt;&lt;td&gt;...&lt;/td&gt;&lt;td&gt;...&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;</code></pre>
+    </section>
+
+    <!-- 2. Contained Table -->
+    <section style="margin-block-end: 2rem;">
+      <h3>2. Contained Table</h3>
+      <p>A table wrapped in <code>qld__table--contained</code> for a bordered, self-contained appearance. Useful when the table needs to stand out as a distinct information block.</p>
+      <div class="qld__table--contained">
+        <table class="qld__table">
+          <caption>Student Assessment Overview<span class="qld__caption">Table is ordered by child name</span></caption>
+          <thead>
+            <tr>
+              <th scope="col">Child Name</th>
+              <th scope="col">Subject Area</th>
+              <th scope="col">Progress Level</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of containedRows; track row.name) {
+              <tr>
+                <td>{{ row.name }}</td>
+                <td>{{ row.subject }}</td>
+                <td>{{ row.status }}</td>
+              </tr>
+            }
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>Total</td>
+              <td>5 children assessed</td>
+              <td>—</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;div class="qld__table--contained"&gt;
+  &lt;table class="qld__table"&gt;
+    ...
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- 3. Striped Table -->
+    <section style="margin-block-end: 2rem;">
+      <h3>3. Striped/Banded Table</h3>
+      <p>For tables with more rows, use the striped alternative. The <code>qld__table--striped</code> class applies alternating row colors to help the eye track across rows, especially helpful for readers with reading difficulties.</p>
+      <div class="qld__table--contained">
+        <table class="qld__table qld__table--striped">
+          <caption>Progression Tracking<span class="qld__caption">Table is ordered by child name</span></caption>
+          <thead>
+            <tr>
+              <th scope="col">Child Name</th>
+              <th scope="col">Skill Area</th>
+              <th scope="col">Progress Level</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of stripedRows; track row.childName) {
+              <tr>
+                <td>{{ row.childName }}</td>
+                <td>{{ row.skillArea }}</td>
+                <td>{{ row.progressLevel }}</td>
+              </tr>
+            }
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>7 children tracked</td>
+              <td>Across multiple skill areas</td>
+              <td>—</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;div class="qld__table--contained"&gt;
+  &lt;table class="qld__table qld__table--striped"&gt;
+    ...
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- 4. Numeric Data Table -->
+    <section style="margin-block-end: 2rem;">
+      <h3>4. Numeric Data Table</h3>
+      <p>Use the <code>qld__table__col-N-num</code> utility class to right-align and apply tabular numbers to numeric columns. Replace N with the column number (1-based).</p>
+      <div class="qld__table--contained">
+        <table class="qld__table qld__table__col-2-num qld__table__col-3-num qld__table__col-4-num">
+          <caption>Monthly Programme Statistics<span class="qld__caption">Table is ordered by month</span></caption>
+          <thead>
+            <tr>
+              <th scope="col">Month</th>
+              <th scope="col">Enrollments</th>
+              <th scope="col">Attendance</th>
+              <th scope="col">Completion Rate (%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of numericRows; track row.month) {
+              <tr>
+                <td>{{ row.month }}</td>
+                <td>{{ row.enrollments }}</td>
+                <td>{{ row.attendance }}</td>
+                <td>{{ row.completionRate }}</td>
+              </tr>
+            }
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>6 months</td>
+              <td>964 total</td>
+              <td>860 total</td>
+              <td>92.5% avg</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;div class="qld__table--contained"&gt;
+  &lt;table class="qld__table qld__table__col-2-num qld__table__col-3-num qld__table__col-4-num"&gt;
+    ...
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- 5. Custom Width Headers -->
+    <section style="margin-block-end: 2rem;">
+      <h3>5. Custom Header Widths</h3>
+      <p>Apply <code>qld__table__header--width-N</code> to individual <code>&lt;th&gt;</code> elements to set custom column widths. Available values: 10, 15, 20, 25, 33, 40, 50, 75 (percentages). Wrap in <code>qld__table__wrapper</code> with a grid class for horizontal scrolling on small screens.</p>
+      <div class="qld__table__wrapper col-xs-10">
+        <table class="qld__table">
+          <caption>Student Assessment Overview<span class="qld__caption">Table is ordered by child name</span></caption>
+          <thead>
+            <tr>
+              <th scope="col" class="qld__table__header--width-25">Child Name</th>
+              <th scope="col" class="qld__table__header--width-50">Subject Area</th>
+              <th scope="col" class="qld__table__header--width-25">Progress Level</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of customWidthRows; track row.name) {
+              <tr>
+                <td>{{ row.name }}</td>
+                <td>{{ row.subject }}</td>
+                <td>{{ row.status }}</td>
+              </tr>
+            }
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>Total</td>
+              <td>5 children assessed</td>
+              <td>—</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;div class="qld__table__wrapper col-xs-10"&gt;
+  &lt;table class="qld__table"&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th scope="col" class="qld__table__header--width-25"&gt;Child Name&lt;/th&gt;
+        &lt;th scope="col" class="qld__table__header--width-50"&gt;Subject Area&lt;/th&gt;
+        &lt;th scope="col" class="qld__table__header--width-25"&gt;Progress Level&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    ...
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- 6. Multilevel Headings -->
+    <section style="margin-block-end: 2rem;">
+      <h3>6. Multilevel Headings</h3>
+      <p>Tables with multiple header rows use <code>rowspan</code> and <code>colspan</code> to create grouped column headers. Use <code>qld__table__cell-left-border</code> to add vertical dividers between grouped columns.</p>
+      <div class="qld__table--contained">
+        <table class="qld__table qld__table--striped qld__table__col-2-left-border qld__table__col-3-left-border">
+          <caption>Assessment Results by Domain<span class="qld__caption">Table is ordered by domain, then child name</span></caption>
+          <thead>
+            <tr>
+              <th rowspan="2" scope="col">Child Name</th>
+              <th colspan="2" class="qld__table__cell-left-border qld__table__cell--middle">Assessment Results</th>
+            </tr>
+            <tr>
+              <th scope="col" class="qld__table__cell-left-border">Domain</th>
+              <th scope="col" class="qld__table__cell-left-border qld__table__cell--numeric">Level</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of multilevelRows; track row.childName) {
+              <tr>
+                <td>{{ row.category ? row.category : '' }}</td>
+                <td>{{ row.childName }}</td>
+                <td>{{ row.score }}</td>
+              </tr>
+            }
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="2">6 children assessed</td>
+              <td>—</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;div class="qld__table--contained"&gt;
+  &lt;table class="qld__table qld__table--striped
+    qld__table__col-2-left-border
+    qld__table__col-3-left-border"&gt;
+    &lt;caption&gt;Assessment Results by Domain&lt;/caption&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th rowspan="2" scope="col"&gt;Child Name&lt;/th&gt;
+        &lt;th colspan="2" class="qld__table__cell-left-border qld__table__cell--middle"&gt;Assessment Results&lt;/th&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;th scope="col" class="qld__table__cell-left-border"&gt;Domain&lt;/th&gt;
+        &lt;th scope="col" class="qld__table__cell-left-border qld__table__cell--numeric"&gt;Level&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    ...
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- 7. Table with Caption and Footer -->
+    <section style="margin-block-end: 2rem;">
+      <h3>7. Table with Caption and Footer</h3>
+      <p>A table with a descriptive caption including attribution via the <code>qld__caption</code> span, and a footer row with summary information.</p>
+      <div class="qld__table--contained">
+        <table class="qld__table">
+          <caption>Assessment Records<span class="qld__caption">Last updated: April 2025 — Source: KLPT Assessment System</span></caption>
+          <thead>
+            <tr>
+              <th scope="col">Child Name</th>
+              <th scope="col">Assessment Date</th>
+              <th scope="col">Assessor</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of captionRows; track row.name) {
+              <tr>
+                <td>{{ row.name }}</td>
+                <td>{{ row.date }}</td>
+                <td>{{ row.assessor }}</td>
+              </tr>
+            }
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="3">4 assessments completed in March 2025</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;div class="qld__table--contained"&gt;
+  &lt;table class="qld__table"&gt;
+    &lt;caption&gt;Assessment Records
+      &lt;span class="qld__caption"&gt;Last updated: April 2025&lt;/span&gt;
+    &lt;/caption&gt;
+    ...
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- 8. Scrollable Table Wrapper -->
+    <section style="margin-block-end: 2rem;">
+      <h3>8. Scrollable Table Wrapper</h3>
+      <p>Wrap a table in <code>qld__table__wrapper</code> to enable horizontal scrolling on smaller screens. Combine with a grid width class like <code>col-xs-12</code> for responsive behavior.</p>
+      <div class="qld__table__wrapper col-xs-12">
+        <table class="qld__table qld__table--striped">
+          <caption>Skill Area Breakdown<span class="qld__caption">Table is ordered by child name</span></caption>
+          <thead>
+            <tr>
+              <th scope="col">Child Name</th>
+              <th scope="col">Phonological Awareness</th>
+              <th scope="col">Vocabulary</th>
+              <th scope="col">Comprehension</th>
+              <th scope="col">Writing</th>
+              <th scope="col">Oral Language</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of scrollRows; track row.name) {
+              <tr>
+                <td>{{ row.name }}</td>
+                <td>{{ row.phonological }}</td>
+                <td>{{ row.vocabulary }}</td>
+                <td>{{ row.comprehension }}</td>
+                <td>{{ row.writing }}</td>
+                <td>{{ row.oralLanguage }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;div class="qld__table__wrapper col-xs-12"&gt;
+  &lt;table class="qld__table qld__table--striped"&gt;
+    ...
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- 9. Column Borders -->
+    <section style="margin-block-end: 2rem;">
+      <h3>9. Column Borders</h3>
+      <p>Use <code>qld__table__col-N-left-border</code> and <code>qld__table__col-N-right-border</code> to add vertical dividers between columns. Replace N with the column number (1-based). Useful for complex tables where visual separation aids readability.</p>
+      <div class="qld__table--contained">
+        <table class="qld__table qld__table__col-2-left-border qld__table__col-3-left-border qld__table__col-4-left-border">
+          <caption>Progression Details<span class="qld__caption">Table is ordered by child name</span></caption>
+          <thead>
+            <tr>
+              <th scope="col">Child Name</th>
+              <th scope="col">Domain</th>
+              <th scope="col">Strand</th>
+              <th scope="col">Level</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of borderedRows; track row.name) {
+              <tr>
+                <td>{{ row.name }}</td>
+                <td>{{ row.domain }}</td>
+                <td>{{ row.strand }}</td>
+                <td>{{ row.level }}</td>
+              </tr>
+            }
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="4">5 children with detailed progression data</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;div class="qld__table--contained"&gt;
+  &lt;table class="qld__table
+    qld__table__col-2-left-border
+    qld__table__col-3-left-border
+    qld__table__col-4-left-border"&gt;
+    ...
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- 10. Dense Table -->
+    <section style="margin-block-end: 2rem;">
+      <h3>10. Dense Table</h3>
+      <p>The <code>qld__table__header</code> class reduces row height and vertical spacing for dense, numerical data. Pairs well with striped and scrollable variants but isn't suitable for text-heavy content.</p>
+      <div class="qld__table--contained">
+        <table class="qld__table qld__table__header qld__table--striped qld__table__col-2-num qld__table__col-3-num qld__table__col-4-num">
+          <caption>Weekly Observation Log<span class="qld__caption">Table is ordered by date</span></caption>
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Observations</th>
+              <th scope="col">Interactions</th>
+              <th scope="col">Activities</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of numericRows; track row.month) {
+              <tr>
+                <td>{{ row.month }}</td>
+                <td>{{ row.enrollments }}</td>
+                <td>{{ row.attendance }}</td>
+                <td>{{ row.completionRate }}</td>
+              </tr>
+            }
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>6 weeks</td>
+              <td>964 total</td>
+              <td>860 total</td>
+              <td>92.5% avg</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <pre style="margin-block-start: 0.5rem; background: var(--klpt-cream); padding: 0.75rem; border-radius: 6px; overflow-x: auto;"><code>&lt;div class="qld__table--contained"&gt;
+  &lt;table class="qld__table qld__table__header
+    qld__table--striped
+    qld__table__col-2-num qld__table__col-3-num qld__table__col-4-num"&gt;
+    ...
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+  </div>
+</section>

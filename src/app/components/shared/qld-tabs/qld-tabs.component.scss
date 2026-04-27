@@ -1,0 +1,93 @@
+:host {
+  display: block;
+}
+
+.qld__tab-container {
+  border-bottom: 3px solid var(--doe-border, #d9dee5);
+}
+
+.qld__tab-container__dark {
+  border-bottom-color: rgba(255, 255, 255, 0.72);
+}
+
+.qld__tabs {
+  display: flex;
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.qld__tab-button {
+  background: transparent;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  cursor: pointer;
+  font-family: var(--font-body, "Open Sans", sans-serif);
+  font-size: 1rem;
+  color: var(--doe-blue-600, #005eb8);
+  position: relative;
+  white-space: nowrap;
+  transition: color 160ms ease, background-color 160ms ease;
+  border-radius: 4px 4px 0 0;
+
+  &:hover {
+    background: var(--klpt-purple-soft, #efe7f5);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--klpt-gold, #f6b71a);
+    outline-offset: -2px;
+  }
+
+  &.active {
+    color: var(--doe-color-heading, #24335a);
+    font-weight: 600;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--doe-blue-600, #005eb8);
+    }
+  }
+
+  .qld__icon {
+    margin-inline-end: 0.5rem;
+  }
+}
+
+.qld__tab-content {
+  display: none;
+  padding: 1.5rem 0;
+
+  &.active {
+    display: block;
+  }
+}
+
+.qld__tab-container__dark .qld__tab-button {
+  color: rgba(255, 255, 255, 0.7);
+
+  &:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  &.active {
+    color: #fff;
+
+    &::after {
+      background: #fff;
+    }
+  }
+}
