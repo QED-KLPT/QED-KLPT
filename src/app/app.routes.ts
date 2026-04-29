@@ -191,7 +191,7 @@ export const routes: Routes = [
     component: Area,
     title: 'Area',
   },
-  { path: 'klpt-tool', component: KlptTool, title: 'KLPT tool' },
+  { path: 'klpt-tool', component: KlptTool, title: 'KLPT' },
   { path: 'practice-supports', component: PracticeSupports, title: 'Practice supports' },
   { path: 'about', component: About, title: 'About' },
   { path: 'help', component: Help, title: 'Help' },
