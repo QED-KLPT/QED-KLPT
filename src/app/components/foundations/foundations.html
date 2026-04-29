@@ -8,3 +8,20 @@
     </p>
   </div>
 </section>
+<section class="section section--white foundation-nav">
+  <div class="section__inner">
+    <div class="foundation-nav__grid">
+      @for (foundation of foundations; track foundation.title) {
+        <app-domain-card
+          [title]="foundation.title"
+          [description]="foundation.description"
+          [url]="foundation.url"
+          [background]="foundation.background"
+          [hoverBorderColor]="foundation.hoverBorderColor"
+          [imageSrc]="foundation.imageSrc"
+          [imageAlt]="foundation.imageAlt"
+        />
+      }
+    </div>
+  </div>
+</section>
