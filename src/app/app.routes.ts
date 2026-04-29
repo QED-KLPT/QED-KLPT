@@ -6,6 +6,7 @@ import { Capacity } from './components/mathematics-and-numeracy/capacity/capacit
 import { CognitiveFlexibility } from './components/executive-function/cognitive-flexibility/cognitive-flexibility';
 import { ConceptsOfTime } from './components/mathematics-and-numeracy/concepts-of-time/concepts-of-time';
 import { Contact } from './components/contact/contact';
+import { Help } from './components/help/help';
 import { Distance } from './components/mathematics-and-numeracy/distance/distance';
 import { EnvironmentAwareness } from './components/physicality/environment-awareness/environment-awareness';
 import { ExecutiveFunction } from './components/executive-function/executive-function';
@@ -193,6 +194,7 @@ export const routes: Routes = [
   { path: 'klpt-tool', component: KlptTool, title: 'KLPT tool' },
   { path: 'practice-supports', component: PracticeSupports, title: 'Practice supports' },
   { path: 'about', component: About, title: 'About' },
+  { path: 'help', component: Help, title: 'Help' },
   { path: 'contact', component: Contact, title: 'Contact' },
   { path: 'testing-alerts', component: TestingAlerts, title: 'Testing Alerts' },
   { path: 'testing-accordians', component: TestingAccordians, title: 'Testing Accordions' },

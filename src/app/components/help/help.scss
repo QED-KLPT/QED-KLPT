@@ -1,0 +1,41 @@
+:host {
+  display: block;
+}
+
+.help-hero__lead {
+  max-width: 54rem;
+}
+
+.help-content {
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.help-faq-list {
+  max-width: 64rem;
+}
+
+.faq-item {
+  padding-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+
+  &:not(:last-child) {
+    border-bottom: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+  }
+
+  h2 {
+    margin-bottom: 0.85rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.faq-list {
+  padding-left: 1.25rem;
+  margin-bottom: 0.85rem;
+
+  li {
+    margin-bottom: 0.35rem;
+  }
+}
