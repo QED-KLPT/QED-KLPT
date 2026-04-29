@@ -7,6 +7,7 @@ import { Footer } from './_layout/footer/footer';
 import { Header } from './_layout/header/header';
 
 const DEPLOYMENT_SIGNATURE_KEY = 'qedKlptDeploymentSignature';
+const HASH_MISMATCH_RECHECK_DELAY_MS = 2 * 60 * 1000;
 
 type AngularServiceWorkerManifest = {
   timestamp?: number;
@@ -35,7 +36,9 @@ export class App {
     'An update was detected, but the hosting service returned mixed files. Please wait a few minutes and try again.';
 
   private lastPromptedVersionHash: string | null = null;
+  private pendingDeploymentSignature: string | null = null;
   private updateCheckInFlight = false;
+  private updateRetryTimer: ReturnType<typeof window.setTimeout> | null = null;
 
   constructor() {
     console.info('[SW] App bootstrapped.');
@@ -64,6 +67,7 @@ export class App {
         }
 
         this.lastPromptedVersionHash = event.latestVersion.hash;
+        this.rememberPendingDeploymentSignature();
         console.info('[SW] New version is ready. Showing update notice.');
         this.showUpdateNotice = true;
       });
@@ -77,8 +81,15 @@ export class App {
         takeUntilDestroyed(this.destroyRef),
       )
       .subscribe((event) => {
-        console.error('Site update installation failed.', event.error);
         this.showUpdateNotice = false;
+
+        if (this.isLikelyDeploymentPropagationError(event.error)) {
+          console.warn('Site update is not fully available yet. Will retry shortly.', event.error);
+          this.scheduleUpdateRecheck();
+          return;
+        }
+
+        console.error('Site update installation failed.', event.error);
         this.showUpdateFailureNotice = true;
       });
 
@@ -144,6 +155,7 @@ export class App {
         return;
       }
 
+      this.pendingDeploymentSignature = remoteSignature;
       console.info('[SW] Checking for update...');
       this.showUpdateFailureNotice = false;
       const hasUpdate = await this.swUpdate.checkForUpdate();
@@ -153,7 +165,12 @@ export class App {
         this.rememberDeploymentSignature(remoteSignature);
       }
     } catch (error) {
-      console.error('Unable to check for site updates.', error);
+      if (error instanceof Error && this.isLikelyDeploymentPropagationError(error.message)) {
+        console.warn('Site update is still propagating. Will retry shortly.', error.message);
+        this.scheduleUpdateRecheck();
+      } else {
+        console.error('Unable to check for site updates.', error);
+      }
     } finally {
       this.updateCheckInFlight = false;
     }
@@ -178,7 +195,7 @@ export class App {
     const appGroup = manifest.assetGroups?.find((group) => group.name === 'app');
     const appUrls = appGroup?.urls ?? [];
     const appResourceSignatures = await Promise.all(
-      appUrls.map((appUrl) => this.readResourceSignature(appUrl, manifest.hashTable?.[appUrl])),
+      appUrls.map((appUrl) => this.readVerifiedResourceSignature(appUrl, manifest.hashTable?.[appUrl])),
     );
 
     return [
@@ -187,15 +204,16 @@ export class App {
     ].join('::');
   }
 
-  private async readResourceSignature(appUrl: string, manifestHash = ''): Promise<string> {
+  private async readVerifiedResourceSignature(appUrl: string, manifestHash = ''): Promise<string> {
     const resourceUrl = new URL(appUrl, window.location.origin);
     resourceUrl.searchParams.set('update-check', Date.now().toString());
+    resourceUrl.searchParams.set('ngsw-bypass', 'true');
 
     const response = await fetch(resourceUrl, {
-      method: 'HEAD',
       cache: 'no-store',
       headers: {
         'Cache-Control': 'no-cache',
+        'ngsw-bypass': 'true',
       },
     });
 
@@ -203,11 +221,27 @@ export class App {
       throw new Error(`Unable to verify ${appUrl}: ${response.status}`);
     }
 
+    const contentHash = await this.sha1Hex(await response.arrayBuffer());
+
+    if (manifestHash && contentHash !== manifestHash) {
+      throw new Error(
+        `Deployment is still propagating: ${appUrl} has hash ${contentHash}, expected ${manifestHash}`,
+      );
+    }
+
     const etag = response.headers.get('etag') ?? '';
     const modified = response.headers.get('last-modified') ?? '';
     const length = response.headers.get('content-length') ?? '';
 
-    return `${appUrl}|${manifestHash}|${etag}|${modified}|${length}`;
+    return `${appUrl}|${contentHash}|${etag}|${modified}|${length}`;
+  }
+
+  private async sha1Hex(content: ArrayBuffer): Promise<string> {
+    const digest = await window.crypto.subtle.digest('SHA-1', content);
+
+    return Array.from(new Uint8Array(digest))
+      .map((byte) => byte.toString(16).padStart(2, '0'))
+      .join('');
   }
 
   private hasDeploymentSignatureChanged(remoteSignature: string): boolean {
@@ -223,5 +257,29 @@ export class App {
 
   private rememberDeploymentSignature(remoteSignature: string): void {
     window.localStorage.setItem(DEPLOYMENT_SIGNATURE_KEY, remoteSignature);
+  }
+
+  private rememberPendingDeploymentSignature(): void {
+    if (!this.pendingDeploymentSignature) {
+      return;
+    }
+
+    this.rememberDeploymentSignature(this.pendingDeploymentSignature);
+    this.pendingDeploymentSignature = null;
+  }
+
+  private isLikelyDeploymentPropagationError(error: string): boolean {
+    return error.includes('Hash mismatch') || error.includes('Deployment is still propagating');
+  }
+
+  private scheduleUpdateRecheck(): void {
+    if (this.updateRetryTimer) {
+      return;
+    }
+
+    this.updateRetryTimer = window.setTimeout(() => {
+      this.updateRetryTimer = null;
+      void this.checkForSiteUpdate();
+    }, HASH_MISMATCH_RECHECK_DELAY_MS);
   }
 }
