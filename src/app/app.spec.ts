@@ -1,13 +1,25 @@
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
+import { SwUpdate } from '@angular/service-worker';
+import { EMPTY } from 'rxjs';
 import { App } from './app';
 import { routes } from './app.routes';
 
 describe('App', () => {
+  const swUpdateStub = {
+    isEnabled: false,
+    versionUpdates: EMPTY,
+    unrecoverable: EMPTY,
+    checkForUpdate: () => Promise.resolve(false),
+  };
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [App],
-      providers: [provideRouter(routes)],
+      providers: [
+        provideRouter(routes),
+        { provide: SwUpdate, useValue: swUpdateStub },
+      ],
     }).compileComponents();
   });
 
