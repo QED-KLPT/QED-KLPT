@@ -1,10 +1,27 @@
 <section class="section section--cream page-placeholder">
   <div class="section__inner">
-    <p class="eyebrow">Learning domains</p>
-    <h1>Learning domains</h1>
+    <p class="eyebrow">Learning areas</p>
+    <h1>Supporting holistic development</h1>
     <p>
-      Browse the KLPT learning domains and explore how each area supports
-      holistic kindergarten learning.
+      Explore pathways for observing growth, documenting progress, and supporting each child as they grow across different learning domains.
     </p>
+  </div>
+</section>
+
+<section class="section section--white domain-nav">
+  <div class="section__inner">
+    <div class="domain-nav__grid">
+      @for (domain of domains; track domain.title) {
+        <app-domain-card
+          [title]="domain.title"
+          [description]="domain.description"
+          [url]="domain.url"
+          [background]="domain.background"
+          [hoverBorderColor]="domain.hoverBorderColor"
+          [imageSrc]="domain.imageSrc"
+          [imageAlt]="domain.imageAlt"
+        />
+      }
+    </div>
   </div>
 </section>
