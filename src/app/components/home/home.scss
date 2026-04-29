@@ -68,8 +68,15 @@
 }
 
 .home-video {
+  display: flex;
+  justify-content: center;
   max-width: 56rem;
+  margin-inline: auto;
   margin-block-start: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.home-video app-youtube-player {
+  width: 100%;
 }
 
 .foundations {
