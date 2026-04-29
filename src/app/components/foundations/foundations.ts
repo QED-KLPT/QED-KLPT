@@ -22,7 +22,7 @@ type FoundationNavCard = {
 export class Foundations {
   protected readonly foundations: FoundationNavCard[] = [
     {
-      title: 'Quality observations',
+      title: 'Conducting and documenting quality observations',
       description: 'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       url: '/foundations/quality-observations',
       imageAlt: 'Quality observations icon',
@@ -31,7 +31,7 @@ export class Foundations {
       hoverBorderColor: '#efb777',
     },
     {
-      title: 'Analysing data',
+      title: 'Analysing and interpreting observational data',
       description: 'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       url: '/foundations/analysing-data',
       imageAlt: 'Analysing data icon',
