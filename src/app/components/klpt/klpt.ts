@@ -3,10 +3,10 @@ import { RouterLink } from '@angular/router';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
 
 @Component({
-  selector: 'app-klpt-tool',
+  selector: 'app-klpt',
   imports: [RouterLink, YoutubePlayerModule],
-  templateUrl: './klpt-tool.html',
-  styleUrl: './klpt-tool.scss',
+  templateUrl: './klpt.html',
+  styleUrl: './klpt.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class KlptTool {}
+export class Klpt {}

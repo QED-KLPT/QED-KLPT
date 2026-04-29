@@ -15,21 +15,21 @@ export class TestingNavigation {
   horizontalLightItems: NavItem[] = [
     { label: 'Home', href: '/' },
     { label: 'Learning domains', href: '/learning-domains' },
-    { label: 'KLPT', href: '/klpt-tool' },
+    { label: 'KLPT', href: '/klpt' },
     { label: 'Practice supports', href: '/practice-supports' },
   ];
 
   horizontalDarkItems: NavItem[] = [
     { label: 'Home', href: '/' },
     { label: 'Learning domains', href: '/learning-domains' },
-    { label: 'KLPT', href: '/klpt-tool' },
+    { label: 'KLPT', href: '/klpt' },
     { label: 'Practice supports', href: '/practice-supports' },
   ];
 
   horizontalIconItems: NavItem[] = [
     { label: 'Home', href: '/', icon: 'fa-light fa-house' },
     { label: 'Learning domains', href: '/learning-domains', icon: 'fa-light fa-book-open' },
-    { label: 'KLPT', href: '/klpt-tool', icon: 'fa-light fa-tools' },
+    { label: 'KLPT', href: '/klpt', icon: 'fa-light fa-tools' },
     { label: 'Practice supports', href: '/practice-supports', icon: 'fa-light fa-hands-helping' },
   ];
 
@@ -39,7 +39,7 @@ export class TestingNavigation {
       { label: 'Analysing data', href: '/foundations/analysing-data' },
     ]},
     { label: 'Learning domains', href: '/learning-domains' },
-    { label: 'KLPT', href: '/klpt-tool' },
+    { label: 'KLPT', href: '/klpt' },
   ];
 
   horizontalMegaMenuItems: NavItem[] = [

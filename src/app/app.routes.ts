@@ -15,7 +15,7 @@ import { Foundations } from './components/foundations/foundations';
 import { GrossMotor } from './components/physicality/gross-motor/gross-motor';
 import { Home } from './components/home/home';
 import { InhibitoryControl } from './components/executive-function/inhibitory-control/inhibitory-control';
-import { KlptTool } from './components/klpt-tool/klpt-tool';
+import { Klpt } from './components/klpt/klpt';
 import { LanguageAndLiteracy } from './components/language-and-literacy/language-and-literacy';
 import { LearningDomains } from './components/learning-domains/learning-domains';
 import { Length } from './components/mathematics-and-numeracy/length/length';
@@ -191,7 +191,7 @@ export const routes: Routes = [
     component: Area,
     title: 'Area',
   },
-  { path: 'klpt-tool', component: KlptTool, title: 'KLPT' },
+  { path: 'klpt', component: Klpt, title: 'KLPT' },
   { path: 'practice-supports', component: PracticeSupports, title: 'Practice supports' },
   { path: 'about', component: About, title: 'About' },
   { path: 'help', component: Help, title: 'Help' },
