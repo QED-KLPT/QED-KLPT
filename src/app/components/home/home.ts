@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { DomainCard } from '../shared/domain-card/domain-card';
+import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
 
 type DomainSummary = {
   title: string;
@@ -14,7 +15,7 @@ type DomainSummary = {
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, DomainCard],
+  imports: [RouterLink, YoutubePlayerModule],
   templateUrl: './home.html',
   styleUrl: './home.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
