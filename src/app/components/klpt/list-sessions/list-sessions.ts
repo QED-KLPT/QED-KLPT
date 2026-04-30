@@ -14,6 +14,8 @@ export class ListSessions implements OnInit, OnDestroy {
   private readonly sessionManagement = inject(SessionManagementService);
 
   public currentSession!: SessionModel;
+  protected isStorageModalOpen = false;
+  protected storageSnapshot = '(empty)';
 
   ngOnInit(): void {
     this.sessionManagement.deleteAllExpiredSessions();
@@ -23,5 +25,14 @@ export class ListSessions implements OnInit, OnDestroy {
     if (this.currentSession) {
       this.sessionManagement.persistSession(this.currentSession);
     }
+  }
+
+  protected openStorageModal(): void {
+    this.storageSnapshot = this.sessionManagement.getStorageSnapshot();
+    this.isStorageModalOpen = true;
+  }
+
+  protected closeStorageModal(): void {
+    this.isStorageModalOpen = false;
   }
 }

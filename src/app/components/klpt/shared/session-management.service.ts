@@ -63,6 +63,20 @@ export class SessionManagementService {
     return this.getStoredSessions();
   }
 
+  getStorageSnapshot(): string {
+    const storedSessions = localStorage.getItem(STORAGE_KEY);
+
+    if (!storedSessions) {
+      return '(empty)';
+    }
+
+    try {
+      return JSON.stringify(JSON.parse(storedSessions), null, 2);
+    } catch {
+      return storedSessions;
+    }
+  }
+
   deleteAllExpiredSessions(): void {
     const now = new Date();
     this.setStoredSessions(
