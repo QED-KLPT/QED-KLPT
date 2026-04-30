@@ -5,8 +5,8 @@
     <p>Select the domain, subdomain and elements on the same page.</p>
 
     <div class="klpt-step__actions">
-      <a class="button button--secondary" [routerLink]="['../create-session', currentSession.id]">Back</a>
-      <a class="button button--primary" [routerLink]="['../select-behaviours', currentSession.id]">Next</a>
+      <a class="button button--secondary" routerLink="/klpt/create-session">Back</a>
+      <a class="button button--primary" [routerLink]="['/klpt/select-behaviours', currentSession.id]">Next</a>
     </div>
   </div>
 </section>
