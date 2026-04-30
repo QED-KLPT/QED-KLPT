@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { DomainCard } from '../shared/domain-card/domain-card';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
 
@@ -14,7 +15,7 @@ type DesignCard = {
 
 @Component({
   selector: 'app-executive-function',
-  imports: [DomainCard, YoutubePlayerModule],
+  imports: [DomainCard, RouterLink, YoutubePlayerModule],
   templateUrl: './executive-function.html',
   styleUrl: './executive-function.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

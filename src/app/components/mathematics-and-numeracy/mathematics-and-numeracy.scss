@@ -95,6 +95,15 @@
   outline-offset: 3px;
 }
 
+.domain-page-cta {
+  text-align: center;
+  padding-block: clamp(2rem, 4vw, 3.5rem);
+}
+
+.domain-page-cta .button {
+  min-width: 160px;
+}
+
 @media (max-width: 64rem) {
   .domain-hero__layout {
     grid-template-columns: 1fr;

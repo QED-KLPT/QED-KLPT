@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { DomainCard } from '../shared/domain-card/domain-card';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
 
@@ -14,7 +15,7 @@ type DesignCard = {
 
 @Component({
   selector: 'app-social-and-emotional-learning',
-  imports: [DomainCard, YoutubePlayerModule],
+  imports: [DomainCard, RouterLink, YoutubePlayerModule],
   templateUrl: './social-and-emotional-learning.html',
   styleUrl: './social-and-emotional-learning.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

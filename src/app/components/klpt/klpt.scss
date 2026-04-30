@@ -33,32 +33,3 @@
     grid-template-columns: 1fr;
   }
 }
-
-.klpt-intro {
-  padding-bottom: clamp(3rem, 6vw, 5rem);
-
-  &__actions {
-    margin-top: 2rem;
-  }
-}
-
-.klpt-video {
-  padding-bottom: clamp(3rem, 6vw, 5rem);
-
-  .videos-row {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
-
-    app-youtube-player {
-      flex: 1 1 45%;
-      min-width: 320px;
-      width: 100%;
-
-      @media (max-width: 768px) {
-        flex: 1 1 100%;
-      }
-    }
-  }
-}
