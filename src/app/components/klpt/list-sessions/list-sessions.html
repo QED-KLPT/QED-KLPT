@@ -8,5 +8,29 @@
       <a class="button button--secondary" routerLink="/klpt">Back</a>
       <a class="button button--primary" routerLink="/klpt/create-session">Next</a>
     </div>
+
+    <button type="button" class="storage-debug-button" (click)="openStorageModal()">
+      View state
+    </button>
   </div>
 </section>
+
+@if (isStorageModalOpen) {
+  <div class="storage-modal" role="presentation" (click)="closeStorageModal()">
+    <section
+      class="storage-modal__dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="storage-modal-title"
+      (click)="$event.stopPropagation()"
+    >
+      <div class="storage-modal__header">
+        <h3 id="storage-modal-title">KLPT state</h3>
+        <button type="button" class="storage-modal__close" aria-label="Close" (click)="closeStorageModal()">
+          &times;
+        </button>
+      </div>
+      <pre class="storage-modal__content">{{ storageSnapshot }}</pre>
+    </section>
+  </div>
+}
