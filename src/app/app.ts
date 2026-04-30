@@ -285,6 +285,9 @@ export class App implements OnInit {
 
   ngOnInit(): void {
     this.swUpdate.versionUpdates.subscribe((e: any) => {
+
+      console.info('[SW] Version event received:', JSON.stringify(e));
+
       if (e.type === "VERSION_READY") {
         //let snack = this.snackBar.open("New version available!", "reload");
 
