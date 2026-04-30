@@ -8,6 +8,10 @@
 
 .contact-content {
   padding-bottom: clamp(3rem, 6vw, 5rem);
+
+  p {
+    max-width: none;
+  }
 }
 
 .contact-grid {
