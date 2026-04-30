@@ -24,7 +24,7 @@
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "serviceWorker": "ngsw-config.json",
+            "serviceWorker": false,
             "assets": [
               {
                 "glob": "**/*",
@@ -85,6 +85,7 @@
           "options": {
             "baseHref": "/QED-KLPT/",
             "branch": "gh-pages",
+            "dir": "dist/qed-klpt/browser",
             "repo": "https://github.com/QED-KLPT/QED-KLPT.git"
           }
         }
