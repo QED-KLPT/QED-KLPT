@@ -1,46 +1,35 @@
-<section class="section section--cream page-placeholder">
+<section class="section domain-hero domain-hero--analysing-data">
   <div class="section__inner">
-    <p class="eyebrow">Foundations</p>
-    <h1>Analysing and interpreting observational data</h1>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
-      erat a ante venenatis dapibus posuere velit aliquet. Praesent commodo
-      cursus magna, vel scelerisque nisl consectetur et.
-    </p>
-    <p class="intro-copy">
-      Nulla vitae elit libero, a pharetra augue. Curabitur blandit tempus
-      porttitor. Cras mattis consectetur purus sit amet fermentum. Donec
-      ullamcorper nulla non metus auctor fringilla, et gravida nisl facilisis
-      in.
-    </p>
+    <div class="domain-hero__layout">
+      <div class="domain-hero__copy">
+        <p class="eyebrow">Foundations</p>
+        <h1>Analysing and interpreting observational data</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
+          erat a ante venenatis dapibus posuere velit aliquet. Praesent commodo
+          cursus magna, vel scelerisque nisl consectetur et.
+        </p>       
+      </div>
+
+      <div class="domain-hero__art">
+        <img src="assets/img/foundations-analysing-data.svg" alt="Analysing data illustration" />
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="section section--white analysing-data-content">
+<section class="section section--white domain-overview">
   <div class="section__inner">
-    <div class="content-header">
-      <h2>Mock content layout</h2>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed posuere
-        consectetur est at lobortis. Integer posuere erat a ante venenatis
-        dapibus posuere velit aliquet. Aenean eu leo quam.
-      </p>
-    </div>
-    <div class="video-columns">
-      @for (column of videoColumns; track column.heading) {
-      <article class="video-column">
-        <header class="video-column__header">
-          <h3>{{ column.heading }}</h3>
-          <p>{{ column.intro }}</p>
-        </header>
-        <div class="video-stack">
-          @for (video of column.videos; track video.title) {
-          <app-youtube-player [title]="video.title" [description]="video.description" [youtubeUrl]="video.youtubeUrl"
-            [transcript]="video.transcript">
-          </app-youtube-player>
-          }
-        </div>
-      </article>
+    <h2>Instructional Videos</h2>
+    <div class="videos-row">
+      @for (video of videos; track video.title) {
+        <app-youtube-player
+          [title]="video.title"
+          [description]="video.description"
+          [youtubeUrl]="video.youtubeUrl"
+          [transcript]="video.transcript"
+        >
+        </app-youtube-player>
       }
     </div>
     <a class="pdf-guide-link" href="#" (click)="$event.preventDefault()">

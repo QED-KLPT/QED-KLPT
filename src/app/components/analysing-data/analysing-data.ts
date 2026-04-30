@@ -105,4 +105,8 @@ export class AnalysingData {
       ],
     },
   ];
+
+  protected get videos(): MockVideo[] {
+    return this.videoColumns.flatMap((column) => column.videos);
+  }
 }
