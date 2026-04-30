@@ -18,14 +18,14 @@ const routes: Routes = [
       { path: 'introduction', component: Introduction, title: 'KLPT introduction' },
       { path: 'list-sessions', component: ListSessions, title: 'KLPT sessions' },
       { path: 'create-session', component: CreateSession, title: 'Create KLPT session' },
-      { path: 'select-domains', component: SelectDomains, title: 'Select KLPT domains' },
-      { path: 'select-behaviours', component: SelectBehaviours, title: 'Select KLPT behaviours' },
+      { path: 'select-domains/:sessionId', component: SelectDomains, title: 'Select KLPT domains' },
+      { path: 'select-behaviours/:sessionId', component: SelectBehaviours, title: 'Select KLPT behaviours' },
       {
-        path: 'learning-progression-statement',
+        path: 'learning-progression-statement/:sessionId',
         component: LearningProgressionStatement,
         title: 'Learning progression statement',
       },
-      { path: 'review-session', component: ReviewSession, title: 'Review KLPT session' },
+      { path: 'review-session/:sessionId', component: ReviewSession, title: 'Review KLPT session' },
     ],
   },
 ];

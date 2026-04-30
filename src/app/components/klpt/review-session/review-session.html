@@ -5,7 +5,7 @@
     <p>Review all session details before finishing.</p>
 
     <div class="klpt-step__actions">
-      <a class="button button--secondary" routerLink="../learning-progression-statement">Back</a>
+      <a class="button button--secondary" [routerLink]="['../learning-progression-statement', currentSession.id]">Back</a>
       <a class="button button--primary" routerLink="../list-sessions">Next</a>
     </div>
   </div>
