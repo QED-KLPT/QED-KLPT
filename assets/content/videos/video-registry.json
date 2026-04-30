@@ -9,7 +9,7 @@
             {
               "slot": "home-languages-primary",
               "title": "KLPT - home languages",
-              "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus at sapien non purus fermentum dignissim.",
+              "description": "",
               "youtubeUrl": "https://www.youtube.com/watch?v=XneIolMk42s",
               "transcriptFile": "assets/content/transcripts/language-and-literacy/home-languages-primary.txt"
             }
@@ -22,7 +22,7 @@
             {
               "slot": "language-and-literacy-primary",
               "title": "KLPT - learning areas",
-              "description": "Nullam quis risus eget urna mollis ornare vel eu leo. Vestibulum id ligula porta felis euismod semper.",
+              "description": "",
               "youtubeUrl": "https://www.youtube.com/watch?v=oyQmlHPgKPE",
               "transcriptFile": "assets/content/transcripts/language-and-literacy/language-and-literacy-primary.txt"
             }

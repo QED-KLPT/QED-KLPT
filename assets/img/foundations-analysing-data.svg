@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="title desc">
+  <title id="title">Analysing data icon</title>
+  <desc id="desc">Cartoony chart card with bars, connected data points, and a magnifying glass.</desc>
+  <rect width="240" height="240" rx="40" fill="#D9DEE8"/>
+  <rect x="48" y="52" width="128" height="136" rx="20" fill="#FFFFFF"/>
+  <path d="M76 156V116" stroke="#7D879B" stroke-width="14" stroke-linecap="round"/>
+  <path d="M106 156V96" stroke="#48B7A5" stroke-width="14" stroke-linecap="round"/>
+  <path d="M136 156V76" stroke="#6F3F97" stroke-width="14" stroke-linecap="round"/>
+  <path d="M74 90 104 82 134 102 162 70" fill="none" stroke="#F6B71A" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="74" cy="90" r="6" fill="#F6B71A"/>
+  <circle cx="104" cy="82" r="6" fill="#F6B71A"/>
+  <circle cx="134" cy="102" r="6" fill="#F6B71A"/>
+  <circle cx="162" cy="70" r="6" fill="#F6B71A"/>
+  <circle cx="172" cy="162" r="28" fill="#FFFFFF" stroke="#7D879B" stroke-width="10"/>
+  <path d="m192 182 18 18" stroke="#7D879B" stroke-width="10" stroke-linecap="round"/>
+  <path d="M160 162h24M172 150v24" stroke="#48B7A5" stroke-width="6" stroke-linecap="round"/>
+</svg>
