@@ -6,7 +6,7 @@
 
     <div class="klpt-step__actions">
       <a class="button button--secondary" routerLink="../list-sessions">Back</a>
-      <a class="button button--primary" routerLink="../select-domains">Next</a>
+      <a class="button button--primary" [routerLink]="['../select-domains', currentSession.id]">Next</a>
     </div>
   </div>
 </section>
