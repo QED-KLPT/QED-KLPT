@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1777522439495,
+  "timestamp": 1777522796779,
   "index": "/QED-KLPT/index.html",
   "assetGroups": [
     {
@@ -125,7 +125,7 @@
     "/QED-KLPT/icons/apple-touch-icon.png": "5b6d0a10956a6df5c1f7556252d10b2de9f41dcf",
     "/QED-KLPT/icons/icon-192x192.png": "3bd292d1f99b66bbcf1dddc5373c1694c06552ce",
     "/QED-KLPT/icons/icon-512x512.png": "31d7273ddf74a92c6f8d7ea3c9eaee4ab8ebc849",
-    "/QED-KLPT/index.html": "6613388b009d441e789d8eb9fa97d247610509ba",
+    "/QED-KLPT/index.html": "e502cd50e57d2946be921a056f030d58e55fa197",
     "/QED-KLPT/main-UDB4GDQP.js": "3d04d59c470523f9c17639eb7a126760b8a9ea9e",
     "/QED-KLPT/manifest.webmanifest": "4b06347e774025db45f7ebec46c9a3a694a2a879",
     "/QED-KLPT/styles-QPMGPWXI.css": "66f947d501ff5a588c37455efa57ee49bbf9f654"
