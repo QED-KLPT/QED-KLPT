@@ -27,8 +27,8 @@ export class Foundations {
       url: '/foundations/quality-observations',
       imageAlt: 'Quality observations icon',
       imageSrc: 'assets/img/foundations-quality-observations.svg',
-      background: 'linear-gradient(180deg, #fffaf5 0%, #ffe9d3 100%)',
-      hoverBorderColor: '#efb777',
+      background: 'linear-gradient(180deg, #fffdf5 0%, #f2e3a7 100%)',
+      hoverBorderColor: '#b59a3f',
     },
     {
       title: 'Analysing and interpreting observational data',
@@ -36,8 +36,8 @@ export class Foundations {
       url: '/foundations/analysing-data',
       imageAlt: 'Analysing data icon',
       imageSrc: 'assets/img/foundations-analysing-data.svg',
-      background: 'linear-gradient(180deg, #f4ffff 0%, #def3f6 100%)',
-      hoverBorderColor: '#92ccd5',
+      background: 'linear-gradient(180deg, #f7f8fb 0%, #d9dee8 100%)',
+      hoverBorderColor: '#7d879b',
     } 
   ];
 }
