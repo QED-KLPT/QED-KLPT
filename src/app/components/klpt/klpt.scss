@@ -2,34 +2,54 @@
   display: block;
 }
 
+.klpt-subsite {
+  --klpt-tool-bg: #f7f8fb;
+  --klpt-tool-panel: #ffffff;
+  --klpt-tool-border: #d8dde8;
+  --klpt-tool-text: #1f2937;
+
+  min-height: 100%;
+  background: var(--klpt-tool-bg);
+  color: var(--klpt-tool-text);
+}
+
 .domain-hero--klpt {
-  padding-block: clamp(2.75rem, 6vw, 5rem);
-  background: linear-gradient(180deg, #f7f9ff 0%, #e2e9ff 100%);
+  border-bottom: 1px solid var(--klpt-tool-border);
+  padding-block: clamp(1.5rem, 4vw, 2.5rem);
+  background: var(--klpt-tool-panel);
 }
 
 .domain-hero--klpt .domain-hero__layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(14rem, 0.8fr);
-  gap: clamp(1.5rem, 4vw, 3.5rem);
-  align-items: center;
+  display: block;
 }
 
 .domain-hero--klpt .domain-hero__copy {
   max-width: 44rem;
-  padding-left: 1rem;
-  border-left: 4px solid #abbbee;
 }
 
 .domain-hero--klpt .eyebrow {
-  color: #4964a5;
+  color: var(--doe-color-primary-dark);
 }
 
 .domain-hero--klpt .domain-hero__copy h1 {
-  margin-bottom: 0.85rem;
+  margin: 0;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
 }
 
-@media (max-width: 64rem) {
-  .domain-hero--klpt .domain-hero__layout {
-    grid-template-columns: 1fr;
-  }
+.klpt-subsite .klpt-step {
+  background: transparent;
+  padding-block: clamp(2rem, 4vw, 3rem);
+}
+
+.klpt-subsite .klpt-step .section__inner {
+  max-width: 52rem;
+}
+
+.klpt-subsite .klpt-step h2 {
+  margin-bottom: 0.75rem;
+}
+
+.klpt-subsite .klpt-step__actions {
+  border-top: 1px solid var(--klpt-tool-border);
+  padding-top: 1.25rem;
 }
