@@ -6,6 +6,8 @@ export interface SessionModel {
   created: Date;
   updated: Date | undefined;
   expiry: Date;
+  educatorName: string | undefined;
+  learnerCode: string;
   pageIndex: number;
   domain: string;
   subDomain: string | undefined;
