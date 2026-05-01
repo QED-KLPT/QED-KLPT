@@ -100,3 +100,78 @@
   white-space: pre-wrap;
   word-break: break-word;
 }
+
+.klpt-list-sessions {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.klpt-list-sessions__empty {
+  color: var(--klpt-muted);
+  font-size: 0.95rem;
+  margin-block-start: 1.5rem;
+}
+
+.klpt-list-sessions__item {
+  border-bottom: 1px solid var(--klpt-border);
+
+  &:last-child {
+    border-bottom-color: transparent;
+  }
+}
+
+.klpt-list-sessions__link {
+  align-items: center;
+  color: var(--klpt-ink);
+  display: flex;
+  gap: 1rem;
+  padding-block: 0.85rem;
+  padding-inline-end: 1.25rem;
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  width: 100%;
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--klpt-purple-soft);
+    color: var(--klpt-purple-dark);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--klpt-gold);
+    outline-offset: -2px;
+  }
+}
+
+.klpt-list-sessions__learner {
+  font-weight: 600;
+  min-width: 3ch;
+}
+
+.klpt-list-sessions__educator {
+  color: var(--klpt-muted);
+}
+
+.klpt-list-sessions__domain {
+  color: var(--klpt-muted);
+  margin-inline-start: auto;
+}
+
+.klpt-list-sessions__date {
+  color: var(--klpt-muted);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.klpt-list-sessions__arrow {
+  color: var(--klpt-muted);
+  font-size: 1.2rem;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.klpt-list-sessions__link:hover .klpt-list-sessions__arrow,
+.klpt-list-sessions__link:focus-visible .klpt-list-sessions__arrow {
+  color: var(--klpt-purple-dark);
+  transform: translateX(3px);
+}
