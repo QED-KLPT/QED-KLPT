@@ -4,6 +4,31 @@
     <h2>List sessions</h2>
     <p>List all available or existing sessions, with an option to add a new session.</p>
 
+    @if (sessions.length === 0) {
+      <p class="klpt-list-sessions__empty">No sessions found. Create a new session to get started.</p>
+    } @else {
+      <ul class="klpt-list-sessions">
+        @for (session of sessions; track session.id) {
+          <li class="klpt-list-sessions__item">
+            <a
+              class="klpt-list-sessions__link"
+              [routerLink]="['/klpt/select-domains', session.id]"
+            >
+              <span class="klpt-list-sessions__learner">{{ session.learnerCode }}</span>
+              @if (session.educatorName) {
+                <span class="klpt-list-sessions__educator">{{ session.educatorName }}</span>
+              }
+              <span class="klpt-list-sessions__domain">{{ session.domain }}</span>
+              <time class="klpt-list-sessions__date" [attr.datetime]="session.created.toISOString()">
+                {{ session.created | date:'mediumDate' }}
+              </time>
+              <span class="klpt-list-sessions__arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </li>
+        }
+      </ul>
+    }
+
     <div class="klpt-step__actions">
       <a class="button button--secondary" routerLink="/klpt">Back</a>
       <a class="button button--primary" routerLink="/klpt/create-session">Next</a>

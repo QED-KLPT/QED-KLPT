@@ -1,30 +1,26 @@
-import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SessionModel } from '../models/session-model';
 import { SessionManagementService } from '../shared/session-management.service';
 
 @Component({
   selector: 'app-list-sessions',
-  imports: [RouterLink],
+  imports: [RouterLink, DatePipe],
   templateUrl: './list-sessions.html',
   styleUrl: './list-sessions.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ListSessions implements OnInit, OnDestroy {
+export class ListSessions implements OnInit {
   private readonly sessionManagement = inject(SessionManagementService);
 
-  public currentSession!: SessionModel;
+  public sessions: SessionModel[] = [];
   protected isStorageModalOpen = false;
   protected storageSnapshot = '(empty)';
 
   ngOnInit(): void {
     this.sessionManagement.deleteAllExpiredSessions();
-  }
-
-  ngOnDestroy(): void {
-    if (this.currentSession) {
-      this.sessionManagement.persistSession(this.currentSession);
-    }
+    this.sessions = this.sessionManagement.getAllSessions();
   }
 
   protected openStorageModal(): void {
