@@ -4,9 +4,58 @@
     <h2>Create session</h2>
     <p>Enter a 3 digit code and the name of the educator.</p>
 
+    <div class="qld__form-group qld__form-group--aligned">
+      <label for="learner-code" class="qld__label qld__form-group__label">Learner code</label>
+      <div class="qld__form-group__input-area">
+        @if (learnerCodeError) {
+          <span class="qld__input--error" id="learner-code-error">
+            <svg class="qld__icon qld__icon--lead qld__icon--sm" role="img" aria-label="Error: ">
+              <use href="./?a=169317:dist/mysource_files/img/QLD-icons.svg#status-error"></use>
+            </svg>
+            Learner code must be 3 digits
+          </span>
+        }
+        <input
+          type="text"
+          id="learner-code"
+          class="qld__text-input"
+          [class.qld__text-input--error]="learnerCodeError"
+          [attr.aria-invalid]="learnerCodeError"
+          placeholder="e.g. 123"
+          maxlength="3"
+          [value]="learnerCode"
+          (input)="onLearnerCodeInput($event)"
+        />
+      </div>
+    </div>
+
+    <div class="qld__form-group qld__form-group--aligned">
+      <label for="educator-name" class="qld__label qld__form-group__label">Educator name</label>
+      <div class="qld__form-group__input-area">
+        @if (educatorNameError) {
+          <span class="qld__input--error" id="educator-name-error">
+            <svg class="qld__icon qld__icon--lead qld__icon--sm" role="img" aria-label="Error: ">
+              <use href="./?a=169317:dist/mysource_files/img/QLD-icons.svg#status-error"></use>
+            </svg>
+            Please enter an educator name
+          </span>
+        }
+        <input
+          type="text"
+          id="educator-name"
+          class="qld__text-input"
+          [class.qld__text-input--error]="educatorNameError"
+          [attr.aria-invalid]="educatorNameError"
+          placeholder="Enter educator name"
+          [value]="educatorName"
+          (input)="onEducatorNameInput($event)"
+        />
+      </div>
+    </div>
+
     <div class="klpt-step__actions">
       <a class="button button--secondary" routerLink="/klpt/list-sessions">Back</a>
-      <a class="button button--primary" [routerLink]="['/klpt/select-domains', currentSession.id]">Next</a>
+      <button type="button" class="button button--primary" (click)="onNext()">Next</button>
     </div>
   </div>
 </section>

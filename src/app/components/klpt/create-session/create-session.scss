@@ -12,3 +12,27 @@
   gap: 0.85rem;
   margin-block-start: 2rem;
 }
+
+.qld__form-group--aligned {
+  display: grid;
+  grid-template-columns: minmax(140px, auto) auto;
+  column-gap: 1.5rem;
+  align-items: center;
+  margin-block-end: 1.5rem;
+}
+
+.qld__form-group--aligned:last-child {
+  margin-block-end: 0;
+}
+
+.qld__form-group--aligned .qld__label {
+  text-align: right;
+}
+
+.qld__form-group--aligned .qld__input--error {
+  grid-column: 2;
+}
+
+.qld__form-group--aligned .qld__text-input {
+  grid-column: 2;
+}
