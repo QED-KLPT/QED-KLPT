@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { DomainCard } from '../shared/domain-card/domain-card';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
 
 type DesignCard = {
@@ -15,7 +14,7 @@ type DesignCard = {
 
 @Component({
   selector: 'app-mathematics-and-numeracy',
-  imports: [DomainCard, RouterLink, YoutubePlayerModule],
+  imports: [RouterLink, YoutubePlayerModule],
   templateUrl: './mathematics-and-numeracy.html',
   styleUrl: './mathematics-and-numeracy.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
