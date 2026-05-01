@@ -41,6 +41,8 @@ export class SessionManagementService {
       created: now,
       updated: undefined,
       expiry,
+      educatorName: undefined,
+      learnerCode: '',
       pageIndex: 0,
       domain: '',
       subDomain: undefined,

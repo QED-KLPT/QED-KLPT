@@ -32,6 +32,11 @@
               },
               {
                 "glob": "**/*",
+                "input": "src/app/components/klpt/data",
+                "output": "assets/klpt/data"
+              },
+              {
+                "glob": "**/*",
                 "input": "src/assets",
                 "output": "assets"
               }

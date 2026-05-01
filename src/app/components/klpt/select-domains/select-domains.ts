@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { SessionModel } from '../models/session-model';
+import { KlptDomainDataService } from '../shared/klpt-domain-data.service';
 import { SessionManagementService } from '../shared/session-management.service';
 
 @Component({
@@ -12,6 +13,7 @@ import { SessionManagementService } from '../shared/session-management.service';
 })
 export class SelectDomains implements OnInit, OnDestroy {
   private readonly route = inject(ActivatedRoute);
+  protected readonly domainData = inject(KlptDomainDataService);
   private readonly sessionManagement = inject(SessionManagementService);
 
   public currentSession!: SessionModel;
