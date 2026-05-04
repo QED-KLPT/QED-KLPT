@@ -1,0 +1,18 @@
+<nav class="progress-nav" aria-label="KLPT session steps">
+  <ol class="progress-track">
+    @for (node of nodes; track node.id; let index = $index) {
+      <li class="progress-track__item">
+        <a
+          class="progress-step"
+          [routerLink]="[node.route, sessionId]"
+          [attr.data-state]="stateFor(node)"
+          [attr.aria-current]="stateFor(node) === 'current' ? 'step' : null"
+        >
+          <span class="progress-step__description">{{ node.description }}</span>
+          <span class="progress-step__node">{{ index + 1 }}</span>
+          <span class="progress-step__title">{{ node.title }}</span>
+        </a>
+      </li>
+    }
+  </ol>
+</nav>

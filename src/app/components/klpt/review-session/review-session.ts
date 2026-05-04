@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { NavigationNodesComponent } from '../../shared';
 import { SessionModel } from '../models/session-model';
 import { SessionManagementService } from '../shared/session-management.service';
 
 @Component({
   selector: 'app-review-session',
-  imports: [RouterLink],
+  imports: [RouterLink, NavigationNodesComponent],
   templateUrl: './review-session.html',
   styleUrl: './review-session.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
