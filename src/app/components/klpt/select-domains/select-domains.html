@@ -2,13 +2,111 @@
   <div class="section__inner">
     <app-navigation-nodes [sessionId]="currentSession.id" currentNode="select-domains" />
 
-    <p class="eyebrow">Step 3</p>
-    <h2>Select domains</h2>
-    <p>Select the domain, subdomain and elements on the same page.</p>
+    @let domainsList = domains();
+    @let subDomainsList = subDomains();
+    @let elementsList = elements();
 
-    <div class="klpt-step__actions">
-      <a class="button button--secondary" routerLink="/klpt/create-session">Back</a>
-      <a class="button button--primary" [routerLink]="['/klpt/select-behaviours', currentSession.id]">Next</a>
+    <div class="selection-board">
+      <article class="selection-intro">
+        <div>
+          <p class="eyebrow">Learning selection</p>
+          <h2>Choose the focus for this observation</h2>
+        </div>
+        <p>{{ selectionSummary() }}</p>
+      </article>
+
+      <section class="selection-row" aria-label="Domains">
+        <div class="selection-row__heading">
+          <h3>Domains</h3>
+          <p>Choose one broad area of learning and development.</p>
+        </div>
+
+        <div class="selection-row__scroller">
+          @for (domain of domainsList; track domain.id; let domainIndex = $index) {
+            <button
+              class="selection-panel"
+              type="button"
+              [ngStyle]="panelStyle(domainIndex, 0)"
+              [attr.data-selected]="currentSession.domain === domain.id"
+              [attr.aria-pressed]="currentSession.domain === domain.id"
+              (click)="selectDomain(domain)"
+            >
+              <strong>{{ domain.name }}</strong>
+              <small>{{ panelHint(domainItemCount(domain), currentSession.domain === domain.id) }}</small>
+            </button>
+          }
+        </div>
+      </section>
+
+      <section class="selection-row" aria-label="Subdomains">
+        <div class="selection-row__heading">
+          <h3>Subdomains</h3>
+          <p>Choose a more specific focus area.</p>
+        </div>
+
+        <div class="selection-row__scroller">
+          @if (subDomainsList.length) {
+            @for (subDomain of subDomainsList; track subDomain.id; let subDomainIndex = $index) {
+              <button
+                class="selection-panel"
+                type="button"
+                [ngStyle]="panelStyle(subDomainIndex, 1)"
+                [attr.data-selected]="currentSession.subDomain === subDomain.id"
+                [attr.aria-pressed]="currentSession.subDomain === subDomain.id"
+                (click)="selectSubDomain(subDomain)"
+              >
+                <strong>{{ subDomain.name }}</strong>
+                <small>{{ panelHint(subDomainItemCount(subDomain), currentSession.subDomain === subDomain.id) }}</small>
+              </button>
+            }
+          } @else {
+            <p class="selection-row__empty">
+              {{ currentSession.domain ? 'This domain goes straight to elements.' : 'Select a domain with subdomains to use this row.' }}
+            </p>
+          }
+        </div>
+      </section>
+
+      <section class="selection-row" aria-label="Elements">
+        <div class="selection-row__heading">
+          <h3>Elements</h3>
+          <p>Toggle one or more observable learning elements.</p>
+        </div>
+
+        <div class="selection-row__scroller">
+          @if (elementsList.length) {
+            @for (element of elementsList; track element.id; let elementIndex = $index) {
+              <button
+                class="selection-panel"
+                type="button"
+                [ngStyle]="panelStyle(elementIndex, 2)"
+                [attr.data-selected]="isElementSelected(element)"
+                [attr.aria-pressed]="isElementSelected(element)"
+                (click)="toggleElement(element)"
+              >
+                <strong>{{ element.name }}</strong>
+                <small>{{ panelHint(0, isElementSelected(element), true) }}</small>
+              </button>
+            }
+          } @else {
+            <p class="selection-row__empty">
+              {{ currentSession.domain ? 'Select a subdomain first to reveal elements.' : 'Select a domain first to reveal elements.' }}
+            </p>
+          }
+        </div>
+      </section>
+
+      <div class="klpt-step__actions">
+        <a class="button button--secondary" routerLink="/klpt/create-session">Previous</a>
+        <a
+          class="button button--primary"
+          [class.button--disabled]="!canContinue()"
+          [attr.aria-disabled]="!canContinue()"
+          [routerLink]="canContinue() ? ['/klpt/select-behaviours', currentSession.id] : null"
+        >
+          Next
+        </a>
+      </div>
     </div>
   </div>
 </section>
