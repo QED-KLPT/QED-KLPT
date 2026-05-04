@@ -8,20 +8,28 @@
       <p class="klpt-list-sessions__empty">No sessions found. Create a new session to get started.</p>
     } @else {
       <ul class="klpt-list-sessions">
+        <li class="klpt-list-sessions__header">
+          <div class="klpt-list-sessions__link klpt-list-sessions__link--header">
+            <span class="klpt-list-sessions__id">Id</span>
+            <span class="klpt-list-sessions__educator">Educator</span>
+            <span class="klpt-list-sessions__learner">Learner Code</span>
+            <time class="klpt-list-sessions__date">Created</time>
+            <span class="klpt-list-sessions__elements">Elements</span>
+          </div>
+        </li>
         @for (session of sessions; track session.id) {
           <li class="klpt-list-sessions__item">
             <a
               class="klpt-list-sessions__link"
               [routerLink]="['/klpt/select-domains', session.id]"
             >
-              <span class="klpt-list-sessions__learner">{{ session.learnerCode }}</span>
-              @if (session.educatorName) {
-                <span class="klpt-list-sessions__educator">{{ session.educatorName }}</span>
-              }
-              <span class="klpt-list-sessions__domain">{{ session.domain }}</span>
+              <span class="klpt-list-sessions__id" [title]="session.id">{{ session.id | slice:0:12 }}</span>
+              <span class="klpt-list-sessions__learner" [title]="session.learnerCode">{{ session.learnerCode }}</span>
+              <span class="klpt-list-sessions__educator" [title]="session.educatorName">{{ session.educatorName ?? '' }}</span>
               <time class="klpt-list-sessions__date" [attr.datetime]="session.created.toISOString()">
-                {{ session.created | date:'mediumDate' }}
+                {{ session.created | date:'d MMM HH:mm' }}
               </time>
+              <span class="klpt-list-sessions__elements">{{ session.elements.length }} element{{ session.elements.length === 1 ? '' : 's' }}</span>
               <span class="klpt-list-sessions__arrow" aria-hidden="true">&rarr;</span>
             </a>
           </li>
