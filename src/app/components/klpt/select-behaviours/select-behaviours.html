@@ -2,13 +2,87 @@
   <div class="section__inner">
     <app-navigation-nodes [sessionId]="currentSession.id" currentNode="select-behaviours" />
 
-    <p class="eyebrow">Step 4</p>
-    <h2>Select behaviours</h2>
-    <p>Select a behaviour for each element selected in the previous step.</p>
+    @let elements = selectedElements();
+    @let detail = selectedDetail();
 
-    <div class="klpt-step__actions">
-      <a class="button button--secondary" [routerLink]="['/klpt/select-domains', currentSession.id]">Back</a>
-      <a class="button button--primary" [routerLink]="['/klpt/learning-progression-statement', currentSession.id]">Next</a>
-    </div>
+    @if (elements.length) {
+      <div class="behaviour-screen">
+        <article class="behaviour-intro">
+          <div>
+            <p class="eyebrow">Behaviour selection</p>
+            <h2>Choose a behaviour for each selected element</h2>
+          </div>
+          <p>{{ selectedElementCountLabel(elements.length) }}. Tap a behaviour to update the detail panel.</p>
+        </article>
+
+        <div class="behaviour-orbit" aria-label="Selected element behaviours">
+          @for (element of elements; track element.id; let elementIndex = $index) {
+            <section
+              class="behaviour-row"
+              [ngStyle]="rowStyle(elementIndex)"
+              [attr.aria-label]="element.name + ' behaviours'"
+            >
+              <button
+                class="behaviour-row__element"
+                type="button"
+                (click)="focusedElementId = element.id; focusedBehaviourId = selectedBehaviour(element)?.id"
+              >
+                <strong>{{ element.name }}</strong>
+                <small>{{ elementStateLabel(element) }}</small>
+              </button>
+
+              <div class="behaviour-row__divider" aria-hidden="true"></div>
+
+              <div class="behaviour-row__scroller">
+                @for (behaviour of element.behaviours; track behaviour.id; let behaviourIndex = $index) {
+                  <button
+                    class="behaviour-button"
+                    type="button"
+                    [ngStyle]="behaviourStyle(behaviourIndex, element.behaviours.length)"
+                    [attr.data-selected]="isSelectedBehaviour(element, behaviour)"
+                    [attr.data-focused]="isFocusedBehaviour(element, behaviour)"
+                    [attr.aria-pressed]="isSelectedBehaviour(element, behaviour)"
+                    (click)="selectBehaviour(element, behaviour)"
+                  >
+                    <strong>{{ behaviour.name }}</strong>
+                  </button>
+                }
+              </div>
+            </section>
+          }
+        </div>
+
+        @if (detail) {
+          <article class="behaviour-detail" [ngStyle]="detailStyle(detail)">
+            <span class="behaviour-detail__bulb" aria-hidden="true">
+              <img src="assets/img/bulb.png" alt="" />
+            </span>
+            <h2>{{ detail.behaviour.name }}</h2>
+            <div class="behaviour-detail__description" [innerHTML]="detail.behaviour.description"></div>
+          </article>
+        }
+
+        <div class="klpt-step__actions">
+          <a class="button button--secondary" [routerLink]="['/klpt/select-domains', currentSession.id]">Previous</a>
+          <a
+            class="button button--primary"
+            [class.button--disabled]="!canContinue()"
+            [attr.aria-disabled]="!canContinue()"
+            [routerLink]="canContinue() ? ['/klpt/learning-progression-statement', currentSession.id] : null"
+          >
+            Next
+          </a>
+        </div>
+      </div>
+    } @else {
+      <article class="behaviour-empty">
+        <p class="eyebrow">Behaviour selection</p>
+        <h2>Select elements before choosing behaviours</h2>
+        <p>Return to the domain selection step and choose one or more elements for this session.</p>
+        <div class="klpt-step__actions">
+          <a class="button button--secondary" [routerLink]="['/klpt/select-domains', currentSession.id]">Back</a>
+        </div>
+      </article>
+    }
   </div>
 </section>
