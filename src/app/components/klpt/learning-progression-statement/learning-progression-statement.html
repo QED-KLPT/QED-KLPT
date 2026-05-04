@@ -2,13 +2,104 @@
   <div class="section__inner">
     <app-navigation-nodes [sessionId]="currentSession.id" currentNode="statement" />
 
-    <p class="eyebrow">Step 5</p>
-    <h2>Learning progression statement</h2>
-    <p>Add additional notes for the learning progression statement.</p>
+    @let domain = selectedDomain();
+    @let items = progressionItems();
 
-    <div class="klpt-step__actions">
-      <a class="button button--secondary" [routerLink]="['/klpt/select-behaviours', currentSession.id]">Back</a>
-      <a class="button button--primary" [routerLink]="['/klpt/review-session', currentSession.id]">Next</a>
-    </div>
+    <article class="statement-card">
+      <p class="eyebrow">Evidence statement</p>
+      <h2>Learning Progression Statement</h2>
+
+      @if (domain) {
+        <section class="klpt-summary-block">
+          <h3>Learning domain summary</h3>
+          <p><strong>{{ domain.name }}:</strong> {{ domain.summary }}</p>
+        </section>
+      }
+
+      <div class="klpt-form-grid klpt-form-grid--single">
+        <label class="klpt-form-field">
+          <span>Date</span>
+          <input
+            type="date"
+            [value]="formValue('date')"
+            (input)="updateFormField('date', $any($event.target).value)"
+          />
+        </label>
+      </div>
+
+      <label class="klpt-form-field klpt-form-field--wide">
+        <span>Description of observation context or evidence collected</span>
+        <textarea
+          rows="5"
+          [value]="formValue('observational-context')"
+          (input)="updateFormField('observational-context', $any($event.target).value)"
+        ></textarea>
+      </label>
+
+      @if (items.length) {
+        <section class="klpt-progression-stack" aria-label="Selected behaviours and next behaviours">
+          @for (item of items; track item.element.id; let itemIndex = $index) {
+            <article class="klpt-progression-item" [ngStyle]="itemStyle(itemIndex)">
+              <div class="klpt-progression-item__heading">
+                <h3>{{ item.element.name }}</h3>
+              </div>
+
+              <div class="klpt-evidence-grid">
+                <div class="klpt-evidence-panel">
+                  <h3>What you observed</h3>
+                  <p class="klpt-behaviour-name">{{ item.behaviour.name }}</p>
+                  <div [innerHTML]="item.behaviour.description"></div>
+                </div>
+
+                <div class="klpt-evidence-panel">
+                  <h3>What is likely to be the next step in learning progression</h3>
+                  <p class="klpt-behaviour-name">{{ item.nextBehaviour?.name ?? 'Final behaviour' }}</p>
+                  @if (item.nextBehaviour) {
+                    <div [innerHTML]="item.nextBehaviour.description"></div>
+                  } @else {
+                    <p>This is the final behaviour currently available for this element.</p>
+                  }
+                </div>
+              </div>
+            </article>
+          }
+        </section>
+      } @else {
+        <section class="klpt-summary-block">
+          <h3>No behaviours selected</h3>
+          <p>Return to behaviour selection and choose a behaviour for each selected element.</p>
+        </section>
+      }
+
+      <label class="klpt-form-field klpt-form-field--wide">
+        <span>Professional reflection (learning and development area links, theoretical links, educator's principles and practices)</span>
+        <textarea
+          rows="5"
+          [value]="formValue('professional-reflection')"
+          (input)="updateFormField('professional-reflection', $any($event.target).value)"
+        ></textarea>
+      </label>
+
+      <label class="klpt-form-field klpt-form-field--wide">
+        <span>How can you support this learning</span>
+        <textarea
+          rows="5"
+          [value]="formValue('support-learning')"
+          (input)="updateFormField('support-learning', $any($event.target).value)"
+        ></textarea>
+      </label>
+
+      <div class="klpt-step__actions">
+        <a class="button button--secondary" [routerLink]="['/klpt/select-behaviours', currentSession.id]">Previous</a>
+        <a
+          class="button button--primary"
+          [class.button--disabled]="!canContinue()"
+          [attr.aria-disabled]="!canContinue()"
+          [routerLink]="canContinue() ? ['/klpt/review-session', currentSession.id] : null"
+        >
+          Next
+        </a>
+      </div>
+    </article>
   </div>
 </section>
