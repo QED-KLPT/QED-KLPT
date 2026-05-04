@@ -142,23 +142,71 @@
     outline: 2px solid var(--klpt-gold);
     outline-offset: -2px;
   }
+
+  &--header {
+    background-color: transparent !important;
+    border-bottom: 2px solid var(--klpt-border);
+    color: var(--klpt-ink) !important;
+    cursor: default;
+    padding-block: 0.6rem 0.75rem;
+
+    &:hover,
+    &:focus-visible {
+      background-color: transparent !important;
+      color: var(--klpt-ink) !important;
+    }
+
+    &:focus-visible {
+      outline: none;
+    }
+
+    .klpt-list-sessions__learner {
+      background-color: transparent;
+      border-radius: 0;
+      padding-inline-end: 0;
+    }
+
+    .klpt-list-sessions__id,
+    .klpt-list-sessions__educator,
+    .klpt-list-sessions__learner,
+    .klpt-list-sessions__date,
+    .klpt-list-sessions__elements {
+      color: var(--klpt-ink);
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+  }
+}
+
+.klpt-list-sessions__id {
+  color: var(--klpt-muted);
+  font-family: var(--klpt-mono, monospace);
+  font-size: 0.8rem;
+  min-width: 9ch;
+  white-space: nowrap;
 }
 
 .klpt-list-sessions__learner {
   font-weight: 600;
   min-width: 3ch;
+  padding-inline-start: 0.25rem;
+  background-color: var(--klpt-purple-soft);
+  border-radius: 3px;
+  padding-inline-end: 0.4rem;
 }
 
 .klpt-list-sessions__educator {
-  color: var(--klpt-muted);
-}
-
-.klpt-list-sessions__domain {
-  color: var(--klpt-muted);
-  margin-inline-start: auto;
+  color: var(--klpt-ink);
+  min-width: 6ch;
 }
 
 .klpt-list-sessions__date {
+  color: var(--klpt-muted);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.klpt-list-sessions__elements {
   color: var(--klpt-muted);
   font-size: 0.85rem;
   white-space: nowrap;
