@@ -1,0 +1,124 @@
+.klpt-form-grid,
+.klpt-evidence-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.125rem;
+}
+
+.klpt-form-grid--single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.klpt-form-field {
+  display: grid;
+  gap: 0.5rem;
+
+  span {
+    color: #10233c;
+    font-size: 0.9rem;
+    font-weight: 800;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    border: 1px solid rgba(13, 59, 102, 0.18);
+    border-radius: 18px;
+    padding: 0.8125rem 1rem;
+    color: #10233c;
+    font: inherit;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: none;
+  }
+
+  textarea {
+    min-height: 7.75rem;
+    resize: vertical;
+  }
+
+  input {
+    min-height: 3.375rem;
+  }
+
+  input[type="date"] {
+    padding: 0.8125rem 1.125rem;
+  }
+
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    padding: 0.5rem;
+    border-radius: 8px;
+    background-color: rgba(13, 59, 102, 0.08);
+    cursor: pointer;
+  }
+
+  input:focus,
+  textarea:focus {
+    border-color: #0d3b66;
+    outline: 3px solid rgba(13, 59, 102, 0.18);
+    outline-offset: 2px;
+  }
+}
+
+.klpt-form-field--wide {
+  grid-column: 1 / -1;
+}
+
+.klpt-summary-block,
+.klpt-evidence-panel,
+.klpt-review-text-block,
+.klpt-progression-item {
+  border-radius: 12px;
+  padding: 1.25rem;
+  background: rgba(13, 59, 102, 0.07);
+
+  p,
+  ul {
+    margin: 0;
+    color: #10233c;
+    line-height: 1.65;
+  }
+
+  ul {
+    padding-left: 1.25rem;
+  }
+}
+
+.klpt-summary-block h3,
+.klpt-evidence-panel h3,
+.klpt-review-text-block h3,
+.klpt-progression-item__heading h3 {
+  margin: 0 0 0.625rem;
+  color: #0d3b66;
+  font-size: 0.84rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.klpt-progression-stack {
+  display: grid;
+  gap: 0.875rem;
+}
+
+.klpt-progression-item {
+  display: grid;
+  gap: 1rem;
+  box-shadow: inset 5px 0 0 var(--accent, #2d68c8);
+}
+
+.klpt-progression-item__heading {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.klpt-behaviour-name {
+  margin: 0 0 0.75rem !important;
+  font-weight: 850;
+}
+
+@media (max-width: 48rem) {
+  .klpt-form-grid,
+  .klpt-evidence-grid {
+    grid-template-columns: 1fr;
+  }
+}
