@@ -31,7 +31,7 @@ export class KlptPdfGeneratorService {
 
     doc.setFontSize(18);
     doc.setTextColor(49, 36, 0);
-    doc.text('Learning Progression Toolkit — Session Report', margin, y);
+    doc.text('Learning Progression Toolkit — Session Report', pageWidth / 2, y, { align: 'center' });
     y += 15;
 
     doc.setDrawColor(200, 180, 100);
@@ -68,7 +68,7 @@ export class KlptPdfGeneratorService {
       doc.setFontSize(13);
       doc.setTextColor(49, 36, 0);
       doc.text('Selected Elements', margin, y);
-      y += 6;
+      y += 3;
       const elementData = session.elements.map((el) => [
         this.resolveElementName(el.id),
         el.behaviourId ? this.resolveBehaviourName(el.behaviourId) : 'No behaviour selected',
@@ -82,21 +82,6 @@ export class KlptPdfGeneratorService {
         headStyles: { fillColor: [218, 195, 100] },
         styles: { fontSize: 9 },
       });
-    }
-
-    const pages = doc.internal.pages as unknown as string[];
-    const totalPages = pages.length;
-    for (let i = 1; i <= totalPages; i++) {
-      doc.setPage(i);
-      doc.setFontSize(8);
-      doc.setTextColor(150, 150, 150);
-      const footerY = doc.internal.pageSize.getHeight() - 10;
-      doc.text(
-        `Page ${i} of ${totalPages}`,
-        pageWidth / 2,
-        footerY,
-        { align: 'center' }
-      );
     }
 
     const learnerCode = session.learnerCode || 'unknown';
@@ -135,7 +120,7 @@ export class KlptPdfGeneratorService {
           y += lines.length * 5;
         } else {
           doc.text(field.value, margin + 50, y);
-          y += 6;
+          y += 10;
         }
       }
     }
