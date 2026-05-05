@@ -1,12 +1,22 @@
 import { Injectable } from '@angular/core';
 import type { SessionModel } from '../components/klpt/models/session-model';
 import type { jsPDF as JsPdfDocument } from 'jspdf';
+import { KlptDomainDataService } from '../components/klpt/shared/klpt-domain-data.service';
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
                 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
+const FORM_FIELD_LABELS: Record<string, string> = {
+  'student-name': 'Learner Name',
+  'date': 'Date',
+  'observational-context': 'Context',
+  'professional-reflection': 'Professional Reflection',
+  'support-learning': 'Support Learning',
+};
+
 @Injectable({ providedIn: 'root' })
 export class KlptPdfGeneratorService {
+  constructor(private readonly domainData: KlptDomainDataService) {}
 
   async generateSessionPdf(session: SessionModel): Promise<void> {
     const [{ jsPDF }, { autoTable }] = await Promise.all([
@@ -36,13 +46,13 @@ export class KlptPdfGeneratorService {
       { label: 'Educator Name', value: this.formatEducatorName(session.educatorName) },
       { label: 'Learner Code', value: session.learnerCode || 'Not provided' },
       { label: 'Date Created', value: this.formatDateForPdf(session.created) },
-      { label: 'Domain', value: session.domain || 'Not specified' },
-      { label: 'Sub-Domain', value: session.subDomain || 'Not specified' },
+      { label: 'Domain', value: this.resolveDomainName(session.domain) },
+      { label: 'Sub-Domain', value: session.subDomain ? this.resolveSubDomainName(session.subDomain) : 'Not specified' },
     ]);
 
     if (session.formFields.length > 0) {
       y = this.addSection(doc, y, margin, contentWidth, 'Form Fields', []);
-      const tableData = session.formFields.map((field) => [field.name, field.value]);
+      const tableData = session.formFields.map((field) => [this.getFieldLabel(field.name), field.value]);
       autoTable(doc, {
         startY: y + 2,
         head: [['Field', 'Value']],
@@ -132,10 +142,25 @@ export class KlptPdfGeneratorService {
     const day = date.getDate();
     const month = MONTHS[date.getMonth()];
     const year = date.getFullYear();
-    return `${day}-${month}-${year}`;
+    return `${day} ${month} ${year}`;
   }
 
   formatEducatorName(name: string | undefined): string {
     return name ?? 'Not provided';
+  }
+
+  resolveDomainName(domainId: string): string {
+    return this.domainData.getAllDomains().find((d) => d.id === domainId)?.name ?? 'Not specified';
+  }
+
+  resolveSubDomainName(subDomainId: string): string {
+    return this.domainData
+      .getAllDomains()
+      .flatMap((d) => d.subDomains ?? [])
+      .find((s) => s.id === subDomainId)?.name ?? 'Not specified';
+  }
+
+  getFieldLabel(fieldName: string): string {
+    return FORM_FIELD_LABELS[fieldName] ?? fieldName;
   }
 }
