@@ -33,8 +33,6 @@
 .domain-hero--physicality,
 .domain-hero--executive,
 .domain-hero--social {
-  display: grid;
-  align-items: center;
   min-height: clamp(28rem, 36vw, 33rem);
 }
 
