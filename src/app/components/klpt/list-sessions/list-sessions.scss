@@ -233,10 +233,17 @@
 .klpt-create-session-card {
   background: #ffffff;
   border: 1px solid var(--klpt-border);
-  border-radius: 22px;
+  border-radius: 18px;
   box-shadow: var(--klpt-shadow);
   margin-block: 2rem 2.5rem;
-  padding: 1.75rem;
+  padding: 1.125rem;
+}
+
+.klpt-create-session-card__heading {
+  margin: 0 0 0.5rem;
+  color: #26364b;
+  font-size: 1.25rem;
+  line-height: 1.2;
 }
 
 .klpt-observation-header {
@@ -250,16 +257,21 @@
 
 .klpt-create-session-card__hero {
   align-items: center;
+  border: 1px solid #dceaf3;
+  border-radius: 16px;
+  background: #fbfdff;
   cursor: pointer;
   display: flex;
-  gap: 1rem;
-  padding: 0.5rem -0.5rem;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  gap: 1.25rem;
+  min-height: 6.5rem;
+  padding: 1.25rem;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
   user-select: none;
 
   &:hover,
   &:focus-within {
-    background-color: rgba(94, 186, 123, 0.05);
+    border-color: #bfe6c4;
+    background-color: #f7fff6;
     outline: none;
   }
 
@@ -272,8 +284,9 @@
 .klpt-create-session-card__icon {
   display: block;
   flex-shrink: 0;
-  height: 4rem;
-  width: 4rem;
+  height: 4.25rem;
+  width: 4.25rem;
+  filter: drop-shadow(0 6px 12px rgba(71, 116, 73, 0.16));
 }
 
 .klpt-create-session-card__button {
@@ -304,8 +317,10 @@
 }
 
 .klpt-create-session-card__title {
-  font-size: 1.1rem;
-  font-weight: 700;
+  color: #24344b;
+  font-size: 1.35rem;
+  font-weight: 850;
+  line-height: 1.2;
   margin: 0;
 }
 
@@ -357,6 +372,10 @@
   gap: 0.75rem;
   justify-content: flex-start;
   margin-top: 0.5rem;
+
+  button {
+    cursor: pointer;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -388,7 +407,7 @@
 }
 
 .klpt-session-panel-header {
-  align-items: flex-end;
+  align-items: center;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -404,8 +423,37 @@
 }
 
 .klpt-existing-sessions__title {
-  font-size: 1.1rem;
+  color: #26364b;
+  font-size: 1.05rem;
+  font-weight: 850;
   margin: 0;
+}
+
+.klpt-delete-all-button {
+  min-height: 2.25rem;
+  border: 1px solid #d6e7f5;
+  border-radius: 10px;
+  padding: 0.45rem 0.8rem;
+  color: #39506b;
+  background: #ffffff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 800;
+  transition:
+    border-color 160ms ease,
+    color 160ms ease,
+    background 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.klpt-delete-all-button:hover,
+.klpt-delete-all-button:focus-visible {
+  border-color: #f2b8b5;
+  color: #b42318;
+  background: #fff7f7;
+  box-shadow: 0 6px 14px rgba(180, 35, 24, 0.08);
+  outline: none;
 }
 
 @media (min-width: 720px) {
@@ -473,10 +521,24 @@
 
 /* Group label (e.g. Barbara) */
 .recent-group-label {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #6b7280;
+  display: flex;
+  gap: 0.45rem;
+  align-items: center;
+  color: #64748b;
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
   margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.recent-group-label::before {
+  display: block;
+  width: 3px;
+  height: 1rem;
+  border-radius: 999px;
+  background: #f59e42;
+  content: "";
 }
 
 /* Card list */
@@ -491,17 +553,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.75rem 1rem;
-  border-radius: 12px;
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
+  gap: 1rem;
+  min-height: 2.75rem;
+  padding: 0.625rem 0.625rem 0.625rem 0.875rem;
+  border-radius: 8px;
+  background: #fbfdff;
+  border: 1px solid #dceaf3;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .session-card:hover {
-  background: #f3f4f6;
-  border-color: #d1d5db;
+  background: #f7fbff;
+  border-color: #bfdbfe;
 }
 
 /* Content */
@@ -517,22 +581,120 @@
 }
 
 .session-card-title-row p {
+  color: #26364b;
+  font-size: 0.88rem;
   margin: 0;
 }
 
 .session-card-title-row small {
-  color: #6b7280;
+  color: #64748b;
+  font-size: 0.8rem;
 }
 
 /* Delete button */
 .icon-delete {
-  background: transparent;
-  border: none;
-  color: #9ca3af;
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid #f6caca;
+  border-radius: 50%;
+  color: #c43d3d;
+  background: #ffffff;
   cursor: pointer;
   font-size: 1.2rem;
+  line-height: 1;
+  transition:
+    border-color 160ms ease,
+    color 160ms ease,
+    background 160ms ease,
+    transform 160ms ease;
 }
 
-.icon-delete:hover {
-  color: #ef4444;
+.icon-delete:hover,
+.icon-delete:focus-visible {
+  border-color: #ef4444;
+  color: #b42318;
+  background: #fff7f7;
+  outline: none;
+  transform: scale(1.04);
+}
+
+.delete-session-modal {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.delete-session-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(16, 35, 60, 0.46);
+}
+
+.delete-session-modal__panel {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 0.8rem;
+  width: min(100%, 28rem);
+  border-radius: 14px;
+  padding: 1.5rem;
+  background: #ffffff;
+  box-shadow: 0 24px 52px rgba(16, 35, 60, 0.24);
+}
+
+.delete-session-modal__eyebrow {
+  margin: 0;
+  color: #b42318;
+  font-size: 0.74rem;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.delete-session-modal__panel h2 {
+  margin: 0;
+  color: #26364b;
+  font-size: 1.45rem;
+  line-height: 1.15;
+}
+
+.delete-session-modal__panel p:not(.delete-session-modal__eyebrow) {
+  margin: 0;
+  color: #53657d;
+  line-height: 1.5;
+}
+
+.delete-session-modal__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  margin-block-start: 0.5rem;
+}
+
+.delete-session-modal__button {
+  min-height: 2.75rem;
+  border-radius: 8px;
+  padding: 0.65rem 1rem;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+}
+
+.delete-session-modal__button--secondary {
+  border: 1px solid #d6e7f5;
+  color: #39506b;
+  background: #ffffff;
+}
+
+.delete-session-modal__button--primary {
+  border: 1px solid #b42318;
+  color: #ffffff;
+  background: #b42318;
 }
