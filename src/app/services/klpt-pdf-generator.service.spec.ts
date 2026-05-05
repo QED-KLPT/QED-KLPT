@@ -153,6 +153,88 @@ describe('KlptPdfGeneratorService', () => {
     });
   });
 
+  describe('resolveElementName', () => {
+    beforeEach(() => {
+      const mockDomains = [
+        {
+          id: 'domain-1',
+          name: 'Language and literacy',
+          elements: [
+            { id: 'elem-1', name: 'Listening and understanding', behaviours: [] },
+          ],
+          subDomains: [
+            { id: 'sub-1', name: 'Phonological awareness', elements: [
+              { id: 'elem-2', name: 'Rhyming awareness', behaviours: [] },
+            ]},
+          ],
+        },
+      ];
+      const mockDomainData = createMockDomainData(mockDomains);
+
+      TestBed.resetTestingModule();
+      TestBed.configureTestingModule({
+        providers: [
+          KlptPdfGeneratorService,
+          { provide: KlptDomainDataService, useValue: mockDomainData },
+        ],
+      });
+
+      service = TestBed.inject(KlptPdfGeneratorService);
+    });
+
+    it('should return element name when ID matches direct element', () => {
+      expect(service.resolveElementName('elem-1')).toBe('Listening and understanding');
+    });
+
+    it('should return element name when ID matches sub-domain element', () => {
+      expect(service.resolveElementName('elem-2')).toBe('Rhyming awareness');
+    });
+
+    it('should return "Not specified" when ID does not match', () => {
+      expect(service.resolveElementName('unknown-elem')).toBe('Not specified');
+    });
+  });
+
+  describe('resolveBehaviourName', () => {
+    beforeEach(() => {
+      const mockDomains = [
+        {
+          id: 'domain-1',
+          name: 'Language and literacy',
+          elements: [
+            {
+              id: 'elem-1',
+              name: 'Listening and understanding',
+              behaviours: [
+                { id: 'beh-1', index: 0, name: 'Listens to stories', description: '' },
+                { id: 'beh-2', index: 1, name: 'Predicts what happens next', description: '' },
+              ],
+            },
+          ],
+        },
+      ];
+      const mockDomainData = createMockDomainData(mockDomains);
+
+      TestBed.resetTestingModule();
+      TestBed.configureTestingModule({
+        providers: [
+          KlptPdfGeneratorService,
+          { provide: KlptDomainDataService, useValue: mockDomainData },
+        ],
+      });
+
+      service = TestBed.inject(KlptPdfGeneratorService);
+    });
+
+    it('should return behaviour name when ID matches', () => {
+      expect(service.resolveBehaviourName('beh-1')).toBe('Listens to stories');
+    });
+
+    it('should return "Not specified" when ID does not match', () => {
+      expect(service.resolveBehaviourName('unknown-beh')).toBe('Not specified');
+    });
+  });
+
   describe('generateSessionPdf', () => {
     const createMockSession = (overrides: Partial<SessionModel> = {}): SessionModel => ({
       id: 'test-session-123',

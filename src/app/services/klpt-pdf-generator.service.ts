@@ -51,7 +51,6 @@ export class KlptPdfGeneratorService {
     ]);
 
     if (session.formFields.length > 0) {
-      y = this.addSection(doc, y, margin, contentWidth, 'Form Fields', []);
       const tableData = session.formFields.map((field) => [this.getFieldLabel(field.name), field.value]);
       autoTable(doc, {
         startY: y + 2,
@@ -62,18 +61,21 @@ export class KlptPdfGeneratorService {
         headStyles: { fillColor: [218, 195, 100] },
         styles: { fontSize: 9 },
       });
-      y += 10 + tableData.length * 8;
+      y += 12 + tableData.length * 8;
     }
 
     if (session.elements.length > 0) {
-      y = this.addSection(doc, y, margin, contentWidth, 'Selected Elements', []);
+      doc.setFontSize(13);
+      doc.setTextColor(49, 36, 0);
+      doc.text('Selected Elements', margin, y);
+      y += 6;
       const elementData = session.elements.map((el) => [
-        el.id,
-        el.behaviourId || 'No behaviour selected',
+        this.resolveElementName(el.id),
+        el.behaviourId ? this.resolveBehaviourName(el.behaviourId) : 'No behaviour selected',
       ]);
       autoTable(doc, {
-        startY: y + 2,
-        head: [['Element ID', 'Behaviour']],
+        startY: y,
+        head: [['Element', 'Behaviour']],
         body: elementData,
         margin: { left: margin, right: margin },
         theme: 'grid',
@@ -97,7 +99,10 @@ export class KlptPdfGeneratorService {
       );
     }
 
-    const filename = `klpt-session-${session.id}.pdf`;
+    const learnerCode = session.learnerCode || 'unknown';
+    const created = session.created;
+    const dateStr = `${created.getFullYear()}-${MONTHS[created.getMonth()]}-${String(created.getDate()).padStart(2, '0')}-${String(created.getHours()).padStart(2, '0')}-${String(created.getMinutes()).padStart(2, '0')}`;
+    const filename = `klpt-session-${learnerCode}-${dateStr}.pdf`;
     doc.save(filename);
   }
 
@@ -158,6 +163,29 @@ export class KlptPdfGeneratorService {
       .getAllDomains()
       .flatMap((d) => d.subDomains ?? [])
       .find((s) => s.id === subDomainId)?.name ?? 'Not specified';
+  }
+
+  resolveElementName(elementId: string): string {
+    return this.domainData
+      .getAllDomains()
+      .flatMap((d) => {
+        const direct = d.elements ?? [];
+        const subDomainElements = (d.subDomains ?? []).flatMap((sd) => sd.elements ?? []);
+        return [...direct, ...subDomainElements];
+      })
+      .find((e) => e.id === elementId)?.name ?? 'Not specified';
+  }
+
+  resolveBehaviourName(behaviourId: string): string {
+    return this.domainData
+      .getAllDomains()
+      .flatMap((d) => {
+        const direct = d.elements ?? [];
+        const subDomainElements = (d.subDomains ?? []).flatMap((sd) => sd.elements ?? []);
+        return [...direct, ...subDomainElements];
+      })
+      .flatMap((e) => e.behaviours ?? [])
+      .find((b) => b.id === behaviourId)?.name ?? 'Not specified';
   }
 
   getFieldLabel(fieldName: string): string {
