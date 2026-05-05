@@ -28,6 +28,16 @@
   margin: 0 auto;
 }
 
+.domain-hero--language,
+.domain-hero--mathematics,
+.domain-hero--physicality,
+.domain-hero--executive,
+.domain-hero--social {
+  display: grid;
+  align-items: center;
+  min-height: clamp(28rem, 36vw, 33rem);
+}
+
 .section__intro {
   display: grid;
   justify-items: center;
@@ -42,6 +52,14 @@
 }
 
 @media (max-width: 52rem) {
+  .domain-hero--language,
+  .domain-hero--mathematics,
+  .domain-hero--physicality,
+  .domain-hero--executive,
+  .domain-hero--social {
+    min-height: auto;
+  }
+
   .card-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
