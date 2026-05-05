@@ -3,7 +3,6 @@
     <app-navigation-nodes [sessionId]="currentSession.id" currentNode="select-behaviours" />
 
     @let elements = selectedElements();
-    @let detail = selectedDetail();
 
     @if (elements.length) {
       <div class="behaviour-screen">
@@ -25,7 +24,7 @@
               <button
                 class="behaviour-row__element"
                 type="button"
-                (click)="focusedElementId = element.id; focusedBehaviourId = selectedBehaviour(element)?.id"
+                (click)="focusedElementId = element.id; focusedBehaviourId = selectedBehaviour(element)?.id ?? element.behaviours[0]?.id"
               >
                 <strong>{{ element.name }}</strong>
                 <small>{{ elementStateLabel(element) }}</small>
@@ -33,34 +32,65 @@
 
               <div class="behaviour-row__divider" aria-hidden="true"></div>
 
-              <div class="behaviour-row__scroller">
-                @for (behaviour of element.behaviours; track behaviour.id; let behaviourIndex = $index) {
-                  <button
-                    class="behaviour-button"
-                    type="button"
-                    [ngStyle]="behaviourStyle(behaviourIndex, element.behaviours.length)"
-                    [attr.data-selected]="isSelectedBehaviour(element, behaviour)"
-                    [attr.data-focused]="isFocusedBehaviour(element, behaviour)"
-                    [attr.aria-pressed]="isSelectedBehaviour(element, behaviour)"
-                    (click)="selectBehaviour(element, behaviour)"
-                  >
-                    <strong>{{ behaviour.name }}</strong>
-                  </button>
-                }
+              <div
+                class="behaviour-carousel"
+                (touchstart)="onCarouselTouchStart(element, $event)"
+                (touchend)="onCarouselTouchEnd(element, $event)"
+              >
+                <button
+                  class="behaviour-carousel__arrow behaviour-carousel__arrow--previous"
+                  type="button"
+                  aria-label="Previous behaviour"
+                  [disabled]="!canGoPrevious(element)"
+                  (click)="previousBehaviour(element)"
+                >
+                  <span aria-hidden="true">‹</span>
+                </button>
+
+                <div class="behaviour-carousel__viewport" [attr.aria-label]="element.name + ' behaviour carousel'">
+                  @for (item of carouselItems(element); track item.behaviour.id; let behaviourIndex = $index) {
+                    <button
+                      class="behaviour-tile"
+                      type="button"
+                      [ngStyle]="carouselItemStyle(element, item, behaviourIndex)"
+                      [attr.data-state]="carouselItemState(item)"
+                      [attr.data-selected]="isSelectedBehaviour(element, item.behaviour)"
+                      [attr.data-focused]="isFocusedBehaviour(element, item.behaviour)"
+                      [attr.aria-pressed]="isSelectedBehaviour(element, item.behaviour)"
+                      [attr.aria-hidden]="carouselItemState(item) === 'hidden'"
+                      [attr.tabindex]="carouselItemState(item) === 'hidden' ? -1 : 0"
+                      (click)="selectBehaviour(element, item.behaviour)"
+                    >
+                      <strong>{{ item.behaviour.name }}</strong>
+                      <span class="behaviour-tile__description" [innerHTML]="item.behaviour.description"></span>
+                    </button>
+                  }
+                </div>
+
+                <button
+                  class="behaviour-carousel__arrow behaviour-carousel__arrow--next"
+                  type="button"
+                  aria-label="Next behaviour"
+                  [disabled]="!canGoNext(element)"
+                  (click)="nextBehaviour(element)"
+                >
+                  <span aria-hidden="true">›</span>
+                </button>
+
+                <div class="behaviour-carousel__dots" [attr.aria-label]="carouselPositionLabel(element)">
+                  @for (behaviour of element.behaviours; track behaviour.id) {
+                    <button
+                      type="button"
+                      [attr.data-active]="isActiveBehaviour(element, behaviour)"
+                      [attr.aria-label]="'Select ' + behaviour.name"
+                      (click)="selectBehaviour(element, behaviour)"
+                    ></button>
+                  }
+                </div>
               </div>
             </section>
           }
         </div>
-
-        @if (detail) {
-          <article class="behaviour-detail" [ngStyle]="detailStyle(detail)">
-            <span class="behaviour-detail__bulb" aria-hidden="true">
-              <img src="assets/img/bulb.png" alt="" />
-            </span>
-            <h2>{{ detail.behaviour.name }}</h2>
-            <div class="behaviour-detail__description" [innerHTML]="detail.behaviour.description"></div>
-          </article>
-        }
 
         <div class="klpt-step__actions">
           <a class="button button--secondary" [routerLink]="['/klpt/select-domains', currentSession.id]">Previous</a>
