@@ -48,7 +48,7 @@ export class ListSessions implements OnInit {
     const groups: Record<string, SessionModel[]> = {};
 
     for (const session of this.sessions) {
-      const key = session.educatorName || 'Unknown educator';
+      const key = session.educatorName || 'Unknown observer';
       if (!groups[key]) {
         groups[key] = [];
       }
@@ -94,7 +94,7 @@ export class ListSessions implements OnInit {
 
   public onCreateSession(): void {
     this.learnerCodeError = this.learnerCode.length !== 3 ? 'Learner code must be 3 digits' : '';
-    this.educatorNameError = !this.educatorName.trim() ? 'Educator name is required' : '';
+    this.educatorNameError = !this.educatorName.trim() ? "Observer's name is required" : '';
 
     if (this.learnerCodeError || this.educatorNameError) {
       return;

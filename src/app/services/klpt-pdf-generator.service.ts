@@ -33,7 +33,7 @@ export class KlptPdfGeneratorService {
     doc.setTextColor(0, 0, 0);
 
     y = this.addSection(doc, y, margin, contentWidth, 'Session Details', [
-      { label: 'Educator Name', value: this.formatEducatorName(session.educatorName) },
+      { label: "Observer's name", value: this.formatEducatorName(session.educatorName) },
       { label: 'Learner Code', value: session.learnerCode || 'Not provided' },
       { label: 'Date Created', value: this.formatDateForPdf(session.created) },
       { label: 'Domain', value: session.domain || 'Not specified' },
