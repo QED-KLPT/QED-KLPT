@@ -4,7 +4,7 @@
       "columns": [
         {
           "heading": "Home Languages",
-          "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vehicula, nibh vel sagittis hendrerit, lectus turpis volutpat nisl, et volutpat est erat non purus.",
+          "intro": "Recognising and valuing Aboriginal and Torres Strait Islander languages in Queensland supports language preservation and celebrates children’s strengths in speaking multiple languages. Some children use more than one language and may switch between their home language and English depending on the situation. This is called codeswitching and is a strength that enables children to adapt their language use to suit different contexts. ",
           "videos": [
             {
               "slot": "home-languages-primary",
@@ -17,7 +17,7 @@
         },
         {
           "heading": "Language and Literacy",
-          "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.",
+          "intro": "By supporting each child’s strengths and individual communication methods, we can foster their language and literacy development, helping them build confidence and feel a sense of belonging. Children show literacy behaviours when they pretend to read, write or use images and print in their play, including on devices. These everyday actions help them understand how language works. ",
           "videos": [
             {
               "slot": "language-and-literacy-primary",
