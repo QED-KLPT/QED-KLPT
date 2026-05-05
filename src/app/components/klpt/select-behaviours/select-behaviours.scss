@@ -242,9 +242,21 @@
       inset 0 0 0 2px color-mix(in srgb, #fff 44%, transparent);
   }
 
+  &[data-state="near"],
   &[data-state="far"] {
-    opacity: 0.82;
-    filter: saturate(0.96);
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.46)),
+      linear-gradient(135deg, rgba(16, 35, 60, 0.04), rgba(16, 35, 60, 0.14)),
+      linear-gradient(135deg, var(--accent-glow), var(--accent));
+    box-shadow:
+      0 8px 16px color-mix(in srgb, var(--accent) 10%, transparent),
+      inset 0 0 0 1px color-mix(in srgb, #fff 28%, transparent);
+    filter: saturate(0.82) brightness(1.12);
+  }
+
+  &[data-state="far"] {
+    opacity: 0.78;
+    filter: saturate(0.72) brightness(1.18);
   }
 
   &[data-state="hidden"] {

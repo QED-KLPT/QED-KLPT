@@ -18,7 +18,7 @@
       <section class="selection-row" aria-label="Domains">
         <div class="selection-row__heading">
           <h3>Domains</h3>
-          <p>Choose one broad area of learning and development.</p>
+          <!-- <p>Choose one broad area of learning and development.</p> -->
         </div>
 
         <div class="selection-row__scroller">
@@ -32,7 +32,7 @@
               (click)="selectDomain(domain)"
             >
               <strong>{{ domain.name }}</strong>
-              <small>{{ panelHint(domainItemCount(domain), currentSession.domain === domain.id) }}</small>
+              <!-- <small>{{ panelHint(domainItemCount(domain), currentSession.domain === domain.id) }}</small> -->
             </button>
           }
         </div>
@@ -41,7 +41,7 @@
       <section class="selection-row" aria-label="Subdomains">
         <div class="selection-row__heading">
           <h3>Subdomains</h3>
-          <p>Choose a more specific focus area.</p>
+          <!-- <p>Choose a more specific focus area.</p> -->
         </div>
 
         <div class="selection-row__scroller">
@@ -56,7 +56,7 @@
                 (click)="selectSubDomain(subDomain)"
               >
                 <strong>{{ subDomain.name }}</strong>
-                <small>{{ panelHint(subDomainItemCount(subDomain), currentSession.subDomain === subDomain.id) }}</small>
+                <!-- <small>{{ panelHint(subDomainItemCount(subDomain), currentSession.subDomain === subDomain.id) }}</small> -->
               </button>
             }
           } @else {
@@ -70,7 +70,7 @@
       <section class="selection-row" aria-label="Elements">
         <div class="selection-row__heading">
           <h3>Key Elements</h3>
-          <p>Toggle one or more observable learning elements.</p>
+          <!-- <p>Toggle one or more observable learning elements.</p> -->
         </div>
 
         <div class="selection-row__scroller">
@@ -85,7 +85,7 @@
                 (click)="toggleElement(element)"
               >
                 <strong>{{ element.name }}</strong>
-                <small>{{ panelHint(0, isElementSelected(element), true) }}</small>
+                <!-- <small>{{ panelHint(0, isElementSelected(element), true) }}</small> -->
               </button>
             }
           } @else {
