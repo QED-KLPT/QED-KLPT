@@ -114,7 +114,12 @@
 }
 
 .klpt-list-sessions__item {
+  align-items: center;
   border-bottom: 1px solid var(--klpt-border);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.75rem;
+  padding-inline: 0.25rem;
 
   &:last-child {
     border-bottom-color: transparent;
@@ -126,6 +131,7 @@
   color: var(--klpt-ink);
   display: flex;
   gap: 1rem;
+  min-width: 0;
   padding-block: 0.85rem;
   padding-inline-end: 1.25rem;
   text-decoration: none;
@@ -222,4 +228,227 @@
 .klpt-list-sessions__link:focus-visible .klpt-list-sessions__arrow {
   color: var(--klpt-purple-dark);
   transform: translateX(3px);
+}
+
+.klpt-create-session-card {
+  background: #ffffff;
+  border: 1px solid var(--klpt-border);
+  border-radius: 22px;
+  box-shadow: var(--klpt-shadow);
+  margin-block: 2rem 2.5rem;
+  padding: 1.75rem;
+}
+
+.klpt-observation-header {
+  margin-bottom: 1.75rem;
+  max-width: 58rem;
+}
+
+.klpt-observation-header h2 {
+  margin: 0.35rem 0 0.75rem;
+}
+
+.klpt-create-session-card__hero {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+  padding: 0.5rem -0.5rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  user-select: none;
+
+  &:hover,
+  &:focus-within {
+    background-color: rgba(94, 186, 123, 0.05);
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--klpt-gold);
+    outline-offset: 2px;
+  }
+}
+
+.klpt-create-session-card__icon {
+  display: block;
+  flex-shrink: 0;
+  height: 4rem;
+  width: 4rem;
+}
+
+.klpt-create-session-card__button {
+  align-items: center;
+  background: var(--klpt-purple-soft);
+  border: 1px solid var(--klpt-purple-dark);
+  border-radius: 50%;
+  color: var(--klpt-purple-dark);
+  display: inline-flex;
+  font-size: 2rem;
+  font-weight: 700;
+  height: 4rem;
+  justify-content: center;
+  line-height: 1;
+  min-width: 4rem;
+}
+
+.klpt-create-session-button {
+  align-items: center;
+  display: inline-flex;
+  gap: 0.6rem;
+}
+
+.klpt-create-session-button__icon {
+  display: block;
+  height: 1.1rem;
+  width: 1.1rem;
+}
+
+.klpt-create-session-card__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.klpt-create-session-card__description {
+  color: var(--klpt-muted);
+  font-size: 0.95rem;
+  margin: 0.35rem 0 0;
+  max-width: 42rem;
+}
+
+.klpt-create-session-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.klpt-create-session-form .qld__form-group--aligned {
+  display: grid;
+  grid-template-columns: minmax(140px, auto) 1fr;
+  column-gap: 1.5rem;
+  align-items: start;
+  row-gap: 0.5rem;
+}
+
+.klpt-create-session-form .qld__form-group__input-area {
+  display: grid;
+  gap: 0.5rem;
+  min-height: 5rem;
+  min-width: 0;
+}
+
+.klpt-create-session-form .qld__text-input {
+  width: 100%;
+  min-width: 0;
+}
+
+.klpt-create-session-form .qld__form-group--aligned .qld__input--error {
+  grid-column: 2;
+  min-height: 1.3rem;
+}
+
+.klpt-create-session-form__actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-start;
+  margin-top: 0.5rem;
+}
+
+.klpt-list-sessions__delete {
+  align-items: center;
+  background: transparent;
+  border: 1px solid var(--klpt-border);
+  border-radius: 999px;
+  color: var(--klpt-muted);
+  display: inline-flex;
+  font-size: 1.05rem;
+  height: 2.5rem;
+  justify-content: center;
+  width: 2.5rem;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.klpt-list-sessions__delete:hover,
+.klpt-list-sessions__delete:focus-visible {
+  background: var(--klpt-purple-soft);
+  border-color: var(--klpt-purple-dark);
+  color: var(--klpt-purple-dark);
+}
+
+.klpt-session-panel-header {
+  align-items: flex-end;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-block-end: 1rem;
+}
+
+.klpt-session-panel-subtitle {
+  color: var(--klpt-muted);
+  font-size: 0.98rem;
+  margin: 0;
+  max-width: 42rem;
+}
+
+.klpt-existing-sessions__title {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+@media (min-width: 720px) {
+  .klpt-create-session-card {
+    padding: 2rem;
+  }
+
+  .klpt-create-session-card__hero {
+    gap: 1.25rem;
+  }
+
+  .klpt-create-session-card__title {
+    font-size: 1.3rem;
+  }
+
+  .klpt-create-session-card__description {
+    max-width: 54rem;
+  }
+
+  .klpt-create-session-form {
+    gap: 1.25rem;
+  }
+
+  .klpt-create-session-form__actions {
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 760px) {
+  .klpt-list-sessions__link {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .klpt-list-sessions__id,
+  .klpt-list-sessions__educator,
+  .klpt-list-sessions__learner,
+  .klpt-list-sessions__date,
+  .klpt-list-sessions__elements {
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  .klpt-list-sessions__arrow {
+    margin-left: auto;
+  }
+}
+
+@media (min-width: 900px) {
+  .klpt-create-session-card {
+    padding: 2rem;
+  }
+
+  .klpt-create-session-card__hero {
+    gap: 1.5rem;
+  }
 }

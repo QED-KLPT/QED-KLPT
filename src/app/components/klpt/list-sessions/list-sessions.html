@@ -1,12 +1,94 @@
 <section class="section section--white klpt-step">
   <div class="section__inner">
-    <p class="eyebrow">Step 1</p>
-    <h2>List sessions</h2>
-    <p>List all available or existing sessions, with an option to add a new session.</p>
 
-    @if (sessions.length === 0) {
-      <p class="klpt-list-sessions__empty">No sessions found. Create a new session to get started.</p>
-    } @else {
+    <div class="klpt-create-session-card">
+      <div class="klpt-create-session-card__hero" (click)="onToggleFormVisibility()" role="button" tabindex="0" (keydown.enter)="onToggleFormVisibility()" (keydown.space)="onToggleFormVisibility()">
+      <svg 
+        class="klpt-create-session-card__icon"
+        viewBox="0 0 80 80"
+        role="img"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <!-- Outer circle -->
+        <circle cx="40" cy="40" r="38" fill="#f2eaf7" stroke="#6a3d8f" stroke-width="4" />
+        
+        <!-- Plus icon -->
+        <line x1="40" y1="22" x2="40" y2="58" stroke="#4f2a6f" stroke-width="6" stroke-linecap="round" />
+        <line x1="22" y1="40" x2="58" y2="40" stroke="#4f2a6f" stroke-width="6" stroke-linecap="round" />
+      </svg>
+        <div>
+          <p class="klpt-create-session-card__title">Start a new observation</p>
+          <p class="klpt-create-session-card__description"></p>
+        </div>
+      </div>
+
+      @if (isFormVisible) {
+      <div class="klpt-create-session-form">
+        <div class="qld__form-group qld__form-group--aligned">
+          <label for="learner-code" class="qld__label qld__form-group__label">Learner code</label>
+          <div class="qld__text-input">          
+            <input
+              type="text"
+              id="learner-code"
+              class="qld__text-input"
+              [class.qld__text-input--error]="learnerCodeError"
+              [attr.aria-invalid]="learnerCodeError"
+              placeholder="e.g. 123"
+              maxlength="3"
+              [value]="learnerCode"
+              (input)="onLearnerCodeInput($event)"
+            />
+            @if (learnerCodeError) {
+              <span class="qld__input--error" id="learner-code-error">              
+                {{ learnerCodeError }}
+              </span>
+            }
+          </div>
+        </div>
+
+        <div class="qld__form-group qld__form-group--aligned">
+          <label for="educator-name" class="qld__label qld__form-group__label">Educator name</label>
+          <div class="qld__text-input">           
+            <input
+              type="text"
+              id="educator-name"
+              class="qld__text-input"
+              [class.qld__text-input--error]="educatorNameError"
+              [attr.aria-invalid]="educatorNameError"
+              placeholder="Enter educator name"
+              [value]="educatorName"
+              (input)="onEducatorNameInput($event)"
+            />
+             @if (educatorNameError) {
+              <span class="qld__input--error" id="educator-name-error">               
+                {{ educatorNameError }}
+              </span>
+            }
+          </div>
+        </div>
+
+        <div class="klpt-create-session-form__actions">
+          <button type="button" class="button button--secondary" (click)="onToggleFormVisibility()">
+            Cancel
+          </button>
+          <button type="button" class="button button--primary klpt-create-session-button" (click)="onCreateSession()">
+            Create session
+          </button>
+        </div>
+      </div>
+      }
+    </div>
+
+    <section class="klpt-existing-sessions">
+      <div class="klpt-session-panel-header">
+        <h3 class="klpt-existing-sessions__title">Saved sessions</h3>
+        <p class="klpt-session-panel-subtitle"></p>
+      </div>
+
+      @if (sessions.length === 0) {
+        <p class="klpt-list-sessions__empty">No saved sessions yet. Create a new session to get started.</p>
+      } @else {
       <ul class="klpt-list-sessions">
         <li class="klpt-list-sessions__header">
           <div class="klpt-list-sessions__link klpt-list-sessions__link--header">
@@ -23,23 +105,31 @@
               class="klpt-list-sessions__link"
               [routerLink]="['/klpt/select-domains', session.id]"
             >
-              <span class="klpt-list-sessions__id" [title]="session.id">{{ session.id | slice:0:12 }}</span>
-              <span class="klpt-list-sessions__learner" [title]="session.learnerCode">{{ session.learnerCode }}</span>
+              <span class="klpt-list-sessions__id" [title]="session.id">{{ session.id | slice:0:12 }}</span>             
               <span class="klpt-list-sessions__educator" [title]="session.educatorName">{{ session.educatorName ?? '' }}</span>
+               <span class="klpt-list-sessions__learner" [title]="session.learnerCode">{{ session.learnerCode }}</span>
               <time class="klpt-list-sessions__date" [attr.datetime]="session.created.toISOString()">
                 {{ session.created | date:'d MMM HH:mm' }}
               </time>
               <span class="klpt-list-sessions__elements">{{ session.elements.length }} element{{ session.elements.length === 1 ? '' : 's' }}</span>
               <span class="klpt-list-sessions__arrow" aria-hidden="true">&rarr;</span>
             </a>
+            <button
+              type="button"
+              class="klpt-list-sessions__delete"
+              aria-label="Delete observation session"
+              (click)="onDeleteSession(session.id); $event.stopPropagation(); $event.preventDefault()"
+            >
+              <span aria-hidden="true">×</span>
+            </button>
           </li>
         }
       </ul>
     }
+    </section>
 
     <div class="klpt-step__actions">
       <a class="button button--secondary" routerLink="/klpt">Back</a>
-      <a class="button button--primary" routerLink="/klpt/create-session">Next</a>
     </div>
 
     <button type="button" class="storage-debug-button" (click)="openStorageModal()">
