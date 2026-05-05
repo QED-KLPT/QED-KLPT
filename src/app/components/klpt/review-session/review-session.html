@@ -2,13 +2,107 @@
   <div class="section__inner">
     <app-navigation-nodes [sessionId]="currentSession.id" currentNode="review" />
 
-    <p class="eyebrow">Step 6</p>
-    <h2>Review session</h2>
-    <p>Review all session details before finishing.</p>
+    @let domain = selectedDomain();
+    @let items = progressionItems();
 
-    <div class="klpt-step__actions">
-      <a class="button button--secondary" [routerLink]="['/klpt/learning-progression-statement', currentSession.id]">Back</a>
-      <button class="button button--primary" type="button" (click)="generatePdf()">Generate PDF</button>
-    </div>
+    <article class="statement-card review-card">
+      <p class="eyebrow">Final check</p>
+      <h2>Review Statement</h2>
+
+      <label class="klpt-form-field review-card__student">
+        <span>Student's name</span>
+        <input
+          type="text"
+          [value]="formValue('student-name')"
+          placeholder="Enter student's name"
+          (input)="updateFormField('student-name', $any($event.target).value)"
+        />
+      </label>
+
+      <dl class="review-list">
+        <div>
+          <dt>Domain</dt>
+          <dd>{{ domain?.name ?? 'Not selected' }}</dd>
+        </div>
+        <div>
+          <dt>Elements</dt>
+          <dd>{{ items.length }}</dd>
+        </div>
+        <div>
+          <dt>Date</dt>
+          <dd>{{ displayValue(formValue('date')) }}</dd>
+        </div>
+        <div>
+          <dt>Educator</dt>
+          <dd>{{ displayValue(currentSession.educatorName) }}</dd>
+        </div>
+        <div>
+          <dt>Learner code</dt>
+          <dd>{{ displayValue(currentSession.learnerCode) }}</dd>
+        </div>
+      </dl>
+
+      @if (domain) {
+        <section class="klpt-summary-block">
+          <h3>Learning domain summary</h3>
+          <p><strong>{{ domain.name }}:</strong> {{ domain.summary }}</p>
+        </section>
+      }
+
+      @if (items.length) {
+        <section class="klpt-progression-stack" aria-label="Selected behaviours and next behaviours">
+          @for (item of items; track item.element.id) {
+            <article class="klpt-progression-item" [ngStyle]="itemStyle(item.element)">
+              <div class="klpt-progression-item__heading">
+                <h3>{{ item.element.name }}</h3>
+              </div>
+
+              <div class="klpt-evidence-grid">
+                <div class="klpt-evidence-panel">
+                  <h3>What you observed</h3>
+                  <p class="klpt-behaviour-name">{{ item.behaviour.name }}</p>
+                  <div [innerHTML]="item.behaviour.description"></div>
+                </div>
+
+                <div class="klpt-evidence-panel">
+                  <h3>What is likely to be the next step in learning progression</h3>
+                  <p class="klpt-behaviour-name">{{ item.nextBehaviour?.name ?? 'Final behaviour' }}</p>
+                  @if (item.nextBehaviour) {
+                    <div [innerHTML]="item.nextBehaviour.description"></div>
+                  } @else {
+                    <p>This is the final behaviour currently available for this element.</p>
+                  }
+                </div>
+              </div>
+            </article>
+          }
+        </section>
+      } @else {
+        <section class="klpt-summary-block">
+          <h3>No behaviours selected</h3>
+          <p>Return to behaviour selection and choose a behaviour for each selected element.</p>
+        </section>
+      }
+
+      <section class="klpt-review-text-block">
+        <h3>Description of observation context or evidence collected</h3>
+        <p>{{ displayValue(formValue('observational-context')) }}</p>
+      </section>
+
+      <section class="klpt-review-text-block">
+        <h3>Professional reflection</h3>
+        <p>{{ displayValue(formValue('professional-reflection')) }}</p>
+      </section>
+
+      <section class="klpt-review-text-block">
+        <h3>How can you support this learning</h3>
+        <p>{{ displayValue(formValue('support-learning')) }}</p>
+      </section>
+
+      <div class="klpt-step__actions">
+        <a class="button button--secondary" [routerLink]="['/klpt/learning-progression-statement', currentSession.id]">Previous</a>
+        <button class="button button--primary" type="button" (click)="generatePdf()">Generate PDF</button>
+      </div>
+    </article>
   </div>
 </section>
