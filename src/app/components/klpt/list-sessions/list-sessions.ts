@@ -23,6 +23,26 @@ export class ListSessions implements OnInit {
   protected isFormVisible = false;
   protected isStorageModalOpen = false;
   protected storageSnapshot = '(empty)';
+  protected pendingDelete:
+    | { type: 'session'; sessionId: string; learnerCode: string }
+    | { type: 'all' }
+    | undefined;
+
+  protected get sessionCountLabel(): string {
+    return `Saved sessions (${this.sessions.length})`;
+  }
+
+  protected get deleteConfirmationTitle(): string {
+    return this.pendingDelete?.type === 'all' ? 'Delete all sessions?' : 'Delete this session?';
+  }
+
+  protected get deleteConfirmationMessage(): string {
+    if (this.pendingDelete?.type === 'session') {
+      return `This will permanently delete learner ${this.pendingDelete.learnerCode || 'this session'}.`;
+    }
+
+    return `This will permanently delete all ${this.sessions.length} saved sessions.`;
+  }
 
   public get groupedSessions(): [string, SessionModel[]][] {
     const groups: Record<string, SessionModel[]> = {};
@@ -88,9 +108,44 @@ export class ListSessions implements OnInit {
     void this.router.navigateByUrl(`/klpt/select-domains/${newSession.id}`);
   }
 
-  public onDeleteSession(sessionId: string): void {
+  public openDeleteSessionModal(session: SessionModel): void {
+    this.pendingDelete = {
+      type: 'session',
+      sessionId: session.id,
+      learnerCode: session.learnerCode,
+    };
+  }
+
+  public openDeleteAllModal(): void {
+    if (!this.sessions.length) {
+      return;
+    }
+
+    this.pendingDelete = { type: 'all' };
+  }
+
+  protected closeDeleteModal(): void {
+    this.pendingDelete = undefined;
+  }
+
+  protected confirmDelete(): void {
+    if (!this.pendingDelete) {
+      return;
+    }
+
+    if (this.pendingDelete.type === 'all') {
+      for (const session of this.sessions) {
+        this.sessionManagement.deleteSession(session.id);
+      }
+      this.sessions = [];
+      this.pendingDelete = undefined;
+      return;
+    }
+
+    const sessionId = this.pendingDelete.sessionId;
     this.sessionManagement.deleteSession(sessionId);
     this.sessions = this.sessions.filter((session) => session.id !== sessionId);
+    this.pendingDelete = undefined;
   }
 
   protected openStorageModal(): void {
