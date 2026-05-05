@@ -24,6 +24,21 @@ export class ListSessions implements OnInit {
   protected isStorageModalOpen = false;
   protected storageSnapshot = '(empty)';
 
+  public get groupedSessions(): [string, SessionModel[]][] {
+    const groups: Record<string, SessionModel[]> = {};
+
+    for (const session of this.sessions) {
+      const key = session.educatorName || 'Unknown educator';
+      if (!groups[key]) {
+        groups[key] = [];
+      }
+      groups[key].push(session);
+    }
+
+    return Object.entries(groups);
+  }
+  
+
   ngOnInit(): void {
     this.sessionManagement.deleteAllExpiredSessions();
     const all = this.sessionManagement.getAllSessions();
