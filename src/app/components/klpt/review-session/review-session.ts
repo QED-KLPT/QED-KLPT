@@ -28,8 +28,8 @@ export class ReviewSession implements OnInit, OnDestroy {
     this.sessionManagement.persistSession(this.currentSession);
   }
 
-  generatePdf(): void {
-    this.pdfGenerator.generateSessionPdf(this.currentSession);
+  async generatePdf(): Promise<void> {
+    await this.pdfGenerator.generateSessionPdf(this.currentSession);
   }
 
   private getRouteSession(): SessionModel {
