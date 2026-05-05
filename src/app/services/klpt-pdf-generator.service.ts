@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { jsPDF } from 'jspdf';
-import { autoTable } from 'jspdf-autotable';
 import type { SessionModel } from '../components/klpt/models/session-model';
+import type { jsPDF as JsPdfDocument } from 'jspdf';
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
                 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -9,7 +8,11 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
 @Injectable({ providedIn: 'root' })
 export class KlptPdfGeneratorService {
 
-  generateSessionPdf(session: SessionModel): void {
+  async generateSessionPdf(session: SessionModel): Promise<void> {
+    const [{ jsPDF }, { autoTable }] = await Promise.all([
+      import('jspdf'),
+      import('jspdf-autotable'),
+    ]);
     const doc = new jsPDF();
     const pageWidth = doc.internal.pageSize.getWidth();
     let y = 20;
@@ -89,7 +92,7 @@ export class KlptPdfGeneratorService {
   }
 
   private addSection(
-    doc: jsPDF,
+    doc: JsPdfDocument,
     y: number,
     margin: number,
     contentWidth: number,
