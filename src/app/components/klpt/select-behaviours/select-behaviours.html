@@ -3,6 +3,7 @@
     <app-navigation-nodes [sessionId]="currentSession.id" currentNode="select-behaviours" />
 
     @let elements = selectedElements();
+    @let detail = selectedDetail();
 
     @if (elements.length) {
       <div class="behaviour-screen">
@@ -91,6 +92,17 @@
             </section>
           }
         </div>
+
+        @if (detail) {
+          <article class="behaviour-detail" [ngStyle]="detailStyle(detail)">
+            <span class="behaviour-detail__bulb" aria-hidden="true">
+              <img src="assets/img/bulb.png" alt="" />
+            </span>
+            <p class="behaviour-detail__element">{{ detail.element.name }}</p>
+            <h2>{{ detail.behaviour.name }}</h2>
+            <div class="behaviour-detail__description" [innerHTML]="detail.behaviour.description"></div>
+          </article>
+        }
 
         <div class="klpt-step__actions">
           <a class="button button--secondary" [routerLink]="['/klpt/select-domains', currentSession.id]">Previous</a>

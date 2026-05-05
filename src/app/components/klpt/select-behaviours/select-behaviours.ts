@@ -15,6 +15,12 @@ interface BehaviourCarouselItem {
   distance: number;
 }
 
+interface BehaviourDetail {
+  element: KlptElement;
+  behaviour: KlptBehaviour;
+  elementIndex: number;
+}
+
 @Component({
   selector: 'app-select-behaviours',
   imports: [NgStyle, RouterLink, NavigationNodesComponent],
@@ -145,6 +151,26 @@ export class SelectBehaviours implements OnInit, OnDestroy {
     });
   }
 
+  protected selectedDetail(): BehaviourDetail | undefined {
+    const selectedElements = this.selectedElements();
+    const elementIndex = Math.max(
+      0,
+      selectedElements.findIndex((element) => element.id === this.focusedElementId),
+    );
+    const element = selectedElements[elementIndex];
+    const behaviour = element ? this.activeBehaviour(element) : undefined;
+
+    if (!element || !behaviour) {
+      return undefined;
+    }
+
+    return {
+      element,
+      behaviour,
+      elementIndex,
+    };
+  }
+
   protected isSelectedBehaviour(element: KlptElement, behaviour: KlptBehaviour): boolean {
     return this.sessionElement(element)?.behaviourId === behaviour.id;
   }
@@ -155,6 +181,10 @@ export class SelectBehaviours implements OnInit, OnDestroy {
 
   protected isActiveBehaviour(element: KlptElement, behaviour: KlptBehaviour): boolean {
     return this.activeBehaviour(element)?.id === behaviour.id;
+  }
+
+  protected detailStyle(detail: BehaviourDetail): Record<string, string> {
+    return this.rowStyle(detail.elementIndex);
   }
 
   protected carouselItemStyle(

@@ -302,6 +302,70 @@
   }
 }
 
+.behaviour-detail {
+  position: relative;
+  display: grid;
+  gap: 0.875rem;
+  min-height: 13.75rem;
+  border-radius: 14px;
+  padding: clamp(1.5rem, 5vw, 2.75rem);
+  color: #ffffff;
+  background:
+    linear-gradient(135deg, rgba(16, 35, 60, 0.08), rgba(16, 35, 60, 0.34)),
+    linear-gradient(135deg, var(--accent-glow, var(--accent)), var(--accent));
+  box-shadow:
+    0 16px 34px color-mix(in srgb, var(--accent) 20%, transparent),
+    inset 0 0 0 1px color-mix(in srgb, #fff 18%, transparent);
+
+  h2 {
+    margin: 0;
+    color: #ffffff;
+    font-size: clamp(1.85rem, 4vw, 3rem);
+    line-height: 1;
+    letter-spacing: 0;
+    text-shadow: 0 1px 2px rgba(16, 35, 60, 0.28);
+  }
+}
+
+.behaviour-detail__element {
+  margin: 0;
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 850;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.86;
+}
+
+.behaviour-detail__bulb {
+  position: absolute;
+  top: -22px;
+  left: -14px;
+  display: inline-grid;
+  place-items: center;
+  background: transparent;
+  filter:
+    drop-shadow(0 0 12px rgba(255, 212, 90, 0.42))
+    drop-shadow(0 8px 12px rgba(16, 35, 60, 0.22));
+  transform: rotate(-8deg);
+
+  img {
+    display: block;
+    width: 62px;
+    height: 62px;
+  }
+}
+
+.behaviour-detail__description {
+  max-height: 260px;
+  overflow: auto;
+  scrollbar-color: rgba(255, 255, 255, 0.72) rgba(255, 255, 255, 0.18);
+  scrollbar-width: thin;
+  padding-right: 10px;
+  font-size: clamp(0.88rem, 1.7vw, 1rem);
+  line-height: 1.45;
+}
+
 :host ::ng-deep .behaviour-tile__description ul {
   display: grid;
   gap: 0.375rem;
@@ -310,6 +374,17 @@
 }
 
 :host ::ng-deep .behaviour-tile__description p {
+  margin: 0;
+}
+
+:host ::ng-deep .behaviour-detail__description ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+:host ::ng-deep .behaviour-detail__description p {
   margin: 0;
 }
 
@@ -363,6 +438,14 @@
 
   .behaviour-orbit {
     gap: 0.875rem;
+  }
+
+  .behaviour-detail {
+    min-height: 260px;
+  }
+
+  .behaviour-detail__description {
+    max-height: none;
   }
 
   .behaviour-carousel {
