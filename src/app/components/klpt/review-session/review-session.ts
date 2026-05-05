@@ -3,6 +3,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NavigationNodesComponent } from '../../shared';
 import { SessionModel } from '../models/session-model';
 import { SessionManagementService } from '../shared/session-management.service';
+import { KlptPdfGeneratorService } from '../../../services/klpt-pdf-generator.service';
 
 @Component({
   selector: 'app-review-session',
@@ -14,6 +15,7 @@ import { SessionManagementService } from '../shared/session-management.service';
 export class ReviewSession implements OnInit, OnDestroy {
   private readonly route = inject(ActivatedRoute);
   private readonly sessionManagement = inject(SessionManagementService);
+  private readonly pdfGenerator = inject(KlptPdfGeneratorService);
 
   public currentSession!: SessionModel;
 
@@ -24,6 +26,10 @@ export class ReviewSession implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.sessionManagement.persistSession(this.currentSession);
+  }
+
+  generatePdf(): void {
+    this.pdfGenerator.generateSessionPdf(this.currentSession);
   }
 
   private getRouteSession(): SessionModel {
