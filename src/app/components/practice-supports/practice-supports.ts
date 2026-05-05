@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { AfterViewInit, ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ViewportScroller } from '@angular/common';
 import { AccordionItemComponent } from '../shared/accordion-item/accordion-item.component';
 
 type PracticeSupportSection = {
@@ -21,7 +22,38 @@ type PracticeSupportSection = {
   styleUrl: './practice-supports.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PracticeSupports {
+export class PracticeSupports implements OnInit, AfterViewInit {
+  private readonly route = inject(ActivatedRoute);
+  private readonly viewportScroller = inject(ViewportScroller);
+  private fragmentToScroll?: string;
+  private viewInitialized = false;
+
+  ngOnInit(): void {
+    this.route.fragment.subscribe((fragment) => {
+      if (!fragment) {
+        return;
+      }
+
+      if (this.viewInitialized) {
+        this.scrollToAnchor(fragment);
+      } else {
+        this.fragmentToScroll = fragment;
+      }
+    });
+  }
+
+  ngAfterViewInit(): void {
+    this.viewInitialized = true;
+
+    if (this.fragmentToScroll) {
+      this.scrollToAnchor(this.fragmentToScroll);
+    }
+  }
+
+  private scrollToAnchor(fragment: string): void {
+    Promise.resolve().then(() => this.viewportScroller.scrollToAnchor(fragment));
+  }
+
   protected readonly sections: PracticeSupportSection[] = [
     {
       id: 'professional-reflection',
