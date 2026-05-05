@@ -1,12 +1,22 @@
 import { Injectable } from '@angular/core';
 import type { SessionModel } from '../components/klpt/models/session-model';
 import type { jsPDF as JsPdfDocument } from 'jspdf';
+import { KlptDomainDataService } from '../components/klpt/shared/klpt-domain-data.service';
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
                 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
+const FORM_FIELD_LABELS: Record<string, string> = {
+  'student-name': 'Learner Name',
+  'date': 'Date',
+  'observational-context': 'Context',
+  'professional-reflection': 'Professional Reflection',
+  'support-learning': 'Support Learning',
+};
+
 @Injectable({ providedIn: 'root' })
 export class KlptPdfGeneratorService {
+  constructor(private readonly domainData: KlptDomainDataService) {}
 
   async generateSessionPdf(session: SessionModel): Promise<void> {
     const [{ jsPDF }, { autoTable }] = await Promise.all([
@@ -21,7 +31,7 @@ export class KlptPdfGeneratorService {
 
     doc.setFontSize(18);
     doc.setTextColor(49, 36, 0);
-    doc.text('Learning Progression Toolkit — Session Report', margin, y);
+    doc.text('Learning Progression Toolkit — Session Report', pageWidth / 2, y, { align: 'center' });
     y += 15;
 
     doc.setDrawColor(200, 180, 100);
@@ -36,13 +46,12 @@ export class KlptPdfGeneratorService {
       { label: "Observer's name", value: this.formatEducatorName(session.educatorName) },
       { label: 'Learner Code', value: session.learnerCode || 'Not provided' },
       { label: 'Date Created', value: this.formatDateForPdf(session.created) },
-      { label: 'Domain', value: session.domain || 'Not specified' },
-      { label: 'Sub-Domain', value: session.subDomain || 'Not specified' },
+      { label: 'Domain', value: this.resolveDomainName(session.domain) },
+      { label: 'Sub-Domain', value: session.subDomain ? this.resolveSubDomainName(session.subDomain) : 'Not specified' },
     ]);
 
     if (session.formFields.length > 0) {
-      y = this.addSection(doc, y, margin, contentWidth, 'Form Fields', []);
-      const tableData = session.formFields.map((field) => [field.name, field.value]);
+      const tableData = session.formFields.map((field) => [this.getFieldLabel(field.name), field.value]);
       autoTable(doc, {
         startY: y + 2,
         head: [['Field', 'Value']],
@@ -52,18 +61,21 @@ export class KlptPdfGeneratorService {
         headStyles: { fillColor: [218, 195, 100] },
         styles: { fontSize: 9 },
       });
-      y += 10 + tableData.length * 8;
+      y += 12 + tableData.length * 8;
     }
 
     if (session.elements.length > 0) {
-      y = this.addSection(doc, y, margin, contentWidth, 'Selected Elements', []);
+      doc.setFontSize(13);
+      doc.setTextColor(49, 36, 0);
+      doc.text('Selected Elements', margin, y);
+      y += 3;
       const elementData = session.elements.map((el) => [
-        el.id,
-        el.behaviourId || 'No behaviour selected',
+        this.resolveElementName(el.id),
+        el.behaviourId ? this.resolveBehaviourName(el.behaviourId) : 'No behaviour selected',
       ]);
       autoTable(doc, {
-        startY: y + 2,
-        head: [['Element ID', 'Behaviour']],
+        startY: y,
+        head: [['Element', 'Behaviour']],
         body: elementData,
         margin: { left: margin, right: margin },
         theme: 'grid',
@@ -72,22 +84,10 @@ export class KlptPdfGeneratorService {
       });
     }
 
-    const pages = doc.internal.pages as unknown as string[];
-    const totalPages = pages.length;
-    for (let i = 1; i <= totalPages; i++) {
-      doc.setPage(i);
-      doc.setFontSize(8);
-      doc.setTextColor(150, 150, 150);
-      const footerY = doc.internal.pageSize.getHeight() - 10;
-      doc.text(
-        `Page ${i} of ${totalPages}`,
-        pageWidth / 2,
-        footerY,
-        { align: 'center' }
-      );
-    }
-
-    const filename = `klpt-session-${session.id}.pdf`;
+    const learnerCode = session.learnerCode || 'unknown';
+    const created = session.created;
+    const dateStr = `${created.getFullYear()}-${MONTHS[created.getMonth()]}-${String(created.getDate()).padStart(2, '0')}-${String(created.getHours()).padStart(2, '0')}-${String(created.getMinutes()).padStart(2, '0')}`;
+    const filename = `klpt-session-${learnerCode}-${dateStr}.pdf`;
     doc.save(filename);
   }
 
@@ -120,7 +120,7 @@ export class KlptPdfGeneratorService {
           y += lines.length * 5;
         } else {
           doc.text(field.value, margin + 50, y);
-          y += 6;
+          y += 10;
         }
       }
     }
@@ -132,10 +132,48 @@ export class KlptPdfGeneratorService {
     const day = date.getDate();
     const month = MONTHS[date.getMonth()];
     const year = date.getFullYear();
-    return `${day}-${month}-${year}`;
+    return `${day} ${month} ${year}`;
   }
 
   formatEducatorName(name: string | undefined): string {
     return name ?? 'Not provided';
+  }
+
+  resolveDomainName(domainId: string): string {
+    return this.domainData.getAllDomains().find((d) => d.id === domainId)?.name ?? 'Not specified';
+  }
+
+  resolveSubDomainName(subDomainId: string): string {
+    return this.domainData
+      .getAllDomains()
+      .flatMap((d) => d.subDomains ?? [])
+      .find((s) => s.id === subDomainId)?.name ?? 'Not specified';
+  }
+
+  resolveElementName(elementId: string): string {
+    return this.domainData
+      .getAllDomains()
+      .flatMap((d) => {
+        const direct = d.elements ?? [];
+        const subDomainElements = (d.subDomains ?? []).flatMap((sd) => sd.elements ?? []);
+        return [...direct, ...subDomainElements];
+      })
+      .find((e) => e.id === elementId)?.name ?? 'Not specified';
+  }
+
+  resolveBehaviourName(behaviourId: string): string {
+    return this.domainData
+      .getAllDomains()
+      .flatMap((d) => {
+        const direct = d.elements ?? [];
+        const subDomainElements = (d.subDomains ?? []).flatMap((sd) => sd.elements ?? []);
+        return [...direct, ...subDomainElements];
+      })
+      .flatMap((e) => e.behaviours ?? [])
+      .find((b) => b.id === behaviourId)?.name ?? 'Not specified';
+  }
+
+  getFieldLabel(fieldName: string): string {
+    return FORM_FIELD_LABELS[fieldName] ?? fieldName;
   }
 }
