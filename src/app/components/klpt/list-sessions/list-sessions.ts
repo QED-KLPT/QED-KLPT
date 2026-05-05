@@ -1,4 +1,4 @@
-import { DatePipe, SlicePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { SessionModel } from '../models/session-model';
@@ -6,7 +6,7 @@ import { SessionManagementService } from '../shared/session-management.service';
 
 @Component({
   selector: 'app-list-sessions',
-  imports: [RouterLink, DatePipe, SlicePipe],
+  imports: [RouterLink, DatePipe],
   templateUrl: './list-sessions.html',
   styleUrl: './list-sessions.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -23,15 +23,18 @@
         </div>
       </div>
 
-      @if (isFormVisible) {
-      <div class="klpt-create-session-form">
-        <div class="qld__form-group qld__form-group--aligned">
-          <label for="learner-code" class="qld__label qld__form-group__label">Learner code</label>
-          <div class="qld__text-input">          
+      <div
+        class="klpt-create-session-form-shell"
+        [class.klpt-create-session-form-shell--open]="isFormVisible"
+        [attr.aria-hidden]="!isFormVisible"
+        [attr.inert]="!isFormVisible ? '' : null"
+      >
+        <div class="klpt-create-session-form klpt-form-grid">
+          <div class="klpt-form-field">
+            <label for="learner-code">Learner code</label>
             <input
               type="text"
               id="learner-code"
-              class="qld__text-input"
               [class.qld__text-input--error]="learnerCodeError"
               [attr.aria-invalid]="learnerCodeError"
               placeholder="e.g. 123"
@@ -45,15 +48,12 @@
               </span>
             }
           </div>
-        </div>
 
-        <div class="qld__form-group qld__form-group--aligned">
-          <label for="educator-name" class="qld__label qld__form-group__label">Educator name</label>
-          <div class="qld__text-input">           
+          <div class="klpt-form-field">
+            <label for="educator-name">Educator name</label>
             <input
               type="text"
               id="educator-name"
-              class="qld__text-input"
               [class.qld__text-input--error]="educatorNameError"
               [attr.aria-invalid]="educatorNameError"
               placeholder="Enter educator name"
@@ -66,18 +66,17 @@
               </span>
             }
           </div>
-        </div>
 
-        <div class="klpt-create-session-form__actions">
-          <button type="button" class="button button--secondary" (click)="onToggleFormVisibility()">
-            Cancel
-          </button>
-          <button type="button" class="button button--primary klpt-create-session-button" (click)="onCreateSession()">
-            Create session
-          </button>
+          <div class="klpt-create-session-form__actions klpt-form-field--wide">
+            <button type="button" class="button button--secondary" (click)="onToggleFormVisibility()">
+              Cancel
+            </button>
+            <button type="button" class="button button--primary klpt-create-session-button" (click)="onCreateSession()">
+              Create session
+            </button>
+          </div>
         </div>
       </div>
-      }
     </div>
 
     <section class="klpt-existing-sessions">

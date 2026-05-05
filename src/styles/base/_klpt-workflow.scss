@@ -13,6 +13,7 @@
   display: grid;
   gap: 0.5rem;
 
+  label,
   span {
     color: #10233c;
     font-size: 0.9rem;
@@ -56,6 +57,17 @@
     border-color: #0d3b66;
     outline: 3px solid rgba(13, 59, 102, 0.18);
     outline-offset: 2px;
+  }
+
+  input.qld__text-input--error,
+  textarea.qld__text-input--error {
+    border-color: #b42318;
+  }
+
+  .qld__input--error {
+    color: #9b1c1c;
+    font-size: 0.85rem;
+    font-weight: 700;
   }
 }
 
