@@ -51,13 +51,13 @@
           </div>
 
           <div class="klpt-form-field">
-            <label for="educator-name">Educator name</label>
+            <label for="educator-name">Observer's name</label>
             <input
               type="text"
               id="educator-name"
               [class.qld__text-input--error]="educatorNameError"
               [attr.aria-invalid]="educatorNameError"
-              placeholder="Enter educator name"
+              placeholder="Enter observer's name"
               [value]="educatorName"
               (input)="onEducatorNameInput($event)"
             />

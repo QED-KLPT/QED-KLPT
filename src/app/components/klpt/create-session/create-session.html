@@ -2,7 +2,7 @@
   <div class="section__inner">
     <p class="eyebrow">Step 2</p>
     <h2>Create session</h2>
-    <p>Enter a 3 digit code and the name of the educator.</p>
+    <p>Enter a 3 digit code and the observer's name.</p>
 
     <div class="qld__form-group qld__form-group--aligned">
       <label for="learner-code" class="qld__label qld__form-group__label">Learner code</label>
@@ -30,14 +30,14 @@
     </div>
 
     <div class="qld__form-group qld__form-group--aligned">
-      <label for="educator-name" class="qld__label qld__form-group__label">Educator name</label>
+      <label for="educator-name" class="qld__label qld__form-group__label">Observer's name</label>
       <div class="qld__form-group__input-area">
         @if (educatorNameError) {
           <span class="qld__input--error" id="educator-name-error">
             <svg class="qld__icon qld__icon--lead qld__icon--sm" role="img" aria-label="Error: ">
               <use href="./?a=169317:dist/mysource_files/img/QLD-icons.svg#status-error"></use>
             </svg>
-            Please enter an educator name
+            Please enter the observer's name
           </span>
         }
         <input
@@ -46,7 +46,7 @@
           class="qld__text-input"
           [class.qld__text-input--error]="educatorNameError"
           [attr.aria-invalid]="educatorNameError"
-          placeholder="Enter educator name"
+          placeholder="Enter observer's name"
           [value]="educatorName"
           (input)="onEducatorNameInput($event)"
         />
