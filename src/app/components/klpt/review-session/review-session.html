@@ -8,6 +8,7 @@
 
     <div class="klpt-step__actions">
       <a class="button button--secondary" [routerLink]="['/klpt/learning-progression-statement', currentSession.id]">Back</a>
+      <button class="button button--primary" type="button" (click)="generatePdf()">Generate PDF</button>
     </div>
   </div>
 </section>
