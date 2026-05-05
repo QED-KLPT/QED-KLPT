@@ -104,6 +104,20 @@ export class LearningProgressionStatement implements OnInit, OnDestroy {
     return klptDomainStyle(this.domainForElement(element)?.index, 2);
   }
 
+  protected practiceSupportSectionId(): string {
+    const domain = this.selectedDomain();
+    return domain?.name ? this.sectionIdFromDomainName(domain.name) : 'professional-reflection';
+  }
+
+  private sectionIdFromDomainName(name: string): string {
+    return name
+      .trim()
+      .toLowerCase()
+      .replace(/&/g, 'and')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  }
+
   protected canContinue(): boolean {
     return this.progressionItems().length > 0;
   }
