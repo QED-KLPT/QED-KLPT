@@ -7,6 +7,7 @@ import { KlptDomain } from '../models/klpt-domain';
 import { KlptElement } from '../models/klpt-element';
 import { NameValuePair } from '../models/name-value-pair';
 import { SessionModel } from '../models/session-model';
+import { klptDomainStyle } from '../shared/klpt-domain-colours';
 import { KlptDomainDataService } from '../shared/klpt-domain-data.service';
 import { SessionManagementService } from '../shared/session-management.service';
 
@@ -99,12 +100,8 @@ export class LearningProgressionStatement implements OnInit, OnDestroy {
     );
   }
 
-  protected itemStyle(index: number): Record<string, string> {
-    const accents = ['#2d68c8', '#3568ad', '#285f9e', '#386fb5'];
-
-    return {
-      '--accent': accents[index % accents.length],
-    };
+  protected itemStyle(element: KlptElement): Record<string, string> {
+    return klptDomainStyle(this.domainForElement(element)?.index, 2);
   }
 
   protected canContinue(): boolean {
@@ -127,5 +124,15 @@ export class LearningProgressionStatement implements OnInit, OnDestroy {
     );
 
     return [...mergedFields, ...existingFields];
+  }
+
+  private domainForElement(element: KlptElement): KlptDomain | undefined {
+    return this.domainData
+      .getAllDomains()
+      .find((domain) =>
+        this.domainData
+          .getAllElementsByDomain(domain)
+          .some((candidate) => candidate.id === element.id),
+      );
   }
 }

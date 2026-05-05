@@ -4,8 +4,10 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NavigationNodesComponent } from '../../shared';
 import { ElementModel } from '../models/element-model';
 import { KlptBehaviour } from '../models/klpt-behaviour';
+import { KlptDomain } from '../models/klpt-domain';
 import { KlptElement } from '../models/klpt-element';
 import { SessionModel } from '../models/session-model';
+import { klptDomainStyle } from '../shared/klpt-domain-colours';
 import { KlptDomainDataService } from '../shared/klpt-domain-data.service';
 import { SessionManagementService } from '../shared/session-management.service';
 
@@ -13,6 +15,11 @@ interface BehaviourCarouselItem {
   behaviour: KlptBehaviour;
   offset: number;
   distance: number;
+}
+
+interface BehaviourDetail {
+  element: KlptElement;
+  behaviour: KlptBehaviour;
 }
 
 @Component({
@@ -107,19 +114,8 @@ export class SelectBehaviours implements OnInit, OnDestroy {
     );
   }
 
-  protected rowStyle(index: number): Record<string, string> {
-    const accents = [
-      { accent: '#2f65a7', glow: '#5a8fcc' },
-      { accent: '#3568ad', glow: '#89aee0' },
-      { accent: '#285f9e', glow: '#77a6db' },
-      { accent: '#386fb5', glow: '#6fa0d6' },
-    ];
-    const color = accents[index % accents.length];
-
-    return {
-      '--accent': color.accent,
-      '--accent-glow': color.glow,
-    };
+  protected rowStyle(element: KlptElement): Record<string, string> {
+    return klptDomainStyle(this.domainForElement(element)?.index, 2);
   }
 
   protected behaviourStyle(index: number, total: number): Record<string, string> {
@@ -145,6 +141,23 @@ export class SelectBehaviours implements OnInit, OnDestroy {
     });
   }
 
+  protected selectedDetail(): BehaviourDetail | undefined {
+    const selectedElements = this.selectedElements();
+    const element =
+      selectedElements.find((candidate) => candidate.id === this.focusedElementId) ??
+      selectedElements[0];
+    const behaviour = element ? this.activeBehaviour(element) : undefined;
+
+    if (!element || !behaviour) {
+      return undefined;
+    }
+
+    return {
+      element,
+      behaviour,
+    };
+  }
+
   protected isSelectedBehaviour(element: KlptElement, behaviour: KlptBehaviour): boolean {
     return this.sessionElement(element)?.behaviourId === behaviour.id;
   }
@@ -164,9 +177,14 @@ export class SelectBehaviours implements OnInit, OnDestroy {
   ): Record<string, string> {
     return {
       ...this.behaviourStyle(index, element.behaviours.length),
+      ...this.rowStyle(element),
       '--offset': String(item.offset),
       '--distance': String(item.distance),
     };
+  }
+
+  protected detailStyle(detail: BehaviourDetail): Record<string, string> {
+    return this.rowStyle(detail.element);
   }
 
   protected carouselItemState(item: BehaviourCarouselItem): 'active' | 'near' | 'far' | 'hidden' {
@@ -254,6 +272,16 @@ export class SelectBehaviours implements OnInit, OnDestroy {
       0,
       element.behaviours.findIndex((behaviour) => behaviour.id === activeBehaviour?.id),
     );
+  }
+
+  private domainForElement(element: KlptElement): KlptDomain | undefined {
+    return this.domainData
+      .getAllDomains()
+      .find((domain) =>
+        this.domainData
+          .getAllElementsByDomain(domain)
+          .some((candidate) => candidate.id === element.id),
+      );
   }
 
   private sessionElement(element: KlptElement): ElementModel | undefined {

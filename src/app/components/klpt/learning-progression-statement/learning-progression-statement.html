@@ -38,8 +38,8 @@
 
       @if (items.length) {
         <section class="klpt-progression-stack" aria-label="Selected behaviours and next behaviours">
-          @for (item of items; track item.element.id; let itemIndex = $index) {
-            <article class="klpt-progression-item" [ngStyle]="itemStyle(itemIndex)">
+          @for (item of items; track item.element.id) {
+            <article class="klpt-progression-item" [ngStyle]="itemStyle(item.element)">
               <div class="klpt-progression-item__heading">
                 <h3>{{ item.element.name }}</h3>
               </div>

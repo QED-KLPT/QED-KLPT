@@ -7,6 +7,7 @@ import { KlptDomain } from '../models/klpt-domain';
 import { KlptElement } from '../models/klpt-element';
 import { KlptSubDomain } from '../models/klpt-sub-domain';
 import { SessionModel } from '../models/session-model';
+import { klptDomainStyle } from '../shared/klpt-domain-colours';
 import { KlptDomainDataService } from '../shared/klpt-domain-data.service';
 import { SessionManagementService } from '../shared/session-management.service';
 
@@ -163,21 +164,12 @@ export class SelectDomains implements OnInit, OnDestroy {
     return subDomain.elements.length;
   }
 
-  protected panelStyle(index: number, depth: number): Record<string, string> {
-    const palettes = [
-      { accent: '#267ec8', glow: '#2e89d8' },
-      { accent: '#c76424', glow: '#d8772e' },
-      { accent: '#2d68c8', glow: '#4a8fdb' },
-      { accent: '#245fa2', glow: '#4382c5' },
-    ];
-    const palette = palettes[index % palettes.length];
-    const soften = depth * 6;
+  protected panelStyleForDomain(domain: KlptDomain, depth = 0): Record<string, string> {
+    return klptDomainStyle(domain.index, depth);
+  }
 
-    return {
-      '--accent': palette.accent,
-      '--accent-glow': palette.glow,
-      '--depth-soften': `${soften}%`,
-    };
+  protected panelStyleForSelectedDomain(depth = 0): Record<string, string> {
+    return klptDomainStyle(this.selectedDomain()?.index, depth);
   }
 
   private sortByIndex<T extends { index: number }>(items: T[]): T[] {

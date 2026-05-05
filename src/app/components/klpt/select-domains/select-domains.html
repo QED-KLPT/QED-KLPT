@@ -22,11 +22,11 @@
         </div>
 
         <div class="selection-row__scroller">
-          @for (domain of domainsList; track domain.id; let domainIndex = $index) {
+          @for (domain of domainsList; track domain.id) {
             <button
               class="selection-panel"
               type="button"
-              [ngStyle]="panelStyle(domainIndex, 0)"
+              [ngStyle]="panelStyleForDomain(domain)"
               [attr.data-selected]="currentSession.domain === domain.id"
               [attr.aria-pressed]="currentSession.domain === domain.id"
               (click)="selectDomain(domain)"
@@ -46,11 +46,11 @@
 
         <div class="selection-row__scroller">
           @if (subDomainsList.length) {
-            @for (subDomain of subDomainsList; track subDomain.id; let subDomainIndex = $index) {
+            @for (subDomain of subDomainsList; track subDomain.id) {
               <button
                 class="selection-panel"
                 type="button"
-                [ngStyle]="panelStyle(subDomainIndex, 1)"
+                [ngStyle]="panelStyleForSelectedDomain(1)"
                 [attr.data-selected]="currentSession.subDomain === subDomain.id"
                 [attr.aria-pressed]="currentSession.subDomain === subDomain.id"
                 (click)="selectSubDomain(subDomain)"
@@ -75,11 +75,11 @@
 
         <div class="selection-row__scroller">
           @if (elementsList.length) {
-            @for (element of elementsList; track element.id; let elementIndex = $index) {
+            @for (element of elementsList; track element.id) {
               <button
                 class="selection-panel"
                 type="button"
-                [ngStyle]="panelStyle(elementIndex, 2)"
+                [ngStyle]="panelStyleForSelectedDomain(2)"
                 [attr.data-selected]="isElementSelected(element)"
                 [attr.aria-pressed]="isElementSelected(element)"
                 (click)="toggleElement(element)"
