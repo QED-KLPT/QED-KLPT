@@ -7,10 +7,15 @@
   --klpt-tool-panel: #ffffff;
   --klpt-tool-border: #d8dde8;
   --klpt-tool-text: #1f2937;
+  --content-max: var(--doe-container-width);
 
   min-height: 100%;
   background: var(--klpt-tool-bg);
   color: var(--klpt-tool-text);
+}
+
+.klpt-subsite .section {
+  padding-inline: 1rem;
 }
 
 .domain-hero--klpt {
@@ -39,10 +44,6 @@
 .klpt-subsite .klpt-step {
   background: transparent;
   padding-block: clamp(2rem, 4vw, 3rem);
-}
-
-.klpt-subsite .klpt-step .section__inner {
-  max-width: 52rem;
 }
 
 .klpt-subsite .klpt-step h2 {

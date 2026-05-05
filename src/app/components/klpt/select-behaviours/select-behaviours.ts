@@ -9,10 +9,10 @@ import { SessionModel } from '../models/session-model';
 import { KlptDomainDataService } from '../shared/klpt-domain-data.service';
 import { SessionManagementService } from '../shared/session-management.service';
 
-interface BehaviourDetail {
-  element: KlptElement;
+interface BehaviourCarouselItem {
   behaviour: KlptBehaviour;
-  elementIndex: number;
+  offset: number;
+  distance: number;
 }
 
 @Component({
@@ -30,6 +30,7 @@ export class SelectBehaviours implements OnInit, OnDestroy {
   public currentSession!: SessionModel;
   protected focusedElementId: string | undefined;
   protected focusedBehaviourId: string | undefined;
+  private readonly touchStartX = new Map<string, number>();
 
   ngOnInit(): void {
     this.currentSession = this.getRouteSession();
@@ -66,34 +67,6 @@ export class SelectBehaviours implements OnInit, OnDestroy {
     return this.currentSession.elements
       .map((selectedElement) => allElements.find((element) => element.id === selectedElement.id))
       .filter((element): element is KlptElement => Boolean(element));
-  }
-
-  protected selectedDetail(): BehaviourDetail | undefined {
-    const selectedElements = this.selectedElements();
-    const elementIndex = Math.max(
-      0,
-      selectedElements.findIndex((element) => element.id === this.focusedElementId),
-    );
-    const element = selectedElements[elementIndex];
-
-    if (!element) {
-      return undefined;
-    }
-
-    const behaviour =
-      element.behaviours.find((candidate) => candidate.id === this.focusedBehaviourId) ??
-      this.selectedBehaviour(element) ??
-      element.behaviours[0];
-
-    if (!behaviour) {
-      return undefined;
-    }
-
-    return {
-      element,
-      behaviour,
-      elementIndex,
-    };
   }
 
   protected selectedBehaviour(element: KlptElement): KlptBehaviour | undefined {
@@ -158,8 +131,18 @@ export class SelectBehaviours implements OnInit, OnDestroy {
     };
   }
 
-  protected detailStyle(detail: BehaviourDetail): Record<string, string> {
-    return this.rowStyle(detail.elementIndex);
+  protected carouselItems(element: KlptElement): BehaviourCarouselItem[] {
+    const activeIndex = this.activeBehaviourIndex(element);
+
+    return element.behaviours.map((behaviour, index) => {
+      const offset = index - activeIndex;
+
+      return {
+        behaviour,
+        offset,
+        distance: Math.abs(offset),
+      };
+    });
   }
 
   protected isSelectedBehaviour(element: KlptElement, behaviour: KlptBehaviour): boolean {
@@ -167,7 +150,110 @@ export class SelectBehaviours implements OnInit, OnDestroy {
   }
 
   protected isFocusedBehaviour(element: KlptElement, behaviour: KlptBehaviour): boolean {
-    return this.focusedElementId === element.id && this.selectedDetail()?.behaviour.id === behaviour.id;
+    return this.focusedElementId === element.id && this.activeBehaviour(element)?.id === behaviour.id;
+  }
+
+  protected isActiveBehaviour(element: KlptElement, behaviour: KlptBehaviour): boolean {
+    return this.activeBehaviour(element)?.id === behaviour.id;
+  }
+
+  protected carouselItemStyle(
+    element: KlptElement,
+    item: BehaviourCarouselItem,
+    index: number,
+  ): Record<string, string> {
+    return {
+      ...this.behaviourStyle(index, element.behaviours.length),
+      '--offset': String(item.offset),
+      '--distance': String(item.distance),
+    };
+  }
+
+  protected carouselItemState(item: BehaviourCarouselItem): 'active' | 'near' | 'far' | 'hidden' {
+    if (item.offset === 0) {
+      return 'active';
+    }
+
+    if (item.distance === 1) {
+      return 'near';
+    }
+
+    if (item.distance === 2) {
+      return 'far';
+    }
+
+    return 'hidden';
+  }
+
+  protected carouselPositionLabel(element: KlptElement): string {
+    const activeIndex = this.activeBehaviourIndex(element);
+    return `${activeIndex + 1} of ${element.behaviours.length}`;
+  }
+
+  protected canGoPrevious(element: KlptElement): boolean {
+    return this.activeBehaviourIndex(element) > 0;
+  }
+
+  protected canGoNext(element: KlptElement): boolean {
+    return this.activeBehaviourIndex(element) < element.behaviours.length - 1;
+  }
+
+  protected previousBehaviour(element: KlptElement): void {
+    const activeIndex = this.activeBehaviourIndex(element);
+
+    if (activeIndex <= 0) {
+      return;
+    }
+
+    this.selectBehaviour(element, element.behaviours[activeIndex - 1]);
+  }
+
+  protected nextBehaviour(element: KlptElement): void {
+    const activeIndex = this.activeBehaviourIndex(element);
+
+    if (activeIndex >= element.behaviours.length - 1) {
+      return;
+    }
+
+    this.selectBehaviour(element, element.behaviours[activeIndex + 1]);
+  }
+
+  protected onCarouselTouchStart(element: KlptElement, event: TouchEvent): void {
+    this.touchStartX.set(element.id, event.changedTouches[0]?.clientX ?? 0);
+  }
+
+  protected onCarouselTouchEnd(element: KlptElement, event: TouchEvent): void {
+    const startX = this.touchStartX.get(element.id);
+    const endX = event.changedTouches[0]?.clientX ?? startX;
+    this.touchStartX.delete(element.id);
+
+    if (startX === undefined || endX === undefined) {
+      return;
+    }
+
+    const deltaX = endX - startX;
+
+    if (Math.abs(deltaX) < 40) {
+      return;
+    }
+
+    if (deltaX < 0) {
+      this.nextBehaviour(element);
+    } else {
+      this.previousBehaviour(element);
+    }
+  }
+
+  private activeBehaviour(element: KlptElement): KlptBehaviour | undefined {
+    return this.selectedBehaviour(element) ?? element.behaviours[0];
+  }
+
+  private activeBehaviourIndex(element: KlptElement): number {
+    const activeBehaviour = this.activeBehaviour(element);
+    return Math.max(
+      0,
+      element.behaviours.findIndex((behaviour) => behaviour.id === activeBehaviour?.id),
+    );
   }
 
   private sessionElement(element: KlptElement): ElementModel | undefined {
