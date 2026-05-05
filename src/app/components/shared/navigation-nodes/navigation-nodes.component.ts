@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { SessionManagementService } from '../../klpt/shared/session-management.service';
 
 export type NavigationNodeId = 'select-domains' | 'select-behaviours' | 'statement' | 'review';
 
@@ -18,8 +19,12 @@ interface NavigationNode {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavigationNodesComponent {
+  private readonly router = inject(Router);
+  private readonly sessionManagement = inject(SessionManagementService);
+
   @Input({ required: true }) sessionId!: string;
   @Input({ required: true }) currentNode!: NavigationNodeId;
+  protected isClearSessionModalOpen = false;
 
   protected readonly nodes: NavigationNode[] = [
     {
@@ -57,5 +62,19 @@ export class NavigationNodesComponent {
     }
 
     return nodeIndex < currentIndex ? 'complete' : 'pending';
+  }
+
+  protected openClearSessionModal(): void {
+    this.isClearSessionModalOpen = true;
+  }
+
+  protected closeClearSessionModal(): void {
+    this.isClearSessionModalOpen = false;
+  }
+
+  protected clearSession(): void {
+    this.sessionManagement.clearSessionWorkflow(this.sessionId);
+    this.isClearSessionModalOpen = false;
+    void this.router.navigate(['/klpt/select-domains', this.sessionId]);
   }
 }

@@ -1,3 +1,38 @@
+<div class="session-controls" aria-label="Session controls">
+  <a class="session-controls__button" routerLink="/klpt/list-sessions">Sessions</a>
+  <button class="session-controls__button session-controls__button--danger" type="button" (click)="openClearSessionModal()">
+    Clear session
+  </button>
+</div>
+
+@if (isClearSessionModalOpen) {
+  <div class="clear-session-modal" role="presentation">
+    <div class="clear-session-modal__backdrop" (click)="closeClearSessionModal()"></div>
+    <section
+      class="clear-session-modal__panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="clear-session-title"
+      aria-describedby="clear-session-description"
+    >
+      <p class="clear-session-modal__eyebrow">Clear session</p>
+      <h2 id="clear-session-title">Start this session again?</h2>
+      <p id="clear-session-description">
+        This will clear the current selections and notes for this session, then return you to the first screen.
+      </p>
+
+      <div class="clear-session-modal__actions">
+        <button class="clear-session-modal__button clear-session-modal__button--secondary" type="button" (click)="closeClearSessionModal()">
+          Cancel
+        </button>
+        <button class="clear-session-modal__button clear-session-modal__button--primary" type="button" (click)="clearSession()">
+          Clear session
+        </button>
+      </div>
+    </section>
+  </div>
+}
+
 <nav class="progress-nav" aria-label="KLPT session steps">
   <ol class="progress-track">
     @for (node of nodes; track node.id; let index = $index) {

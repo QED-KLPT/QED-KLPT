@@ -57,6 +57,27 @@ export class SessionManagementService {
     );
   }
 
+  clearSessionWorkflow(sessionId: string): SessionModel | undefined {
+    const session = this.getSession(sessionId);
+
+    if (!session) {
+      return undefined;
+    }
+
+    const clearedSession: SessionModel = {
+      ...session,
+      updated: new Date(),
+      pageIndex: 2,
+      domain: '',
+      subDomain: undefined,
+      elements: [],
+      formFields: [],
+    };
+
+    this.persistSession(clearedSession);
+    return clearedSession;
+  }
+
   getSession(sessionId: string): SessionModel | undefined {
     return this.getStoredSessions().find((session) => session.id === sessionId);
   }
