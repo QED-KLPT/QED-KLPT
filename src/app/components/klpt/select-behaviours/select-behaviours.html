@@ -28,7 +28,7 @@
                 (click)="focusedElementId = element.id; focusedBehaviourId = selectedBehaviour(element)?.id ?? element.behaviours[0]?.id"
               >
                 <strong>{{ element.name }}</strong>
-                <small>{{ elementStateLabel(element) }}</small>
+                <!-- <small>{{ elementStateLabel(element) }}</small> -->
               </button>
 
               <div class="behaviour-row__divider" aria-hidden="true"></div>
@@ -62,7 +62,6 @@
                       [attr.tabindex]="carouselItemState(item) === 'hidden' ? -1 : 0"
                       (click)="selectBehaviour(element, item.behaviour)"
                     >
-                      <strong>{{ item.behaviour.name }}</strong>
                       <span class="behaviour-tile__description" [innerHTML]="item.behaviour.description"></span>
                     </button>
                   }
@@ -99,7 +98,6 @@
               <img src="assets/img/bulb.png" alt="" />
             </span>
             <p class="behaviour-detail__element">{{ detail.element.name }}</p>
-            <h2>{{ detail.behaviour.name }}</h2>
             <div class="behaviour-detail__description" [innerHTML]="detail.behaviour.description"></div>
           </article>
         }

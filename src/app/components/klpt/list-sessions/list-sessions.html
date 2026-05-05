@@ -2,6 +2,7 @@
   <div class="section__inner">
 
     <div class="klpt-create-session-card">
+      <h2 class="klpt-create-session-card__heading">Observation Support Tool</h2>
       <div class="klpt-create-session-card__hero" (click)="onToggleFormVisibility()" role="button" tabindex="0" (keydown.enter)="onToggleFormVisibility()" (keydown.space)="onToggleFormVisibility()">
       <svg 
         class="klpt-create-session-card__icon"
@@ -11,11 +12,11 @@
         focusable="false"
       >
         <!-- Outer circle -->
-        <circle cx="40" cy="40" r="38" fill="#f2eaf7" stroke="#6a3d8f" stroke-width="4" />
+        <circle cx="40" cy="40" r="38" fill="#edfbe9" stroke="#b8efad" stroke-width="4" />
         
         <!-- Plus icon -->
-        <line x1="40" y1="22" x2="40" y2="58" stroke="#4f2a6f" stroke-width="6" stroke-linecap="round" />
-        <line x1="22" y1="40" x2="58" y2="40" stroke="#4f2a6f" stroke-width="6" stroke-linecap="round" />
+        <line x1="40" y1="22" x2="40" y2="58" stroke="#477449" stroke-width="6" stroke-linecap="round" />
+        <line x1="22" y1="40" x2="58" y2="40" stroke="#477449" stroke-width="6" stroke-linecap="round" />
       </svg>
         <div>
           <p class="klpt-create-session-card__title">Start a new observation</p>
@@ -50,13 +51,13 @@
           </div>
 
           <div class="klpt-form-field">
-            <label for="educator-name">Educator name</label>
+            <label for="educator-name">Observer's name</label>
             <input
               type="text"
               id="educator-name"
               [class.qld__text-input--error]="educatorNameError"
               [attr.aria-invalid]="educatorNameError"
-              placeholder="Enter educator name"
+              placeholder="Enter observer's name"
               [value]="educatorName"
               (input)="onEducatorNameInput($event)"
             />
@@ -81,8 +82,12 @@
 
     <section class="klpt-existing-sessions">
       <div class="klpt-session-panel-header">
-        <h3 class="klpt-existing-sessions__title">Saved sessions</h3>
-        <p class="klpt-session-panel-subtitle"></p>
+        <h3 class="klpt-existing-sessions__title">{{ sessionCountLabel }}</h3>
+        @if (sessions.length) {
+          <button type="button" class="klpt-delete-all-button" (click)="openDeleteAllModal()">
+            Delete all
+          </button>
+        }
       </div>
 
       <section class="session-list">
@@ -120,7 +125,7 @@
                     <button
                       type="button"
                       class="icon-delete"
-                      (click)="onDeleteSession(session.id); $event.stopPropagation()"
+                      (click)="openDeleteSessionModal(session); $event.stopPropagation()"
                       aria-label="Delete session"
                     >
                       ×
@@ -144,6 +149,32 @@
     </button>
   </div>
 </section>
+
+@if (pendingDelete) {
+  <div class="delete-session-modal" role="presentation">
+    <div class="delete-session-modal__backdrop" (click)="closeDeleteModal()"></div>
+    <section
+      class="delete-session-modal__panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="delete-session-modal-title"
+      aria-describedby="delete-session-modal-description"
+    >
+      <p class="delete-session-modal__eyebrow">Confirm delete</p>
+      <h2 id="delete-session-modal-title">{{ deleteConfirmationTitle }}</h2>
+      <p id="delete-session-modal-description">{{ deleteConfirmationMessage }}</p>
+
+      <div class="delete-session-modal__actions">
+        <button class="delete-session-modal__button delete-session-modal__button--secondary" type="button" (click)="closeDeleteModal()">
+          Cancel
+        </button>
+        <button class="delete-session-modal__button delete-session-modal__button--primary" type="button" (click)="confirmDelete()">
+          Delete
+        </button>
+      </div>
+    </section>
+  </div>
+}
 
 @if (isStorageModalOpen) {
   <div class="storage-modal" role="presentation" (click)="closeStorageModal()">

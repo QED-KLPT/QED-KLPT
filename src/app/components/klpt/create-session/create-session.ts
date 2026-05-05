@@ -44,7 +44,7 @@ export class CreateSession implements OnInit, OnDestroy {
 
   protected onNext(): void {
     this.learnerCodeError = this.learnerCode.length !== 3 ? 'Learner code must be 3 digits' : '';
-    this.educatorNameError = !this.educatorName.trim() ? 'Please enter an educator name' : '';
+    this.educatorNameError = !this.educatorName.trim() ? "Please enter the observer's name" : '';
 
     if (this.learnerCodeError || this.educatorNameError) {
       return;

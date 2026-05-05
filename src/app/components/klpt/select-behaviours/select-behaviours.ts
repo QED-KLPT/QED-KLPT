@@ -73,7 +73,8 @@ export class SelectBehaviours implements OnInit, OnDestroy {
 
     return this.currentSession.elements
       .map((selectedElement) => allElements.find((element) => element.id === selectedElement.id))
-      .filter((element): element is KlptElement => Boolean(element));
+      .filter((element): element is KlptElement => Boolean(element))
+      .sort((left, right) => left.index - right.index);
   }
 
   protected selectedBehaviour(element: KlptElement): KlptBehaviour | undefined {

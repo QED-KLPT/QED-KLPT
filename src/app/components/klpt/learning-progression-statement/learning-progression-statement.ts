@@ -100,6 +100,14 @@ export class LearningProgressionStatement implements OnInit, OnDestroy {
     );
   }
 
+  protected updateEducatorName(value: string): void {
+    this.currentSession.educatorName = value;
+  }
+
+  protected updateLearnerCode(value: string): void {
+    this.currentSession.learnerCode = value;
+  }
+
   protected itemStyle(element: KlptElement): Record<string, string> {
     return klptDomainStyle(this.domainForElement(element)?.index, 2);
   }

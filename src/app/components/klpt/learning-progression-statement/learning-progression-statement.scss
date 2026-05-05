@@ -38,8 +38,18 @@
   text-transform: uppercase;
 }
 
+.learning-statement-meta-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .button--disabled {
   pointer-events: none;
   filter: grayscale(0.3);
   opacity: 0.5;
+}
+
+@media (max-width: 48rem) {
+  .learning-statement-meta-grid {
+    grid-template-columns: 1fr;
+  }
 }
