@@ -260,13 +260,17 @@
   border: 1px solid #dceaf3;
   border-radius: 16px;
   background: #fbfdff;
+  color: inherit;
   cursor: pointer;
   display: flex;
+  font: inherit;
   gap: 1.25rem;
   min-height: 6.5rem;
   padding: 1.25rem;
+  text-align: left;
   transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
   user-select: none;
+  width: 100%;
 
   &:hover,
   &:focus-within {
@@ -554,8 +558,15 @@
 }
 
 /* Card */
+.session-card-row {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+}
+
 .session-card {
   display: flex;
+  flex: 1 1 auto;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
@@ -564,7 +575,9 @@
   border-radius: 8px;
   background: #fbfdff;
   border: 1px solid #dceaf3;
+  color: inherit;
   cursor: pointer;
+  text-decoration: none;
   transition: all 0.2s ease;
 }
 

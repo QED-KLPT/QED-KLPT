@@ -25,6 +25,8 @@
           @if (showSearch()) {
             <button type="button" class="klpt-header__toggle klpt-header__toggle--search"
               [class.klpt-header__toggle--active]="searchOpen()"
+              [attr.aria-expanded]="searchOpen()"
+              aria-controls="klpt-header-search"
               (click)="toggleSearch()" aria-label="Toggle search">
               <i class="fa-solid fa-search" aria-hidden="true"></i>
             </button>
@@ -32,6 +34,8 @@
           @if (showNavigation()) {
             <button type="button" class="klpt-header__toggle klpt-header__toggle--menu"
               [class.klpt-header__toggle--active]="isMenuOpen()"
+              [attr.aria-expanded]="isMenuOpen()"
+              aria-controls="main-nav"
               (click)="toggleMenu()" aria-label="Toggle menu">
               <i class="fa-solid fa-bars" aria-hidden="true"></i>
             </button>

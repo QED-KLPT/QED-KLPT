@@ -29,6 +29,7 @@
               [ngStyle]="panelStyleForDomain(domain)"
               [attr.data-selected]="currentSession.domain === domain.id"
               [attr.aria-pressed]="currentSession.domain === domain.id"
+              [attr.aria-label]="'Select domain ' + domain.name"
               (click)="selectDomain(domain)"
             >
               <strong>{{ domain.name }}</strong>
@@ -53,6 +54,7 @@
                 [ngStyle]="panelStyleForSelectedDomain(1)"
                 [attr.data-selected]="currentSession.subDomain === subDomain.id"
                 [attr.aria-pressed]="currentSession.subDomain === subDomain.id"
+                [attr.aria-label]="'Select subdomain ' + subDomain.name"
                 (click)="selectSubDomain(subDomain)"
               >
                 <strong>{{ subDomain.name }}</strong>
@@ -82,6 +84,7 @@
                 [ngStyle]="panelStyleForSelectedDomain(2)"
                 [attr.data-selected]="isElementSelected(element)"
                 [attr.aria-pressed]="isElementSelected(element)"
+                [attr.aria-label]="'Toggle element ' + element.name"
                 (click)="toggleElement(element)"
               >
                 <strong>{{ element.name }}</strong>
@@ -102,6 +105,7 @@
           class="button button--primary"
           [class.button--disabled]="!canContinue()"
           [attr.aria-disabled]="!canContinue()"
+          [attr.tabindex]="canContinue() ? null : -1"
           [routerLink]="canContinue() ? ['/klpt/select-behaviours', currentSession.id] : null"
         >
           Next
