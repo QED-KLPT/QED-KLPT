@@ -21,8 +21,8 @@
     transform 160ms ease;
 }
 
-.domain-card:hover,
-.domain-card:focus-visible {
+.domain-card--interactive:hover,
+.domain-card--interactive:focus-visible {
   border-color: var(
     --domain-card-hover-border,
     color-mix(in srgb, var(--klpt-purple) 50%, var(--klpt-border))
@@ -31,7 +31,7 @@
   transform: translateY(-2px);
 }
 
-.domain-card:focus-visible {
+.domain-card--interactive:focus-visible {
   outline: 3px solid color-mix(in srgb, var(--klpt-gold) 65%, transparent);
   outline-offset: 3px;
 }

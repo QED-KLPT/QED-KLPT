@@ -20,4 +20,8 @@ export class DomainCard {
   get initial(): string {
     return this.title.trim().charAt(0).toUpperCase();
   }
+
+  get hasUrl(): boolean {
+    return this.url.trim().length > 0;
+  }
 }
