@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CommonModule, ViewportScroller } from '@angular/common';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
 
 type MockVideo = {
@@ -22,7 +22,13 @@ type MockColumn = {
   styleUrl: './analysing-data.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AnalysingData {
+export class AnalysingData implements OnInit {
+  constructor(private scroll: ViewportScroller) {}
+
+  ngOnInit(): void {
+    this.scroll.scrollToPosition([0, 0]);
+  }
+
   protected readonly videoColumns: MockColumn[] = [
     {
       heading: 'Observation snapshots',

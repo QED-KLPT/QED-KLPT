@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ViewportScroller } from '@angular/common';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-help',
@@ -7,6 +8,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrl: './help.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Help {
+export class Help implements OnInit {
+  constructor(private scroll: ViewportScroller) {}
+
+  ngOnInit(): void {
+    this.scroll.scrollToPosition([0, 0]);
+  }
+
 
 }

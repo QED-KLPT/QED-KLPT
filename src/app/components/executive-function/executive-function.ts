@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ViewportScroller } from '@angular/common';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { DomainCard } from '../shared/domain-card/domain-card';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
@@ -20,7 +21,13 @@ type DesignCard = {
   styleUrl: './executive-function.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ExecutiveFunction {
+export class ExecutiveFunction implements OnInit {
+  constructor(private scroll: ViewportScroller) {}
+
+  ngOnInit(): void {
+    this.scroll.scrollToPosition([0, 0]);
+  }
+
   protected readonly cards: DesignCard[] = [
     {
       title: 'Persistence',

@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ViewportScroller } from '@angular/common';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-about',
@@ -7,6 +8,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrl: './about.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class About {
+export class About implements OnInit {
+  constructor(private scroll: ViewportScroller) {}
+
+  ngOnInit(): void {
+    this.scroll.scrollToPosition([0, 0]);
+  }
+
 
 }
