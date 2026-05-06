@@ -2,7 +2,7 @@
   <h2 class="qld__inpage-nav-links__heading">{{ heading }}</h2>
   <ul class="qld__link-list">
     @for (item of items; track item.href) {
-      <li><a [attr.href]="item.href">{{ item.label }}</a></li>
+      <li><a tabindex="0" role="link" (click)="onLinkClick(item.href)" (keydown.enter)="$event.preventDefault(); onLinkClick(item.href)">{{ item.label }}</a></li>
     }
   </ul>
 </nav>

@@ -10,6 +10,28 @@
   padding-bottom: clamp(3rem, 6vw, 5rem);
 }
 
+.help-nav {
+  ::ng-deep .qld__inpage-nav-links {
+    border-left: none;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 4px;
+      height: calc(100% - clamp(1.5rem, 3vw, 2.5rem));
+      background: var(--doe-blue-600, #005eb8);
+    }
+
+    border-bottom: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+    padding-bottom: clamp(1.5rem, 3vw, 2.5rem);
+    margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+    padding-left: calc(1.5rem + 4px);
+    position: relative;
+  }
+}
+
 .help-faq-list {
   max-width: 64rem;
 }

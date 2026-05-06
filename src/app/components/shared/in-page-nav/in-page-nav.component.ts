@@ -19,6 +19,14 @@ export class InPageNavComponent {
   @Input({ required: true }) items!: InPageNavItem[];
   @Input() variant: InPageNavVariant = 'default';
 
+  onLinkClick(href: string): void {
+    const id = href.replace('#', '');
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
   get navClasses(): string {
     const classes: string[] = ['qld__inpage-nav-links'];
 
