@@ -36,6 +36,14 @@
   min-height: clamp(28rem, 36vw, 33rem);
 }
 
+.domain-hero--language .domain-hero__copy,
+.domain-hero--mathematics .domain-hero__copy,
+.domain-hero--physicality .domain-hero__copy,
+.domain-hero--executive .domain-hero__copy,
+.domain-hero--social .domain-hero__copy {
+  align-self: start;
+}
+
 .section__intro {
   display: grid;
   justify-items: center;
