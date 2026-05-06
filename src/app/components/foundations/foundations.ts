@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ViewportScroller } from '@angular/common';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { DomainCard } from '../shared/domain-card/domain-card';
 
 type FoundationNavCard = {
@@ -19,7 +20,13 @@ type FoundationNavCard = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class Foundations {
+export class Foundations implements OnInit {
+  constructor(private scroll: ViewportScroller) {}
+
+  ngOnInit(): void {
+    this.scroll.scrollToPosition([0, 0]);
+  }
+
   protected readonly foundations: FoundationNavCard[] = [
     {
       title: 'Conducting and documenting quality observations',

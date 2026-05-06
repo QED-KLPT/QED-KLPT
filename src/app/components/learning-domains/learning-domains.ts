@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ViewportScroller } from '@angular/common';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { DomainCard } from '../shared/domain-card/domain-card';
 
 type DomainNavCard = {
@@ -18,7 +19,13 @@ type DomainNavCard = {
   styleUrl: './learning-domains.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LearningDomains {
+export class LearningDomains implements OnInit {
+  constructor(private scroll: ViewportScroller) {}
+
+  ngOnInit(): void {
+    this.scroll.scrollToPosition([0, 0]);
+  }
+
   protected readonly domains: DomainNavCard[] = [
     {
       title: 'Language and Literacy',

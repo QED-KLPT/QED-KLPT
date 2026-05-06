@@ -23,12 +23,16 @@ type PracticeSupportSection = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PracticeSupports implements OnInit, AfterViewInit {
+  constructor(private scroll: ViewportScroller) {}
+
   private readonly route = inject(ActivatedRoute);
   private readonly viewportScroller = inject(ViewportScroller);
   private fragmentToScroll?: string;
   private viewInitialized = false;
 
   ngOnInit(): void {
+
+    this.scroll.scrollToPosition([0, 0]);
     this.route.fragment.subscribe((fragment) => {
       if (!fragment) {
         return;
