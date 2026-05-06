@@ -9,12 +9,13 @@ import {
 import { filter, fromEvent, timer } from 'rxjs';
 import { Footer } from './_layout/footer/footer';
 import { Header } from './_layout/header/header';
+import { BackToTopComponent } from './components/shared/back-to-top';
 
 const UPDATE_RECHECK_DELAY_MS = 2 * 60 * 1000;
 
 @Component({
   selector: 'app-root',
-  imports: [Footer, Header, RouterOutlet],
+  imports: [BackToTopComponent, Footer, Header, RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
