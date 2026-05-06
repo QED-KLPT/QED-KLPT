@@ -362,9 +362,14 @@
 
 .klpt-create-session-form {
   display: grid;
+  align-items: start;
   gap: 1.125rem;
   min-height: 0;
   overflow: hidden;
+}
+
+.klpt-create-session-form > .klpt-form-field {
+  align-self: start;
 }
 
 .klpt-create-session-form__actions {
