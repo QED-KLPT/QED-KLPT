@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { NgStyle } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { NavigationNodesComponent } from '../../shared';
-import { ElementModel } from '../models/element-model';
-import { KlptDomain } from '../models/klpt-domain';
-import { KlptElement } from '../models/klpt-element';
-import { KlptSubDomain } from '../models/klpt-sub-domain';
-import { SessionModel } from '../models/session-model';
+import { NavigationNodesComponent } from '../../../shared';
+import { ElementModel } from '../../models/element-model';
+import { KlptDomain } from '../../models/klpt-domain';
+import { KlptElement } from '../../models/klpt-element';
+import { KlptSubDomain } from '../../models/klpt-sub-domain';
+import { SessionModel } from '../../models/session-model';
 import { klptDomainStyle } from '../shared/klpt-domain-colours';
 import { KlptDomainDataService } from '../shared/klpt-domain-data.service';
 import { SessionManagementService } from '../shared/session-management.service';

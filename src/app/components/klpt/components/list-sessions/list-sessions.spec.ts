@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
-import { SessionModel } from '../models/session-model';
+import { SessionModel } from '../../models/session-model';
 import { SessionManagementService } from '../shared/session-management.service';
 import { ListSessions } from './list-sessions';
 

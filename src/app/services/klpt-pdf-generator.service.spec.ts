@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { KlptPdfGeneratorService } from './klpt-pdf-generator.service';
-import { KlptDomainDataService } from '../components/klpt/shared/klpt-domain-data.service';
+import { KlptDomainDataService } from '../components/klpt/components/shared/klpt-domain-data.service';
 import type { SessionModel } from '../components/klpt/models/session-model';
 
 function createMockDomainData(domains: any[]) {

@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 
-import { KlptBehaviour } from '../models/klpt-behaviour';
-import { KlptDomain } from '../models/klpt-domain';
-import { KlptDomainsData } from '../models/klpt-domains-data';
-import { KlptElement } from '../models/klpt-element';
-import { KlptSubDomain } from '../models/klpt-sub-domain';
+import { KlptBehaviour } from '../../models/klpt-behaviour';
+import { KlptDomain } from '../../models/klpt-domain';
+import { KlptDomainsData } from '../../models/klpt-domains-data';
+import { KlptElement } from '../../models/klpt-element';
+import { KlptSubDomain } from '../../models/klpt-sub-domain';
 
 type KlptModelReference<T extends { id: string }> = T | string;
 
