@@ -17,7 +17,7 @@
 .statement-card {
   display: grid;
   gap: 1.375rem;
-  max-width: 980px;
+  max-width: min(100%, 1280px);
   margin: 0 auto;
 
   h2 {
