@@ -51,7 +51,17 @@ export class KlptPdfGeneratorService {
     ]);
 
     if (session.formFields.length > 0) {
-      const tableData = session.formFields.map((field) => [this.getFieldLabel(field.name), field.value]);
+      const tableData = session.formFields.map((field) => {
+        let value = field.value;
+        if (field.name === 'date' && value) {
+          const d = new Date(value);
+          if (!isNaN(d.getTime())) {
+            value = `${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`;
+          }
+        }
+        return [this.getFieldLabel(field.name), value];
+      });
+      const maxFieldWidth = Math.max(...tableData.map((row) => doc.getTextWidth(row[0]))) + 6;
       autoTable(doc, {
         startY: y + 2,
         head: [['Field', 'Value']],
@@ -60,8 +70,11 @@ export class KlptPdfGeneratorService {
         theme: 'grid',
         headStyles: { fillColor: [218, 195, 100] },
         styles: { fontSize: 9 },
+        columnStyles: {
+          0: { cellWidth: maxFieldWidth, fontStyle: 'bold' },
+        },
       });
-      y += 12 + tableData.length * 8;
+      y = (doc as any).lastAutoTable.finalY + 10;
     }
 
     if (session.elements.length > 0) {
@@ -110,7 +123,7 @@ export class KlptPdfGeneratorService {
       for (const field of fields) {
         const label = `${field.label}:`;
         doc.setFont('helvetica', 'bold');
-        doc.text(label, margin + 5, y);
+        doc.text(label, margin + 47, y, { align: 'right' });
         doc.setFont('helvetica', 'normal');
         const valueWidth = doc.getTextWidth(field.value);
         const availableWidth = contentWidth - 60;
@@ -128,10 +141,12 @@ export class KlptPdfGeneratorService {
     return y + 5;
   }
 
-  formatDateForPdf(date: Date): string {
-    const day = date.getDate();
-    const month = MONTHS[date.getMonth()];
-    const year = date.getFullYear();
+  formatDateForPdf(date: Date | string): string {
+    const d = typeof date === 'string' ? new Date(date) : date;
+    if (isNaN(d.getTime())) return 'Not specified';
+    const day = d.getDate();
+    const month = MONTHS[d.getMonth()];
+    const year = d.getFullYear();
     return `${day} ${month} ${year}`;
   }
 
