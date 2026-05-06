@@ -603,8 +603,11 @@
   color: #c43d3d;
   background: #ffffff;
   cursor: pointer;
+  font-family: Arial, sans-serif;
   font-size: 1.2rem;
   line-height: 1;
+  padding: 0;
+  padding-left: 1px;
   transition:
     border-color 160ms ease,
     color 160ms ease,
