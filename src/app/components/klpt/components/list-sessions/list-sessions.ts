@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { SessionModel } from '../models/session-model';
+import { SessionModel } from '../../models/session-model';
 import { SessionManagementService } from '../shared/session-management.service';
 
 @Component({

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { SessionManagementService } from '../../klpt/shared/session-management.service';
+import { SessionManagementService } from '../../klpt/components/shared/session-management.service';
 
 export type NavigationNodeId = 'select-domains' | 'select-behaviours' | 'statement' | 'review';
 

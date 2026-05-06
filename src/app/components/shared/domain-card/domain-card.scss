@@ -1,9 +1,11 @@
 :host {
   display: block;
+  height: 100%;
 }
 
 .domain-card {
   display: grid;
+  height: 100%;
   min-height: 10.5rem;
   align-content: start;
   border: 1px solid var(--klpt-border);

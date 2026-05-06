@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import type { SessionModel } from '../components/klpt/models/session-model';
 import type { jsPDF as JsPdfDocument } from 'jspdf';
-import { KlptDomainDataService } from '../components/klpt/shared/klpt-domain-data.service';
+import { KlptDomainDataService } from '../components/klpt/components/shared/klpt-domain-data.service';
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
                 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];

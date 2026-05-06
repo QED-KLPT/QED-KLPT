@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../../../environments/environment';
-import { SessionModel } from '../models/session-model';
+import { environment } from '../../../../../environments/environment';
+import { SessionModel } from '../../models/session-model';
 
 const STORAGE_KEY = 'klpt.sessions';
 
