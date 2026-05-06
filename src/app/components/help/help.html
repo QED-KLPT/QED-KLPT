@@ -7,18 +7,20 @@
 
 <section class="section section--white help-content">
   <div class="section__inner">
-    <h2>FAQ</h2>
+    <h2 id="faq-section">FAQ</h2>
+
+    <app-in-page-nav [items]="inPageNavItems" heading="On this page" class="help-nav"></app-in-page-nav>
 
     <div class="help-faq-list">
 
-      <article class="faq-item">
+      <article class="faq-item" id="faq-purpose">
         <h2>What is the purpose of the KLPT?</h2>
         <p>
           The KLPT supports teachers and educators engaging in high-quality assessment practices that build children's capabilities across five core skills. It helps in gathering evidence of what children 'know', 'can do', and 'understand', thereby informing intentional decision-making and planning.
         </p>
       </article>
 
-      <article class="faq-item">
+      <article class="faq-item" id="faq-core-skills">
         <h2>What are the five core skills addressed by the KLPT?</h2>
         <p>The five core skills are:</p>
         <ul class="faq-list">
@@ -30,7 +32,7 @@
         </ul>
       </article>
 
-      <article class="faq-item">
+      <article class="faq-item" id="faq-included">
         <h2>What is included in the KLPT?</h2>
         <p>The KLPT consists of:</p>
         <ul class="faq-list">
@@ -43,14 +45,14 @@
         </ul>
       </article>
 
-      <article class="faq-item">
+      <article class="faq-item" id="faq-order">
         <h2>In what order should I use the KLPT?</h2>
         <p>
           Start by attending a KLPT capability building session. Next, read through the KLPT guide for a clear overview of the tool's intent and purpose, and knowledge of how to use the progressions effectively in practice. Use the fact sheets and progressions together to gain a comprehensive understanding of the key elements covered. The core skill video supports and practice supports, including learning opportunities, can be referenced at any time to enhance the use of the KLPT.
         </p>
       </article>
 
-      <article class="faq-item">
+      <article class="faq-item" id="faq-assessment-cycle">
         <h2>How do teachers and educators use the KLPT to support the Assessment and Planning Cycle?</h2>
         <p>Teachers and educators can use the KLPT to support the Assessment and Planning Cycle by:</p>
         <ul class="faq-list">
@@ -65,7 +67,7 @@
         </p>
       </article>
 
-      <article class="faq-item">
+      <article class="faq-item" id="faq-summative">
         <h2>Is the KLP a summative assessment tool?</h2>
         <p>
           No, the KLP is not intended for summative assessment. Although the KLPT can be used at a point in time, children should not be involved in isolated testing or tasks that may disconnect them from their everyday play and learning environments within the kindergarten program.
@@ -75,21 +77,21 @@
         </p>
       </article>
 
-      <article class="faq-item">
+      <article class="faq-item" id="faq-observables">
         <h2>Why am I seeing observables that appear to be beyond a typical kindergarten aged child?</h2>
         <p>
           The KLP has been psychometrically validated across more than 200 kindergarten services, ensuring accurate measurement of developmental progress across the 5 core skills. Psychometric validation involves a rigorous process to confirm the tool's reliability, validity, and overall quality. The validated progressions reflect children's observed skills and abilities across various contexts. The start and finish points on the progressions are not indicative of an expectation that children will reach a particular outcome by the end of the kindergarten year. They simply represent what has been observed in Queensland children through psychometric validation.
         </p>
       </article>
 
-      <article class="faq-item">
+      <article class="faq-item" id="faq-inclusive">
         <h2>Is the KLPT culturally responsive and inclusive?</h2>
         <p>
           Yes, the KLPT aims to be culturally responsive and inclusive, ensuring that diverse backgrounds and needs are respected and addressed. Ongoing consultation groups and current trials will continue to inform the practice supports and learning opportunities, ensuring the KLPT effectively meets the needs of all children, teachers and educators.
         </p>
       </article>
 
-      <article class="faq-item">
+      <article class="faq-item" id="faq-every-progression">
         <h2>Do I need to use every progression with every child?</h2>
         <p>
           No, you do not need to apply every progression to every child. The KLP is intended to support teachers and educators in their planning and decision-making processes within the context of everyday practice. You can select and use the progressions that are most relevant to each child's developmental needs and learning goals, in line with your current observational practice.
