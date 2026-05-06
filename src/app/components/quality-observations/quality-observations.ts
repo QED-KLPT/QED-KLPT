@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ViewportScroller } from '@angular/common';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
 
 @Component({
@@ -8,4 +9,10 @@ import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.mod
   styleUrl: './quality-observations.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class QualityObservations {}
+export class QualityObservations implements OnInit {
+  constructor(private scroll: ViewportScroller) {}
+
+  ngOnInit(): void {
+    this.scroll.scrollToPosition([0, 0]);
+  }
+}
