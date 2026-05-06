@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Introduction } from './introduction/introduction';
-import { LearningProgressionStatement } from './learning-progression-statement/learning-progression-statement';
-import { ListSessions } from './list-sessions/list-sessions';
-import { ReviewSession } from './review-session/review-session';
-import { SelectBehaviours } from './select-behaviours/select-behaviours';
-import { SelectDomains } from './select-domains/select-domains';
+import { Introduction } from './components/introduction/introduction';
+import { LearningProgressionStatement } from './components/learning-progression-statement/learning-progression-statement';
+import { ListSessions } from './components/list-sessions/list-sessions';
+import { ReviewSession } from './components/review-session/review-session';
+import { SelectBehaviours } from './components/select-behaviours/select-behaviours';
+import { SelectDomains } from './components/select-domains/select-domains';
 import { Klpt } from './klpt';
 
 const routes: Routes = [

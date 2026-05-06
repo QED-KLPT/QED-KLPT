@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { SessionModel } from '../models/session-model';
+import { SessionModel } from '../../models/session-model';
 import { SessionManagementService } from '../shared/session-management.service';
 
 @Component({
