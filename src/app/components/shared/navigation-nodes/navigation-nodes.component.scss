@@ -116,24 +116,43 @@
   min-height: 2.75rem;
   align-items: center;
   justify-content: center;
-  border: 0;
-  border-radius: 8px;
+  border: 1px solid transparent;
+  border-radius: 6px;
   padding: 0.75rem 1.2rem;
   font: inherit;
   font-weight: 750;
   line-height: 1;
   cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
 }
 
 .clear-session-modal__button--secondary {
-  color: #0d3b66;
-  background: rgba(13, 59, 102, 0.1);
+  border-color: var(--doe-color-primary);
+  color: var(--doe-color-primary);
+  background: transparent;
 }
 
 .clear-session-modal__button--primary {
   color: #ffffff;
-  background: #0d3b66;
-  box-shadow: 0 12px 24px rgba(13, 59, 102, 0.22);
+  border-color: var(--doe-color-primary);
+  background: var(--doe-color-primary);
+  box-shadow: 0 12px 24px rgba(0, 94, 184, 0.22);
+}
+
+.clear-session-modal__button--secondary:hover,
+.clear-session-modal__button--secondary:focus-visible {
+  color: var(--doe-color-primary-dark);
+  border-color: var(--doe-color-primary-dark);
+  background: rgba(0, 94, 184, 0.08);
+}
+
+.clear-session-modal__button--primary:hover,
+.clear-session-modal__button--primary:focus-visible {
+  border-color: var(--doe-color-primary-dark);
+  background: var(--doe-color-primary-dark);
 }
 
 .progress-nav {

@@ -4,20 +4,56 @@
   align-items: center;
   justify-content: center;
   border: 1px solid transparent;
-  border-radius: 8px;
+  border-radius: 6px;
   padding: 0.75rem 1.2rem;
   font-weight: 700;
   line-height: 1;
   text-decoration: none;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
 }
 
 .button--primary {
-  background: var(--klpt-gold);
-  color: #312400;
+  border-color: var(--doe-color-primary);
+  background: var(--doe-color-primary);
+  color: #ffffff;
+  box-shadow: 0 10px 22px rgba(0, 94, 184, 0.18);
 }
 
 .button--secondary {
-  border-color: rgba(255, 255, 255, 0.65);
-  background: rgba(255, 255, 255, 0.92);
-  color: var(--klpt-purple-dark);
+  border-color: currentColor;
+  background: transparent;
+  color: var(--doe-color-primary);
+}
+
+.button--primary:hover,
+.button--primary:focus-visible {
+  border-color: var(--doe-color-primary-dark);
+  background: var(--doe-color-primary-dark);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.button--secondary:hover,
+.button--secondary:focus-visible {
+  background: rgba(0, 94, 184, 0.08);
+  color: var(--doe-color-primary-dark);
+  transform: translateY(-1px);
+}
+
+.home-hero .button--secondary,
+.support-section__header .button--secondary {
+  color: #ffffff;
+}
+
+.home-hero .button--secondary:hover,
+.home-hero .button--secondary:focus-visible,
+.support-section__header .button--secondary:hover,
+.support-section__header .button--secondary:focus-visible {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
 }
