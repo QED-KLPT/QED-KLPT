@@ -30,11 +30,11 @@ export class KlptPdfGeneratorService {
     const contentWidth = pageWidth - margin * 2;
 
     doc.setFontSize(18);
-    doc.setTextColor(49, 36, 0);
+    doc.setTextColor(0, 0, 0);
     doc.text('Learning Progression Toolkit — Session Report', pageWidth / 2, y, { align: 'center' });
     y += 15;
 
-    doc.setDrawColor(200, 180, 100);
+    doc.setDrawColor(70, 130, 180);
     doc.setLineWidth(0.5);
     doc.line(margin, y, pageWidth - margin, y);
     y += 12;
@@ -45,7 +45,7 @@ export class KlptPdfGeneratorService {
     y = this.addSection(doc, y, margin, contentWidth, 'Session Details', [
       { label: "Observer's name", value: this.formatEducatorName(session.educatorName) },
       { label: 'Learner Code', value: session.learnerCode || 'Not provided' },
-      { label: 'Date Created', value: this.formatDateForPdf(session.created) },
+      { label: 'Date Created', value: this.formatDateForPdf(new Date()) },
       { label: 'Domain', value: this.resolveDomainName(session.domain) },
       { label: 'Sub-Domain', value: session.subDomain ? this.resolveSubDomainName(session.subDomain) : 'Not specified' },
     ]);
@@ -68,8 +68,8 @@ export class KlptPdfGeneratorService {
         body: tableData,
         margin: { left: margin, right: margin },
         theme: 'grid',
-        headStyles: { fillColor: [218, 195, 100] },
-        styles: { fontSize: 9 },
+        headStyles: { fillColor: [70, 130, 180] },
+        styles: { fontSize: 9, textColor: [0, 0, 0], fillColor: [255, 255, 255] },
         columnStyles: {
           0: { cellWidth: maxFieldWidth, fontStyle: 'bold' },
         },
@@ -79,7 +79,7 @@ export class KlptPdfGeneratorService {
 
     if (session.elements.length > 0) {
       doc.setFontSize(13);
-      doc.setTextColor(49, 36, 0);
+      doc.setTextColor(0, 0, 0);
       doc.text('Selected Elements', margin, y);
       y += 3;
       const elementData = session.elements.map((el) => [
@@ -92,15 +92,23 @@ export class KlptPdfGeneratorService {
         body: elementData,
         margin: { left: margin, right: margin },
         theme: 'grid',
-        headStyles: { fillColor: [218, 195, 100] },
-        styles: { fontSize: 9 },
+        headStyles: { fillColor: [70, 130, 180] },
+        styles: { fontSize: 9, textColor: [0, 0, 0], fillColor: [255, 255, 255] },
       });
     }
 
     const learnerCode = session.learnerCode || 'unknown';
-    const created = session.created;
-    const dateStr = `${created.getFullYear()}-${MONTHS[created.getMonth()]}-${String(created.getDate()).padStart(2, '0')}-${String(created.getHours()).padStart(2, '0')}-${String(created.getMinutes()).padStart(2, '0')}`;
+    const now = new Date();
+    const day = now.getDate();
+    const month = MONTHS[now.getMonth()];
+    const year = now.getFullYear();
+    const hours = now.getHours();
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const ampm = hours >= 12 ? 'pm' : 'am';
+    const displayHours = String(hours % 12 || 12).padStart(2, '0');
+    const dateStr = `${year}-${month}-${String(day).padStart(2, '0')}-${displayHours}${minutes}${ampm}`;
     const filename = `klpt-session-${learnerCode}-${dateStr}.pdf`;
+
     doc.save(filename);
   }
 
@@ -113,7 +121,7 @@ export class KlptPdfGeneratorService {
     fields: { label: string; value: string }[],
   ): number {
     doc.setFontSize(13);
-    doc.setTextColor(49, 36, 0);
+    doc.setTextColor(0, 0, 0);
     doc.text(title, margin, y);
     y += 8;
 
@@ -147,7 +155,11 @@ export class KlptPdfGeneratorService {
     const day = d.getDate();
     const month = MONTHS[d.getMonth()];
     const year = d.getFullYear();
-    return `${day} ${month} ${year}`;
+    const hours = d.getHours();
+    const minutes = String(d.getMinutes()).padStart(2, '0');
+    const ampm = hours >= 12 ? 'pm' : 'am';
+    const displayHours = String(hours % 12 || 12).padStart(2, '0');
+    return `${day} ${month} ${year}, ${displayHours}:${minutes} ${ampm}`;
   }
 
   formatEducatorName(name: string | undefined): string {
