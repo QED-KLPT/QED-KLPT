@@ -701,7 +701,7 @@
 
 .delete-session-modal__button {
   min-height: 2.75rem;
-  border-radius: 8px;
+  border-radius: 6px;
   padding: 0.65rem 1rem;
   cursor: pointer;
   font: inherit;
@@ -709,9 +709,9 @@
 }
 
 .delete-session-modal__button--secondary {
-  border: 1px solid #d6e7f5;
-  color: #39506b;
-  background: #ffffff;
+  border: 1px solid var(--doe-color-primary);
+  color: var(--doe-color-primary);
+  background: transparent;
 }
 
 .delete-session-modal__button--primary {
