@@ -8,7 +8,7 @@
       <label for="learner-code" class="qld__label qld__form-group__label">Learner code</label>
       <div class="qld__form-group__input-area">
         @if (learnerCodeError) {
-          <span class="qld__input--error" id="learner-code-error">
+          <span class="qld__input--error" id="learner-code-error" role="alert">
             <svg class="qld__icon qld__icon--lead qld__icon--sm" role="img" aria-label="Error: ">
               <use href="./?a=169317:dist/mysource_files/img/QLD-icons.svg#status-error"></use>
             </svg>
@@ -20,7 +20,8 @@
           id="learner-code"
           class="qld__text-input"
           [class.qld__text-input--error]="learnerCodeError"
-          [attr.aria-invalid]="learnerCodeError"
+          [attr.aria-invalid]="learnerCodeError ? 'true' : null"
+          [attr.aria-describedby]="learnerCodeError ? 'learner-code-error' : null"
           placeholder="e.g. 123"
           maxlength="3"
           [value]="learnerCode"
@@ -33,7 +34,7 @@
       <label for="educator-name" class="qld__label qld__form-group__label">Observer's name</label>
       <div class="qld__form-group__input-area">
         @if (educatorNameError) {
-          <span class="qld__input--error" id="educator-name-error">
+          <span class="qld__input--error" id="educator-name-error" role="alert">
             <svg class="qld__icon qld__icon--lead qld__icon--sm" role="img" aria-label="Error: ">
               <use href="./?a=169317:dist/mysource_files/img/QLD-icons.svg#status-error"></use>
             </svg>
@@ -45,7 +46,8 @@
           id="educator-name"
           class="qld__text-input"
           [class.qld__text-input--error]="educatorNameError"
-          [attr.aria-invalid]="educatorNameError"
+          [attr.aria-invalid]="educatorNameError ? 'true' : null"
+          [attr.aria-describedby]="educatorNameError ? 'educator-name-error' : null"
           placeholder="Enter observer's name"
           [value]="educatorName"
           (input)="onEducatorNameInput($event)"

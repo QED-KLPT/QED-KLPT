@@ -3,7 +3,15 @@
 
     <div class="klpt-create-session-card">
       <h2 class="klpt-create-session-card__heading">Observation Support Tool</h2>
-      <div class="klpt-create-session-card__hero" (click)="onToggleFormVisibility()" role="button" tabindex="0" (keydown.enter)="onToggleFormVisibility()" (keydown.space)="onToggleFormVisibility()">
+      <button
+        type="button"
+        class="klpt-create-session-card__hero"
+        aria-controls="create-session-form"
+        [attr.aria-expanded]="isFormVisible"
+        aria-label="Start a new observation"
+        title="Start a new observation"
+        (click)="onToggleFormVisibility()"
+      >
       <svg 
         class="klpt-create-session-card__icon"
         viewBox="0 0 80 80"
@@ -22,9 +30,10 @@
           <p class="klpt-create-session-card__title">Start a new observation</p>
           <p class="klpt-create-session-card__description"></p>
         </div>
-      </div>
+      </button>
 
       <div
+        id="create-session-form"
         class="klpt-create-session-form-shell"
         [class.klpt-create-session-form-shell--open]="isFormVisible"
         [attr.aria-hidden]="!isFormVisible"
@@ -37,14 +46,15 @@
               type="text"
               id="learner-code"
               [class.qld__text-input--error]="learnerCodeError"
-              [attr.aria-invalid]="learnerCodeError"
+              [attr.aria-invalid]="learnerCodeError ? 'true' : null"
+              [attr.aria-describedby]="learnerCodeError ? 'learner-code-error' : null"
               placeholder="e.g. 123"
               maxlength="3"
               [value]="learnerCode"
               (input)="onLearnerCodeInput($event)"
             />
             @if (learnerCodeError) {
-              <span class="qld__input--error" id="learner-code-error">              
+              <span class="qld__input--error" id="learner-code-error" role="alert">
                 {{ learnerCodeError }}
               </span>
             }
@@ -56,13 +66,14 @@
               type="text"
               id="educator-name"
               [class.qld__text-input--error]="educatorNameError"
-              [attr.aria-invalid]="educatorNameError"
+              [attr.aria-invalid]="educatorNameError ? 'true' : null"
+              [attr.aria-describedby]="educatorNameError ? 'educator-name-error' : null"
               placeholder="Enter observer's name"
               [value]="educatorName"
               (input)="onEducatorNameInput($event)"
             />
              @if (educatorNameError) {
-              <span class="qld__input--error" id="educator-name-error">               
+              <span class="qld__input--error" id="educator-name-error" role="alert">
                 {{ educatorNameError }}
               </span>
             }
@@ -84,7 +95,7 @@
       <div class="klpt-session-panel-header">
         <h3 class="klpt-existing-sessions__title">{{ sessionCountLabel }}</h3>
         @if (sessions.length) {
-          <button type="button" class="klpt-delete-all-button" (click)="openDeleteAllModal()">
+          <button type="button" class="klpt-delete-all-button" aria-haspopup="dialog" aria-label="Delete all saved sessions" title="Delete all saved sessions" (click)="openDeleteAllModal()">
             Delete all
           </button>
         }
@@ -105,28 +116,32 @@
 
               <div class="recent-list">
                 @for (session of group[1]; track session.id) {
-                  <div
-                    class="recent-item session-card"
-                    [routerLink]="['/klpt/select-domains', session.id]"
-                  >
-                    <div class="session-card-content">
-                      <div class="session-card-title-row">
-                        <p>
-                          <strong>
-                            {{ session.learnerCode || 'Unnamed Session' }}
-                          </strong>
-                        </p>
-                        <small>
-                          {{ session.created | date:'dd/MM/yyyy, h:mm:ss a' }}
-                        </small>
+                  <div class="recent-item session-card-row">
+                    <a
+                      class="session-card"
+                      [routerLink]="['/klpt/select-domains', session.id]"
+                      [attr.aria-label]="'Open session for learner ' + (session.learnerCode || 'unnamed session')"
+                    >
+                      <div class="session-card-content">
+                        <div class="session-card-title-row">
+                          <p>
+                            <strong>
+                              {{ session.learnerCode || 'Unnamed Session' }}
+                            </strong>
+                          </p>
+                          <small>
+                            {{ session.created | date:'dd/MM/yyyy, h:mm:ss a' }}
+                          </small>
+                        </div>
                       </div>
-                    </div>
+                    </a>
 
                     <button
                       type="button"
                       class="icon-delete"
-                      (click)="openDeleteSessionModal(session); $event.stopPropagation()"
-                      aria-label="Delete session"
+                      (click)="openDeleteSessionModal(session)"
+                      [attr.aria-label]="'Delete session for learner ' + (session.learnerCode || 'unnamed session')"
+                      title="Delete session"
                     >
                       ×
                     </button>

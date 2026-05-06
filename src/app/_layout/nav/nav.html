@@ -26,6 +26,7 @@
         <a
           routerLink="/"
           routerLinkActive="doe-primary-nav__link--active"
+          ariaCurrentWhenActive="page"
           [routerLinkActiveOptions]="{ exact: true }"
           class="doe-primary-nav__link"
           (click)="closeMenu($event)"
@@ -37,7 +38,7 @@
 
       <li class="doe-primary-nav__item doe-primary-nav__item--has-menu" routerLinkActive="doe-primary-nav__item--active">
         <div class="doe-primary-nav__item-row">
-          <a routerLink="/foundations" class="doe-primary-nav__link" (click)="closeMenu($event)">
+          <a routerLink="/foundations" routerLinkActive="doe-primary-nav__link--active" ariaCurrentWhenActive="location" class="doe-primary-nav__link" (click)="closeMenu($event)">
             Foundations
           </a>
           <button
@@ -69,7 +70,7 @@
 
       <li class="doe-primary-nav__item doe-primary-nav__item--has-menu" routerLinkActive="doe-primary-nav__item--active">
         <div class="doe-primary-nav__item-row">
-          <a routerLink="/learning-domains" class="doe-primary-nav__link" (click)="closeMenu($event)">
+          <a routerLink="/learning-domains" routerLinkActive="doe-primary-nav__link--active" ariaCurrentWhenActive="location" class="doe-primary-nav__link" (click)="closeMenu($event)">
             Learning domains
           </a>
           <button
@@ -109,31 +110,31 @@
       </li>
 
       <li class="doe-primary-nav__item">
-        <a routerLink="/klpt" routerLinkActive="doe-primary-nav__link--active" class="doe-primary-nav__link" (click)="closeMenu($event)">
+        <a routerLink="/klpt" routerLinkActive="doe-primary-nav__link--active" ariaCurrentWhenActive="location" class="doe-primary-nav__link" (click)="closeMenu($event)">
           KLPT
         </a>
       </li>
 
       <li class="doe-primary-nav__item">
-        <a routerLink="/practice-supports" routerLinkActive="doe-primary-nav__link--active" class="doe-primary-nav__link" (click)="closeMenu($event)">
+        <a routerLink="/practice-supports" routerLinkActive="doe-primary-nav__link--active" ariaCurrentWhenActive="location" class="doe-primary-nav__link" (click)="closeMenu($event)">
           Practice supports
         </a>
       </li>
 
       <li class="doe-primary-nav__item">
-        <a routerLink="/about" routerLinkActive="doe-primary-nav__link--active" class="doe-primary-nav__link" (click)="closeMenu($event)">
+        <a routerLink="/about" routerLinkActive="doe-primary-nav__link--active" ariaCurrentWhenActive="location" class="doe-primary-nav__link" (click)="closeMenu($event)">
           About
         </a>
       </li>
 
       <li class="doe-primary-nav__item">
-        <a routerLink="/help" routerLinkActive="doe-primary-nav__link--active" class="doe-primary-nav__link" (click)="closeMenu($event)">
+        <a routerLink="/help" routerLinkActive="doe-primary-nav__link--active" ariaCurrentWhenActive="location" class="doe-primary-nav__link" (click)="closeMenu($event)">
           Help
         </a>
       </li>
 
       <li class="doe-primary-nav__item">
-        <a routerLink="/contact" routerLinkActive="doe-primary-nav__link--active" class="doe-primary-nav__link" (click)="closeMenu($event)">
+        <a routerLink="/contact" routerLinkActive="doe-primary-nav__link--active" ariaCurrentWhenActive="location" class="doe-primary-nav__link" (click)="closeMenu($event)">
           Contact
         </a>
       </li>

@@ -101,7 +101,14 @@
 
       <div class="klpt-step__actions">
         <a class="button button--secondary" [routerLink]="['/klpt/learning-progression-statement', currentSession.id]">Previous</a>
-        <button class="button button--primary" type="button" (click)="generatePdf()">Generate PDF</button>
+        <button
+          class="button button--primary"
+          type="button"
+          [attr.aria-label]="'Generate PDF for learner ' + displayValue(currentSession.learnerCode)"
+          (click)="generatePdf()"
+        >
+          Generate PDF
+        </button>
       </div>
     </article>
   </div>

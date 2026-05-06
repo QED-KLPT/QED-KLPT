@@ -118,6 +118,7 @@
           class="button button--primary"
           [class.button--disabled]="!canContinue()"
           [attr.aria-disabled]="!canContinue()"
+          [attr.tabindex]="canContinue() ? null : -1"
           [routerLink]="canContinue() ? ['/klpt/review-session', currentSession.id] : null"
         >
           Next

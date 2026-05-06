@@ -1,6 +1,6 @@
-<div class="session-controls" aria-label="Session controls">
-  <a class="session-controls__button" routerLink="/klpt/list-sessions">Sessions</a>
-  <button class="session-controls__button session-controls__button--danger" type="button" (click)="openClearSessionModal()">
+<div class="session-controls" role="group" aria-label="Session controls">
+  <a class="session-controls__button" routerLink="/klpt/list-sessions" aria-label="Return to saved sessions">Sessions</a>
+  <button class="session-controls__button session-controls__button--danger" type="button" aria-haspopup="dialog" (click)="openClearSessionModal()">
     Clear session
   </button>
 </div>
@@ -42,6 +42,7 @@
           [routerLink]="[node.route, sessionId]"
           [attr.data-state]="stateFor(node)"
           [attr.aria-current]="stateFor(node) === 'current' ? 'step' : null"
+          [attr.aria-label]="'Step ' + (index + 1) + ', ' + node.title + ': ' + node.description"
         >
           <span class="progress-step__description">{{ node.description }}</span>
           <span class="progress-step__node">{{ index + 1 }}</span>
