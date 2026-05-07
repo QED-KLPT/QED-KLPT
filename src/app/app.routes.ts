@@ -57,7 +57,7 @@ export const routes: Routes = [
   {
     path: 'learning-domains/social-and-emotional-learning',
     component: SocialAndEmotionalLearning,
-    title: 'Aliqua Ut Enim Ad Min',
+    title: 'Social and emotional learning',
   },     
   {
     path: 'learning-domains/mathematics-and-numeracy',
