@@ -9,6 +9,7 @@ type PracticeSupportSection = {
   summary: string;
   reflection: string[];
   pdfLabel: string;
+  pdfPath: string;
   accordionItems: {
     title: string;
     body: string[];
@@ -70,6 +71,7 @@ export class PracticeSupports implements OnInit, AfterViewInit {
         'Which adjustments, intentional teaching strategies, or environmental supports could help the child take the next step?',
       ],
       pdfLabel: 'Download professional reflection prompts (PDF)',
+      pdfPath: 'assets/content/pdfs/qklg_principle_collab_lead_team_poster.pdf',
       accordionItems: [
         {
           title: 'Using the reflection prompts',
@@ -89,6 +91,7 @@ export class PracticeSupports implements OnInit, AfterViewInit {
         'Consider what the child is communicating already and how those strengths can be extended through everyday interactions.',
       ],
       pdfLabel: 'Download language and literacy practice supports (PDF)',
+      pdfPath: 'assets/content/pdfs/qklg_principle_effect_ped_poster.pdf',
       accordionItems: [
         {
           title: 'Intentional teaching strategies',
@@ -115,6 +118,7 @@ export class PracticeSupports implements OnInit, AfterViewInit {
         'Think about when the child is most regulated and ready to learn, and what environmental cues or adult supports help that happen.',
       ],
       pdfLabel: 'Download executive function practice supports (PDF)',
+      pdfPath: 'assets/content/pdfs/qklg_principle_sustain_poster.pdf',
       accordionItems: [
         {
           title: 'Intentional teaching strategies',
@@ -141,6 +145,7 @@ export class PracticeSupports implements OnInit, AfterViewInit {
         'Notice how the child communicates emotions, seeks support, and responds to peers in different parts of the day.',
       ],
       pdfLabel: 'Download social and emotional learning practice supports (PDF)',
+      pdfPath: 'assets/content/pdfs/qklg_principle_res_rels_poster.pdf',
       accordionItems: [
         {
           title: 'Intentional teaching strategies',
@@ -167,6 +172,7 @@ export class PracticeSupports implements OnInit, AfterViewInit {
         'Think about how the environment, materials, and routines either support or limit the child’s movement and participation.',
       ],
       pdfLabel: 'Download physicality practice supports (PDF)',
+      pdfPath: 'assets/content/pdfs/qklg_principle_res_diverse_poster.pdf',
       accordionItems: [
         {
           title: 'Intentional teaching strategies',
@@ -193,6 +199,7 @@ export class PracticeSupports implements OnInit, AfterViewInit {
         'Look for the mathematical thinking already present in the child’s play, language, and decision making.',
       ],
       pdfLabel: 'Download mathematics and numeracy practice supports (PDF)',
+      pdfPath: 'assets/content/pdfs/qklg_principle_collab_part_poster.pdf',
       accordionItems: [
         {
           title: 'Intentional teaching strategies',
