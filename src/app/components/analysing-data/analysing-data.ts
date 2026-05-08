@@ -33,10 +33,10 @@ export class AnalysingData implements OnInit {
     {
       heading: 'Observation snapshots',
       intro:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vehicula, nibh vel sagittis hendrerit, lectus turpis volutpat nisl, et volutpat est erat non purus.',
+        '',
       videos: [
         {
-          title: 'Pattern spotting in everyday routines',
+          title: 'Observational data and the planning cycle ',
           description:
             '',
           youtubeUrl: 'https://www.youtube.com/watch?v=RCmiHUNHa8c',
@@ -47,7 +47,7 @@ export class AnalysingData implements OnInit {
           ],
         },
         {
-          title: 'Connecting notes to next steps',
+          title: 'A collaborative approach to observation and assessment',
           description:
             '',
           youtubeUrl: 'https://www.youtube.com/watch?v=t_TQXaHyjZM',
@@ -58,7 +58,7 @@ export class AnalysingData implements OnInit {
           ],
         },
         {
-          title: 'Interpreting trends across the week',
+          title: 'A strengths-based approach to observation and assessment',
           description:
             '',
           youtubeUrl: 'https://www.youtube.com/watch?v=Rg_Bk8mhsQI',
@@ -69,25 +69,7 @@ export class AnalysingData implements OnInit {
           ],
         },
       ],
-    },
-    {
-      heading: 'Planning responses',
-      intro:
-        '',
-      videos: [
-        {
-          title: 'Analysing group participation',
-          description:
-            '',
-          youtubeUrl: 'https://www.youtube.com/watch?v=1BbO3pI1GVk',
-          transcript: [
-            'Narrator: Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            'Educator: Morbi leo risus, porta ac consectetur ac, vestibulum at eros.',
-            'Narrator: Vestibulum id ligula porta felis euismod semper.',
-          ],
-        }
-      ],
-    },
+    }   
   ];
 
   protected get videos(): MockVideo[] {

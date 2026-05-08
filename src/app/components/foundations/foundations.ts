@@ -30,7 +30,7 @@ export class Foundations implements OnInit {
   protected readonly foundations: FoundationNavCard[] = [
     {
       title: 'Conducting and documenting quality observations',
-      description: 'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      description: 'Early childhood teachers and educators are keen observers of children’s play and participation in kindergarten programs. The intent and act of observing underpins the recording of meaningful data to provide insights into children’s learning, development and wellbeing through analysis and interpretation. ',
       url: '/foundations/quality-observations',
       imageAlt: 'Quality observations icon',
       imageSrc: 'assets/img/foundations-quality-observations.svg',
@@ -39,7 +39,7 @@ export class Foundations implements OnInit {
     },
     {
       title: 'Analysing and interpreting observational data',
-      description: 'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      description: 'Observational data becomes meaningful through a process of analysis and interpretation. Analysis of observational data helps teachers and educators understand what children know and can do: their thinking, knowledge, skills, dispositions and preferences. Analysis is a specialised skill drawing on content knowledge, pedagogy knowledge and theoretical perspectives.   ',
       url: '/foundations/analysing-data',
       imageAlt: 'Analysing data icon',
       imageSrc: 'assets/img/foundations-analysing-data.svg',
