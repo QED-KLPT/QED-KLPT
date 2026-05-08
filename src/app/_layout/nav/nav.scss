@@ -175,8 +175,8 @@
     transform 220ms ease;
 }
 
-.doe-primary-nav__item:hover .doe-primary-nav__submenu,
-.doe-primary-nav__item:focus-within .doe-primary-nav__submenu {
+.doe-primary-nav:not(.doe-primary-nav--suppress-hover) .doe-primary-nav__item:hover .doe-primary-nav__submenu,
+.doe-primary-nav:not(.doe-primary-nav--suppress-hover) .doe-primary-nav__item:focus-within .doe-primary-nav__submenu {
   max-height: 24rem;
   opacity: 1;
   pointer-events: auto;
