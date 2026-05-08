@@ -1,4 +1,9 @@
-<nav class="doe-primary-nav" aria-label="Primary navigation">
+<nav
+  class="doe-primary-nav"
+  [class.doe-primary-nav--suppress-hover]="suppressHoverSubmenus()"
+  aria-label="Primary navigation"
+  (pointermove)="allowHoverSubmenus($event)"
+>
   <div class="doe-primary-nav__container">
     <div class="doe-primary-nav__mobile-bar">
       <button

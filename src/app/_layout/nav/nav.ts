@@ -11,6 +11,13 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 export class Nav {
   protected readonly isMenuOpen = signal(false);
   protected readonly openSubmenu = signal<string | null>(null);
+  protected readonly suppressHoverSubmenus = signal(false);
+
+  protected allowHoverSubmenus(event: PointerEvent): void {
+    if (event.pointerType === 'mouse') {
+      this.suppressHoverSubmenus.set(false);
+    }
+  }
 
   protected toggleMenu(): void {
     this.isMenuOpen.update((value) => !value);
@@ -26,6 +33,7 @@ export class Nav {
   }
 
   protected toggleSubmenu(name: string): void {
+    this.suppressHoverSubmenus.set(false);
     this.openSubmenu.update((current) => (current === name ? null : name));
   }
 
@@ -34,6 +42,7 @@ export class Nav {
       event.currentTarget.blur();
     }
 
+    this.suppressHoverSubmenus.set(true);
     this.closeAllMenus();
   }
 }
