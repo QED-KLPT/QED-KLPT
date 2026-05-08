@@ -82,6 +82,7 @@
 
 .video-column__header p {
   margin: 0;
+  min-height: 12.5rem;
 }
 
 .video-stack {
@@ -149,5 +150,9 @@
 @media (max-width: 64rem) {
   .video-columns {
     grid-template-columns: 1fr;
+  }
+
+  .video-column__header p {
+    min-height: 0;
   }
 }
