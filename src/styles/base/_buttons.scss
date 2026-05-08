@@ -10,6 +10,7 @@
   line-height: 1;
   text-decoration: none;
   cursor: pointer;
+  touch-action: manipulation;
   transition:
     background-color 160ms ease,
     border-color 160ms ease,
@@ -31,7 +32,6 @@
   color: var(--doe-color-primary);
 }
 
-.button--primary:hover,
 .button--primary:focus-visible {
   border-color: var(--doe-color-primary-dark);
   background: var(--doe-color-primary-dark);
@@ -39,11 +39,25 @@
   transform: translateY(-1px);
 }
 
-.button--secondary:hover,
 .button--secondary:focus-visible {
   background: rgba(0, 94, 184, 0.08);
   color: var(--doe-color-primary-dark);
   transform: translateY(-1px);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button--primary:hover {
+    border-color: var(--doe-color-primary-dark);
+    background: var(--doe-color-primary-dark);
+    color: #ffffff;
+    transform: translateY(-1px);
+  }
+
+  .button--secondary:hover {
+    background: rgba(0, 94, 184, 0.08);
+    color: var(--doe-color-primary-dark);
+    transform: translateY(-1px);
+  }
 }
 
 .home-hero .button--secondary,
@@ -51,10 +65,16 @@
   color: #ffffff;
 }
 
-.home-hero .button--secondary:hover,
 .home-hero .button--secondary:focus-visible,
-.support-section__header .button--secondary:hover,
 .support-section__header .button--secondary:focus-visible {
   background: rgba(255, 255, 255, 0.12);
   color: #ffffff;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .home-hero .button--secondary:hover,
+  .support-section__header .button--secondary:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+  }
 }
