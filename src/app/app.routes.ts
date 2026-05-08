@@ -58,7 +58,8 @@ export const routes: Routes = [
     path: 'learning-domains/social-and-emotional-learning',
     component: SocialAndEmotionalLearning,
     title: 'Social and emotional learning',
-  },     
+  },
+  { path: 'learning-domains/physicality', component: Physicality, title: 'Physicality' },  
   {
     path: 'learning-domains/mathematics-and-numeracy',
     component: MathematicsAndNumeracy,
