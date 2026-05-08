@@ -60,13 +60,11 @@
               <div class="klpt-evidence-grid">
                 <div class="klpt-evidence-panel">
                   <h3>What you observed</h3>
-                  <p class="klpt-behaviour-name">{{ item.behaviour.name }}</p>
                   <div [innerHTML]="item.behaviour.description"></div>
                 </div>
 
                 <div class="klpt-evidence-panel">
                   <h3>What is likely to be the next step in learning progression</h3>
-                  <p class="klpt-behaviour-name">{{ item.nextBehaviour?.name ?? 'Final behaviour' }}</p>
                   @if (item.nextBehaviour) {
                     <div [innerHTML]="item.nextBehaviour.description"></div>
                   } @else {

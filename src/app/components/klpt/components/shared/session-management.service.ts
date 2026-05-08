@@ -41,7 +41,7 @@ export class SessionManagementService {
       created: now,
       updated: undefined,
       expiry,
-      educatorName: undefined,
+      educatorName: '',
       learnerCode: '',
       pageIndex: 0,
       domain: '',
@@ -121,6 +121,12 @@ export class SessionManagementService {
         created: new Date(session.created),
         updated: session.updated ? new Date(session.updated) : undefined,
         expiry: new Date(session.expiry),
+        educatorName: this.normaliseTextInput(session.educatorName),
+        learnerCode: this.normaliseTextInput(session.learnerCode),
+        formFields: (session.formFields ?? []).map((field) => ({
+          ...field,
+          value: this.normaliseTextInput(field.value),
+        })),
       }));
     } catch {
       return [];
@@ -136,6 +142,10 @@ export class SessionManagementService {
     }));
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(storedSessions));
+  }
+
+  private normaliseTextInput(value: string | undefined): string {
+    return value && value !== 'undefined' ? value : '';
   }
 
   private createSessionId(): string {
