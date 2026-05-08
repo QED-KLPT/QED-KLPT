@@ -93,7 +93,12 @@
           (input)="updateFormField('professional-reflection', $any($event.target).value)"
         ></textarea>
         <p class="klpt-form-field__hint">
-          <a [routerLink]="['/practice-supports']" [fragment]="practiceSupportSectionId()">
+          <a
+            [routerLink]="['/practice-supports']"
+            [fragment]="practiceSupportSectionId()"
+            target="_blank"
+            rel="noopener"
+          >
             Link to practice supports for {{ selectedDomain()?.name ?? 'professional reflection' }}
           </a>
         </p>
