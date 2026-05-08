@@ -476,6 +476,12 @@
   }
 }
 
+@media (orientation: portrait) and (pointer: coarse) and (min-width: 48rem) and (max-width: 64rem) {
+  :host ::ng-deep .behaviour-tile__description li {
+    line-height: 20px;
+  }
+}
+
 @media (max-width: 35rem) {
   .behaviour-intro {
     align-items: flex-start;
