@@ -132,7 +132,7 @@
   min-width: 160px;
 }
 
-@media (max-width: 64rem) {
+@media (max-width: 48rem) {
   .domain-hero__layout {
     grid-template-columns: 1fr;
   }
@@ -144,7 +144,9 @@
   .domain-hero__art img {
     width: min(15rem, 60vw);
   }
+}
 
+@media (max-width: 64rem) {
   .video-columns {
     grid-template-columns: 1fr;
   }
