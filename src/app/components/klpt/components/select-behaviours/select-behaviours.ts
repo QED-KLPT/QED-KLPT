@@ -41,7 +41,7 @@ export class SelectBehaviours implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.currentSession = this.getRouteSession();
-    this.currentSession.pageIndex = 3;
+    this.currentSession.pageIndex = 2;
     this.focusedElementId = this.currentSession.elements[0]?.id;
     this.focusedBehaviourId = this.currentSession.elements[0]?.behaviourId;
   }

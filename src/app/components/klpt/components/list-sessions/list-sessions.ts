@@ -108,6 +108,18 @@ export class ListSessions implements OnInit {
     void this.router.navigateByUrl(`/klpt/select-domains/${newSession.id}`);
   }
 
+  protected sessionRoute(session: SessionModel): string[] {
+    const routeByPageIndex: Record<number, string> = {
+      1: 'select-domains',
+      2: 'select-behaviours',
+      3: 'learning-progression-statement',
+      4: 'review-session',
+    };
+    const stepRoute = routeByPageIndex[session.pageIndex] ?? routeByPageIndex[1];
+
+    return ['/klpt', stepRoute, session.id];
+  }
+
   public openDeleteSessionModal(session: SessionModel): void {
     this.pendingDelete = {
       type: 'session',

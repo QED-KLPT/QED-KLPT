@@ -27,7 +27,7 @@ export class SelectDomains implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.currentSession = this.getRouteSession();
-    this.currentSession.pageIndex = 2;
+    this.currentSession.pageIndex = 1;
   }
 
   ngOnDestroy(): void {

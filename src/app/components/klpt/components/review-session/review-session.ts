@@ -35,7 +35,7 @@ export class ReviewSession implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.currentSession = this.getRouteSession();
-    this.currentSession.pageIndex = 5;
+    this.currentSession.pageIndex = 4;
     this.currentSession.formFields = this.mergeFormFields(this.currentSession.formFields);
   }
 

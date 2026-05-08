@@ -119,7 +119,7 @@
                   <div class="recent-item session-card-row">
                     <a
                       class="session-card"
-                      [routerLink]="['/klpt/select-domains', session.id]"
+                      [routerLink]="sessionRoute(session)"
                       [attr.aria-label]="'Open session for learner ' + (session.learnerCode || 'unnamed session')"
                     >
                       <div class="session-card-content">

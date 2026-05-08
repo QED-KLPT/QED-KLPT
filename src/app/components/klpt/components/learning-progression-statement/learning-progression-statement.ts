@@ -33,7 +33,7 @@ export class LearningProgressionStatement implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.currentSession = this.getRouteSession();
-    this.currentSession.pageIndex = 4;
+    this.currentSession.pageIndex = 3;
     this.currentSession.formFields = this.mergeFormFields(this.currentSession.formFields);
   }
 

@@ -151,13 +151,13 @@ describe('ListSessions', () => {
       expect(dates.length).toBe(2);
     });
 
-    it('should render clickable rows with routerLink to select-domains/:sessionId', () => {
+    it('should render clickable rows with routerLink based on pageIndex', () => {
       const compiled = fixture.nativeElement as HTMLElement;
-      const links = Array.from(compiled.querySelectorAll('.klpt-list-sessions__item .klpt-list-sessions__link'));
+      const links = Array.from(compiled.querySelectorAll('.session-card'));
       expect(links.length).toBe(2);
       const hrefs = links.map((l) => l.getAttribute('href'));
       expect(hrefs.some((h) => h?.includes('/klpt/select-domains/session-1'))).toBe(true);
-      expect(hrefs.some((h) => h?.includes('/klpt/select-domains/session-2'))).toBe(true);
+      expect(hrefs.some((h) => h?.includes('/klpt/select-behaviours/session-2'))).toBe(true);
     });
 
     it('should render arrow indicator in each session row', () => {

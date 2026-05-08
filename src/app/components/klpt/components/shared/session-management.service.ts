@@ -67,7 +67,7 @@ export class SessionManagementService {
     const clearedSession: SessionModel = {
       ...session,
       updated: new Date(),
-      pageIndex: 2,
+      pageIndex: 1,
       domain: '',
       subDomain: undefined,
       elements: [],

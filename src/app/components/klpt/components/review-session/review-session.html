@@ -63,14 +63,12 @@
                   <div [innerHTML]="item.behaviour.description"></div>
                 </div>
 
-                <div class="klpt-evidence-panel">
-                  <h3>What is likely to be the next step in learning progression</h3>
-                  @if (item.nextBehaviour) {
+                @if (item.nextBehaviour) {
+                  <div class="klpt-evidence-panel">
+                    <h3>What is likely to be the next step in learning progression</h3>
                     <div [innerHTML]="item.nextBehaviour.description"></div>
-                  } @else {
-                    <p>This is the final behaviour currently available for this element.</p>
-                  }
-                </div>
+                  </div>
+                }
               </div>
             </article>
           }
