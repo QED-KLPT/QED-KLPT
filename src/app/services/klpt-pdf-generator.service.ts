@@ -37,7 +37,23 @@ interface PdfProgressionItem {
 export class KlptPdfGeneratorService {
   constructor(private readonly domainData: KlptDomainDataService) {}
 
-  async generateSessionPdf(session: SessionModel): Promise<void> {
+  openPdfPreviewWindowForIosSafari(): Window | null {
+    if (!this.shouldOpenPdfInNewTab()) {
+      return null;
+    }
+
+    const pdfWindow = window.open('', '_blank');
+
+    if (pdfWindow) {
+      pdfWindow.opener = null;
+      pdfWindow.document.title = 'Preparing KLPT PDF';
+      pdfWindow.document.body.innerHTML = '<p style="font-family: sans-serif; padding: 1rem;">Preparing PDF...</p>';
+    }
+
+    return pdfWindow;
+  }
+
+  async generateSessionPdf(session: SessionModel, pdfWindow: Window | null = null): Promise<void> {
     const { jsPDF } = await import('jspdf');
     const doc = new jsPDF({ unit: 'mm', format: 'a4' });
     const pageWidth = doc.internal.pageSize.getWidth();
@@ -106,6 +122,13 @@ export class KlptPdfGeneratorService {
     const displayHours = String(hours % 12 || 12).padStart(2, '0');
     const dateStr = `${year}-${month}-${String(day).padStart(2, '0')}-${displayHours}${minutes}${ampm}`;
     const filename = `klpt-session-${learnerCode}-${dateStr}.pdf`;
+
+    if (pdfWindow && !pdfWindow.closed) {
+      const pdfUrl = doc.output('bloburl');
+      pdfWindow.location.href = pdfUrl.toString();
+      window.setTimeout(() => URL.revokeObjectURL(pdfUrl.toString()), 60000);
+      return;
+    }
 
     doc.save(filename);
   }
@@ -367,6 +390,20 @@ export class KlptPdfGeneratorService {
 
   getFieldLabel(fieldName: string): string {
     return FORM_FIELD_LABELS[fieldName] ?? fieldName;
+  }
+
+  private shouldOpenPdfInNewTab(): boolean {
+    if (typeof window === 'undefined' || typeof navigator === 'undefined') {
+      return false;
+    }
+
+    const userAgent = navigator.userAgent;
+    const isIosDevice =
+      /iPad|iPhone|iPod/.test(userAgent) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    const isSafari = /Safari/.test(userAgent) && !/CriOS|FxiOS|EdgiOS|OPiOS/.test(userAgent);
+
+    return isIosDevice && isSafari;
   }
 
   private resolveDomain(domainId: string): KlptDomain | undefined {

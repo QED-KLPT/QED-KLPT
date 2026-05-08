@@ -44,7 +44,8 @@ export class ReviewSession implements OnInit, OnDestroy {
   }
 
   async generatePdf(): Promise<void> {
-    await this.pdfGenerator.generateSessionPdf(this.currentSession);
+    const pdfWindow = this.pdfGenerator.openPdfPreviewWindowForIosSafari();
+    await this.pdfGenerator.generateSessionPdf(this.currentSession, pdfWindow);
   }
 
   protected selectedDomain(): KlptDomain | undefined {
