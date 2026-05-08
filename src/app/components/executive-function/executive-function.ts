@@ -32,7 +32,7 @@ export class ExecutiveFunction implements OnInit {
     {
       title: 'Persistence',
       description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        'Staying on task, trying again after challenges and completing activities',
       url: '',
       background: 'linear-gradient(180deg, #fbfff6 0%, #d9f7be 100%)',
       hoverBorderColor: '#94d2bd',
@@ -42,7 +42,7 @@ export class ExecutiveFunction implements OnInit {
     {
       title: 'Adaptability',
       description:
-        'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam.',
+        'Adjusting when routies change, responding to new information and staying calm under uncertainty',
       url: '',
       background: 'linear-gradient(180deg, #f7fff9 0%, #ccfbf1 100%)',
       hoverBorderColor: '#6ee7b7',
@@ -52,7 +52,7 @@ export class ExecutiveFunction implements OnInit {
     {
       title: 'Problem solving',
       description:
-        'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni dolores eos.',
+        'Exploring ideas, testing strategies and reflecting on what works',
       url: '',
       background: 'linear-gradient(180deg, #fffaf5 0%, #ffedd5 100%)',
       hoverBorderColor: '#fca5a5',
