@@ -33,6 +33,10 @@ interface PdfProgressionItem {
   nextBehaviour: KlptBehaviour | undefined;
 }
 
+interface GenerateSessionPdfOptions {
+  learnerName?: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class KlptPdfGeneratorService {
   constructor(private readonly domainData: KlptDomainDataService) {}
@@ -53,7 +57,11 @@ export class KlptPdfGeneratorService {
     return pdfWindow;
   }
 
-  async generateSessionPdf(session: SessionModel, pdfWindow: Window | null = null): Promise<void> {
+  async generateSessionPdf(
+    session: SessionModel,
+    pdfWindow: Window | null = null,
+    options: GenerateSessionPdfOptions = {},
+  ): Promise<void> {
     const { jsPDF } = await import('jspdf');
     const doc = new jsPDF({ unit: 'mm', format: 'a4' });
     const pageWidth = doc.internal.pageSize.getWidth();
@@ -71,6 +79,7 @@ export class KlptPdfGeneratorService {
       { label: 'Date', value: this.displayValue(this.formatFormDate(this.formValue(session, 'date'))) },
       { label: "Observer's name", value: this.displayValue(session.educatorName) },
       { label: 'Learner code', value: this.displayValue(session.learnerCode) },
+      { label: 'Learner name', value: this.displayValue(options.learnerName) },
     ]);
 
     if (domain) {
@@ -164,29 +173,33 @@ export class KlptPdfGeneratorService {
     fields: { label: string; value: string }[],
   ): number {
     const gap = 3;
-    const columns = fields.length;
+    const columns = Math.min(3, fields.length);
     const cellWidth = (contentWidth - gap * (columns - 1)) / columns;
     const cellHeight = 19;
 
     fields.forEach((field, index) => {
-      const x = margin + index * (cellWidth + gap);
+      const column = index % columns;
+      const row = Math.floor(index / columns);
+      const x = margin + column * (cellWidth + gap);
+      const rowY = y + row * (cellHeight + gap);
       doc.setFillColor(...PDF_THEME.white);
-      doc.roundedRect(x, y, cellWidth, cellHeight, 3, 3, 'F');
+      doc.roundedRect(x, rowY, cellWidth, cellHeight, 3, 3, 'F');
       doc.setDrawColor(...PDF_THEME.border);
-      doc.roundedRect(x, y, cellWidth, cellHeight, 3, 3, 'S');
+      doc.roundedRect(x, rowY, cellWidth, cellHeight, 3, 3, 'S');
 
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(6.8);
       doc.setTextColor(...PDF_THEME.muted);
-      doc.text(field.label.toUpperCase(), x + 3, y + 6);
+      doc.text(field.label.toUpperCase(), x + 3, rowY + 6);
 
       doc.setFontSize(8.5);
       doc.setTextColor(...PDF_THEME.ink);
       const lines = doc.splitTextToSize(field.value, cellWidth - 6).slice(0, 2);
-      doc.text(lines, x + 3, y + 12);
+      doc.text(lines, x + 3, rowY + 12);
     });
 
-    return y + cellHeight + 5;
+    const rows = Math.ceil(fields.length / columns);
+    return y + rows * cellHeight + (rows - 1) * gap + 5;
   }
 
   private addProgressionItem(

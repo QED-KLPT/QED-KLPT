@@ -32,9 +32,11 @@ export class ReviewSession implements OnInit, OnDestroy {
   private readonly pdfGenerator = inject(KlptPdfGeneratorService);
 
   public currentSession!: SessionModel;
+  protected studentName = '';
 
   ngOnInit(): void {
     this.currentSession = this.getRouteSession();
+    this.studentName = this.formValue('student-name');
     this.currentSession.pageIndex = 4;
     this.currentSession.formFields = this.mergeFormFields(this.currentSession.formFields);
   }
@@ -45,7 +47,9 @@ export class ReviewSession implements OnInit, OnDestroy {
 
   async generatePdf(): Promise<void> {
     const pdfWindow = this.pdfGenerator.openPdfPreviewWindowForIosSafari();
-    await this.pdfGenerator.generateSessionPdf(this.currentSession, pdfWindow);
+    await this.pdfGenerator.generateSessionPdf(this.currentSession, pdfWindow, {
+      learnerName: this.studentName,
+    });
   }
 
   protected selectedDomain(): KlptDomain | undefined {
@@ -91,6 +95,10 @@ export class ReviewSession implements OnInit, OnDestroy {
     );
   }
 
+  protected updateStudentName(value: string): void {
+    this.studentName = value;
+  }
+
   protected displayValue(value: string | undefined): string {
     return value?.trim() ? value : 'Not entered';
   }
@@ -117,7 +125,6 @@ export class ReviewSession implements OnInit, OnDestroy {
 
   private mergeFormFields(fields: NameValuePair[]): NameValuePair[] {
     const requiredFields = [
-      'student-name',
       'date',
       'observational-context',
       'professional-reflection',
