@@ -3,6 +3,7 @@ import { environment } from '../../../../../environments/environment';
 import { SessionModel } from '../../models/session-model';
 
 const STORAGE_KEY = 'klpt.sessions';
+const PRIVATE_FORM_FIELDS = new Set(['student-name']);
 
 type StoredSessionModel = Omit<SessionModel, 'created' | 'updated' | 'expiry'> & {
   created: string;
@@ -19,6 +20,7 @@ export class SessionManagementService {
     const nextSession: SessionModel = {
       ...session,
       updated: new Date(),
+      formFields: this.stripPrivateFormFields(session.formFields),
     };
     const index = sessions.findIndex((storedSession) => storedSession.id === session.id);
 
@@ -123,7 +125,7 @@ export class SessionManagementService {
         expiry: new Date(session.expiry),
         educatorName: this.normaliseTextInput(session.educatorName),
         learnerCode: this.normaliseTextInput(session.learnerCode),
-        formFields: (session.formFields ?? []).map((field) => ({
+        formFields: this.stripPrivateFormFields(session.formFields ?? []).map((field) => ({
           ...field,
           value: this.normaliseTextInput(field.value),
         })),
@@ -146,6 +148,10 @@ export class SessionManagementService {
 
   private normaliseTextInput(value: string | undefined): string {
     return value && value !== 'undefined' ? value : '';
+  }
+
+  private stripPrivateFormFields(formFields: SessionModel['formFields']): SessionModel['formFields'] {
+    return formFields.filter((field) => !PRIVATE_FORM_FIELDS.has(field.name));
   }
 
   private createSessionId(): string {

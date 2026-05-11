@@ -13,9 +13,9 @@
         <span>Student's name</span>
         <input
           type="text"
-          [value]="formValue('student-name')"
+          [value]="studentName"
           placeholder="Enter student's name"
-          (input)="updateFormField('student-name', $any($event.target).value)"
+          (input)="updateStudentName($any($event.target).value)"
         />
       </label>
 
