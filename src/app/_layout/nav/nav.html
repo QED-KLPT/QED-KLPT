@@ -25,15 +25,17 @@
     <ul
       id="primary-navigation-list"
       class="doe-primary-nav__list"
+      role="menubar"
       [class.doe-primary-nav__list--open]="isMenuOpen()"
     >
-      <li class="doe-primary-nav__item">
+      <li class="doe-primary-nav__item" role="none">
         <a
           routerLink="/"
           routerLinkActive="doe-primary-nav__link--active"
           ariaCurrentWhenActive="page"
           [routerLinkActiveOptions]="{ exact: true }"
           class="doe-primary-nav__link"
+          role="menuitem"
           (click)="closeMenu($event)"
         >
           <i class="fa-regular fa-house doe-primary-nav__home-icon" aria-hidden="true"></i>
@@ -41,9 +43,9 @@
         </a>
       </li>
 
-      <li class="doe-primary-nav__item doe-primary-nav__item--has-menu" routerLinkActive="doe-primary-nav__item--active">
+      <li class="doe-primary-nav__item doe-primary-nav__item--has-menu" role="none" routerLinkActive="doe-primary-nav__item--active">
         <div class="doe-primary-nav__item-row">
-          <a routerLink="/foundations" routerLinkActive="doe-primary-nav__link--active" ariaCurrentWhenActive="location" class="doe-primary-nav__link" (click)="closeMenu($event)">
+          <a routerLink="/foundations" routerLinkActive="doe-primary-nav__link--active" ariaCurrentWhenActive="location" class="doe-primary-nav__link" role="menuitem" (click)="closeMenu($event)">
             Foundations
           </a>
           <button
@@ -52,7 +54,9 @@
             [class.doe-primary-nav__submenu-toggle--open]="openSubmenu() === 'foundations'"
             [attr.aria-expanded]="openSubmenu() === 'foundations'"
             aria-controls="foundations-submenu"
+            aria-haspopup="true"
             aria-label="Toggle Foundations submenu"
+            role="menuitem"
             (click)="toggleSubmenu('foundations')"
           >
             <span aria-hidden="true"></span>
@@ -63,19 +67,20 @@
           class="doe-primary-nav__submenu"
           [class.doe-primary-nav__submenu--open]="openSubmenu() === 'foundations'"
           aria-label="Foundations"
+          role="menu"
         >
-          <li>
-            <a routerLink="/foundations/quality-observations" (click)="closeMenu($event)">Conducting and documenting quality observations</a>
+          <li role="none">
+            <a routerLink="/foundations/quality-observations" role="menuitem" (click)="closeMenu($event)">Conducting and documenting quality observations</a>
           </li>
-          <li>
-            <a routerLink="/foundations/analysing-data" (click)="closeMenu($event)">Analysing and interpreting observational data</a>
+          <li role="none">
+            <a routerLink="/foundations/analysing-data" role="menuitem" (click)="closeMenu($event)">Analysing and interpreting observational data</a>
           </li>
         </ul>
       </li>
 
-      <li class="doe-primary-nav__item doe-primary-nav__item--has-menu" routerLinkActive="doe-primary-nav__item--active">
+      <li class="doe-primary-nav__item doe-primary-nav__item--has-menu" role="none" routerLinkActive="doe-primary-nav__item--active">
         <div class="doe-primary-nav__item-row">
-          <a routerLink="/learning-domains" routerLinkActive="doe-primary-nav__link--active" ariaCurrentWhenActive="location" class="doe-primary-nav__link" (click)="closeMenu($event)">
+          <a routerLink="/learning-domains" routerLinkActive="doe-primary-nav__link--active" ariaCurrentWhenActive="location" class="doe-primary-nav__link" role="menuitem" (click)="closeMenu($event)">
             Learning domains
           </a>
           <button
@@ -84,7 +89,9 @@
             [class.doe-primary-nav__submenu-toggle--open]="openSubmenu() === 'learning-domains'"
             [attr.aria-expanded]="openSubmenu() === 'learning-domains'"
             aria-controls="learning-domains-submenu"
+            aria-haspopup="true"
             aria-label="Toggle Learning domains submenu"
+            role="menuitem"
             (click)="toggleSubmenu('learning-domains')"
           >
             <span aria-hidden="true"></span>
@@ -95,51 +102,52 @@
           class="doe-primary-nav__submenu"
           [class.doe-primary-nav__submenu--open]="openSubmenu() === 'learning-domains'"
           aria-label="Learning domains"
+          role="menu"
         >
-          <li>
-            <a routerLink="/learning-domains/language-and-literacy" (click)="closeMenu($event)">Language and literacy</a>
+          <li role="none">
+            <a routerLink="/learning-domains/language-and-literacy" role="menuitem" (click)="closeMenu($event)">Language and literacy</a>
           </li>
-          <li>
-            <a routerLink="/learning-domains/executive-function" (click)="closeMenu($event)">Executive function</a>
+          <li role="none">
+            <a routerLink="/learning-domains/executive-function" role="menuitem" (click)="closeMenu($event)">Executive function</a>
           </li>
-          <li>
-            <a routerLink="/learning-domains/social-and-emotional-learning" (click)="closeMenu($event)">Social and emotional learning</a>
+          <li role="none">
+            <a routerLink="/learning-domains/social-and-emotional-learning" role="menuitem" (click)="closeMenu($event)">Social and emotional learning</a>
           </li>
-          <li>
-            <a routerLink="/learning-domains/physicality" (click)="closeMenu($event)">Physicality</a>
+          <li role="none">
+            <a routerLink="/learning-domains/physicality" role="menuitem" (click)="closeMenu($event)">Physicality</a>
           </li>
-          <li>
-            <a routerLink="/learning-domains/mathematics-and-numeracy" (click)="closeMenu($event)">Mathematics and numeracy</a>
+          <li role="none">
+            <a routerLink="/learning-domains/mathematics-and-numeracy" role="menuitem" (click)="closeMenu($event)">Mathematics and numeracy</a>
           </li>
         </ul>
       </li>
 
-      <li class="doe-primary-nav__item">
-        <a routerLink="/klpt" routerLinkActive="doe-primary-nav__link--active" ariaCurrentWhenActive="location" class="doe-primary-nav__link" (click)="closeMenu($event)">
+      <li class="doe-primary-nav__item" role="none">
+        <a routerLink="/klpt" routerLinkActive="doe-primary-nav__link--active" ariaCurrentWhenActive="location" class="doe-primary-nav__link" role="menuitem" (click)="closeMenu($event)">
           The KLPT
         </a>
       </li>
 
-      <li class="doe-primary-nav__item">
-        <a routerLink="/practice-supports" routerLinkActive="doe-primary-nav__link--active" ariaCurrentWhenActive="location" class="doe-primary-nav__link" (click)="closeMenu($event)">
+      <li class="doe-primary-nav__item" role="none">
+        <a routerLink="/practice-supports" routerLinkActive="doe-primary-nav__link--active" ariaCurrentWhenActive="location" class="doe-primary-nav__link" role="menuitem" (click)="closeMenu($event)">
           Practice supports
         </a>
       </li>
 
-      <li class="doe-primary-nav__item">
-        <a routerLink="/about" routerLinkActive="doe-primary-nav__link--active" ariaCurrentWhenActive="location" class="doe-primary-nav__link" (click)="closeMenu($event)">
+      <li class="doe-primary-nav__item" role="none">
+        <a routerLink="/about" routerLinkActive="doe-primary-nav__link--active" ariaCurrentWhenActive="location" class="doe-primary-nav__link" role="menuitem" (click)="closeMenu($event)">
           About
         </a>
       </li>
 
-      <li class="doe-primary-nav__item">
-        <a routerLink="/help" routerLinkActive="doe-primary-nav__link--active" ariaCurrentWhenActive="location" class="doe-primary-nav__link" (click)="closeMenu($event)">
+      <li class="doe-primary-nav__item" role="none">
+        <a routerLink="/help" routerLinkActive="doe-primary-nav__link--active" ariaCurrentWhenActive="location" class="doe-primary-nav__link" role="menuitem" (click)="closeMenu($event)">
           Help
         </a>
       </li>
 
-      <li class="doe-primary-nav__item">
-        <a routerLink="/contact" routerLinkActive="doe-primary-nav__link--active" ariaCurrentWhenActive="location" class="doe-primary-nav__link" (click)="closeMenu($event)">
+      <li class="doe-primary-nav__item" role="none">
+        <a routerLink="/contact" routerLinkActive="doe-primary-nav__link--active" ariaCurrentWhenActive="location" class="doe-primary-nav__link" role="menuitem" (click)="closeMenu($event)">
           Contact
         </a>
       </li>

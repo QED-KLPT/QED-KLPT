@@ -1,6 +1,6 @@
 <div class="session-controls" role="group" aria-label="Session controls">
   <a class="session-controls__button" routerLink="/klpt/list-sessions" aria-label="Return to saved sessions">Sessions</a>
-  <button class="session-controls__button session-controls__button--danger" type="button" aria-haspopup="dialog" (click)="openClearSessionModal()">
+  <button #clearSessionTrigger class="session-controls__button session-controls__button--danger" type="button" aria-haspopup="dialog" (click)="openClearSessionModal()">
     Clear session
   </button>
 </div>
@@ -14,6 +14,9 @@
       aria-modal="true"
       aria-labelledby="clear-session-title"
       aria-describedby="clear-session-description"
+      tabindex="-1"
+      #clearSessionDialog
+      (keydown)="trapModalFocus($event)"
     >
       <p class="clear-session-modal__eyebrow">Clear session</p>
       <h2 id="clear-session-title">Start this session again?</h2>

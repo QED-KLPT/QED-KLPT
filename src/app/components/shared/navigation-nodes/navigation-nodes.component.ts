@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  ViewChild,
+  inject,
+  Input,
+} from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { SessionManagementService } from '../../klpt/components/shared/session-management.service';
 
@@ -24,6 +31,8 @@ export class NavigationNodesComponent {
 
   @Input({ required: true }) sessionId!: string;
   @Input({ required: true }) currentNode!: NavigationNodeId;
+  @ViewChild('clearSessionDialog') private clearSessionDialog?: ElementRef<HTMLElement>;
+  @ViewChild('clearSessionTrigger') private clearSessionTrigger?: ElementRef<HTMLButtonElement>;
   protected isClearSessionModalOpen = false;
 
   protected readonly nodes: NavigationNode[] = [
@@ -66,15 +75,67 @@ export class NavigationNodesComponent {
 
   protected openClearSessionModal(): void {
     this.isClearSessionModalOpen = true;
+    window.setTimeout(() => this.focusFirstModalControl());
   }
 
   protected closeClearSessionModal(): void {
     this.isClearSessionModalOpen = false;
+    window.setTimeout(() => this.clearSessionTrigger?.nativeElement.focus());
   }
 
   protected clearSession(): void {
     this.sessionManagement.clearSessionWorkflow(this.sessionId);
     this.isClearSessionModalOpen = false;
     void this.router.navigate(['/klpt/select-domains', this.sessionId]);
+  }
+
+  protected trapModalFocus(event: KeyboardEvent): void {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      this.closeClearSessionModal();
+      return;
+    }
+
+    if (event.key !== 'Tab') {
+      return;
+    }
+
+    const focusableElements = this.getModalFocusableElements();
+
+    if (!focusableElements.length) {
+      event.preventDefault();
+      this.clearSessionDialog?.nativeElement.focus();
+      return;
+    }
+
+    const first = focusableElements[0];
+    const last = focusableElements[focusableElements.length - 1];
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
+
+  private focusFirstModalControl(): void {
+    const firstFocusable = this.getModalFocusableElements()[0];
+    (firstFocusable ?? this.clearSessionDialog?.nativeElement)?.focus();
+  }
+
+  private getModalFocusableElements(): HTMLElement[] {
+    const dialog = this.clearSessionDialog?.nativeElement;
+
+    if (!dialog) {
+      return [];
+    }
+
+    return Array.from(
+      dialog.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      ),
+    ).filter((element) => !element.hasAttribute('inert'));
   }
 }

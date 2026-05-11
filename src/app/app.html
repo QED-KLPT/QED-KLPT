@@ -1,9 +1,13 @@
 <div class="app-shell">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
   <aside class="beta-ribbon" aria-label="Beta site notice">
     <span>BETA</span>
   </aside>
 
   <app-header />
+
+  <div class="sr-only" aria-live="polite" aria-atomic="true">{{ pageAnnouncement }}</div>
 
   <main class="app-main" id="main-content">
     <router-outlet />

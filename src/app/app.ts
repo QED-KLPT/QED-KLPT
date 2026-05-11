@@ -1,6 +1,6 @@
 import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { RouterOutlet } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import {
   SwUpdate,
   VersionInstallationFailedEvent,
@@ -22,10 +22,13 @@ const UPDATE_RECHECK_DELAY_MS = 2 * 60 * 1000;
 export class App implements OnInit {
   private readonly swUpdate = inject(SwUpdate);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly router = inject(Router);
+  private readonly activatedRoute = inject(ActivatedRoute);
 
   protected showUpdateNotice = false;
   protected showUpdateFailureNotice = false;
   protected isRefreshing = false;
+  protected pageAnnouncement = '';
   protected updateFailureMessage =
     'An update was detected but could not be installed yet. Please try again in a few minutes.';
 
@@ -33,6 +36,15 @@ export class App implements OnInit {
   private updateRetryTimer: ReturnType<typeof window.setTimeout> | null = null;
 
   ngOnInit(): void {
+    this.announceRouteChange();
+
+    this.router.events
+      .pipe(
+        filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe(() => this.announceRouteChange());
+
     if (!this.swUpdate.isEnabled) {
       console.info('[SW] Service worker updates are disabled in this build.');
       void this.unregisterExistingServiceWorkers();
@@ -87,6 +99,17 @@ export class App implements OnInit {
         takeUntilDestroyed(this.destroyRef),
       )
       .subscribe(() => void this.checkForSiteUpdate());
+  }
+
+  private announceRouteChange(): void {
+    let route = this.activatedRoute;
+
+    while (route.firstChild) {
+      route = route.firstChild;
+    }
+
+    const title = route.snapshot.title ?? 'Page';
+    this.pageAnnouncement = `${title} loaded`;
   }
 
   protected dismissUpdateNotice(): void {

@@ -34,12 +34,16 @@
 
 .button--primary:focus-visible {
   border-color: var(--doe-color-primary-dark);
+  outline: 3px solid #84d3ff;
+  outline-offset: 2px;
   background: var(--doe-color-primary-dark);
   color: #ffffff;
   transform: translateY(-1px);
 }
 
 .button--secondary:focus-visible {
+  outline: 3px solid #0d3b66;
+  outline-offset: 2px;
   background: rgba(0, 94, 184, 0.08);
   color: var(--doe-color-primary-dark);
   transform: translateY(-1px);

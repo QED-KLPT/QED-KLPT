@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, HostListener, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
@@ -9,6 +9,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Nav {
+  private readonly elementRef = inject(ElementRef<HTMLElement>);
+
   protected readonly isMenuOpen = signal(false);
   protected readonly openSubmenu = signal<string | null>(null);
   protected readonly suppressHoverSubmenus = signal(false);
@@ -30,6 +32,19 @@ export class Nav {
   protected closeAllMenus(): void {
     this.isMenuOpen.set(false);
     this.openSubmenu.set(null);
+  }
+
+  @HostListener('keydown.escape')
+  protected closeMenusOnEscape(): void {
+    const activeElement = this.elementRef.nativeElement.ownerDocument.activeElement;
+    const menuItem = activeElement?.closest('.doe-primary-nav__item--has-menu') as
+      | HTMLElement
+      | null
+      | undefined;
+    const submenuToggle = menuItem?.querySelector<HTMLElement>('.doe-primary-nav__submenu-toggle');
+
+    this.closeAllMenus();
+    submenuToggle?.focus();
   }
 
   protected toggleSubmenu(name: string): void {
