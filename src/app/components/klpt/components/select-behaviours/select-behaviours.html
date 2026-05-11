@@ -61,7 +61,7 @@
                       [attr.aria-pressed]="isSelectedBehaviour(element, item.behaviour)"
                       [attr.aria-hidden]="carouselItemState(item) === 'hidden'"
                       [attr.aria-label]="'Select behaviour for ' + element.name + ': ' + item.behaviour.name"
-                      [attr.tabindex]="carouselItemState(item) === 'hidden' ? -1 : 0"
+                      [attr.tabindex]="carouselItemState(item) === 'active' ? 0 : -1"
                       (click)="selectBehaviour(element, item.behaviour)"
                     >
                       <span class="behaviour-tile__description" [innerHTML]="item.behaviour.description"></span>

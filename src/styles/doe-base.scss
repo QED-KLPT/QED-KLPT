@@ -16,6 +16,16 @@
   transform: translateY(0);
 }
 
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+}
+
 .doe-shell-container {
   width: min(1170px, calc(100% - 32px));
   margin: 0 auto;
