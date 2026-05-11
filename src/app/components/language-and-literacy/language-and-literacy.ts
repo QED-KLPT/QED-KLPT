@@ -38,17 +38,17 @@ export class LanguageAndLiteracy implements OnInit {
     {
       title: 'Sounds and speech',
       description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        'how children build and organise language and how they show awareness of sounds in words',
       url: '',
       background: 'linear-gradient(180deg, #fbfff6 0%, #d9f7be 100%)',
       hoverBorderColor: '#94d2bd',
       imageAlt: 'Sounds and speech',
       imageSrc: 'assets/img/language-and-literacy-sounds-speech.svg',
-    },
+    },  
     {
       title: 'Comprehension',
       description:
-        'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam.',
+        'how children show they understand and create meaning',
       url: '',
       background: 'linear-gradient(180deg, #f7fff9 0%, #ccfbf1 100%)',
       hoverBorderColor: '#6ee7b7',
