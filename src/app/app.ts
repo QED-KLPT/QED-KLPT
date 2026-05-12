@@ -36,14 +36,14 @@ export class App implements OnInit {
   private updateRetryTimer: ReturnType<typeof window.setTimeout> | null = null;
 
   ngOnInit(): void {
-    this.announceRouteChange();
-
     this.router.events
       .pipe(
         filter((event): event is NavigationEnd => event instanceof NavigationEnd),
         takeUntilDestroyed(this.destroyRef),
       )
-      .subscribe(() => this.announceRouteChange());
+      .subscribe(() => {
+        this.announceRouteChange();
+      });
 
     if (!this.swUpdate.isEnabled) {
       console.info('[SW] Service worker updates are disabled in this build.');
@@ -108,7 +108,7 @@ export class App implements OnInit {
       route = route.firstChild;
     }
 
-    const title = route.snapshot.title ?? 'Page';
+    const title = (route as unknown as { title?: string })?.title ?? 'Page';
     this.pageAnnouncement = `${title} loaded`;
   }
 
