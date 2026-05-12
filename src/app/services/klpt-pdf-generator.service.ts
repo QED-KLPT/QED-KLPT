@@ -77,7 +77,7 @@ export class KlptPdfGeneratorService {
       { label: 'Domain', value: domain?.name ?? 'Not selected' },
       { label: 'Elements', value: String(progressionItems.length) },
       { label: 'Date', value: this.displayValue(this.formatFormDate(this.formValue(session, 'date'))) },
-      { label: "Observer's name", value: this.displayValue(session.educatorName) },
+      { label: "Observer name", value: this.displayValue(session.educatorName) },
       { label: 'Learner code', value: this.displayValue(session.learnerCode) },
       { label: 'Learner name', value: this.displayValue(options.learnerName) },
     ]);
