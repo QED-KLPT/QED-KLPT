@@ -139,13 +139,29 @@ export class LearningProgressionStatement implements OnInit, OnDestroy {
     ];
 
     const mergedFields = requiredFields.map((name) => {
-      return fields.find((field) => field.name === name) ?? { name, value: '' };
+      const existingField = fields.find((field) => field.name === name);
+
+      if (existingField) {
+        return existingField;
+      }
+
+      return {
+        name,
+        value: name === 'date' ? this.currentDateValue() : '',
+      };
     });
     const existingFields = fields.filter(
       (field) => !requiredFields.some((requiredField) => requiredField === field.name),
     );
 
     return [...mergedFields, ...existingFields];
+  }
+
+  private currentDateValue(): string {
+    const now = new Date();
+    const timezoneOffset = now.getTimezoneOffset() * 60000;
+
+    return new Date(now.getTime() - timezoneOffset).toISOString().slice(0, 10);
   }
 
   private domainForElement(element: KlptElement): KlptDomain | undefined {
