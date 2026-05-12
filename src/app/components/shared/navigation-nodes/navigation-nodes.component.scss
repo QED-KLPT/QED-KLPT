@@ -193,7 +193,7 @@
   z-index: 1;
   display: grid;
   grid-template-rows: 2.625rem var(--progress-node-size) auto;
-  gap: 0.5625rem;
+  row-gap: 0.9rem;
   justify-items: center;
   min-width: 0;
   color: var(--klpt-muted);
