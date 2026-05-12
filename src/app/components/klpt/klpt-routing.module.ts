@@ -7,6 +7,7 @@ import { ReviewSession } from './components/review-session/review-session';
 import { SelectBehaviours } from './components/select-behaviours/select-behaviours';
 import { SelectDomains } from './components/select-domains/select-domains';
 import { Klpt } from './klpt';
+import { reviewSessionGuard } from './guards/review-session.guard';
 
 const routes: Routes = [
   {
@@ -24,7 +25,7 @@ const routes: Routes = [
         component: LearningProgressionStatement,
         title: 'Learning progression statement',
       },
-      { path: 'review-session/:sessionId', component: ReviewSession, title: 'Review KLPT session' },
+      { path: 'review-session/:sessionId', component: ReviewSession, title: 'Review KLPT session', canActivate: [reviewSessionGuard] },
     ],
   },
 ];
