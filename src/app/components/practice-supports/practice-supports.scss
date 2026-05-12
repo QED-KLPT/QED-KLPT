@@ -2,6 +2,10 @@
   display: block;
 }
 
+h2 {
+  font-size: 36px;
+}
+
 .practice-supports-hero {
   padding-block: clamp(2.75rem, 6vw, 5rem);
   background:
@@ -156,6 +160,18 @@
   border-radius: 1rem;
   border: 1px solid #dde3eb;
   box-shadow: 0 16px 28px rgba(33, 52, 83, 0.06);
+
+  h2 {
+    font-size: clamp(1.15rem, 2vw, 1.5rem);
+    font-weight: 550;
+    line-height: 1.25;
+  }
+
+  p {
+    font-size: 0.88rem;
+    font-weight: 400;
+    line-height: 1.55;
+  }
 }
 
 .support-card--mint {
