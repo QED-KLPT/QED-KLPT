@@ -66,8 +66,8 @@ describe('KlptPdfGeneratorService', () => {
   });
 
   describe('getFieldLabel', () => {
-    it('should map student-name to Learner Name', () => {
-      expect(service.getFieldLabel('student-name')).toBe('Learner Name');
+    it('should map child-name to Learner Name', () => {
+      expect(service.getFieldLabel('child-name')).toBe('Learner Name');
     });
 
     it('should map date to Date', () => {

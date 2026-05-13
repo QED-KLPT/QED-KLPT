@@ -10,7 +10,7 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
                 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 const FORM_FIELD_LABELS: Record<string, string> = {
-  'student-name': 'Learner Name',
+  'child-name': 'Learner Name',
   'date': 'Date',
   'observational-context': 'Context',
   'professional-reflection': 'Professional Reflection',

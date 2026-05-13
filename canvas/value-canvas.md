@@ -41,8 +41,8 @@ title: Value canvas
 [Icon] fa-solid fa-list-check
 ### Tasks I need to do
 - Plan and deliver engaging, well-differentiated lessons every day
-- Track student understanding with minimal administrative overhead
-- Communicate progress clearly to parents, students, and leadership
+- Track child understanding with minimal administrative overhead
+- Communicate progress clearly to parents, children, and leadership
 - Collaborate with and informally support less experienced colleagues
 - Manage a complex workload without compromising teaching quality
 - Keep professional practice current without constant retraining
@@ -60,8 +60,8 @@ title: Value canvas
 ## Gains
 [Icon] fa-regular fa-face-smile
 ### Benefits I'd welcome
-- More time in front of students, less time on admin
+- More time in front of children, less time on admin
 - Resources and tools that fit my actual teaching style
 - Technology that amplifies my expertise rather than replacing it
-- Visible evidence of my students' progress — and my own
+- Visible evidence of my children's progress — and my own
 - Feeling supported, not surveilled, by the platform and leadership
