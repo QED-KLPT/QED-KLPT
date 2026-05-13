@@ -3,7 +3,7 @@ import { environment } from '../../../../../environments/environment';
 import { SessionModel } from '../../models/session-model';
 
 const STORAGE_KEY = 'klpt.sessions';
-const PRIVATE_FORM_FIELDS = new Set(['student-name']);
+const PRIVATE_FORM_FIELDS = new Set(['child-name']);
 
 type StoredSessionModel = Omit<SessionModel, 'created' | 'updated' | 'expiry'> & {
   created: string;

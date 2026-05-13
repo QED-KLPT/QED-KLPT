@@ -55,7 +55,7 @@ export class TestingInPageNav {
   descriptiveLinks: InPageNavItem[] = [
     { label: 'Understanding the Assessment Framework', href: '#understanding-assessment' },
     { label: 'Implementing Formative Assessment Practices', href: '#implementing-formative' },
-    { label: 'Analyzing Student Progress Data', href: '#analyzing-progress' },
+    { label: 'Analyzing Child Progress Data', href: '#analyzing-progress' },
     { label: 'Communicating Results to Stakeholders', href: '#communicating-results' },
     { label: 'Planning for Continuous Improvement', href: '#planning-improvement' },
   ];
