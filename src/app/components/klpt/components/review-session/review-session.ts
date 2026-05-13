@@ -1,6 +1,6 @@
 import { NgStyle } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { NavigationNodesComponent } from '../../../shared';
 import { KlptBehaviour } from '../../models/klpt-behaviour';
 import { KlptDomain } from '../../models/klpt-domain';
@@ -30,9 +30,11 @@ export class ReviewSession implements OnInit, OnDestroy {
   protected readonly domainData = inject(KlptDomainDataService);
   private readonly sessionManagement = inject(SessionManagementService);
   private readonly pdfGenerator = inject(KlptPdfGeneratorService);
+  private readonly router = inject(Router);
 
   public currentSession!: SessionModel;
   protected childName = '';
+  private isLeavingAfterPdf = false;
 
   ngOnInit(): void {
     this.currentSession = this.getRouteSession();
@@ -42,7 +44,9 @@ export class ReviewSession implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.sessionManagement.persistSession(this.currentSession);
+    if (!this.isLeavingAfterPdf) {
+      this.sessionManagement.persistSession(this.currentSession);
+    }
   }
 
   async generatePdf(): Promise<void> {
@@ -50,6 +54,10 @@ export class ReviewSession implements OnInit, OnDestroy {
     await this.pdfGenerator.generateSessionPdf(this.currentSession, pdfWindow, {
       learnerName: this.childName,
     });
+
+    this.sessionManagement.deleteSession(this.currentSession.id);
+    this.isLeavingAfterPdf = true;
+    void this.router.navigateByUrl('/klpt/list-sessions');
   }
 
   protected selectedDomain(): KlptDomain | undefined {
