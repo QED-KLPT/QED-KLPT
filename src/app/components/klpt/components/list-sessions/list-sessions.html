@@ -41,7 +41,23 @@
       >
         <div class="klpt-create-session-form klpt-form-grid">
           <div class="klpt-form-field">
-            <label for="learner-code">Learner code</label>
+            <label for="learner-code" class="klpt-label-with-help">
+              <span class="klpt-label-text">Learner code</span>
+              <button
+                type="button"
+                class="klpt-help-bulb"
+                aria-label="Learner code help"
+                (mouseenter)="onBulbHover(true)"
+                (mouseleave)="onBulbHover(false)"
+                (touchstart.prevent)="onBulbLongPressStart()"
+                (touchend.prevent)="onBulbLongPressEnd()"
+              >
+                <img src="assets/img/bulb.png" alt="" aria-hidden="true" />
+              </button>
+              @if (bulbTooltipVisible) {
+                <span class="klpt-help-tooltip" role="tooltip">Enter 3 digits to uniquely identify the child</span>
+              }
+            </label>
             <input
               type="text"
               id="learner-code"

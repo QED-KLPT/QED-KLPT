@@ -23,6 +23,9 @@ export class ListSessions implements OnInit {
   protected isFormVisible = false;
   protected isStorageModalOpen = false;
   protected storageSnapshot = '(empty)';
+  protected bulbTooltipVisible = false;
+  private readonly BULB_LONG_PRESS_MS = 500;
+  private bulbLongPressTimer: number | undefined;
   protected pendingDelete:
     | { type: 'session'; sessionId: string; learnerCode: string }
     | { type: 'all' }
@@ -167,5 +170,22 @@ export class ListSessions implements OnInit {
 
   protected closeStorageModal(): void {
     this.isStorageModalOpen = false;
+  }
+
+  protected onBulbHover(show: boolean): void {
+    this.bulbTooltipVisible = show;
+  }
+
+  protected onBulbLongPressStart(): void {
+    this.bulbLongPressTimer = window.setTimeout(() => {
+      this.bulbTooltipVisible = true;
+    }, this.BULB_LONG_PRESS_MS);
+  }
+
+  protected onBulbLongPressEnd(): void {
+    if (this.bulbLongPressTimer) {
+      window.clearTimeout(this.bulbLongPressTimer);
+      this.bulbLongPressTimer = undefined;
+    }
   }
 }
