@@ -1,6 +1,7 @@
 import { ViewportScroller } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { AccordionItemComponent } from '../shared/accordion-item/accordion-item.component';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
 
 type DesignCard = {
@@ -15,7 +16,7 @@ type DesignCard = {
 
 @Component({
   selector: 'app-mathematics-and-numeracy',
-  imports: [RouterLink, YoutubePlayerModule],
+  imports: [RouterLink, AccordionItemComponent, YoutubePlayerModule],
   templateUrl: './mathematics-and-numeracy.html',
   styleUrl: './mathematics-and-numeracy.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -26,6 +27,32 @@ export class MathematicsAndNumeracy implements OnInit {
   ngOnInit(): void {
     this.scroll.scrollToPosition([0, 0]);
   }
+
+  protected readonly practiceSupports: { title: string; summary: string; reflection: string[]; accordionItems: { title: string; body: string[] }[]; pdfLabel: string; pdfPath: string } = {
+    title: 'Mathematics and numeracy',
+    summary: 'These supports invite children to explore number, pattern, measurement, spatial reasoning, and problem solving through purposeful play and everyday routines.',
+    reflection: [
+      'Look for the mathematical thinking already present in the child\'s play, language, and decision making.',
+    ],
+    accordionItems: [
+      {
+        title: 'Intentional teaching strategies',
+        body: [
+          'Use mathematical language naturally during play, model curiosity, and pose questions that encourage children to compare, estimate, count, and explain their thinking.',
+          'Link mathematics to meaningful contexts such as cooking, construction, collecting, sorting, and movement.',
+        ],
+      },
+      {
+        title: 'Learning experiences',
+        body: [
+          'Create opportunities for building, pattern making, measuring, ordering, mapping, and representing quantities with real materials.',
+          'Revisit key concepts across routines and play so children can notice relationships and apply ideas in new settings.',
+        ],
+      },
+    ],
+    pdfLabel: 'Download mathematics and numeracy practice supports (PDF)',
+    pdfPath: 'assets/content/pdfs/qklg_principle_collab_part_poster.pdf',
+  };
 
   protected readonly cards: DesignCard[] = [
     {

@@ -16,14 +16,14 @@ export class TestingNavigation {
     { label: 'Home', href: '/' },
     { label: 'Learning domains', href: '/learning-domains' },
     { label: 'KLPT', href: '/klpt' },
-    { label: 'Practice supports', href: '/practice-supports' },
+    { label: 'Practice supports', href: '/learning-domains/language-and-literacy' },
   ];
 
   horizontalDarkItems: NavItem[] = [
     { label: 'Home', href: '/' },
     { label: 'Learning domains', href: '/learning-domains' },
     { label: 'KLPT', href: '/klpt' },
-    { label: 'Practice supports', href: '/practice-supports' },
+    { label: 'Practice supports', href: '/learning-domains/language-and-literacy' },
   ];
 
   horizontalIconItems: NavItem[] = [

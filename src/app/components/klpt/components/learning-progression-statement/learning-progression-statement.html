@@ -94,10 +94,8 @@
         ></textarea>
         <p class="klpt-form-field__hint">
           <a
-            [routerLink]="['/practice-supports']"
+            [routerLink]="practiceSupportUrl()"
             [fragment]="practiceSupportSectionId()"
-            target="_blank"
-            rel="noopener"
           >
             Link to practice supports for {{ selectedDomain()?.name ?? 'professional reflection' }}
           </a>

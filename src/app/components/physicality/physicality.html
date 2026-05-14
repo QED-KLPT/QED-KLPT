@@ -38,8 +38,42 @@
       <span>Download factsheets</span>
     </a>
 
+    <div class="practice-supports-inline">
+      <h2>Practice supports</h2>
+      <p class="practice-supports-inline__summary">{{ practiceSupports.summary }}</p>
+
+      @if (practiceSupports.reflection.length) {
+        <div class="practice-supports-inline__reflection">
+          <h3>Professional reflection questions</h3>
+          <ul>
+            @for (prompt of practiceSupports.reflection; track prompt) {
+              <li>{{ prompt }}</li>
+            }
+          </ul>
+        </div>
+      }
+
+      @if (practiceSupports.accordionItems.length) {
+        <div class="practice-supports-inline__accordion-group">
+          @for (item of practiceSupports.accordionItems; track item.title) {
+            <app-accordion-item [title]="item.title" [alt]="true">
+              @for (paragraph of item.body; track paragraph) {
+                <p>{{ paragraph }}</p>
+              }
+            </app-accordion-item>
+          }
+        </div>
+      }
+
+      <a class="factsheet-link" [href]="practiceSupports.pdfPath" download>
+        <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
+        <span>{{ practiceSupports.pdfLabel }}</span>
+      </a>
+    </div>
+
     <div class="domain-page-cta">
       <a class="button button--primary" routerLink="/klpt">Open the KLPT</a>
     </div>
   </div>
 </section>
+
