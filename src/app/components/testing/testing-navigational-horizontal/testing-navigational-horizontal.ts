@@ -15,7 +15,7 @@ export class TestingNavigationalHorizontal {
     { label: 'Analysing data', href: '/foundations/analysing-data' },
     { label: 'Learning domains', href: '/learning-domains' },
     { label: 'KLPT', href: '/klpt' },
-    { label: 'Practice supports', href: '/practice-supports' },
+    { label: 'Practice supports', href: '/learning-domains/language-and-literacy' },
   ];
 
   example2Items: NavItem[] = [
@@ -23,7 +23,7 @@ export class TestingNavigationalHorizontal {
     { label: 'Analysing data', href: '/foundations/analysing-data' },
     { label: 'Learning domains', href: '/learning-domains' },
     { label: 'KLPT', href: '/klpt' },
-    { label: 'Practice supports', href: '/practice-supports' },
+    { label: 'Practice supports', href: '/learning-domains/language-and-literacy' },
   ];
 
   example3Items: NavItem[] = [
@@ -41,7 +41,7 @@ export class TestingNavigationalHorizontal {
     ]},
     { label: 'Learning domains', href: '/learning-domains' },
     { label: 'KLPT', href: '/klpt' },
-    { label: 'Practice supports', href: '/practice-supports' },
+    { label: 'Practice supports', href: '/learning-domains/language-and-literacy' },
   ];
 
   example5Items: NavItem[] = [
@@ -88,7 +88,7 @@ export class TestingNavigationalHorizontal {
     { label: 'Analysing data', href: '/foundations/analysing-data' },
     { label: 'Learning domains', href: '/learning-domains' },
     { label: 'KLPT', href: '/klpt' },
-    { label: 'Practice supports', href: '/practice-supports' },
+    { label: 'Practice supports', href: '/learning-domains/language-and-literacy' },
   ];
 
   example9Items: NavItem[] = [

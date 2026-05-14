@@ -31,10 +31,13 @@ export class LearningProgressionStatement implements OnInit, OnDestroy {
 
   public currentSession!: SessionModel;
 
+  protected domainSlug: string = '';
+
   ngOnInit(): void {
     this.currentSession = this.getRouteSession();
     this.currentSession.pageIndex = 3;
     this.currentSession.formFields = this.mergeFormFields(this.currentSession.formFields);
+    this.domainSlug = this.computeDomainSlug();
   }
 
   ngOnDestroy(): void {
@@ -115,6 +118,24 @@ export class LearningProgressionStatement implements OnInit, OnDestroy {
   protected practiceSupportSectionId(): string {
     const domain = this.selectedDomain();
     return domain?.name ? this.sectionIdFromDomainName(domain.name) : 'professional-reflection';
+  }
+
+  protected practiceSupportUrl(): string[] {
+    const slug = this.practiceSupportSectionId();
+    const domainRoutes: Record<string, string> = {
+      'language-and-literacy': '/learning-domains/language-and-literacy',
+      'executive-function': '/learning-domains/executive-function',
+      'social-and-emotional-learning': '/learning-domains/social-and-emotional-learning',
+      'physicality': '/learning-domains/physicality',
+      'mathematics-and-numeracy': '/learning-domains/mathematics-and-numeracy',
+    };
+    const route = domainRoutes[slug];
+    return route ? [route] : ['/klpt/select-behaviours', this.currentSession.id];
+  }
+
+  private computeDomainSlug(): string {
+    const domain = this.selectedDomain();
+    return domain?.name ? this.sectionIdFromDomainName(domain.name) : '';
   }
 
   private sectionIdFromDomainName(name: string): string {

@@ -1,6 +1,7 @@
 import { ViewportScroller } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { AccordionItemComponent } from '../shared/accordion-item/accordion-item.component';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
 
 type DesignCard = {
@@ -15,7 +16,7 @@ type DesignCard = {
 
 @Component({
   selector: 'app-social-and-emotional-learning',
-  imports: [RouterLink, YoutubePlayerModule],
+  imports: [RouterLink, AccordionItemComponent, YoutubePlayerModule],
   templateUrl: './social-and-emotional-learning.html',
   styleUrl: './social-and-emotional-learning.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -26,6 +27,32 @@ export class SocialAndEmotionalLearning implements OnInit {
   ngOnInit(): void {
     this.scroll.scrollToPosition([0, 0]);
   }
+
+  protected readonly practiceSupports: { title: string; summary: string; reflection: string[]; accordionItems: { title: string; body: string[] }[]; pdfLabel: string; pdfPath: string } = {
+    title: 'Social and emotional learning',
+    summary: 'Support children to recognise feelings, build relationships, and participate with growing confidence through responsive interactions and safe, predictable routines.',
+    reflection: [
+      'Notice how the child communicates emotions, seeks support, and responds to peers in different parts of the day.',
+    ],
+    accordionItems: [
+      {
+        title: 'Intentional teaching strategies',
+        body: [
+          'Name emotions in the moment, model calm problem solving, and coach children through social situations with empathy and clear language.',
+          'Use books, visuals, and shared reflections to build a vocabulary for feelings, friendship, and belonging.',
+        ],
+      },
+      {
+        title: 'Learning experiences',
+        body: [
+          'Offer small-group games, collaborative projects, and dramatic play invitations that encourage negotiation, perspective taking, and shared joy.',
+          'Build in quiet spaces and sensory supports so children can return to regulation when needed.',
+        ],
+      },
+    ],
+    pdfLabel: 'Download social and emotional learning practice supports (PDF)',
+    pdfPath: 'assets/content/pdfs/qklg_principle_res_rels_poster.pdf',
+  };
 
   protected readonly cards: DesignCard[] = [
     {

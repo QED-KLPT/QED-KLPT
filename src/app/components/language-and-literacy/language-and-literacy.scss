@@ -133,6 +133,15 @@
   min-width: 160px;
 }
 
+.practice-supports-inline {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.practice-supports-inline__accordion-group {
+  display: grid;
+  gap: 1.25rem;
+}
+
 @media (max-width: 48rem) {
   .domain-hero__layout {
     grid-template-columns: 1fr;
@@ -156,3 +165,4 @@
     min-height: 0;
   }
 }
+
