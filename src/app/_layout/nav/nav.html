@@ -1,7 +1,9 @@
 <nav
+  id="primary-navigation"
   class="doe-primary-nav"
   [class.doe-primary-nav--suppress-hover]="suppressHoverSubmenus()"
   aria-label="Primary navigation"
+  tabindex="-1"
   (pointermove)="allowHoverSubmenus($event)"
 >
   <div class="doe-primary-nav__container">
