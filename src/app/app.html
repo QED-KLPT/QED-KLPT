@@ -1,5 +1,9 @@
 <div class="app-shell">
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <nav class="skip-links" aria-label="Skip links">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <a class="skip-link" href="#primary-navigation">Skip to primary nav</a>
+    <a class="skip-link" href="#footer">Skip to footer</a>
+  </nav>
 
   <aside class="beta-ribbon" aria-label="Beta site notice">
     <span>BETA</span>
@@ -9,7 +13,7 @@
 
   <div class="sr-only" aria-live="polite" aria-atomic="true">{{ pageAnnouncement }}</div>
 
-  <main class="app-main" id="main-content">
+  <main class="app-main" id="main-content" tabindex="-1">
     <router-outlet />
   </main>
 
