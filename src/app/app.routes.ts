@@ -10,6 +10,7 @@ import { LanguageAndLiteracy } from './components/language-and-literacy/language
 import { LearningDomains } from './components/learning-domains/learning-domains';
 import { MathematicsAndNumeracy } from './components/mathematics-and-numeracy/mathematics-and-numeracy';
 import { Physicality } from './components/physicality/physicality';
+import { PracticeSupports } from './components/practice-supports/practice-supports';
 
 import { QualityObservations } from './components/quality-observations/quality-observations';
 import { SocialAndEmotionalLearning } from './components/social-and-emotional-learning/social-and-emotional-learning';
@@ -64,7 +65,8 @@ export const routes: Routes = [
     path: 'learning-domains/mathematics-and-numeracy',
     component: MathematicsAndNumeracy,
     title: 'Mathematics and numeracy',
-  },  
+  },
+  { path: 'practice-supports', component: PracticeSupports, title: 'Practice supports' },
   {
     path: 'klpt',
     loadChildren: () => import('./components/klpt/klpt-routing.module').then((m) => m.KlptRoutingModule),
