@@ -41,10 +41,45 @@ export class Nav {
       | HTMLElement
       | null
       | undefined;
-    const submenuToggle = menuItem?.querySelector<HTMLElement>('.doe-primary-nav__submenu-toggle');
+    const parentLink = menuItem?.querySelector<HTMLElement>('.doe-primary-nav__item-row > .doe-primary-nav__link');
 
     this.closeAllMenus();
-    submenuToggle?.focus();
+    parentLink?.focus();
+  }
+
+  @HostListener('keydown.arrowdown', ['$event'])
+  protected moveDown(event: Event): void {
+    const keyboardEvent = event as KeyboardEvent;
+    const activeElement = this.elementRef.nativeElement.ownerDocument.activeElement as HTMLElement | null;
+    const menuItem = activeElement?.closest('.doe-primary-nav__item--has-menu') as HTMLElement | null | undefined;
+
+    if (!menuItem) {
+      return;
+    }
+
+    keyboardEvent.preventDefault();
+
+    if (activeElement?.closest('.doe-primary-nav__submenu')) {
+      this.focusAdjacentSubmenuItem(menuItem, 1);
+      return;
+    }
+
+    this.openSubmenuFromMenuItem(menuItem);
+    this.focusFirstSubmenuItem(menuItem);
+  }
+
+  @HostListener('keydown.arrowup', ['$event'])
+  protected moveUp(event: Event): void {
+    const keyboardEvent = event as KeyboardEvent;
+    const activeElement = this.elementRef.nativeElement.ownerDocument.activeElement as HTMLElement | null;
+    const menuItem = activeElement?.closest('.doe-primary-nav__item--has-menu') as HTMLElement | null | undefined;
+
+    if (!menuItem || !activeElement?.closest('.doe-primary-nav__submenu')) {
+      return;
+    }
+
+    keyboardEvent.preventDefault();
+    this.focusAdjacentSubmenuItem(menuItem, -1);
   }
 
   protected toggleSubmenu(name: string): void {
@@ -59,5 +94,50 @@ export class Nav {
 
     this.suppressHoverSubmenus.set(true);
     this.closeAllMenus();
+  }
+
+  private openSubmenuFromMenuItem(menuItem: HTMLElement): void {
+    const submenuName = this.getSubmenuName(menuItem);
+
+    if (!submenuName) {
+      return;
+    }
+
+    this.suppressHoverSubmenus.set(true);
+    this.openSubmenu.set(submenuName);
+  }
+
+  private getSubmenuName(menuItem: HTMLElement): string | null {
+    const submenuId = menuItem.querySelector<HTMLElement>('.doe-primary-nav__submenu-toggle')?.getAttribute('aria-controls');
+
+    return submenuId?.replace(/-submenu$/, '') ?? null;
+  }
+
+  private focusFirstSubmenuItem(menuItem: HTMLElement): void {
+    window.setTimeout(() => {
+      this.getSubmenuLinks(menuItem)[0]?.focus();
+    });
+  }
+
+  private focusAdjacentSubmenuItem(menuItem: HTMLElement, direction: 1 | -1): void {
+    const submenuLinks = this.getSubmenuLinks(menuItem);
+    const activeElement = this.elementRef.nativeElement.ownerDocument.activeElement;
+    const activeIndex = submenuLinks.findIndex((link) => link === activeElement);
+
+    if (submenuLinks.length === 0) {
+      return;
+    }
+
+    if (activeIndex === -1) {
+      submenuLinks[0]?.focus();
+      return;
+    }
+
+    const nextIndex = (activeIndex + direction + submenuLinks.length) % submenuLinks.length;
+    submenuLinks[nextIndex]?.focus();
+  }
+
+  private getSubmenuLinks(menuItem: HTMLElement): HTMLElement[] {
+    return Array.from(menuItem.querySelectorAll<HTMLElement>('.doe-primary-nav__submenu a'));
   }
 }
