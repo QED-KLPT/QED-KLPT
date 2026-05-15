@@ -70,14 +70,14 @@
 }
 
 .domain-card__title {
-  color: var(--klpt-ink);
+  color: var(--domain-card-text, var(--klpt-ink));
   font-size: 1.05rem;
   font-weight: 800;
   line-height: 1.35;
 }
 
 .domain-card__description {
-  color: var(--klpt-muted);
+  color: var(--domain-card-text, var(--klpt-muted));
   font-size: 0.95rem;
   line-height: 1.7;
 }

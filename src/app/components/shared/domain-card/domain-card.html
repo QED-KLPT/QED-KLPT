@@ -4,6 +4,7 @@
     [routerLink]="url"
     [style.--domain-card-bg]="background"
     [style.--domain-card-hover-border]="hoverBorderColor"
+    [style.--domain-card-text]="textColor"
   >
     @if (imageSrc) {
       <span class="domain-card__icon domain-card__icon--image" aria-hidden="true">
@@ -23,6 +24,7 @@
     class="domain-card"
     [style.--domain-card-bg]="background"
     [style.--domain-card-hover-border]="hoverBorderColor"
+    [style.--domain-card-text]="textColor"
   >
     @if (imageSrc) {
       <span class="domain-card__icon domain-card__icon--image" aria-hidden="true">

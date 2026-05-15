@@ -1,12 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="title desc">
-  <title id="title">Executive Function icon</title>
-  <desc id="desc">Cartoony checklist and spark icon.</desc>
-  <rect width="240" height="240" rx="40" fill="#DDF4F7"/>
-  <rect x="56" y="46" width="128" height="148" rx="20" fill="#FFFFFF"/>
-  <rect x="88" y="32" width="64" height="28" rx="12" fill="#0F8C95"/>
-  <path d="M84 92l10 10 18-20" fill="none" stroke="#0F8C95" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M84 132l10 10 18-20" fill="none" stroke="#0F8C95" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M84 172l10 10 18-20" fill="none" stroke="#0F8C95" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M132 90h34M132 130h34M132 170h34" stroke="#A7C9CE" stroke-width="8" stroke-linecap="round"/>
-  <path d="m188 58 8 14 16 4-12 10 2 16-14-8-14 8 2-16-12-10 16-4Z" fill="#FFD166"/>
+  <title id="title">Executive function icon</title>
+  <desc id="desc">A person building with blocks, representing planning, working memory and problem solving.</desc>
+  <defs>
+    <linearGradient id="executive-bg" x1="40" y1="26" x2="200" y2="214" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0077C1"/>
+      <stop offset="1" stop-color="#005387"/>
+    </linearGradient>
+  </defs>
+  <circle cx="120" cy="120" r="104" fill="url(#executive-bg)"/>
+  <g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="7">
+    <circle cx="126" cy="64" r="27"/>
+    <path d="M82 184h102"/>
+    <path d="M78 169V116c0-15 12-27 27-27h24c15 0 27 12 27 27v53"/>
+    <path d="M78 132H51v37h27"/>
+    <path d="M51 132v-26h30"/>
+    <path d="M156 132h34v37h-34"/>
+    <path d="M190 132v-26h-34"/>
+    <path d="M111 94v90"/>
+    <path d="M143 94v90"/>
+    <path d="M112 122h31M112 150h31"/>
+  </g>
 </svg>
