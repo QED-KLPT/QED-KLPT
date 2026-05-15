@@ -82,6 +82,13 @@
   margin-block-start: clamp(2.5rem, 6vw, 4rem);
 }
 
+.text-center {
+  text-align: center;
+  max-width: 56rem;
+  margin-inline: auto;
+  margin-block-start: clamp(1.5rem, 4vw, 2.5rem);
+}
+
 .home-video app-youtube-player {
   width: 100%;
 }
