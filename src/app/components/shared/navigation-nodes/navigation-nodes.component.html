@@ -5,6 +5,8 @@
   </button>
 </div>
 
+<div class="sr-only" aria-live="polite" aria-atomic="true">{{ stepAnnouncement }}</div>
+
 @if (isClearSessionModalOpen) {
   <div class="clear-session-modal" role="presentation">
     <div class="clear-session-modal__backdrop" (click)="closeClearSessionModal()"></div>

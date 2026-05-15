@@ -1,10 +1,12 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   ViewChild,
   inject,
   Input,
+  OnChanges,
 } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { SessionManagementService } from '../../klpt/components/shared/session-management.service';
@@ -25,15 +27,17 @@ interface NavigationNode {
   styleUrl: './navigation-nodes.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NavigationNodesComponent {
+export class NavigationNodesComponent implements OnChanges {
   private readonly router = inject(Router);
   private readonly sessionManagement = inject(SessionManagementService);
+  private readonly changeDetectorRef = inject(ChangeDetectorRef);
 
   @Input({ required: true }) sessionId!: string;
   @Input({ required: true }) currentNode!: NavigationNodeId;
   @ViewChild('clearSessionDialog') private clearSessionDialog?: ElementRef<HTMLElement>;
   @ViewChild('clearSessionTrigger') private clearSessionTrigger?: ElementRef<HTMLButtonElement>;
   protected isClearSessionModalOpen = false;
+  protected stepAnnouncement = '';
 
   protected readonly nodes: NavigationNode[] = [
     {
@@ -61,6 +65,10 @@ export class NavigationNodesComponent {
       route: '/klpt/review-session',
     },
   ];
+
+  ngOnChanges(): void {
+    this.queueStepAnnouncement();
+  }
 
   protected stateFor(node: NavigationNode): 'complete' | 'current' | 'pending' {
     const currentIndex = this.nodes.findIndex((item) => item.id === this.currentNode);
@@ -125,6 +133,23 @@ export class NavigationNodesComponent {
     const firstFocusable = this.getModalFocusableElements()[0];
 
     (firstButton ?? firstFocusable ?? this.clearSessionDialog?.nativeElement)?.focus();
+  }
+
+  private queueStepAnnouncement(): void {
+    this.stepAnnouncement = '';
+    this.changeDetectorRef.markForCheck();
+
+    window.setTimeout(() => {
+      const currentIndex = this.nodes.findIndex((item) => item.id === this.currentNode);
+      const currentStep = this.nodes[currentIndex];
+
+      if (!currentStep) {
+        return;
+      }
+
+      this.stepAnnouncement = `KLPT step ${currentIndex + 1} of ${this.nodes.length}: ${currentStep.title}. ${currentStep.description}`;
+      this.changeDetectorRef.markForCheck();
+    });
   }
 
   private getModalFocusableElements(): HTMLElement[] {
