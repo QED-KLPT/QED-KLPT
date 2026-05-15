@@ -38,12 +38,6 @@
 
       <h2 class="home-video__title">Introduction to KLPT</h2>
 
-      <p class="text-center">
-        "The KLPT is a great support to everything that is already in place - this is the tool that helps us
-        understand the child, to inform the why, and helps planning for the next pieces to come into place in a
-        child's progression of learning - well done." Trial user 2025
-      </p>
-
       <div class="home-video">
         <app-youtube-player
           title="Introduction to KLPT"
@@ -53,6 +47,12 @@
         >
         </app-youtube-player>
       </div>
+
+      <p class="text-center">
+        "The KLPT is a great support to everything that is already in place - this is the tool that helps us
+        understand the child, to inform the why, and helps planning for the next pieces to come into place in a
+        child's progression of learning - well done." Trial user 2025
+      </p>
 
       <!-- <div class="card-grid">
         @for (domain of domains; track domain.title) {
@@ -77,22 +77,16 @@
       </div>
 
       <div class="resource-list">
-        <a
-          class="resource-card resource-card--link"
-          routerLink="/foundations"
-        >
+        <div class="resource-card resource-card--link">
           <h3>KLPT capability package</h3>
             <ul>
               <li>Conducting and documenting quality observations</li>
               <li>Assessing and interpreting observational data</li>
               <li>How to use or benefit from the KLPT in everyday practice</li>
             </ul>          
-        </a>
+        </div>
         
-        <a
-          class="resource-card resource-card--link"
-          routerLink="/learning-domains"
-        >
+        <div class="resource-card resource-card--link">
           <h3>The five core skills of the KLPT</h3>
           <ul>
             <li>Language and literacy</li>
@@ -101,7 +95,7 @@
             <li>Physicality</li>
             <li>Mathematics and numeracy</li>
           </ul>
-        </a>
+        </div>
       </div>
     </div>
   </section>
