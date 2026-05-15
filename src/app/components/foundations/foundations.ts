@@ -32,8 +32,11 @@ export class Foundations implements OnInit {
       title: 'Conducting and documenting quality observations',
       description: 'Early childhood teachers and educators are keen observers of children’s play and participation in kindergarten programs. The intent and act of observing underpins the recording of meaningful data to provide insights into children’s learning, development and wellbeing through analysis and interpretation. ',
       url: '/foundations/quality-observations',
-      imageAlt: 'Quality observations icon',
-      imageSrc: 'assets/img/foundations-quality-observations.svg',
+      imageAlt: '',
+      imageSrc: '',
+      // Restore when the replacement asset is ready:
+      // imageAlt: 'Quality observations icon',
+      // imageSrc: 'assets/img/foundations-quality-observations.svg',
       background: 'linear-gradient(180deg, #fff7d8 0%, #dfc051 100%)',
       hoverBorderColor: '#b59a3f',
     },
@@ -41,8 +44,11 @@ export class Foundations implements OnInit {
       title: 'Analysing and interpreting observational data',
       description: 'Observational data becomes meaningful through a process of analysis and interpretation. Analysis of observational data helps teachers and educators understand what children know and can do: their thinking, knowledge, skills, dispositions and preferences. Analysis is a specialised skill drawing on content knowledge, pedagogy knowledge and theoretical perspectives.   ',
       url: '/foundations/analysing-data',
-      imageAlt: 'Analysing data icon',
-      imageSrc: 'assets/img/foundations-analysing-data.svg',
+      imageAlt: '',
+      imageSrc: '',
+      // Restore when the replacement asset is ready:
+      // imageAlt: 'Analysing data icon',
+      // imageSrc: 'assets/img/foundations-analysing-data.svg',
       background: 'linear-gradient(180deg, #eef2f8 0%, #b9c3d2 100%)',
       hoverBorderColor: '#7d879b',
     } 
