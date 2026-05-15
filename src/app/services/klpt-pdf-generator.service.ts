@@ -109,7 +109,7 @@ export class KlptPdfGeneratorService {
       'Professional reflection',
       this.displayValue(this.formValue(session, 'professional-reflection')),
     );
-    this.addTextCard(
+    y = this.addTextCard(
       doc,
       y,
       margin,
