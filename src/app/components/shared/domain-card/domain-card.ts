@@ -17,6 +17,10 @@ export class DomainCard {
   @Input() background = '';
   @Input() hoverBorderColor = '';
 
+  get textColor(): string {
+    return this.background.includes('135deg') ? '#ffffff' : '';
+  }
+
   get initial(): string {
     return this.title.trim().charAt(0).toUpperCase();
   }

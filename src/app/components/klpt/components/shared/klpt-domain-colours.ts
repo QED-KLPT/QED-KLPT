@@ -4,11 +4,11 @@ export interface KlptDomainColour {
 }
 
 const KLPT_DOMAIN_COLOURS: KlptDomainColour[] = [
-  { accent: '#267ec8', glow: '#2e89d8' },
-  { accent: '#c76424', glow: '#d8772e' },
-  { accent: '#238a9c', glow: '#48a9ba' },
-  { accent: '#c0497d', glow: '#d76698' },
-  { accent: '#6f3f97', glow: '#8c65ad' },
+  { accent: '#AC5E16', glow: '#F6861F' },
+  { accent: '#005387', glow: '#0077C1' },
+  { accent: '#A40862', glow: '#EA0B8C' },
+  { accent: '#1D682A', glow: '#2A953C' },
+  { accent: '#91161B', glow: '#CF2027' },
 ];
 
 export function klptDomainColour(domainIndex: number | undefined): KlptDomainColour {

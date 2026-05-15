@@ -93,9 +93,7 @@
   padding: 1.125rem;
   color: #ffffff;
   text-align: left;
-  background:
-    linear-gradient(135deg, rgba(16, 35, 60, 0.22), rgba(16, 35, 60, 0.48)),
-    linear-gradient(135deg, var(--accent-glow, var(--accent)), var(--accent));
+  background: linear-gradient(135deg, var(--accent-glow, var(--accent)), var(--accent));
   box-shadow:
     0 12px 22px color-mix(in srgb, var(--accent) 16%, transparent),
     inset 0 0 0 1px color-mix(in srgb, #fff 18%, transparent);
@@ -210,9 +208,7 @@
   padding: 1.125rem;
   color: #ffffff;
   text-align: left;
-  background:
-    linear-gradient(135deg, rgba(16, 35, 60, 0.24), rgba(16, 35, 60, 0.52)),
-    linear-gradient(135deg, var(--accent-glow), var(--accent));
+  background: linear-gradient(135deg, var(--accent-glow), var(--accent));
   box-shadow:
     0 12px 22px color-mix(in srgb, var(--accent) 16%, transparent),
     inset 0 0 0 1px color-mix(in srgb, #fff 18%, transparent);
@@ -249,9 +245,7 @@
 
   &[data-state="near"],
   &[data-state="far"] {
-    background:
-      linear-gradient(135deg, rgba(16, 35, 60, 0.32), rgba(16, 35, 60, 0.56)),
-      linear-gradient(135deg, var(--accent-glow), var(--accent));
+    background: linear-gradient(135deg, var(--accent-glow), var(--accent));
     box-shadow:
       0 8px 16px color-mix(in srgb, var(--accent) 10%, transparent),
       inset 0 0 0 1px color-mix(in srgb, #fff 28%, transparent);
@@ -348,9 +342,7 @@
   border-radius: 14px;
   padding: clamp(1.5rem, 5vw, 2.75rem);
   color: #ffffff;
-  background:
-    linear-gradient(135deg, rgba(16, 35, 60, 0.24), rgba(16, 35, 60, 0.56)),
-    linear-gradient(135deg, var(--accent-glow, var(--accent)), var(--accent));
+  background: linear-gradient(135deg, var(--accent-glow, var(--accent)), var(--accent));
   box-shadow:
     0 16px 34px color-mix(in srgb, var(--accent) 20%, transparent),
     inset 0 0 0 1px color-mix(in srgb, #fff 18%, transparent);

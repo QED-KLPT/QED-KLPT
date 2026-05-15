@@ -1,18 +1,26 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="title desc">
-  <title id="title">Mathematics and Numeracy icon</title>
-  <desc id="desc">Cartoony numbers and calculator icon.</desc>
-  <rect width="240" height="240" rx="40" fill="#E1E8FF"/>
-  <rect x="66" y="46" width="108" height="148" rx="22" fill="#FFFFFF"/>
-  <rect x="84" y="64" width="72" height="28" rx="10" fill="#1F5EFF"/>
-  <g fill="#C9D6FF">
-    <rect x="84" y="108" width="22" height="22" rx="6"/>
-    <rect x="109" y="108" width="22" height="22" rx="6"/>
-    <rect x="134" y="108" width="22" height="22" rx="6"/>
-    <rect x="84" y="136" width="22" height="22" rx="6"/>
-    <rect x="109" y="136" width="22" height="22" rx="6"/>
-    <rect x="134" y="136" width="22" height="22" rx="6"/>
+  <title id="title">Mathematics and numeracy icon</title>
+  <desc id="desc">An abacus, representing counting, quantity and mathematical thinking.</desc>
+  <defs>
+    <linearGradient id="maths-bg" x1="38" y1="28" x2="202" y2="212" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#CF2027"/>
+      <stop offset="1" stop-color="#91161B"/>
+    </linearGradient>
+  </defs>
+  <circle cx="120" cy="120" r="104" fill="url(#maths-bg)"/>
+  <g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="7">
+    <path d="M60 56v128M180 56v128"/>
+    <path d="M48 184h144"/>
+    <path d="M60 77h120M60 120h120M60 163h120"/>
+    <circle cx="83" cy="77" r="8"/>
+    <circle cx="110" cy="77" r="8"/>
+    <circle cx="139" cy="77" r="8"/>
+    <circle cx="97" cy="120" r="8"/>
+    <circle cx="126" cy="120" r="8"/>
+    <circle cx="153" cy="120" r="8"/>
+    <circle cx="78" cy="163" r="8"/>
+    <circle cx="105" cy="163" r="8"/>
+    <circle cx="134" cy="163" r="8"/>
+    <circle cx="161" cy="163" r="8"/>
   </g>
-  <text x="40" y="78" font-size="32" font-family="Open Sans, Arial, sans-serif" fill="#1F5EFF" font-weight="700">+</text>
-  <text x="182" y="88" font-size="38" font-family="Open Sans, Arial, sans-serif" fill="#FF8A5B" font-weight="700">2</text>
-  <text x="34" y="160" font-size="34" font-family="Open Sans, Arial, sans-serif" fill="#1C9A8D" font-weight="700">1</text>
 </svg>
