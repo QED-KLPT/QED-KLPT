@@ -34,7 +34,7 @@ export class Foundations implements OnInit {
       url: '/foundations/quality-observations',
       imageAlt: 'Quality observations icon',
       imageSrc: 'assets/img/foundations-quality-observations.svg',
-      background: 'linear-gradient(180deg, #fffdf5 0%, #f2e3a7 100%)',
+      background: 'linear-gradient(180deg, #fff7d8 0%, #dfc051 100%)',
       hoverBorderColor: '#b59a3f',
     },
     {
@@ -43,7 +43,7 @@ export class Foundations implements OnInit {
       url: '/foundations/analysing-data',
       imageAlt: 'Analysing data icon',
       imageSrc: 'assets/img/foundations-analysing-data.svg',
-      background: 'linear-gradient(180deg, #f7f8fb 0%, #d9dee8 100%)',
+      background: 'linear-gradient(180deg, #eef2f8 0%, #b9c3d2 100%)',
       hoverBorderColor: '#7d879b',
     } 
   ];

@@ -35,7 +35,7 @@ export class Home implements OnInit {
       url: '/learning-domains/language-and-literacy',
       imageSrc: 'assets/img/domain-language-literacy.svg',
       imageAlt: 'Language and Literacy illustration',
-      background: 'linear-gradient(180deg, #fff8ee 0%, #ffe9d3 100%)',
+      background: 'linear-gradient(180deg, #fff1df 0%, #ffc57f 100%)',
       hoverBorderColor: '#efb777',
     },
     {
@@ -44,7 +44,7 @@ export class Home implements OnInit {
       url: '/learning-domains/executive-function',
       imageSrc: 'assets/img/domain-executive-function.svg',
       imageAlt: 'Executive Function illustration',
-      background: 'linear-gradient(180deg, #f4ffff 0%, #def3f6 100%)',
+      background: 'linear-gradient(180deg, #e8fbff 0%, #a6dce8 100%)',
       hoverBorderColor: '#92ccd5',
     },
     {
@@ -53,7 +53,7 @@ export class Home implements OnInit {
       url: '/learning-domains/social-and-emotional-learning',
       imageSrc: 'assets/img/domain-social-emotional-learning.svg',
       imageAlt: 'Social-Emotional Learning illustration',
-      background: 'linear-gradient(180deg, #fff8fb 0%, #ffe5ee 100%)',
+      background: 'linear-gradient(180deg, #fff0f6 0%, #ffb8d1 100%)',
       hoverBorderColor: '#f0aac3',
     },
     {
@@ -62,7 +62,7 @@ export class Home implements OnInit {
       url: '/learning-domains/physicality',
       imageSrc: 'assets/img/domain-physicality.svg',
       imageAlt: 'Physicality illustration',
-      background: 'linear-gradient(180deg, #fbfff6 0%, #e7f6d8 100%)',
+      background: 'linear-gradient(180deg, #f2fde9 0%, #bfe68f 100%)',
       hoverBorderColor: '#b7d894',
     },
     {
@@ -71,7 +71,7 @@ export class Home implements OnInit {
       url: '/learning-domains/mathematics-and-numeracy',
       imageSrc: 'assets/img/domain-mathematics-numeracy.svg',
       imageAlt: 'Mathematics and Numeracy illustration',
-      background: 'linear-gradient(180deg, #f7f9ff 0%, #e2e9ff 100%)',
+      background: 'linear-gradient(180deg, #eef3ff 0%, #bccbff 100%)',
       hoverBorderColor: '#abbbee',
     },
   ];
