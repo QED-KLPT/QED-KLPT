@@ -278,6 +278,7 @@ export class KlptPdfGeneratorService {
   ): number {
     const text = this.htmlToText(body);
     const height = this.measurePanelHeight(doc, contentWidth, title, text);
+    y = this.ensureSpace(doc, y, height + 5, margin, doc.internal.pageSize.getHeight());
     doc.setFillColor(...PDF_THEME.panel);
     doc.roundedRect(margin, y, contentWidth, height, 4, 4, 'F');
     doc.setDrawColor(...PDF_THEME.border);
