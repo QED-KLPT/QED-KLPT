@@ -121,8 +121,10 @@ export class NavigationNodesComponent {
   }
 
   private focusFirstModalControl(): void {
+    const firstButton = this.clearSessionDialog?.nativeElement.querySelector<HTMLElement>('button:not([disabled])');
     const firstFocusable = this.getModalFocusableElements()[0];
-    (firstFocusable ?? this.clearSessionDialog?.nativeElement)?.focus();
+
+    (firstButton ?? firstFocusable ?? this.clearSessionDialog?.nativeElement)?.focus();
   }
 
   private getModalFocusableElements(): HTMLElement[] {

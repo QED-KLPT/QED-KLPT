@@ -111,7 +111,7 @@
       <div class="klpt-session-panel-header">
         <h3 class="klpt-existing-sessions__title">{{ sessionCountLabel }}</h3>
         @if (sessions.length) {
-          <button type="button" class="klpt-delete-all-button" aria-haspopup="dialog" aria-label="Delete all saved sessions" title="Delete all saved sessions" (click)="openDeleteAllModal()">
+          <button type="button" class="klpt-delete-all-button" aria-haspopup="dialog" aria-label="Delete all saved sessions" title="Delete all saved sessions" (click)="openDeleteAllModal($event)">
             Delete all
           </button>
         }
@@ -155,7 +155,7 @@
                     <button
                       type="button"
                       class="icon-delete"
-                      (click)="openDeleteSessionModal(session)"
+                      (click)="openDeleteSessionModal(session, $event)"
                       [attr.aria-label]="'Delete session for learner ' + (session.learnerCode || 'unnamed session')"
                       title="Delete session"
                     >
@@ -175,7 +175,7 @@
       <a class="button button--secondary" routerLink="/klpt">Back</a>
     </div>
 
-    <button type="button" class="storage-debug-button" (click)="openStorageModal()">
+    <button type="button" class="storage-debug-button" (click)="openStorageModal($event)">
       View state
     </button>
   </div>
@@ -190,6 +190,9 @@
       aria-modal="true"
       aria-labelledby="delete-session-modal-title"
       aria-describedby="delete-session-modal-description"
+      tabindex="-1"
+      #deleteSessionDialog
+      (keydown)="trapDeleteModalFocus($event)"
     >
       <p class="delete-session-modal__eyebrow">Confirm delete</p>
       <h2 id="delete-session-modal-title">{{ deleteConfirmationTitle }}</h2>
@@ -214,7 +217,10 @@
       role="dialog"
       aria-modal="true"
       aria-labelledby="storage-modal-title"
+      tabindex="-1"
+      #storageDialog
       (click)="$event.stopPropagation()"
+      (keydown)="trapStorageModalFocus($event)"
     >
       <div class="storage-modal__header">
         <h3 id="storage-modal-title">KLPT state</h3>

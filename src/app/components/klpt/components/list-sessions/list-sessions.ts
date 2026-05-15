@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { SessionModel } from '../../models/session-model';
 import { SessionManagementService } from '../shared/session-management.service';
@@ -14,6 +14,8 @@ import { SessionManagementService } from '../shared/session-management.service';
 export class ListSessions implements OnInit {
   private readonly sessionManagement = inject(SessionManagementService);
   private readonly router = inject(Router);
+  @ViewChild('deleteSessionDialog') private deleteSessionDialog?: ElementRef<HTMLElement>;
+  @ViewChild('storageDialog') private storageDialog?: ElementRef<HTMLElement>;
 
   public sessions: SessionModel[] = [];
   protected learnerCode = '';
@@ -26,6 +28,7 @@ export class ListSessions implements OnInit {
   protected bulbTooltipVisible = false;
   private readonly BULB_LONG_PRESS_MS = 500;
   private bulbLongPressTimer: number | undefined;
+  private modalTrigger: HTMLElement | undefined;
   protected pendingDelete:
     | { type: 'session'; sessionId: string; learnerCode: string }
     | { type: 'all' }
@@ -123,24 +126,29 @@ export class ListSessions implements OnInit {
     return ['/klpt', stepRoute, session.id];
   }
 
-  public openDeleteSessionModal(session: SessionModel): void {
+  public openDeleteSessionModal(session: SessionModel, event?: Event): void {
+    this.modalTrigger = event?.currentTarget instanceof HTMLElement ? event.currentTarget : undefined;
     this.pendingDelete = {
       type: 'session',
       sessionId: session.id,
       learnerCode: session.learnerCode,
     };
+    window.setTimeout(() => this.focusFirstModalButton(this.deleteSessionDialog));
   }
 
-  public openDeleteAllModal(): void {
+  public openDeleteAllModal(event?: Event): void {
     if (!this.sessions.length) {
       return;
     }
 
+    this.modalTrigger = event?.currentTarget instanceof HTMLElement ? event.currentTarget : undefined;
     this.pendingDelete = { type: 'all' };
+    window.setTimeout(() => this.focusFirstModalButton(this.deleteSessionDialog));
   }
 
   protected closeDeleteModal(): void {
     this.pendingDelete = undefined;
+    window.setTimeout(() => this.restoreModalTriggerFocus());
   }
 
   protected confirmDelete(): void {
@@ -163,13 +171,24 @@ export class ListSessions implements OnInit {
     this.pendingDelete = undefined;
   }
 
-  protected openStorageModal(): void {
+  protected openStorageModal(event?: Event): void {
+    this.modalTrigger = event?.currentTarget instanceof HTMLElement ? event.currentTarget : undefined;
     this.storageSnapshot = this.sessionManagement.getStorageSnapshot();
     this.isStorageModalOpen = true;
+    window.setTimeout(() => this.focusFirstModalButton(this.storageDialog));
   }
 
   protected closeStorageModal(): void {
     this.isStorageModalOpen = false;
+    window.setTimeout(() => this.restoreModalTriggerFocus());
+  }
+
+  protected trapDeleteModalFocus(event: Event): void {
+    this.trapModalFocus(event as KeyboardEvent, this.deleteSessionDialog, () => this.closeDeleteModal());
+  }
+
+  protected trapStorageModalFocus(event: Event): void {
+    this.trapModalFocus(event as KeyboardEvent, this.storageDialog, () => this.closeStorageModal());
   }
 
   protected onBulbHover(show: boolean): void {
@@ -187,5 +206,62 @@ export class ListSessions implements OnInit {
       window.clearTimeout(this.bulbLongPressTimer);
       this.bulbLongPressTimer = undefined;
     }
+  }
+
+  private trapModalFocus(event: KeyboardEvent, dialogRef: ElementRef<HTMLElement> | undefined, closeModal: () => void): void {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeModal();
+      return;
+    }
+
+    if (event.key !== 'Tab') {
+      return;
+    }
+
+    const focusableElements = this.getModalFocusableElements(dialogRef);
+
+    if (!focusableElements.length) {
+      event.preventDefault();
+      dialogRef?.nativeElement.focus();
+      return;
+    }
+
+    const first = focusableElements[0];
+    const last = focusableElements[focusableElements.length - 1];
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
+
+  private focusFirstModalButton(dialogRef: ElementRef<HTMLElement> | undefined): void {
+    const firstButton = dialogRef?.nativeElement.querySelector<HTMLElement>('button:not([disabled])');
+    const firstFocusable = this.getModalFocusableElements(dialogRef)[0];
+
+    (firstButton ?? firstFocusable ?? dialogRef?.nativeElement)?.focus();
+  }
+
+  private getModalFocusableElements(dialogRef: ElementRef<HTMLElement> | undefined): HTMLElement[] {
+    const dialog = dialogRef?.nativeElement;
+
+    if (!dialog) {
+      return [];
+    }
+
+    return Array.from(
+      dialog.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      ),
+    ).filter((element) => !element.hasAttribute('inert'));
+  }
+
+  private restoreModalTriggerFocus(): void {
+    this.modalTrigger?.focus();
+    this.modalTrigger = undefined;
   }
 }
