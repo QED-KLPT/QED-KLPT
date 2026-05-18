@@ -331,7 +331,8 @@ export class KlptPdfGeneratorService {
     margin: number,
     pageHeight: number,
   ): number {
-    if (y + requiredHeight <= pageHeight - margin) {
+    const footerY = pageHeight - 8;
+    if (y + requiredHeight <= footerY) {
       return y;
     }
 
