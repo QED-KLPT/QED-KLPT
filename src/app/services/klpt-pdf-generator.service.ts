@@ -10,7 +10,7 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
                 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 const FORM_FIELD_LABELS: Record<string, string> = {
-  'child-name': 'Learner Name',
+  'child-name': 'Child name',
   'date': 'Date',
   'observational-context': 'Context',
   'professional-reflection': 'Professional Reflection',
@@ -79,7 +79,7 @@ export class KlptPdfGeneratorService {
       { label: 'Date', value: this.displayValue(this.formatFormDate(this.formValue(session, 'date'))) },
       { label: "Observer name", value: this.displayValue(session.educatorName) },
       { label: 'Learner code', value: this.displayValue(session.learnerCode) },
-      { label: 'Learner name', value: this.displayValue(options.learnerName) },
+      { label: 'Child name', value: this.displayValue(options.learnerName) },
     ]);
 
     if (domain) {
