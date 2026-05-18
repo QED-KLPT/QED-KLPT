@@ -5,8 +5,9 @@
 .home-hero {
   min-height: clamp(28rem, 68vh, 42rem);
   background:
-    linear-gradient(90deg, rgba(79, 42, 111, 0.88), rgba(111, 63, 151, 0.62) 45%, rgba(111, 63, 151, 0.2)),
-    linear-gradient(135deg, #8053a4 0%, #efe7f5 52%, #48b7a5 100%);
+    linear-gradient(90deg, rgba(79, 42, 111, 0.88), rgba(111, 63, 151, 0.62) 45%, rgba(111, 63, 151, 0.18)),
+    linear-gradient(180deg, rgba(79, 42, 111, 0.16), rgba(79, 42, 111, 0.08)),
+    url("../../../assets/img/AiL-20220607_6435_Layer 3-3240x2160.webp") center 28% / cover no-repeat;
   color: #ffffff;
 }
 
