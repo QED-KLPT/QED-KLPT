@@ -58,7 +58,7 @@ export class LanguageAndLiteracy implements OnInit {
       },
     ],
     pdfLabel: 'Download language and literacy practice supports (PDF)',
-    pdfPath: 'assets/content/pdfs/qklg_principle_effect_ped_poster.pdf',
+    pdfPath: 'assets/content/pdfs/26.04.406 K-2 KLPT Language and Literacy practice support_V3.pdf',
   };
 
   protected readonly cards: DesignCard[] = [
