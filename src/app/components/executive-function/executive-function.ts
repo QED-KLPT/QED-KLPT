@@ -52,7 +52,7 @@ export class ExecutiveFunction implements OnInit {
       },
     ],
     pdfLabel: 'Download executive function practice supports (PDF)',
-    pdfPath: 'assets/content/pdfs/qklg_principle_sustain_poster.pdf',
+    pdfPath: 'assets/content/pdfs/26.04.406 K-2 KLPT Executive Function Practice Support_V4.pdf',
   };
 
   protected readonly cards: DesignCard[] = [
