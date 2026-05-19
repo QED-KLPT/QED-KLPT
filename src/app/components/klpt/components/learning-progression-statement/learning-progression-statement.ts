@@ -115,24 +115,6 @@ export class LearningProgressionStatement implements OnInit, OnDestroy {
     return klptDomainStyle(this.domainForElement(element)?.index, 2);
   }
 
-  protected practiceSupportSectionId(): string {
-    const domain = this.selectedDomain();
-    return domain?.name ? this.sectionIdFromDomainName(domain.name) : 'professional-reflection';
-  }
-
-  protected practiceSupportUrl(): string[] {
-    const slug = this.practiceSupportSectionId();
-    const domainRoutes: Record<string, string> = {
-      'language-and-literacy': '/learning-domains/language-and-literacy',
-      'executive-function': '/learning-domains/executive-function',
-      'social-and-emotional-learning': '/learning-domains/social-and-emotional-learning',
-      'physicality': '/learning-domains/physicality',
-      'mathematics-and-numeracy': '/learning-domains/mathematics-and-numeracy',
-    };
-    const route = domainRoutes[slug];
-    return route ? [route] : ['/klpt/select-behaviours', this.currentSession.id];
-  }
-
   private computeDomainSlug(): string {
     const domain = this.selectedDomain();
     return domain?.name ? this.sectionIdFromDomainName(domain.name) : '';
