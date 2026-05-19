@@ -1,3 +1,1 @@
-Narrator: Sed posuere consectetur est at lobortis.
-Educator: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-Narrator: Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+Show transcript here...

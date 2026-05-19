@@ -41,9 +41,7 @@ export class AnalysingData implements OnInit {
             '',
           youtubeUrl: 'https://www.youtube.com/watch?v=RCmiHUNHa8c',
           transcript: [
-            'Educator: Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            'Narrator: Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-            'Educator: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
+            'Show transcript here...',
           ],
         },
         {
@@ -52,9 +50,7 @@ export class AnalysingData implements OnInit {
             '',
           youtubeUrl: 'https://www.youtube.com/watch?v=t_TQXaHyjZM',
           transcript: [
-            'Narrator: Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.',
-            'Educator: Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.',
-            'Narrator: Curabitur blandit tempus porttitor.',
+            'Show transcript here...',
           ],
         },
         {
@@ -63,9 +59,7 @@ export class AnalysingData implements OnInit {
             '',
           youtubeUrl: 'https://www.youtube.com/watch?v=Rg_Bk8mhsQI',
           transcript: [
-            'Educator: Aenean lacinia bibendum nulla sed consectetur.',
-            'Narrator: Integer posuere erat a ante venenatis dapibus posuere velit aliquet.',
-            'Educator: Cras mattis consectetur purus sit amet fermentum.',
+            'Show transcript here...',
           ],
         },
       ],
