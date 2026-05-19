@@ -1,3 +1,1 @@
-Educator: Donec sed odio dui. Cras justo odio, dapibus ac facilisis in.
-Narrator: Maecenas sed diam eget risus varius blandit sit amet non magna.
-Educator: Integer posuere erat a ante venenatis dapibus.
+Show transcript here...
