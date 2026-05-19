@@ -14,7 +14,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(14rem, 0.8fr);
   gap: clamp(1.5rem, 4vw, 3.5rem);
-  align-items: center;
+  align-items: start;
 }
 
 .domain-hero__copy {
@@ -36,6 +36,7 @@
 }
 
 .domain-hero__art {
+  align-self: start;
   display: flex;
   justify-content: center;
 }
