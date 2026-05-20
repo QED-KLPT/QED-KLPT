@@ -29,6 +29,41 @@ export class ExecutiveFunction implements OnInit {
     this.scroll.scrollToPosition([0, 0]);
   }
 
+  protected readonly executiveFunctionTranscript: string[] = [
+    '- Physicality can be categorised into gross motor and fine motor skills. Gross motor skills are',
+    'big, whole body movements, like running and jumping, and fine motor skills, which',
+    'involve precise finger, hand, wrist, and arm control, such as using scissors,',
+    'pencils, or eating utensils. Encouraging risk taking and play that involves climbing,',
+    'crawling, jumping and balancing, can support the development',
+    'of gross motor skills. Obstacle courses are a great example of how to help children',
+    'build coordination, strength, and control. Demonstrating gross motor skills can help children build confidence.',
+    'Providing a variety of',
+    'experiences and games for children to choose from, recognises and supports children\'s agency.',
+    'Engaging in physical learning',
+    'experiences helps promote overall physical health and wellbeing.',
+    'It allows children to develop and strengthen muscles and bones.',
+    'It is essential for cognitive development. Physical activity stimulates the brain and enhances chil>',
+    'children to build confidence and develop persistence.',
+    "Teachers and educators",
+    "can support children in their development by providing positive, specific",
+    'feedback, and encouragement. Fine motor skills are',
+    "essential for everyday tasks, such as drawing, writing,",
+    'tying shoe laces, buttoning clothes, and feeding oneself.',
+    "These skills contribute to children becoming more",
+    'independent and self-sufficient. Fine motor skills contribute',
+    "to hand-eye coordination, spatial awareness, and",
+    'visual motor integration.',
+    "The intricate movements involved",
+    "in fine motor skill tasks, such as puzzles, building",
+    'blocks, and manipulating objects, help strengthen neural',
+    'connections in the brain and contribute to',
+    'successful problem solving, critical thinking, and',
+    'spatial reasoning abilities. Fine motor skills can also',
+    "support artistic expression, providing opportunities that",
+    'encourage the refinement and practice of these skills',
+    'support overall development.',
+  ];
+
   protected readonly practiceSupports: { title: string; summary: string; reflection: string[]; accordionItems: { title: string; body: string[] }[]; pdfLabel: string; pdfPath: string } = {
     title: 'Executive function',
     summary: 'These supports focus on helping children build attention, working memory, self-regulation, and flexible thinking through predictable routines and intentional scaffolding.',
