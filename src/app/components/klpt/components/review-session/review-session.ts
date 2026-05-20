@@ -1,5 +1,13 @@
 import { NgStyle } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  ViewChild,
+  inject,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { NavigationNodesComponent } from '../../../shared';
 import { KlptBehaviour } from '../../models/klpt-behaviour';
@@ -33,7 +41,10 @@ export class ReviewSession implements OnInit, OnDestroy {
   private readonly router = inject(Router);
 
   public currentSession!: SessionModel;
+  @ViewChild('generatePdfDialog') private generatePdfDialog?: ElementRef<HTMLElement>;
+  @ViewChild('generatePdfTrigger') private generatePdfTrigger?: ElementRef<HTMLButtonElement>;
   protected childName = '';
+  protected isGeneratePdfModalOpen = false;
   private isLeavingAfterPdf = false;
 
   ngOnInit(): void {
@@ -49,7 +60,18 @@ export class ReviewSession implements OnInit, OnDestroy {
     }
   }
 
-  async generatePdf(): Promise<void> {
+  protected openGeneratePdfModal(): void {
+    this.isGeneratePdfModalOpen = true;
+    window.setTimeout(() => this.focusFirstModalControl());
+  }
+
+  protected closeGeneratePdfModal(): void {
+    this.isGeneratePdfModalOpen = false;
+    window.setTimeout(() => this.generatePdfTrigger?.nativeElement.focus());
+  }
+
+  protected async confirmGeneratePdf(): Promise<void> {
+    this.isGeneratePdfModalOpen = false;
     const pdfWindow = this.pdfGenerator.openPdfPreviewWindowForIosSafari();
     await this.pdfGenerator.generateSessionPdf(this.currentSession, pdfWindow, {
       learnerName: this.childName,
@@ -58,6 +80,37 @@ export class ReviewSession implements OnInit, OnDestroy {
     this.sessionManagement.deleteSession(this.currentSession.id);
     this.isLeavingAfterPdf = true;
     void this.router.navigateByUrl('/klpt/list-sessions');
+  }
+
+  protected trapGeneratePdfModalFocus(event: KeyboardEvent): void {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      this.closeGeneratePdfModal();
+      return;
+    }
+
+    if (event.key !== 'Tab') {
+      return;
+    }
+
+    const focusableElements = this.getModalFocusableElements();
+
+    if (!focusableElements.length) {
+      event.preventDefault();
+      this.generatePdfDialog?.nativeElement.focus();
+      return;
+    }
+
+    const first = focusableElements[0];
+    const last = focusableElements[focusableElements.length - 1];
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
   }
 
   protected selectedDomain(): KlptDomain | undefined {
@@ -157,5 +210,26 @@ export class ReviewSession implements OnInit, OnDestroy {
           .getAllElementsByDomain(domain)
           .some((candidate) => candidate.id === element.id),
       );
+  }
+
+  private focusFirstModalControl(): void {
+    const firstButton = this.generatePdfDialog?.nativeElement.querySelector<HTMLElement>('button:not([disabled])');
+    const firstFocusable = this.getModalFocusableElements()[0];
+
+    (firstButton ?? firstFocusable ?? this.generatePdfDialog?.nativeElement)?.focus();
+  }
+
+  private getModalFocusableElements(): HTMLElement[] {
+    const dialog = this.generatePdfDialog?.nativeElement;
+
+    if (!dialog) {
+      return [];
+    }
+
+    return Array.from(
+      dialog.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      ),
+    ).filter((element) => !element.hasAttribute('inert'));
   }
 }
