@@ -43,13 +43,10 @@ export class AnalysingData implements OnInit {
           transcript: [
             '(EXCITED CHATTER) The Queensland Government is making kindy free.',
             'REPORTER: Lucy, Lucy, Lucy, Lucy, Lucy! Lucy, when will this start?',
-            'From 2024. Which kindies?',
-            "There's heaps of Queensland Government approved kindies.",
+            'From 2024. Which kindies? There\'s heaps of Queensland Government approved kindies.',
             'Why go to kindy? Kindy is fun, you make new friends and it helps you learn.',
             '-(ALL SHOUTING AND JOSTLING)',
-            "-That's it's, folks.",
-            'Time to clean-up now.',
-            '(ALL CHATTER AND SHOUT)',
+            "-That's it's, folks. Time to clean-up now. (ALL CHATTER AND SHOUT)",
           ],
         },
         {
