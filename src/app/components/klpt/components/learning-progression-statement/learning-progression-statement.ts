@@ -31,13 +31,10 @@ export class LearningProgressionStatement implements OnInit, OnDestroy {
 
   public currentSession!: SessionModel;
 
-  protected domainSlug: string = '';
-
   ngOnInit(): void {
     this.currentSession = this.getRouteSession();
     this.currentSession.pageIndex = 3;
     this.currentSession.formFields = this.mergeFormFields(this.currentSession.formFields);
-    this.domainSlug = this.computeDomainSlug();
   }
 
   ngOnDestroy(): void {
@@ -115,7 +112,12 @@ export class LearningProgressionStatement implements OnInit, OnDestroy {
     return klptDomainStyle(this.domainForElement(element)?.index, 2);
   }
 
-  private computeDomainSlug(): string {
+  protected practiceSupportsLink(): string[] {
+    const domainSlug = this.selectedDomainSlug();
+    return domainSlug ? ['/learning-domains', domainSlug] : ['/learning-domains'];
+  }
+
+  private selectedDomainSlug(): string {
     const domain = this.selectedDomain();
     return domain?.name ? this.sectionIdFromDomainName(domain.name) : '';
   }
