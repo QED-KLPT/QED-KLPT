@@ -98,10 +98,12 @@
       <div class="klpt-step__actions">
         <a class="button button--secondary" [routerLink]="['/klpt/learning-progression-statement', currentSession.id]">Previous</a>
         <button
+          #generatePdfTrigger
           class="button button--primary"
           type="button"
+          aria-haspopup="dialog"
           [attr.aria-label]="'Generate PDF for learner ' + displayValue(currentSession.learnerCode)"
-          (click)="generatePdf()"
+          (click)="openGeneratePdfModal()"
         >
           Generate PDF
         </button>
@@ -109,3 +111,34 @@
     </article>
   </div>
 </section>
+
+@if (isGeneratePdfModalOpen) {
+  <div class="generate-pdf-modal" role="presentation">
+    <div class="generate-pdf-modal__backdrop" (click)="closeGeneratePdfModal()"></div>
+    <section
+      class="generate-pdf-modal__panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="generate-pdf-modal-title"
+      aria-describedby="generate-pdf-modal-description"
+      tabindex="-1"
+      #generatePdfDialog
+      (keydown)="trapGeneratePdfModalFocus($event)"
+    >
+      <p class="generate-pdf-modal__eyebrow">Generate PDF</p>
+      <h2 id="generate-pdf-modal-title">Generate your report?</h2>
+      <p id="generate-pdf-modal-description">
+        Your report is about to be generated. Doing so will create a PDF document and delete this session. Is this what you wish to do?
+      </p>
+
+      <div class="generate-pdf-modal__actions">
+        <button class="generate-pdf-modal__button generate-pdf-modal__button--secondary" type="button" (click)="closeGeneratePdfModal()">
+          Cancel
+        </button>
+        <button class="generate-pdf-modal__button generate-pdf-modal__button--primary" type="button" (click)="confirmGeneratePdf()">
+          Ok
+        </button>
+      </div>
+    </section>
+  </div>
+}
