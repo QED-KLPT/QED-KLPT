@@ -27,10 +27,40 @@
 }
 
 .transcript {
-  overflow: hidden;
+  overflow-y: auto;
+  max-height: 350px;
   padding: 10px;
   border-left: 3px solid #ccc;
   background: #fafafa;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.transcript::-webkit-scrollbar {
+  display: none;
+}
+
+.transcript.with-scrollbar {
+  scrollbar-width: thin;
+  -ms-overflow-style: auto;
+}
+
+.transcript.with-scrollbar::-webkit-scrollbar {
+  display: block;
+  width: 6px;
+}
+
+.transcript.with-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.transcript.with-scrollbar::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+
+.transcript.with-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #999;
 }
 
 .transcript p:first-child {

@@ -10,7 +10,7 @@
   </button>
 
   <div id="transcript-content" class="transcript-shell" [class.transcript-shell--open]="showTranscript">
-    <div class="transcript">
+    <div #transcriptEl class="transcript" [class.with-scrollbar]="needsScrollbar">
       <p *ngFor="let line of transcriptLines">
         {{ line }}
       </p>
