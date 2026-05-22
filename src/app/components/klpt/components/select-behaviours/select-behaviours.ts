@@ -99,6 +99,12 @@ export class SelectBehaviours implements OnInit, OnDestroy {
     this.focusedBehaviourId = behaviour.id;
   }
 
+  protected onSessionCleared(session: SessionModel): void {
+    this.currentSession = session;
+    this.focusedElementId = undefined;
+    this.focusedBehaviourId = undefined;
+  }
+
   protected elementStateLabel(element: KlptElement): string {
     return this.focusedElementId === element.id ? 'Showing details' : 'Selected element';
   }

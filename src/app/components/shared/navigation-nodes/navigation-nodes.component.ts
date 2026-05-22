@@ -3,12 +3,15 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
+  EventEmitter,
   ViewChild,
   inject,
   Input,
   OnChanges,
+  Output,
 } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import { SessionModel } from '../../klpt/models/session-model';
 import { SessionManagementService } from '../../klpt/components/shared/session-management.service';
 
 export type NavigationNodeId = 'select-domains' | 'select-behaviours' | 'statement' | 'review';
@@ -34,6 +37,7 @@ export class NavigationNodesComponent implements OnChanges {
 
   @Input({ required: true }) sessionId!: string;
   @Input({ required: true }) currentNode!: NavigationNodeId;
+  @Output() sessionCleared = new EventEmitter<SessionModel>();
   @ViewChild('clearSessionDialog') private clearSessionDialog?: ElementRef<HTMLElement>;
   @ViewChild('clearSessionTrigger') private clearSessionTrigger?: ElementRef<HTMLButtonElement>;
   protected isClearSessionModalOpen = false;
@@ -92,7 +96,12 @@ export class NavigationNodesComponent implements OnChanges {
   }
 
   protected clearSession(): void {
-    this.sessionManagement.clearSessionWorkflow(this.sessionId);
+    const clearedSession = this.sessionManagement.clearSessionWorkflow(this.sessionId);
+
+    if (clearedSession) {
+      this.sessionCleared.emit(clearedSession);
+    }
+
     this.isClearSessionModalOpen = false;
     void this.router.navigate(['/klpt/select-domains', this.sessionId]);
   }

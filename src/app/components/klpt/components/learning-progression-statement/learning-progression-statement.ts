@@ -108,6 +108,10 @@ export class LearningProgressionStatement implements OnInit, OnDestroy {
     this.currentSession.learnerCode = value;
   }
 
+  protected onSessionCleared(session: SessionModel): void {
+    this.currentSession = session;
+  }
+
   protected itemStyle(element: KlptElement): Record<string, string> {
     return klptDomainStyle(this.domainForElement(element)?.index, 2);
   }

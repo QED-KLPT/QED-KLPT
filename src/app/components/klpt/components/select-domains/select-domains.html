@@ -1,6 +1,10 @@
 <section class="section section--white klpt-step">
   <div class="section__inner">
-    <app-navigation-nodes [sessionId]="currentSession.id" currentNode="select-domains" />
+    <app-navigation-nodes
+      [sessionId]="currentSession.id"
+      currentNode="select-domains"
+      (sessionCleared)="onSessionCleared($event)"
+    />
 
     @let domainsList = domains();
     @let subDomainsList = subDomains();
