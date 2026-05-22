@@ -481,6 +481,18 @@
 }
 
 @media (orientation: portrait) and (pointer: coarse) and (min-width: 48rem) and (max-width: 64rem) {
+  .behaviour-tile {
+    width: min(18rem, 58%);
+    transform:
+      translate(-50%, -50%)
+      translateX(calc(var(--offset) * clamp(6rem, 18vw, 8rem)))
+      scale(calc(1 - (min(var(--distance), 2) * 0.16)));
+
+    &[data-state="active"] {
+      width: min(22rem, 72%);
+    }
+  }
+
   :host ::ng-deep .behaviour-tile__description li {
     line-height: 20px;
   }
