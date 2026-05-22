@@ -83,7 +83,7 @@ export class Nav {
   }
 
   protected toggleSubmenu(name: string): void {
-    this.suppressHoverSubmenus.set(false);
+    this.suppressHoverSubmenus.set(true);
     this.openSubmenu.update((current) => (current === name ? null : name));
   }
 
