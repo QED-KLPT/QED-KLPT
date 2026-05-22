@@ -1,6 +1,10 @@
 <section class="section section--white klpt-step">
   <div class="section__inner">
-    <app-navigation-nodes [sessionId]="currentSession.id" currentNode="review" />
+    <app-navigation-nodes
+      [sessionId]="currentSession.id"
+      currentNode="review"
+      (sessionCleared)="onSessionCleared($event)"
+    />
 
     @let domain = selectedDomain();
     @let items = progressionItems();

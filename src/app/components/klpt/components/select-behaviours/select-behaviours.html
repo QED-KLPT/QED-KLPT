@@ -1,6 +1,10 @@
 <section class="section section--white klpt-step">
   <div class="section__inner">
-    <app-navigation-nodes [sessionId]="currentSession.id" currentNode="select-behaviours" />
+    <app-navigation-nodes
+      [sessionId]="currentSession.id"
+      currentNode="select-behaviours"
+      (sessionCleared)="onSessionCleared($event)"
+    />
 
     @let elements = selectedElements();
     @let detail = selectedDetail();

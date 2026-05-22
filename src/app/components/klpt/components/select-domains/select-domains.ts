@@ -103,6 +103,10 @@ export class SelectDomains implements OnInit, OnDestroy {
     this.currentSession.elements = [];
   }
 
+  protected onSessionCleared(session: SessionModel): void {
+    this.currentSession = session;
+  }
+
   protected toggleElement(element: KlptElement): void {
     if (this.isElementSelected(element)) {
       this.currentSession.elements = this.currentSession.elements.filter(

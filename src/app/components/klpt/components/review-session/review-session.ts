@@ -160,6 +160,11 @@ export class ReviewSession implements OnInit, OnDestroy {
     this.childName = value;
   }
 
+  protected onSessionCleared(session: SessionModel): void {
+    this.currentSession = session;
+    this.childName = '';
+  }
+
   protected displayValue(value: string | undefined): string {
     return value?.trim() ? value : 'Not entered';
   }
