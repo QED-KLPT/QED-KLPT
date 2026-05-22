@@ -42,7 +42,16 @@
   }
 
   input[type="date"] {
+    height: 3.375rem;
     padding: 0.8125rem 1.125rem;
+    line-height: 1.5;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  input[type="date"]::-webkit-date-and-time-value {
+    min-height: 1.5em;
+    text-align: left;
   }
 
   input[type="date"]::-webkit-calendar-picker-indicator {
