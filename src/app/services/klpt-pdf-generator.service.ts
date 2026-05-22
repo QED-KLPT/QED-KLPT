@@ -153,11 +153,6 @@ export class KlptPdfGeneratorService {
     doc.setDrawColor(...PDF_THEME.border);
     doc.roundedRect(margin, y, contentWidth, 34, 4, 4, 'S');
 
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(8);
-    doc.setTextColor(...PDF_THEME.blue);
-    doc.text('FINAL CHECK', margin + 8, y + 10);
-
     doc.setFontSize(24);
     doc.setTextColor(...PDF_THEME.ink);
     doc.text('Review Statement', margin + 8, y + 23);
