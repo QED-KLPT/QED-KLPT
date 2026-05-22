@@ -90,7 +90,14 @@
     </div>
 
     <div class="domain-page-cta">
-      <a class="button button--primary" routerLink="/klpt">Open the KLPT</a>
+      <a
+        class="button button--primary"
+        routerLink="/klpt"
+        (touchstart)="captureKlptTouchStart($event)"
+        (touchend)="openKlptFromTouch($event)"
+      >
+        Open the KLPT
+      </a>
     </div>
   </div>
 </section>

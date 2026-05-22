@@ -1,6 +1,6 @@
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
 import { AccordionItemComponent } from '../shared/accordion-item/accordion-item.component';
@@ -26,13 +26,43 @@ type DesignCard = {
 })
 export class LanguageAndLiteracy implements OnInit {
   protected readonly videoColumns$: Observable<PageVideoColumn[]>;
+  private klptTouchStart: { x: number; y: number } | undefined;
 
-  constructor(private scroll: ViewportScroller, private readonly videoContentService: KlptVideoContentService) {
+  constructor(
+    private scroll: ViewportScroller,
+    private readonly router: Router,
+    private readonly videoContentService: KlptVideoContentService,
+  ) {
     this.videoColumns$ = this.videoContentService.getPageColumns('language-and-literacy');
   }
 
   ngOnInit(): void {
     this.scroll.scrollToPosition([0, 0]);
+  }
+
+  protected captureKlptTouchStart(event: TouchEvent): void {
+    const touch = event.changedTouches[0];
+
+    this.klptTouchStart = touch ? { x: touch.clientX, y: touch.clientY } : undefined;
+  }
+
+  protected openKlptFromTouch(event: TouchEvent): void {
+    const touch = event.changedTouches[0];
+    const start = this.klptTouchStart;
+    this.klptTouchStart = undefined;
+
+    if (!touch || !start) {
+      return;
+    }
+
+    const moved = Math.hypot(touch.clientX - start.x, touch.clientY - start.y);
+
+    if (moved > 10) {
+      return;
+    }
+
+    event.preventDefault();
+    void this.router.navigateByUrl('/klpt');
   }
 
     protected readonly practiceSupports: { title: string; summary: string; reflection: string[]; accordionItems: { title: string; body: string[] }[]; pdfLabel: string; pdfPath: string } = {
