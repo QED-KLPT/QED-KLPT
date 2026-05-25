@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AccordionItemComponent } from '../shared/accordion-item/accordion-item.component';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
+import { joinWrappedLines } from '../../shared/helpers/join-wrapped-lines';
 
 type DesignCard = {
   title: string;
@@ -28,7 +29,7 @@ export class Physicality implements OnInit {
     this.scroll.scrollToPosition([0, 0]);
   }
 
-  protected readonly physicalityTranscript: string[] = [
+  protected readonly physicalityTranscript: string[] = joinWrappedLines([
     '- Physicality can be categorised into gross motor and fine motor skills. Gross motor skills are',
     'big, whole body movements, like running and jumping, and fine motor skills, which',
     'involve precise finger, hand, wrist, and arm control, such as using scissors,',
@@ -41,8 +42,7 @@ export class Physicality implements OnInit {
     'Engaging in physical learning',
     'experiences helps promote overall physical health and wellbeing.',
     'It allows children to develop and strengthen muscles and bones.',
-    'It is essential for cognitive development. Physical activity stimulates the brain and enhances chil>',
-    'children to build confidence and develop persistence.',
+    'It is essential for cognitive development. Physical activity stimulates the brain and enhances children to build confidence and develop persistence.',
     "Teachers and educators",
     "can support children in their development by providing positive, specific",
     'feedback, and encouragement. Fine motor skills are',
@@ -61,7 +61,7 @@ export class Physicality implements OnInit {
     "support artistic expression, providing opportunities that",
     'encourage the refinement and practice of these skills',
     'support overall development.',
-  ];
+  ]);
 
   protected readonly practiceSupports: { title: string; summary: string; reflection: string[]; accordionItems: { title: string; body: string[] }[]; pdfLabel: string; pdfPath: string } = {
     title: 'Physicality',

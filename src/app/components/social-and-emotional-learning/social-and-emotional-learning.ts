@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AccordionItemComponent } from '../shared/accordion-item/accordion-item.component';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
+import { joinWrappedLines } from '../../shared/helpers/join-wrapped-lines';
 
 type DesignCard = {
   title: string;
@@ -28,7 +29,7 @@ export class SocialAndEmotionalLearning implements OnInit {
     this.scroll.scrollToPosition([0, 0]);
   }
 
-  protected readonly socialAndEmotionalLearningTranscript: string[] = [
+  protected readonly socialAndEmotionalLearningTranscript: string[] = joinWrappedLines([
     '- The four key elements of social learning are participation, communication,',
     'social regulation, and perspective taking. Participation prioritises',
     'how children interact and participate within a group rather than on the specific',
@@ -78,7 +79,7 @@ export class SocialAndEmotionalLearning implements OnInit {
     "Teachers and educators can",
     "use specific strategies to support children's social",
     'and emotional learning.',
-  ];
+  ]);
 
   protected readonly practiceSupports: { title: string; summary: string; reflection: string[]; accordionItems: { title: string; body: string[] }[]; pdfLabel: string; pdfPath: string } = {
     title: 'Social and emotional learning',
