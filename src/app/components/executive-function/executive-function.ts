@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 import { AccordionItemComponent } from '../shared/accordion-item/accordion-item.component';
 import { DomainCard } from '../shared/domain-card/domain-card';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
+import { joinWrappedLines } from '../../shared/helpers/join-wrapped-lines';
 
 type DesignCard = {
   title: string;
@@ -29,7 +30,7 @@ export class ExecutiveFunction implements OnInit {
     this.scroll.scrollToPosition([0, 0]);
   }
 
-  protected readonly executiveFunctionTranscript: string[] = [
+  protected readonly executiveFunctionTranscript: string[] = joinWrappedLines([
     '- Executive function is defined in the Early Years Learning',
     'Framework Version 2 as the mental processes in the brain that enable children to plan, focus, attention, remember instructions and manage multiple tasks successfully. These processes develop',
     'during early childhood and include working',
@@ -61,7 +62,7 @@ export class ExecutiveFunction implements OnInit {
     'Teachers and educators can support the development of executive functioning by helping children persevere,',
     'deal with change and problem solve through intentional teaching strategies, and by gradually increasing',
     'the challenge of tasks while providing support and encouragement.',
-  ];
+  ]);
 
   protected readonly practiceSupports: { title: string; summary: string; reflection: string[]; accordionItems: { title: string; body: string[] }[]; pdfLabel: string; pdfPath: string } = {
     title: 'Executive function',

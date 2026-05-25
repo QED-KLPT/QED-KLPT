@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { DomainCard } from '../shared/domain-card/domain-card';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
+import { joinWrappedLines } from '../../shared/helpers/join-wrapped-lines';
 
 type DomainSummary = {
   title: string;
@@ -28,7 +29,7 @@ export class Home implements OnInit {
     this.scroll.scrollToPosition([0, 0]);
   }
 
-  protected readonly acknowledgementOfCountryTranscript: string[] = [
+  protected readonly acknowledgementOfCountryTranscript: string[] = joinWrappedLines([
     '- When the children first come into the kindergarten, it\'s about getting to build those relationships.',
     'Then we set up a template that we got off the Queensland Kindergarten Guidelines, and it\'s called a Summative Report.',
     'So we take information that we\'ve observed and we put this into the Summative Report.',
@@ -48,7 +49,7 @@ export class Home implements OnInit {
     'The Progressions also align with the Early Years Learning Framework Version 2, and the Queensland Kindergarten Learning Guideline.',
     '- It informs planning, assessing, and their critical evaluation.',
     '- As an educator, when you observe children and document what they know, can do, and understand, you can use that information to inform planning and set individual learning goals for children.',
-  ];
+  ]);
 
   protected readonly domains: DomainSummary[] = [
     {
