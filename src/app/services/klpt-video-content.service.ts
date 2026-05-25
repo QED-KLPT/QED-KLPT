@@ -75,11 +75,28 @@ export class KlptVideoContentService {
         title: video.title,
         description: video.description,
         youtubeUrl: video.youtubeUrl,
-        transcript: transcriptText
-          .split(/\r?\n/)
-          .map((line) => line.trim())
-          .filter(Boolean),
+        transcript: this.parseTranscriptLines(transcriptText),
       })),
     );
+  }
+
+  private parseTranscriptLines(text: string): string[] {
+    const rawLines = text.split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
+    const sentences: string[] = [];
+
+    for (const line of rawLines) {
+      if (sentences.length === 0) {
+        sentences.push(line);
+      } else {
+        const lastSentence = sentences[sentences.length - 1];
+        if (/[\.\!\?]\s*$/.test(lastSentence)) {
+          sentences.push(line);
+        } else {
+          sentences[sentences.length - 1] = lastSentence + ' ' + line;
+        }
+      }
+    }
+
+    return sentences;
   }
 }
