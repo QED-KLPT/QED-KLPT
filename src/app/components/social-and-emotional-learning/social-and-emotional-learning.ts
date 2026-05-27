@@ -1,9 +1,10 @@
 import { ViewportScroller } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AccordionItemComponent } from '../shared/accordion-item/accordion-item.component';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
 import { joinWrappedLines } from '../../shared/helpers/join-wrapped-lines';
+import { DomainAssetModeService } from '../../services/domain-asset-mode.service';
 
 type DesignCard = {
   title: string;
@@ -23,6 +24,8 @@ type DesignCard = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SocialAndEmotionalLearning implements OnInit {
+  protected readonly domainAssets = inject(DomainAssetModeService);
+
   constructor(private scroll: ViewportScroller) {}
 
   ngOnInit(): void {
@@ -104,7 +107,7 @@ export class SocialAndEmotionalLearning implements OnInit {
       },
     ],
     pdfLabel: 'Download social and emotional learning practice supports (PDF)',
-    pdfPath: 'assets/content/pdfs/qklg_principle_res_rels_poster.pdf',
+    pdfPath: 'assets/content/pdfs/qklg-principle-res_rels-poster.pdf',
   };
 
   protected readonly cards: DesignCard[] = [

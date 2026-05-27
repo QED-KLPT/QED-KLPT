@@ -11,7 +11,7 @@
 <section class="section section--white domain-nav">
   <div class="section__inner">
     <div class="domain-nav__grid">
-      @for (domain of domains; track domain.title) {
+      @for (domain of themedDomains(); track domain.title) {
         <app-domain-card
           [title]="domain.title"
           [description]="domain.description"
@@ -20,6 +20,7 @@
           [hoverBorderColor]="domain.hoverBorderColor"
           [imageSrc]="domain.imageSrc"
           [imageAlt]="domain.imageAlt"
+          [textColor]="domain.textColor"
         />
       }
     </div>

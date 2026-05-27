@@ -16,9 +16,10 @@ export class DomainCard {
   @Input() imageSrc = '';
   @Input() background = '';
   @Input() hoverBorderColor = '';
+  @Input() textColor = '';
 
-  get textColor(): string {
-    return this.background.includes('135deg') ? '#ffffff' : '';
+  get resolvedTextColor(): string {
+    return this.textColor || (this.background.includes('135deg') ? '#ffffff' : '');
   }
 
   get initial(): string {
