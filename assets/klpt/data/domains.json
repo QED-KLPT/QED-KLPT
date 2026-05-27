@@ -38,19 +38,19 @@
                   "id": "b7e4c29b-0c32-4c64-8c5c-7b1c1d07b60f",
                   "index": 4,
                   "name": "Simple Sentences",
-                  "description": "<ul><li>Speaks (communicates) in sentences of up to 5-6 words. May use one or two conjunctions (mainly 'and') and one or two pronouns making some errors.</li><li>Mainly uses simple, common nouns and a limited range of verbs appropriately to convey meaning.</li></ul>"
+                  "description": "<ul><li>Speaks (communicates) in sentences of up to 5-6 words. May use one or two conjunctions (mainly ‘and’) and one or two pronouns making some errors.</li><li>Mainly uses simple, common nouns and a limited range of verbs appropriately to convey meaning.</li></ul>"
                 },
                 {
                   "id": "8bff448c-e81d-45df-8368-0404e52192c6",
                   "index": 5,
                   "name": "Several Connected Sentences",
-                  "description": "<ul><li>Speaks (communicates) for several sentences (e.g., 35+ words) mainly using 2-3 simple conjunctions (e.g., &#39;and&#39;, &#39;then&#39;, 'so')</li><li>Speech (communication) mostly uses correct word order (syntax).</li><li>Uses many common nouns, and some simple verbs and adjectives appropriately to convey meaning.</li></ul>"
+                  "description": "<ul><li>Speaks (communicates) for several sentences (e.g., 35+ words) mainly using 2-3 simple conjunctions (e.g., &#39;and&#39;, &#39;then&#39;, ‘so’)</li><li>Speech (communication) mostly uses correct word order (syntax).</li><li>Uses many common nouns, and some simple verbs and adjectives appropriately to convey meaning.</li></ul>"
                 },
                 {
                   "id": "34e31019-f7d6-45f7-a5ed-9ee98542bf48",
                   "index": 6,
                   "name": "Longer Sentences",
-                  "description": "<ul><li>Uses some longer sentences (e.g., 7+ words) when speaking (communicating) and 3-4 common conjunctions (e.g., and, but, because, then).</li><li>Uses personal pronouns (e.g., 'I', 'me', 'you' 'we', 'us', 'he', she') and a wide variety of common nouns, verbs and adjectives appropriately to convey meaning.</li></ul>"
+                  "description": "<ul><li>Uses some longer sentences (e.g., 7+ words) when speaking (communicating) and 3-4 common conjunctions (e.g., and, but, because, then).</li><li>Uses personal pronouns (e.g., ‘I’, ‘me’, ‘you’ ‘we’, ‘us’, ‘he’, she’) and a wide variety of common nouns, verbs and adjectives appropriately to convey meaning.</li></ul>"
                 },
                 {
                   "id": "b12e07ae-7df9-46d2-9b5e-09ee894e81a1",
@@ -81,31 +81,31 @@
                   "id": "2f9db13b-0529-43f2-86f2-1f7cded0581d",
                   "index": 3,
                   "name": "Short Personal Stories",
-                  "description": "<ul><li>Tells a short personal story (child's own experiences, thoughts or feelings) that jumps between unlinked ideas and/or events.</li><li>Makes a few short, simple, familiar requests (e.g., 'More please).</li><li>Mostly responds to questions with a single word (e.g., yes/no).</li></ul>"
+                  "description": "<ul><li>Tells a short personal story (child’s own experiences, thoughts or feelings) that jumps between unlinked ideas and/or events.</li><li>Makes a few short, simple, familiar requests (e.g., ‘More please).</li><li>Mostly responds to questions with a single word (e.g., yes/no).</li></ul>"
                 },
                 {
                   "id": "a43b6b83-48a1-4391-8016-b13ca6c2eb28",
                   "index": 4,
                   "name": "Simple Conversations",
-                  "description": "<ul><li>Tells a personal story (child's own experiences, thoughts or feelings) with details that are not distinguished from main events.</li><li>Has short conversations about predictable and familiar topics (e.g., what they are playing with).</li><li>Asks broad or general questions (e.g., 'what', 'where', or 'who').</li><li>Responds briefly to a variety of questions and makes simple requests.</li></ul>"
+                  "description": "<ul><li>Tells a personal story (child’s own experiences, thoughts or feelings) with details that are not distinguished from main events.</li><li>Has short conversations about predictable and familiar topics (e.g., what they are playing with).</li><li>Asks broad or general questions (e.g., ’what’, ‘where’, or ‘who’).</li><li>Responds briefly to a variety of questions and makes simple requests.</li></ul>"
                 },
                 {
                   "id": "ba443b6e-d7ec-4d6d-b29a-0b2eaccb96be",
                   "index": 5,
                   "name": "Logical Personal Stories",
-                  "description": "<ul><li>Tells a personal story (child's own experiences, thoughts or feelings) that has a logical flow (beginning, middle and end).</li><li>Has conversations about a range of familiar topics mostly from their immediate context (e.g., what they are doing at the time).</li><li>Contributes relevant ideas.</li><li>Asks a range of specific questions that relate to the topic.</li></ul>"
+                  "description": "<ul><li>Tells a personal story (child’s own experiences, thoughts or feelings) that has a logical flow (beginning, middle and end).</li><li>Has conversations about a range of familiar topics mostly from their immediate context (e.g., what they are doing at the time).</li><li>Contributes relevant ideas.</li><li>Asks a range of specific questions that relate to the topic.</li></ul>"
                 },
                 {
                   "id": "b9629628-4df6-46aa-9e50-dcfd9b9e37e4",
                   "index": 6,
                   "name": "Detailed Conversations",
-                  "description": "<ul><li>Tells a longer personal story (child's own experiences, thoughts or feelings) that is well structured, providing some details to improve or clarify the story in response to questions.</li><li>Has thoughtful conversations, including some less familiar topics outside their immediate context.</li></ul>"
+                  "description": "<ul><li>Tells a longer personal story (child’s own experiences, thoughts or feelings) that is well structured, providing some details to improve or clarify the story in response to questions.</li><li>Has thoughtful conversations, including some less familiar topics outside their immediate context.</li></ul>"
                 },
                 {
                   "id": "5a497360-cd6c-420f-9580-4a36235651cf",
                   "index": 7,
                   "name": "Structured Detailed Stories",
-                  "description": "<ul><li>Tells a longer, detailed personal story (child's own experiences, thoughts or feelings) that is well structured, identifying the problem/main event and resolution, without being asked prompting questions.</li><li>Contributes considered ideas to conversations.</li><li>Asks questions that build on or clarify their understanding.</li></ul>"
+                  "description": "<ul><li>Tells a longer, detailed personal story (child’s own experiences, thoughts or feelings) that is well structured, identifying the problem/main event and resolution, without being asked prompting questions.</li><li>Contributes considered ideas to conversations.</li><li>Asks questions that build on or clarify their understanding.</li></ul>"
                 }
               ]
             },
@@ -180,19 +180,19 @@
                   "id": "506e680d-bd87-4031-b5aa-a12a911ba4d9",
                   "index": 3,
                   "name": "Retells and Links Ideas",
-                  "description": "<ul><li>Retells the story including most key ideas from throughout a simple text.</li><li>Interprets simple, implied ideas (e.g., a secondary character's feelings).</li><li>Links cause and effect for most key events or characters' motivations (e.g., characters' decision to share their toys made their friend happy).</li></ul>"
+                  "description": "<ul><li>Retells the story including most key ideas from throughout a simple text.</li><li>Interprets simple, implied ideas (e.g., a secondary character’s feelings).</li><li>Links cause and effect for most key events or characters’ motivations (e.g., characters’ decision to share their toys made their friend happy).</li></ul>"
                 },
                 {
                   "id": "0c24ab57-8d1d-4c4c-a3d2-0cfb6e70de00",
                   "index": 4,
                   "name": "Explains Implied Ideas",
-                  "description": "<ul><li>Explains a range of implied ideas (e.g., the reason for a character's behaviour).</li><li>Makes simple, obvious comparisons (e.g., about a predictable change in a story – 'The caterpillar spins a cocoon and changes into a butterfly'), and obvious predictions (&#39;The character will find the treasure in the cave because he has a treasure map).</li><li>Makes links between well separated ideas (e.g., where there are several events or cumulative causes that lead to an effect – the steps to planting a seed).</li><li>Gives a simple reason for their opinion.</li></ul>"
+                  "description": "<ul><li>Explains a range of implied ideas (e.g., the reason for a character’s behaviour).</li><li>Makes simple, obvious comparisons (e.g., about a predictable change in a story – ‘The caterpillar spins a cocoon and changes into a butterfly’), and obvious predictions (&#39;The character will find the treasure in the cave because he has a treasure map).</li><li>Makes links between well separated ideas (e.g., where there are several events or cumulative causes that lead to an effect – the steps to planting a seed).</li><li>Gives a simple reason for their opinion.</li></ul>"
                 },
                 {
                   "id": "1bfa9130-2926-44fe-8973-48bee411ac56",
                   "index": 5,
                   "name": "Sophisticated Text Reasoning",
-                  "description": "<ul><li>Explains a range of implied ideas with some sophistication (e.g., a character's subtly communicated motivation).</li><li>Makes comparisons. between viewpoints (e.g., compares one character's view to another) and makes generalisations from explicit clues.</li><li>Gives synonyms or antonyms for highly familiar words (e.g., mad means angry).</li><li>Makes links between a series of events (e.g., to sequence a short story).</li><li>Gives evidence to support their opinion (e.g., why a character behaved as they did).</li></ul>"
+                  "description": "<ul><li>Explains a range of implied ideas with some sophistication (e.g., a character’s subtly communicated motivation).</li><li>Makes comparisons. between viewpoints (e.g., compares one character’s view to another) and makes generalisations from explicit clues.</li><li>Gives synonyms or antonyms for highly familiar words (e.g., mad means angry).</li><li>Makes links between a series of events (e.g., to sequence a short story).</li><li>Gives evidence to support their opinion (e.g., why a character behaved as they did).</li></ul>"
                 }
               ]
             },
@@ -235,43 +235,6 @@
             }
           ]
         }
-      ],
-      "reflectiveQuestions": [
-        {
-          "id": "1d2ed90c-e907-46f4-b1b3-1c889a8a55b7",
-          "index": 1,
-          "question": "Consider how a child's cultural background, language, family context, or community connections shape what you are noticing. Does my plan for this child respect and support their home language?"
-        },
-        {
-          "id": "20049f9c-edd2-4895-98d6-cf3fc617c430",
-          "index": 2,
-          "question": "What do I know about this child's ideas and interests, strengths and ways of engaging that might influence how this learning is expressed?"
-        },
-        {
-          "id": "f3b07a31-2fe5-4d07-8e4b-8dd9d4eb228a",
-          "index": 3,
-          "question": "How might the learning environment be enabling or limiting this learning or participation?"
-        },
-        {
-          "id": "9c838039-a023-42a4-ac06-e278cd06c394",
-          "index": 4,
-          "question": "How can I use a diverse range of language and literacy experiences and interactions to support this child's learning? (e.g. sociodramatic play, print exploration, small group play, experimentation with writing, music and sharing a range of texts)."
-        },
-        {
-          "id": "31c90a25-556d-4713-aad4-5eab90039616",
-          "index": 5,
-          "question": "Am I engaging in social interactions that promote both language learning and enjoyment for this child? (e.g. encouraging children to talk about things that matter to them, asking open-ended questions, having sustained shared conversations in play-based experiences)."
-        },
-        {
-          "id": "0705164d-1760-4ecc-a5f2-579af8ffd361",
-          "index": 6,
-          "question": "Are there certain interactions, context or experiences where the child demonstrates different ways of communicating, engaging with language, or expressing meaning?"
-        },
-        {
-          "id": "6b5347b4-fa1e-4263-8e80-34e6788d99d4",
-          "index": 7,
-          "question": "Am I seeing anything that might indicate a hearing health check would be beneficial (e.g. the child doesn't respond consistently when spoken to, frequently say \"What?\" or \"Huh?\" or seem to mishear words, delayed or unclear speech, if they struggle to follow instructions, especially in noisy places or have repeated ear infections)."
-        }
       ]
     },
     {
@@ -313,7 +276,7 @@
               "id": "7aa26f37-ed92-4e06-b387-9a9958c67ca8",
               "index": 5,
               "name": "Supports Others' Persistence",
-              "description": "<ul><li>Manages multiple different setbacks and distractions throughout complex tasks (tailored to the child's ability).</li><li>Supports others by providing strategies for managing setbacks.</li><li>Actively congratulates others, recognising their persistence, and helps or encourages them.</li><li>Demonstrates patience and consideration when waiting for others to take their turn.</li><li>Completes multi-step, goal-oriented tasks independently and successfully.</li></ul>"
+              "description": "<ul><li>Manages multiple different setbacks and distractions throughout complex tasks (tailored to the child’s ability).</li><li>Supports others by providing strategies for managing setbacks.</li><li>Actively congratulates others, recognising their persistence, and helps or encourages them.</li><li>Demonstrates patience and consideration when waiting for others to take their turn.</li><li>Completes multi-step, goal-oriented tasks independently and successfully.</li></ul>"
             }
           ]
         },
@@ -350,7 +313,7 @@
               "id": "89985897-e1d0-4f3f-873e-034356425745",
               "index": 5,
               "name": "Adapts for Peers",
-              "description": "<ul><li>Demonstrates flexibility in response to their peers' needs (e.g., invents rules to make the game easier or harder for different players).</li></ul>"
+              "description": "<ul><li>Demonstrates flexibility in response to their peers’ needs (e.g., invents rules to make the game easier or harder for different players).</li></ul>"
             }
           ]
         },
@@ -369,7 +332,7 @@
               "id": "8726b116-a314-4fa3-9d72-263a6b70a544",
               "index": 2,
               "name": "Familiar Problem Strategies",
-              "description": "<ul><li>Demonstrates predictable or familiar strategies for how a routine problem might be solved (e.g., what do we do if our drink bottle is empty?).</li><li>Attempts to experiment with new and unfamiliar materials, (e.g., incorporating unexpected elements into a process).</li><li>Shares how they attempted to solve a problem (may not reflect what actually happened).</li><li>Makes a simple plan (e.g., a role play of a familiar fairytale) that involves some collaboration or sequencing but is largely spontaneous.</li><li>Engages with aspects of an activity for sensory exploration or enjoyment, without necessarily seeking a solution (e.g., builds a block tower, enjoying the sound of it falling down and not viewing the 'falling tower' as a problem).</li></ul>"
+              "description": "<ul><li>Demonstrates predictable or familiar strategies for how a routine problem might be solved (e.g., what do we do if our drink bottle is empty?).</li><li>Attempts to experiment with new and unfamiliar materials, (e.g., incorporating unexpected elements into a process).</li><li>Shares how they attempted to solve a problem (may not reflect what actually happened).</li><li>Makes a simple plan (e.g., a role play of a familiar fairytale) that involves some collaboration or sequencing but is largely spontaneous.</li><li>Engages with aspects of an activity for sensory exploration or enjoyment, without necessarily seeking a solution (e.g., builds a block tower, enjoying the sound of it falling down and not viewing the ‘falling tower’ as a problem).</li></ul>"
             },
             {
               "id": "ab181854-236f-404f-802c-2368df534c94",
@@ -390,38 +353,6 @@
               "description": "<ul><li>Leads others through strategies to problems.</li><li>Provides a range of strategies for different contexts.</li><li>Provides solutions that challenge existing rules or conventional ways of doing things (e.g., rewrites rules in games to increase their challenge) or to make them easier for others.</li></ul>"
             }
           ]
-        }
-      ],
-      "reflectiveQuestions": [
-        {
-          "id": "aa967dba-607d-4b08-b004-2eccf232cd66",
-          "index": 1,
-          "question": "How might the child's cultural background, language, family context, or community connections shape what I am noticing? "
-        },
-        {
-          "id": "10e161ec-213f-453d-b222-46435b4d3c79",
-          "index": 2,
-          "question": "What do I know about this child's ideas, interests, strengths and ways of engaging that might influence how this learning is expressed? "
-        },
-        {
-          "id": "18135d60-728b-40be-b78b-3e32b2d6f0c9",
-          "index": 3,
-          "question": "How might the learning environment be enabling or limiting this learning or participation?"
-        },
-        {
-          "id": "9ba25bd3-e16f-4f25-b8a1-fede41d07cd6",
-          "index": 4,
-          "question": "Am I encouraging dispositions such as curiosity, persistence, flexibility and problem-solving?"
-        },
-        {
-          "id": "f546fa37-aeee-4d09-9d54-24b667b02660",
-          "index": 5,
-          "question": "Am I responding to and attending to the child's developing theories of how the world functions?"
-        },
-        {
-          "id": "bcd441ac-f0e9-4210-9b73-f0012f4ddab1",
-          "index": 6,
-          "question": "How can I use language to extend on this child's thinking?  (e.g. noticing, wondering, discussing, provoking)"
         }
       ]
     }
