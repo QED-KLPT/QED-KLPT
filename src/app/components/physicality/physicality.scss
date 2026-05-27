@@ -49,15 +49,15 @@
 }
 
 :host-context([data-domain-asset-mode="dark-blue"]) .domain-hero__copy {
-  border-left-color: var(--doe-color-primary-dark);
+  border-left-color: var(--doe-color-primary);
 }
 
 :host-context([data-domain-asset-mode="dark-blue"]) .domain-hero .eyebrow {
-  color: var(--doe-color-primary-dark);
+  color: var(--doe-color-primary);
 }
 
 :host-context([data-domain-asset-mode="dark-blue"]) .domain-hero__art img {
-  filter: drop-shadow(0 14px 28px rgba(0, 62, 150, 0.14));
+  filter: drop-shadow(0 14px 28px rgba(0, 94, 184, 0.14));
 }
 
 .domain-overview,

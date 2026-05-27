@@ -18,7 +18,7 @@ type ThemedFoundationNavCard = Omit<FoundationNavCard, 'imageName'> & {
   textColor: string;
 };
 
-const DARK_BLUE_CARD_BACKGROUND = '#003e96';
+const DARK_BLUE_CARD_BACKGROUND = 'var(--doe-color-primary)';
 
 @Component({
   selector: 'app-foundations',
