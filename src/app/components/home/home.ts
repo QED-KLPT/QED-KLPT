@@ -58,7 +58,7 @@ export class Home implements OnInit {
       url: '/learning-domains/language-and-literacy',
       imageSrc: 'assets/img/domain-language-literacy-colour.png',
       imageAlt: 'Language and Literacy illustration',
-      background: 'linear-gradient(135deg, #F6861F 0%, #AC5E16 100%)',
+      background: 'linear-gradient(135deg, #B85A12 0%, #8F4D12 100%)',
       hoverBorderColor: '#AC5E16',
     },
     {
@@ -67,7 +67,7 @@ export class Home implements OnInit {
       url: '/learning-domains/executive-function',
       imageSrc: 'assets/img/domain-executive-function-colour.png',
       imageAlt: 'Executive Function illustration',
-      background: 'linear-gradient(135deg, #0077C1 0%, #005387 100%)',
+      background: 'linear-gradient(135deg, #0069AB 0%, #004A78 100%)',
       hoverBorderColor: '#005387',
     },
     {
@@ -76,7 +76,7 @@ export class Home implements OnInit {
       url: '/learning-domains/social-and-emotional-learning',
       imageSrc: 'assets/img/domain-social-emotional-learning-colour.png',
       imageAlt: 'Social-Emotional Learning illustration',
-      background: 'linear-gradient(135deg, #EA0B8C 0%, #A40862 100%)',
+      background: 'linear-gradient(135deg, #D10A7D 0%, #930758 100%)',
       hoverBorderColor: '#A40862',
     },
     {
@@ -85,7 +85,7 @@ export class Home implements OnInit {
       url: '/learning-domains/physicality',
       imageSrc: 'assets/img/domain-physicality-colour.png',
       imageAlt: 'Physicality illustration',
-      background: 'linear-gradient(135deg, #2A953C 0%, #1D682A 100%)',
+      background: 'linear-gradient(135deg, #247F33 0%, #185922 100%)',
       hoverBorderColor: '#1D682A',
     },
     {
@@ -94,7 +94,7 @@ export class Home implements OnInit {
       url: '/learning-domains/mathematics-and-numeracy',
       imageSrc: 'assets/img/domain-mathematics-numeracy-colour.png',
       imageAlt: 'Mathematics and Numeracy illustration',
-      background: 'linear-gradient(135deg, #CF2027 0%, #91161B 100%)',
+      background: 'linear-gradient(135deg, #BA1C23 0%, #801318 100%)',
       hoverBorderColor: '#91161B',
     },
   ];

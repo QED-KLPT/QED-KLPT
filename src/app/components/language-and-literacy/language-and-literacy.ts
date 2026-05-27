@@ -99,7 +99,7 @@ export class LanguageAndLiteracy implements OnInit {
       description:
         'how children build and organise language and how they show awareness of sounds in words',
       url: '',
-      background: 'linear-gradient(135deg, #F6861F 0%, #AC5E16 100%)',
+      background: 'linear-gradient(135deg, #B85A12 0%, #8F4D12 100%)',
       hoverBorderColor: '#AC5E16',
       imageAlt: 'Sounds and speech',
       imageSrc: 'assets/img/language-and-literacy-sounds-speech.svg',
@@ -109,7 +109,7 @@ export class LanguageAndLiteracy implements OnInit {
       description:
         'how children show they understand and create meaning',
       url: '',
-      background: 'linear-gradient(135deg, #F6861F 0%, #AC5E16 100%)',
+      background: 'linear-gradient(135deg, #B85A12 0%, #8F4D12 100%)',
       hoverBorderColor: '#AC5E16',
       imageAlt: 'Comprehension',
       imageSrc: 'assets/img/language-and-literacy-comprehension.svg',
