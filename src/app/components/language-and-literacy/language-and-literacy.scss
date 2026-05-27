@@ -47,6 +47,22 @@
   filter: drop-shadow(0 14px 28px rgba(156, 100, 32, 0.12));
 }
 
+:host-context([data-domain-asset-mode="dark-blue"]) .domain-hero {
+  background: linear-gradient(180deg, #f2f7ff 0%, #d9e8ff 100%);
+}
+
+:host-context([data-domain-asset-mode="dark-blue"]) .domain-hero__copy {
+  border-left-color: var(--doe-color-primary-dark);
+}
+
+:host-context([data-domain-asset-mode="dark-blue"]) .domain-hero .eyebrow {
+  color: var(--doe-color-primary-dark);
+}
+
+:host-context([data-domain-asset-mode="dark-blue"]) .domain-hero__art img {
+  filter: drop-shadow(0 14px 28px rgba(0, 62, 150, 0.14));
+}
+
 .learning-literacy-data-content {
   padding-bottom: clamp(3rem, 6vw, 5rem);
 }

@@ -1,6 +1,7 @@
 import { CommonModule, ViewportScroller } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
+import { DomainAssetModeService } from '../../services/domain-asset-mode.service';
 
 type MockVideo = {
   title: string;
@@ -23,6 +24,8 @@ type MockColumn = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AnalysingData implements OnInit {
+  protected readonly domainAssets = inject(DomainAssetModeService);
+
   constructor(private scroll: ViewportScroller) {}
 
   ngOnInit(): void {

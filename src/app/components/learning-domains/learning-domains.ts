@@ -1,5 +1,6 @@
 import { ViewportScroller } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, computed, inject } from '@angular/core';
+import { DomainAssetModeService } from '../../services/domain-asset-mode.service';
 import { DomainCard } from '../shared/domain-card/domain-card';
 
 type DomainNavCard = {
@@ -7,10 +8,17 @@ type DomainNavCard = {
   description: string;
   url: string;
   imageAlt: string;
-  imageSrc: string;
+  imageName: string;
   background: string;
   hoverBorderColor: string;
 };
+
+type ThemedDomainNavCard = Omit<DomainNavCard, 'imageName'> & {
+  imageSrc: string;
+  textColor: string;
+};
+
+const DARK_BLUE_CARD_BACKGROUND = '#003e96';
 
 @Component({
   selector: 'app-learning-domains',
@@ -20,19 +28,33 @@ type DomainNavCard = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LearningDomains implements OnInit {
+  private readonly domainAssetMode = inject(DomainAssetModeService);
+
   constructor(private scroll: ViewportScroller) {}
 
   ngOnInit(): void {
     this.scroll.scrollToPosition([0, 0]);
   }
 
-  protected readonly domains: DomainNavCard[] = [
+  protected readonly themedDomains = computed<ThemedDomainNavCard[]>(() => {
+    const isDarkBlue = this.domainAssetMode.mode() === 'dark-blue';
+
+    return this.domains.map((domain) => ({
+      ...domain,
+      imageSrc: this.domainAssetMode.iconPath(domain.imageName),
+      background: isDarkBlue ? DARK_BLUE_CARD_BACKGROUND : domain.background,
+      hoverBorderColor: isDarkBlue ? DARK_BLUE_CARD_BACKGROUND : domain.hoverBorderColor,
+      textColor: isDarkBlue ? '#ffffff' : '',
+    }));
+  });
+
+  private readonly domains: DomainNavCard[] = [
     {
       title: 'Language and Literacy',
       description: 'Support vocabulary, phonological awareness, and early reading and writing skills.',
       url: '/learning-domains/language-and-literacy',
       imageAlt: 'Language and Literacy icon',
-      imageSrc: 'assets/img/domain-language-literacy-colour.png',
+      imageName: 'language-literacy',
       background: 'linear-gradient(135deg, #F6861F 0%, #AC5E16 100%)',
       hoverBorderColor: '#AC5E16',
     },
@@ -41,7 +63,7 @@ export class LearningDomains implements OnInit {
       description: 'Develop working memory, attention, cognitive flexibility, and problem-solving skills.',
       url: '/learning-domains/executive-function',
       imageAlt: 'Executive Function icon',
-      imageSrc: 'assets/img/domain-executive-function-colour.png',
+      imageName: 'executive-function',
       background: 'linear-gradient(135deg, #0077C1 0%, #005387 100%)',
       hoverBorderColor: '#005387',
     },
@@ -50,7 +72,7 @@ export class LearningDomains implements OnInit {
       description: 'Foster self-awareness, emotion regulation, empathy, and positive relationships.',
       url: '/learning-domains/social-and-emotional-learning',
       imageAlt: 'Social-Emotional Learning icon',
-      imageSrc: 'assets/img/domain-social-emotional-learning-colour.png',
+      imageName: 'social-emotional-learning',
       background: 'linear-gradient(135deg, #EA0B8C 0%, #A40862 100%)',
       hoverBorderColor: '#A40862',
     },
@@ -59,7 +81,7 @@ export class LearningDomains implements OnInit {
       description: 'Enhance gross and fine motor skills, coordination, and physical confidence.',
       url: '/learning-domains/physicality',
       imageAlt: 'Physicality icon',
-      imageSrc: 'assets/img/domain-physicality-colour.png',
+      imageName: 'physicality',
       background: 'linear-gradient(135deg, #2A953C 0%, #1D682A 100%)',
       hoverBorderColor: '#1D682A',
     },
@@ -68,7 +90,7 @@ export class LearningDomains implements OnInit {
       description: 'Build number sense, pattern recognition, spatial reasoning, and mathematical thinking.',
       url: '/learning-domains/mathematics-and-numeracy',
       imageAlt: 'Mathematics and Numeracy icon',
-      imageSrc: 'assets/img/domain-mathematics-numeracy-colour.png',
+      imageName: 'mathematics-numeracy',
       background: 'linear-gradient(135deg, #CF2027 0%, #91161B 100%)',
       hoverBorderColor: '#91161B',
     },

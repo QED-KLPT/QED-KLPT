@@ -1,9 +1,10 @@
 import { ViewportScroller } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AccordionItemComponent } from '../shared/accordion-item/accordion-item.component';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
 import { joinWrappedLines } from '../../shared/helpers/join-wrapped-lines';
+import { DomainAssetModeService } from '../../services/domain-asset-mode.service';
 
 type DesignCard = {
   title: string;
@@ -23,6 +24,8 @@ type DesignCard = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Physicality implements OnInit {
+  protected readonly domainAssets = inject(DomainAssetModeService);
+
   constructor(private scroll: ViewportScroller) {}
 
   ngOnInit(): void {
