@@ -67,12 +67,9 @@ export class LanguageAndLiteracy implements OnInit {
     void this.router.navigateByUrl('/klpt');
   }
 
-    protected readonly practiceSupports: { title: string; summary: string; reflection: string[]; accordionItems: { title: string; body: string[] }[]; pdfLabel: string; pdfPath: string } = {
+    protected readonly practiceSupports: { title: string; summary: string; accordionItems: { title: string; body: string[] }[]; pdfLabel: string; pdfPath: string } = {
     title: 'Language and literacy',
     summary: 'Practice supports for language and literacy can help teams strengthen communication-rich environments, shared reading routines, and responsive interactions that invite children to experiment with speaking, listening, reading, and mark making.',
-    reflection: [
-      'Consider what the child is communicating already and how those strengths can be extended through everyday interactions.',
-    ],
     accordionItems: [
       {
         title: 'Intentional teaching strategies',

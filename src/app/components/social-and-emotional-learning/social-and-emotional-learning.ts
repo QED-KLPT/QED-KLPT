@@ -84,12 +84,9 @@ export class SocialAndEmotionalLearning implements OnInit {
     'and emotional learning.',
   ]);
 
-  protected readonly practiceSupports: { title: string; summary: string; reflection: string[]; accordionItems: { title: string; body: string[] }[]; pdfLabel: string; pdfPath: string } = {
+  protected readonly practiceSupports: { title: string; summary: string; accordionItems: { title: string; body: string[] }[]; pdfLabel: string; pdfPath: string } = {
     title: 'Social and emotional learning',
-    summary: 'Support children to recognise feelings, build relationships, and participate with growing confidence through responsive interactions and safe, predictable routines.',
-    reflection: [
-      'Notice how the child communicates emotions, seeks support, and responds to peers in different parts of the day.',
-    ],
+    summary: 'Support children to recognise feelings, build relationships, and participate with growing confidence through responsive interactions and safe, predictable routines.',  
     accordionItems: [
       {
         title: 'Intentional teaching strategies',

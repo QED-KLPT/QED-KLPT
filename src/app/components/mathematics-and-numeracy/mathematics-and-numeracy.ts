@@ -31,12 +31,9 @@ export class MathematicsAndNumeracy implements OnInit {
     this.scroll.scrollToPosition([0, 0]);
   }
 
-  protected readonly practiceSupports: { title: string; summary: string; reflection: string[]; accordionItems: { title: string; body: string[] }[]; pdfLabel: string; pdfPath: string } = {
+  protected readonly practiceSupports: { title: string; summary: string; accordionItems: { title: string; body: string[] }[]; pdfLabel: string; pdfPath: string } = {
     title: 'Mathematics and numeracy',
     summary: 'These supports invite children to explore number, pattern, measurement, spatial reasoning, and problem solving through purposeful play and everyday routines.',
-    reflection: [
-      'Look for the mathematical thinking already present in the child\'s play, language, and decision making.',
-    ],
     accordionItems: [
       {
         title: 'Intentional teaching strategies',

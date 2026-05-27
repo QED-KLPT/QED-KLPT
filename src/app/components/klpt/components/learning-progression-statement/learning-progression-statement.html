@@ -8,6 +8,7 @@
 
     @let domain = selectedDomain();
     @let items = progressionItems();
+    @let reflectiveQuestionsList = reflectiveQuestions();
 
     <article class="statement-card">
       <p class="eyebrow">Evidence statement</p>
@@ -89,14 +90,38 @@
         </section>
       }
 
-      <label class="klpt-form-field klpt-form-field--wide">
-        <span>Professional reflection (learning and development area links, theoretical links, observer's principles and practices)</span>
-        <textarea
-          rows="5"
-          [value]="formValue('professional-reflection')"
-          (input)="updateFormField('professional-reflection', $any($event.target).value)"
-        ></textarea>       
-      </label>
+      <section class="reflection-layout">
+        <label class="klpt-form-field klpt-form-field--wide reflection-layout__field">
+          <span>Professional reflection (learning and development area links, theoretical links, observer's principles and practices)</span>
+          <textarea
+            rows="5"
+            [value]="formValue('professional-reflection')"
+            (input)="updateFormField('professional-reflection', $any($event.target).value)"
+          ></textarea>
+        </label>
+
+        @if (reflectiveQuestionsList.length) {
+          <aside class="reflection-layout__questions" aria-label="Reflective questions for selected learning domain">
+            <div class="reflection-questions-card">
+              <p class="reflection-questions-card__eyebrow">Reflective prompts</p>             
+
+              <div class="reflection-questions-card__accordion-group">
+                <app-accordion-item
+                  title="View reflective questions"
+                  [alt]="true"
+                  [expanded]="true"
+                >
+                  <ul class="reflection-questions-card__list">
+                    @for (question of reflectiveQuestionsList; track question.id) {
+                      <li>{{ question.question }}</li>
+                    }
+                  </ul>
+                </app-accordion-item>
+              </div>
+            </div>
+          </aside>
+        }
+      </section>
 
       <label class="klpt-form-field klpt-form-field--wide">
         <span>How can you support this learning</span>

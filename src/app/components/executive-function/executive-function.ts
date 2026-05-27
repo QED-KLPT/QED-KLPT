@@ -67,12 +67,9 @@ export class ExecutiveFunction implements OnInit {
     'the challenge of tasks while providing support and encouragement.',
   ]);
 
-  protected readonly practiceSupports: { title: string; summary: string; reflection: string[]; accordionItems: { title: string; body: string[] }[]; pdfLabel: string; pdfPath: string } = {
+  protected readonly practiceSupports: { title: string; summary: string; accordionItems: { title: string; body: string[] }[]; pdfLabel: string; pdfPath: string } = {
     title: 'Executive function',
-    summary: 'These supports focus on helping children build attention, working memory, self-regulation, and flexible thinking through predictable routines and intentional scaffolding.',
-    reflection: [
-      'Think about when the child is most regulated and ready to learn, and what environmental cues or adult supports help that happen.',
-    ],
+    summary: 'These supports focus on helping children build attention, working memory, self-regulation, and flexible thinking through predictable routines and intentional scaffolding.',   
     accordionItems: [
       {
         title: 'Intentional teaching strategies',

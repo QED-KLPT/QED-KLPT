@@ -3,13 +3,14 @@ import { NgStyle } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NavigationNodesComponent } from '../../../shared';
 import { KlptBehaviour } from '../../models/klpt-behaviour';
-import { KlptDomain } from '../../models/klpt-domain';
+import { KlptDomain, KlptReflectiveQuestion } from '../../models/klpt-domain';
 import { KlptElement } from '../../models/klpt-element';
 import { NameValuePair } from '../../models/name-value-pair';
 import { SessionModel } from '../../models/session-model';
 import { klptDomainStyle } from '../shared/klpt-domain-colours';
 import { KlptDomainDataService } from '../shared/klpt-domain-data.service';
 import { SessionManagementService } from '../shared/session-management.service';
+import { AccordionItemComponent } from '../../../shared/accordion-item/accordion-item.component';
 
 interface ProgressionItem {
   element: KlptElement;
@@ -19,7 +20,7 @@ interface ProgressionItem {
 
 @Component({
   selector: 'app-learning-progression-statement',
-  imports: [NgStyle, RouterLink, NavigationNodesComponent],
+  imports: [NgStyle, RouterLink, NavigationNodesComponent, AccordionItemComponent],
   templateUrl: './learning-progression-statement.html',
   styleUrl: './learning-progression-statement.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -92,6 +93,12 @@ export class LearningProgressionStatement implements OnInit, OnDestroy {
 
   protected formValue(name: string): string {
     return this.currentSession.formFields.find((field) => field.name === name)?.value ?? '';
+  }
+
+  protected reflectiveQuestions(): KlptReflectiveQuestion[] {
+    return [...(this.selectedDomain()?.reflectiveQuestions ?? [])].sort(
+      (left, right) => left.index - right.index,
+    );
   }
 
   protected updateFormField(name: string, value: string): void {
