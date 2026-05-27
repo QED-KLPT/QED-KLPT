@@ -6,8 +6,8 @@ export interface KlptDomainColour {
 }
 
 const KLPT_BLUE_DOMAIN_COLOUR: KlptDomainColour = {
-  accent: '#003e96',
-  glow: '#003e96',
+  accent: 'var(--doe-color-primary)',
+  glow: 'var(--doe-color-primary)',
 };
 
 const KLPT_DOMAIN_COLOURS: KlptDomainColour[] = [
