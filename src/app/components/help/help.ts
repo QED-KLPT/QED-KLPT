@@ -12,7 +12,7 @@ import { InPageNavComponent, type InPageNavItem } from '../shared/in-page-nav/in
 export class Help implements OnInit {
   inPageNavItems: InPageNavItem[] = [
     { label: 'What is the purpose of the KLPT?', href: '#faq-purpose' },
-    { label: 'What are the five core skills addressed by the KLPT?', href: '#faq-core-skills' },
+    { label: 'What are the 5 core skills addressed by the KLPT?', href: '#faq-core-skills' },
     { label: 'What is included in the KLPT?', href: '#faq-included' },
     { label: 'In what order should I use the KLPT?', href: '#faq-order' },
     { label: 'How do teachers and educators use the KLPT to support the Assessment and Planning Cycle?', href: '#faq-assessment-cycle' },
