@@ -95,6 +95,15 @@
           rows="5"
           [value]="formValue('professional-reflection')"
           (input)="updateFormField('professional-reflection', $any($event.target).value)"
+        ></textarea>       
+      </label>
+
+      <label class="klpt-form-field klpt-form-field--wide">
+        <span>How can you support this learning</span>
+        <textarea
+          rows="5"
+          [value]="formValue('support-learning')"
+          (input)="updateFormField('support-learning', $any($event.target).value)"
         ></textarea>
         <p class="klpt-form-field__hint">
           <a
@@ -105,15 +114,6 @@
             Link to practice supports for {{ selectedDomain()?.name ?? 'professional reflection' }}
           </a>
         </p>
-      </label>
-
-      <label class="klpt-form-field klpt-form-field--wide">
-        <span>How can you support this learning</span>
-        <textarea
-          rows="5"
-          [value]="formValue('support-learning')"
-          (input)="updateFormField('support-learning', $any($event.target).value)"
-        ></textarea>
       </label>
 
       <div class="klpt-step__actions">
