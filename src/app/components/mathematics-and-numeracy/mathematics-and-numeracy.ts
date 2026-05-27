@@ -51,7 +51,7 @@ export class MathematicsAndNumeracy implements OnInit {
       },
     ],
     pdfLabel: 'Download mathematics and numeracy practice supports (PDF)',
-    pdfPath: 'assets/content/pdfs/qklg-principle-collab_part_poster.pdf',
+    pdfPath: 'assets/content/pdfs/qklg-principle-collab_part-poster.pdf',
   };
 
   protected readonly cards: DesignCard[] = [
