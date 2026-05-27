@@ -1,11 +1,12 @@
 import { CommonModule, ViewportScroller } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
 import { AccordionItemComponent } from '../shared/accordion-item/accordion-item.component';
 import { KlptVideoContentService, PageVideoColumn } from '../../services/klpt-video-content.service';
 import { DomainCard } from '../shared/domain-card/domain-card';
+import { DomainAssetModeService } from '../../services/domain-asset-mode.service';
 
 type DesignCard = {
   title: string;
@@ -25,6 +26,7 @@ type DesignCard = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LanguageAndLiteracy implements OnInit {
+  protected readonly domainAssets = inject(DomainAssetModeService);
   protected readonly videoColumns$: Observable<PageVideoColumn[]>;
   private klptTouchStart: { x: number; y: number } | undefined;
 
