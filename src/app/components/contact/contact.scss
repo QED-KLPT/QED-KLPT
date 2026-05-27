@@ -13,6 +13,10 @@
 .contact-content {
   padding-bottom: clamp(3rem, 6vw, 5rem);
 
+  h2 {
+    margin-bottom: 0.85rem;
+  }
+
   p {
     max-width: none;
   }
