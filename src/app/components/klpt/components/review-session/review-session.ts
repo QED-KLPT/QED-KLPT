@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { NavigationNodesComponent } from '../../../shared';
+import { DomainAssetModeService } from '../../../../services/domain-asset-mode.service';
 import { KlptBehaviour } from '../../models/klpt-behaviour';
 import { KlptDomain } from '../../models/klpt-domain';
 import { KlptElement } from '../../models/klpt-element';
@@ -38,6 +39,7 @@ export class ReviewSession implements OnInit, OnDestroy {
   protected readonly domainData = inject(KlptDomainDataService);
   private readonly sessionManagement = inject(SessionManagementService);
   private readonly pdfGenerator = inject(KlptPdfGeneratorService);
+  private readonly domainAssetMode = inject(DomainAssetModeService);
   private readonly router = inject(Router);
 
   public currentSession!: SessionModel;
@@ -170,7 +172,7 @@ export class ReviewSession implements OnInit, OnDestroy {
   }
 
   protected itemStyle(element: KlptElement): Record<string, string> {
-    return klptDomainStyle(this.domainForElement(element)?.index, 2);
+    return klptDomainStyle(this.domainForElement(element)?.index, 2, this.domainAssetMode.mode());
   }
 
   private getRouteSession(): SessionModel {

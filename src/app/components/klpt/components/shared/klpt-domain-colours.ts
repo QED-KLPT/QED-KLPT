@@ -1,7 +1,14 @@
+import { DomainAssetMode } from '../../../../services/domain-asset-mode.service';
+
 export interface KlptDomainColour {
   accent: string;
   glow: string;
 }
+
+const KLPT_BLUE_DOMAIN_COLOUR: KlptDomainColour = {
+  accent: '#003e96',
+  glow: '#003e96',
+};
 
 const KLPT_DOMAIN_COLOURS: KlptDomainColour[] = [
   { accent: '#AC5E16', glow: '#F6861F' },
@@ -19,12 +26,14 @@ export function klptDomainColour(domainIndex: number | undefined): KlptDomainCol
 export function klptDomainStyle(
   domainIndex: number | undefined,
   depth = 0,
+  assetMode: DomainAssetMode = 'colour',
 ): Record<string, string> {
-  const colour = klptDomainColour(domainIndex);
+  const isDarkBlue = assetMode === 'dark-blue';
+  const colour = isDarkBlue ? KLPT_BLUE_DOMAIN_COLOUR : klptDomainColour(domainIndex);
 
   return {
     '--accent': colour.accent,
     '--accent-glow': colour.glow,
-    '--depth-soften': `${depth * 6}%`,
+    '--depth-soften': isDarkBlue ? '0%' : `${depth * 6}%`,
   };
 }
