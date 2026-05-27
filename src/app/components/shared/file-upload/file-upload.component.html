@@ -21,9 +21,9 @@
 
         <div class="qld__form-file-dropzone-area">
           <div [class]="dropzoneClasses" role="group" aria-labelledby="{{ labelId }}">
-            <h3 class="qld__file-input-title">
+            <h2 class="qld__file-input-title">
               {{ getUploadHeadingText() }}
-            </h3>
+            </h2>
 
             @if (getConstraintsList().length > 0) {
               <ul class="qld__file-input-constraints" [attr.id]="descriptionAriaIds">
