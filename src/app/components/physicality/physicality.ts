@@ -66,12 +66,9 @@ export class Physicality implements OnInit {
     'support overall development.',
   ]);
 
-  protected readonly practiceSupports: { title: string; summary: string; reflection: string[]; accordionItems: { title: string; body: string[] }[]; pdfLabel: string; pdfPath: string } = {
+  protected readonly practiceSupports: { title: string; summary: string; accordionItems: { title: string; body: string[] }[]; pdfLabel: string; pdfPath: string } = {
     title: 'Physicality',
-    summary: 'Practice supports in physicality can help educators strengthen coordination, confidence, sensory regulation, and participation across indoor and outdoor experiences.',
-    reflection: [
-      'Think about how the environment, materials, and routines either support or limit the child\'s movement and participation.',
-    ],
+    summary: 'Practice supports in physicality can help educators strengthen coordination, confidence, sensory regulation, and participation across indoor and outdoor experiences.',    
     accordionItems: [
       {
         title: 'Intentional teaching strategies',

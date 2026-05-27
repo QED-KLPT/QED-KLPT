@@ -66,18 +66,7 @@
     <div id="practice-supports" class="practice-supports-inline">
       <h2>Practice supports</h2>
       <p class="practice-supports-inline__summary">{{ practiceSupports.summary }}</p>
-
-      @if (practiceSupports.reflection.length) {
-        <div class="practice-supports-inline__reflection">
-          <h3>Professional reflection questions</h3>
-          <ul>
-            @for (prompt of practiceSupports.reflection; track prompt) {
-              <li>{{ prompt }}</li>
-            }
-          </ul>
-        </div>
-      }
-
+    
       @if (practiceSupports.accordionItems.length) {
         <div class="practice-supports-inline__accordion-group">
           @for (item of practiceSupports.accordionItems; track item.title) {
