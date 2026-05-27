@@ -55,7 +55,7 @@ export class LearningDomains implements OnInit {
       url: '/learning-domains/language-and-literacy',
       imageAlt: 'Language and Literacy icon',
       imageName: 'language-literacy',
-      background: 'linear-gradient(135deg, #F6861F 0%, #AC5E16 100%)',
+      background: 'linear-gradient(135deg, #B85A12 0%, #8F4D12 100%)',
       hoverBorderColor: '#AC5E16',
     },
     {
@@ -64,7 +64,7 @@ export class LearningDomains implements OnInit {
       url: '/learning-domains/executive-function',
       imageAlt: 'Executive Function icon',
       imageName: 'executive-function',
-      background: 'linear-gradient(135deg, #0077C1 0%, #005387 100%)',
+      background: 'linear-gradient(135deg, #0069AB 0%, #004A78 100%)',
       hoverBorderColor: '#005387',
     },
     {
@@ -73,7 +73,7 @@ export class LearningDomains implements OnInit {
       url: '/learning-domains/social-and-emotional-learning',
       imageAlt: 'Social-Emotional Learning icon',
       imageName: 'social-emotional-learning',
-      background: 'linear-gradient(135deg, #EA0B8C 0%, #A40862 100%)',
+      background: 'linear-gradient(135deg, #D10A7D 0%, #930758 100%)',
       hoverBorderColor: '#A40862',
     },
     {
@@ -82,7 +82,7 @@ export class LearningDomains implements OnInit {
       url: '/learning-domains/physicality',
       imageAlt: 'Physicality icon',
       imageName: 'physicality',
-      background: 'linear-gradient(135deg, #2A953C 0%, #1D682A 100%)',
+      background: 'linear-gradient(135deg, #247F33 0%, #185922 100%)',
       hoverBorderColor: '#1D682A',
     },
     {
@@ -91,7 +91,7 @@ export class LearningDomains implements OnInit {
       url: '/learning-domains/mathematics-and-numeracy',
       imageAlt: 'Mathematics and Numeracy icon',
       imageName: 'mathematics-numeracy',
-      background: 'linear-gradient(135deg, #CF2027 0%, #91161B 100%)',
+      background: 'linear-gradient(135deg, #BA1C23 0%, #801318 100%)',
       hoverBorderColor: '#91161B',
     },
   ];

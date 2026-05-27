@@ -224,6 +224,7 @@
 
 .doe-primary-nav__asset-toggle {
   display: inline-flex;
+  width: 8.85rem;
   min-height: 3.15rem;
   flex-shrink: 0;
   align-items: center;
@@ -236,6 +237,11 @@
   font-size: 0.88rem;
   cursor: pointer;
   white-space: nowrap;
+}
+
+.doe-primary-nav__asset-toggle-label {
+  flex: 0 0 4.55rem;
+  text-align: left;
 }
 
 .doe-primary-nav__asset-toggle:hover,
@@ -258,7 +264,7 @@
   align-items: center;
   border: 2px solid var(--doe-color-primary);
   border-radius: 999px;
-  background: #d9dee5;
+  background: #aaaaaa;
   transition:
     border-color 160ms ease,
     background 160ms ease;
@@ -302,6 +308,7 @@
   }
 
   .doe-primary-nav__asset-toggle {
+    width: 3.2rem;
     padding-inline: 0.35rem;
   }
 
