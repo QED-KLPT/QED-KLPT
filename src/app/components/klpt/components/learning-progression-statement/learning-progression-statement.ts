@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@
 import { NgStyle } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NavigationNodesComponent } from '../../../shared';
+import { DomainAssetModeService } from '../../../../services/domain-asset-mode.service';
 import { KlptBehaviour } from '../../models/klpt-behaviour';
 import { KlptDomain } from '../../models/klpt-domain';
 import { KlptElement } from '../../models/klpt-element';
@@ -27,6 +28,7 @@ interface ProgressionItem {
 export class LearningProgressionStatement implements OnInit, OnDestroy {
   private readonly route = inject(ActivatedRoute);
   protected readonly domainData = inject(KlptDomainDataService);
+  private readonly domainAssetMode = inject(DomainAssetModeService);
   private readonly sessionManagement = inject(SessionManagementService);
 
   public currentSession!: SessionModel;
@@ -113,7 +115,7 @@ export class LearningProgressionStatement implements OnInit, OnDestroy {
   }
 
   protected itemStyle(element: KlptElement): Record<string, string> {
-    return klptDomainStyle(this.domainForElement(element)?.index, 2);
+    return klptDomainStyle(this.domainForElement(element)?.index, 2, this.domainAssetMode.mode());
   }
 
   protected practiceSupportsLink(): string[] {

@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@
 import { NgStyle } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NavigationNodesComponent } from '../../../shared';
+import { DomainAssetModeService } from '../../../../services/domain-asset-mode.service';
 import { ElementModel } from '../../models/element-model';
 import { KlptDomain } from '../../models/klpt-domain';
 import { KlptElement } from '../../models/klpt-element';
@@ -21,6 +22,7 @@ import { SessionManagementService } from '../shared/session-management.service';
 export class SelectDomains implements OnInit, OnDestroy {
   private readonly route = inject(ActivatedRoute);
   protected readonly domainData = inject(KlptDomainDataService);
+  private readonly domainAssetMode = inject(DomainAssetModeService);
   private readonly sessionManagement = inject(SessionManagementService);
 
   public currentSession!: SessionModel;
@@ -169,11 +171,11 @@ export class SelectDomains implements OnInit, OnDestroy {
   }
 
   protected panelStyleForDomain(domain: KlptDomain, depth = 0): Record<string, string> {
-    return klptDomainStyle(domain.index, depth);
+    return klptDomainStyle(domain.index, depth, this.domainAssetMode.mode());
   }
 
   protected panelStyleForSelectedDomain(depth = 0): Record<string, string> {
-    return klptDomainStyle(this.selectedDomain()?.index, depth);
+    return klptDomainStyle(this.selectedDomain()?.index, depth, this.domainAssetMode.mode());
   }
 
   private sortByIndex<T extends { index: number }>(items: T[]): T[] {
