@@ -86,7 +86,7 @@ export class ExecutiveFunction implements OnInit {
         ],
       },
     ],
-    pdfLabel: 'Download executive function practice supports (PDF)',
+    pdfLabel: 'Download executive function practice supports (PDF, 1.7MB)',
     pdfPath: 'assets/content/pdfs/26.04.406 K-2 KLPT Executive Function Practice Support_V4.pdf',
   };
 

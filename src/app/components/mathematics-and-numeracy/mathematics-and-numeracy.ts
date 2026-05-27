@@ -50,7 +50,7 @@ export class MathematicsAndNumeracy implements OnInit {
         ],
       },
     ],
-    pdfLabel: 'Download mathematics and numeracy practice supports (PDF)',
+    pdfLabel: 'Download mathematics and numeracy practice supports (PDF, 1.3MB)',
     pdfPath: 'assets/content/pdfs/qklg-principle-collab_part-poster.pdf',
   };
 
