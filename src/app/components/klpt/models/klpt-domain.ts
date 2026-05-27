@@ -1,6 +1,12 @@
 import { KlptElement } from './klpt-element';
 import { KlptSubDomain } from './klpt-sub-domain';
 
+export interface KlptReflectiveQuestion {
+  id: string;
+  index: number;
+  question: string;
+}
+
 export interface KlptDomain {
   id: string;
   index: number;
@@ -8,4 +14,5 @@ export interface KlptDomain {
   summary: string;
   subDomains?: KlptSubDomain[];
   elements?: KlptElement[];
+  reflectiveQuestions?: KlptReflectiveQuestion[];
 }
