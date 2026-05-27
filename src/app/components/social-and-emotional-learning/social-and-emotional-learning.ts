@@ -104,7 +104,7 @@ export class SocialAndEmotionalLearning implements OnInit {
       },
     ],
     pdfLabel: 'Download social and emotional learning practice supports (PDF)',
-    pdfPath: 'assets/content/pdfs/qklg_principle_res_rels_poster.pdf',
+    pdfPath: 'assets/content/pdfs/qklg-principle-res_rels-poster.pdf',
   };
 
   protected readonly cards: DesignCard[] = [
