@@ -224,24 +224,19 @@
 
 .doe-primary-nav__asset-toggle {
   display: inline-flex;
-  width: 8.85rem;
+  width: 4.25rem;
   min-height: 3.15rem;
   flex-shrink: 0;
   align-items: center;
-  gap: 0.55rem;
+  justify-content: center;
   border: 0;
-  padding: 0.7rem 0.35rem 0.7rem 0.85rem;
+  padding: 0.7rem 0.55rem;
   background: transparent;
   color: var(--doe-color-text);
   font: inherit;
   font-size: 0.88rem;
   cursor: pointer;
   white-space: nowrap;
-}
-
-.doe-primary-nav__asset-toggle-label {
-  flex: 0 0 4.55rem;
-  text-align: left;
 }
 
 .doe-primary-nav__asset-toggle:hover,
@@ -308,7 +303,7 @@
   }
 
   .doe-primary-nav__asset-toggle {
-    width: 3.2rem;
+    width: 3.7rem;
     padding-inline: 0.35rem;
   }
 
@@ -326,14 +321,6 @@
     transform: translateX(1.1rem);
   }
 
-  .doe-primary-nav__asset-toggle-label {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    white-space: nowrap;
-  }
 }
 
 @media (max-width: 48rem) {
