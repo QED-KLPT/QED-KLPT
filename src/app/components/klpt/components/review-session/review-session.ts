@@ -20,6 +20,7 @@ import { klptDomainStyle } from '../shared/klpt-domain-colours';
 import { KlptDomainDataService } from '../shared/klpt-domain-data.service';
 import { SessionManagementService } from '../shared/session-management.service';
 import { KlptPdfGeneratorService } from '../../../../services/klpt-pdf-generator.service';
+import { HIGHEST_BEHAVIOUR_HTML } from '../shared/klpt-constants';
 
 interface ReviewProgressionItem {
   element: KlptElement;
@@ -48,6 +49,9 @@ export class ReviewSession implements OnInit, OnDestroy {
   protected childName = '';
   protected isGeneratePdfModalOpen = false;
   private isLeavingAfterPdf = false;
+
+  protected readonly highestBehaviourText = HIGHEST_BEHAVIOUR_HTML;
+
 
   ngOnInit(): void {
     this.currentSession = this.getRouteSession();
@@ -137,12 +141,16 @@ export class ReviewSession implements OnInit, OnDestroy {
           return undefined;
         }
 
+        const behaviourIndex = element.behaviours.findIndex(
+          (candidate) => candidate.id === behaviour.id,
+        );
+
         return {
           element,
           behaviour,
-          nextBehaviour: element.behaviours.find(
-            (candidate) => candidate.index === behaviour.index + 1,
-          ),
+          nextBehaviour: behaviourIndex >= 0
+            ? element.behaviours[behaviourIndex + 1]
+            : undefined,
         };
       })
       .filter((item): item is ReviewProgressionItem => Boolean(item));

@@ -12,6 +12,7 @@ import { klptDomainStyle } from '../shared/klpt-domain-colours';
 import { KlptDomainDataService } from '../shared/klpt-domain-data.service';
 import { SessionManagementService } from '../shared/session-management.service';
 import { AccordionItemComponent } from '../../../shared/accordion-item/accordion-item.component';
+import { HIGHEST_BEHAVIOUR_HTML } from '../shared/klpt-constants';
 
 interface ProgressionItem {
   element: KlptElement;
@@ -33,6 +34,8 @@ export class LearningProgressionStatement implements OnInit, OnDestroy {
   private readonly sessionManagement = inject(SessionManagementService);
 
   public currentSession!: SessionModel;
+
+  protected readonly highestBehaviourText = HIGHEST_BEHAVIOUR_HTML;
 
   ngOnInit(): void {
     this.currentSession = this.getRouteSession();
@@ -82,12 +85,16 @@ export class LearningProgressionStatement implements OnInit, OnDestroy {
           return undefined;
         }
 
+        const behaviourIndex = element.behaviours.findIndex(
+          (candidate) => candidate.id === behaviour.id,
+        );
+
         return {
           element,
           behaviour,
-          nextBehaviour: element.behaviours.find(
-            (candidate) => candidate.index === behaviour.index + 1,
-          ),
+          nextBehaviour: behaviourIndex >= 0
+            ? element.behaviours[behaviourIndex + 1]
+            : undefined,
         };
       })
       .filter((item): item is ProgressionItem => Boolean(item));
