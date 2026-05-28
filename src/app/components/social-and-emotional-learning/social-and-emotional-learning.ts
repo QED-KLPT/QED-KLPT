@@ -104,7 +104,7 @@ export class SocialAndEmotionalLearning implements OnInit {
       },
     ],
     pdfLabel: 'Download social and emotional learning practice supports (PDF, 1.3MB)',
-    pdfPath: 'assets/content/pdfs/qklg-principle-res_rels-poster.pdf',
+    pdfPath: 'assets/content/pdfs/qklg-principle-rrls-poster.pdf',
   };
 
   protected readonly cards: DesignCard[] = [
@@ -116,7 +116,7 @@ export class SocialAndEmotionalLearning implements OnInit {
       background: 'linear-gradient(135deg, #D10A7D 0%, #930758 100%)',
       hoverBorderColor: '#A40862',
       imageAlt: 'Self-Regulation icon - child managing emotions',
-      imageSrc: 'assets/img/domain-social-emotional-learning-colour.png',
+      imageSrc: 'assets/img/domain/colour/domain-soc-emot-lrn-col.png',
     },
     {
       title: 'Sed Do Eiusmod Tempor',
@@ -126,7 +126,7 @@ export class SocialAndEmotionalLearning implements OnInit {
       background: 'linear-gradient(135deg, #D10A7D 0%, #930758 100%)',
       hoverBorderColor: '#A40862',
       imageAlt: 'Social Skills icon - children playing together',
-      imageSrc: 'assets/img/domain-social-emotional-learning-colour.png',
+      imageSrc: 'assets/img/domain/colour/domain-soc-emot-lrn-col.png',
     },
     {
       title: 'Ut Labore Et Dolore',
@@ -136,7 +136,7 @@ export class SocialAndEmotionalLearning implements OnInit {
       background: 'linear-gradient(135deg, #D10A7D 0%, #930758 100%)',
       hoverBorderColor: '#A40862',
       imageAlt: 'Emotional Awareness icon - child expressing feelings',
-      imageSrc: 'assets/img/domain-social-emotional-learning-colour.png',
+      imageSrc: 'assets/img/domain/colour/domain-soc-emot-lrn-col.png',
     },
     {
       title: 'Consectetur Adipiscing',
@@ -146,7 +146,7 @@ export class SocialAndEmotionalLearning implements OnInit {
       background: 'linear-gradient(135deg, #D10A7D 0%, #930758 100%)',
       hoverBorderColor: '#A40862',
       imageAlt: 'Relationship Building icon - child hugging peer',
-      imageSrc: 'assets/img/domain-social-emotional-learning-colour.png',
+      imageSrc: 'assets/img/domain/colour/domain-soc-emot-lrn-col.png',
     },
     {
       title: 'Duis aute Irure',
@@ -156,7 +156,7 @@ export class SocialAndEmotionalLearning implements OnInit {
       background: 'linear-gradient(135deg, #D10A7D 0%, #930758 100%)',
       hoverBorderColor: '#A40862',
       imageAlt: 'Social Understanding icon - child in group setting',
-      imageSrc: 'assets/img/domain-social-emotional-learning-colour.png',
+      imageSrc: 'assets/img/domain/colour/domain-soc-emot-lrn-col.png',
     },
     {
       title: 'Voluptate Velit Esse',
@@ -166,7 +166,7 @@ export class SocialAndEmotionalLearning implements OnInit {
       background: 'linear-gradient(135deg, #D10A7D 0%, #930758 100%)',
       hoverBorderColor: '#A40862',
       imageAlt: 'Confidence and Independence icon - child trying new activity',
-      imageSrc: 'assets/img/domain-social-emotional-learning-colour.png',
+      imageSrc: 'assets/img/domain/colour/domain-soc-emot-lrn-col.png',
     },
   ];
 }
