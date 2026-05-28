@@ -78,6 +78,11 @@
                     <h3>What is likely to be the next step in learning progression</h3>
                     <div [innerHTML]="item.nextBehaviour.description"></div>
                   </div>
+                } @else {               
+                  <div class="klpt-evidence-panel">
+                    <h3>What is likely to be the next step in learning progression</h3>
+                    <div [innerHTML]="highestBehaviourText"></div>
+                  </div>
                 }
               </div>
             </article>
