@@ -5,6 +5,7 @@ import { KlptDomainDataService } from '../components/klpt/components/shared/klpt
 import type { KlptBehaviour } from '../components/klpt/models/klpt-behaviour';
 import type { KlptDomain } from '../components/klpt/models/klpt-domain';
 import type { KlptElement } from '../components/klpt/models/klpt-element';
+import { HIGHEST_BEHAVIOUR_HTML } from '../components/klpt/components/shared/klpt-constants';
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
                 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -207,11 +208,15 @@ export class KlptPdfGeneratorService {
   ): number {
     const gap = 3;
     const panelAreaWidth = contentWidth - 10;
-    const panelWidth = item.nextBehaviour ? (panelAreaWidth - gap) / 2 : panelAreaWidth;
+    const nextText = item.nextBehaviour
+      ? this.htmlToText(item.nextBehaviour.description)
+      : this.htmlToText(HIGHEST_BEHAVIOUR_HTML);
     const observedText = this.htmlToText(item.behaviour.description);
-    const nextText = item.nextBehaviour ? this.htmlToText(item.nextBehaviour.description) : '';
+    const panelWidth = nextText ? (panelAreaWidth - gap) / 2 : panelAreaWidth;
+
+
     const observedHeight = this.measurePanelHeight(doc, panelWidth, 'What you observed', observedText);
-    const nextHeight = item.nextBehaviour
+    const nextHeight = nextText
       ? this.measurePanelHeight(doc, panelWidth, 'What is likely to be the next step in learning progression', nextText)
       : 0;
     const itemHeight = 15 + Math.max(observedHeight, nextHeight);
@@ -232,7 +237,7 @@ export class KlptPdfGeneratorService {
     const panelY = y + 13;
     this.addEvidencePanel(doc, margin + 5, panelY, panelWidth, observedHeight, 'What you observed', observedText);
 
-    if (item.nextBehaviour) {
+    if (nextText) {
       this.addEvidencePanel(
         doc,
         margin + 5 + panelWidth + gap,
