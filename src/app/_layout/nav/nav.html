@@ -163,13 +163,11 @@
           role="switch"
           [attr.aria-checked]="domainAssetMode.mode() === 'dark-blue'"
           [attr.aria-label]="domainAssetMode.mode() === 'dark-blue' ? 'Use colour domain icons' : 'Use dark blue domain icons'"
+          [attr.title]="domainAssetMode.mode() === 'dark-blue' ? 'Use colour domain icons' : 'Use dark blue domain icons'"
           (click)="toggleDomainAssetMode()"
         >
           <span class="doe-primary-nav__asset-toggle-track" aria-hidden="true">
             <span class="doe-primary-nav__asset-toggle-thumb"></span>
-          </span>
-          <span class="doe-primary-nav__asset-toggle-label">
-            {{ domainAssetMode.mode() === 'dark-blue' ? 'Blue' : 'Colour' }}
           </span>
         </button>
       </li>
