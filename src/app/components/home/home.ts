@@ -83,7 +83,7 @@ export class Home implements OnInit {
       title: 'Physicality',
       description: 'Enhance gross and fine motor skills, coordination, and physical confidence.',
       url: '/learning-domains/physicality',
-      imageSrc: 'assets/img/domain-physicality-colour.png',
+      imageSrc: 'assets/img/domain/colour/domain-physicality-colour.png',
       imageAlt: 'Physicality illustration',
       background: 'linear-gradient(135deg, #247F33 0%, #185922 100%)',
       hoverBorderColor: '#1D682A',
