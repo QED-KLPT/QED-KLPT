@@ -75,7 +75,7 @@
                   "id": "f9580e54-b4cd-4436-ae40-5206608c5213",
                   "index": 2,
                   "name": "Gesture-Based Responses",
-                  "description": "<ul><li>Mainly relies on gestures in responding to questions or making requests (e.g., shakes head, or points).</li></ul>"
+                  "description": "<ul><li>Mainly relies on gesture in responding to questions or making requests (e.g., shakes head, or points).</li></ul>"
                 },
                 {
                   "id": "2f9db13b-0529-43f2-86f2-1f7cded0581d",
@@ -217,19 +217,19 @@
                   "id": "8fdbdd7c-eb22-4af5-b5ae-22f481b6d1cf",
                   "index": 3,
                   "name": "Identifies Familiar Text Purposes",
-                  "description": "<ul><li>Identifies the purpose of highly familiar texts (e.g., this text tells a story, this one is for cooking, this is a shopping list).</li><li>Distinguishes factual texts from fictional texts.</li></ul>"
+                  "description": "<ul><li>Explains the purpose of highly familiar texts (e.g., this text tells a story, this one is for cooking, this is a shopping list).</li><li>Distinguishes factual texts from fictional texts.</li></ul>"
                 },
                 {
                   "id": "e72cc297-08ee-4fa5-a949-34361b6a3d16",
                   "index": 4,
                   "name": "Identifies Text Types",
-                  "description": "<ul><li>Identifies the purpose of a few different text types and features (e.g., fairytales, nursery rhymes, show and tell).</li></ul>"
+                  "description": "<ul><li>Explains the purpose of a few distinct text types and features (e.g., fairytales, nursery rhymes, show and tell).</li></ul>"
                 },
                 {
                   "id": "587cc59c-08a0-4d99-a73f-c06fc6ed2e87",
                   "index": 5,
                   "name": "Identifies Many Text Purposes",
-                  "description": "<ul><li>Identifies the purpose of a range of familiar text types and features (e.g., Dreamtime stories, recipes, craft instructions, fables, myths, lists, labels).</li></ul>"
+                  "description": "<ul><li>Explains the purpose of a range of familiar text types and features (e.g., Dreamtime stories, recipes, craft instructions, fables, myths, lists, labels).</li></ul>"
                 }
               ]
             }
@@ -289,31 +289,31 @@
               "id": "6f3e0316-1f04-4d9f-9d02-47e51cf0e633",
               "index": 1,
               "name": "Supported Task Engagement",
-              "description": "<ul><li>Observes tasks being performed by others, preparing to undertake one element of the task.</li><li>Completes a single element of a highly structured task (e.g., finds their bag when they need to put their bag on their back).</li><li>Demonstrates joint attention (e.g., in a group situation, directs their attention toa specified object when prompted).</li><li>Requires assistance from others to stay engaged, (e.g., provision of simple, manageable tasks).</li><li>Relies on routines, visual schedules and scaled prompts to initiate engagement with activities and tasks.</li><li>Rarely recognises a need for help.</li></ul>"
+              "description": "<ul><li>Observes tasks being performed by others, preparing to undertake one element of the task.</li><li>Completes a single element of a highly structured tasks (e.g., finds their bag when they need to put their bag on their back).</li><li>Demonstrates joint attention (e.g., in a group situation, can direct their attention on the same object when prompted).</li><li>Requires assistance from others to stay engaged, (e.g., provision of simple, manageable tasks).</li><li>Relies on routines, schedules and prompts to engage with activities and tasks effectively.</li></ul>"
             },
             {
               "id": "407aa61b-91d0-4731-b69a-e02db8ac9b68",
               "index": 2,
               "name": "Routine Task Persistence",
-              "description": "<ul><li>Completes simple, routine tasks with one step instructions (e.g., putting their bag in their locker).</li><li>Maintains focus despite minor distractions (e.g., staying on task, ignoring peers playing nearby).</li><li>Persists through a small setback or challenge (e.g., when equipment is missing).</li><li>Waits for their turn in a game with one other person or when asked to line-up for a short period.</li><li>Requires reassurance with tasks that are new or challenging.</li><li>Engages best when verbal and visual prompts are provided throughout a task.</li><li>Requires instructions to be repeated.</li><li>May pause when they need help but may not initiate requests for help.</li></ul>"
+              "description": "<ul><li>Completes simple, routine tasks with one step instructions (e.g., putting their bag in their locker).</li><li>Maintains focus despite minor distractions (e.g., staying on task, ignoring the sounds of peers playing nearby).</li><li>Persists through small setbacks or challenges (e.g., when equipment is missing).</li><li>Waits for their turn in a game with one other person or when asked to line-up for a short period.</li><li>Requires reassurance with tasks that are new or challenging.</li><li>Engages best when verbal and visual prompts are provided for a task.</li><li>Requires instructions to be repeated.</li><li>May not identify when they need help.</li></ul>"
             },
             {
               "id": "6e145b2c-5aa2-4842-b539-f2bcd6946fbe",
               "index": 3,
               "name": "Multi-Step Persistence",
-              "description": "<ul><li>Persists with tasks involving multiple steps that require some time, effort, and patience (e.g., building a block tower).</li><li>Maintains focused attention when engaged in preferred tasks.</li><li>Persists through one or two set-backs but may require support if challenges continue (e.g., trying to put shoes on)</li><li>Waits for their turn in a game involving two or three people (e.g., they are last in a line of children waiting and they do not express frustration verbally or physically).</li><li>May initiate new or challenging tasks.</li><li>Aware of needing help but may not always ask for it.</li></ul>"
+              "description": "<ul><li>Persists with tasks involving multiple steps that require some time, effort, and patience (e.g., building a block tower).</li><li>Maintains focused attention when engaged in preferred tasks.</li><li>Persists after an initial set-back but may require support if challenges continue (e.g., trying to put shoes on).</li><li>Waits for their turn in a game involving two or three people (e.g., they are last in a line of children waiting and they do not express frustration verbally or physically).</li><li>May show hesitance with new or challenging tasks.</li><li>Aware of needing help but may not always ask for it.</li></ul>"
             },
             {
               "id": "f52eae40-c79a-46d4-8ffa-59b392bc674c",
               "index": 4,
               "name": "Independent Persistence",
-              "description": "<ul><li>Persists with tasks involving more than three steps which require time, effort and patience (e.g., solving a multipiece puzzle, playing a game with several players).</li><li>Resists distractions when focused on a task involving several steps (e.g., background noise, peers playing close-by, and lunch is being served).</li><li>Attempts to manage set-backs and persist independently. May ask a peer or adult for help.</li><li>Waits patiently for their turn when a game or task demands it (e.g., in a game of UNO if it is their turn next, but then order is reversed, so they now have to wait longer to have their turn).</li><li>Seeks specific reassurance and responds appropriately to feedback when persisting with new or challenging tasks.</li></ul>"
+              "description": "<ul><li>Persists with tasks involving more than three steps which require time, effort and patience (e.g., solving a multipiece puzzle, playing a game with several players).</li><li>Resists distractions when focused on a new task (e.g., background noise, peers playing close-by, and lunch is being served).</li><li>Attempts to manage set-backs and persist independently. May ask a peer or adult for help.</li><li>Waits patiently for their turn when a game or task demands it (e.g., in a game of UNO if it is their turn next, but then order is reversed, so they now have to wait longer to have their turn).</li><li>Seeks reassurance and responds appropriately to the feedback.</li></ul>"
             },
             {
               "id": "7aa26f37-ed92-4e06-b387-9a9958c67ca8",
               "index": 5,
               "name": "Supports Others' Persistence",
-              "description": "<ul><li>Manages multiple different setbacks and distractions throughout complex tasks (tailored to the child's ability).</li><li>Supports others by providing strategies for managing setbacks.</li><li>Actively congratulates others, recognising their persistence, and helps or encourages them.</li><li>Demonstrates patience and consideration when waiting for others to take their turn.</li><li>Completes multi-step, goal-oriented tasks independently and successfully.</li></ul>"
+              "description": "<ul><li>Manages multiple different setbacks and distractions throughout complex tasks (tailored to the child's ability).</li><li>Supports others by providing strategies for managing setbacks.</li><li>Actively congratulates others, recognizing their persistence, and helps or encourages them.</li><li>Demonstrates patience and consideration when waiting for others to take their turn.</li><li>Completes multi-step, goal-oriented tasks independently and successfully.</li></ul>"
             }
           ]
         },
@@ -326,25 +326,25 @@
               "id": "3bca8bdd-549b-4d1a-8311-1f1f419b714e",
               "index": 1,
               "name": "Familiar Routine Strategies",
-              "description": "<ul><li>Engages in elements of routine tasks using familiar methods and strategies.</li><li>May participate in new tasks or activitiesthrough observation or with supportive prompts.</li><li>May require repetition and tailored guidance tofeel confident with new tasks or activities.</li></ul>"
+              "description": "<ul><li>Engages in routine tasks using familiar methods and strategies.</li><li>Engages with new tasks or activities.</li><li>May take time to feel confident with new tasks or activities.</li></ul>"
             },
             {
               "id": "c2a7299f-61b7-4adb-933f-f6e1df2a95e8",
               "index": 2,
               "name": "Adapts to Small Changes",
-              "description": "<ul><li>Adapts when small changes are made to daily routines (e.g., a change to the order of activities).</li><li>Adapts to a small change made midway through an activity or game, (e.g., when a peer suggests a different way to build the tower).</li><li>Investigates unfamiliar learning environments or materials through observation.</li><li>Participates in simple activities where thinking is required, and extensive practice and supportive cuesare provided.</li><li>Participates in tasks where trial and error are involved, with opportunities to experiment and try out a simple hypothesis.</li></ul>"
+              "description": "<ul><li>Adapts when small changes are made to daily routines (e.g., a change to the order of activities).</li><li>Adapts to a small change made midway through an activity or game, (e.g., when a peer suggests a different way to build the tower).</li><li>Explores unfamiliar learning environments or materials.</li><li>Participates in simple activities where thinking is required, and extensive practice and supportive clues are provided.</li><li>Participates in tasks where trial and error are involved, with opportunities to experiment and try out a hypothesis.</li></ul>"
             },
             {
               "id": "151b48a9-339a-4e11-9252-6e06cece3b50",
               "index": 3,
               "name": "Adapts With Support",
-              "description": "<ul><li>Adapts to major changes to daily routines with support (e.g., switching from indoor playtime to an unexpected trip outdoors), though may still become slightly over-excited, or anxious.</li><li>Adapts to a complex change made mid-way through an activity or game (e.g., shifting from building anaeroplane with blocks to building a car).</li><li>Investigates unfamiliar learning environments or materials (may tend to focus on a few elements only or areas more in line with their interests).</li><li>Participates in tasks using one or two strategies, to try out a hypothesis with some guidance.</li></ul>"
+              "description": "<ul><li>Adapts to major changes to daily routines (however, may still become slightly over-excited, or anxious).</li><li>Adapts to a more complex change made mid-way through an activity or game (e.g., the game has changed from building an aeroplane with blocks to building a car).</li><li>Explores unfamiliar learning environments or materials (may tend to focus on a few elements only or areas more in line with their interests).</li><li>Participates in tasks where they can engage in trial and error, where solutions are not obvious, to experiment and try out a hypothesis with some guidance.</li></ul>"
             },
             {
               "id": "2313be49-50e5-4c2d-a75d-b569269c21b8",
               "index": 4,
               "name": "Flexible Independent Adaptation",
-              "description": "<ul><li>Adapts to major changes in daily routines without requiring support (e.g., adjusting to relief staff when familiar teachers and educators are absent).</li><li>Flexibly adapts to multiple changes throughout an activity or game (e.g., switching roles or tasks in a group project as needed).</li><li>Thoroughly investigatesnew contexts or materials, seeking opportunities to explore new environments and resources to extend their learning.</li><li>Participates in tasks where they can engage in using higher order thinking skills, confidently experimenting and formulating their own hypotheses needing minimal guidance.</li></ul>"
+              "description": "<ul><li>Adapts to major changes in daily routines without requiring support.</li><li>Flexibly adapts to multiple changes throughout an activity or game.</li><li>Thoroughly explores new contexts or materials, seeking opportunities to explore new environments and resources to extend their learning.</li><li>Participates in tasks where they can engage in using higher order thinking skills, confidently experimenting and formulating their own hypothesis needing minimal guidance.</li></ul>"
             },
             {
               "id": "89985897-e1d0-4f3f-873e-034356425745",
@@ -375,19 +375,19 @@
               "id": "ab181854-236f-404f-802c-2368df534c94",
               "index": 3,
               "name": "Guided Strategy Reflection",
-              "description": "<ul><li>Demonstrates 1-2 strategies to solve a problem using unfamiliar materials (e.g., construction of a three-dimensional object using recycled materials).</li><li>Experiments with at least two different, familiar strategiesto solve a problem. (e.g., how to negotiate a play space with peers, but requires some hints and ideas to try more imaginative and potentially effective approaches from a teacher or educator).</li><li>Describes, with prompting, some aspects of how they attempted to solve a problem. When prompted they can reflect on what worked or did not work, reflecting on the strategies they used.</li><li>Plans an activity with a peer that happens across different timeswithin one day (e.g., putting on a simple play including assigning roles, simple costumes, and a basic plot) as well as adjusting to minor disruptions (e.g., a conflict between two children wanting the same costume).</li><li>Reflects on their own responses and may change their solution in response to feedback.</li></ul>"
+              "description": "<ul><li>Communicates 1-2 ideas for how a problem with unfamiliar materials might be solved (e.g., construction of a three-dimensional object using recycled materials).</li><li>Experiments with at least two different, familiar ways to solve a problem. (e.g., how to negotiate a play space with peers, but requires some hints and ideas to try more imaginative and potentially effective approaches from a teacher or educator).</li><li>Describes, with prompting, some aspects of how they attempted to solve a problem. When prompted they can communicate what worked or did not work, reflecting on what they did.</li><li>Independently plans and sequences an activity that happens within one day (e.g., putting on a simple play including assigning roles, simple costumes, and a basic plot) as well as adjusting to minor disruptions (e.g., a conflict between two children wanting the same costume).</li><li>Evaluates their own responses and may change their solution in response to feedback.</li></ul>"
             },
             {
               "id": "b2dcfc4c-b135-4856-ad09-d6af3b78cf88",
               "index": 4,
               "name": "Flexible Problem Planning",
-              "description": "<ul><li>Demonstrates several strategiesfor how an unfamiliar problem might be solved (e.g., how to dismantle a piece of unfamiliar equipment with spanners and screwdrivers).</li><li>Experiments with diverse and imaginative ways to solve an unfamiliar problem (e.g., incorporating new and unfamiliar resources into an activity).</li><li>Describes how they attempted to solve a problem providing some reasons for what they did, or did not do, why it worked or did not work and what they might do differently next time.</li><li>Collaboratively plan and sequence an activity with peers that involves a series of steps to take place over two or more days (e.g., putting on an elaborate play with a detailed plot and consideration of how to engage the audience), including adjusting to disruptions and unanticipated events (e.g., rain during an outdoor scene in the play).</li></ul>"
+              "description": "<ul><li>Communicates several ideas for how an unfamiliar problem might be solved (e.g., how to dismantle a piece of unfamiliar equipment with spanners and screwdrivers).</li><li>Experiments with diverse and imaginative ways to solve an unfamiliar problem (e.g., incorporating new and unfamiliar resources into an activity).</li><li>Describes, without prompting, how they attempted to solve a problem providing some reasons for what they did, or did not do, why it worked or did not work and what they might do differently next time.</li><li>Independently or collaboratively plan and sequence an activity with peers that involves a series of steps to take place over two or more days (e.g., putting on an elaborate play with a detailed plot and consideration of how to engage the audience), including adjusting to disruptions and unanticipated events (e.g., rain during an outdoor scene in the play).</li></ul>"
             },
             {
               "id": "b5adaa54-a3f3-44f5-9d72-56e362838e00",
               "index": 5,
               "name": "Leads Problem Solving",
-              "description": "<ul><li>Leads others through strategies to problems.</li><li>Provides a range of strategies for different contexts.</li><li>Provides solutions that challenge existing rules or conventional ways of doing things (e.g., rewrites rules in games to increase their challenge) or to make them easier for others.</li></ul>"
+              "description": "<ul><li>Leads others through solutions to problems.</li><li>Provides a range of solutions for different purposes.</li><li>Provides solutions that challenge rules or understood ways of doing things.</li><li>Rewrites rules to games to increase their challenge.</li></ul>"
             }
           ]
         }
