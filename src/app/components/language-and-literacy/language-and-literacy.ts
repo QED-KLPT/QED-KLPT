@@ -1,5 +1,5 @@
 import { CommonModule, ViewportScroller } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, computed, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
@@ -17,6 +17,12 @@ type DesignCard = {
   hoverBorderColor: string;
   imageSrc: string;
 };
+
+type ThemedDesignCard = DesignCard & {
+  textColor: string;
+};
+
+const DARK_BLUE_CARD_BACKGROUND = '#003e96';
 
 @Component({
   selector: 'app-language-and-literacy',
@@ -90,7 +96,18 @@ export class LanguageAndLiteracy implements OnInit {
     pdfPath: 'assets/content/pdfs/26.04.406 K-2 KLPT Language and Literacy practice support_V3.pdf',
   };
 
-  protected readonly cards: DesignCard[] = [
+  protected readonly themedCards = computed<ThemedDesignCard[]>(() => {
+    const isDarkBlue = this.domainAssets.mode() === 'dark-blue';
+
+    return this.cards.map((card) => ({
+      ...card,
+      background: isDarkBlue ? DARK_BLUE_CARD_BACKGROUND : card.background,
+      hoverBorderColor: isDarkBlue ? DARK_BLUE_CARD_BACKGROUND : card.hoverBorderColor,
+      textColor: isDarkBlue ? '#ffffff' : '',
+    }));
+  });
+
+  private readonly cards: DesignCard[] = [
     {
       title: 'Sounds and speech',
       description:

@@ -1,5 +1,5 @@
 import { ViewportScroller } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AccordionItemComponent } from '../shared/accordion-item/accordion-item.component';
 import { DomainCard } from '../shared/domain-card/domain-card';
@@ -17,6 +17,12 @@ type DesignCard = {
   imageSrc: string;
 };
 
+type ThemedDesignCard = DesignCard & {
+  textColor: string;
+};
+
+const DARK_BLUE_CARD_BACKGROUND = '#003e96';
+
 @Component({
   selector: 'app-executive-function',
   imports: [DomainCard, RouterLink, AccordionItemComponent, YoutubePlayerModule],
@@ -26,6 +32,17 @@ type DesignCard = {
 })
 export class ExecutiveFunction implements OnInit {
   protected readonly domainAssets = inject(DomainAssetModeService);
+
+  protected readonly themedCards = computed<ThemedDesignCard[]>(() => {
+    const isDarkBlue = this.domainAssets.mode() === 'dark-blue';
+
+    return this.cards.map((card) => ({
+      ...card,
+      background: isDarkBlue ? DARK_BLUE_CARD_BACKGROUND : card.background,
+      hoverBorderColor: isDarkBlue ? DARK_BLUE_CARD_BACKGROUND : card.hoverBorderColor,
+      textColor: isDarkBlue ? '#ffffff' : '',
+    }));
+  });
 
   constructor(private scroll: ViewportScroller) {}
 
@@ -90,7 +107,7 @@ export class ExecutiveFunction implements OnInit {
     pdfPath: 'assets/content/pdfs/26.04.406 K-2 KLPT Executive Function Practice Support_V4.pdf',
   };
 
-  protected readonly cards: DesignCard[] = [
+  private readonly cards: DesignCard[] = [
     {
       title: 'Persistence',
       description:

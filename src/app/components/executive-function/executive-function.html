@@ -99,7 +99,7 @@
       <h2>Executive Function key elements</h2>
     </div>
     <div class="card-grid">
-      @for (card of cards; track card.title) {
+      @for (card of themedCards(); track card.title) {
         <app-domain-card
           [title]="card.title"
           [description]="card.description"
@@ -108,6 +108,7 @@
           [hoverBorderColor]="card.hoverBorderColor"
           [imageSrc]="card.imageSrc"
           [imageAlt]="card.imageAlt"
+          [textColor]="card.textColor"
         />
       }
     </div>
