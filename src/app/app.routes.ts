@@ -45,6 +45,7 @@ import { TestingSelect } from './components/testing/testing-select/testing-selec
 import { TestingTables } from './components/testing/testing-tables/testing-tables';
 import { TestingTag } from './components/testing/testing-tag/testing-tag';
 import { TestingSideNavigation } from './components/testing/testing-side-navigation/testing-side-navigation';
+import { Sitemap } from './components/sitemap/sitemap';
 
 
 export const routes: Routes = [
@@ -74,6 +75,7 @@ export const routes: Routes = [
   { path: 'about', component: About, title: 'About' },
   { path: 'help', component: Help, title: 'Help' },
   { path: 'contact', component: Contact, title: 'Contact' },
+  { path: 'sitemap', component: Sitemap, title: 'Site map' },
   { path: 'testing-alerts', component: TestingAlerts, title: 'Testing Alerts' },
   { path: 'testing-accordians', component: TestingAccordians, title: 'Testing Accordions' },
   { path: 'testing-text-area', component: TestingTextarea, title: 'Testing Text Area' },
