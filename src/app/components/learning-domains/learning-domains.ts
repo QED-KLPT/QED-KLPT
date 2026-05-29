@@ -11,14 +11,14 @@ type DomainNavCard = {
   imageName: string;
   background: string;
   hoverBorderColor: string;
+  blueBackground: string;
+  blueHoverBorderColor: string;
 };
 
 type ThemedDomainNavCard = Omit<DomainNavCard, 'imageName'> & {
   imageSrc: string;
   textColor: string;
 };
-
-const DARK_BLUE_CARD_BACKGROUND = 'var(--doe-color-primary)';
 
 @Component({
   selector: 'app-learning-domains',
@@ -42,8 +42,8 @@ export class LearningDomains implements OnInit {
     return this.domains.map((domain) => ({
       ...domain,
       imageSrc: this.domainAssetMode.iconPath(domain.imageName),
-      background: isDarkBlue ? DARK_BLUE_CARD_BACKGROUND : domain.background,
-      hoverBorderColor: isDarkBlue ? DARK_BLUE_CARD_BACKGROUND : domain.hoverBorderColor,
+      background: isDarkBlue ? domain.blueBackground : domain.background,
+      hoverBorderColor: isDarkBlue ? domain.blueHoverBorderColor : domain.hoverBorderColor,
       textColor: isDarkBlue ? '#ffffff' : '',
     }));
   });
@@ -57,6 +57,8 @@ export class LearningDomains implements OnInit {
       imageName: 'language-literacy',
       background: 'linear-gradient(135deg, #B85A12 0%, #8F4D12 100%)',
       hoverBorderColor: '#AC5E16',
+      blueBackground: '#003E96',
+      blueHoverBorderColor: '#003E96',
     },
     {
       title: 'Executive function',
@@ -66,6 +68,8 @@ export class LearningDomains implements OnInit {
       imageName: 'executive-function',
       background: 'linear-gradient(135deg, #0069AB 0%, #004A78 100%)',
       hoverBorderColor: '#005387',
+      blueBackground: '#005EB8',
+      blueHoverBorderColor: '#005EB8',
     },
     {
       title: 'Social-emotional learning',
@@ -75,6 +79,8 @@ export class LearningDomains implements OnInit {
       imageName: 'social-emotional-learning',
       background: 'linear-gradient(135deg, #D10A7D 0%, #930758 100%)',
       hoverBorderColor: '#A40862',
+      blueBackground: '#0077C8',
+      blueHoverBorderColor: '#0077C8',
     },
     {
       title: 'Physicality',
@@ -84,6 +90,8 @@ export class LearningDomains implements OnInit {
       imageName: 'physicality',
       background: 'linear-gradient(135deg, #247F33 0%, #185922 100%)',
       hoverBorderColor: '#1D682A',
+      blueBackground: '#168AC4',
+      blueHoverBorderColor: '#168AC4',
     },
     {
       title: 'Mathematics and numeracy',
@@ -93,6 +101,8 @@ export class LearningDomains implements OnInit {
       imageName: 'mathematics-numeracy',
       background: 'linear-gradient(135deg, #BA1C23 0%, #801318 100%)',
       hoverBorderColor: '#91161B',
+      blueBackground: '#2A9DCC',
+      blueHoverBorderColor: '#2A9DCC',
     },
   ];
 }
