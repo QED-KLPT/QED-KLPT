@@ -11,6 +11,7 @@ import { SessionModel } from '../../models/session-model';
 import { klptDomainStyle } from '../shared/klpt-domain-colours';
 import { KlptDomainDataService } from '../shared/klpt-domain-data.service';
 import { SessionManagementService } from '../shared/session-management.service';
+import { hasSelectedBehaviours } from '../shared/session-readiness';
 
 interface BehaviourCarouselItem {
   behaviour: KlptBehaviour;
@@ -37,6 +38,7 @@ export class SelectBehaviours implements OnInit, OnDestroy {
   private readonly sessionManagement = inject(SessionManagementService);
 
   public currentSession!: SessionModel;
+  protected sessionVersion = 0;
   protected focusedElementId: string | undefined;
   protected focusedBehaviourId: string | undefined;
   private readonly touchStartX = new Map<string, number>();
@@ -99,12 +101,14 @@ export class SelectBehaviours implements OnInit, OnDestroy {
 
     this.focusedElementId = element.id;
     this.focusedBehaviourId = behaviour.id;
+    this.persistCurrentSession();
   }
 
   protected onSessionCleared(session: SessionModel): void {
     this.currentSession = session;
     this.focusedElementId = undefined;
     this.focusedBehaviourId = undefined;
+    this.sessionVersion++;
   }
 
   protected elementStateLabel(element: KlptElement): string {
@@ -116,11 +120,7 @@ export class SelectBehaviours implements OnInit, OnDestroy {
   }
 
   protected canContinue(): boolean {
-    const selectedElements = this.selectedElements();
-    return (
-      selectedElements.length > 0 &&
-      selectedElements.every((element) => Boolean(this.sessionElement(element)?.behaviourId))
-    );
+    return hasSelectedBehaviours(this.currentSession, this.domainData);
   }
 
   protected rowStyle(element: KlptElement): Record<string, string> {
@@ -295,5 +295,10 @@ export class SelectBehaviours implements OnInit, OnDestroy {
 
   private sessionElement(element: KlptElement): ElementModel | undefined {
     return this.currentSession.elements.find((selectedElement) => selectedElement.id === element.id);
+  }
+
+  private persistCurrentSession(): void {
+    this.sessionManagement.persistSession(this.currentSession);
+    this.sessionVersion++;
   }
 }

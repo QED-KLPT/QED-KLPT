@@ -13,6 +13,7 @@ import { KlptDomainDataService } from '../shared/klpt-domain-data.service';
 import { SessionManagementService } from '../shared/session-management.service';
 import { AccordionItemComponent } from '../../../shared/accordion-item/accordion-item.component';
 import { HIGHEST_BEHAVIOUR_HTML } from '../shared/klpt-constants';
+import { hasSelectedBehaviours } from '../shared/session-readiness';
 
 interface ProgressionItem {
   element: KlptElement;
@@ -152,7 +153,7 @@ export class LearningProgressionStatement implements OnInit, OnDestroy {
   }
 
   protected canContinue(): boolean {
-    return this.progressionItems().length > 0;
+    return hasSelectedBehaviours(this.currentSession, this.domainData);
   }
 
   private mergeFormFields(fields: NameValuePair[]): NameValuePair[] {

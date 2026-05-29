@@ -26,6 +26,7 @@ export class SelectDomains implements OnInit, OnDestroy {
   private readonly sessionManagement = inject(SessionManagementService);
 
   public currentSession!: SessionModel;
+  protected sessionVersion = 0;
 
   ngOnInit(): void {
     this.currentSession = this.getRouteSession();
@@ -94,6 +95,7 @@ export class SelectDomains implements OnInit, OnDestroy {
     this.currentSession.domain = domain.id;
     this.currentSession.subDomain = undefined;
     this.currentSession.elements = [];
+    this.persistCurrentSession();
   }
 
   protected selectSubDomain(subDomain: KlptSubDomain): void {
@@ -103,10 +105,12 @@ export class SelectDomains implements OnInit, OnDestroy {
 
     this.currentSession.subDomain = subDomain.id;
     this.currentSession.elements = [];
+    this.persistCurrentSession();
   }
 
   protected onSessionCleared(session: SessionModel): void {
     this.currentSession = session;
+    this.sessionVersion++;
   }
 
   protected toggleElement(element: KlptElement): void {
@@ -114,6 +118,7 @@ export class SelectDomains implements OnInit, OnDestroy {
       this.currentSession.elements = this.currentSession.elements.filter(
         (selectedElement) => selectedElement.id !== element.id,
       );
+      this.persistCurrentSession();
       return;
     }
 
@@ -123,6 +128,7 @@ export class SelectDomains implements OnInit, OnDestroy {
     };
 
     this.currentSession.elements = [...this.currentSession.elements, nextElement];
+    this.persistCurrentSession();
   }
 
   protected isElementSelected(element: KlptElement): boolean {
@@ -180,5 +186,10 @@ export class SelectDomains implements OnInit, OnDestroy {
 
   private sortByIndex<T extends { index: number }>(items: T[]): T[] {
     return [...items].sort((left, right) => left.index - right.index);
+  }
+
+  private persistCurrentSession(): void {
+    this.sessionManagement.persistSession(this.currentSession);
+    this.sessionVersion++;
   }
 }

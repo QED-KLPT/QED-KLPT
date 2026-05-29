@@ -231,10 +231,10 @@
 }
 
 .klpt-create-session-card {
-  background: #ffffff;
-  border: 1px solid var(--klpt-border);
+  background: #e6f3ff;
+  border: 1px solid #c8e3f8;
   border-radius: 18px;
-  box-shadow: var(--klpt-shadow);
+  box-shadow: 0 18px 45px rgba(0, 62, 150, 0.1);
   margin-block: 2rem 2.5rem;
   padding: 1.125rem;
 }
@@ -257,9 +257,9 @@
 
 .klpt-create-session-card__hero {
   align-items: center;
-  border: 1px solid #dceaf3;
+  border: 1px solid #b8d9f2;
   border-radius: 16px;
-  background: #fbfdff;
+  background: #f7fbff;
   color: inherit;
   cursor: pointer;
   display: flex;
@@ -274,8 +274,8 @@
 
   &:hover,
   &:focus-within {
-    border-color: #bfe6c4;
-    background-color: #f7fff6;
+    border-color: var(--doe-color-primary);
+    background-color: #eef7ff;
     outline: none;
   }
 
@@ -290,7 +290,7 @@
   flex-shrink: 0;
   height: 4.25rem;
   width: 4.25rem;
-  filter: drop-shadow(0 6px 12px rgba(71, 116, 73, 0.16));
+  filter: drop-shadow(0 6px 12px rgba(0, 62, 150, 0.18));
 }
 
 .klpt-create-session-card__button {

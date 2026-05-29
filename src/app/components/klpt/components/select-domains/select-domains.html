@@ -3,6 +3,7 @@
     <app-navigation-nodes
       [sessionId]="currentSession.id"
       currentNode="select-domains"
+      [sessionVersion]="sessionVersion"
       (sessionCleared)="onSessionCleared($event)"
     />
 

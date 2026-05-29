@@ -13,6 +13,11 @@ import {
 import { Router, RouterLink } from '@angular/router';
 import { SessionModel } from '../../klpt/models/session-model';
 import { SessionManagementService } from '../../klpt/components/shared/session-management.service';
+import { KlptDomainDataService } from '../../klpt/components/shared/klpt-domain-data.service';
+import {
+  hasSelectedBehaviours,
+  hasSelectedElements,
+} from '../../klpt/components/shared/session-readiness';
 
 export type NavigationNodeId = 'select-domains' | 'select-behaviours' | 'statement' | 'review';
 
@@ -33,10 +38,12 @@ interface NavigationNode {
 export class NavigationNodesComponent implements OnChanges {
   private readonly router = inject(Router);
   private readonly sessionManagement = inject(SessionManagementService);
+  private readonly domainData = inject(KlptDomainDataService);
   private readonly changeDetectorRef = inject(ChangeDetectorRef);
 
   @Input({ required: true }) sessionId!: string;
   @Input({ required: true }) currentNode!: NavigationNodeId;
+  @Input() sessionVersion = 0;
   @Output() sessionCleared = new EventEmitter<SessionModel>();
   @ViewChild('clearSessionDialog') private clearSessionDialog?: ElementRef<HTMLElement>;
   @ViewChild('clearSessionTrigger') private clearSessionTrigger?: ElementRef<HTMLButtonElement>;
@@ -83,6 +90,20 @@ export class NavigationNodesComponent implements OnChanges {
     }
 
     return nodeIndex < currentIndex ? 'complete' : 'pending';
+  }
+
+  protected canNavigateTo(node: NavigationNode): boolean {
+    if (node.id === this.currentNode || node.id === 'select-domains') {
+      return true;
+    }
+
+    const session = this.sessionManagement.getSession(this.sessionId);
+
+    if (node.id === 'select-behaviours') {
+      return hasSelectedElements(session);
+    }
+
+    return hasSelectedBehaviours(session, this.domainData);
   }
 
   protected openClearSessionModal(): void {

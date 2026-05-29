@@ -24,6 +24,7 @@ const routes: Routes = [
         path: 'learning-progression-statement/:sessionId',
         component: LearningProgressionStatement,
         title: 'Learning progression statement',
+        canActivate: [reviewSessionGuard],
       },
       { path: 'review-session/:sessionId', component: ReviewSession, title: 'Review KLPT session', canActivate: [reviewSessionGuard] },
     ],
