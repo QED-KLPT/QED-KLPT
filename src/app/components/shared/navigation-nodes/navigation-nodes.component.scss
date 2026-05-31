@@ -229,6 +229,10 @@
 
 .progress-step--disabled {
   cursor: not-allowed;
+}
+
+.progress-step--disabled .progress-step__description,
+.progress-step--disabled .progress-step__title {
   opacity: 0.62;
 }
 
