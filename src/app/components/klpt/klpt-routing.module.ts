@@ -12,6 +12,7 @@ import { reviewSessionGuard } from './guards/review-session.guard';
 const routes: Routes = [
   {
     path: '',
+    title: 'Learning Observation Tool',
     component: Klpt,
     children: [
       { path: '', component: Introduction, title: 'KLPT introduction' },
