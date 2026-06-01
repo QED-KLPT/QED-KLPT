@@ -1,11 +1,10 @@
-import { Component, Input, ChangeDetectionStrategy, ElementRef, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, ElementRef, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-youtube-player',  
   templateUrl: './youtube-player.component.html',
   styleUrls: ['./youtube-player.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
 export class YoutubePlayerComponent {
@@ -72,3 +71,4 @@ export class YoutubePlayerComponent {
 
   needsScrollbar = false;
 }
+

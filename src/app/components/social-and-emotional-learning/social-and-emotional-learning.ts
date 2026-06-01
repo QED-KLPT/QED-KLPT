@@ -1,5 +1,5 @@
 import { ViewportScroller } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
 import { AccordionItemComponent } from '../shared/accordion-item/accordion-item.component';
@@ -21,7 +21,6 @@ type DesignCard = {
   imports: [RouterLink, AccordionItemComponent, YoutubePlayerModule],
   templateUrl: './social-and-emotional-learning.html',
   styleUrl: './social-and-emotional-learning.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SocialAndEmotionalLearning implements OnInit {
   protected readonly domainAssets = inject(DomainAssetModeService);

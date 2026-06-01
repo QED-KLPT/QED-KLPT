@@ -1,5 +1,5 @@
 import { CommonModule, ViewportScroller } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
 import { DomainAssetModeService } from '../../services/domain-asset-mode.service';
@@ -22,7 +22,6 @@ type MockColumn = {
   imports: [CommonModule, YoutubePlayerModule],
   templateUrl: './analysing-data.html',
   styleUrl: './analysing-data.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AnalysingData implements OnInit {
   protected readonly domainAssets = inject(DomainAssetModeService);

@@ -1,5 +1,5 @@
 import { ViewportScroller } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
 import { DomainAssetModeService } from '../../services/domain-asset-mode.service';
@@ -9,7 +9,6 @@ import { DomainAssetModeService } from '../../services/domain-asset-mode.service
   imports: [YoutubePlayerModule],
   templateUrl: './quality-observations.html',
   styleUrl: './quality-observations.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class QualityObservations implements OnInit {
   protected readonly domainAssets = inject(DomainAssetModeService);
