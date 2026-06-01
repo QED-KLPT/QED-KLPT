@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, ElementRef, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
@@ -17,7 +17,12 @@ export class YoutubePlayerComponent {
   sanitizedUrl: SafeResourceUrl | null = null;
   showTranscript = false;
 
-  constructor(private sanitizer: DomSanitizer) {}
+  @ViewChild('transcriptEl', { static: false }) transcriptEl!: ElementRef<HTMLDivElement>;
+
+  constructor(
+    private sanitizer: DomSanitizer,
+    private cdr: ChangeDetectorRef,
+  ) {}
 
   ngOnInit() {
     if (this.youtubeUrl) {
@@ -30,8 +35,32 @@ export class YoutubePlayerComponent {
     }
   }
 
+  ngOnChanges() {
+    this.cdr.markForCheck();
+  }
+
   toggleTranscript() {
     this.showTranscript = !this.showTranscript;
+    if (this.showTranscript) {
+      setTimeout(() => this.checkOverflow(), 300);
+    } else {
+      this.needsScrollbar = false;
+    }
+  }
+
+  get transcriptLines(): string[] {
+    if (!this.transcript) return [];
+    return this.transcript.split('\n').filter(line => line.trim());
+  }
+
+  checkOverflow(): void {
+    if (this.transcriptEl) {
+      const el = this.transcriptEl.nativeElement;
+      if (el.scrollHeight > el.clientHeight) {
+        this.needsScrollbar = true;
+        this.cdr.markForCheck();
+      }
+    }
   }
 
   private extractVideoId(url: string): string | null {
@@ -40,4 +69,6 @@ export class YoutubePlayerComponent {
     const match = url.match(regExp);
     return match ? match[1] : null;
   }
+
+  needsScrollbar = false;
 }

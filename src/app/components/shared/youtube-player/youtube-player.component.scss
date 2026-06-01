@@ -84,8 +84,7 @@
     outline-offset: 2px;
   }
 
-  &::before {
-    content: '';
+  &__icon {
     display: inline-block;
     width: 0;
     height: 0;
@@ -115,6 +114,10 @@
     line-height: 1.7;
     color: #444;
     white-space: pre-wrap;
+
+    &:not(:last-child) {
+      margin-bottom: 8px;
+    }
   }
 
   /* Scrollbar styling */
@@ -135,6 +138,32 @@
       background: #a0a8b0;
     }
   }
+
+  /* Hide scrollbar when not needed */
+  &.transcript-content--scrollable {
+    scrollbar-width: thin;
+  }
+
+  &:not(.transcript-content--scrollable) {
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+/* Screen reader only utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 
 /* Responsive adjustments */
