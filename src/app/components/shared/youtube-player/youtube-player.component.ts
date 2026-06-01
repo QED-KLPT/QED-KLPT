@@ -12,7 +12,6 @@ export class YoutubePlayerComponent {
   @Input() title: string = '';
   @Input() description: string = '';
   @Input() youtubeUrl: string = '';
-  @Input() transcript: string | string[] = 'Show transcript here...';
 
   sanitizedUrl: SafeResourceUrl | null = null;
 

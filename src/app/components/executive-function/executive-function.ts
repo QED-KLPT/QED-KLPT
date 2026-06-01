@@ -4,7 +4,6 @@ import { RouterLink } from '@angular/router';
 import { AccordionItemComponent } from '../shared/accordion-item/accordion-item.component';
 import { DomainCard } from '../shared/domain-card/domain-card';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
-import { joinWrappedLines } from '../../shared/helpers/join-wrapped-lines';
 import { DomainAssetModeService } from '../../services/domain-asset-mode.service';
 
 type DesignCard = {
@@ -49,40 +48,6 @@ export class ExecutiveFunction implements OnInit {
   ngOnInit(): void {
     this.scroll.scrollToPosition([0, 0]);
   }
-
-  protected readonly executiveFunctionTranscript: string[] = joinWrappedLines([
-    '- Executive function is defined in the Early Years Learning',
-    'Framework Version 2 as the mental processes in the brain that enable children to plan, focus, attention, remember instructions and manage multiple tasks successfully. These processes develop',
-    'during early childhood and include working',
-    'memory, inhibitory control, and cognitive flexibility. Working memory helps us hold and process information in our minds. Inhibitory control allows',
-    'us to stop impulses and display appropriate responses. Cognitive flexibility allows the brain to switch attention from',
-    'one task to another. Executive function skills',
-    'develop during early years, strengthening each other and forming the basis for',
-    'various abilities and behaviours. They help with advanced',
-    'thinking, like planning, problem solving, and setting goals, and encourage a lifelong learning mindset. They are linked to self-regulation, helping children manage',
-    'emotions, actions, and wellbeing. Executive function is',
-    'not directly observable or readily visible to an external observer because it involves',
-    'internal cognitive processes and mental skills. Because these skills',
-    'occur at a neural level and are not easily seen',
-    'by looking at a child, we can infer the functioning through a child\'s behaviour and actions. Executive function can be categorised into the following observable skills, persistence, adaptability,',
-    'and problem solving. Let\'s look first at persistence.',
-    'Persistence can be observed to demonstrate inhibitory control. Persistence means a child',
-    'keeps trying even when things get challenging. It\'s about completing non-preferred tasks before moving on to more engaging ones.',
-    'It also means ignoring distractions and focusing on the task at hand. Adaptability can be observed',
-    'when children demonstrate cognitive flexibility. Adaptability means a child',
-    'can change their response to unexpected events. It\'s about learning new',
-    'information, making a decision, and being able to think and',
-    'respond to changes in routines. Finally, problem solving.',
-    'This can be observed',
-    'when children demonstrate components of working memory. Problem solving is when',
-    'a child develops ideas, tests them out and evaluates outcomes to see if they have been successful.',
-    'It includes breaking',
-    'tasks into smaller parts, thinking in order and drawing from what they already know.',
-    'Supporting children to find strategies that yield success helps them to develop their problem solving skills.',
-    'Teachers and educators can support the development of executive functioning by helping children persevere,',
-    'deal with change and problem solve through intentional teaching strategies, and by gradually increasing',
-    'the challenge of tasks while providing support and encouragement.',
-  ]);
 
   protected readonly practiceSupports: { title: string; summary: string; accordionItems: { title: string; body: string[] }[]; pdfLabel: string; pdfPath: string } = {
     title: 'Executive function',

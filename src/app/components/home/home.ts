@@ -3,7 +3,6 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { DomainCard } from '../shared/domain-card/domain-card';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
-import { joinWrappedLines } from '../../shared/helpers/join-wrapped-lines';
 
 type DomainSummary = {
   title: string;
@@ -28,28 +27,6 @@ export class Home implements OnInit {
   ngOnInit(): void {
     this.scroll.scrollToPosition([0, 0]);
   }
-
-  protected readonly acknowledgementOfCountryTranscript: string[] = joinWrappedLines([
-    '- When the children first come into the kindergarten, it\'s about getting to build those relationships.',
-    'Then we set up a template that we got off the Queensland Kindergarten Guidelines, and it\'s called a Summative Report.',
-    'So we take information that we\'ve observed and we put this into the Summative Report.',
-    'We do an education support plan with the families. Every child has a goal.',
-    '- I was actually here on the very first day of the year, and all of the educators took time to talk to each individual child and ask them questions about their family, about their favourite foods, just general questions about them, and that was the start of',
-    'insights into changes or transformations they might be able to make to the environment, and to their teaching strategies to positively impact on children\'s learning.',
-    '- So a lot of our learning or assessment is through play. For instance, with the zoo, we talked about how people pay to go into the zoo.',
-    'So they drew signs, so not only did they set up the zoo, they actually went to the drawing table and used their skills of drawing, also, literacy, numeracy, "How much is it going to cost? "What are we going to',
-    'we do through that play.',
-    '- This team are continually documenting formative assessment in a variety of ways on an online platform, they might write learning stories, they might just add a caption to a photo, or they might use the children\'s own words.',
-    'And over time, this builds a really rich and authentic picture of that individual child, what they know, what they understand, and what they can do, and this builds the foundation for assessing their learning and planning for future learning.',
-    'All educators are lifelong',
-    'skills and their knowledge. So careful critical reflection and assessment, supports them to do that.',
-    'And when a program is based on planning cycles and critical reflection, the joy and well-being that comes from seeing children loving learning is really supportive for everyone.',
-    'The Kindergarten Learning Progressions is a resource, which along with curriculum documents, and quality improvement plans, supports educators in every aspect of the planning cycle to ensure quality pedagogy.',
-    '- The Kindergarten Learning Progressions are a way for educators to gather information and monitor children\'s learning and development, whilst the children stay engaged in their play and their learning.',
-    'The Progressions also align with the Early Years Learning Framework Version 2, and the Queensland Kindergarten Learning Guideline.',
-    '- It informs planning, assessing, and their critical evaluation.',
-    '- As an educator, when you observe children and document what they know, can do, and understand, you can use that information to inform planning and set individual learning goals for children.',
-  ]);
 
   protected readonly domains: DomainSummary[] = [
     {
