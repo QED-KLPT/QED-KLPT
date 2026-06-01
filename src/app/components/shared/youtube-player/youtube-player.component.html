@@ -20,4 +20,13 @@
     <p>No valid YouTube URL provided</p>
   </div>
 
+  <div class="transcript-section" *ngIf="transcript">
+    <button type="button" (click)="toggleTranscript()" class="transcript-toggle" [class.transcript-toggle--open]="showTranscript">
+      {{ showTranscript ? 'Hide Transcript' : 'View Transcript' }}
+    </button>
+    <div class="transcript-content" *ngIf="showTranscript">
+      <p>{{ transcript }}</p>
+    </div>
+  </div>
+
 </div>

@@ -1,5 +1,6 @@
 import { ViewportScroller } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
 import { AccordionItemComponent } from '../shared/accordion-item/accordion-item.component';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
@@ -24,8 +25,15 @@ type DesignCard = {
 })
 export class Physicality implements OnInit {
   protected readonly domainAssets = inject(DomainAssetModeService);
+  
+  physicalityTranscript: string = '';
 
-  constructor(private scroll: ViewportScroller) {}
+  constructor(
+    private scroll: ViewportScroller,
+    private http: HttpClient,
+  ) {
+    this.http.get('assets/content/transcripts/physicality/physicality.txt', { responseType: 'text' }).subscribe(t => this.physicalityTranscript = t);
+  }
 
   ngOnInit(): void {
     this.scroll.scrollToPosition([0, 0]);

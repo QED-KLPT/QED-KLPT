@@ -1,5 +1,6 @@
 import { ViewportScroller } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit, computed, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
 import { AccordionItemComponent } from '../shared/accordion-item/accordion-item.component';
 import { DomainCard } from '../shared/domain-card/domain-card';
@@ -31,6 +32,8 @@ const DARK_BLUE_CARD_BACKGROUND = '#003e96';
 })
 export class ExecutiveFunction implements OnInit {
   protected readonly domainAssets = inject(DomainAssetModeService);
+  
+  executiveFunctionTranscript: string = '';
 
   protected readonly themedCards = computed<ThemedDesignCard[]>(() => {
     const isDarkBlue = this.domainAssets.mode() === 'dark-blue';
@@ -43,7 +46,12 @@ export class ExecutiveFunction implements OnInit {
     }));
   });
 
-  constructor(private scroll: ViewportScroller) {}
+  constructor(
+    private scroll: ViewportScroller,
+    private http: HttpClient,
+  ) {
+    this.http.get('assets/content/transcripts/executive-function/executive-function.txt', { responseType: 'text' }).subscribe(t => this.executiveFunctionTranscript = t);
+  }
 
   ngOnInit(): void {
     this.scroll.scrollToPosition([0, 0]);

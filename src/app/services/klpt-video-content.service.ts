@@ -21,6 +21,7 @@ type RegistryVideo = {
   title: string;
   description: string;
   youtubeUrl: string;
+  transcriptFile: string;
 };
 
 export type PageVideo = {
@@ -28,6 +29,7 @@ export type PageVideo = {
   title: string;
   description: string;
   youtubeUrl: string;
+  transcript: string;
 };
 
 export type PageVideoColumn = {
@@ -67,11 +69,18 @@ export class KlptVideoContentService {
   }
 
   private mapVideo(video: RegistryVideo): Observable<PageVideo> {
-    return of({
-      slot: video.slot,
-      title: video.title,
-      description: video.description,
-      youtubeUrl: video.youtubeUrl,
-    });
+    return this.http.get(video.transcriptFile, { responseType: 'text' }).pipe(
+      map((transcriptText) => ({
+        slot: video.slot,
+        title: video.title,
+        description: video.description,
+        youtubeUrl: video.youtubeUrl,
+        transcript: this.parseTranscriptLines(transcriptText),
+      })),
+    );
+  }
+
+  private parseTranscriptLines(text: string): string {
+    return text.trim();
   }
 }

@@ -1,5 +1,6 @@
 import { ViewportScroller } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
 import { DomainCard } from '../shared/domain-card/domain-card';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
@@ -22,7 +23,16 @@ type DomainSummary = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Home implements OnInit {
-  constructor(private scroll: ViewportScroller) {}
+  acknowledgementTranscript: string = '';
+  introductionTranscript: string = '';
+
+  constructor(
+    private scroll: ViewportScroller,
+    private http: HttpClient,
+  ) {
+    this.http.get('assets/content/transcripts/home/acknowledgement-of-country.txt', { responseType: 'text' }).subscribe(t => this.acknowledgementTranscript = t);
+    this.http.get('assets/content/transcripts/home/introduction-to-the-klpt.txt', { responseType: 'text' }).subscribe(t => this.introductionTranscript = t);
+  }
 
   ngOnInit(): void {
     this.scroll.scrollToPosition([0, 0]);

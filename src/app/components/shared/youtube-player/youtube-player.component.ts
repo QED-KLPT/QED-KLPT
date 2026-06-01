@@ -12,8 +12,10 @@ export class YoutubePlayerComponent {
   @Input() title: string = '';
   @Input() description: string = '';
   @Input() youtubeUrl: string = '';
+  @Input() transcript: string = '';
 
   sanitizedUrl: SafeResourceUrl | null = null;
+  showTranscript = false;
 
   constructor(private sanitizer: DomSanitizer) {}
 
@@ -22,10 +24,14 @@ export class YoutubePlayerComponent {
       const videoId = this.extractVideoId(this.youtubeUrl);
       if (videoId) {
         this.sanitizedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-          `https://www.youtube.com/embed/${videoId}`,
+          `https://www.youtube.com/embed/${videoId}?cc_load_policy=1&hl=en`,
         );
       }
     }
+  }
+
+  toggleTranscript() {
+    this.showTranscript = !this.showTranscript;
   }
 
   private extractVideoId(url: string): string | null {

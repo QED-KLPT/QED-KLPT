@@ -1,5 +1,6 @@
 import { ViewportScroller } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
 import { AccordionItemComponent } from '../shared/accordion-item/accordion-item.component';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
@@ -24,8 +25,15 @@ type DesignCard = {
 })
 export class SocialAndEmotionalLearning implements OnInit {
   protected readonly domainAssets = inject(DomainAssetModeService);
+  
+  socialAndEmotionalLearningTranscript: string = '';
 
-  constructor(private scroll: ViewportScroller) {}
+  constructor(
+    private scroll: ViewportScroller,
+    private http: HttpClient,
+  ) {
+    this.http.get('assets/content/transcripts/social-and-emotional-learning/social-and-emotional-learning.txt', { responseType: 'text' }).subscribe(t => this.socialAndEmotionalLearningTranscript = t);
+  }
 
   ngOnInit(): void {
     this.scroll.scrollToPosition([0, 0]);
