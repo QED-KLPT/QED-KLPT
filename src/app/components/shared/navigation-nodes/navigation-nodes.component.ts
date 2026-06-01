@@ -65,13 +65,13 @@ export class NavigationNodesComponent implements OnChanges {
     },
     {
       id: 'statement',
-      title: 'Statement',
+      title: 'Learning Statement',
       description: 'Complete the learning progression statement and observation notes.',
       route: '/klpt/learning-progression-statement',
     },
     {
       id: 'review',
-      title: 'Review',
+      title: 'Review and generate PDF',
       description: 'Review the saved statement and prepare a PDF copy.',
       route: '/klpt/review-session',
     },
