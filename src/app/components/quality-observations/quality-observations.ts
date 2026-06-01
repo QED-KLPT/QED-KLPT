@@ -1,5 +1,6 @@
 import { ViewportScroller } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
 import { DomainAssetModeService } from '../../services/domain-asset-mode.service';
 
@@ -12,8 +13,19 @@ import { DomainAssetModeService } from '../../services/domain-asset-mode.service
 })
 export class QualityObservations implements OnInit {
   protected readonly domainAssets = inject(DomainAssetModeService);
+  
+  observationTranscript: string = '';
+  purposeOfObservationTranscript: string = '';
+  deepDiveTranscript: string = '';
 
-  constructor(private scroll: ViewportScroller) {}
+  constructor(
+    private scroll: ViewportScroller,
+    private http: HttpClient,
+  ) {
+    this.http.get('assets/content/transcripts/quality-observations/observation-and-assessment-through-play.txt', { responseType: 'text' }).subscribe(t => this.observationTranscript = t);
+    this.http.get('assets/content/transcripts/quality-observations/the-purpose-of-observation.txt', { responseType: 'text' }).subscribe(t => this.purposeOfObservationTranscript = t);
+    this.http.get('assets/content/transcripts/quality-observations/the-purpose-of-observation.txt', { responseType: 'text' }).subscribe(t => this.deepDiveTranscript = t);
+  }
 
   ngOnInit(): void {
     this.scroll.scrollToPosition([0, 0]);

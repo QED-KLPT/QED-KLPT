@@ -29,7 +29,7 @@ export type PageVideo = {
   title: string;
   description: string;
   youtubeUrl: string;
-  transcript: string[];
+  transcript: string;
 };
 
 export type PageVideoColumn = {
@@ -80,23 +80,7 @@ export class KlptVideoContentService {
     );
   }
 
-  private parseTranscriptLines(text: string): string[] {
-    const rawLines = text.split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
-    const sentences: string[] = [];
-
-    for (const line of rawLines) {
-      if (sentences.length === 0) {
-        sentences.push(line);
-      } else {
-        const lastSentence = sentences[sentences.length - 1];
-        if (/[\.\!\?]\s*$/.test(lastSentence)) {
-          sentences.push(line);
-        } else {
-          sentences[sentences.length - 1] = lastSentence + ' ' + line;
-        }
-      }
-    }
-
-    return sentences;
+  private parseTranscriptLines(text: string): string {
+    return text.trim();
   }
 }

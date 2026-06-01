@@ -1,9 +1,9 @@
 import { ViewportScroller } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
 import { AccordionItemComponent } from '../shared/accordion-item/accordion-item.component';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
-import { joinWrappedLines } from '../../shared/helpers/join-wrapped-lines';
 import { DomainAssetModeService } from '../../services/domain-asset-mode.service';
 
 type DesignCard = {
@@ -25,46 +25,19 @@ type DesignCard = {
 })
 export class Physicality implements OnInit {
   protected readonly domainAssets = inject(DomainAssetModeService);
+  
+  physicalityTranscript: string = '';
 
-  constructor(private scroll: ViewportScroller) {}
+  constructor(
+    private scroll: ViewportScroller,
+    private http: HttpClient,
+  ) {
+    this.http.get('assets/content/transcripts/physicality/physicality.txt', { responseType: 'text' }).subscribe(t => this.physicalityTranscript = t);
+  }
 
   ngOnInit(): void {
     this.scroll.scrollToPosition([0, 0]);
   }
-
-  protected readonly physicalityTranscript: string[] = joinWrappedLines([
-    '- Physicality can be categorised into gross motor and fine motor skills. Gross motor skills are',
-    'big, whole body movements, like running and jumping, and fine motor skills, which',
-    'involve precise finger, hand, wrist, and arm control, such as using scissors,',
-    'pencils, or eating utensils. Encouraging risk taking and play that involves climbing,',
-    'crawling, jumping and balancing, can support the development',
-    'of gross motor skills. Obstacle courses are a great example of how to help children',
-    'build coordination, strength, and control. Demonstrating gross motor skills can help children build confidence.',
-    'Providing a variety of',
-    'experiences and games for children to choose from, recognises and supports children\'s agency.',
-    'Engaging in physical learning',
-    'experiences helps promote overall physical health and wellbeing.',
-    'It allows children to develop and strengthen muscles and bones.',
-    'It is essential for cognitive development. Physical activity stimulates the brain and enhances children to build confidence and develop persistence.',
-    "Teachers and educators",
-    "can support children in their development by providing positive, specific",
-    'feedback, and encouragement. Fine motor skills are',
-    "essential for everyday tasks, such as drawing, writing,",
-    'tying shoe laces, buttoning clothes, and feeding oneself.',
-    "These skills contribute to children becoming more",
-    'independent and self-sufficient. Fine motor skills contribute',
-    "to hand-eye coordination, spatial awareness, and",
-    'visual motor integration.',
-    "The intricate movements involved",
-    "in fine motor skill tasks, such as puzzles, building",
-    'blocks, and manipulating objects, help strengthen neural',
-    'connections in the brain and contribute to',
-    'successful problem solving, critical thinking, and',
-    'spatial reasoning abilities. Fine motor skills can also',
-    "support artistic expression, providing opportunities that",
-    'encourage the refinement and practice of these skills',
-    'support overall development.',
-  ]);
 
   protected readonly practiceSupports: { title: string; summary: string; accordionItems: { title: string; body: string[] }[]; pdfLabel: string; pdfPath: string } = {
     title: 'Physicality',
