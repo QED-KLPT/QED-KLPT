@@ -13,7 +13,7 @@ export class DirectionLinkComponent {
   @Input() href = '#';
   @Input() direction: Direction = 'right';
   @Input() ariaLabel: string | undefined = undefined;
-  @Input() target: '_self' | '_blank' | undefined = undefined;
+  @Input() target: '_self' | '_blank' = '_self';
 
   get directionClasses(): string {
     return `klpt__direction-link klpt__direction-link--${this.direction}`;
