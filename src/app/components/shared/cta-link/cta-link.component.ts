@@ -13,7 +13,7 @@ export class CtaLinkComponent {
   @Input() href = '#';
   @Input() variant: CtaVariant = 'default';
   @Input() disabled = false;
-  @Input() target: '_self' | '_blank' | undefined = undefined;
+  @Input() target: '_self' | '_blank' = '_self';
   @Input() ariaLabel: string | undefined = undefined;
 
   get linkClasses(): string {
