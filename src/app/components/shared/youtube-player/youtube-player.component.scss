@@ -60,45 +60,6 @@
   margin-top: 16px;
 }
 
-.transcript-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 20px;
-  background-color: #f0f4f8;
-  border: 1px solid #d0d7de;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: #333;
-  cursor: pointer;
-  transition: background-color 0.2s, border-color 0.2s;
-
-  &:hover {
-    background-color: #e1e8ed;
-    border-color: #b0b8c0;
-  }
-
-  &:focus-visible {
-    outline: 2px solid #0069ab;
-    outline-offset: 2px;
-  }
-
-  &__icon {
-    display: inline-block;
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 6px solid #666;
-    transition: transform 0.2s;
-
-    .transcript-toggle--open & {
-      transform: rotate(180deg);
-    }
-  }
-}
-
 .transcript-content {
   margin-top: 12px;
   padding: 16px;
@@ -139,18 +100,7 @@
     }
   }
 
-  /* Hide scrollbar when not needed */
-  &.transcript-content--scrollable {
-    scrollbar-width: thin;
-  }
-
-  &:not(.transcript-content--scrollable) {
-    scrollbar-width: none;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
+  scrollbar-width: thin;
 }
 
 /* Screen reader only utility */
