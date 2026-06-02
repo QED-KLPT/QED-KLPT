@@ -2,65 +2,13 @@
   margin-top: 12px;
 }
 
-.transcript-toggle {
-  padding: 6px 10px;
-  border: none;
-  background: #eee;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.transcript-shell {
-  display: grid;
-  grid-template-rows: 0fr;
-  opacity: 0;
-  transition:
-    grid-template-rows 260ms ease,
-    opacity 220ms ease,
-    margin-top 260ms ease;
-}
-
-.transcript-shell--open {
-  grid-template-rows: 1fr;
-  opacity: 1;
-  margin-top: 10px;
-}
-
 .transcript {
+  display: none;
   overflow-y: auto;
   max-height: 350px;
   padding: 10px;
   border-left: 3px solid #ccc;
   background: #fafafa;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.transcript::-webkit-scrollbar {
-  display: none;
-}
-
-.transcript.with-scrollbar {
-  scrollbar-width: thin;
-  -ms-overflow-style: auto;
-}
-
-.transcript.with-scrollbar::-webkit-scrollbar {
-  display: block;
-  width: 6px;
-}
-
-.transcript.with-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.transcript.with-scrollbar::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 3px;
-}
-
-.transcript.with-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #999;
 }
 
 .transcript p:first-child {

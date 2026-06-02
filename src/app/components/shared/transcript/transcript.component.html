@@ -1,19 +1,7 @@
 <div class="transcript-section">
-  <button
-    type="button"
-    (click)="toggleTranscript()"
-    class="transcript-toggle"
-    [attr.aria-expanded]="showTranscript"
-    aria-controls="transcript-content"
-  >
-    {{ showTranscript ? 'Hide Transcript' : 'View Transcript' }}
-  </button>
-
-  <div id="transcript-content" class="transcript-shell" [class.transcript-shell--open]="showTranscript">
-    <div #transcriptEl class="transcript" [class.with-scrollbar]="needsScrollbar">
-      <p *ngFor="let line of transcriptLines">
-        {{ line }}
-      </p>
-    </div>
+  <div id="transcript-content" class="transcript">
+    <p *ngFor="let line of transcriptLines">
+      {{ line }}
+    </p>
   </div>
 </div>

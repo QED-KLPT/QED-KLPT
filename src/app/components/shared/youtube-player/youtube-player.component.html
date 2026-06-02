@@ -21,23 +21,9 @@
   </div>
 
   <div class="transcript-section" *ngIf="transcript">
-    <button
-      type="button"
-      (click)="toggleTranscript()"
-      class="transcript-toggle"
-      [class.transcript-toggle--open]="showTranscript"
-      [attr.aria-expanded]="showTranscript"
-      aria-controls="transcript-content-{{title}}"
-    >
-      <span class="transcript-toggle__icon" aria-hidden="true"></span>
-      {{ showTranscript ? 'Hide Transcript' : 'View Transcript' }}
-    </button>
     <div
       id="transcript-content-{{title}}"
       class="transcript-content"
-      [class.transcript-content--scrollable]="needsScrollbar"
-      #transcriptEl
-      *ngIf="showTranscript"
     >
       <p *ngFor="let line of transcriptLines">{{ line }}</p>
     </div>
