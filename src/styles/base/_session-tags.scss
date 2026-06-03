@@ -1,0 +1,56 @@
+.session-tag-generator {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.session-tag-badge {
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #cfe0ee;
+  border-radius: 8px;
+  color: #26364b;
+  display: inline-flex;
+  gap: 0.5rem;
+  min-height: 3.375rem;
+  padding: 0.55rem 0.8rem;
+}
+
+.session-tag-badge--compact {
+  background: transparent;
+  border: 0;
+  min-height: 0;
+  padding: 0;
+}
+
+.session-tag-shape {
+  display: block;
+  flex: 0 0 auto;
+  height: 1.75rem;
+  width: 1.75rem;
+}
+
+.session-tag-regenerate {
+  background: transparent;
+  border: 1px solid var(--doe-color-primary);
+  border-radius: 6px;
+  color: var(--doe-color-primary);
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  line-height: 1;
+  min-height: 2.75rem;
+  padding: 0.75rem 1.2rem;
+}
+
+.session-tag-regenerate:hover,
+.session-tag-regenerate:focus-visible {
+  background: #e6f6ff;
+  color: var(--doe-color-primary-dark);
+  outline: 2px solid var(--klpt-gold);
+  outline-offset: 2px;
+}

@@ -123,6 +123,7 @@ export class LearningProgressionStatement implements OnInit, OnDestroy {
 
   protected updateLearnerCode(value: string): void {
     this.currentSession.learnerCode = value;
+    this.currentSession.sessionTag = undefined;
   }
 
   protected onSessionCleared(session: SessionModel): void {

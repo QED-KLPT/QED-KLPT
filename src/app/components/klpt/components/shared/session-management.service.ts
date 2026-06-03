@@ -125,6 +125,7 @@ export class SessionManagementService {
         expiry: new Date(session.expiry),
         educatorName: this.normaliseTextInput(session.educatorName),
         learnerCode: this.normaliseTextInput(session.learnerCode),
+        sessionTag: session.sessionTag,
         formFields: this.stripPrivateFormFields(session.formFields ?? []).map((field) => ({
           ...field,
           value: this.normaliseTextInput(field.value),

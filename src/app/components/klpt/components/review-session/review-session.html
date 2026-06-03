@@ -42,7 +42,34 @@
         </div>
         <div>
           <dt>Learner code</dt>
-          <dd>{{ displayValue(currentSession.learnerCode) }}</dd>
+          <dd>
+            @if (currentSession.sessionTag; as tag) {
+              <span class="session-tag-badge session-tag-badge--compact">
+                <svg class="session-tag-shape" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  @switch (tag.shapeId) {
+                    @case ('square') {
+                      <rect x="5" y="5" width="14" height="14" rx="2" [attr.fill]="tag.colourHex"></rect>
+                    }
+                    @case ('triangle') {
+                      <polygon points="12,4 21,20 3,20" [attr.fill]="tag.colourHex"></polygon>
+                    }
+                    @case ('diamond') {
+                      <polygon points="12,3 21,12 12,21 3,12" [attr.fill]="tag.colourHex"></polygon>
+                    }
+                    @case ('hexagon') {
+                      <polygon points="7,3 17,3 22,12 17,21 7,21 2,12" [attr.fill]="tag.colourHex"></polygon>
+                    }
+                    @default {
+                      <circle cx="12" cy="12" r="8.5" [attr.fill]="tag.colourHex"></circle>
+                    }
+                  }
+                </svg>
+                <span>{{ displayValue(currentSession.learnerCode) }}</span>
+              </span>
+            } @else {
+              {{ displayValue(currentSession.learnerCode) }}
+            }
+          </dd>
         </div>
       </dl>
 

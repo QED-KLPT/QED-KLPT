@@ -2,7 +2,9 @@ import { DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { SessionModel } from '../../models/session-model';
+import { SessionTag } from '../../models/session-tag';
 import { SessionManagementService } from '../shared/session-management.service';
+import { SessionTagService } from '../shared/session-tag.service';
 
 @Component({
   selector: 'app-list-sessions',
@@ -13,15 +15,15 @@ import { SessionManagementService } from '../shared/session-management.service';
 })
 export class ListSessions implements OnInit {
   private readonly sessionManagement = inject(SessionManagementService);
+  private readonly sessionTags = inject(SessionTagService);
   private readonly router = inject(Router);
   @ViewChild('deleteSessionDialog') private deleteSessionDialog?: ElementRef<HTMLElement>;
   @ViewChild('storageDialog') private storageDialog?: ElementRef<HTMLElement>;
 
   public sessions: SessionModel[] = [];
-  protected learnerCode = '';
   protected educatorName = '';
-  protected learnerCodeError = '';
   protected educatorNameError = '';
+  protected currentSessionTag!: SessionTag;
   protected isFormVisible = false;
   protected isStorageModalOpen = false;
   protected storageSnapshot = '(empty)';
@@ -73,24 +75,22 @@ export class ListSessions implements OnInit {
       const bDate = b.updated ?? b.created;
       return bDate.getTime() - aDate.getTime();
     });
+    this.currentSessionTag = this.generateSessionTag();
   }
 
   protected onToggleFormVisibility(): void {
     this.isFormVisible = !this.isFormVisible;
+    if (this.isFormVisible) {
+      this.currentSessionTag = this.generateSessionTag();
+    }
     if (!this.isFormVisible) {
-      this.learnerCode = '';
       this.educatorName = '';
-      this.learnerCodeError = '';
       this.educatorNameError = '';
     }
   }
 
-  public onLearnerCodeInput(event: Event): void {
-    const value = (event.target as HTMLInputElement).value;
-    this.learnerCode = value.replace(/\D/g, '').slice(0, 3);
-    this.learnerCodeError = this.learnerCode.length > 0 && this.learnerCode.length < 3
-      ? 'Learner code must be 3 digits'
-      : '';
+  protected onRegenerateSessionTag(): void {
+    this.currentSessionTag = this.generateSessionTag();
   }
 
   public onEducatorNameInput(event: Event): void {
@@ -99,19 +99,27 @@ export class ListSessions implements OnInit {
   }
 
   public onCreateSession(): void {
-    this.learnerCodeError = this.learnerCode.length !== 3 ? 'Learner code must be 3 digits' : '';
     this.educatorNameError = !this.educatorName.trim() ? "Observer's name is required" : '';
 
-    if (this.learnerCodeError || this.educatorNameError) {
+    if (this.educatorNameError) {
       return;
     }
 
     const newSession = this.sessionManagement.createSession();
-    newSession.learnerCode = this.learnerCode;
+    newSession.sessionTag = this.currentSessionTag;
+    newSession.learnerCode = this.currentSessionTag.label;
     newSession.educatorName = this.educatorName.trim();
     newSession.pageIndex = 1;
     this.sessionManagement.persistSession(newSession);
     void this.router.navigateByUrl(`/klpt/select-domains/${newSession.id}`);
+  }
+
+  protected sessionTagFor(session: SessionModel): SessionTag | undefined {
+    return session.sessionTag;
+  }
+
+  private generateSessionTag(): SessionTag {
+    return this.sessionTags.generateTag(this.sessions.map((session) => session.learnerCode));
   }
 
   protected sessionRoute(session: SessionModel): string[] {

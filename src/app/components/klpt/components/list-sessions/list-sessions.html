@@ -41,7 +41,7 @@
       >
         <div class="klpt-create-session-form klpt-form-grid">
           <div class="klpt-form-field">
-            <label for="learner-code" class="klpt-label-with-help">
+            <label class="klpt-label-with-help">
               <span class="klpt-label-text">Learner code</span>
               <button
                 type="button"
@@ -55,25 +55,36 @@
                 <img src="assets/img/bulb.png" alt="" aria-hidden="true" />
               </button>
               @if (bulbTooltipVisible) {
-                <span class="klpt-help-tooltip" role="tooltip">Enter 3 digits to uniquely identify the child</span>
+                <span class="klpt-help-tooltip" role="tooltip">Use this temporary tag to identify the session without storing the child's name</span>
               }
             </label>
-            <input
-              type="text"
-              id="learner-code"
-              [class.qld__text-input--error]="learnerCodeError"
-              [attr.aria-invalid]="learnerCodeError ? 'true' : null"
-              [attr.aria-describedby]="learnerCodeError ? 'learner-code-error' : null"
-              placeholder="e.g. 123"
-              maxlength="3"
-              [value]="learnerCode"
-              (input)="onLearnerCodeInput($event)"
-            />
-            @if (learnerCodeError) {
-              <span class="qld__input--error" id="learner-code-error" role="alert">
-                {{ learnerCodeError }}
+            <div class="session-tag-generator" aria-live="polite">
+              <span class="session-tag-badge">
+                <svg class="session-tag-shape" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  @switch (currentSessionTag.shapeId) {
+                    @case ('square') {
+                      <rect x="5" y="5" width="14" height="14" rx="2" [attr.fill]="currentSessionTag.colourHex"></rect>
+                    }
+                    @case ('triangle') {
+                      <polygon points="12,4 21,20 3,20" [attr.fill]="currentSessionTag.colourHex"></polygon>
+                    }
+                    @case ('diamond') {
+                      <polygon points="12,3 21,12 12,21 3,12" [attr.fill]="currentSessionTag.colourHex"></polygon>
+                    }
+                    @case ('hexagon') {
+                      <polygon points="7,3 17,3 22,12 17,21 7,21 2,12" [attr.fill]="currentSessionTag.colourHex"></polygon>
+                    }
+                    @default {
+                      <circle cx="12" cy="12" r="8.5" [attr.fill]="currentSessionTag.colourHex"></circle>
+                    }
+                  }
+                </svg>
+                <strong>{{ currentSessionTag.label }}</strong>
               </span>
-            }
+              <button type="button" class="session-tag-regenerate" (click)="onRegenerateSessionTag()">
+                Regenerate
+              </button>
+            </div>
           </div>
 
           <div class="klpt-form-field">
@@ -142,7 +153,32 @@
                         <div class="session-card-title-row">
                           <p>
                             <strong>
-                              {{ session.learnerCode || 'Unnamed Session' }}
+                              @if (sessionTagFor(session); as tag) {
+                                <span class="session-tag-badge session-tag-badge--compact">
+                                  <svg class="session-tag-shape" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                    @switch (tag.shapeId) {
+                                      @case ('square') {
+                                        <rect x="5" y="5" width="14" height="14" rx="2" [attr.fill]="tag.colourHex"></rect>
+                                      }
+                                      @case ('triangle') {
+                                        <polygon points="12,4 21,20 3,20" [attr.fill]="tag.colourHex"></polygon>
+                                      }
+                                      @case ('diamond') {
+                                        <polygon points="12,3 21,12 12,21 3,12" [attr.fill]="tag.colourHex"></polygon>
+                                      }
+                                      @case ('hexagon') {
+                                        <polygon points="7,3 17,3 22,12 17,21 7,21 2,12" [attr.fill]="tag.colourHex"></polygon>
+                                      }
+                                      @default {
+                                        <circle cx="12" cy="12" r="8.5" [attr.fill]="tag.colourHex"></circle>
+                                      }
+                                    }
+                                  </svg>
+                                  <span>{{ session.learnerCode || 'Unnamed Session' }}</span>
+                                </span>
+                              } @else {
+                                {{ session.learnerCode || 'Unnamed Session' }}
+                              }
                             </strong>
                           </p>
                           <small>

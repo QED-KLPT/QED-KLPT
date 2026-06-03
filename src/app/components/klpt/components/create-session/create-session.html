@@ -2,31 +2,38 @@
   <div class="section__inner">
     <p class="eyebrow">Step 2</p>
     <h2>Create session</h2>
-    <p>Enter a 3 digit code and the observer's name.</p>
+    <p>Use a temporary session tag and enter the observer's name.</p>
 
     <div class="qld__form-group qld__form-group--aligned">
-      <label for="learner-code" class="qld__label qld__form-group__label">Learner code</label>
+      <span class="qld__label qld__form-group__label">Learner code</span>
       <div class="qld__form-group__input-area">
-        @if (learnerCodeError) {
-          <span class="qld__input--error" id="learner-code-error" role="alert">
-            <svg class="qld__icon qld__icon--lead qld__icon--sm" role="img" aria-label="Error: ">
-              <use href="./?a=169317:dist/mysource_files/img/QLD-icons.svg#status-error"></use>
+        <div class="session-tag-generator" aria-live="polite">
+          <span class="session-tag-badge">
+            <svg class="session-tag-shape" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              @switch (currentSessionTag.shapeId) {
+                @case ('square') {
+                  <rect x="5" y="5" width="14" height="14" rx="2" [attr.fill]="currentSessionTag.colourHex"></rect>
+                }
+                @case ('triangle') {
+                  <polygon points="12,4 21,20 3,20" [attr.fill]="currentSessionTag.colourHex"></polygon>
+                }
+                @case ('diamond') {
+                  <polygon points="12,3 21,12 12,21 3,12" [attr.fill]="currentSessionTag.colourHex"></polygon>
+                }
+                @case ('hexagon') {
+                  <polygon points="7,3 17,3 22,12 17,21 7,21 2,12" [attr.fill]="currentSessionTag.colourHex"></polygon>
+                }
+                @default {
+                  <circle cx="12" cy="12" r="8.5" [attr.fill]="currentSessionTag.colourHex"></circle>
+                }
+              }
             </svg>
-            Learner code must be 3 digits
+            <strong>{{ currentSessionTag.label }}</strong>
           </span>
-        }
-        <input
-          type="text"
-          id="learner-code"
-          class="qld__text-input"
-          [class.qld__text-input--error]="learnerCodeError"
-          [attr.aria-invalid]="learnerCodeError ? 'true' : null"
-          [attr.aria-describedby]="learnerCodeError ? 'learner-code-error' : null"
-          placeholder="e.g. 123"
-          maxlength="3"
-          [value]="learnerCode"
-          (input)="onLearnerCodeInput($event)"
-        />
+          <button type="button" class="session-tag-regenerate" (click)="onRegenerateSessionTag()">
+            Regenerate
+          </button>
+        </div>
       </div>
     </div>
 
