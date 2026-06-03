@@ -77,7 +77,7 @@ export class KlptPdfGeneratorService {
     y = this.addMetadataGrid(doc, y, margin, contentWidth, [
       { label: 'Date', value: this.displayValue(this.formatFormDate(this.formValue(session, 'date'))) },
       { label: "Observer name", value: this.displayValue(session.educatorName) },
-      { label: 'Learner code', value: this.displayValue(session.learnerCode) },
+      { label: 'Session code', value: this.displayValue(session.learnerCode) },
       { label: 'Child name', value: this.displayValue(options.learnerName) },
     ]);
 

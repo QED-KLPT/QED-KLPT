@@ -5,6 +5,7 @@ export interface SessionTag {
   shapeId: string;
   shapeLabel: string;
   day: string;
+  dayCode: string;
   label: string;
 }
 

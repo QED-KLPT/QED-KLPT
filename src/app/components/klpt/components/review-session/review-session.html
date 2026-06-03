@@ -41,7 +41,7 @@
           <dd>{{ displayValue(currentSession.educatorName) }}</dd>
         </div>
         <div>
-          <dt>Learner code</dt>
+          <dt>Session code</dt>
           <dd>
             @if (currentSession.sessionTag; as tag) {
               <span class="session-tag-badge session-tag-badge--compact">
@@ -138,7 +138,7 @@
           class="button button--primary"
           type="button"
           aria-haspopup="dialog"
-          [attr.aria-label]="'Generate PDF for learner ' + displayValue(currentSession.learnerCode)"
+          [attr.aria-label]="'Generate PDF for session ' + displayValue(currentSession.learnerCode)"
           (click)="openGeneratePdfModal()"
         >
           Generate PDF

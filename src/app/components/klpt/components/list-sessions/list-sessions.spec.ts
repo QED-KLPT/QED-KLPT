@@ -175,7 +175,7 @@ describe('ListSessions', () => {
       const texts = headers.map((h) => h.textContent?.trim());
       expect(texts).toContain('Id');
       expect(texts).toContain('Educator');
-      expect(texts).toContain('Learner Code');
+      expect(texts).toContain('Session Code');
       expect(texts).toContain('Created');
       expect(texts).toContain('Elements');
     });

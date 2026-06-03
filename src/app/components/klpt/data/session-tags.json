@@ -19,12 +19,12 @@
     { "id": "hexagon", "label": "Hexagon" }
   ],
   "days": [
+    "Sunday",
     "Monday",
     "Tuesday",
     "Wednesday",
     "Thursday",
     "Friday",
-    "Saturday",
-    "Sunday"
+    "Saturday"
   ]
 }

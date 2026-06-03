@@ -18,7 +18,7 @@ const FALLBACK_OPTIONS: SessionTagOptions = {
     { id: 'diamond', label: 'Diamond' },
     { id: 'hexagon', label: 'Hexagon' },
   ],
-  days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+  days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
 };
 
 @Injectable({
@@ -61,16 +61,17 @@ export class SessionTagService {
     const options = this.options();
     const colour = this.randomItem(options.colours);
     const shape = this.randomItem(options.shapes);
-    const day = this.randomItem(options.days);
-    const label = `${colour.label} ${shape.label} ${day}`;
+    const { day, dayCode } = this.currentDayTag(options.days);
+    const label = `${colour.label} ${shape.label} ${day} ${dayCode}`;
 
-    return this.createTag(colour, shape, day, label);
+    return this.createTag(colour, shape, day, dayCode, label);
   }
 
   private createTag(
     colour: SessionTagColour,
     shape: SessionTagShape,
     day: string,
+    dayCode: string,
     label: string,
   ): SessionTag {
     return {
@@ -80,7 +81,18 @@ export class SessionTagService {
       shapeId: shape.id,
       shapeLabel: shape.label,
       day,
+      dayCode,
       label,
+    };
+  }
+
+  private currentDayTag(days: string[]): { day: string; dayCode: string } {
+    const now = new Date();
+    const day = days[now.getDay()] ?? FALLBACK_OPTIONS.days[now.getDay()] ?? '';
+
+    return {
+      day,
+      dayCode: now.getDate().toString().padStart(2, '0'),
     };
   }
 

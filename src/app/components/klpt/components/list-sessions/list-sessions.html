@@ -42,11 +42,11 @@
         <div class="klpt-create-session-form klpt-form-grid">
           <div class="klpt-form-field">
             <label class="klpt-label-with-help">
-              <span class="klpt-label-text">Learner code</span>
+              <span class="klpt-label-text">Session code</span>
               <button
                 type="button"
                 class="klpt-help-bulb"
-                aria-label="Learner code help"
+                aria-label="Session code help"
                 (mouseenter)="onBulbHover(true)"
                 (mouseleave)="onBulbHover(false)"
                 (touchstart.prevent)="onBulbLongPressStart()"
@@ -147,7 +147,7 @@
                     <a
                       class="session-card"
                       [routerLink]="sessionRoute(session)"
-                      [attr.aria-label]="'Open session for learner ' + (session.learnerCode || 'unnamed session')"
+                      [attr.aria-label]="'Open session ' + (session.learnerCode || 'unnamed session')"
                     >
                       <div class="session-card-content">
                         <div class="session-card-title-row">
@@ -192,7 +192,7 @@
                       type="button"
                       class="icon-delete"
                       (click)="openDeleteSessionModal(session, $event)"
-                      [attr.aria-label]="'Delete session for learner ' + (session.learnerCode || 'unnamed session')"
+                      [attr.aria-label]="'Delete session ' + (session.learnerCode || 'unnamed session')"
                       title="Delete session"
                     >
                       ×

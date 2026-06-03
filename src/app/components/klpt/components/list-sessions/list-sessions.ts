@@ -46,7 +46,7 @@ export class ListSessions implements OnInit {
 
   protected get deleteConfirmationMessage(): string {
     if (this.pendingDelete?.type === 'session') {
-      return `This will permanently delete learner ${this.pendingDelete.learnerCode || 'this session'}.`;
+      return `This will permanently delete session ${this.pendingDelete.learnerCode || 'this session'}.`;
     }
 
     return `This will permanently delete all ${this.sessions.length} saved sessions.`;
