@@ -157,7 +157,7 @@ export class KlptPdfGeneratorService {
 
     doc.setFontSize(10);
     doc.setTextColor(...PDF_THEME.ink);
-    doc.text('Review Statement', margin + 5, y + headerPaddingY + 5);
+    doc.text('Learning progression statement', margin + 5, y + headerPaddingY + 5);
 
     return y + headerHeight + 2;
   }
