@@ -75,8 +75,6 @@ export class KlptPdfGeneratorService {
 
     y = this.addReportHeader(doc, y, margin, contentWidth);
     y = this.addMetadataGrid(doc, y, margin, contentWidth, [
-      { label: 'Domain', value: domain?.name ?? 'Not selected' },
-      { label: 'Elements', value: String(progressionItems.length) },
       { label: 'Date', value: this.displayValue(this.formatFormDate(this.formValue(session, 'date'))) },
       { label: "Observer name", value: this.displayValue(session.educatorName) },
       { label: 'Learner code', value: this.displayValue(session.learnerCode) },
@@ -149,16 +147,19 @@ export class KlptPdfGeneratorService {
     margin: number,
     contentWidth: number,
   ): number {
+    const headerHeight = 13;
+    const headerPaddingY = 3;
+
     doc.setFillColor(...PDF_THEME.panelAlt);
-    doc.roundedRect(margin, y, contentWidth, 34, 4, 4, 'F');
+    doc.roundedRect(margin, y, contentWidth, headerHeight, 3, 3, 'F');
     doc.setDrawColor(...PDF_THEME.border);
-    doc.roundedRect(margin, y, contentWidth, 34, 4, 4, 'S');
+    doc.roundedRect(margin, y, contentWidth, headerHeight, 3, 3, 'S');
 
-    doc.setFontSize(24);
+    doc.setFontSize(10);
     doc.setTextColor(...PDF_THEME.ink);
-    doc.text('Review Statement', margin + 8, y + 23);
+    doc.text('Review Statement', margin + 5, y + headerPaddingY + 5);
 
-    return y + 39;
+    return y + headerHeight + 2;
   }
 
   private addMetadataGrid(
@@ -169,9 +170,10 @@ export class KlptPdfGeneratorService {
     fields: { label: string; value: string }[],
   ): number {
     const gap = 3;
-    const columns = Math.min(3, fields.length);
+    const columns = fields.length <= 4 ? fields.length : Math.min(3, fields.length);
     const cellWidth = (contentWidth - gap * (columns - 1)) / columns;
-    const cellHeight = 19;
+    const cellHeight = 15;
+    const cellPaddingY = 3;
 
     fields.forEach((field, index) => {
       const column = index % columns;
@@ -186,16 +188,16 @@ export class KlptPdfGeneratorService {
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(6.8);
       doc.setTextColor(...PDF_THEME.muted);
-      doc.text(field.label.toUpperCase(), x + 3, rowY + 6);
+      doc.text(field.label.toUpperCase(), x + 3, rowY + cellPaddingY + 2);
 
       doc.setFontSize(8.5);
       doc.setTextColor(...PDF_THEME.ink);
       const lines = doc.splitTextToSize(field.value, cellWidth - 6).slice(0, 2);
-      doc.text(lines, x + 3, rowY + 12);
+      doc.text(lines, x + 3, rowY + cellHeight - cellPaddingY);
     });
 
     const rows = Math.ceil(fields.length / columns);
-    return y + rows * cellHeight + (rows - 1) * gap + 5;
+    return y + rows * cellHeight + (rows - 1) * gap + 4;
   }
 
   private addProgressionItem(
@@ -265,7 +267,7 @@ export class KlptPdfGeneratorService {
     doc.roundedRect(x, y, width, height, 3, 3, 'F');
     doc.setDrawColor(...PDF_THEME.border);
     doc.roundedRect(x, y, width, height, 3, 3, 'S');
-    this.addPanelText(doc, x + 4, y + 6, width - 8, title, body);
+    this.addPanelText(doc, x + 4, y + 4, width - 8, title, body);
   }
 
   private addTextCard(
@@ -283,7 +285,7 @@ export class KlptPdfGeneratorService {
     doc.roundedRect(margin, y, contentWidth, height, 4, 4, 'F');
     doc.setDrawColor(...PDF_THEME.border);
     doc.roundedRect(margin, y, contentWidth, height, 4, 4, 'S');
-    this.addPanelText(doc, margin + 5, y + 7, contentWidth - 10, title, text);
+    this.addPanelText(doc, margin + 5, y + 5, contentWidth - 10, title, text);
 
     return y + height + 5;
   }
@@ -321,7 +323,7 @@ export class KlptPdfGeneratorService {
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(7);
     const titleLines = doc.splitTextToSize(title.toUpperCase(), width - 12);
-    return Math.max(21, 8 + titleLines.length * 3.2 + lines.length * 3.8);
+    return Math.max(18, 5 + titleLines.length * 3.2 + lines.length * 3.8);
   }
 
   private ensureSpace(
