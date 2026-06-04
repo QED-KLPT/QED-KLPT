@@ -23,7 +23,9 @@ export class InPageNavComponent {
     const id = href.replace('#', '');
     const el = document.getElementById(id);
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+      const offset = 50;
+      const top = el.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
     }
   }
 
