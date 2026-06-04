@@ -97,10 +97,6 @@ export class ListSessions implements OnInit {
   }
 
   protected onSelectMethod(method: 'manual' | 'avatar'): void {
-    this.educatorNameError = !this.educatorName.trim() ? "Observer's name is required" : '';
-    if (this.educatorNameError) {
-      return;
-    }
     if (method === 'manual') {
       this.obsStep = 'manual';
     } else {
@@ -188,9 +184,11 @@ export class ListSessions implements OnInit {
   }
 
   public onCreateSession(): void {
+    this.educatorNameError = !this.educatorName.trim() ? "Observer's name is required" : '';
+
     if (this.obsStep === 'manual') {
       this.learnerCodeError = this.learnerCode.length !== 3 ? 'Learner code must be 3 digits' : '';
-      if (this.learnerCodeError) {
+      if (this.learnerCodeError || this.educatorNameError) {
         return;
       }
       this.createAndNavigate(this.learnerCode);
@@ -198,6 +196,9 @@ export class ListSessions implements OnInit {
     }
 
     if (this.obsStep === 'roster-pick' && this.selectedAvatar) {
+      if (this.educatorNameError) {
+        return;
+      }
       this.createAndNavigate(this.selectedAvatar.label);
     }
   }

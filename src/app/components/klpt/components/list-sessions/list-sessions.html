@@ -38,27 +38,29 @@
       >
         <div class="klpt-create-session-form-inner">
 
-        <!-- ── Observer name — always visible when the panel is open ─────── -->
-        <div class="klpt-obs-name-persistent">
-          <div class="klpt-form-field">
-            <label for="educator-name-obs">Observer's name</label>
-            <input
-              type="text"
-              id="educator-name-obs"
-              [class.qld__text-input--error]="educatorNameError"
-              [attr.aria-invalid]="educatorNameError ? 'true' : null"
-              [attr.aria-describedby]="educatorNameError ? 'educator-name-obs-error' : null"
-              placeholder="Enter observer name"
-              [value]="educatorName"
-              (input)="onEducatorNameInput($event)"
-            />
-            @if (educatorNameError) {
-              <span class="qld__input--error" id="educator-name-obs-error" role="alert">
-                {{ educatorNameError }}
-              </span>
-            }
+        <!-- ── Observer name: shown only after a method is chosen ──────────── -->
+        @if (obsStep !== 'method' && obsStep !== 'manual') {
+          <div class="klpt-obs-name-persistent">
+            <div class="klpt-form-field">
+              <label for="educator-name-obs">Observer's name</label>
+              <input
+                type="text"
+                id="educator-name-obs"
+                [class.qld__text-input--error]="educatorNameError"
+                [attr.aria-invalid]="educatorNameError ? 'true' : null"
+                [attr.aria-describedby]="educatorNameError ? 'educator-name-obs-error' : null"
+                placeholder="Enter observer name"
+                [value]="educatorName"
+                (input)="onEducatorNameInput($event)"
+              />
+              @if (educatorNameError) {
+                <span class="qld__input--error" id="educator-name-obs-error" role="alert">
+                  {{ educatorNameError }}
+                </span>
+              }
+            </div>
           </div>
-        </div>
+        }
 
         <!-- ── Step 1: choose identification method ───────────────────────── -->
         @if (obsStep === 'method') {
@@ -108,6 +110,26 @@
         <!-- ── Step 2a: manual learner code ──────────────────────────────── -->
         @if (obsStep === 'manual') {
           <div class="klpt-create-session-form klpt-form-grid">
+
+            <div class="klpt-form-field">
+              <label for="educator-name-manual">Observer's name</label>
+              <input
+                type="text"
+                id="educator-name-manual"
+                [class.qld__text-input--error]="educatorNameError"
+                [attr.aria-invalid]="educatorNameError ? 'true' : null"
+                [attr.aria-describedby]="educatorNameError ? 'educator-name-manual-error' : null"
+                placeholder="Enter observer name"
+                [value]="educatorName"
+                (input)="onEducatorNameInput($event)"
+              />
+              @if (educatorNameError) {
+                <span class="qld__input--error" id="educator-name-manual-error" role="alert">
+                  {{ educatorNameError }}
+                </span>
+              }
+            </div>
+
             <div class="klpt-form-field">
               <label for="learner-code" class="klpt-label-with-help">
                 <span class="klpt-label-text">Learner code</span>
