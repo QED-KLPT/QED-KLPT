@@ -12,20 +12,17 @@
         title="Start a new observation"
         (click)="onToggleFormVisibility()"
       >
-      <svg 
-        class="klpt-create-session-card__icon"
-        viewBox="0 0 80 80"
-        role="img"
-        aria-hidden="true"
-        focusable="false"
-      >
-        <!-- Outer circle -->
-        <circle cx="40" cy="40" r="36" fill="#003e96" stroke="#ffffff" stroke-width="6" />
-        
-        <!-- Plus icon -->
-        <line x1="40" y1="23" x2="40" y2="57" stroke="#ffffff" stroke-width="6" stroke-linecap="round" />
-        <line x1="23" y1="40" x2="57" y2="40" stroke="#ffffff" stroke-width="6" stroke-linecap="round" />
-      </svg>
+        <svg
+          class="klpt-create-session-card__icon"
+          viewBox="0 0 80 80"
+          role="img"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <circle cx="40" cy="40" r="36" fill="#003e96" stroke="#ffffff" stroke-width="6" />
+          <line x1="40" y1="23" x2="40" y2="57" stroke="#ffffff" stroke-width="6" stroke-linecap="round" />
+          <line x1="23" y1="40" x2="57" y2="40" stroke="#ffffff" stroke-width="6" stroke-linecap="round" />
+        </svg>
         <div>
           <h1 class="klpt-create-session-card__title">Start a new observation</h1>
           <p class="klpt-create-session-card__description"></p>
@@ -39,71 +36,203 @@
         [attr.aria-hidden]="!isFormVisible"
         [attr.inert]="!isFormVisible ? '' : null"
       >
-        <div class="klpt-create-session-form klpt-form-grid">
-          <div class="klpt-form-field">
-            <label for="learner-code" class="klpt-label-with-help">
-              <span class="klpt-label-text">Learner code</span>
-              <button
-                type="button"
-                class="klpt-help-bulb"
-                aria-label="Learner code help"
-                (mouseenter)="onBulbHover(true)"
-                (mouseleave)="onBulbHover(false)"
-                (touchstart.prevent)="onBulbLongPressStart()"
-                (touchend.prevent)="onBulbLongPressEnd()"
-              >
-                <img src="assets/img/bulb.png" alt="" aria-hidden="true" />
-              </button>
-              @if (bulbTooltipVisible) {
-                <span class="klpt-help-tooltip" role="tooltip">Enter 3 digits to uniquely identify the child</span>
-              }
-            </label>
-            <input
-              type="text"
-              id="learner-code"
-              [class.qld__text-input--error]="learnerCodeError"
-              [attr.aria-invalid]="learnerCodeError ? 'true' : null"
-              [attr.aria-describedby]="learnerCodeError ? 'learner-code-error' : null"
-              placeholder="e.g. 123"
-              maxlength="3"
-              [value]="learnerCode"
-              (input)="onLearnerCodeInput($event)"
-            />
-            @if (learnerCodeError) {
-              <span class="qld__input--error" id="learner-code-error" role="alert">
-                {{ learnerCodeError }}
-              </span>
-            }
-          </div>
+        <div class="klpt-create-session-form-inner">
 
+        <!-- ── Observer name — always visible when the panel is open ─────── -->
+        <div class="klpt-obs-name-persistent">
           <div class="klpt-form-field">
-            <label for="educator-name">Observer's name</label>
+            <label for="educator-name-obs">Observer's name</label>
             <input
               type="text"
-              id="educator-name"
+              id="educator-name-obs"
               [class.qld__text-input--error]="educatorNameError"
               [attr.aria-invalid]="educatorNameError ? 'true' : null"
-              [attr.aria-describedby]="educatorNameError ? 'educator-name-error' : null"
+              [attr.aria-describedby]="educatorNameError ? 'educator-name-obs-error' : null"
               placeholder="Enter observer name"
               [value]="educatorName"
               (input)="onEducatorNameInput($event)"
             />
-             @if (educatorNameError) {
-              <span class="qld__input--error" id="educator-name-error" role="alert">
+            @if (educatorNameError) {
+              <span class="qld__input--error" id="educator-name-obs-error" role="alert">
                 {{ educatorNameError }}
               </span>
             }
           </div>
-
-          <div class="klpt-create-session-form__actions klpt-form-field--wide">
-            <button type="button" class="button button--secondary" (click)="onToggleFormVisibility()">
-              Cancel
-            </button>
-            <button type="button" class="button button--primary klpt-create-session-button" (click)="onCreateSession()">
-              Create session
-            </button>
-          </div>
         </div>
+
+        <!-- ── Step 1: choose identification method ───────────────────────── -->
+        @if (obsStep === 'method') {
+          <div class="klpt-obs-method">
+            <p class="klpt-obs-method__label">How would you like to identify the learner?</p>
+            <div class="klpt-obs-method__grid">
+
+              <button type="button" class="klpt-obs-method-card" (click)="onSelectMethod('manual')">
+                <svg class="klpt-obs-method-card__icon" width="40" height="40" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+                  <rect width="40" height="40" rx="8" fill="#dbeafe"/>
+                  <text x="20" y="26" text-anchor="middle" font-size="14" font-weight="700" fill="#1d4ed8">1 2 3</text>
+                </svg>
+                <div class="klpt-obs-method-card__body">
+                  <strong class="klpt-obs-method-card__title">Enter learner code</strong>
+                  <span class="klpt-obs-method-card__desc">Type a 3-digit code to identify the learner</span>
+                </div>
+                <svg class="klpt-obs-method-card__arrow" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </svg>
+              </button>
+
+              <button type="button" class="klpt-obs-method-card" (click)="onSelectMethod('avatar')">
+                <svg class="klpt-obs-method-card__icon" width="40" height="40" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+                  <rect x="2"  y="2"  width="16" height="16" rx="4" fill="#ef4444"/>
+                  <rect x="22" y="2"  width="16" height="16" rx="4" fill="#2563eb"/>
+                  <rect x="2"  y="22" width="16" height="16" rx="4" fill="#16a34a"/>
+                  <rect x="22" y="22" width="16" height="16" rx="4" fill="#d97706"/>
+                </svg>
+                <div class="klpt-obs-method-card__body">
+                  <strong class="klpt-obs-method-card__title">Choose from class roster</strong>
+                  <span class="klpt-obs-method-card__desc">
+                    {{ roster.length > 0 ? 'Pick a visual avatar assigned to the learner' : 'Set up a visual roster for your class' }}
+                  </span>
+                </div>
+                <svg class="klpt-obs-method-card__arrow" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </svg>
+              </button>
+
+            </div>
+            <div class="klpt-obs-method__cancel">
+              <button type="button" class="button button--secondary" (click)="onToggleFormVisibility()">Cancel</button>
+            </div>
+          </div>
+        }
+
+        <!-- ── Step 2a: manual learner code ──────────────────────────────── -->
+        @if (obsStep === 'manual') {
+          <div class="klpt-create-session-form klpt-form-grid">
+            <div class="klpt-form-field">
+              <label for="learner-code" class="klpt-label-with-help">
+                <span class="klpt-label-text">Learner code</span>
+                <button
+                  type="button"
+                  class="klpt-help-bulb"
+                  aria-label="Learner code help"
+                  (mouseenter)="onBulbHover(true)"
+                  (mouseleave)="onBulbHover(false)"
+                  (touchstart.prevent)="onBulbLongPressStart()"
+                  (touchend.prevent)="onBulbLongPressEnd()"
+                >
+                  <img src="assets/img/bulb.png" alt="" aria-hidden="true" />
+                </button>
+                @if (bulbTooltipVisible) {
+                  <span class="klpt-help-tooltip" role="tooltip">Enter 3 digits to uniquely identify the child</span>
+                }
+              </label>
+              <input
+                type="text"
+                id="learner-code"
+                [class.qld__text-input--error]="learnerCodeError"
+                [attr.aria-invalid]="learnerCodeError ? 'true' : null"
+                [attr.aria-describedby]="learnerCodeError ? 'learner-code-error' : null"
+                placeholder="e.g. 123"
+                maxlength="3"
+                [value]="learnerCode"
+                (input)="onLearnerCodeInput($event)"
+              />
+              @if (learnerCodeError) {
+                <span class="qld__input--error" id="learner-code-error" role="alert">
+                  {{ learnerCodeError }}
+                </span>
+              }
+            </div>
+
+            <div class="klpt-create-session-form__actions klpt-form-field--wide">
+              <button type="button" class="button button--secondary" (click)="onBackToMethod()">Back</button>
+              <button type="button" class="button button--primary klpt-create-session-button" (click)="onCreateSession()">
+                Create session
+              </button>
+            </div>
+          </div>
+        }
+
+        <!-- ── Step 2b: roster setup ──────────────────────────────────────── -->
+        @if (obsStep === 'roster-setup') {
+          <div class="klpt-roster-setup">
+            <p class="klpt-roster-setup__intro">
+              Each child in your class gets a unique colour and nature word. Print the roster and attach each card to the child's physical folder — then tap their avatar here whenever you start an observation.
+            </p>
+            <div class="klpt-form-field klpt-roster-setup__field">
+              <label for="child-count">Number of children</label>
+              <input
+                type="text"
+                id="child-count"
+                inputmode="numeric"
+                maxlength="3"
+                placeholder="e.g. 20"
+                [class.qld__text-input--error]="childCountError"
+                [attr.aria-invalid]="childCountError ? 'true' : null"
+                [attr.aria-describedby]="childCountError ? 'child-count-error' : null"
+                [value]="childCount"
+                (input)="onChildCountInput($event)"
+              />
+              @if (childCountError) {
+                <span class="qld__input--error" id="child-count-error" role="alert">{{ childCountError }}</span>
+              }
+            </div>
+            <div class="klpt-roster-setup__actions">
+              <button type="button" class="button button--secondary" (click)="onBackToMethod()">Back</button>
+              <button type="button" class="button button--primary" (click)="onGenerateRoster()">Generate roster</button>
+            </div>
+          </div>
+        }
+
+        <!-- ── Step 2c: avatar picker ─────────────────────────────────────── -->
+        @if (obsStep === 'roster-pick') {
+          <div class="klpt-roster-pick">
+            <div class="klpt-roster-pick__header">
+              <p class="klpt-roster-pick__label">Select the learner's avatar</p>
+              <div class="klpt-roster-pick__toolbar">
+                <button type="button" class="klpt-roster-tool-btn" (click)="onPrintRoster()">Print roster</button>
+                <button type="button" class="klpt-roster-tool-btn" (click)="onResetRoster()">Change size</button>
+              </div>
+            </div>
+
+            <div class="klpt-avatar-grid" role="group" aria-label="Learner avatars">
+              @for (avatar of roster; track avatar.id) {
+                <button
+                  type="button"
+                  class="klpt-avatar-tile"
+                  [class.klpt-avatar-tile--selected]="selectedAvatar?.id === avatar.id"
+                  [class.klpt-avatar-tile--in-use]="isAvatarInUse(avatar)"
+                  [style.--avatar-color]="avatar.colorHex"
+                  [attr.aria-pressed]="selectedAvatar?.id === avatar.id ? 'true' : 'false'"
+                  [attr.aria-label]="avatar.label + (isAvatarInUse(avatar) ? ' — already in use' : '')"
+                  [disabled]="isAvatarInUse(avatar) || null"
+                  (click)="onSelectAvatar(avatar)"
+                >
+                  <i
+                    [class]="'fa-solid ' + avatar.iconClass + ' klpt-avatar-tile__icon'"
+                    [style.color]="avatar.colorHex"
+                    aria-hidden="true"
+                  ></i>
+                  <span class="klpt-avatar-tile__word">{{ avatar.label }}</span>
+                </button>
+              }
+            </div>
+
+            <div class="klpt-create-session-form__actions">
+              <button type="button" class="button button--secondary" (click)="onBackToMethod()">Back</button>
+              <button
+                type="button"
+                class="button button--primary klpt-create-session-button"
+                [disabled]="!selectedAvatar || null"
+                (click)="onCreateSession()"
+              >
+                Create session
+              </button>
+            </div>
+          </div>
+        }
+
+        </div><!-- /.klpt-create-session-form-inner -->
       </div>
     </div>
 
@@ -140,11 +269,16 @@
                     >
                       <div class="session-card-content">
                         <div class="session-card-title-row">
-                          <p>
-                            <strong>
-                              {{ session.learnerCode || 'Unnamed Session' }}
-                            </strong>
-                          </p>
+                          @if (getAvatarInfo(session.learnerCode); as info) {
+                            <span class="session-avatar-badge" [style.color]="info.colorHex" role="img" [attr.aria-label]="session.learnerCode">
+                              <i [class]="'fa-solid ' + info.iconClass" aria-hidden="true"></i>
+                            </span>
+                            <p><strong>{{ session.learnerCode }}</strong></p>
+                          } @else {
+                            <p>
+                              <strong>{{ session.learnerCode || 'Unnamed Session' }}</strong>
+                            </p>
+                          }
                           <small>
                             {{ session.created | date:'dd/MM/yyyy, h:mm:ss a' }}
                           </small>

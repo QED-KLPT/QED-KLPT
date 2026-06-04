@@ -1,8 +1,12 @@
 import { DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import { AvatarModel } from '../../models/avatar.model';
 import { SessionModel } from '../../models/session-model';
+import { AvatarInfo, ROSTER_MAX, RosterService } from '../shared/roster.service';
 import { SessionManagementService } from '../shared/session-management.service';
+
+type ObsStep = 'idle' | 'method' | 'manual' | 'roster-setup' | 'roster-pick';
 
 @Component({
   selector: 'app-list-sessions',
@@ -13,16 +17,21 @@ import { SessionManagementService } from '../shared/session-management.service';
 })
 export class ListSessions implements OnInit {
   private readonly sessionManagement = inject(SessionManagementService);
+  private readonly rosterService = inject(RosterService);
   private readonly router = inject(Router);
   @ViewChild('deleteSessionDialog') private deleteSessionDialog?: ElementRef<HTMLElement>;
   @ViewChild('storageDialog') private storageDialog?: ElementRef<HTMLElement>;
 
   public sessions: SessionModel[] = [];
+  protected obsStep: ObsStep = 'idle';
   protected learnerCode = '';
   protected educatorName = '';
   protected learnerCodeError = '';
   protected educatorNameError = '';
-  protected isFormVisible = false;
+  protected childCount = '';
+  protected childCountError = '';
+  protected roster: AvatarModel[] = [];
+  protected selectedAvatar: AvatarModel | null = null;
   protected isStorageModalOpen = false;
   protected storageSnapshot = '(empty)';
   protected bulbTooltipVisible = false;
@@ -33,6 +42,10 @@ export class ListSessions implements OnInit {
     | { type: 'session'; sessionId: string; learnerCode: string }
     | { type: 'all' }
     | undefined;
+
+  protected get isFormVisible(): boolean {
+    return this.obsStep !== 'idle';
+  }
 
   protected get sessionCountLabel(): string {
     return `Saved sessions (${this.sessions.length})`;
@@ -63,7 +76,6 @@ export class ListSessions implements OnInit {
 
     return Object.entries(groups);
   }
-  
 
   ngOnInit(): void {
     this.sessionManagement.deleteAllExpiredSessions();
@@ -73,24 +85,44 @@ export class ListSessions implements OnInit {
       const bDate = b.updated ?? b.created;
       return bDate.getTime() - aDate.getTime();
     });
+    this.roster = this.rosterService.load();
   }
 
   protected onToggleFormVisibility(): void {
-    this.isFormVisible = !this.isFormVisible;
-    if (!this.isFormVisible) {
-      this.learnerCode = '';
-      this.educatorName = '';
-      this.learnerCodeError = '';
-      this.educatorNameError = '';
+    if (this.obsStep !== 'idle') {
+      this.resetObsForm();
+    } else {
+      this.obsStep = 'method';
     }
+  }
+
+  protected onSelectMethod(method: 'manual' | 'avatar'): void {
+    this.educatorNameError = !this.educatorName.trim() ? "Observer's name is required" : '';
+    if (this.educatorNameError) {
+      return;
+    }
+    if (method === 'manual') {
+      this.obsStep = 'manual';
+    } else {
+      this.obsStep = this.roster.length > 0 ? 'roster-pick' : 'roster-setup';
+    }
+  }
+
+  protected onBackToMethod(): void {
+    this.learnerCode = '';
+    this.learnerCodeError = '';
+    this.educatorNameError = '';
+    this.childCount = '';
+    this.childCountError = '';
+    this.selectedAvatar = null;
+    this.obsStep = 'method';
   }
 
   public onLearnerCodeInput(event: Event): void {
     const value = (event.target as HTMLInputElement).value;
     this.learnerCode = value.replace(/\D/g, '').slice(0, 3);
-    this.learnerCodeError = this.learnerCode.length > 0 && this.learnerCode.length < 3
-      ? 'Learner code must be 3 digits'
-      : '';
+    this.learnerCodeError =
+      this.learnerCode.length > 0 && this.learnerCode.length < 3 ? 'Learner code must be 3 digits' : '';
   }
 
   public onEducatorNameInput(event: Event): void {
@@ -98,20 +130,76 @@ export class ListSessions implements OnInit {
     this.educatorNameError = '';
   }
 
-  public onCreateSession(): void {
-    this.learnerCodeError = this.learnerCode.length !== 3 ? 'Learner code must be 3 digits' : '';
-    this.educatorNameError = !this.educatorName.trim() ? "Observer's name is required" : '';
+  public onChildCountInput(event: Event): void {
+    this.childCount = (event.target as HTMLInputElement).value.replace(/\D/g, '').slice(0, 2);
+    this.childCountError = '';
+  }
 
-    if (this.learnerCodeError || this.educatorNameError) {
+  public onGenerateRoster(): void {
+    const n = parseInt(this.childCount, 10);
+    if (!n || n < 1) {
+      this.childCountError = 'Please enter a number between 1 and ' + ROSTER_MAX;
+      return;
+    }
+    if (n > ROSTER_MAX) {
+      this.childCountError = `Maximum ${ROSTER_MAX} children`;
+      return;
+    }
+    this.roster = this.rosterService.generateAvatars(n);
+    this.rosterService.save(this.roster);
+    this.obsStep = 'roster-pick';
+  }
+
+  public onSelectAvatar(avatar: AvatarModel): void {
+    this.selectedAvatar = avatar;
+  }
+
+  protected isAvatarInUse(avatar: AvatarModel): boolean {
+    const name = this.educatorName.trim().toLowerCase();
+    return this.sessions.some(
+      (s) =>
+        (s.educatorName ?? '').toLowerCase() === name &&
+        s.learnerCode === avatar.label,
+    );
+  }
+
+  public onResetRoster(): void {
+    this.selectedAvatar = null;
+    this.childCount = '';
+    this.childCountError = '';
+    this.obsStep = 'roster-setup';
+  }
+
+  protected getAvatarInfo(learnerCode: string): AvatarInfo | null {
+    return this.rosterService.getAvatarInfo(learnerCode);
+  }
+
+  public onPrintRoster(): void {
+    const win = window.open('', '_blank');
+    if (!win) {
+      return;
+    }
+    win.document.open();
+    win.document.write(this.buildPrintHtml());
+    win.document.close();
+    win.focus();
+    win.onafterprint = () => win.close();
+    window.setTimeout(() => win.print(), 300);
+  }
+
+  public onCreateSession(): void {
+    if (this.obsStep === 'manual') {
+      this.learnerCodeError = this.learnerCode.length !== 3 ? 'Learner code must be 3 digits' : '';
+      if (this.learnerCodeError) {
+        return;
+      }
+      this.createAndNavigate(this.learnerCode);
       return;
     }
 
-    const newSession = this.sessionManagement.createSession();
-    newSession.learnerCode = this.learnerCode;
-    newSession.educatorName = this.educatorName.trim();
-    newSession.pageIndex = 1;
-    this.sessionManagement.persistSession(newSession);
-    void this.router.navigateByUrl(`/klpt/select-domains/${newSession.id}`);
+    if (this.obsStep === 'roster-pick' && this.selectedAvatar) {
+      this.createAndNavigate(this.selectedAvatar.label);
+    }
   }
 
   protected sessionRoute(session: SessionModel): string[] {
@@ -208,7 +296,75 @@ export class ListSessions implements OnInit {
     }
   }
 
-  private trapModalFocus(event: KeyboardEvent, dialogRef: ElementRef<HTMLElement> | undefined, closeModal: () => void): void {
+  private createAndNavigate(learnerCode: string): void {
+    const session = this.sessionManagement.createSession();
+    session.learnerCode = learnerCode;
+    session.educatorName = this.educatorName.trim();
+    session.pageIndex = 1;
+    this.sessionManagement.persistSession(session);
+    void this.router.navigateByUrl(`/klpt/select-domains/${session.id}`);
+  }
+
+  private resetObsForm(): void {
+    this.obsStep = 'idle';
+    this.learnerCode = '';
+    this.educatorName = '';
+    this.learnerCodeError = '';
+    this.educatorNameError = '';
+    this.childCount = '';
+    this.childCountError = '';
+    this.selectedAvatar = null;
+  }
+
+  private buildPrintHtml(): string {
+    const tiles = this.roster
+      .map(
+        (a) => `
+      <div class="tile" style="--c:${a.colorHex}">
+        <i class="fa-solid ${a.iconClass} tile-icon" aria-hidden="true"></i>
+        <div class="word">${a.label}</div>
+      </div>`,
+      )
+      .join('');
+
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Class Roster</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:system-ui,sans-serif;padding:1.5rem;color:#1e293b}
+  h1{font-size:1.1rem;font-weight:800;margin-bottom:1.25rem;color:#26364b}
+  .grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0.875rem}
+  .tile{
+    background:#fff;border:1px solid #e2e8f0;
+    border-radius:10px;color:#1e293b;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:0.3rem;min-height:6.5rem;padding:0.875rem 0.5rem 0.75rem;text-align:center;
+    break-inside:avoid;page-break-inside:avoid
+  }
+  .tile-icon{font-size:1.6rem;color:var(--c)}
+  .word{font-size:0.85rem;font-weight:800;line-height:1.2;color:#1e293b}
+  @media print{
+    body{padding:0.5rem}
+    .grid{grid-template-columns:repeat(5,1fr)}
+  }
+</style>
+</head>
+<body>
+<h1>Class Roster — ${this.roster.length} learner${this.roster.length !== 1 ? 's' : ''}</h1>
+<div class="grid">${tiles}</div>
+</body>
+</html>`;
+  }
+
+  private trapModalFocus(
+    event: KeyboardEvent,
+    dialogRef: ElementRef<HTMLElement> | undefined,
+    closeModal: () => void,
+  ): void {
     if (event.key === 'Escape') {
       event.preventDefault();
       closeModal();
