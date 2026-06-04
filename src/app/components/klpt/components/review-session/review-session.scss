@@ -42,6 +42,18 @@
   max-width: 32rem;
 }
 
+.review-card__required {
+  color: #b42318;
+  font-size: 0.85rem;
+  font-weight: 750;
+}
+
+.button--disabled {
+  cursor: not-allowed;
+  filter: grayscale(0.3);
+  opacity: 0.5;
+}
+
 .generate-pdf-modal {
   position: fixed;
   inset: 0;

@@ -55,7 +55,7 @@ export class ReviewSession implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.currentSession = this.getRouteSession();
-    this.childName = this.formValue('child-name');
+    this.childName = '';
     this.currentSession.pageIndex = 4;
     this.currentSession.formFields = this.mergeFormFields(this.currentSession.formFields);
   }
@@ -67,6 +67,10 @@ export class ReviewSession implements OnInit, OnDestroy {
   }
 
   protected openGeneratePdfModal(): void {
+    if (!this.canGeneratePdf()) {
+      return;
+    }
+
     this.isGeneratePdfModalOpen = true;
     window.setTimeout(() => this.focusFirstModalControl());
   }
@@ -183,6 +187,10 @@ export class ReviewSession implements OnInit, OnDestroy {
     return klptDomainStyle(this.domainForElement(element)?.index, 2, this.domainAssetMode.mode());
   }
 
+  protected canGeneratePdf(): boolean {
+    return this.childName.trim().length > 0;
+  }
+
   private getRouteSession(): SessionModel {
     const sessionId = this.route.snapshot.paramMap.get('sessionId');
 
@@ -211,7 +219,9 @@ export class ReviewSession implements OnInit, OnDestroy {
       return fields.find((field) => field.name === name) ?? { name, value: '' };
     });
     const existingFields = fields.filter(
-      (field) => !requiredFields.some((requiredField) => requiredField === field.name),
+      (field) =>
+        field.name !== 'child-name' &&
+        !requiredFields.some((requiredField) => requiredField === field.name),
     );
 
     return [...mergedFields, ...existingFields];
