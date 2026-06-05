@@ -51,8 +51,8 @@ import { Sitemap } from './components/sitemap/sitemap';
 export const routes: Routes = [
   { path: '', component: Home, title: 'Home' },
   { path: 'foundations', component: Foundations, title: 'Foundations' },
-  { path: 'foundations/quality-observations', component: QualityObservations, title: 'Conducting and documenting quality observations' },
-  { path: 'foundations/analysing-data', component: AnalysingData, title: 'Analysing and interpreting observational data' },
+  { path: 'foundations/conducting-and-documenting-quality-observations', component: QualityObservations, title: 'Conducting and documenting quality observations' },
+  { path: 'foundations/analysing-and-interpreting-observational-data', component: AnalysingData, title: 'Analysing and interpreting observational data' },
   { path: 'learning-domains', component: LearningDomains, title: 'Learning domains' },
   { path: 'learning-domains/language-and-literacy', component: LanguageAndLiteracy, title: 'Language and literacy' },
   { path: 'learning-domains/executive-function', component: ExecutiveFunction, title: 'Executive function' },  
