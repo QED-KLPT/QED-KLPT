@@ -17,8 +17,8 @@ const routes: Routes = [
     children: [
       { path: '', component: Introduction, title: 'KLPT introduction' },
       { path: 'introduction', component: Introduction, title: 'KLPT introduction' },
-      { path: 'list-sessions', component: ListSessions, title: 'KLPT sessions' },
-      { path: 'create-session', redirectTo: 'list-sessions', pathMatch: 'full' },
+      { path: 'sessions', component: ListSessions, title: 'KLPT sessions' },
+      { path: 'create-session', redirectTo: 'sessions', pathMatch: 'full' },
       { path: 'select-domains/:sessionId', component: SelectDomains, title: 'Select KLPT domains' },
       { path: 'select-behaviours/:sessionId', component: SelectBehaviours, title: 'Select KLPT behaviours' },
       {

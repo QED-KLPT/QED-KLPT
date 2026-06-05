@@ -12,13 +12,13 @@ export const reviewSessionGuard: CanActivateFn = (route, state) => {
   const sessionId = route.paramMap.get('sessionId');
 
   if (!sessionId) {
-    return router.parseUrl('/klpt/list-sessions');
+    return router.parseUrl('/klpt/sessions');
   }
 
   const session = sessionManagement.getSession(sessionId);
 
   if (!session) {
-    return router.parseUrl('/klpt/list-sessions');
+    return router.parseUrl('/klpt/sessions');
   }
 
   if (!hasSelectedElements(session)) {
