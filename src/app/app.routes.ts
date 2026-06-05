@@ -73,7 +73,6 @@ export const routes: Routes = [
     loadChildren: () => import('./components/klpt/klpt-routing.module').then((m) => m.KlptRoutingModule),
   },
   { path: 'about', component: About, title: 'About — Kindergarten Learning Progression Toolkit' },
-  { path: 'help', component: Help, title: 'Help — Kindergarten Learning Progression Toolkit' },
   { path: 'contact', component: Contact, title: 'Contact — Kindergarten Learning Progression Toolkit' },
   { path: 'sitemap', component: Sitemap, title: 'Site map' },
   { path: 'testing-alerts', component: TestingAlerts, title: 'Testing Alerts' },
