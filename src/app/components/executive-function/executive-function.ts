@@ -75,7 +75,7 @@ export class ExecutiveFunction implements OnInit {
       },
     ],
     pdfLabel: 'Download executive function practice supports (PDF, 1.7MB)',
-    pdfPath: 'assets/content/pdfs/26.04.406 K-2 KLPT Executive Function Practice Support_V4.pdf',
+    pdfPath: 'assets/content/pdfs/KLPT-Exec-PracSupp-V4.pdf',
   };
 
   private readonly cards: DesignCard[] = [
@@ -87,7 +87,7 @@ export class ExecutiveFunction implements OnInit {
       background: 'linear-gradient(135deg, #0069AB 0%, #004A78 100%)',
       hoverBorderColor: '#005387',
       imageAlt: 'Persistence',
-      imageSrc: 'assets/img/executive-function-inhibitory-control.svg',
+      imageSrc: 'assets/img/exec-func-inhibitctrl.svg',
     },
     {
       title: 'Adaptability',
@@ -97,7 +97,7 @@ export class ExecutiveFunction implements OnInit {
       background: 'linear-gradient(135deg, #0069AB 0%, #004A78 100%)',
       hoverBorderColor: '#005387',
       imageAlt: 'Adaptability',
-      imageSrc: 'assets/img/executive-function-working-memory.svg',
+      imageSrc: 'assets/img/exec-func-workmem.svg',
     },
     {
       title: 'Problem solving',
@@ -107,7 +107,7 @@ export class ExecutiveFunction implements OnInit {
       background: 'linear-gradient(135deg, #0069AB 0%, #004A78 100%)',
       hoverBorderColor: '#005387',
       imageAlt: 'Problem solving',
-      imageSrc: 'assets/img/executive-function-cognitive-flexibility.svg',
+      imageSrc: 'assets/img/exec-func-cogflex.svg',
     },
   ];
 }

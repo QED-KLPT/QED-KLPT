@@ -70,7 +70,7 @@ export class Physicality implements OnInit {
       background: 'linear-gradient(135deg, #247F33 0%, #185922 100%)',
       hoverBorderColor: '#1D682A',
       imageAlt: 'Child standing on one foot for balance',
-      imageSrc: 'assets/img/physicality-stable-movement.svg',
+      imageSrc: 'assets/img/phys-stablemove.svg',
     },
     {
       title: 'Praesent Elementum',
@@ -80,7 +80,7 @@ export class Physicality implements OnInit {
       background: 'linear-gradient(135deg, #247F33 0%, #185922 100%)',
       hoverBorderColor: '#1D682A',
       imageAlt: 'Child looking around curiously',
-      imageSrc: 'assets/img/physicality-environment-awareness.svg',
+      imageSrc: 'assets/img/phys-envawareness.svg',
     },
     {
       title: 'Egestas Dui',
@@ -120,7 +120,7 @@ export class Physicality implements OnInit {
       background: 'linear-gradient(135deg, #247F33 0%, #185922 100%)',
       hoverBorderColor: '#1D682A',
       imageAlt: 'Child touching different textured shapes',
-      imageSrc: 'assets/img/physicality-sensory-learning.svg',
+      imageSrc: 'assets/img/phys-senslearn.svg',
     },
   ];
 }

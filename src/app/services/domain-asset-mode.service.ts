@@ -12,7 +12,7 @@ const DOMAIN_ICONS: Record<string, { colour: string; 'dark-blue': string }> = {
   'mathematics-numeracy': { colour: 'domain-math-num-col', 'dark-blue': 'domain-math-num-db' },
   'analysing-interpreting': { colour: 'domain-anlys-intprt-col', 'dark-blue': 'domain-anlys-intprt-db' },
   'conducting-documenting': { colour: 'domain-cond-doc-col', 'dark-blue': 'domain-cond-doc-db' },
-  'physicality': { colour: 'domain-physicality-colour', 'dark-blue': 'domain-physicality-dark-blue' },
+  'physicality': { colour: 'domain-physicality-colour', 'dark-blue': 'phys-db' },
 };
 
 @Injectable({ providedIn: 'root' })

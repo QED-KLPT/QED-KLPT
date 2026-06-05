@@ -90,7 +90,7 @@ export class MathematicsAndNumeracy implements OnInit {
       background: 'linear-gradient(135deg, #BA1C23 0%, #801318 100%)',
       hoverBorderColor: '#91161B',
       imageAlt: 'Concepts of Time icon - clock showing time sequence',
-      imageSrc: 'assets/img/mathematics-numeracy-concepts-of-time.svg',
+      imageSrc: 'assets/img/math-num-conceptstime.svg',
     },
     {
       title: 'Proident Simulant',
