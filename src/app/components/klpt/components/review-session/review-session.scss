@@ -42,6 +42,14 @@
   max-width: 32rem;
 }
 
+.review-card__intro {
+  max-width: 42rem;
+  margin: -0.25rem 0 0;
+  color: #5e6f84;
+  font-size: 1.12rem;
+  line-height: 1.55;
+}
+
 .generate-pdf-modal {
   position: fixed;
   inset: 0;
