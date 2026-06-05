@@ -78,7 +78,7 @@ export class KlptPdfGeneratorService {
       { label: 'Date', value: this.displayValue(this.formatFormDate(this.formValue(session, 'date'))) },
       { label: "Observer name", value: this.displayValue(session.educatorName) },
       { label: 'Learner code', value: this.displayValue(session.learnerCode) },
-      { label: 'Child name', value: this.displayValue(options.learnerName) },
+      { label: 'Child name', value: options.learnerName?.trim() ?? '' },
     ]);
 
     if (domain) {

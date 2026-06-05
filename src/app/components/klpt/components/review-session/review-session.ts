@@ -67,10 +67,6 @@ export class ReviewSession implements OnInit, OnDestroy {
   }
 
   protected openGeneratePdfModal(): void {
-    if (!this.canGeneratePdf()) {
-      return;
-    }
-
     this.isGeneratePdfModalOpen = true;
     window.setTimeout(() => this.focusFirstModalControl());
   }
@@ -185,10 +181,6 @@ export class ReviewSession implements OnInit, OnDestroy {
 
   protected itemStyle(element: KlptElement): Record<string, string> {
     return klptDomainStyle(this.domainForElement(element)?.index, 2, this.domainAssetMode.mode());
-  }
-
-  protected canGeneratePdf(): boolean {
-    return this.childName.trim().length > 0;
   }
 
   private getRouteSession(): SessionModel {

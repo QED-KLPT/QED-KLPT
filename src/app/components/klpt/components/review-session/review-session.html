@@ -14,13 +14,11 @@
       <h2>Review Statement</h2>
 
       <label class="klpt-form-field review-card__child">
-        <span>Child's name <span class="review-card__required">(required)</span></span>
+        <span>Child's name</span>
         <input
           type="text"
           [value]="childName"
           placeholder="Enter child's name"
-          required
-          aria-required="true"
           (input)="updateChildName($any($event.target).value)"
         />
       </label>
@@ -113,8 +111,6 @@
           class="button button--primary"
           type="button"
           aria-haspopup="dialog"
-          [disabled]="!canGeneratePdf()"
-          [class.button--disabled]="!canGeneratePdf()"
           [attr.aria-label]="'Generate PDF for learner ' + displayValue(currentSession.learnerCode)"
           (click)="openGeneratePdfModal()"
         >
