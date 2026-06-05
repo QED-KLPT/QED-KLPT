@@ -49,6 +49,10 @@
     color: #5e6f84;
     line-height: 1.55;
   }
+
+  h2 + p {
+    margin-block-start: 1.15rem;
+  }
 }
 
 .behaviour-empty {
