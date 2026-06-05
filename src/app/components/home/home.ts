@@ -37,6 +37,17 @@ export class Home implements OnInit {
     this.scroll.scrollToPosition([0, 0]);
   }
 
+  scrollToContent(): void {
+    const content = document.getElementById('home-content');
+
+    if (!content) {
+      return;
+    }
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    content.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+  }
+
   protected readonly domains: DomainSummary[] = [
     {
       title: 'Language and literacy',

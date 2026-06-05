@@ -15,10 +15,19 @@
           <a class="button button--secondary" routerLink="/klpt">Open the Learning observation tool</a>
         </div>
       </div>
+      <button
+        type="button"
+        class="home-hero__scroll"
+        aria-label="Scroll to page content"
+        title="Scroll to page content"
+        (click)="scrollToContent()"
+      >
+        <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+      </button>
     </div>
   </section>
 
-  <section class="section section--cream" aria-labelledby="development-title">
+  <section id="home-content" class="section section--cream" aria-labelledby="development-title">
     <div class="section__inner">
       <div class="section__intro">
         <!-- <p class="eyebrow">Learning areas</p> -->
