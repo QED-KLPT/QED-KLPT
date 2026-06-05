@@ -53,6 +53,11 @@
         </section>
       }
 
+      <section class="klpt-review-text-block">
+        <h3>Description of observation context or evidence collected</h3>
+        <p>{{ displayValue(formValue('observational-context')) }}</p>
+      </section>
+
       @if (items.length) {
         <section class="klpt-progression-stack" aria-label="Selected behaviours and next behaviours">
           @for (item of items; track item.element.id) {
@@ -88,11 +93,6 @@
           <p>Return to behaviour selection and choose a behaviour for each selected element.</p>
         </section>
       }
-
-      <section class="klpt-review-text-block">
-        <h3>Description of observation context or evidence collected</h3>
-        <p>{{ displayValue(formValue('observational-context')) }}</p>
-      </section>
 
       <section class="klpt-review-text-block">
         <h3>Professional reflection</h3>

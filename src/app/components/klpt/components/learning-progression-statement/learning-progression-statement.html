@@ -21,6 +21,15 @@
         </section>
       }
 
+      <label class="klpt-form-field klpt-form-field--wide">
+        <span>Description of observation context or evidence collected</span>
+        <textarea
+          rows="5"
+          [value]="formValue('observational-context')"
+          (input)="updateFormField('observational-context', $any($event.target).value)"
+        ></textarea>
+      </label>
+
       <div class="klpt-form-grid learning-statement-meta-grid">
         <label class="klpt-form-field">
           <span>Date</span>
@@ -49,15 +58,6 @@
           />
         </label>
       </div>
-
-      <label class="klpt-form-field klpt-form-field--wide">
-        <span>Description of observation context or evidence collected</span>
-        <textarea
-          rows="5"
-          [value]="formValue('observational-context')"
-          (input)="updateFormField('observational-context', $any($event.target).value)"
-        ></textarea>
-      </label>
 
       @if (items.length) {
         <section class="klpt-progression-stack" aria-label="Selected behaviours and next behaviours">

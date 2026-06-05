@@ -86,11 +86,6 @@ export class KlptPdfGeneratorService {
       y = this.addTextCard(doc, y, margin, contentWidth, 'Learning domain summary', `${domain.name}: ${domain.summary}`);
     }
 
-    for (const item of progressionItems) {
-      y = this.ensureSpace(doc, y, 55, margin, pageHeight);
-      y = this.addProgressionItem(doc, y, margin, contentWidth, item, pageHeight);
-    }
-
     y = this.ensureSpace(doc, y, 35, margin, pageHeight);
     y = this.addTextCard(
       doc,
@@ -100,6 +95,12 @@ export class KlptPdfGeneratorService {
       'Description of observation context or evidence collected',
       this.displayValue(this.formValue(session, 'observational-context')),
     );
+
+    for (const item of progressionItems) {
+      y = this.ensureSpace(doc, y, 55, margin, pageHeight);
+      y = this.addProgressionItem(doc, y, margin, contentWidth, item, pageHeight);
+    }
+
     y = this.addTextCard(
       doc,
       y,
