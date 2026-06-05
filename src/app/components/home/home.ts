@@ -1,5 +1,5 @@
 import { ViewportScroller } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
 import { DomainCard } from '../shared/domain-card/domain-card';
@@ -24,6 +24,9 @@ type DomainSummary = {
 export class Home implements OnInit {
   acknowledgementTranscript: string = '';
   introductionTranscript: string = '';
+  protected isAckModalOpen = false;
+
+  @ViewChild('ackDialog') private ackDialog?: ElementRef<HTMLElement>;
 
   constructor(
     private scroll: ViewportScroller,
@@ -35,6 +38,46 @@ export class Home implements OnInit {
 
   ngOnInit(): void {
     this.scroll.scrollToPosition([0, 0]);
+    if (!sessionStorage.getItem('klpt-ack-seen')) {
+      this.isAckModalOpen = true;
+      setTimeout(() => this.ackDialog?.nativeElement?.focus(), 0);
+    }
+  }
+
+  protected closeAckModal(): void {
+    this.isAckModalOpen = false;
+    sessionStorage.setItem('klpt-ack-seen', '1');
+  }
+
+  protected trapAckModalFocus(event: KeyboardEvent): void {
+    if (event.key === 'Escape') {
+      this.closeAckModal();
+      return;
+    }
+    if (event.key !== 'Tab') return;
+
+    const dialog = this.ackDialog?.nativeElement;
+    if (!dialog) return;
+
+    const focusable = Array.from(
+      dialog.querySelectorAll<HTMLElement>('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')
+    ).filter(el => !el.hasAttribute('disabled') && el.offsetParent !== null);
+
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (event.shiftKey) {
+      if (document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      }
+    } else {
+      if (document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
   }
 
   scrollToContent(): void {
