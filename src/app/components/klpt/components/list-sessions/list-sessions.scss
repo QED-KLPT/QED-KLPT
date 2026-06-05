@@ -914,16 +914,27 @@
   padding-block: 1.25rem 0.5rem;
 }
 
-.klpt-roster-setup__intro {
-  color: #53657d;
-  font-size: 0.88rem;
-  line-height: 1.55;
-  margin: 0;
-  max-width: 44rem;
+.klpt-roster-next-steps {
+  background: rgba(13, 59, 102, 0.05);
+  border-left: 3px solid var(--doe-color-primary, #003e96);
+  border-radius: 0 6px 6px 0;
+  padding: 0.75rem 1rem;
 }
 
-.klpt-roster-setup__field {
-  max-width: 14rem;
+.klpt-roster-next-steps__heading {
+  color: #0d3b66;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  margin: 0 0 0.3rem;
+  text-transform: uppercase;
+}
+
+.klpt-roster-next-steps__text {
+  color: #53657d;
+  font-size: 0.87rem;
+  line-height: 1.55;
+  margin: 0;
 }
 
 .klpt-roster-setup__actions {

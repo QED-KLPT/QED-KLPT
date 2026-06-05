@@ -39,7 +39,7 @@
         <div class="klpt-create-session-form-inner">
 
         <!-- ── Observer name: shown only after a method is chosen ──────────── -->
-        @if (obsStep !== 'method' && obsStep !== 'manual') {
+        @if (obsStep !== 'method' && obsStep !== 'manual' && obsStep !== 'roster-setup') {
           <div class="klpt-obs-name-persistent">
             <div class="klpt-form-field">
               <label for="educator-name-obs">Observer's name</label>
@@ -178,27 +178,52 @@
         <!-- ── Step 2b: roster setup ──────────────────────────────────────── -->
         @if (obsStep === 'roster-setup') {
           <div class="klpt-roster-setup">
-            <p class="klpt-roster-setup__intro">
-              Each child in your class gets a unique colour and nature word. Print the roster and attach each card to the child's physical folder — then tap their avatar here whenever you start an observation.
-            </p>
-            <div class="klpt-form-field klpt-roster-setup__field">
-              <label for="child-count">Number of children</label>
-              <input
-                type="text"
-                id="child-count"
-                inputmode="numeric"
-                maxlength="3"
-                placeholder="e.g. 20"
-                [class.qld__text-input--error]="childCountError"
-                [attr.aria-invalid]="childCountError ? 'true' : null"
-                [attr.aria-describedby]="childCountError ? 'child-count-error' : null"
-                [value]="childCount"
-                (input)="onChildCountInput($event)"
-              />
-              @if (childCountError) {
-                <span class="qld__input--error" id="child-count-error" role="alert">{{ childCountError }}</span>
-              }
+
+            <div class="klpt-form-grid">
+              <div class="klpt-form-field">
+                <label for="educator-name-roster">Observer's name</label>
+                <input
+                  type="text"
+                  id="educator-name-roster"
+                  [class.qld__text-input--error]="educatorNameError"
+                  [attr.aria-invalid]="educatorNameError ? 'true' : null"
+                  [attr.aria-describedby]="educatorNameError ? 'educator-name-roster-error' : null"
+                  placeholder="Enter observer name"
+                  [value]="educatorName"
+                  (input)="onEducatorNameInput($event)"
+                />
+                @if (educatorNameError) {
+                  <span class="qld__input--error" id="educator-name-roster-error" role="alert">{{ educatorNameError }}</span>
+                }
+              </div>
+
+              <div class="klpt-form-field">
+                <label for="child-count">Number of children</label>
+                <input
+                  type="text"
+                  id="child-count"
+                  inputmode="numeric"
+                  maxlength="3"
+                  placeholder="e.g. 20"
+                  [class.qld__text-input--error]="childCountError"
+                  [attr.aria-invalid]="childCountError ? 'true' : null"
+                  [attr.aria-describedby]="childCountError ? 'child-count-error' : null"
+                  [value]="childCount"
+                  (input)="onChildCountInput($event)"
+                />
+                @if (childCountError) {
+                  <span class="qld__input--error" id="child-count-error" role="alert">{{ childCountError }}</span>
+                }
+              </div>
             </div>
+
+            <div class="klpt-roster-next-steps">
+              <p class="klpt-roster-next-steps__heading">Next steps</p>
+              <p class="klpt-roster-next-steps__text">
+                Each child will get a unique colour and nature avatar. Generate the roster, then use <strong>Print roster</strong> to print and attach each card to the child's physical folder. Tap their avatar here whenever you start an observation.
+              </p>
+            </div>
+
             <div class="klpt-roster-setup__actions">
               <button type="button" class="button button--secondary" (click)="onBackToMethod()">Back</button>
               <button type="button" class="button button--primary" (click)="onGenerateRoster()">Generate roster</button>
