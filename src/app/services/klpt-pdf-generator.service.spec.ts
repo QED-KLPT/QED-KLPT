@@ -86,6 +86,10 @@ describe('KlptPdfGeneratorService', () => {
       expect(service.getFieldLabel('support-learning')).toBe('Support Learning');
     });
 
+    it('should map qklg-eylf-links to QKLG and EYLF Links', () => {
+      expect(service.getFieldLabel('qklg-eylf-links')).toBe('QKLG and EYLF Links');
+    });
+
     it('should return original name for unmapped fields', () => {
       expect(service.getFieldLabel('custom-field')).toBe('custom-field');
     });
@@ -296,6 +300,7 @@ describe('KlptPdfGeneratorService', () => {
           { name: 'date', value: '2025-01-15' },
           { name: 'observational-context', value: 'Child showed interest in books during circle time.' },
           { name: 'professional-reflection', value: 'Links to phonemic awareness development.' },
+          { name: 'qklg-eylf-links', value: 'QKLG communicating and EYLF Outcome 5.' },
         ],
         elements: [
           { id: 'e1', behaviourId: 'behaviour-1' },
