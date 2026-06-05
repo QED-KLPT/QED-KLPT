@@ -56,7 +56,7 @@ export class ReviewSession implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.currentSession = this.getRouteSession();
-    this.childName = this.formValue('child-name');
+    this.childName = '';
     this.currentSession.pageIndex = 4;
     this.currentSession.formFields = this.mergeFormFields(this.currentSession.formFields);
   }
@@ -216,7 +216,9 @@ export class ReviewSession implements OnInit, OnDestroy {
       return fields.find((field) => field.name === name) ?? { name, value: '' };
     });
     const existingFields = fields.filter(
-      (field) => !requiredFields.some((requiredField) => requiredField === field.name),
+      (field) =>
+        field.name !== 'child-name' &&
+        !requiredFields.some((requiredField) => requiredField === field.name),
     );
 
     return [...mergedFields, ...existingFields];

@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
 import { AccordionItemComponent } from '../shared/accordion-item/accordion-item.component';
 import { KlptVideoContentService, PageVideoColumn } from '../../services/klpt-video-content.service';
-import { DomainCard } from '../shared/domain-card/domain-card';
 import { DomainAssetModeService } from '../../services/domain-asset-mode.service';
 
 type DesignCard = {
@@ -26,7 +25,7 @@ const DARK_BLUE_CARD_BACKGROUND = '#003e96';
 
 @Component({
   selector: 'app-language-and-literacy',
-  imports: [DomainCard, CommonModule, RouterLink, AccordionItemComponent, YoutubePlayerModule],
+  imports: [CommonModule, RouterLink, AccordionItemComponent, YoutubePlayerModule],
   templateUrl: './language-and-literacy.html',
   styleUrl: './language-and-literacy.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
