@@ -162,6 +162,7 @@ export class LearningProgressionStatement implements OnInit, OnDestroy {
       'observational-context',
       'professional-reflection',
       'support-learning',
+      'qklg-eylf-links',
     ];
 
     const mergedFields = requiredFields.map((name) => {
