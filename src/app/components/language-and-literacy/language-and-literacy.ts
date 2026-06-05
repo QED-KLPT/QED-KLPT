@@ -92,7 +92,7 @@ export class LanguageAndLiteracy implements OnInit {
       },
     ],
     pdfLabel: 'Download language and literacy practice supports (PDF, 1.0MB)',
-    pdfPath: 'assets/content/pdfs/26.04.406 K-2 KLPT Language and Literacy practice support_V3.pdf',
+    pdfPath: 'assets/content/pdfs/KLPT-LangLit-PracSupp-V3.pdf',
   };
 
   protected readonly themedCards = computed<ThemedDesignCard[]>(() => {
@@ -115,7 +115,7 @@ export class LanguageAndLiteracy implements OnInit {
       background: 'linear-gradient(135deg, #B85A12 0%, #8F4D12 100%)',
       hoverBorderColor: '#AC5E16',
       imageAlt: 'Sounds and speech',
-      imageSrc: 'assets/img/language-and-literacy-sounds-speech.svg',
+      imageSrc: 'assets/img/lang-lit-sndspeech.svg',
     },  
     {
       title: 'Comprehension',
@@ -125,7 +125,7 @@ export class LanguageAndLiteracy implements OnInit {
       background: 'linear-gradient(135deg, #B85A12 0%, #8F4D12 100%)',
       hoverBorderColor: '#AC5E16',
       imageAlt: 'Comprehension',
-      imageSrc: 'assets/img/language-and-literacy-comprehension.svg',
+      imageSrc: 'assets/img/lang-lit-comp.svg',
     }
   ];
 }
