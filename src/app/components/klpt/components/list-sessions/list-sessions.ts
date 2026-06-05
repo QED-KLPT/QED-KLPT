@@ -2,7 +2,7 @@ import { DatePipe, ViewportScroller } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { SessionModel } from '../../models/session-model';
-import { SessionTag } from '../../models/session-tag';
+import { SessionTag, SessionTagGenerationPattern } from '../../models/session-tag';
 import { SessionManagementService } from '../shared/session-management.service';
 import { SessionTagService } from '../shared/session-tag.service';
 
@@ -25,6 +25,23 @@ export class ListSessions implements OnInit {
   protected educatorName = '';
   protected educatorNameError = '';
   protected currentSessionTag!: SessionTag;
+  protected selectedSessionTagPattern: SessionTagGenerationPattern = 'day-code';
+  protected readonly sessionTagPatternOptions: {
+    id: SessionTagGenerationPattern;
+    label: string;
+    description: string;
+  }[] = [
+    {
+      id: 'day-code',
+      label: 'Day code',
+      description: 'Colour, shape, weekday and date',
+    },
+    {
+      id: 'visual-pattern',
+      label: 'Pattern code',
+      description: 'Colour, pattern, shape and date',
+    },
+  ];
   protected isFormVisible = false;
   protected isStorageModalOpen = false;
   protected storageSnapshot = '(empty)';
@@ -95,6 +112,12 @@ export class ListSessions implements OnInit {
     this.currentSessionTag = this.generateSessionTag();
   }
 
+  protected onSessionTagPatternInput(event: Event): void {
+    const value = (event.target as HTMLInputElement).value as SessionTagGenerationPattern;
+    this.selectedSessionTagPattern = value;
+    this.currentSessionTag = this.generateSessionTag();
+  }
+
   public onEducatorNameInput(event: Event): void {
     this.educatorName = (event.target as HTMLInputElement).value;
     this.educatorNameError = '';
@@ -120,8 +143,15 @@ export class ListSessions implements OnInit {
     return session.sessionTag;
   }
 
+  protected sessionTagClipId(tag: SessionTag): string {
+    return `session-tag-clip-${(tag.id ?? tag.label).replace(/[^a-z0-9]+/gi, '-')}`;
+  }
+
   private generateSessionTag(): SessionTag {
-    return this.sessionTags.generateTag(this.sessions.map((session) => session.learnerCode));
+    return this.sessionTags.generateTag(
+      this.sessions.map((session) => session.learnerCode),
+      this.selectedSessionTagPattern,
+    );
   }
 
   protected sessionRoute(session: SessionModel): string[] {

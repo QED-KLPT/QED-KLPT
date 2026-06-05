@@ -16,6 +16,7 @@ import { KlptDomain } from '../../models/klpt-domain';
 import { KlptElement } from '../../models/klpt-element';
 import { NameValuePair } from '../../models/name-value-pair';
 import { SessionModel } from '../../models/session-model';
+import { SessionTag } from '../../models/session-tag';
 import { klptDomainStyle } from '../shared/klpt-domain-colours';
 import { KlptDomainDataService } from '../shared/klpt-domain-data.service';
 import { SessionManagementService } from '../shared/session-management.service';
@@ -177,6 +178,10 @@ export class ReviewSession implements OnInit, OnDestroy {
 
   protected displayValue(value: string | undefined): string {
     return value?.trim() ? value : 'Not entered';
+  }
+
+  protected sessionTagClipId(tag: SessionTag): string {
+    return `session-tag-clip-${(tag.id ?? tag.label).replace(/[^a-z0-9]+/gi, '-')}`;
   }
 
   protected itemStyle(element: KlptElement): Record<string, string> {

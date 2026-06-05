@@ -1,7 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 
-import { SessionTag, SessionTagColour, SessionTagOptions, SessionTagShape } from '../../models/session-tag';
+import {
+  SessionTag,
+  SessionTagColour,
+  SessionTagGenerationPattern,
+  SessionTagOptions,
+  SessionTagPattern,
+  SessionTagShape,
+} from '../../models/session-tag';
 
 const FALLBACK_OPTIONS: SessionTagOptions = {
   colours: [
@@ -18,6 +25,11 @@ const FALLBACK_OPTIONS: SessionTagOptions = {
     { id: 'diamond', label: 'Diamond' },
     { id: 'hexagon', label: 'Hexagon' },
   ],
+  patterns: [
+    { id: 'striped', label: 'Striped' },
+    { id: 'dotted', label: 'Dotted' },
+    { id: 'crosshatched', label: 'Crosshatched' },
+  ],
   days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
 };
 
@@ -32,18 +44,21 @@ export class SessionTagService {
     this.loadOptions();
   }
 
-  generateTag(excludedLabels: string[] = []): SessionTag {
+  generateTag(
+    excludedLabels: string[] = [],
+    generationPattern: SessionTagGenerationPattern = 'day-code',
+  ): SessionTag {
     const excluded = new Set(excludedLabels.map((label) => label.trim().toLowerCase()));
 
     for (let attempt = 0; attempt < 25; attempt += 1) {
-      const tag = this.randomTag();
+      const tag = this.randomTag(generationPattern);
 
       if (!excluded.has(tag.label.toLowerCase())) {
         return tag;
       }
     }
 
-    return this.randomTag();
+    return this.randomTag(generationPattern);
   }
 
   private loadOptions(): void {
@@ -57,14 +72,19 @@ export class SessionTagService {
     });
   }
 
-  private randomTag(): SessionTag {
+  private randomTag(generationPattern: SessionTagGenerationPattern): SessionTag {
     const options = this.options();
     const colour = this.randomItem(options.colours);
     const shape = this.randomItem(options.shapes);
     const { day, dayCode } = this.currentDayTag(options.days);
-    const label = `${colour.label} ${shape.label} ${day} ${dayCode}`;
+    const pattern = generationPattern === 'visual-pattern'
+      ? this.randomItem(options.patterns ?? FALLBACK_OPTIONS.patterns ?? [])
+      : undefined;
+    const label = pattern
+      ? `${colour.label} ${pattern.label} ${shape.label} ${dayCode}`
+      : `${colour.label} ${shape.label} ${day} ${dayCode}`;
 
-    return this.createTag(colour, shape, day, dayCode, label);
+    return this.createTag(colour, shape, day, dayCode, label, generationPattern, pattern);
   }
 
   private createTag(
@@ -73,17 +93,29 @@ export class SessionTagService {
     day: string,
     dayCode: string,
     label: string,
+    generationPattern: SessionTagGenerationPattern,
+    pattern: SessionTagPattern | undefined,
   ): SessionTag {
     return {
+      id: this.createTagId(),
       colourId: colour.id,
       colourLabel: colour.label,
       colourHex: colour.hex,
       shapeId: shape.id,
       shapeLabel: shape.label,
+      patternId: pattern?.id,
+      patternLabel: pattern?.label,
       day,
       dayCode,
       label,
+      generationPattern,
     };
+  }
+
+  private createTagId(): string {
+    return typeof crypto !== 'undefined' && 'randomUUID' in crypto
+      ? crypto.randomUUID()
+      : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
   }
 
   private currentDayTag(days: string[]): { day: string; dayCode: string } {

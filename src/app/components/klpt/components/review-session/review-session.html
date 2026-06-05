@@ -46,6 +46,27 @@
             @if (currentSession.sessionTag; as tag) {
               <span class="session-tag-badge session-tag-badge--compact">
                 <svg class="session-tag-shape" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <defs>
+                    <clipPath [attr.id]="sessionTagClipId(tag)">
+                      @switch (tag.shapeId) {
+                        @case ('square') {
+                          <rect x="5" y="5" width="14" height="14" rx="2"></rect>
+                        }
+                        @case ('triangle') {
+                          <polygon points="12,4 21,20 3,20"></polygon>
+                        }
+                        @case ('diamond') {
+                          <polygon points="12,3 21,12 12,21 3,12"></polygon>
+                        }
+                        @case ('hexagon') {
+                          <polygon points="7,3 17,3 22,12 17,21 7,21 2,12"></polygon>
+                        }
+                        @default {
+                          <circle cx="12" cy="12" r="8.5"></circle>
+                        }
+                      }
+                    </clipPath>
+                  </defs>
                   @switch (tag.shapeId) {
                     @case ('square') {
                       <rect x="5" y="5" width="14" height="14" rx="2" [attr.fill]="tag.colourHex"></rect>
@@ -62,6 +83,22 @@
                     @default {
                       <circle cx="12" cy="12" r="8.5" [attr.fill]="tag.colourHex"></circle>
                     }
+                  }
+                  @if (tag.patternId) {
+                    <g [attr.clip-path]="'url(#' + sessionTagClipId(tag) + ')'">
+                      @if (tag.patternId === 'striped' || tag.patternId === 'crosshatched') {
+                        <path d="M-2 22 L22 -2 M3 25 L25 3 M-5 17 L17 -5" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" opacity="0.78"></path>
+                      }
+                      @if (tag.patternId === 'crosshatched') {
+                        <path d="M2 -2 L26 22 M-2 3 L19 24 M7 -5 L29 17" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" opacity="0.68"></path>
+                      }
+                      @if (tag.patternId === 'dotted') {
+                        <circle cx="8" cy="8" r="1.45" fill="#ffffff" opacity="0.76"></circle>
+                        <circle cx="15.5" cy="8.5" r="1.45" fill="#ffffff" opacity="0.76"></circle>
+                        <circle cx="11.5" cy="14.5" r="1.45" fill="#ffffff" opacity="0.76"></circle>
+                        <circle cx="18" cy="16.5" r="1.2" fill="#ffffff" opacity="0.68"></circle>
+                      }
+                    </g>
                   }
                 </svg>
                 <span>{{ displayValue(currentSession.learnerCode) }}</span>

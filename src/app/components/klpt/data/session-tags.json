@@ -18,6 +18,11 @@
     { "id": "diamond", "label": "Diamond" },
     { "id": "hexagon", "label": "Hexagon" }
   ],
+  "patterns": [
+    { "id": "striped", "label": "Striped" },
+    { "id": "dotted", "label": "Dotted" },
+    { "id": "crosshatched", "label": "Crosshatched" }
+  ],
   "days": [
     "Sunday",
     "Monday",
