@@ -72,10 +72,10 @@ export class LearningDomains implements OnInit {
       blueHoverBorderColor: '#005EB8',
     },
     {
-      title: 'Social-emotional learning',
+      title: 'Social and emotional learning',
       description: 'Foster self-awareness, emotion regulation, empathy, and positive relationships.',
       url: '/learning-domains/social-and-emotional-learning',
-      imageAlt: 'Social-emotional learning icon',
+      imageAlt: 'Social and emotional learning icon',
       imageName: 'social-emotional-learning',
       background: 'linear-gradient(135deg, #D10A7D 0%, #930758 100%)',
       hoverBorderColor: '#A40862',
