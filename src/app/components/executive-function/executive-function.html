@@ -27,10 +27,10 @@
     </p>
       <ul>
         <li>
-          <b>Working memory</b> makes it possible to keep information in mind, such as remembering instructions long enough to carry them out
+          <b>Working memory</b> makes it possible to keep information in mind, such as remembering instructions long enough to carry them out.
         </li>
         <li>
-          <b>Inhibitory control</b> supports the ability to pause before acting and choose a suitable response
+          <b>Inhibitory control</b> supports the ability to pause before acting and choose a suitable response.
         </li>
         <li>
           <b>Cognitive flexibility</b> enables attention to shift and adapt from one task to another.
@@ -91,28 +91,4 @@
     </div>
   </div>
 </section>
-
-<section class="section section--cream domain-pathways">
-  <div class="section__inner">
-    <div class="section__intro">
-      <p class="eyebrow">Explore the progression</p>
-      <h2>Executive Function key elements</h2>
-    </div>
-    <div class="card-grid">
-      @for (card of themedCards(); track card.title) {
-        <app-domain-card
-          [title]="card.title"
-          [description]="card.description"
-          [url]="card.url"
-          [background]="card.background"
-          [hoverBorderColor]="card.hoverBorderColor"
-          [imageSrc]="card.imageSrc"
-          [imageAlt]="card.imageAlt"
-          [textColor]="card.textColor"
-        />
-      }
-    </div>
-  </div>
-</section>
-
 
