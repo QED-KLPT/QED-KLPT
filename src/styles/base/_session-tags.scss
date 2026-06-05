@@ -1,7 +1,7 @@
 .session-tag-generator {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
+  align-items: end;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(10rem, 0.65fr);
   gap: 0.75rem;
 }
 
@@ -13,9 +13,21 @@
   color: #26364b;
   display: inline-flex;
   gap: 0.5rem;
-  inline-size: min(100%, 24rem);
+  inline-size: 100%;
+  min-inline-size: 0;
   min-height: 3.375rem;
   padding: 0.55rem 0.8rem;
+}
+
+.session-tag-badge strong {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.session-tag-primary {
+  display: grid;
+  gap: 0.5rem;
+  min-width: 0;
 }
 
 .session-tag-badge--compact {
@@ -52,54 +64,46 @@
 .session-tag-regenerate:hover,
 .session-tag-regenerate:focus-visible {
   background: #e6f6ff;
+  box-shadow: 0 0 0 2px var(--klpt-gold) inset;
   color: var(--doe-color-primary-dark);
-  outline: 2px solid var(--klpt-gold);
+  outline: none;
+}
+
+.session-tag-pattern-select {
+  display: grid;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.session-tag-pattern-select span {
+  align-items: center;
+  color: #10233c;
+  display: inline-flex;
+  font-size: 0.9rem;
+  font-weight: 800;
+  min-height: 1.5rem;
+}
+
+.session-tag-pattern-select select {
+  appearance: auto;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(13, 59, 102, 0.18);
+  border-radius: 18px;
+  color: #10233c;
+  font: inherit;
+  min-height: 3.375rem;
+  padding: 0.8125rem 1rem;
+  width: 100%;
+}
+
+.session-tag-pattern-select select:focus {
+  border-color: #0d3b66;
+  outline: 3px solid rgba(13, 59, 102, 0.18);
   outline-offset: 2px;
 }
 
-.session-tag-patterns {
-  border: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.625rem;
-  margin: 0.65rem 0 0;
-  padding: 0;
-}
-
-.session-tag-patterns__option {
-  align-items: flex-start;
-  border: 1px solid #cfe0ee;
-  border-radius: 12px;
-  cursor: pointer;
-  display: inline-flex;
-  gap: 0.45rem;
-  min-height: 3rem;
-  padding: 0.55rem 0.7rem;
-}
-
-.session-tag-patterns__option input {
-  flex: 0 0 auto;
-  margin-block-start: 0.2rem;
-}
-
-.session-tag-patterns__option span {
-  display: grid;
-  gap: 0.1rem;
-}
-
-.session-tag-patterns__option strong {
-  color: #10233c;
-  font-size: 0.82rem;
-  line-height: 1.2;
-}
-
-.session-tag-patterns__option small {
-  color: #526985;
-  font-size: 0.74rem;
-  line-height: 1.25;
-}
-
-.session-tag-patterns__option:has(input:checked) {
-  background: #e6f6ff;
-  border-color: var(--doe-color-primary);
+@media (max-width: 46rem) {
+  .session-tag-generator {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }

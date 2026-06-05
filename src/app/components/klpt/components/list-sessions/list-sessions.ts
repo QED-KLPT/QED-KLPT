@@ -113,7 +113,7 @@ export class ListSessions implements OnInit {
   }
 
   protected onSessionTagPatternInput(event: Event): void {
-    const value = (event.target as HTMLInputElement).value as SessionTagGenerationPattern;
+    const value = (event.target as HTMLSelectElement).value as SessionTagGenerationPattern;
     this.selectedSessionTagPattern = value;
     this.currentSessionTag = this.generateSessionTag();
   }

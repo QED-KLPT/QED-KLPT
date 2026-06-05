@@ -41,108 +41,101 @@
       >
         <div class="klpt-create-session-form klpt-form-grid">
           <div class="klpt-form-field">
-            <label class="klpt-label-with-help">
-              <span class="klpt-label-text">Session code</span>
-              <button
-                type="button"
-                class="klpt-help-bulb"
-                aria-label="Session code help"
-                (mouseenter)="onBulbHover(true)"
-                (mouseleave)="onBulbHover(false)"
-                (touchstart.prevent)="onBulbLongPressStart()"
-                (touchend.prevent)="onBulbLongPressEnd()"
-              >
-                <img src="assets/img/bulb.png" alt="" aria-hidden="true" />
-              </button>
-              @if (bulbTooltipVisible) {
-                <span class="klpt-help-tooltip" role="tooltip">Use this temporary tag to identify the session without storing the child's name</span>
-              }
-            </label>
             <div class="session-tag-generator" aria-live="polite">
-              <span class="session-tag-badge">
-                <svg class="session-tag-shape" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                  <defs>
-                    <clipPath [attr.id]="sessionTagClipId(currentSessionTag)">
-                      @switch (currentSessionTag.shapeId) {
-                        @case ('square') {
-                          <rect x="5" y="5" width="14" height="14" rx="2"></rect>
-                        }
-                        @case ('triangle') {
-                          <polygon points="12,4 21,20 3,20"></polygon>
-                        }
-                        @case ('diamond') {
-                          <polygon points="12,3 21,12 12,21 3,12"></polygon>
-                        }
-                        @case ('hexagon') {
-                          <polygon points="7,3 17,3 22,12 17,21 7,21 2,12"></polygon>
-                        }
-                        @default {
-                          <circle cx="12" cy="12" r="8.5"></circle>
-                        }
-                      }
-                    </clipPath>
-                  </defs>
-                  @switch (currentSessionTag.shapeId) {
-                    @case ('square') {
-                      <rect x="5" y="5" width="14" height="14" rx="2" [attr.fill]="currentSessionTag.colourHex"></rect>
-                    }
-                    @case ('triangle') {
-                      <polygon points="12,4 21,20 3,20" [attr.fill]="currentSessionTag.colourHex"></polygon>
-                    }
-                    @case ('diamond') {
-                      <polygon points="12,3 21,12 12,21 3,12" [attr.fill]="currentSessionTag.colourHex"></polygon>
-                    }
-                    @case ('hexagon') {
-                      <polygon points="7,3 17,3 22,12 17,21 7,21 2,12" [attr.fill]="currentSessionTag.colourHex"></polygon>
-                    }
-                    @default {
-                      <circle cx="12" cy="12" r="8.5" [attr.fill]="currentSessionTag.colourHex"></circle>
-                    }
+              <div class="session-tag-primary">
+                <label class="klpt-label-with-help">
+                  <span class="klpt-label-text">Session code</span>
+                  <button
+                    type="button"
+                    class="klpt-help-bulb"
+                    aria-label="Session code help"
+                    (mouseenter)="onBulbHover(true)"
+                    (mouseleave)="onBulbHover(false)"
+                    (touchstart.prevent)="onBulbLongPressStart()"
+                    (touchend.prevent)="onBulbLongPressEnd()"
+                  >
+                    <img src="assets/img/bulb.png" alt="" aria-hidden="true" />
+                  </button>
+                  @if (bulbTooltipVisible) {
+                    <span class="klpt-help-tooltip" role="tooltip">Use this temporary tag to identify the session without storing the child's name</span>
                   }
-                  @if (currentSessionTag.patternId) {
-                    <g [attr.clip-path]="'url(#' + sessionTagClipId(currentSessionTag) + ')'">
-                      @if (currentSessionTag.patternId === 'striped' || currentSessionTag.patternId === 'crosshatched') {
-                        <path d="M-2 22 L22 -2 M3 25 L25 3 M-5 17 L17 -5" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" opacity="0.78"></path>
-                      }
-                      @if (currentSessionTag.patternId === 'crosshatched') {
-                        <path d="M2 -2 L26 22 M-2 3 L19 24 M7 -5 L29 17" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" opacity="0.68"></path>
-                      }
-                      @if (currentSessionTag.patternId === 'dotted') {
-                        <circle cx="8" cy="8" r="1.45" fill="#ffffff" opacity="0.76"></circle>
-                        <circle cx="15.5" cy="8.5" r="1.45" fill="#ffffff" opacity="0.76"></circle>
-                        <circle cx="11.5" cy="14.5" r="1.45" fill="#ffffff" opacity="0.76"></circle>
-                        <circle cx="18" cy="16.5" r="1.2" fill="#ffffff" opacity="0.68"></circle>
-                      }
-                    </g>
-                  }
-                </svg>
-                <strong>{{ currentSessionTag.label }}</strong>
-              </span>
-              <button type="button" class="session-tag-regenerate" (click)="onRegenerateSessionTag()">
-                Regenerate
-              </button>
-            </div>
-
-            <fieldset class="session-tag-patterns" aria-label="Session code style">
-              @for (option of sessionTagPatternOptions; track option.id) {
-                <label class="session-tag-patterns__option">
-                  <input
-                    type="radio"
-                    name="session-code-pattern"
-                    [value]="option.id"
-                    [checked]="selectedSessionTagPattern === option.id"
-                    (change)="onSessionTagPatternInput($event)"
-                  />
-                  <span>
-                    <strong>{{ option.label }}</strong>
-                    <small>{{ option.description }}</small>
-                  </span>
                 </label>
-              }
-            </fieldset>
+                <span class="session-tag-badge">
+                  <svg class="session-tag-shape" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <defs>
+                      <clipPath [attr.id]="sessionTagClipId(currentSessionTag)">
+                        @switch (currentSessionTag.shapeId) {
+                          @case ('square') {
+                            <rect x="5" y="5" width="14" height="14" rx="2"></rect>
+                          }
+                          @case ('triangle') {
+                            <polygon points="12,4 21,20 3,20"></polygon>
+                          }
+                          @case ('diamond') {
+                            <polygon points="12,3 21,12 12,21 3,12"></polygon>
+                          }
+                          @case ('hexagon') {
+                            <polygon points="7,3 17,3 22,12 17,21 7,21 2,12"></polygon>
+                          }
+                          @default {
+                            <circle cx="12" cy="12" r="8.5"></circle>
+                          }
+                        }
+                      </clipPath>
+                    </defs>
+                    @switch (currentSessionTag.shapeId) {
+                      @case ('square') {
+                        <rect x="5" y="5" width="14" height="14" rx="2" [attr.fill]="currentSessionTag.colourHex"></rect>
+                      }
+                      @case ('triangle') {
+                        <polygon points="12,4 21,20 3,20" [attr.fill]="currentSessionTag.colourHex"></polygon>
+                      }
+                      @case ('diamond') {
+                        <polygon points="12,3 21,12 12,21 3,12" [attr.fill]="currentSessionTag.colourHex"></polygon>
+                      }
+                      @case ('hexagon') {
+                        <polygon points="7,3 17,3 22,12 17,21 7,21 2,12" [attr.fill]="currentSessionTag.colourHex"></polygon>
+                      }
+                      @default {
+                        <circle cx="12" cy="12" r="8.5" [attr.fill]="currentSessionTag.colourHex"></circle>
+                      }
+                    }
+                    @if (currentSessionTag.patternId) {
+                      <g [attr.clip-path]="'url(#' + sessionTagClipId(currentSessionTag) + ')'">
+                        @if (currentSessionTag.patternId === 'striped' || currentSessionTag.patternId === 'crosshatched') {
+                          <path d="M-2 22 L22 -2 M3 25 L25 3 M-5 17 L17 -5" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" opacity="0.78"></path>
+                        }
+                        @if (currentSessionTag.patternId === 'crosshatched') {
+                          <path d="M2 -2 L26 22 M-2 3 L19 24 M7 -5 L29 17" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" opacity="0.68"></path>
+                        }
+                        @if (currentSessionTag.patternId === 'dotted') {
+                          <circle cx="8" cy="8" r="1.45" fill="#ffffff" opacity="0.76"></circle>
+                          <circle cx="15.5" cy="8.5" r="1.45" fill="#ffffff" opacity="0.76"></circle>
+                          <circle cx="11.5" cy="14.5" r="1.45" fill="#ffffff" opacity="0.76"></circle>
+                          <circle cx="18" cy="16.5" r="1.2" fill="#ffffff" opacity="0.68"></circle>
+                        }
+                      </g>
+                    }
+                  </svg>
+                  <strong>{{ currentSessionTag.label }}</strong>
+                </span>
+              </div>
+              <label class="session-tag-pattern-select" for="session-code-pattern">
+                <span>Code style</span>
+                <select
+                  id="session-code-pattern"
+                  [value]="selectedSessionTagPattern"
+                  (change)="onSessionTagPatternInput($event)"
+                >
+                  @for (option of sessionTagPatternOptions; track option.id) {
+                    <option [value]="option.id">{{ option.label }}</option>
+                  }
+                </select>
+              </label>
+            </div>
           </div>
 
-          <div class="klpt-form-field">
+          <div class="klpt-form-field klpt-create-session-form__observer">
             <label for="educator-name">Observer's name</label>
             <input
               type="text"
@@ -162,6 +155,9 @@
           </div>
 
           <div class="klpt-create-session-form__actions klpt-form-field--wide">
+            <button type="button" class="session-tag-regenerate" (click)="onRegenerateSessionTag()">
+              Regenerate
+            </button>
             <button type="button" class="button button--secondary" (click)="onToggleFormVisibility()">
               Cancel
             </button>
