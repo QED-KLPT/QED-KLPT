@@ -156,6 +156,20 @@
   p:last-child {
     margin-bottom: 0;
   }
+
+  &__list {
+    text-align: left;
+    margin: 0 0 clamp(0.75rem, 2vw, 1.25rem);
+    padding-left: 1.4rem;
+
+    li {
+      margin-bottom: clamp(0.35rem, 1vw, 0.6rem);
+    }
+
+    li:last-child {
+      margin-bottom: 0;
+    }
+  }
 }
 
 .home-video app-youtube-player {
