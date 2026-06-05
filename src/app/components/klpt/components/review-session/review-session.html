@@ -12,6 +12,7 @@
     <article class="statement-card review-card">
       <p class="eyebrow">Final check</p>
       <h2>Review Statement</h2>
+      <p class="review-card__intro">Review and download the learning progression statement</p>
 
       <label class="klpt-form-field review-card__child">
         <span>Child's name</span>
@@ -53,6 +54,11 @@
         </section>
       }
 
+      <section class="klpt-review-text-block">
+        <h3>Description of observation context or evidence collected</h3>
+        <p>{{ displayValue(formValue('observational-context')) }}</p>
+      </section>
+
       @if (items.length) {
         <section class="klpt-progression-stack" aria-label="Selected behaviours and next behaviours">
           @for (item of items; track item.element.id) {
@@ -90,11 +96,6 @@
       }
 
       <section class="klpt-review-text-block">
-        <h3>Description of observation context or evidence collected</h3>
-        <p>{{ displayValue(formValue('observational-context')) }}</p>
-      </section>
-
-      <section class="klpt-review-text-block">
         <h3>Professional reflection</h3>
         <p>{{ displayValue(formValue('professional-reflection')) }}</p>
       </section>
@@ -102,6 +103,11 @@
       <section class="klpt-review-text-block">
         <h3>How can you support this learning</h3>
         <p>{{ displayValue(formValue('support-learning')) }}</p>
+      </section>
+
+      <section class="klpt-review-text-block">
+        <h3>What QKLG Learning and Development Area(s) and Significant Learnings and EYLF Learning Outcomes are reflected in this learning?</h3>
+        <p>{{ displayValue(formValue('qklg-eylf-links')) }}</p>
       </section>
 
       <div class="klpt-step__actions">
