@@ -120,19 +120,22 @@
                   <strong>{{ currentSessionTag.label }}</strong>
                 </span>
               </div>
-              <label class="session-tag-pattern-select" for="session-code-pattern">
-                <span>Code style</span>
-                <select
-                  id="session-code-pattern"
-                  [value]="selectedSessionTagPattern"
-                  (change)="onSessionTagPatternInput($event)"
-                >
-                  @for (option of sessionTagPatternOptions; track option.id) {
-                    <option [value]="option.id">{{ option.label }}</option>
-                  }
-                </select>
-              </label>
             </div>
+          </div>
+
+          <div class="klpt-form-field klpt-create-session-form__code-style">
+            <label class="session-tag-pattern-select" for="session-code-pattern">
+              <span>Code style</span>
+              <select
+                id="session-code-pattern"
+                [value]="selectedSessionTagPattern"
+                (change)="onSessionTagPatternInput($event)"
+              >
+                @for (option of sessionTagPatternOptions; track option.id) {
+                  <option [value]="option.id">{{ option.label }}</option>
+                }
+              </select>
+            </label>
           </div>
 
           <div class="klpt-form-field klpt-create-session-form__observer">
@@ -155,15 +158,17 @@
           </div>
 
           <div class="klpt-create-session-form__actions klpt-form-field--wide">
-            <button type="button" class="session-tag-regenerate" (click)="onRegenerateSessionTag()">
+            <button type="button" class="session-tag-regenerate regen-action" (click)="onRegenerateSessionTag()">
               Regenerate
             </button>
-            <button type="button" class="button button--secondary" (click)="onToggleFormVisibility()">
-              Cancel
-            </button>
-            <button type="button" class="button button--primary klpt-create-session-button" (click)="onCreateSession()">
-              Create session
-            </button>
+            <div class="confirm-actions">
+              <button type="button" class="button button--secondary" (click)="onToggleFormVisibility()">
+                Cancel
+              </button>
+              <button type="button" class="button button--primary klpt-create-session-button" (click)="onCreateSession()">
+                Create session
+              </button>
+            </div>
           </div>
         </div>
       </div>

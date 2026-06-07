@@ -365,15 +365,13 @@
 }
 
 .klpt-create-session-form {
-  display: grid;
   align-items: start;
   gap: 1.125rem;
-  min-height: 0;
-  overflow: hidden;
+  grid-template-columns: 1fr 0.9fr 1fr;
 }
 
-.klpt-create-session-form > .klpt-form-field {
-  align-self: start;
+.klpt-create-session-form .session-tag-generator {
+  display: block;
 }
 
 .klpt-create-session-form__observer > label {
@@ -383,14 +381,26 @@
 }
 
 .klpt-create-session-form__actions {
-  display: flex;
-  gap: 0.75rem;
-  justify-content: flex-start;
+  display: grid;
+  gap: inherit;
+  grid-column: 1 / -1;
+  grid-template-columns: 1fr 0.9fr 1fr;
+  justify-items: end;
   margin-top: 0.5rem;
 
   button {
     cursor: pointer;
   }
+}
+
+.regen-action {
+  grid-column: 2;
+}
+
+.confirm-actions {
+  display: flex;
+  gap: 0.75rem;
+  grid-column: 3;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -491,13 +501,23 @@
   .klpt-create-session-form {
     gap: 1.25rem;
   }
-
-  .klpt-create-session-form__actions {
-    justify-content: flex-end;
-  }
 }
 
 @media (max-width: 760px) {
+  .klpt-create-session-form {
+    grid-template-columns: 1fr;
+  }
+
+  .klpt-create-session-form__actions {
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+
+  .regen-action,
+  .confirm-actions {
+    grid-column: 1;
+  }
+
   .klpt-list-sessions__link {
     flex-wrap: wrap;
     gap: 0.75rem;
