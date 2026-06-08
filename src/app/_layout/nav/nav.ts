@@ -36,6 +36,21 @@ export class Nav {
     this.openSubmenu.set(null);
   }
 
+  @HostListener('focusout', ['$event'])
+  protected onFocusOut(event: FocusEvent): void {
+    if (!this.openSubmenu()) return;
+
+    const relatedTarget = event.relatedTarget as HTMLElement | null;
+    const host = this.elementRef.nativeElement as HTMLElement;
+    const openItem = host
+      .querySelector<HTMLElement>(`#${this.openSubmenu()}-submenu`)
+      ?.closest<HTMLElement>('.doe-primary-nav__item--has-menu');
+
+    if (openItem && !openItem.contains(relatedTarget)) {
+      this.openSubmenu.set(null);
+    }
+  }
+
   @HostListener('keydown.escape')
   protected closeMenusOnEscape(): void {
     const activeElement = this.elementRef.nativeElement.ownerDocument.activeElement;

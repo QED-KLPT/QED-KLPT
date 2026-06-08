@@ -47,6 +47,7 @@ export class Home implements OnInit {
   protected closeAckModal(): void {
     this.isAckModalOpen = false;
     sessionStorage.setItem('klpt-ack-seen', '1');
+    window.scrollTo({ top: 0, behavior: 'instant' });
   }
 
   protected trapAckModalFocus(event: KeyboardEvent): void {
