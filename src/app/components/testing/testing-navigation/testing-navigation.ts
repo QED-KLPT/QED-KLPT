@@ -34,18 +34,18 @@ export class TestingNavigation {
   ];
 
   horizontalDropdownItems: NavItem[] = [
-    { label: 'Foundations', href: '/foundations', children: [
-      { label: 'Quality observations', href: '/foundations/quality-observations' },
-      { label: 'Analysing data', href: '/foundations/analysing-data' },
+    { label: 'Foundations', href: '/klpt-foundations', children: [
+      { label: 'Quality observations', href: '/klpt-foundations/quality-observations' },
+      { label: 'Analysing data', href: '/klpt-foundations/analysing-data' },
     ]},
     { label: 'Learning domains', href: '/learning-domains' },
     { label: 'KLPT', href: '/klpt' },
   ];
 
   horizontalMegaMenuItems: NavItem[] = [
-    { label: 'Foundations', href: '/foundations', children: [
-      { label: 'Quality observations', href: '/foundations/quality-observations', description: 'Guidelines for making reliable, valid observations in kindergarten settings.' },
-      { label: 'Analysing data', href: '/foundations/analysing-data', description: 'Methods for interpreting observation data to inform teaching practice.' },
+    { label: 'Foundations', href: '/klpt-foundations', children: [
+      { label: 'Quality observations', href: '/klpt-foundations/quality-observations', description: 'Guidelines for making reliable, valid observations in kindergarten settings.' },
+      { label: 'Analysing data', href: '/klpt-foundations/analysing-data', description: 'Methods for interpreting observation data to inform teaching practice.' },
       { label: 'Assessment planning', href: '#', description: 'Structured approaches to planning assessment activities.' },
       { label: 'Evidence collection', href: '#', description: 'Techniques for gathering meaningful evidence of child learning.' },
       { label: 'Review cycles', href: '#', description: 'Regular review processes to ensure assessment quality.' },

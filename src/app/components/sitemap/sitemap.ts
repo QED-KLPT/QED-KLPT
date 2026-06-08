@@ -25,10 +25,10 @@ export class Sitemap implements OnInit {
   protected readonly tree: SitemapNode[] = [
     {
       label: 'Foundations',
-      href: '/foundations',
+      href: '/klpt-foundations',
       children: [
-        { label: 'Conducting and documenting quality observations', href: '/foundations/conducting-and-documenting-quality-observations' },
-        { label: 'Analysing and interpreting observational data', href: '/foundations/analysing-and-interpreting-observational-data' },
+        { label: 'Conducting and documenting quality observations', href: '/klpt-foundations/conducting-and-documenting-quality-observations' },
+        { label: 'Analysing and interpreting observational data', href: '/klpt-foundations/analysing-and-interpreting-observational-data' },
       ],
     },
     {
