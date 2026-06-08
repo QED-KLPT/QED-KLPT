@@ -4,7 +4,7 @@
 
 .home-hero {
   position: relative;
-  min-height: clamp(22rem, 52vh, 34rem);
+  min-height: clamp(28rem, 68vh, 42rem);
   background:
     linear-gradient(90deg, rgba(43, 25, 60, 0.48), rgba(74, 43, 100, 0.28) 48%, rgba(74, 43, 100, 0.1)),
     linear-gradient(180deg, rgba(43, 25, 60, 0.12), rgba(43, 25, 60, 0.05)),
@@ -363,7 +363,7 @@
 
 @media (max-width: 46rem) {
   .home-hero {
-    min-height: 26rem;
+    min-height: 34rem;
   }
 
   .home-hero__actions .button {
