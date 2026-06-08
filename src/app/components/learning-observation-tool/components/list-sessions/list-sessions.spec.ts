@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { SessionModel } from '../../models/session-model';
@@ -156,8 +156,8 @@ describe('ListSessions', () => {
       const links = Array.from(compiled.querySelectorAll('.session-card'));
       expect(links.length).toBe(2);
       const hrefs = links.map((l) => l.getAttribute('href'));
-      expect(hrefs.some((h) => h?.includes('/klpt/select-domains/session-1'))).toBe(true);
-      expect(hrefs.some((h) => h?.includes('/klpt/select-behaviours/session-2'))).toBe(true);
+      expect(hrefs.some((h) => h?.includes('/klpt-learning-observation-tool/select-domains/session-1'))).toBe(true);
+      expect(hrefs.some((h) => h?.includes('/klpt-learning-observation-tool/select-behaviours/session-2'))).toBe(true);
     });
 
     it('should render arrow indicator in each session row', () => {

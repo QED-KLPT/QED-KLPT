@@ -6,7 +6,7 @@ import { ListSessions } from './components/list-sessions/list-sessions';
 import { ReviewSession } from './components/review-session/review-session';
 import { SelectBehaviours } from './components/select-behaviours/select-behaviours';
 import { SelectDomains } from './components/select-domains/select-domains';
-import { Klpt } from './klpt';
+import { Klpt } from './learning-observation-tool';
 import { reviewSessionGuard } from './guards/review-session.guard';
 
 const routes: Routes = [
@@ -15,19 +15,19 @@ const routes: Routes = [
     title: 'Learning Observation Tool',
     component: Klpt,
     children: [
-      { path: '', component: Introduction, title: 'KLPT introduction' },
-      { path: 'introduction', component: Introduction, title: 'KLPT introduction' },
-      { path: 'sessions', component: ListSessions, title: 'KLPT sessions' },
+      { path: '', component: Introduction, title: 'Introduction' },
+      { path: 'introduction', component: Introduction, title: 'Introduction' },
+      { path: 'sessions', component: ListSessions, title: 'Sessions' },
       { path: 'create-session', redirectTo: 'sessions', pathMatch: 'full' },
-      { path: 'select-domains/:sessionId', component: SelectDomains, title: 'Select KLPT domains' },
-      { path: 'select-behaviours/:sessionId', component: SelectBehaviours, title: 'Select KLPT behaviours' },
+      { path: 'select-domains/:sessionId', component: SelectDomains, title: 'Select domains' },
+      { path: 'select-behaviours/:sessionId', component: SelectBehaviours, title: 'Select behaviours' },
       {
         path: 'learning-progression-statement/:sessionId',
         component: LearningProgressionStatement,
         title: 'Learning progression statement',
         canActivate: [reviewSessionGuard],
       },
-      { path: 'review-session/:sessionId', component: ReviewSession, title: 'Review KLPT session', canActivate: [reviewSessionGuard] },
+      { path: 'review-session/:sessionId', component: ReviewSession, title: 'Review session', canActivate: [reviewSessionGuard] },
     ],
   },
 ];

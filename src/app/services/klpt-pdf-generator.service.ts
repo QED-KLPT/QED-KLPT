@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import type { SessionModel } from '../components/klpt/models/session-model';
+import type { SessionModel } from '../components/learning-observation-tool/models/session-model';
 import type { jsPDF as JsPdfDocument } from 'jspdf';
-import { KlptDomainDataService } from '../components/klpt/components/shared/klpt-domain-data.service';
-import type { KlptBehaviour } from '../components/klpt/models/klpt-behaviour';
-import type { KlptDomain } from '../components/klpt/models/klpt-domain';
-import type { KlptElement } from '../components/klpt/models/klpt-element';
-import { HIGHEST_BEHAVIOUR_HTML } from '../components/klpt/components/shared/klpt-constants';
+import { KlptDomainDataService } from '../components/learning-observation-tool/components/shared/klpt-domain-data.service';
+import type { KlptBehaviour } from '../components/learning-observation-tool/models/klpt-behaviour';
+import type { KlptDomain } from '../components/learning-observation-tool/models/klpt-domain';
+import type { KlptElement } from '../components/learning-observation-tool/models/klpt-element';
+import { HIGHEST_BEHAVIOUR_HTML } from '../components/learning-observation-tool/components/shared/klpt-constants';
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
                 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];

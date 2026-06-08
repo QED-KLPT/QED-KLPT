@@ -1,4 +1,4 @@
-import { NgStyle } from '@angular/common';
+﻿import { NgStyle } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -85,7 +85,7 @@ export class ReviewSession implements OnInit, OnDestroy {
 
     this.sessionManagement.deleteSession(this.currentSession.id);
     this.isLeavingAfterPdf = true;
-    void this.router.navigateByUrl('/klpt/sessions');
+    void this.router.navigateByUrl('/klpt-learning-observation-tool/sessions');
   }
 
   protected trapGeneratePdfModalFocus(event: KeyboardEvent): void {

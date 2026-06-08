@@ -1,4 +1,4 @@
-<section class="section section--white klpt-step">
+﻿<section class="section section--white klpt-step">
   <div class="section__inner">
     <app-navigation-nodes
       [sessionId]="currentSession.id"
@@ -159,13 +159,13 @@
       </label>
 
       <div class="klpt-step__actions">
-        <a class="button button--secondary" [routerLink]="['/klpt/select-behaviours', currentSession.id]">Previous</a>
+        <a class="button button--secondary" [routerLink]="['/klpt-learning-observation-tool/select-behaviours', currentSession.id]">Previous</a>
         <a
           class="button button--primary"
           [class.button--disabled]="!canContinue()"
           [attr.aria-disabled]="!canContinue()"
           [attr.tabindex]="canContinue() ? null : -1"
-          [routerLink]="canContinue() ? ['/klpt/review-session', currentSession.id] : null"
+          [routerLink]="canContinue() ? ['/klpt-learning-observation-tool/review-session', currentSession.id] : null"
         >
           Next
         </a>
