@@ -1,4 +1,4 @@
-import { Component, Input, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, Input, ElementRef, OnInit, OnDestroy } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 declare global {
@@ -14,7 +14,7 @@ declare global {
   styleUrls: ['./youtube-player.component.scss'],
   standalone: false,
 })
-export class YoutubePlayerComponent implements AfterViewInit, OnDestroy {
+export class YoutubePlayerComponent implements OnInit, OnDestroy {
   @Input() title: string = '';
   @Input() description: string = '';
   @Input() youtubeUrl: string = '';
@@ -30,14 +30,14 @@ export class YoutubePlayerComponent implements AfterViewInit, OnDestroy {
     private elRef: ElementRef,
   ) {}
 
-  ngAfterViewInit() {
+  ngOnInit() {
     if (!this.youtubeUrl) return;
 
     const videoId = this.extractVideoId(this.youtubeUrl);
     if (!videoId) return;
 
     if (this.subtitles === false) {
-      this.initApiPlayer(videoId);
+      // API player will be initialized in ngAfterViewInit (needs DOM ref)
     } else {
       const params = new URLSearchParams({ hl: 'en' });
       if (this.subtitles) {
@@ -46,6 +46,15 @@ export class YoutubePlayerComponent implements AfterViewInit, OnDestroy {
       this.sanitizedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
         `https://www.youtube.com/embed/${videoId}?${params.toString()}`,
       );
+    }
+  }
+
+  ngAfterViewInit() {
+    if (this.subtitles === false && this.youtubeUrl) {
+      const videoId = this.extractVideoId(this.youtubeUrl);
+      if (videoId) {
+        this.initApiPlayer(videoId);
+      }
     }
   }
 
