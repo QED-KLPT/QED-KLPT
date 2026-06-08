@@ -176,6 +176,40 @@
   width: 100%;
 }
 
+.home-video__info-box {
+  max-width: 56rem;
+  margin-inline: auto;
+  margin-block-start: clamp(2rem, 5vw, 3rem);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  border-radius: 12px;
+  background: var(--klpt-purple-soft, #f5f0fa);
+  border-left: 4px solid var(--klpt-purple, #6b3fa0);
+  box-shadow: 0 2px 8px rgba(79, 42, 111, 0.06);
+
+  p {
+    text-align: left;
+    margin: 0 0 clamp(0.6rem, 1.5vw, 1rem);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__info-list {
+    text-align: left;
+    margin: 0;
+    padding-left: 1.4rem;
+
+    li {
+      margin-bottom: clamp(0.35rem, 1vw, 0.6rem);
+    }
+
+    li:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
 .ack-modal {
   position: fixed;
   inset: 0;
