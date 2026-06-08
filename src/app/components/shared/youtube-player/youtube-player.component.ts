@@ -1,5 +1,12 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+
+declare global {
+  interface Window {
+    YT: any;
+    onYouTubeIframeAPIReady?: () => void;
+  }
+}
 
 @Component({
   selector: 'app-youtube-player',  
@@ -7,27 +14,115 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   styleUrls: ['./youtube-player.component.scss'],
   standalone: false,
 })
-export class YoutubePlayerComponent {
+export class YoutubePlayerComponent implements AfterViewInit, OnDestroy {
   @Input() title: string = '';
   @Input() description: string = '';
   @Input() youtubeUrl: string = '';
   @Input() transcript: string = '';
+  @Input() subtitles: boolean = true;
 
   sanitizedUrl: SafeResourceUrl | null = null;
+  private player: any = null;
+  private pollInterval: ReturnType<typeof setInterval> | null = null;
 
   constructor(
     private sanitizer: DomSanitizer,
+    private elRef: ElementRef,
   ) {}
 
-  ngOnInit() {
-    if (this.youtubeUrl) {
-      const videoId = this.extractVideoId(this.youtubeUrl);
-      if (videoId) {
-        this.sanitizedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-          `https://www.youtube.com/embed/${videoId}?cc_load_policy=1&hl=en`,
-        );
+  ngAfterViewInit() {
+    if (!this.youtubeUrl) return;
+
+    const videoId = this.extractVideoId(this.youtubeUrl);
+    if (!videoId) return;
+
+    if (this.subtitles === false) {
+      this.initApiPlayer(videoId);
+    } else {
+      const params = new URLSearchParams({ hl: 'en' });
+      if (this.subtitles) {
+        params.set('cc_load_policy', '1');
       }
+      this.sanitizedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+        `https://www.youtube.com/embed/${videoId}?${params.toString()}`,
+      );
     }
+  }
+
+  private initApiPlayer(videoId: string) {
+    // If API already loaded, create player immediately
+    if (window.YT && window.YT.Player) {
+      this.createPlayer(videoId);
+      return;
+    }
+
+    // Load YouTube IFrame API script
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
+
+    // Queue callback — handle multiple components loading simultaneously
+    const queueKey = '__ytQueue';
+    (window as any)[queueKey] = (window as any)[queueKey] || [];
+    (window as any)[queueKey].push(() => this.createPlayer(videoId));
+
+    const existingReady = window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady = () => {
+      existingReady?.();
+      while ((window as any)[queueKey].length > 0) {
+        (window as any)[queueKey].shift()();
+      }
+    };
+  }
+
+  private createPlayer(videoId: string) {
+    const container = this.elRef.nativeElement.querySelector('.yt-api-player');
+    if (!container || !window.YT?.Player) return;
+
+    this.player = new window.YT.Player(container, {
+      videoId,
+      playerVars: {
+        cc_load_policy: 0,
+        modestbranding: 1,
+        rel: 0,
+      },
+      events: {
+        onReady: (event: any) => this.forceCaptionsOff(event.target),
+        onStateChange: (event: any) => {
+          // User interacted — force captions off again
+          if (event.target?.getCaptionsTrack) {
+            this.forceCaptionsOff(event.target);
+          }
+        },
+      },
+    });
+
+    // Safety net: poll for caption state changes
+    this.pollInterval = setInterval(() => {
+      if (this.player?.getCaptionsTrack) {
+        const track = this.player.getCaptionsTrack();
+        if (track) {
+          this.forceCaptionsOff(this.player);
+        }
+      }
+    }, 3000);
+  }
+
+  private forceCaptionsOff(player: any) {
+    try {
+      const track = player.getCaptionsTrack();
+      if (track) {
+        player.setCaptionsTrack(null);
+      }
+    } catch {
+      // Captions may not be available yet — ignore
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.pollInterval) clearInterval(this.pollInterval);
+    try { this.player?.destroy(); } catch { /* ignore */ }
   }
 
   get transcriptLines(): string[] {
