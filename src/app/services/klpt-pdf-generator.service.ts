@@ -123,7 +123,7 @@ export class KlptPdfGeneratorService {
       y,
       margin,
       contentWidth,
-      'What QKLG Learning and Development Area(s) and Significant Learnings and EYLF Learning Outcomes are reflected in this learning?',
+      'What QKLG learning and development area(s) and significant learnings and EYLF learning outcomes are reflected in this learning?',
       this.displayValue(this.formValue(session, 'qklg-eylf-links')),
     );
 
@@ -198,7 +198,7 @@ export class KlptPdfGeneratorService {
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(6.8);
       doc.setTextColor(...PDF_THEME.muted);
-      doc.text(field.label.toUpperCase(), x + 3, rowY + cellPaddingY + 2);
+      doc.text(field.label, x + 3, rowY + cellPaddingY + 2);
 
       doc.setFontSize(8.5);
       doc.setTextColor(...PDF_THEME.ink);
@@ -311,7 +311,7 @@ export class KlptPdfGeneratorService {
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(7);
     doc.setTextColor(...PDF_THEME.blue);
-    const titleLines = doc.splitTextToSize(title.toUpperCase(), width);
+    const titleLines = doc.splitTextToSize(title, width);
     doc.text(titleLines, x, y, { lineHeightFactor: 1.15 });
 
     doc.setFont('helvetica', 'normal');
@@ -332,7 +332,7 @@ export class KlptPdfGeneratorService {
     const lines = doc.splitTextToSize(body || 'Not entered', width - 12);
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(7);
-    const titleLines = doc.splitTextToSize(title.toUpperCase(), width - 12);
+    const titleLines = doc.splitTextToSize(title, width - 12);
     return Math.max(18, 5 + titleLines.length * 3.2 + lines.length * 3.8);
   }
 
