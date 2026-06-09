@@ -72,10 +72,10 @@ export class LearningDomains implements OnInit {
       blueHoverBorderColor: '#005EB8',
     },
     {
-      title: 'Social-emotional learning',
+      title: 'Social and emotional learning',
       description: 'Foster self-awareness, emotion regulation, empathy, and positive relationships.',
       url: '/learning-domains/social-and-emotional-learning',
-      imageAlt: 'Social-emotional learning icon',
+      imageAlt: 'Social and emotional learning icon',
       imageName: 'social-emotional-learning',
       background: 'linear-gradient(135deg, #D10A7D 0%, #930758 100%)',
       hoverBorderColor: '#A40862',
@@ -90,8 +90,8 @@ export class LearningDomains implements OnInit {
       imageName: 'physicality',
       background: 'linear-gradient(135deg, #247F33 0%, #185922 100%)',
       hoverBorderColor: '#1D682A',
-      blueBackground: '#168AC4',
-      blueHoverBorderColor: '#168AC4',
+      blueBackground: '#147EB2',
+      blueHoverBorderColor: '#147EB2',
     },
     {
       title: 'Mathematics and numeracy',
@@ -101,8 +101,8 @@ export class LearningDomains implements OnInit {
       imageName: 'mathematics-numeracy',
       background: 'linear-gradient(135deg, #BA1C23 0%, #801318 100%)',
       hoverBorderColor: '#91161B',
-      blueBackground: '#2A9DCC',
-      blueHoverBorderColor: '#2A9DCC',
+      blueBackground: '#227FA5',
+      blueHoverBorderColor: '#227FA5',
     },
   ];
 }

@@ -12,7 +12,7 @@
 
     <article class="statement-card">
       <p class="eyebrow">Evidence statement</p>
-      <h2>Learning Progression Statement</h2>
+      <h2>Learning progression statement</h2>
 
       @if (domain) {
         <section class="klpt-summary-block">
@@ -20,6 +20,15 @@
           <p><strong>{{ domain.name }}:</strong> {{ domain.summary }}</p>
         </section>
       }
+
+      <label class="klpt-form-field klpt-form-field--wide">
+        <span>Description of observation context or evidence collected</span>
+        <textarea
+          rows="5"
+          [value]="formValue('observational-context')"
+          (input)="updateFormField('observational-context', $any($event.target).value)"
+        ></textarea>
+      </label>
 
       <div class="klpt-form-grid learning-statement-meta-grid">
         <label class="klpt-form-field">
@@ -49,15 +58,6 @@
           />
         </label>
       </div>
-
-      <label class="klpt-form-field klpt-form-field--wide">
-        <span>Description of observation context or evidence collected</span>
-        <textarea
-          rows="5"
-          [value]="formValue('observational-context')"
-          (input)="updateFormField('observational-context', $any($event.target).value)"
-        ></textarea>
-      </label>
 
       @if (items.length) {
         <section class="klpt-progression-stack" aria-label="Selected behaviours and next behaviours">
@@ -137,11 +137,24 @@
         <p class="klpt-form-field__hint">
           <a
             [routerLink]="practiceSupportsLink()"
+            target="_blank"
             fragment="practice-supports"
            
           >
             Link to practice supports for {{ selectedDomain()?.name ?? 'professional reflection' }}
           </a>
+        </p>
+      </label>
+
+      <label class="klpt-form-field klpt-form-field--wide">
+        <span>What QKLG Learning and Development Area(s) and Significant Learnings and EYLF Learning Outcomes are reflected in this learning?</span>
+        <textarea
+          rows="5"
+          [value]="formValue('qklg-eylf-links')"
+          (input)="updateFormField('qklg-eylf-links', $any($event.target).value)"
+        ></textarea>
+        <p class="klpt-form-field__hint">
+          <a href="https://www.qcaa.qld.edu.au/downloads/kindergarten/qklg_align_eylf.pdf" target="_blank" rel="noopener">Link to Queensland kindergarten learning guideline (QKLG)</a>
         </p>
       </label>
 

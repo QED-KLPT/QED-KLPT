@@ -85,7 +85,7 @@ export class ReviewSession implements OnInit, OnDestroy {
 
     this.sessionManagement.deleteSession(this.currentSession.id);
     this.isLeavingAfterPdf = true;
-    void this.router.navigateByUrl('/klpt/list-sessions');
+    void this.router.navigateByUrl('/klpt/sessions');
   }
 
   protected trapGeneratePdfModalFocus(event: KeyboardEvent): void {
@@ -205,6 +205,7 @@ export class ReviewSession implements OnInit, OnDestroy {
       'observational-context',
       'professional-reflection',
       'support-learning',
+      'qklg-eylf-links',
     ];
 
     const mergedFields = requiredFields.map((name) => {

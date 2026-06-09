@@ -50,9 +50,9 @@ import { Sitemap } from './components/sitemap/sitemap';
 
 export const routes: Routes = [
   { path: '', component: Home, title: 'Home' },
-  { path: 'foundations', component: Foundations, title: 'Foundations' },
-  { path: 'foundations/quality-observations', component: QualityObservations, title: 'Conducting and documenting quality observations' },
-  { path: 'foundations/analysing-data', component: AnalysingData, title: 'Analysing and interpreting observational data' },
+  { path: 'klpt-foundations', component: Foundations, title: 'KLPT foundations' },
+  { path: 'klpt-foundations/conducting-and-documenting-quality-observations', component: QualityObservations, title: 'Conducting and documenting quality observations' },
+  { path: 'klpt-foundations/analysing-and-interpreting-observational-data', component: AnalysingData, title: 'Analysing and interpreting observational data' },
   { path: 'learning-domains', component: LearningDomains, title: 'Learning domains' },
   { path: 'learning-domains/language-and-literacy', component: LanguageAndLiteracy, title: 'Language and literacy' },
   { path: 'learning-domains/executive-function', component: ExecutiveFunction, title: 'Executive function' },  
@@ -73,7 +73,6 @@ export const routes: Routes = [
     loadChildren: () => import('./components/klpt/klpt-routing.module').then((m) => m.KlptRoutingModule),
   },
   { path: 'about', component: About, title: 'About — Kindergarten Learning Progression Toolkit' },
-  { path: 'help', component: Help, title: 'Help — Kindergarten Learning Progression Toolkit' },
   { path: 'contact', component: Contact, title: 'Contact — Kindergarten Learning Progression Toolkit' },
   { path: 'sitemap', component: Sitemap, title: 'Site map' },
   { path: 'testing-alerts', component: TestingAlerts, title: 'Testing Alerts' },

@@ -16,6 +16,7 @@ const FORM_FIELD_LABELS: Record<string, string> = {
   'observational-context': 'Context',
   'professional-reflection': 'Professional Reflection',
   'support-learning': 'Support Learning',
+  'qklg-eylf-links': 'QKLG and EYLF Links',
 };
 
 const PDF_THEME = {
@@ -86,11 +87,6 @@ export class KlptPdfGeneratorService {
       y = this.addTextCard(doc, y, margin, contentWidth, 'Learning domain summary', `${domain.name}: ${domain.summary}`);
     }
 
-    for (const item of progressionItems) {
-      y = this.ensureSpace(doc, y, 55, margin, pageHeight);
-      y = this.addProgressionItem(doc, y, margin, contentWidth, item, pageHeight);
-    }
-
     y = this.ensureSpace(doc, y, 35, margin, pageHeight);
     y = this.addTextCard(
       doc,
@@ -100,6 +96,12 @@ export class KlptPdfGeneratorService {
       'Description of observation context or evidence collected',
       this.displayValue(this.formValue(session, 'observational-context')),
     );
+
+    for (const item of progressionItems) {
+      y = this.ensureSpace(doc, y, 55, margin, pageHeight);
+      y = this.addProgressionItem(doc, y, margin, contentWidth, item, pageHeight);
+    }
+
     y = this.addTextCard(
       doc,
       y,
@@ -115,6 +117,14 @@ export class KlptPdfGeneratorService {
       contentWidth,
       'How can you support this learning',
       this.displayValue(this.formValue(session, 'support-learning')),
+    );
+    y = this.addTextCard(
+      doc,
+      y,
+      margin,
+      contentWidth,
+      'What QKLG Learning and Development Area(s) and Significant Learnings and EYLF Learning Outcomes are reflected in this learning?',
+      this.displayValue(this.formValue(session, 'qklg-eylf-links')),
     );
 
     this.addPageFooters(doc);

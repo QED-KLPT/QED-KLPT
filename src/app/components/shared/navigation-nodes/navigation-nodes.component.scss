@@ -160,14 +160,16 @@
 }
 
 .progress-track {
+  --progress-description-row-size: 2.625rem;
   --progress-node-size: 3rem;
   --progress-gap: 1rem;
+  --progress-step-row-gap: 0.9rem;
 
   position: relative;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: var(--progress-gap);
-  align-items: end;
+  align-items: start;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -176,7 +178,7 @@
 .progress-track::before {
   position: absolute;
   right: calc((100% - (3 * var(--progress-gap))) / 8);
-  top: calc(2.625rem + 0.5625rem + (var(--progress-node-size) / 2) - 0.125rem);
+  top: calc(var(--progress-description-row-size) + var(--progress-step-row-gap) + (var(--progress-node-size) / 2) - 0.125rem);
   left: calc((100% - (3 * var(--progress-gap))) / 8);
   height: 0.25rem;
   border-radius: 999px;
@@ -192,8 +194,8 @@
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-rows: 2.625rem var(--progress-node-size) auto;
-  row-gap: 0.9rem;
+  grid-template-rows: var(--progress-description-row-size) var(--progress-node-size) auto;
+  row-gap: var(--progress-step-row-gap);
   justify-items: center;
   min-width: 0;
   color: var(--klpt-muted);
@@ -253,7 +255,7 @@
 
 .progress-step__description {
   max-width: 24ch;
-  min-height: 2.625rem;
+  min-height: var(--progress-description-row-size);
   color: var(--klpt-muted);
   font-size: 0.78rem;
   font-weight: 650;
@@ -279,6 +281,12 @@
   font-weight: 850;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+@media (min-width: 48.0625rem) and (max-width: 64rem) {
+  .progress-track {
+    --progress-description-row-size: 4.875rem;
+  }
 }
 
 @media (max-width: 48rem) {

@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, ViewportScroller } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AvatarModel } from '../../models/avatar.model';
@@ -21,6 +21,8 @@ export class ListSessions implements OnInit {
   private readonly router = inject(Router);
   @ViewChild('deleteSessionDialog') private deleteSessionDialog?: ElementRef<HTMLElement>;
   @ViewChild('storageDialog') private storageDialog?: ElementRef<HTMLElement>;
+
+  constructor(private scroll: ViewportScroller) {}
 
   public sessions: SessionModel[] = [];
   protected obsStep: ObsStep = 'idle';
@@ -78,6 +80,8 @@ export class ListSessions implements OnInit {
   }
 
   ngOnInit(): void {
+    this.scroll.scrollToPosition([0, 0]);
+
     this.sessionManagement.deleteAllExpiredSessions();
     const all = this.sessionManagement.getAllSessions();
     this.sessions = [...all].sort((a, b) => {
