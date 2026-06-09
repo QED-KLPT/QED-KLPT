@@ -32,7 +32,7 @@
               },
               {
                 "glob": "**/*",
-                "input": "src/app/components/learning-observation-tool/data",
+                "input": "src/app/components/klpt-learning-observation-tool/data",
                 "output": "assets/klpt/data"
               },
               {

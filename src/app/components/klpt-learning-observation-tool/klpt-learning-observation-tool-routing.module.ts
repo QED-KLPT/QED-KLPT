@@ -6,7 +6,7 @@ import { ListSessions } from './components/list-sessions/list-sessions';
 import { ReviewSession } from './components/review-session/review-session';
 import { SelectBehaviours } from './components/select-behaviours/select-behaviours';
 import { SelectDomains } from './components/select-domains/select-domains';
-import { Klpt } from './learning-observation-tool';
+import { Klpt } from './klpt-learning-observation-tool';
 import { reviewSessionGuard } from './guards/review-session.guard';
 
 const routes: Routes = [

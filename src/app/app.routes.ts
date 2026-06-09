@@ -70,7 +70,7 @@ export const routes: Routes = [
   { path: 'practice-supports', component: PracticeSupports, title: 'Practice supports' },
   {
     path: 'klpt-learning-observation-tool',
-    loadChildren: () => import('./components/learning-observation-tool/learning-observation-tool-routing.module').then((m) => m.KlptRoutingModule),
+    loadChildren: () => import('./components/klpt-learning-observation-tool/klpt-learning-observation-tool-routing.module').then((m) => m.KlptRoutingModule),
   },
   { path: 'about', component: About, title: 'About — Kindergarten Learning Progression Toolkit' },
   { path: 'contact', component: Contact, title: 'Contact — Kindergarten Learning Progression Toolkit' },

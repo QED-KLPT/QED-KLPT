@@ -11,13 +11,13 @@
   Output,
 } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { SessionModel } from '../../learning-observation-tool/models/session-model';
-import { SessionManagementService } from '../../learning-observation-tool/components/shared/session-management.service';
-import { KlptDomainDataService } from '../../learning-observation-tool/components/shared/klpt-domain-data.service';
+import { SessionModel } from '../../klpt-learning-observation-tool/models/session-model';
+import { SessionManagementService } from '../../klpt-learning-observation-tool/components/shared/session-management.service';
+import { KlptDomainDataService } from '../../klpt-learning-observation-tool/components/shared/klpt-domain-data.service';
 import {
   hasSelectedBehaviours,
   hasSelectedElements,
-} from '../../learning-observation-tool/components/shared/session-readiness';
+} from '../../klpt-learning-observation-tool/components/shared/session-readiness';
 
 export type NavigationNodeId = 'select-domains' | 'select-behaviours' | 'statement' | 'review';
 
