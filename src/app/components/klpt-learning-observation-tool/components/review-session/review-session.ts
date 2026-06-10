@@ -20,6 +20,7 @@ import { klptDomainStyle } from '../shared/klpt-domain-colours';
 import { KlptDomainDataService } from '../shared/klpt-domain-data.service';
 import { SessionManagementService } from '../shared/session-management.service';
 import { KlptPdfGeneratorService } from '../../../../services/klpt-pdf-generator.service';
+import { KlptDocxGeneratorService } from '../../../../services/klpt-docx-generator.service';
 import { HIGHEST_BEHAVIOUR_HTML } from '../shared/klpt-constants';
 
 interface ReviewProgressionItem {
@@ -40,14 +41,18 @@ export class ReviewSession implements OnInit, OnDestroy {
   protected readonly domainData = inject(KlptDomainDataService);
   private readonly sessionManagement = inject(SessionManagementService);
   private readonly pdfGenerator = inject(KlptPdfGeneratorService);
+  private readonly docxGenerator = inject(KlptDocxGeneratorService);
   private readonly domainAssetMode = inject(DomainAssetModeService);
   private readonly router = inject(Router);
 
   public currentSession!: SessionModel;
   @ViewChild('generatePdfDialog') private generatePdfDialog?: ElementRef<HTMLElement>;
   @ViewChild('generatePdfTrigger') private generatePdfTrigger?: ElementRef<HTMLButtonElement>;
+  @ViewChild('generateWordDialog') private generateWordDialog?: ElementRef<HTMLElement>;
+  @ViewChild('generateWordTrigger') private generateWordTrigger?: ElementRef<HTMLButtonElement>;
   protected childName = '';
   protected isGeneratePdfModalOpen = false;
+  protected isGenerateWordModalOpen = false;
   private isLeavingAfterPdf = false;
 
   protected readonly highestBehaviourText = HIGHEST_BEHAVIOUR_HTML;
@@ -86,6 +91,58 @@ export class ReviewSession implements OnInit, OnDestroy {
     this.sessionManagement.deleteSession(this.currentSession.id);
     this.isLeavingAfterPdf = true;
     void this.router.navigateByUrl('/klpt-learning-observation-tool/sessions');
+  }
+
+  protected openGenerateWordModal(): void {
+    this.isGenerateWordModalOpen = true;
+    window.setTimeout(() => this.focusFirstWordModalControl());
+  }
+
+  protected closeGenerateWordModal(): void {
+    this.isGenerateWordModalOpen = false;
+    window.setTimeout(() => this.generateWordTrigger?.nativeElement.focus());
+  }
+
+  protected async confirmGenerateWord(): Promise<void> {
+    this.isGenerateWordModalOpen = false;
+    await this.docxGenerator.generateSessionDocx(this.currentSession, {
+      learnerName: this.childName,
+    });
+
+    this.sessionManagement.deleteSession(this.currentSession.id);
+    this.isLeavingAfterPdf = true;
+    void this.router.navigateByUrl('/klpt-learning-observation-tool/sessions');
+  }
+
+  protected trapGenerateWordModalFocus(event: KeyboardEvent): void {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      this.closeGenerateWordModal();
+      return;
+    }
+
+    if (event.key !== 'Tab') {
+      return;
+    }
+
+    const focusableElements = this.getWordModalFocusableElements();
+
+    if (!focusableElements.length) {
+      event.preventDefault();
+      this.generateWordDialog?.nativeElement.focus();
+      return;
+    }
+
+    const first = focusableElements[0];
+    const last = focusableElements[focusableElements.length - 1];
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
   }
 
   protected trapGeneratePdfModalFocus(event: KeyboardEvent): void {
@@ -237,8 +294,29 @@ export class ReviewSession implements OnInit, OnDestroy {
     (firstButton ?? firstFocusable ?? this.generatePdfDialog?.nativeElement)?.focus();
   }
 
+  private focusFirstWordModalControl(): void {
+    const firstButton = this.generateWordDialog?.nativeElement.querySelector<HTMLElement>('button:not([disabled])');
+    const firstFocusable = this.getWordModalFocusableElements()[0];
+
+    (firstButton ?? firstFocusable ?? this.generateWordDialog?.nativeElement)?.focus();
+  }
+
   private getModalFocusableElements(): HTMLElement[] {
     const dialog = this.generatePdfDialog?.nativeElement;
+
+    if (!dialog) {
+      return [];
+    }
+
+    return Array.from(
+      dialog.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      ),
+    ).filter((element) => !element.hasAttribute('inert'));
+  }
+
+  private getWordModalFocusableElements(): HTMLElement[] {
+    const dialog = this.generateWordDialog?.nativeElement;
 
     if (!dialog) {
       return [];
