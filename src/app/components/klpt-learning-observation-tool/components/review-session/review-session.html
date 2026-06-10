@@ -111,24 +111,26 @@
 
       <div class="klpt-step__actions">
         <a class="button button--secondary" [routerLink]="['/klpt-learning-observation-tool/learning-progression-statement', currentSession.id]">Previous</a>
-        <button
-          #generateWordTrigger
-          class="button button--secondary"
-          type="button"
-          (click)="openGenerateWordModal()"
-        >
-          Generate Word Doc
-        </button>
-        <button
-          #generatePdfTrigger
-          class="button button--primary"
-          type="button"
-          aria-haspopup="dialog"
-          [attr.aria-label]="'Generate PDF for learner ' + displayValue(currentSession.learnerCode)"
-          (click)="openGeneratePdfModal()"
-        >
-          Generate PDF
-        </button>
+        <div class="klpt-step__actions-group">
+          <button
+            #generateWordTrigger
+            class="button button--secondary"
+            type="button"
+            (click)="openGenerateWordModal()"
+          >
+            Generate Word Doc
+          </button>
+          <button
+            #generatePdfTrigger
+            class="button button--primary"
+            type="button"
+            aria-haspopup="dialog"
+            [attr.aria-label]="'Generate PDF for learner ' + displayValue(currentSession.learnerCode)"
+            (click)="openGeneratePdfModal()"
+          >
+            Generate PDF
+          </button>
+        </div>
       </div>
     </article>
   </div>
