@@ -54,13 +54,13 @@ export class NavigationNodesComponent implements OnChanges {
     {
       id: 'select-domains',
       title: 'Domains',
-      description: 'Choose the domain, subdomain and one or more elements.',
+      description: 'Select the domain, subdomain and one or more elements.',
       route: '/klpt-learning-observation-tool/select-domains',
     },
     {
       id: 'select-behaviours',
       title: 'Behaviours',
-      description: "Choose the behaviour that best describes the child's current learning journey.",
+      description: "Select the behaviour that best describes the child's current learning journey.",
       route: '/klpt-learning-observation-tool/select-behaviours',
     },
     {
