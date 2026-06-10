@@ -114,7 +114,7 @@ export class ListSessions implements OnInit {
     newSession.educatorName = this.educatorName.trim();
     newSession.pageIndex = 1;
     this.sessionManagement.persistSession(newSession);
-    void this.router.navigateByUrl(`/klpt/select-domains/${newSession.id}`);
+    void this.router.navigateByUrl(`/klpt-learning-observation-tool/select-domains/${newSession.id}`);
   }
 
   protected sessionRoute(session: SessionModel): string[] {
@@ -126,7 +126,7 @@ export class ListSessions implements OnInit {
     };
     const stepRoute = routeByPageIndex[session.pageIndex] ?? routeByPageIndex[1];
 
-    return ['/klpt', stepRoute, session.id];
+    return ['/klpt-learning-observation-tool', stepRoute, session.id];
   }
 
   public openDeleteSessionModal(session: SessionModel, event?: Event): void {

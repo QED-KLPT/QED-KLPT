@@ -1,4 +1,4 @@
-<section class="section section--white klpt-step">
+﻿<section class="section section--white klpt-step">
   <div class="section__inner">
     <app-navigation-nodes
       [sessionId]="currentSession.id"
@@ -111,13 +111,13 @@
         }
 
         <div class="klpt-step__actions">
-          <a class="button button--secondary" [routerLink]="['/klpt/select-domains', currentSession.id]">Previous</a>
+          <a class="button button--secondary" [routerLink]="['/klpt-learning-observation-tool/select-domains', currentSession.id]">Previous</a>
           <a
             class="button button--primary"
             [class.button--disabled]="!canContinue()"
             [attr.aria-disabled]="!canContinue()"
             [attr.tabindex]="canContinue() ? null : -1"
-            [routerLink]="canContinue() ? ['/klpt/learning-progression-statement', currentSession.id] : null"
+            [routerLink]="canContinue() ? ['/klpt-learning-observation-tool/learning-progression-statement', currentSession.id] : null"
           >
             Next
           </a>
@@ -129,7 +129,7 @@
         <h2>Select elements before choosing behaviours</h2>
         <p>Return to the domain selection step and choose one or more elements for this session.</p>
         <div class="klpt-step__actions">
-          <a class="button button--secondary" [routerLink]="['/klpt/select-domains', currentSession.id]">Back</a>
+          <a class="button button--secondary" [routerLink]="['/klpt-learning-observation-tool/select-domains', currentSession.id]">Back</a>
         </div>
       </article>
     }

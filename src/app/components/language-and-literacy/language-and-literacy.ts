@@ -1,4 +1,4 @@
-import { CommonModule, ViewportScroller } from '@angular/common';
+﻿import { CommonModule, ViewportScroller } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit, computed, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -69,7 +69,7 @@ export class LanguageAndLiteracy implements OnInit {
     }
 
     event.preventDefault();
-    void this.router.navigateByUrl('/klpt');
+    void this.router.navigateByUrl('/klpt-learning-observation-tool');
   }
 
     protected readonly practiceSupports: { title: string; summary: string; accordionItems: { title: string; body: string[] }[]; pdfLabel: string; pdfPath: string } = {
