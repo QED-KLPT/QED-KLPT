@@ -20,13 +20,13 @@
   <div class="section__inner">   
     <div class="videos-row">
       @for (video of videos; track video.title) {
-        <app-youtube-player
+        <app-plyr-player
           [title]="video.title"
           [description]="video.description"
           [youtubeUrl]="video.youtubeUrl"
           [transcript]="video.transcript"
         >
-        </app-youtube-player>
+        </app-plyr-player>
       }
     </div>
     <a class="pdf-guide-link" href="assets/content/pdfs/qklg-principle-atsi-poster.pdf" rel="noopener" target="_blank" type="application/pdf">
