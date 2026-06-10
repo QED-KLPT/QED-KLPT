@@ -33,7 +33,7 @@ export class App implements OnInit {
     'An update was detected but could not be installed yet. Please try again in a few minutes.';
 
   private updateCheckInFlight = false;
-  private updateRetryTimer: ReturnType<typeof window.setTimeout> | null = null;
+  private updateRetryTimer: number | null = null;
 
   ngOnInit(): void {
     this.router.events
