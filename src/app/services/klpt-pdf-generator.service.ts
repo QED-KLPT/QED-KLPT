@@ -74,7 +74,7 @@ export class KlptPdfGeneratorService {
     const progressionItems = this.progressionItems(session);
     let y = 18;
 
-    y = this.addReportHeader(doc, y, margin, contentWidth);
+    y = this.addReportHeader(doc, y, margin);
     y = this.addMetadataGrid(doc, y, margin, contentWidth, [
       { label: 'Date', value: this.displayValue(this.formatFormDate(this.formValue(session, 'date'))) },
       { label: "Observer name", value: this.displayValue(session.educatorName) },
@@ -155,21 +155,12 @@ export class KlptPdfGeneratorService {
     doc: JsPdfDocument,
     y: number,
     margin: number,
-    contentWidth: number,
   ): number {
-    const headerHeight = 13;
-    const headerPaddingY = 3;
-
-    doc.setFillColor(...PDF_THEME.panelAlt);
-    doc.roundedRect(margin, y, contentWidth, headerHeight, 3, 3, 'F');
-    doc.setDrawColor(...PDF_THEME.border);
-    doc.roundedRect(margin, y, contentWidth, headerHeight, 3, 3, 'S');
-
-    doc.setFontSize(10);
+    doc.setFontSize(12);
     doc.setTextColor(...PDF_THEME.ink);
-    doc.text('Learning progression statement', margin + 5, y + headerPaddingY + 5);
+    doc.text('Learning progression statement', margin, y + 5);
 
-    return y + headerHeight + 2;
+    return y + 10;
   }
 
   private addMetadataGrid(
