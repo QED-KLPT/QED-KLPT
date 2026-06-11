@@ -1,0 +1,20 @@
+<div class="plyr-player">
+  <div class="video-container">
+    <div class="plyr-video" data-plyr-provider="youtube" [attr.data-plyr-embed-id]="extractVideoId(youtubeUrl) ?? ''"></div>
+  </div>
+
+  <div *ngIf="title || description" class="content">
+    <h3 *ngIf="title" class="video-title">{{ title }}</h3>
+    <p *ngIf="description" class="video-description">{{ description }}</p>
+  </div>
+
+  <div *ngIf="!youtubeUrl" class="no-video">
+    <p>No valid YouTube URL provided</p>
+  </div>
+
+  <div class="transcript-section" *ngIf="transcript">
+    <div [id]="'transcript-content-' + title" class="transcript-content">
+      <p *ngFor="let line of transcriptLines">{{ line }}</p>
+    </div>
+  </div>
+</div>
