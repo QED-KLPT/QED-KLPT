@@ -1,0 +1,59 @@
+<section class="vid-player" [attr.aria-label]="title || 'Protected video'">
+  @if (videoUrl) {
+    <video
+      class="vid-player__video"
+      controls
+      playsinline
+      preload="metadata"
+      [src]="videoUrl"
+      [attr.aria-label]="title || 'Video player'"
+    >
+      Your browser does not support embedded videos.
+    </video>
+  } @else if (showPasskeyForm) {
+    <form class="vid-player__access" (ngSubmit)="submitPasskey()">
+      <h3 class="vid-player__heading">This video is protected</h3>
+      <p class="vid-player__description">
+        Enter the passkey provided to you to watch this video.
+      </p>
+
+      <label class="vid-player__label" for="video-passkey-{{ videoId }}">Passkey</label>
+      <input
+        class="vid-player__input"
+        id="video-passkey-{{ videoId }}"
+        name="passkey"
+        type="password"
+        autocomplete="current-password"
+        required
+        [disabled]="loading"
+        [(ngModel)]="passkey"
+        [attr.aria-describedby]="errorMessage ? 'video-access-error-' + videoId : null"
+      />
+
+      @if (errorMessage) {
+        <p
+          class="vid-player__error"
+          id="video-access-error-{{ videoId }}"
+          role="alert"
+        >
+          {{ errorMessage }}
+        </p>
+      }
+
+      <button class="vid-player__button" type="submit" [disabled]="loading">
+        {{ loading ? 'Checking access...' : 'Watch video' }}
+      </button>
+    </form>
+  } @else if (loading) {
+    <div class="vid-player__status" role="status">
+      <app-loading-spinner label="Loading video..." size="md" />
+    </div>
+  } @else {
+    <div class="vid-player__status">
+      <p class="vid-player__error" role="alert">{{ errorMessage }}</p>
+      <button class="vid-player__button" type="button" (click)="retry()">
+        Try again
+      </button>
+    </div>
+  }
+</section>
