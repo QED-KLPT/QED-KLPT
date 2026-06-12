@@ -39,6 +39,11 @@ export class VideoAccessService {
     return this.getValidAccessToken() !== null;
   }
 
+  getAccessTokenExpiresAt(): number | null {
+    const storedAccess = this.getValidStoredAccess();
+    return storedAccess ? Date.parse(storedAccess.accessTokenExpiresAt) : null;
+  }
+
   storeAccessToken(response: VideoAccessResponse): void {
     const storedAccess: StoredVideoAccess = {
       accessToken: response.accessToken,
@@ -54,6 +59,10 @@ export class VideoAccessService {
   }
 
   private getValidAccessToken(): string | null {
+    return this.getValidStoredAccess()?.accessToken ?? null;
+  }
+
+  private getValidStoredAccess(): StoredVideoAccess | null {
     const storedValue = sessionStorage.getItem(STORAGE_KEY);
     if (!storedValue) {
       return null;
@@ -68,7 +77,7 @@ export class VideoAccessService {
         return null;
       }
 
-      return storedAccess.accessToken;
+      return storedAccess;
     } catch {
       this.clearAccessToken();
       return null;

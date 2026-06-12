@@ -29,6 +29,16 @@
   font-weight: 600;
 }
 
+.testing-video__countdown {
+  margin: 12px 16px 0;
+  color: #34495a;
+
+  strong {
+    color: #1d252d;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
 .testing-links {
   list-style: none;
   padding: 0;

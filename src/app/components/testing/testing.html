@@ -22,6 +22,16 @@
       >
         Clear video access
       </button>
+      @if (accessTimeRemaining()) {
+        <p
+          class="testing-video__countdown"
+          role="timer"
+          aria-label="Video access time remaining"
+        >
+          Video access expires in
+          <strong>{{ accessTimeRemaining() }}</strong>.
+        </p>
+      }
       @if (videoAccessCleared()) {
         <p class="testing-video__confirmation" role="status">
           Video access token cleared. The passkey is required again.
