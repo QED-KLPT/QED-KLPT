@@ -2,6 +2,33 @@
   margin-block: 1.5rem;
 }
 
+.testing-video__clear {
+  min-height: 44px;
+  margin: 0 16px;
+  padding: 10px 20px;
+  border: 2px solid var(--doe-blue-600, #005eb8);
+  border-radius: 4px;
+  background: #fff;
+  color: var(--doe-blue-600, #005eb8);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--klpt-cream, #fbf8eb);
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--klpt-gold, #f6b71a);
+    outline-offset: 2px;
+  }
+}
+
+.testing-video__confirmation {
+  margin: 12px 16px 0;
+  font-weight: 600;
+}
+
 .testing-links {
   list-style: none;
   padding: 0;

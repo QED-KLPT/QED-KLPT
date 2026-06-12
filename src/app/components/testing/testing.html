@@ -3,10 +3,24 @@
     <h2>Testing Hub</h2>
     <p>Navigate to individual component testing pages below.</p>
     <div class="testing-video">
-      <app-vid-player
-        videoId="sample-vid-smash-cake"
-        title="Smash cake sample video"
-      />
+      @if (showTestVideo()) {
+        <app-vid-player
+          videoId="sample-vid-smash-cake"
+          title="Smash cake sample video"
+        />
+      }
+      <button
+        class="testing-video__clear"
+        type="button"
+        (click)="clearVideoAccess()"
+      >
+        Clear video access
+      </button>
+      @if (videoAccessCleared()) {
+        <p class="testing-video__confirmation" role="status">
+          Video access token cleared. The passkey is required again.
+        </p>
+      }
     </div>
     <nav aria-label="Testing pages" style="margin-block-start: 1.5rem;">
       <ul class="testing-links">
