@@ -30,6 +30,7 @@ export class VidPlayerComponent implements OnChanges {
 
   protected videoUrl: string | null = null;
   protected passkey = '';
+  protected showPasskey = false;
   protected errorMessage = '';
   protected loading = false;
   protected showPasskeyForm = false;
@@ -55,6 +56,7 @@ export class VidPlayerComponent implements OnChanges {
 
     this.videoUrl = null;
     this.passkey = '';
+    this.showPasskey = false;
     this.errorMessage = '';
 
     if (!this.videoId.trim()) {
@@ -77,6 +79,14 @@ export class VidPlayerComponent implements OnChanges {
     }
 
     this.loadVideo(this.passkey);
+  }
+
+  protected togglePasskeyVisibility(): void {
+    this.showPasskey = !this.showPasskey;
+  }
+
+  protected clearPasskeyError(): void {
+    this.errorMessage = '';
   }
 
   protected retry(): void {
@@ -107,6 +117,7 @@ export class VidPlayerComponent implements OnChanges {
   private handleAccessGranted(response: VideoAccessResponse): void {
     this.videoUrl = response.url;
     this.passkey = '';
+    this.showPasskey = false;
     this.showPasskeyForm = false;
     this.videoAccess.storeAccessToken(response);
   }
@@ -117,6 +128,7 @@ export class VidPlayerComponent implements OnChanges {
     if (error instanceof HttpErrorResponse && error.status === 401) {
       this.videoAccess.clearAccessToken();
       this.passkey = '';
+      this.showPasskey = false;
       this.showPasskeyForm = true;
       this.errorMessage = 'The passkey is incorrect or your video access has expired.';
       return;

@@ -74,20 +74,59 @@
   font-weight: 600;
 }
 
+.vid-player__input-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+}
+
 .vid-player__input {
   display: block;
   width: 100%;
-  max-width: 360px;
   min-height: 44px;
-  padding: 8px 12px;
+  padding: 8px 52px 8px 12px;
   border: 2px solid #6c7882;
   border-radius: 4px;
   background: #fff;
   font: inherit;
 
-  &:focus {
+  &:focus-visible {
     outline: 3px solid #ffdd00;
     outline-offset: 2px;
+  }
+}
+
+.vid-player__visibility {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: grid;
+  width: 44px;
+  min-height: 44px;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  border-left: 1px solid #6c7882;
+  border-radius: 0 3px 3px 0;
+  background: transparent;
+  color: #005eb8;
+  font-size: 1.125rem;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background: #e8f1f8;
+    color: #003e7e;
+  }
+
+  &:focus-visible {
+    z-index: 1;
+    outline: 3px solid #ffdd00;
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    cursor: wait;
+    opacity: 0.7;
   }
 }
 
@@ -114,7 +153,7 @@
     border-color: #003e7e;
   }
 
-  &:focus {
+  &:focus-visible {
     outline: 3px solid #ffdd00;
     outline-offset: 2px;
   }
@@ -127,6 +166,17 @@
 
 .vid-player__status {
   text-align: center;
+}
+
+.vid-player__announcement {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 @media (max-width: 480px) {
