@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import type { SessionModel } from '../components/klpt/models/session-model';
+import type { SessionModel } from '../components/klpt-learning-observation-tool/models/session-model';
 import type { jsPDF as JsPdfDocument } from 'jspdf';
-import { KlptDomainDataService } from '../components/klpt/components/shared/klpt-domain-data.service';
-import type { KlptBehaviour } from '../components/klpt/models/klpt-behaviour';
-import type { KlptDomain } from '../components/klpt/models/klpt-domain';
-import type { KlptElement } from '../components/klpt/models/klpt-element';
-import { HIGHEST_BEHAVIOUR_HTML } from '../components/klpt/components/shared/klpt-constants';
+import { KlptDomainDataService } from '../components/klpt-learning-observation-tool/components/shared/klpt-domain-data.service';
+import type { KlptBehaviour } from '../components/klpt-learning-observation-tool/models/klpt-behaviour';
+import type { KlptDomain } from '../components/klpt-learning-observation-tool/models/klpt-domain';
+import type { KlptElement } from '../components/klpt-learning-observation-tool/models/klpt-element';
+import { HIGHEST_BEHAVIOUR_HTML } from '../components/klpt-learning-observation-tool/components/shared/klpt-constants';
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
                 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -74,7 +74,7 @@ export class KlptPdfGeneratorService {
     const progressionItems = this.progressionItems(session);
     let y = 18;
 
-    y = this.addReportHeader(doc, y, margin, contentWidth);
+    y = this.addReportHeader(doc, y, margin);
     y = this.addMetadataGrid(doc, y, margin, contentWidth, [
       { label: 'Date', value: this.displayValue(this.formatFormDate(this.formValue(session, 'date'))) },
       { label: "Observer name", value: this.displayValue(session.educatorName) },
@@ -123,7 +123,7 @@ export class KlptPdfGeneratorService {
       y,
       margin,
       contentWidth,
-      'What QKLG Learning and Development Area(s) and Significant Learnings and EYLF Learning Outcomes are reflected in this learning?',
+      'What QKLG learning and development area(s) and significant learnings and EYLF learning outcomes are reflected in this learning?',
       this.displayValue(this.formValue(session, 'qklg-eylf-links')),
     );
 
@@ -155,21 +155,12 @@ export class KlptPdfGeneratorService {
     doc: JsPdfDocument,
     y: number,
     margin: number,
-    contentWidth: number,
   ): number {
-    const headerHeight = 13;
-    const headerPaddingY = 3;
-
-    doc.setFillColor(...PDF_THEME.panelAlt);
-    doc.roundedRect(margin, y, contentWidth, headerHeight, 3, 3, 'F');
-    doc.setDrawColor(...PDF_THEME.border);
-    doc.roundedRect(margin, y, contentWidth, headerHeight, 3, 3, 'S');
-
-    doc.setFontSize(10);
+    doc.setFontSize(12);
     doc.setTextColor(...PDF_THEME.ink);
-    doc.text('Learning progression statement', margin + 5, y + headerPaddingY + 5);
+    doc.text('Learning progression statement', margin, y + 5);
 
-    return y + headerHeight + 2;
+    return y + 10;
   }
 
   private addMetadataGrid(
@@ -198,7 +189,7 @@ export class KlptPdfGeneratorService {
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(6.8);
       doc.setTextColor(...PDF_THEME.muted);
-      doc.text(field.label.toUpperCase(), x + 3, rowY + cellPaddingY + 2);
+      doc.text(field.label, x + 3, rowY + cellPaddingY + 2);
 
       doc.setFontSize(8.5);
       doc.setTextColor(...PDF_THEME.ink);
@@ -311,7 +302,7 @@ export class KlptPdfGeneratorService {
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(7);
     doc.setTextColor(...PDF_THEME.blue);
-    const titleLines = doc.splitTextToSize(title.toUpperCase(), width);
+    const titleLines = doc.splitTextToSize(title, width);
     doc.text(titleLines, x, y, { lineHeightFactor: 1.15 });
 
     doc.setFont('helvetica', 'normal');
@@ -332,7 +323,7 @@ export class KlptPdfGeneratorService {
     const lines = doc.splitTextToSize(body || 'Not entered', width - 12);
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(7);
-    const titleLines = doc.splitTextToSize(title.toUpperCase(), width - 12);
+    const titleLines = doc.splitTextToSize(title, width - 12);
     return Math.max(18, 5 + titleLines.length * 3.2 + lines.length * 3.8);
   }
 

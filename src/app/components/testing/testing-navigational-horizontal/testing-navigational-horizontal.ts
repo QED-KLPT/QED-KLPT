@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+﻿import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NavItem, QldMainNav } from '../../shared/qld-main-nav/qld-main-nav';
 
 @Component({
@@ -11,90 +11,90 @@ import { NavItem, QldMainNav } from '../../shared/qld-main-nav/qld-main-nav';
 export class TestingNavigationalHorizontal {
 
   example1Items: NavItem[] = [
-    { label: 'Quality observations', href: '/foundations/quality-observations' },
-    { label: 'Analysing data', href: '/foundations/analysing-data' },
+    { label: 'Quality observations', href: '/klpt-foundations/quality-observations' },
+    { label: 'Analysing data', href: '/klpt-foundations/analysing-data' },
     { label: 'Learning domains', href: '/learning-domains' },
-    { label: 'KLPT', href: '/klpt' },
+    { label: 'KLPT', href: '/klpt-learning-observation-tool' },
     { label: 'Practice supports', href: '/learning-domains/language-and-literacy' },
   ];
 
   example2Items: NavItem[] = [
-    { label: 'Quality observations', href: '/foundations/quality-observations' },
-    { label: 'Analysing data', href: '/foundations/analysing-data' },
+    { label: 'Quality observations', href: '/klpt-foundations/quality-observations' },
+    { label: 'Analysing data', href: '/klpt-foundations/analysing-data' },
     { label: 'Learning domains', href: '/learning-domains' },
-    { label: 'KLPT', href: '/klpt' },
+    { label: 'KLPT', href: '/klpt-learning-observation-tool' },
     { label: 'Practice supports', href: '/learning-domains/language-and-literacy' },
   ];
 
   example3Items: NavItem[] = [
-    { label: 'Quality observations', href: '/foundations/quality-observations', icon: 'fa-light fa-eye' },
-    { label: 'Analysing data', href: '/foundations/analysing-data', icon: 'fa-light fa-chart-bar' },
+    { label: 'Quality observations', href: '/klpt-foundations/quality-observations', icon: 'fa-light fa-eye' },
+    { label: 'Analysing data', href: '/klpt-foundations/analysing-data', icon: 'fa-light fa-chart-bar' },
     { label: 'Learning domains', href: '/learning-domains', icon: 'fa-light fa-book-open' },
-    { label: 'KLPT', href: '/klpt', icon: 'fa-light fa-tools' },
+    { label: 'KLPT', href: '/klpt-learning-observation-tool', icon: 'fa-light fa-tools' },
     { label: 'Practice supports', href: '/practice-supports', icon: 'fa-light fa-hands-helping' },
   ];
 
   example4Items: NavItem[] = [
-    { label: 'Foundations', href: '/foundations', children: [
-      { label: 'Quality observations', href: '/foundations/quality-observations' },
-      { label: 'Analysing data', href: '/foundations/analysing-data' },
+    { label: 'Foundations', href: '/klpt-foundations', children: [
+      { label: 'Quality observations', href: '/klpt-foundations/quality-observations' },
+      { label: 'Analysing data', href: '/klpt-foundations/analysing-data' },
     ]},
     { label: 'Learning domains', href: '/learning-domains' },
-    { label: 'KLPT', href: '/klpt' },
+    { label: 'KLPT', href: '/klpt-learning-observation-tool' },
     { label: 'Practice supports', href: '/learning-domains/language-and-literacy' },
   ];
 
   example5Items: NavItem[] = [
-    { label: 'Foundations', href: '/foundations', children: [
-      { label: 'Quality observations', href: '/foundations/quality-observations' },
-      { label: 'Analysing data', href: '/foundations/analysing-data' },
+    { label: 'Foundations', href: '/klpt-foundations', children: [
+      { label: 'Quality observations', href: '/klpt-foundations/quality-observations' },
+      { label: 'Analysing data', href: '/klpt-foundations/analysing-data' },
       { label: 'Assessment planning', href: '#' },
       { label: 'Evidence collection', href: '#' },
       { label: 'Review cycles', href: '#' },
       { label: 'Reporting', href: '#' },
     ]},
     { label: 'Learning domains', href: '/learning-domains' },
-    { label: 'KLPT', href: '/klpt' },
+    { label: 'KLPT', href: '/klpt-learning-observation-tool' },
   ];
 
   example6Items: NavItem[] = [
-    { label: 'Foundations', href: '/foundations', children: [
-      { label: 'Quality observations', href: '/foundations/quality-observations', description: 'Guidelines for making reliable, valid observations in kindergarten settings.' },
-      { label: 'Analysing data', href: '/foundations/analysing-data', description: 'Methods for interpreting observation data to inform teaching practice.' },
+    { label: 'Foundations', href: '/klpt-foundations', children: [
+      { label: 'Quality observations', href: '/klpt-foundations/quality-observations', description: 'Guidelines for making reliable, valid observations in kindergarten settings.' },
+      { label: 'Analysing data', href: '/klpt-foundations/analysing-data', description: 'Methods for interpreting observation data to inform teaching practice.' },
       { label: 'Assessment planning', href: '#', description: 'Structured approaches to planning assessment activities.' },
       { label: 'Evidence collection', href: '#', description: 'Techniques for gathering meaningful evidence of child learning.' },
       { label: 'Review cycles', href: '#', description: 'Regular review processes to ensure assessment quality.' },
       { label: 'Reporting', href: '#', description: 'Communicating assessment findings to stakeholders.' },
     ]},
     { label: 'Learning domains', href: '/learning-domains' },
-    { label: 'KLPT', href: '/klpt' },
+    { label: 'KLPT', href: '/klpt-learning-observation-tool' },
   ];
 
   example7Items: NavItem[] = [
-    { label: 'Foundations', href: '/foundations', children: [
-      { label: 'Quality observations', href: '/foundations/quality-observations' },
-      { label: 'Analysing data', href: '/foundations/analysing-data' },
+    { label: 'Foundations', href: '/klpt-foundations', children: [
+      { label: 'Quality observations', href: '/klpt-foundations/quality-observations' },
+      { label: 'Analysing data', href: '/klpt-foundations/analysing-data' },
       { label: 'Assessment planning', href: '#' },
       { label: 'Evidence collection', href: '#' },
       { label: 'Review cycles', href: '#' },
       { label: 'Reporting', href: '#' },
     ]},
     { label: 'Learning domains', href: '/learning-domains' },
-    { label: 'KLPT', href: '/klpt' },
+    { label: 'KLPT', href: '/klpt-learning-observation-tool' },
   ];
 
   example8Items: NavItem[] = [
-    { label: 'Quality observations', href: '/foundations/quality-observations' },
-    { label: 'Analysing data', href: '/foundations/analysing-data' },
+    { label: 'Quality observations', href: '/klpt-foundations/quality-observations' },
+    { label: 'Analysing data', href: '/klpt-foundations/analysing-data' },
     { label: 'Learning domains', href: '/learning-domains' },
-    { label: 'KLPT', href: '/klpt' },
+    { label: 'KLPT', href: '/klpt-learning-observation-tool' },
     { label: 'Practice supports', href: '/learning-domains/language-and-literacy' },
   ];
 
   example9Items: NavItem[] = [
-    { label: 'Foundations', href: '/foundations', children: [
-      { label: 'Quality observations', href: '/foundations/quality-observations' },
-      { label: 'Analysing data', href: '/foundations/analysing-data' },
+    { label: 'Foundations', href: '/klpt-foundations', children: [
+      { label: 'Quality observations', href: '/klpt-foundations/quality-observations' },
+      { label: 'Analysing data', href: '/klpt-foundations/analysing-data' },
     ]},
     { label: 'Language and literacy', href: '/learning-domains/language-and-literacy' },
     { label: 'Executive function', href: '/learning-domains/executive-function' },
@@ -104,12 +104,12 @@ export class TestingNavigationalHorizontal {
   ];
 
   example10Items: NavItem[] = [
-    { label: 'Foundations', href: '/foundations', icon: 'fa-light fa-shield-halved', children: [
-      { label: 'Quality observations', href: '/foundations/quality-observations' },
-      { label: 'Analysing data', href: '/foundations/analysing-data' },
+    { label: 'Foundations', href: '/klpt-foundations', icon: 'fa-light fa-shield-halved', children: [
+      { label: 'Quality observations', href: '/klpt-foundations/quality-observations' },
+      { label: 'Analysing data', href: '/klpt-foundations/analysing-data' },
     ]},
     { label: 'Learning domains', href: '/learning-domains', icon: 'fa-light fa-graduation-cap' },
-    { label: 'KLPT', href: '/klpt', icon: 'fa-light fa-wrench' },
+    { label: 'KLPT', href: '/klpt-learning-observation-tool', icon: 'fa-light fa-wrench' },
     { label: 'Practice supports', href: '/practice-supports', icon: 'fa-light fa-handshake' },
     { label: 'About', href: '/about', icon: 'fa-light fa-circle-info' },
   ];

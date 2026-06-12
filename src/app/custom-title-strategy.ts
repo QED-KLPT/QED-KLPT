@@ -16,11 +16,11 @@ export class CustomTitleStrategy extends TitleStrategy {
     const title = (route as { title?: string })?.title;
 
     if (title === 'Home') {
-      document.title = 'KLPT Home';
-      this.title.setTitle('KLPT Home');
+      document.title = 'KLPT Learning observation tool';
+      this.title.setTitle('KLPT Learning observation tool');
     } else if (title) {
-      document.title = `${title} | KLPT`;
-      this.title.setTitle(`${title} | KLPT`);
+      document.title = `${title} — KLPT Learning observation tool`;
+      this.title.setTitle(`${title} — KLPT Learning observation tool`);
     }
   }
 }

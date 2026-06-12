@@ -1,4 +1,8 @@
 <div class="youtube-player">
+  <!-- API-based player (subtitles disabled) -->
+  <div *ngIf="!subtitles && youtubeUrl" class="video-container yt-api-player"></div>
+
+  <!-- Simple iframe player (subtitles enabled) -->
   <div *ngIf="sanitizedUrl" class="video-container">
     <iframe 
       [src]="sanitizedUrl"
@@ -16,7 +20,7 @@
     <p *ngIf="description" class="video-description">{{ description }}</p>
   </div>
 
-  <div *ngIf="!sanitizedUrl" class="no-video">
+  <div *ngIf="!sanitizedUrl && subtitles" class="no-video">
     <p>No valid YouTube URL provided</p>
   </div>
 

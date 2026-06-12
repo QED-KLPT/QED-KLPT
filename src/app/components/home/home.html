@@ -1,4 +1,4 @@
-<section class="page page--home">
+﻿<section class="page page--home">
   <section class="home-hero" aria-labelledby="home-title">
     <div class="home-hero__overlay">
       <div class="home-hero__content">
@@ -11,7 +11,7 @@
 
         <div class="home-hero__actions" aria-label="Primary actions">
           <div class="home-hero__action">
-            <a class="button button--secondary" routerLink="/foundations">KLPT foundations</a>
+            <a class="button button--secondary" routerLink="/klpt-foundations">KLPT foundations</a>
             <p>Learn how to conduct, document and analyse quality observations.</p>
           </div>
           <div class="home-hero__action">
@@ -19,7 +19,7 @@
             <p>Explore the five learning domains that support children's learning and development.</p>
           </div>
           <div class="home-hero__action">
-            <a class="button button--secondary" routerLink="/klpt">Learning observation tool</a>
+            <a class="button button--secondary" routerLink="/klpt-learning-observation-tool">Learning observation tool</a>
             <p>Use observation evidence to generate learning insights and inform planning.</p>
           </div>
         </div>
@@ -49,11 +49,16 @@
       <div class="home-video">
         <app-youtube-player
           title="Introduction to the KLPT"
-          description="Overview of the Kindergarten Learning Progression Toolkit."
           youtubeUrl="https://www.youtube.com/watch?v=KL7zbJDdCTA"
           [transcript]="introductionTranscript"
         >
         </app-youtube-player>
+      </div>
+
+      <div class="home-about">
+        <p>
+          The strengths-based KLPT recognises and values children’s diverse ways of knowing, being and doing, including the many ways children express themselves, connect with others and make meaning. The KLPT acknowledges Aboriginal and Torres Strait Islander worldviews, and centres the importance of culture, traditions, family and kinship in a child’s learning. Aboriginal and Torres Strait Islander perspectives is intentionally embedded throughout the toolkit.  
+        </p>
       </div>
 
       <div class="home-video__info-box">
@@ -102,6 +107,7 @@
           title="Acknowledgement of Country"
           youtubeUrl="https://www.youtube.com/watch?v=BfW4mfKyF7Q"
           [transcript]="acknowledgementTranscript"
+          [subtitles]="false"
         ></app-youtube-player>
       </div>
       <div class="ack-modal__footer">

@@ -1,0 +1,177 @@
+﻿<section class="section section--white klpt-step">
+  <div class="section__inner">
+    <app-navigation-nodes
+      [sessionId]="currentSession.id"
+      currentNode="statement"
+      (sessionCleared)="onSessionCleared($event)"
+    />
+
+    @let domain = selectedDomain();
+    @let items = progressionItems();
+    @let reflectiveQuestionsList = reflectiveQuestions();
+
+    <article class="statement-card">
+      <p class="eyebrow">Evidence statement</p>
+      <h2>Learning progression statement</h2>
+
+      @if (domain) {
+        <section class="klpt-summary-block">
+          <h3>Learning domain summary</h3>
+          <p><strong>{{ domain.name }}:</strong> {{ domain.summary }}</p>
+        </section>
+      }
+
+      <label class="klpt-form-field klpt-form-field--wide">
+        <span>Description of observation context or evidence collected</span>
+        <textarea
+          rows="5"
+          [value]="formValue('observational-context')"
+          (input)="updateFormField('observational-context', $any($event.target).value)"
+        ></textarea>
+      </label>
+
+      <div class="klpt-form-grid learning-statement-meta-grid">
+        <label class="klpt-form-field">
+          <span>Date</span>
+          <input
+            type="date"
+            [value]="formValue('date')"
+            (input)="updateFormField('date', $any($event.target).value)"
+          />
+        </label>
+
+        <label class="klpt-form-field">
+          <span>Observer name</span>
+          <input
+            type="text"
+            [value]="currentSession.educatorName ?? ''"
+            (input)="updateEducatorName($any($event.target).value)"
+          />
+        </label>
+
+        <label class="klpt-form-field">
+          <span>Learner code</span>
+          <input
+            type="text"
+            [value]="currentSession.learnerCode"
+            (input)="updateLearnerCode($any($event.target).value)"
+          />
+        </label>
+      </div>
+
+      @if (items.length) {
+        <section class="klpt-progression-stack" aria-label="Selected behaviours and next behaviours">
+          @for (item of items; track item.element.id) {
+            <article class="klpt-progression-item" [ngStyle]="itemStyle(item.element)">
+              <div class="klpt-progression-item__heading">
+                <h3>{{ item.element.name }}</h3>
+              </div>
+
+              <div class="klpt-evidence-grid">
+                <div class="klpt-evidence-panel">
+                  <h3>What you observed</h3>
+                  <div [innerHTML]="item.behaviour.description"></div>
+                </div>
+
+                @if (item.nextBehaviour) {
+                  <div class="klpt-evidence-panel">
+                    <h3>What is likely to be the next step in learning progression</h3>
+                    <div [innerHTML]="item.nextBehaviour.description"></div>
+                  </div>
+                } @else {               
+                  <div class="klpt-evidence-panel">
+                    <h3>What is likely to be the next step in learning progression</h3>
+                    <div [innerHTML]="highestBehaviourText"></div>
+                  </div>
+                }
+              </div>
+            </article>
+          }
+        </section>
+      } @else {
+        <section class="klpt-summary-block">
+          <h3>No behaviours selected</h3>
+          <p>Return to behaviour selection and choose a behaviour for each selected element.</p>
+        </section>
+      }
+
+      <section class="reflection-layout">
+        <label class="klpt-form-field klpt-form-field--wide reflection-layout__field">
+          <span>Professional reflection</span>
+          <textarea
+            rows="5"
+            [value]="formValue('professional-reflection')"
+            (input)="updateFormField('professional-reflection', $any($event.target).value)"
+          ></textarea>
+        </label>
+
+        @if (reflectiveQuestionsList.length) {
+          <aside class="reflection-layout__questions" aria-label="Reflective questions for selected learning domain">
+            <div class="reflection-questions-card">
+              <p class="reflection-questions-card__eyebrow">Reflective prompts</p>             
+
+              <div class="reflection-questions-card__accordion-group">
+                <app-accordion-item
+                  title="View reflective questions"
+                  [alt]="true"                  
+                >
+                  <ul class="reflection-questions-card__list">
+                    @for (question of reflectiveQuestionsList; track question.id) {
+                      <li>{{ question.question }}</li>
+                    }
+                  </ul>
+                </app-accordion-item>
+              </div>
+            </div>
+          </aside>
+        }
+      </section>
+
+      <label class="klpt-form-field klpt-form-field--wide">
+        <span>How can you support this learning</span>
+        <textarea
+          rows="5"
+          [value]="formValue('support-learning')"
+          (input)="updateFormField('support-learning', $any($event.target).value)"
+        ></textarea>
+        <p class="klpt-form-field__hint">
+          <a
+            [routerLink]="practiceSupportsLink()"
+            target="_blank"
+            fragment="practice-supports"
+           
+          >
+            Link to practice supports for {{ selectedDomain()?.name ?? 'professional reflection' }}
+          </a>
+        </p>
+      </label>
+
+      <label class="klpt-form-field klpt-form-field--wide">
+        <span>What QKLG Learning and Development Area(s) and Significant Learnings and EYLF Learning Outcomes are reflected in this learning?</span>
+        <textarea
+          rows="5"
+          [value]="formValue('qklg-eylf-links')"
+          (input)="updateFormField('qklg-eylf-links', $any($event.target).value)"
+        ></textarea>
+        <p class="klpt-form-field__hint">
+          <a href="https://www.qcaa.qld.edu.au/downloads/kindergarten/qklg_align_eylf.pdf" target="_blank" rel="noopener">Link to Queensland kindergarten learning guideline (QKLG)</a>
+        </p>
+      </label>
+
+      <div class="klpt-step__actions">
+        <a class="button button--secondary" [routerLink]="['/klpt-learning-observation-tool/select-behaviours', currentSession.id]">Previous</a>
+        <a
+          class="button button--primary"
+          [class.button--disabled]="!canContinue()"
+          [attr.aria-disabled]="!canContinue()"
+          [attr.tabindex]="canContinue() ? null : -1"
+          [routerLink]="canContinue() ? ['/klpt-learning-observation-tool/review-session', currentSession.id] : null"
+        >
+          Next
+        </a>
+      </div>
+    </article>
+  </div>
+</section>
+
+

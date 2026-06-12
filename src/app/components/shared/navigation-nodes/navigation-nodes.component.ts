@@ -1,4 +1,4 @@
-import {
+﻿import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -11,13 +11,13 @@ import {
   Output,
 } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { SessionModel } from '../../klpt/models/session-model';
-import { SessionManagementService } from '../../klpt/components/shared/session-management.service';
-import { KlptDomainDataService } from '../../klpt/components/shared/klpt-domain-data.service';
+import { SessionModel } from '../../klpt-learning-observation-tool/models/session-model';
+import { SessionManagementService } from '../../klpt-learning-observation-tool/components/shared/session-management.service';
+import { KlptDomainDataService } from '../../klpt-learning-observation-tool/components/shared/klpt-domain-data.service';
 import {
   hasSelectedBehaviours,
   hasSelectedElements,
-} from '../../klpt/components/shared/session-readiness';
+} from '../../klpt-learning-observation-tool/components/shared/session-readiness';
 
 export type NavigationNodeId = 'select-domains' | 'select-behaviours' | 'statement' | 'review';
 
@@ -54,26 +54,26 @@ export class NavigationNodesComponent implements OnChanges {
     {
       id: 'select-domains',
       title: 'Domains',
-      description: 'Choose the domain, subdomain and one or more elements.',
-      route: '/klpt/select-domains',
+      description: 'Select the domain, subdomain and one or more elements.',
+      route: '/klpt-learning-observation-tool/select-domains',
     },
     {
       id: 'select-behaviours',
       title: 'Behaviours',
-      description: "Choose the behaviour that best describes the child's current learning journey.",
-      route: '/klpt/select-behaviours',
+      description: "Select the behaviour that best describes the child's current learning journey.",
+      route: '/klpt-learning-observation-tool/select-behaviours',
     },
     {
       id: 'statement',
       title: 'Learning Statement',
       description: 'Complete the learning progression statement and observation notes.',
-      route: '/klpt/learning-progression-statement',
+      route: '/klpt-learning-observation-tool/learning-progression-statement',
     },
     {
       id: 'review',
       title: 'Review and generate PDF',
       description: 'Review the saved statement and prepare a PDF copy.',
-      route: '/klpt/review-session',
+      route: '/klpt-learning-observation-tool/review-session',
     },
   ];
 
@@ -124,7 +124,7 @@ export class NavigationNodesComponent implements OnChanges {
     }
 
     this.isClearSessionModalOpen = false;
-    void this.router.navigate(['/klpt/select-domains', this.sessionId]);
+    void this.router.navigate(['/klpt-learning-observation-tool/select-domains', this.sessionId]);
   }
 
   protected trapModalFocus(event: KeyboardEvent): void {
