@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 import { environment } from '../../environments/environment';
 
@@ -22,6 +22,9 @@ interface StoredVideoAccess {
 @Injectable({ providedIn: 'root' })
 export class VideoAccessService {
   private readonly http = inject(HttpClient);
+  private readonly accessGranted = new Subject<void>();
+
+  readonly accessGranted$ = this.accessGranted.asObservable();
 
   requestAccess(videoId: string, passkey?: string): Observable<VideoAccessResponse> {
     const accessToken = passkey ? null : this.getValidAccessToken();
@@ -43,6 +46,7 @@ export class VideoAccessService {
     };
 
     sessionStorage.setItem(STORAGE_KEY, JSON.stringify(storedAccess));
+    this.accessGranted.next();
   }
 
   clearAccessToken(): void {

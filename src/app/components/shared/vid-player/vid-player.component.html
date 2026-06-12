@@ -12,9 +12,18 @@
     </video>
   } @else if (showPasskeyForm) {
     <form class="vid-player__access" (ngSubmit)="submitPasskey()">
-      <h3 class="vid-player__heading">This video is protected</h3>
+      <div class="vid-player__header">
+        <span class="vid-player__lock" aria-hidden="true">
+          <i class="fa-solid fa-lock"></i>
+        </span>
+        <div>
+          <p class="vid-player__eyebrow">Protected video</p>
+          <h3 class="vid-player__heading">{{ title || 'Video' }}</h3>
+        </div>
+      </div>
       <p class="vid-player__description">
-        Enter the passkey provided to you to watch this video.
+        Enter the passkey provided to you to watch this video and unlock the
+        other videos on this page.
       </p>
 
       <label class="vid-player__label" for="video-passkey-{{ videoId }}">Passkey</label>

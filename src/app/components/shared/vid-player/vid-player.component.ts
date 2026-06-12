@@ -3,11 +3,13 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  DestroyRef,
   inject,
   Input,
   OnChanges,
   SimpleChanges,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { finalize } from 'rxjs';
 
 import {
@@ -34,6 +36,17 @@ export class VidPlayerComponent implements OnChanges {
 
   private readonly videoAccess = inject(VideoAccessService);
   private readonly changeDetector = inject(ChangeDetectorRef);
+  private readonly destroyRef = inject(DestroyRef);
+
+  constructor() {
+    this.videoAccess.accessGranted$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        if (this.videoId.trim() && !this.videoUrl && !this.loading) {
+          this.loadVideo();
+        }
+      });
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (!changes['videoId']) {
@@ -92,10 +105,10 @@ export class VidPlayerComponent implements OnChanges {
   }
 
   private handleAccessGranted(response: VideoAccessResponse): void {
-    this.videoAccess.storeAccessToken(response);
     this.videoUrl = response.url;
     this.passkey = '';
     this.showPasskeyForm = false;
+    this.videoAccess.storeAccessToken(response);
   }
 
   private handleAccessError(error: unknown): void {
