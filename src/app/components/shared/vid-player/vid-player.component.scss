@@ -112,11 +112,6 @@
   font-size: 1.125rem;
   cursor: pointer;
 
-  &:hover:not(:disabled) {
-    background: #e8f1f8;
-    color: #003e7e;
-  }
-
   &:focus-visible {
     z-index: 1;
     outline: 3px solid #ffdd00;
