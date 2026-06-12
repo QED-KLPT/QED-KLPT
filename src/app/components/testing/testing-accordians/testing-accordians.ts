@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { AccordionGroupComponent } from '../../shared/accordion-group/accordion-group.component';
 import { AccordionItemComponent } from '../../shared/accordion-item/accordion-item.component';
+import { VidPlayerModule } from '../../shared/vid-player/vid-player.module';
 
 export interface AccordionDemoItem {
   id: string;
@@ -12,7 +13,7 @@ export interface AccordionDemoItem {
 
 @Component({
   selector: 'app-testing-accordians',
-  imports: [AccordionGroupComponent, AccordionItemComponent],
+  imports: [AccordionGroupComponent, AccordionItemComponent, VidPlayerModule],
   templateUrl: './testing-accordians.html',
   styleUrl: './testing-accordians.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -11,24 +11,57 @@
       Your browser does not support embedded videos.
     </video>
   } @else if (showPasskeyForm) {
-    <form class="vid-player__access" (ngSubmit)="submitPasskey()">
-      <h3 class="vid-player__heading">This video is protected</h3>
+    <form
+      class="vid-player__access"
+      novalidate
+      [attr.aria-busy]="loading"
+      (ngSubmit)="submitPasskey()"
+    >
+      <div class="vid-player__header">
+        <span class="vid-player__lock" aria-hidden="true">
+          <i class="fa-solid fa-lock"></i>
+        </span>
+        <div>
+          <p class="vid-player__eyebrow">Protected video</p>
+          <h3 class="vid-player__heading">{{ title || 'Video' }}</h3>
+        </div>
+      </div>
       <p class="vid-player__description">
-        Enter the passkey provided to you to watch this video.
+        Enter the passkey provided to you to watch this video and unlock the
+        other videos on this page.
       </p>
 
       <label class="vid-player__label" for="video-passkey-{{ videoId }}">Passkey</label>
-      <input
-        class="vid-player__input"
-        id="video-passkey-{{ videoId }}"
-        name="passkey"
-        type="password"
-        autocomplete="current-password"
-        required
-        [disabled]="loading"
-        [(ngModel)]="passkey"
-        [attr.aria-describedby]="errorMessage ? 'video-access-error-' + videoId : null"
-      />
+      <div class="vid-player__input-wrap">
+        <input
+          class="vid-player__input"
+          id="video-passkey-{{ videoId }}"
+          name="passkey"
+          [type]="showPasskey ? 'text' : 'password'"
+          autocomplete="current-password"
+          required
+          [disabled]="loading"
+          [(ngModel)]="passkey"
+          (ngModelChange)="clearPasskeyError()"
+          [attr.aria-invalid]="errorMessage ? 'true' : null"
+          [attr.aria-describedby]="errorMessage ? 'video-access-error-' + videoId : null"
+        />
+        <button
+          class="vid-player__visibility"
+          type="button"
+          [disabled]="loading"
+          [attr.aria-label]="showPasskey ? 'Hide passkey' : 'Show passkey'"
+          [attr.aria-pressed]="showPasskey"
+          (click)="togglePasskeyVisibility()"
+        >
+          <i
+            class="fa-solid"
+            [class.fa-eye]="!showPasskey"
+            [class.fa-eye-slash]="showPasskey"
+            aria-hidden="true"
+          ></i>
+        </button>
+      </div>
 
       @if (errorMessage) {
         <p
@@ -43,6 +76,9 @@
       <button class="vid-player__button" type="submit" [disabled]="loading">
         {{ loading ? 'Checking access...' : 'Watch video' }}
       </button>
+      <span class="vid-player__announcement" aria-live="polite" aria-atomic="true">
+        {{ loading ? 'Checking video access.' : '' }}
+      </span>
     </form>
   } @else if (loading) {
     <div class="vid-player__status" role="status">

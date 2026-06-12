@@ -3,11 +3,13 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  DestroyRef,
   inject,
   Input,
   OnChanges,
   SimpleChanges,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { finalize } from 'rxjs';
 
 import {
@@ -28,12 +30,24 @@ export class VidPlayerComponent implements OnChanges {
 
   protected videoUrl: string | null = null;
   protected passkey = '';
+  protected showPasskey = false;
   protected errorMessage = '';
   protected loading = false;
   protected showPasskeyForm = false;
 
   private readonly videoAccess = inject(VideoAccessService);
   private readonly changeDetector = inject(ChangeDetectorRef);
+  private readonly destroyRef = inject(DestroyRef);
+
+  constructor() {
+    this.videoAccess.accessGranted$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        if (this.videoId.trim() && !this.videoUrl && !this.loading) {
+          this.loadVideo();
+        }
+      });
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (!changes['videoId']) {
@@ -42,6 +56,7 @@ export class VidPlayerComponent implements OnChanges {
 
     this.videoUrl = null;
     this.passkey = '';
+    this.showPasskey = false;
     this.errorMessage = '';
 
     if (!this.videoId.trim()) {
@@ -64,6 +79,14 @@ export class VidPlayerComponent implements OnChanges {
     }
 
     this.loadVideo(this.passkey);
+  }
+
+  protected togglePasskeyVisibility(): void {
+    this.showPasskey = !this.showPasskey;
+  }
+
+  protected clearPasskeyError(): void {
+    this.errorMessage = '';
   }
 
   protected retry(): void {
@@ -92,10 +115,11 @@ export class VidPlayerComponent implements OnChanges {
   }
 
   private handleAccessGranted(response: VideoAccessResponse): void {
-    this.videoAccess.storeAccessToken(response);
     this.videoUrl = response.url;
     this.passkey = '';
+    this.showPasskey = false;
     this.showPasskeyForm = false;
+    this.videoAccess.storeAccessToken(response);
   }
 
   private handleAccessError(error: unknown): void {
@@ -104,6 +128,7 @@ export class VidPlayerComponent implements OnChanges {
     if (error instanceof HttpErrorResponse && error.status === 401) {
       this.videoAccess.clearAccessToken();
       this.passkey = '';
+      this.showPasskey = false;
       this.showPasskeyForm = true;
       this.errorMessage = 'The passkey is incorrect or your video access has expired.';
       return;
