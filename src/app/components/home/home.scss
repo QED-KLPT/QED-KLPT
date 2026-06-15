@@ -6,8 +6,8 @@
   position: relative;
   min-height: clamp(28rem, 68vh, 42rem);
   background:
-    linear-gradient(90deg, rgba(43, 25, 60, 0.48), rgba(74, 43, 100, 0.28) 48%, rgba(74, 43, 100, 0.1)),
-    linear-gradient(180deg, rgba(43, 25, 60, 0.12), rgba(43, 25, 60, 0.05)),
+    linear-gradient(90deg, rgba(43, 25, 60, 0.72), rgba(74, 43, 100, 0.68) 48%, rgba(74, 43, 100, 0.66)),
+    linear-gradient(180deg, rgba(43, 25, 60, 0.18), rgba(43, 25, 60, 0.14)),
     url("../../../assets/img/klpt-home-hero.jpg") center 28% / cover no-repeat;
   color: #ffffff;
 }
