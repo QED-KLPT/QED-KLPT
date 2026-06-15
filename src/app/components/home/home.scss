@@ -289,8 +289,11 @@
 }
 
 .ack-modal__body {
+  flex: 1 1 auto;
+  min-height: 0;
   padding: 1.5rem;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .ack-modal__body app-youtube-player {
