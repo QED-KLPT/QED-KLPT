@@ -124,12 +124,15 @@
       </div>
 
       <section class="session-list">
-        @if (sessions.length === 0) {
-          <p class="klpt-list-sessions__empty">
-            No saved sessions yet. Create a new session to get started.
-          </p>
-        } @else {
+        <div aria-live="polite" aria-atomic="true">
+          @if (sessions.length === 0) {
+            <p class="klpt-list-sessions__empty">
+              No saved sessions yet. Create a new session to get started.
+            </p>
+          }
+        </div>
 
+        @if (sessions.length > 0) {
          @for (group of groupedSessions; track group[0]) {
             <div class="recent-group">
               <div class="recent-group-label">
