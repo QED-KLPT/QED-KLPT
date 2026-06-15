@@ -47,16 +47,22 @@
                 type="button"
                 class="klpt-help-bulb"
                 aria-label="Learner code help"
+                aria-describedby="learner-code-tooltip"
                 (mouseenter)="onBulbHover(true)"
                 (mouseleave)="onBulbHover(false)"
+                (focus)="onBulbHover(true)"
+                (blur)="onBulbHover(false)"
                 (touchstart.prevent)="onBulbLongPressStart()"
                 (touchend.prevent)="onBulbLongPressEnd()"
               >
                 <img src="assets/img/bulb.png" alt="" aria-hidden="true" />
               </button>
-              @if (bulbTooltipVisible) {
-                <span class="klpt-help-tooltip" role="tooltip">Enter 3 digits to uniquely identify the child</span>
-              }
+              <span
+                id="learner-code-tooltip"
+                class="klpt-help-tooltip"
+                [class.klpt-help-tooltip--visible]="bulbTooltipVisible"
+                role="tooltip"
+              >Enter 3 digits to uniquely identify the child</span>
             </label>
             <input
               type="text"
@@ -118,12 +124,15 @@
       </div>
 
       <section class="session-list">
-        @if (sessions.length === 0) {
-          <p class="klpt-list-sessions__empty">
-            No saved sessions yet. Create a new session to get started.
-          </p>
-        } @else {
+        <div aria-live="polite" aria-atomic="true">
+          @if (sessions.length === 0) {
+            <p class="klpt-list-sessions__empty">
+              No saved sessions yet. Create a new session to get started.
+            </p>
+          }
+        </div>
 
+        @if (sessions.length > 0) {
          @for (group of groupedSessions; track group[0]) {
             <div class="recent-group">
               <div class="recent-group-label">
