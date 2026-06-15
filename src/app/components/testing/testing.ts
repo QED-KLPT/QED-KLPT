@@ -10,11 +10,12 @@ import { RouterLink } from '@angular/router';
 import { merge, timer } from 'rxjs';
 
 import { VideoAccessService } from '../../services/video-access.service';
+import { PlyrPlayerModule } from '../shared/plyr-player/public-api';
 import { VidPlayerModule } from '../shared/vid-player/vid-player.module';
 
 @Component({
   selector: 'app-testing',
-  imports: [RouterLink, VidPlayerModule],
+  imports: [RouterLink, PlyrPlayerModule, VidPlayerModule],
   templateUrl: './testing.html',
   styleUrl: './testing.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
