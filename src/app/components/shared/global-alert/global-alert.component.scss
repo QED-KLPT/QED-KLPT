@@ -5,10 +5,15 @@
 .qld__global-alert {
   position: relative;
   width: 100%;
-  padding: 1rem 1.5rem;
+  padding-block: 1rem;
   display: flex;
   align-items: center;
   gap: 1rem;
+
+  > .container-fluid {
+    width: min(var(--doe-container-width), calc(100% - 2rem));
+    margin-inline: auto;
+  }
 
   &__main {
     display: flex;
@@ -160,7 +165,6 @@
   .qld__global-alert {
     flex-direction: column;
     align-items: stretch;
-    padding: 1rem;
 
     &__main {
       flex-direction: column;
