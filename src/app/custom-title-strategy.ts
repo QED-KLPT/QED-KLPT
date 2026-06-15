@@ -15,12 +15,9 @@ export class CustomTitleStrategy extends TitleStrategy {
 
     const title = (route as { title?: string })?.title;
 
-    if (title === 'Home') {
-      document.title = 'KLPT Learning observation tool';
-      this.title.setTitle('KLPT Learning observation tool');
-    } else if (title) {
-      document.title = `${title} — KLPT Learning observation tool`;
-      this.title.setTitle(`${title} — KLPT Learning observation tool`);
+    if (title !== undefined && title !== null) {
+      document.title = title;
+      this.title.setTitle(title);
     }
   }
 }
