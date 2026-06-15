@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { NgStyle } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NavigationNodesComponent } from '../../../shared';
@@ -42,16 +42,25 @@ export class SelectBehaviours implements OnInit, OnDestroy {
   protected focusedElementId: string | undefined;
   protected focusedBehaviourId: string | undefined;
   private readonly touchStartX = new Map<string, number>();
+  private readonly listModeQuery = typeof window !== 'undefined'
+    ? window.matchMedia('(max-width: 35rem)')
+    : null;
+  protected readonly isListMode = signal(this.listModeQuery?.matches ?? false);
+  private readonly onListModeChange = (e: MediaQueryListEvent): void => {
+    this.isListMode.set(e.matches);
+  };
 
   ngOnInit(): void {
     this.currentSession = this.getRouteSession();
     this.currentSession.pageIndex = 2;
     this.focusedElementId = this.currentSession.elements[0]?.id;
     this.focusedBehaviourId = this.currentSession.elements[0]?.behaviourId;
+    this.listModeQuery?.addEventListener('change', this.onListModeChange);
   }
 
   ngOnDestroy(): void {
     this.sessionManagement.persistSession(this.currentSession);
+    this.listModeQuery?.removeEventListener('change', this.onListModeChange);
   }
 
   private getRouteSession(): SessionModel {
@@ -246,10 +255,12 @@ export class SelectBehaviours implements OnInit, OnDestroy {
   }
 
   protected onCarouselTouchStart(element: KlptElement, event: TouchEvent): void {
+    if (this.isListMode()) return;
     this.touchStartX.set(element.id, event.changedTouches[0]?.clientX ?? 0);
   }
 
   protected onCarouselTouchEnd(element: KlptElement, event: TouchEvent): void {
+    if (this.isListMode()) return;
     const startX = this.touchStartX.get(element.id);
     const endX = event.changedTouches[0]?.clientX ?? startX;
     this.touchStartX.delete(element.id);
