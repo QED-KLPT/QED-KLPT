@@ -27,6 +27,7 @@ import {
 export class VidPlayerComponent implements OnChanges {
   @Input({ required: true }) videoId = '';
   @Input() title = '';
+  @Input() bypassPasskey = false;
 
   protected videoUrl: string | null = null;
   protected passkey = '';
@@ -65,7 +66,9 @@ export class VidPlayerComponent implements OnChanges {
       return;
     }
 
-    if (this.videoAccess.hasValidAccessToken()) {
+    if (this.bypassPasskey) {
+      this.loadVideo();
+    } else if (this.videoAccess.hasValidAccessToken()) {
       this.loadVideo();
     } else {
       this.showPasskeyForm = true;
@@ -92,7 +95,9 @@ export class VidPlayerComponent implements OnChanges {
   protected retry(): void {
     this.errorMessage = '';
 
-    if (this.videoAccess.hasValidAccessToken()) {
+    if (this.bypassPasskey) {
+      this.loadVideo();
+    } else if (this.videoAccess.hasValidAccessToken()) {
       this.loadVideo();
     } else {
       this.showPasskeyForm = true;
