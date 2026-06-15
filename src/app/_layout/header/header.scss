@@ -104,6 +104,13 @@
   font-size: 1.25rem;
   font-weight: 600;
   line-height: 1.25;
+  text-decoration: none;
+}
+
+.doe-header__brand-title:hover,
+.doe-header__brand-title:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
 }
 
 .doe-header__search {
