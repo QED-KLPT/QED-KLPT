@@ -45,15 +45,17 @@
                 (touchstart)="onCarouselTouchStart(element, $event)"
                 (touchend)="onCarouselTouchEnd(element, $event)"
               >
-                <button
-                  class="behaviour-carousel__arrow behaviour-carousel__arrow--previous"
-                  type="button"
-                  [attr.aria-label]="'Previous behaviour for ' + element.name"
-                  [disabled]="!canGoPrevious(element)"
-                  (click)="previousBehaviour(element)"
-                >
-                  <span aria-hidden="true">‹</span>
-                </button>
+                @if (!isListMode()) {
+                  <button
+                    class="behaviour-carousel__arrow behaviour-carousel__arrow--previous"
+                    type="button"
+                    [attr.aria-label]="'Previous behaviour for ' + element.name"
+                    [disabled]="!canGoPrevious(element)"
+                    (click)="previousBehaviour(element)"
+                  >
+                    <span aria-hidden="true">‹</span>
+                  </button>
+                }
 
                 <div class="behaviour-carousel__viewport" [attr.aria-label]="element.name + ' behaviour carousel'">
                   @for (item of carouselItems(element); track item.behaviour.id; let behaviourIndex = $index) {
@@ -65,9 +67,9 @@
                       [attr.data-selected]="isSelectedBehaviour(element, item.behaviour)"
                       [attr.data-focused]="isFocusedBehaviour(element, item.behaviour)"
                       [attr.aria-pressed]="isSelectedBehaviour(element, item.behaviour)"
-                      [attr.aria-hidden]="carouselItemState(item) === 'hidden'"
+                      [attr.aria-hidden]="!isListMode() && carouselItemState(item) === 'hidden'"
                       [attr.aria-label]="'Select behaviour for ' + element.name + ': ' + item.behaviour.name"
-                      [attr.tabindex]="carouselItemState(item) === 'active' ? 0 : -1"
+                      [attr.tabindex]="!isListMode() && carouselItemState(item) !== 'active' ? -1 : 0"
                       (click)="selectBehaviour(element, item.behaviour)"
                     >
                       <span class="behaviour-tile__description" [innerHTML]="item.behaviour.description"></span>
@@ -75,26 +77,30 @@
                   }
                 </div>
 
-                <button
-                  class="behaviour-carousel__arrow behaviour-carousel__arrow--next"
-                  type="button"
-                  [attr.aria-label]="'Next behaviour for ' + element.name"
-                  [disabled]="!canGoNext(element)"
-                  (click)="nextBehaviour(element)"
-                >
-                  <span aria-hidden="true">›</span>
-                </button>
+                @if (!isListMode()) {
+                  <button
+                    class="behaviour-carousel__arrow behaviour-carousel__arrow--next"
+                    type="button"
+                    [attr.aria-label]="'Next behaviour for ' + element.name"
+                    [disabled]="!canGoNext(element)"
+                    (click)="nextBehaviour(element)"
+                  >
+                    <span aria-hidden="true">›</span>
+                  </button>
+                }
 
-                <div class="behaviour-carousel__dots" [attr.aria-label]="carouselPositionLabel(element)">
-                  @for (behaviour of element.behaviours; track behaviour.id) {
-                    <button
-                      type="button"
-                      [attr.data-active]="isActiveBehaviour(element, behaviour)"
-                      [attr.aria-label]="'Select ' + behaviour.name"
-                      (click)="selectBehaviour(element, behaviour)"
-                    ></button>
-                  }
-                </div>
+                @if (!isListMode()) {
+                  <div class="behaviour-carousel__dots" [attr.aria-label]="carouselPositionLabel(element)">
+                    @for (behaviour of element.behaviours; track behaviour.id) {
+                      <button
+                        type="button"
+                        [attr.data-active]="isActiveBehaviour(element, behaviour)"
+                        [attr.aria-label]="'Select ' + behaviour.name"
+                        (click)="selectBehaviour(element, behaviour)"
+                      ></button>
+                    }
+                  </div>
+                }
               </div>
             </section>
           }
