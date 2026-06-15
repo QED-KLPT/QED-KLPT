@@ -66,7 +66,10 @@
                 <!-- <small>{{ panelHint(subDomainItemCount(subDomain), currentSession.subDomain === subDomain.id) }}</small> -->
               </button>
             }
-          } @else {
+          }
+        </div>
+        <div aria-live="polite" aria-atomic="true">
+          @if (!subDomainsList.length) {
             <p class="selection-row__empty">
               {{ currentSession.domain ? 'This domain goes straight to elements.' : 'Select a domain with subdomains to use this row.' }}
             </p>
@@ -96,7 +99,10 @@
                 <!-- <small>{{ panelHint(0, isElementSelected(element), true) }}</small> -->
               </button>
             }
-          } @else {
+          }
+        </div>
+        <div aria-live="polite" aria-atomic="true">
+          @if (!elementsList.length) {
             <p class="selection-row__empty">
               {{ currentSession.domain ? 'Select a subdomain first to reveal elements.' : 'Select a domain first to reveal elements.' }}
             </p>
