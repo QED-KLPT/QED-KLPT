@@ -1,7 +1,7 @@
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { PlyrPlayerModule } from '../shared/plyr-player/public-api';
+import { YoutubePlayerModule } from '../shared/youtube-player/public-api';
 import { DomainAssetModeService } from '../../services/domain-asset-mode.service';
 
 type MockVideo = {
@@ -19,7 +19,7 @@ type MockColumn = {
 
 @Component({
   selector: 'app-analysing-data',
-  imports: [CommonModule, PlyrPlayerModule],
+  imports: [CommonModule, YoutubePlayerModule],
   templateUrl: './analysing-data.html',
   styleUrl: './analysing-data.scss',
 })

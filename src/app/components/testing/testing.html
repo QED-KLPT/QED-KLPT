@@ -15,6 +15,12 @@
           title="Example number two - Kerry sample video"
         />
       }
+      @if (showTestVideo()) {
+        <app-vid-player
+          videoId="klpt-observational-data-planning-cycle"
+          title="Observational data and the planning cycle"
+        />
+      }
       <button
         class="testing-video__clear"
         type="button"
