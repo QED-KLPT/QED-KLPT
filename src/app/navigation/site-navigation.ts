@@ -99,25 +99,14 @@ export function getActiveTopLevelNavItem(url: string): SiteNavItem | null {
 
 export function getSideNavItems(url: string): SiteNavItem[] {
   const activeItem = getActiveTopLevelNavItem(url);
-  const currentUrl = normalizeNavUrl(url);
 
   if (!activeItem) {
     return [];
   }
 
-  if (!activeItem.children?.length) {
-    return SITE_NAV_ITEMS
-      .filter((item) => item.path !== '/')
-      .map((item) => withActiveNavState(item, url));
-  }
+  return activeItem.children?.map((child) => withActiveNavState(child, url)) ?? [];
+}
 
-  return [
-    {
-      ...activeItem,
-      children: undefined,
-      active: currentUrl === normalizeNavUrl(activeItem.path),
-      isTitle: true,
-    },
-    ...activeItem.children.map((child) => withActiveNavState(child, url)),
-  ];
+export function getSideNavTitle(url: string): string | null {
+  return getActiveTopLevelNavItem(url)?.label ?? null;
 }

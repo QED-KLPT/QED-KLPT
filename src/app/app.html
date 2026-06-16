@@ -9,10 +9,10 @@
 
   <div class="sr-only" aria-live="polite" aria-atomic="true">{{ pageAnnouncement }}</div>
 
-  <div class="app-content-shell" [class.app-content-shell--with-side-nav]="sideNavItems.length > 0">
-    @if (sideNavItems.length > 0) {
+  <div class="app-content-shell" [class.app-content-shell--with-side-nav]="sideNavTitle">
+    @if (sideNavTitle) {
       <aside class="app-side-nav">
-        <app-qld-side-nav [items]="sideNavItems" title="In this section..." ariaLabel="Secondary navigation" />
+        <app-qld-side-nav [items]="sideNavItems" [title]="sideNavTitle" ariaLabel="Secondary navigation" />
       </aside>
     }
 

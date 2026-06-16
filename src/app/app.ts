@@ -11,7 +11,7 @@ import { Footer } from './_layout/footer/footer';
 import { Header } from './_layout/header/header';
 import { BackToTopComponent } from './components/shared/back-to-top';
 import { QldSideNavComponent } from './components/shared/qld-side-nav/qld-side-nav.component';
-import { getSideNavItems, SiteNavItem } from './navigation/site-navigation';
+import { getSideNavItems, getSideNavTitle, SiteNavItem } from './navigation/site-navigation';
 
 const UPDATE_RECHECK_DELAY_MS = 2 * 60 * 1000;
 
@@ -32,6 +32,7 @@ export class App implements OnInit {
   protected isRefreshing = false;
   protected pageAnnouncement = '';
   protected sideNavItems: SiteNavItem[] = [];
+  protected sideNavTitle: string | null = null;
   protected updateFailureMessage =
     'An update was detected but could not be installed yet. Please try again in a few minutes.';
 
@@ -120,6 +121,7 @@ export class App implements OnInit {
 
   private updateSideNav(): void {
     this.sideNavItems = getSideNavItems(this.router.url);
+    this.sideNavTitle = getSideNavTitle(this.router.url);
   }
 
   protected dismissUpdateNotice(): void {
