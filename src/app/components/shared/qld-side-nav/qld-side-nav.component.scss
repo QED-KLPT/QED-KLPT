@@ -1,11 +1,115 @@
-.qld__side-nav {
-  width: 100%;
-
-  @media (min-width: 768px) {
-    width: auto;
-  }
+:host {
+  display: block;
 }
 
-.qld__side-nav__toggle {
-  cursor: pointer;
+.qld-side-nav {
+  width: 100%;
+}
+
+.qld-side-nav__mobile {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.qld-side-nav__label,
+.qld-side-nav__heading {
+  margin: 0;
+  color: var(--doe-color-primary-dark);
+  font-weight: 700;
+}
+
+.qld-side-nav__select {
+  width: 100%;
+  min-height: 3rem;
+  border: 2px solid var(--doe-color-primary);
+  border-radius: 4px;
+  background: #ffffff;
+  color: var(--doe-color-text);
+  padding: 0.65rem 2.4rem 0.65rem 0.8rem;
+  font: inherit;
+}
+
+.qld-side-nav__desktop {
+  display: none;
+}
+
+.qld-side-nav__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.qld-side-nav__desktop > .qld-side-nav__list {
+  margin-block-start: 0.75rem;
+  border-top: 4px solid var(--doe-color-accent);
+}
+
+.qld-side-nav__item {
+  border-bottom: 1px solid var(--doe-color-border);
+}
+
+.qld-side-nav__item--title {
+  border-bottom-color: var(--doe-color-primary);
+}
+
+.qld-side-nav__list--child,
+.qld-side-nav__list--grandchild {
+  border-top: 1px solid rgba(0, 62, 150, 0.12);
+}
+
+.qld-side-nav__link {
+  position: relative;
+  display: block;
+  color: var(--doe-color-text);
+  padding: 0.85rem 0.9rem;
+  line-height: 1.35;
+  text-decoration: none;
+}
+
+.qld-side-nav__item--title > .qld-side-nav__link {
+  color: var(--doe-color-primary-dark);
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.qld-side-nav__list--child .qld-side-nav__link {
+  padding-left: 1.35rem;
+}
+
+.qld-side-nav__list--grandchild .qld-side-nav__link {
+  padding-left: 2rem;
+  font-size: 0.95rem;
+}
+
+a.qld-side-nav__link:hover,
+a.qld-side-nav__link:focus-visible {
+  background: #eef4fa;
+  color: var(--doe-color-primary-dark);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.qld-side-nav__link--current {
+  background: #eef4fa;
+  color: var(--doe-color-primary-dark);
+  font-weight: 700;
+}
+
+.qld-side-nav__link--current::before {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  width: 4px;
+  background: var(--doe-color-primary);
+  content: "";
+}
+
+@media (min-width: 56rem) {
+  .qld-side-nav__mobile {
+    display: none;
+  }
+
+  .qld-side-nav__desktop {
+    display: block;
+  }
 }

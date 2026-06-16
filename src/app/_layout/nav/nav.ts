@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, ElementRef, HostListener, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { getPrimaryNavItems, SiteNavItem } from '../../navigation/site-navigation';
 import { DomainAssetModeService } from '../../services/domain-asset-mode.service';
 
 @Component({
@@ -16,6 +17,7 @@ export class Nav {
   protected readonly isMenuOpen = signal(false);
   protected readonly openSubmenu = signal<string | null>(null);
   protected readonly suppressHoverSubmenus = signal(false);
+  protected readonly navItems = getPrimaryNavItems();
 
   protected allowHoverSubmenus(event: PointerEvent): void {
     if (event.pointerType === 'mouse') {
@@ -97,6 +99,14 @@ export class Nav {
 
     keyboardEvent.preventDefault();
     this.focusAdjacentSubmenuItem(menuItem, -1);
+  }
+
+  protected hasChildren(item: SiteNavItem): boolean {
+    return !!item.children?.length;
+  }
+
+  protected itemKey(item: SiteNavItem): string {
+    return item.path.replace(/[^a-zA-Z0-9]+/g, '-').replace(/^-|-$/g, '') || 'home';
   }
 
   protected toggleSubmenu(name: string): void {
