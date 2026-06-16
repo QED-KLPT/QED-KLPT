@@ -41,11 +41,7 @@ export class Sitemap implements OnInit {
         { label: 'Physicality', href: '/learning-domains/physicality' },
         { label: 'Mathematics and numeracy', href: '/learning-domains/mathematics-and-numeracy' },
       ],
-    },
-    {
-      label: 'Practice supports',
-      href: '/practice-supports',
-    },
+    },   
     {
       label: 'KLPT',
       href: '/klpt-learning-observation-tool',
@@ -58,8 +54,7 @@ export class Sitemap implements OnInit {
         { label: 'Review KLPT session', href: '/klpt-learning-observation-tool/review-session/:sessionId' },
       ],
     },
-    { label: 'About', href: '/about' },
-    { label: 'Help', href: '/help' },
+    { label: 'About', href: '/about' },   
     { label: 'Contact', href: '/contact' },
   ];
 
