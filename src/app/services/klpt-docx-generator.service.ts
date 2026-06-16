@@ -33,14 +33,39 @@ const FORM_FIELD_LABELS: Record<string, string> = {
 };
 
 const COLORS = {
-  ink: '10235C',
+  ink: '000000',
   muted: '526985',
   blue: '0D3B66',
-  panel: 'EDF0FA',
-  panelAlt: 'F6F9FC',
-  border: 'D8D2EC',
   white: 'FFFFFF',
 };
+
+const TYPOGRAPHY = {
+  heading: {
+    bold: true,
+    size: 24,
+    font: 'Helvetica',
+    color: COLORS.blue,
+  },
+  subheading: {
+    bold: true,
+    size: 16,
+    font: 'Helvetica',
+    color: COLORS.blue,
+  },
+  body: {
+    bold: false,
+    size: 18,
+    font: 'Helvetica',
+    color: COLORS.ink,
+  },
+  muted: {
+    bold: false,
+    size: 14,
+    font: 'Helvetica',
+    color: COLORS.muted,
+  },
+};
+
 
 interface DocxProgressionItem {
   element: KlptElement;
@@ -77,34 +102,34 @@ export class KlptDocxGeneratorService {
 
     if (domain) {
       children.push(new Paragraph({ spacing: { before: 200, after: 100 } }));
-      children.push(this.createTextCard('Learning domain summary', `${domain.name}: ${domain.summary}`));
+      children.push(...this.createTextCard('Learning domain summary', `${domain.name}: ${domain.summary}`));
     }
 
     children.push(new Paragraph({ spacing: { before: 200, after: 100 } }));
-    children.push(this.createTextCard(
+    children.push(...this.createTextCard(
       'Description of observation context or evidence collected',
       this.displayValue(this.formValue(session, 'observational-context')),
     ));
 
     for (const item of progressionItems) {
       children.push(new Paragraph({ spacing: { before: 200, after: 100 } }));
-      children.push(this.createProgressionItem(item));
+      children.push(...this.createProgressionItem(item));
     }
 
     children.push(new Paragraph({ spacing: { before: 200, after: 100 } }));
-    children.push(this.createTextCard(
+    children.push(...this.createTextCard(
       'Professional reflection',
       this.displayValue(this.formValue(session, 'professional-reflection')),
     ));
 
     children.push(new Paragraph({ spacing: { before: 100, after: 100 } }));
-    children.push(this.createTextCard(
+    children.push(...this.createTextCard(
       'How can you support this learning',
       this.displayValue(this.formValue(session, 'support-learning')),
     ));
 
     children.push(new Paragraph({ spacing: { before: 100, after: 100 } }));
-    children.push(this.createTextCard(
+    children.push(...this.createTextCard(
       'What QKLG learning and development area(s) and significant learnings and EYLF learning outcomes are reflected in this learning?',
       this.displayValue(this.formValue(session, 'qklg-eylf-links')),
     ));
@@ -143,32 +168,22 @@ export class KlptDocxGeneratorService {
     URL.revokeObjectURL(url);
   }
 
-  private createHeaderBar(): Table {
-    const headerRow = new TableRow({
+  private createHeaderBar(): Paragraph {
+    return new Paragraph({
       children: [
-        new TableCell({
-          children: [new Paragraph({
-            text: 'Learning progression statement',
-            spacing: { before: 6, after: 6 },
-          })],
-          width: { size: 100, type: WidthType.PERCENTAGE },
-          shading: {
-            fill: COLORS.panelAlt,
-            type: 'clear',
-          },
-          borders: {
-            top: this.createBorder(),
-            bottom: this.createBorder(),
-            left: this.createBorder(),
-            right: this.createBorder(),
-          },
+        new TextRun({
+          text: 'Learning progression statement',
+          ...TYPOGRAPHY.heading,
         }),
       ],
-    });
-
-    return new Table({
-      rows: [headerRow],
-      width: { size: 100, type: WidthType.PERCENTAGE },
+      spacing: { before: 100, after: 200 },
+      border: {
+        bottom: {
+          style: BorderStyle.SINGLE,
+          size: 1,
+          color: '000000',
+        },
+      },
     });
   }
 
@@ -186,28 +201,25 @@ export class KlptDocxGeneratorService {
             children: [
               new Paragraph({
                 children: [
-                  new TextRun({ text: field.label, bold: true, size: 14, font: 'Helvetica', color: COLORS.muted }),
+                  new TextRun({ 
+                    text: field.label, 
+                    ...TYPOGRAPHY.muted 
+                  }),
                 ],
                 spacing: { before: 4, after: 2 },
               }),
               new Paragraph({
                 children: [
-                  new TextRun({ text: field.value, size: 17, font: 'Helvetica', color: COLORS.ink }),
+                  new TextRun({ 
+                    text: field.value, 
+                    ...TYPOGRAPHY.body 
+                  }),
                 ],
                 spacing: { before: 2, after: 4 },
               }),
             ],
-            shading: {
-              fill: COLORS.white,
-              type: 'clear',
-            },
-            borders: {
-              top: this.createBorder(),
-              bottom: this.createBorder(),
-              left: this.createBorder(),
-              right: this.createBorder(),
-            },
             width: { size: cellWidth, type: WidthType.PERCENTAGE },
+            verticalAlign: AlignmentType.CENTER,
           }),
         );
       }
@@ -220,148 +232,69 @@ export class KlptDocxGeneratorService {
     });
   }
 
-  private createTextCard(title: string, body: string): Table {
-    const titleLines = this.wrapText(title, 60);
+  private createTextCard(title: string, body: string): Paragraph[] {
     const bodyText = this.htmlToText(body) || 'Not entered';
     const bodyLines = this.wrapText(bodyText, 80);
 
-    return new Table({
-      rows: [
-        new TableRow({
-          children: [
-            new TableCell({
-              children: [
-                ...titleLines.map((line) =>
-                  new Paragraph({
-                    children: [new TextRun({ text: line, bold: true, size: 14, font: 'Helvetica', color: COLORS.blue })],
-                    spacing: { before: 4, after: 2 },
-                  }),
-                ),
-                ...bodyLines.map((line) =>
-                  new Paragraph({
-                    children: [new TextRun({ text: line, size: 17, font: 'Helvetica', color: COLORS.ink })],
-                    spacing: { before: 2, after: 2 },
-                  }),
-                ),
-              ],
-              shading: {
-                fill: COLORS.panel,
-                type: 'clear',
-              },
-              borders: {
-                top: this.createBorder(),
-                bottom: this.createBorder(),
-                left: this.createBorder(),
-                right: this.createBorder(),
-              },
-              width: { size: 100, type: WidthType.PERCENTAGE },
-            }),
-          ],
+    return [
+      new Paragraph({
+        children: [new TextRun({ text: title, ...TYPOGRAPHY.subheading })],
+        spacing: { before: 200, after: 100 },
+      }),
+      ...bodyLines.map((line) =>
+        new Paragraph({
+          children: [new TextRun({ text: line, ...TYPOGRAPHY.body })],
+          spacing: { before: 2, after: 2 },
         }),
-      ],
-    });
+      ),
+    ];
   }
 
-  private createProgressionItem(item: DocxProgressionItem): Table {
+  private createProgressionItem(item: DocxProgressionItem): Paragraph[] {
     const observedText = this.htmlToText(item.behaviour.description);
     const nextText = item.nextBehaviour
       ? this.htmlToText(item.nextBehaviour.description)
       : this.htmlToText(HIGHEST_BEHAVIOUR_HTML);
 
-    const observedLines = this.wrapText(observedText, 60);
-    const nextLines = nextText ? this.wrapText(nextText, 60) : [];
+    const observedLines = this.wrapText(observedText, 80);
+    const nextLines = nextText ? this.wrapText(nextText, 80) : [];
 
-    const rows: TableRow[] = [];
+    const paragraphs: Paragraph[] = [];
 
-    rows.push(
-      new TableRow({
-        children: [
-          new TableCell({
-            children: [
-              new Paragraph({
-                children: [new TextRun({ text: item.element.name, bold: true, size: 20, font: 'Helvetica', color: COLORS.blue })],
-                spacing: { before: 10, after: 6 },
-              }),
-            ],
-            shading: {
-              fill: COLORS.panel,
-              type: 'clear',
-            },
-            borders: {
-              top: this.createBorder(),
-              bottom: this.createBorder(),
-              left: this.createBorder(),
-              right: this.createBorder(),
-            },
-            width: { size: 100, type: WidthType.PERCENTAGE },
-          }),
-        ],
+    paragraphs.push(
+      new Paragraph({
+        children: [new TextRun({ text: item.element.name, ...TYPOGRAPHY.heading })],
+        spacing: { before: 400, after: 200 },
       }),
     );
 
-    const observedCell = new TableCell({
-      children: [
-        new Paragraph({
-          children: [new TextRun({ text: 'What you observed', bold: true, size: 14, font: 'Helvetica', color: COLORS.blue })],
-          spacing: { before: 4, after: 2 },
-        }),
-        ...observedLines.map((line) =>
-          new Paragraph({
-            children: [new TextRun({ text: line, size: 17, font: 'Helvetica', color: COLORS.ink })],
-            spacing: { before: 2, after: 2 },
-          }),
-        ),
-      ],
-      shading: {
-        fill: COLORS.white,
-        type: 'clear',
-      },
-      borders: {
-        top: this.createBorder(),
-        bottom: this.createBorder(),
-        left: this.createBorder(),
-        right: this.createBorder(),
-      },
-      width: { size: nextText ? 50 : 100, type: WidthType.PERCENTAGE },
-    });
+    paragraphs.push(
+      new Paragraph({
+        children: [
+          new TextRun({ text: 'What you observed:', ...TYPOGRAPHY.subheading }),
+          new TextRun({ text: ' ', ...TYPOGRAPHY.body }),
+          ...observedLines.map(line => new TextRun({ text: line, ...TYPOGRAPHY.body })),
+        ],
+        spacing: { before: 100, after: 100 },
+      }),
+    );
 
     if (nextText) {
-      const nextCell = new TableCell({
-        children: [
-          new Paragraph({
-            children: [new TextRun({ text: 'What is likely to be the next step in learning progression', bold: true, size: 14, font: 'Helvetica', color: COLORS.blue })],
-            spacing: { before: 4, after: 2 },
-          }),
-          ...nextLines.map((line) =>
-            new Paragraph({
-              children: [new TextRun({ text: line, size: 17, font: 'Helvetica', color: COLORS.ink })],
-              spacing: { before: 2, after: 2 },
-            }),
-          ),
-        ],
-        shading: {
-          fill: COLORS.white,
-          type: 'clear',
-        },
-        borders: {
-          top: this.createBorder(),
-          bottom: this.createBorder(),
-          left: this.createBorder(),
-          right: this.createBorder(),
-        },
-        width: { size: 50, type: WidthType.PERCENTAGE },
-      });
-
-      rows.push(new TableRow({ children: [observedCell, nextCell] }));
-    } else {
-      rows.push(new TableRow({ children: [observedCell] }));
+      paragraphs.push(
+        new Paragraph({
+          children: [
+            new TextRun({ text: 'What is likely to be the next step in learning progression:', ...TYPOGRAPHY.subheading }),
+            new TextRun({ text: ' ', ...TYPOGRAPHY.body }),
+            ...nextLines.map(line => new TextRun({ text: line, ...TYPOGRAPHY.body })),
+          ],
+          spacing: { before: 200, after: 100 },
+        }),
+      );
     }
 
-    return new Table({
-      rows,
-      width: { size: 100, type: WidthType.PERCENTAGE },
-    });
+    return paragraphs;
   }
+
 
   private createPageFooter(): Paragraph {
     return new Paragraph({
@@ -399,7 +332,7 @@ export class KlptDocxGeneratorService {
     return {
       style: BorderStyle.SINGLE,
       size: 1,
-      color: COLORS.border,
+      color: '000000',
     };
   }
 
