@@ -92,7 +92,7 @@ export class LanguageAndLiteracy implements OnInit {
       },
     ],
     pdfLabel: 'Download language and literacy practice supports (PDF, 1.0MB)',
-    pdfPath: 'assets/content/pdfs/KLPT-LangLit-PracSupp-V3.pdf',
+    pdfPath: 'assets/content/pdfs/klpt-langlit-pracsupp.pdf',
   };
 
   protected readonly themedCards = computed<ThemedDesignCard[]>(() => {

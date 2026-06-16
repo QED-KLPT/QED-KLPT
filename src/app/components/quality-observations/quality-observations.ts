@@ -21,7 +21,7 @@ export class QualityObservations implements OnInit {
     private scroll: ViewportScroller,
     private http: HttpClient,
   ) {
-    this.http.get('assets/content/transcripts/quality-observations/observation-and-assessment-through-play.txt', { responseType: 'text' }).subscribe(t => this.observationTranscript = t);
+    this.http.get('assets/content/transcripts/quality-observations/obs-assess-play.txt', { responseType: 'text' }).subscribe(t => this.observationTranscript = t);
     this.http.get('assets/content/transcripts/quality-observations/the-purpose-of-observation.txt', { responseType: 'text' }).subscribe(t => this.purposeOfObservationTranscript = t);
     this.http.get('assets/content/transcripts/quality-observations/the-purpose-of-observation.txt', { responseType: 'text' }).subscribe(t => this.deepDiveTranscript = t);
   }
