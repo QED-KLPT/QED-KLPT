@@ -35,9 +35,9 @@ export class AnalysingData implements OnInit {
 
   private loadTranscripts() {
     const videoData = [
-      { title: 'Observational data and the planning cycle ', url: 'https://www.youtube.com/watch?v=RCmiHUNHa8c', transcriptFile: 'assets/content/transcripts/analysing-data/observation-snapshots-patterns.txt' },
-      { title: 'A collaborative approach to observation and assessment', url: 'https://www.youtube.com/watch?v=t_TQXaHyjZM', transcriptFile: 'assets/content/transcripts/analysing-data/observation-snapshots-notes.txt' },
-      { title: 'A strengths-based approach to observation and assessment', url: 'https://www.youtube.com/watch?v=Rg_Bk8mhsQI', transcriptFile: 'assets/content/transcripts/analysing-data/observation-snapshots-trends.txt' },
+      { title: 'Observational data and the planning cycle ', url: 'https://www.youtube.com/watch?v=RCmiHUNHa8c', transcriptFile: 'assets/content/transcripts/analysing-data/obs-snap-patterns.txt' },
+      { title: 'A collaborative approach to observation and assessment', url: 'https://www.youtube.com/watch?v=t_TQXaHyjZM', transcriptFile: 'assets/content/transcripts/analysing-data/obs-snap-notes.txt' },
+      { title: 'A strengths-based approach to observation and assessment', url: 'https://www.youtube.com/watch?v=Rg_Bk8mhsQI', transcriptFile: 'assets/content/transcripts/analysing-data/obs-snap-trends.txt' },
     ];
 
     videoData.forEach((video) => {

@@ -31,7 +31,7 @@ export class SocialAndEmotionalLearning implements OnInit {
     private scroll: ViewportScroller,
     private http: HttpClient,
   ) {
-    this.http.get('assets/content/transcripts/social-and-emotional-learning/social-and-emotional-learning.txt', { responseType: 'text' }).subscribe(t => this.socialAndEmotionalLearningTranscript = t);
+    this.http.get('assets/content/transcripts/social-and-emotional-learning/soc-emot-learning.txt', { responseType: 'text' }).subscribe(t => this.socialAndEmotionalLearningTranscript = t);
   }
 
   ngOnInit(): void {
