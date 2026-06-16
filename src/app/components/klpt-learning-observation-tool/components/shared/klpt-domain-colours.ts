@@ -11,10 +11,10 @@ const KLPT_BLUE_DOMAIN_COLOUR: KlptDomainColour = {
 };
 
 const KLPT_DOMAIN_COLOURS: KlptDomainColour[] = [
-  { accent: '#AC5E16', glow: '#F6861F' },
+  { accent: '#AC5E16', glow: '#AF6015' },
   { accent: '#005387', glow: '#0077C1' },
-  { accent: '#A40862', glow: '#EA0B8C' },
-  { accent: '#1D682A', glow: '#2A953C' },
+  { accent: '#A40862', glow: '#E00C88' },
+  { accent: '#1D682A', glow: '#2A853A' },
   { accent: '#91161B', glow: '#CF2027' },
 ];
 
