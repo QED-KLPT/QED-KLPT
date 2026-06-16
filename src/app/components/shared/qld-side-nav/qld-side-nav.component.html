@@ -1,155 +1,144 @@
-<aside [attr.aria-label]="ariaLabel" [class]="getAsideClasses()">
-  <button
-    type="button"
-    [attr.id]="getToggleId()"
-    [class]="getToggleClasses()"
-    [attr.aria-controls]="getNavAriaControls()"
-    [attr.aria-expanded]="getToggleAriaExpanded()"
-    [attr.aria-selected]="getToggleAriaSelected()"
-    (click)="toggleMenu(items[0] || { label: 'default' })"
-  >
-    {{ title }}
-  </button>
+@if (title || items.length > 0) {
+  <aside class="qld-side-nav" [attr.aria-label]="ariaLabel">
+    <div class="qld-side-nav__mobile">
+      <label class="qld-side-nav__label" for="section-navigation-select">{{ title }}</label>
+      @if (items.length > 0) {
+        <select
+          id="section-navigation-select"
+          class="qld-side-nav__select"
+          (change)="onMobileNavChange($event)"
+        >
+          <option value="">Select a page</option>
+          @for (item of flattenedItems(); track linkTarget(item) + item.label) {
+            <option [value]="linkTarget(item)" [selected]="isCurrentPage(item)">{{ item.label }}</option>
+          }
+        </select>
+      }
+    </div>
 
-  @if (items.length > 0) {
-    <nav [id]="getNavId(items[0])" [attr.aria-label]="ariaLabel" [class]="getNavClasses(items[0])">
-      @for (item of items; track getItemKey(item)) {
-        @if (isTitle(item)) {
-          <h2 [class]="getTitleClasses()">
-            @if (item.href) {
-              <a [href]="item.href" [class]="getLinkClasses(item)">{{ item.label }}</a>
-            } @else {
-              <span [class]="getLinkClasses(item)">{{ item.label }}</span>
-            }
-          </h2>
-        } @else {
-          <li [class]="getListItemClasses(item)">
-            @if (item.href && !isCurrentPage(item)) {
-              <a [href]="item.href" [class]="getLinkClasses(item)">
-                @if (item.icon) {
-                  <svg class="{{ getIconClasses() }}" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-                    <use [attr.href]="'#' + item.icon"></use>
-                  </svg>
-                }
-                {{ item.label }}
-              </a>
-            } @else if (isCurrentPage(item)) {
-              <span>{{ item.label }}</span>
-            } @else if (item.href) {
-              <a [href]="item.href" [class]="getLinkClasses(item)">
-                @if (item.icon) {
-                  <svg class="{{ getIconClasses() }}" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-                    <use [attr.href]="'#' + item.icon"></use>
-                  </svg>
-                }
-                {{ item.label }}
-              </a>
-            } @else {
-              <span>{{ item.label }}</span>
-            }
+    <nav class="qld-side-nav__desktop" [attr.aria-label]="ariaLabel">
+      <p class="qld-side-nav__heading">{{ title }}</p>
+      @if (items.length > 0) {
+        <ul class="qld-side-nav__list">
+          @for (item of items; track linkTarget(item) + item.label) {
+            <li class="qld-side-nav__item" [class.qld-side-nav__item--active]="isCurrentPage(item)">
+              @if (hasChildren(item)) {
+                <button
+                  type="button"
+                  class="qld-side-nav__row qld-side-nav__row--toggle"
+                  [class.qld-side-nav__row--current]="isCurrentPage(item)"
+                  [attr.aria-expanded]="isExpanded(item)"
+                  [attr.aria-controls]="panelId(item)"
+                  (click)="toggleItem(item)"
+                >
+                  <span class="qld-side-nav__toggle-icon" aria-hidden="true">{{ isExpanded(item) ? '-' : '+' }}</span>
+                  <span class="qld-side-nav__row-text">{{ item.label }}</span>
+                </button>
 
-            @if (hasChildren(item)) {
-              <button
-                type="button"
-                [class]="getChevronClasses()"
-                [attr.aria-label]="'Toggle ' + item.label"
-                [attr.aria-expanded]="isExpanded(item) ? 'true' : 'false'"
-                (click)="toggleMenu(item)"
-              >
-                <svg class="{{ getChevronClasses() }}" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-                  @if (isExpanded(item)) {
-                    <use [attr.href]="getChevronOpenPath()"></use>
-                  } @else {
-                    <use [attr.href]="getChevronClosedPath()"></use>
-                  }
-                </svg>
-              </button>
-
-              @if (isExpanded(item)) {
-                <ul [class]="getLinkListClasses()">
-                  @for (child of item.children; track getItemKey(child)) {
-                    <li [class]="getListItemClasses(child)">
-                      @if (child.href && !isCurrentPage(child)) {
-                        <a [href]="child.href" [class]="getLinkClasses(child)">
-                          @if (child.icon) {
-                            <svg class="{{ getIconClasses() }}" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-                              <use [attr.href]="'#' + child.icon"></use>
-                            </svg>
-                          }
-                          {{ child.label }}
-                        </a>
-                      } @else if (isCurrentPage(child)) {
-                        <span>{{ child.label }}</span>
-                      } @else if (child.href) {
-                        <a [href]="child.href" [class]="getLinkClasses(child)">
-                          @if (child.icon) {
-                            <svg class="{{ getIconClasses() }}" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-                              <use [attr.href]="'#' + child.icon"></use>
-                            </svg>
-                          }
-                          {{ child.label }}
-                        </a>
-                      } @else {
-                        <span>{{ child.label }}</span>
-                      }
-
+                <ul
+                  class="qld-side-nav__list qld-side-nav__list--child"
+                  [class.qld-side-nav__list--open]="isExpanded(item)"
+                  [id]="panelId(item)"
+                  [attr.aria-hidden]="!isExpanded(item)"
+                  [attr.inert]="!isExpanded(item) ? '' : null"
+                >
+                  @for (child of item.children; track linkTarget(child) + child.label) {
+                    <li class="qld-side-nav__item" [class.qld-side-nav__item--active]="isCurrentPage(child)">
                       @if (hasChildren(child)) {
                         <button
                           type="button"
-                          [class]="getChevronClasses()"
-                          [attr.aria-label]="'Toggle ' + child.label"
-                          [attr.aria-expanded]="isExpanded(child) ? 'true' : 'false'"
-                          (click)="toggleMenu(child)"
+                          class="qld-side-nav__row qld-side-nav__row--toggle qld-side-nav__row--child"
+                          [class.qld-side-nav__row--current]="isCurrentPage(child)"
+                          [attr.aria-expanded]="isExpanded(child)"
+                          [attr.aria-controls]="panelId(child)"
+                          (click)="toggleItem(child)"
                         >
-                          <svg class="{{ getChevronClasses() }}" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-                            @if (isExpanded(child)) {
-                              <use [attr.href]="getChevronOpenPath()"></use>
-                            } @else {
-                              <use [attr.href]="getChevronClosedPath()"></use>
-                            }
-                          </svg>
+                          <span class="qld-side-nav__toggle-icon" aria-hidden="true">{{ isExpanded(child) ? '-' : '+' }}</span>
+                          <span class="qld-side-nav__row-text">{{ child.label }}</span>
                         </button>
 
-                        @if (isExpanded(child)) {
-                          <ul [class]="getLinkListClasses()">
-                            @for (grandchild of child.children; track getItemKey(grandchild)) {
-                              <li [class]="getListItemClasses(grandchild)">
-                                @if (grandchild.href && !isCurrentPage(grandchild)) {
-                                  <a [href]="grandchild.href" [class]="getLinkClasses(grandchild)">
-                                    @if (grandchild.icon) {
-                                      <svg class="{{ getIconClasses() }}" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-                                        <use [attr.href]="'#' + grandchild.icon"></use>
-                                      </svg>
-                                    }
-                                    {{ grandchild.label }}
-                                  </a>
-                                } @else if (isCurrentPage(grandchild)) {
-                                  <span>{{ grandchild.label }}</span>
-                                } @else if (grandchild.href) {
-                                  <a [href]="grandchild.href" [class]="getLinkClasses(grandchild)">
-                                    @if (grandchild.icon) {
-                                      <svg class="{{ getIconClasses() }}" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-                                        <use [attr.href]="'#' + grandchild.icon"></use>
-                                      </svg>
-                                    }
-                                    {{ grandchild.label }}
-                                  </a>
-                                } @else {
-                                  <span>{{ grandchild.label }}</span>
-                                }
-                              </li>
-                            }
-                          </ul>
-                        }
+                        <ul
+                          class="qld-side-nav__list qld-side-nav__list--grandchild"
+                          [class.qld-side-nav__list--open]="isExpanded(child)"
+                          [id]="panelId(child)"
+                          [attr.aria-hidden]="!isExpanded(child)"
+                          [attr.inert]="!isExpanded(child) ? '' : null"
+                        >
+                          @for (grandchild of child.children; track linkTarget(grandchild) + grandchild.label) {
+                            <li class="qld-side-nav__item" [class.qld-side-nav__item--active]="isCurrentPage(grandchild)">
+                              @if (isCurrentPage(grandchild)) {
+                                <span class="qld-side-nav__row qld-side-nav__row--current qld-side-nav__row--grandchild" aria-current="page">
+                                  <span class="qld-side-nav__chevron" aria-hidden="true"></span>
+                                  <span class="qld-side-nav__row-text">{{ grandchild.label }}</span>
+                                </span>
+                              } @else if (linkTarget(grandchild) && isRouterLink(grandchild)) {
+                                <a class="qld-side-nav__row qld-side-nav__row--grandchild" [routerLink]="linkTarget(grandchild)">
+                                  <span class="qld-side-nav__chevron" aria-hidden="true"></span>
+                                  <span class="qld-side-nav__row-text">{{ grandchild.label }}</span>
+                                </a>
+                              } @else if (linkTarget(grandchild)) {
+                                <a class="qld-side-nav__row qld-side-nav__row--grandchild" [href]="linkTarget(grandchild)">
+                                  <span class="qld-side-nav__chevron" aria-hidden="true"></span>
+                                  <span class="qld-side-nav__row-text">{{ grandchild.label }}</span>
+                                </a>
+                              } @else {
+                                <span class="qld-side-nav__row qld-side-nav__row--grandchild">
+                                  <span class="qld-side-nav__chevron" aria-hidden="true"></span>
+                                  <span class="qld-side-nav__row-text">{{ grandchild.label }}</span>
+                                </span>
+                              }
+                            </li>
+                          }
+                        </ul>
+                      } @else if (isCurrentPage(child)) {
+                        <span class="qld-side-nav__row qld-side-nav__row--current qld-side-nav__row--child" aria-current="page">
+                          <span class="qld-side-nav__chevron" aria-hidden="true"></span>
+                          <span class="qld-side-nav__row-text">{{ child.label }}</span>
+                        </span>
+                      } @else if (linkTarget(child) && isRouterLink(child)) {
+                        <a class="qld-side-nav__row qld-side-nav__row--child" [routerLink]="linkTarget(child)">
+                          <span class="qld-side-nav__chevron" aria-hidden="true"></span>
+                          <span class="qld-side-nav__row-text">{{ child.label }}</span>
+                        </a>
+                      } @else if (linkTarget(child)) {
+                        <a class="qld-side-nav__row qld-side-nav__row--child" [href]="linkTarget(child)">
+                          <span class="qld-side-nav__chevron" aria-hidden="true"></span>
+                          <span class="qld-side-nav__row-text">{{ child.label }}</span>
+                        </a>
+                      } @else {
+                        <span class="qld-side-nav__row qld-side-nav__row--child">
+                          <span class="qld-side-nav__chevron" aria-hidden="true"></span>
+                          <span class="qld-side-nav__row-text">{{ child.label }}</span>
+                        </span>
                       }
                     </li>
                   }
                 </ul>
+              } @else if (isCurrentPage(item)) {
+                <span class="qld-side-nav__row qld-side-nav__row--current" aria-current="page">
+                  <span class="qld-side-nav__chevron" aria-hidden="true"></span>
+                  <span class="qld-side-nav__row-text">{{ item.label }}</span>
+                </span>
+              } @else if (linkTarget(item) && isRouterLink(item)) {
+                <a class="qld-side-nav__row" [routerLink]="linkTarget(item)">
+                  <span class="qld-side-nav__chevron" aria-hidden="true"></span>
+                  <span class="qld-side-nav__row-text">{{ item.label }}</span>
+                </a>
+              } @else if (linkTarget(item)) {
+                <a class="qld-side-nav__row" [href]="linkTarget(item)">
+                  <span class="qld-side-nav__chevron" aria-hidden="true"></span>
+                  <span class="qld-side-nav__row-text">{{ item.label }}</span>
+                </a>
+              } @else {
+                <span class="qld-side-nav__row">
+                  <span class="qld-side-nav__chevron" aria-hidden="true"></span>
+                  <span class="qld-side-nav__row-text">{{ item.label }}</span>
+                </span>
               }
-            }
-          </li>
-        }
+            </li>
+          }
+        </ul>
       }
     </nav>
-  }
-</aside>
+  </aside>
+}

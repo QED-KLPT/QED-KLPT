@@ -10,12 +10,14 @@ import { filter, fromEvent, timer } from 'rxjs';
 import { Footer } from './_layout/footer/footer';
 import { Header } from './_layout/header/header';
 import { BackToTopComponent } from './components/shared/back-to-top';
+import { QldSideNavComponent } from './components/shared/qld-side-nav/qld-side-nav.component';
+import { getSideNavItems, getSideNavTitle, SiteNavItem } from './navigation/site-navigation';
 
 const UPDATE_RECHECK_DELAY_MS = 2 * 60 * 1000;
 
 @Component({
   selector: 'app-root',
-  imports: [BackToTopComponent, Footer, Header, RouterOutlet],
+  imports: [BackToTopComponent, Footer, Header, QldSideNavComponent, RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
@@ -29,6 +31,8 @@ export class App implements OnInit {
   protected showUpdateFailureNotice = false;
   protected isRefreshing = false;
   protected pageAnnouncement = '';
+  protected sideNavItems: SiteNavItem[] = [];
+  protected sideNavTitle: string | null = null;
   protected updateFailureMessage =
     'An update was detected but could not be installed yet. Please try again in a few minutes.';
 
@@ -43,7 +47,10 @@ export class App implements OnInit {
       )
       .subscribe(() => {
         this.announceRouteChange();
+        this.updateSideNav();
       });
+
+    this.updateSideNav();
 
     if (!this.swUpdate.isEnabled) {
       console.info('[SW] Service worker updates are disabled in this build.');
@@ -110,6 +117,11 @@ export class App implements OnInit {
 
     const title = (route as unknown as { title?: string })?.title ?? 'Page';
     this.pageAnnouncement = `${title} loaded`;
+  }
+
+  private updateSideNav(): void {
+    this.sideNavItems = getSideNavItems(this.router.url);
+    this.sideNavTitle = getSideNavTitle(this.router.url);
   }
 
   protected dismissUpdateNotice(): void {

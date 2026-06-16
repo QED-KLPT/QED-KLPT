@@ -9,9 +9,17 @@
 
   <div class="sr-only" aria-live="polite" aria-atomic="true">{{ pageAnnouncement }}</div>
 
-  <main class="app-main" id="main-content" tabindex="-1">
-    <router-outlet />
-  </main>
+  <div class="app-content-shell" [class.app-content-shell--with-side-nav]="sideNavTitle">
+    @if (sideNavTitle) {
+      <aside class="app-side-nav">
+        <app-qld-side-nav [items]="sideNavItems" [title]="sideNavTitle" ariaLabel="Secondary navigation" />
+      </aside>
+    }
+
+    <main class="app-main" id="main-content" tabindex="-1">
+      <router-outlet />
+    </main>
+  </div>
 
   <app-footer />
 </div>
