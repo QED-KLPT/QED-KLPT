@@ -75,7 +75,7 @@ export class ExecutiveFunction implements OnInit {
       },
     ],
     pdfLabel: 'Download executive function practice supports (PDF, 1.7MB)',
-    pdfPath: 'assets/content/pdfs/KLPT-Exec-PracSupp-V4.pdf',
+    pdfPath: 'assets/content/pdfs/klpt-exec-pracsupp.pdf',
   };
 
   private readonly cards: DesignCard[] = [
