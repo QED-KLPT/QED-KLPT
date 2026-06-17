@@ -5,6 +5,7 @@
 
 .domain-card {
   display: grid;
+  grid-template-rows: auto 1fr;
   height: 100%;
   min-height: 10.5rem;
   align-content: start;
@@ -66,7 +67,9 @@
 
 .domain-card__content {
   display: grid;
+  grid-template-rows: auto auto 1fr;
   gap: 0.5rem;
+  height: 100%;
 }
 
 .domain-card__title {
@@ -80,4 +83,10 @@
   color: var(--domain-card-text, var(--klpt-muted));
   font-size: 0.95rem;
   line-height: 1.7;
+}
+
+.domain-card__link {
+  align-self: end;
+  color: #fff;
+  font-weight: 700;
 }
