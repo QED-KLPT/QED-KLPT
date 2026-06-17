@@ -1,5 +1,5 @@
 :host {
-  display: block;
+  display: contents;
 }
 
 .contact-hero__lead {
@@ -7,7 +7,7 @@
 }
 
 .contact-hero {
-  padding-block: clamp(2rem, 4.7vw, 4rem);
+  padding-block: clamp(0.95rem, 2vw, 1.7rem) clamp(1.85rem, 4vw, 3.35rem);
 }
 
 .contact-content {

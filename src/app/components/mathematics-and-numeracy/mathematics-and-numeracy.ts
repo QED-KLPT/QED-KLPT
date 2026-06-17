@@ -3,6 +3,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
 import { AccordionItemComponent } from '../shared/accordion-item/accordion-item.component';
+import { BreadcrumbComponent, BreadcrumbItem } from '../shared/breadcrumb';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
 import { DomainAssetModeService } from '../../services/domain-asset-mode.service';
 
@@ -18,12 +19,17 @@ type DesignCard = {
 
 @Component({
   selector: 'app-mathematics-and-numeracy',
-  imports: [RouterLink, AccordionItemComponent, YoutubePlayerModule],
+  imports: [RouterLink, AccordionItemComponent, BreadcrumbComponent, YoutubePlayerModule],
   templateUrl: './mathematics-and-numeracy.html',
   styleUrl: './mathematics-and-numeracy.scss',
 })
 export class MathematicsAndNumeracy implements OnInit {
   protected readonly domainAssets = inject(DomainAssetModeService);
+  protected readonly breadcrumbs: BreadcrumbItem[] = [
+    { label: 'Home', href: '/' },
+    { label: 'Learning domains', href: '/learning-domains' },
+    { label: 'Mathematics and numeracy', current: true },
+  ];
   
   mathematicsAndNumeracyTranscript: string = '';
 

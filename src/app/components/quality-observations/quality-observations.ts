@@ -2,16 +2,22 @@ import { ViewportScroller } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
+import { BreadcrumbComponent, BreadcrumbItem } from '../shared/breadcrumb';
 import { DomainAssetModeService } from '../../services/domain-asset-mode.service';
 
 @Component({
   selector: 'app-quality-observations',
-  imports: [YoutubePlayerModule],
+  imports: [BreadcrumbComponent, YoutubePlayerModule],
   templateUrl: './quality-observations.html',
   styleUrl: './quality-observations.scss',
 })
 export class QualityObservations implements OnInit {
   protected readonly domainAssets = inject(DomainAssetModeService);
+  protected readonly breadcrumbs: BreadcrumbItem[] = [
+    { label: 'Home', href: '/' },
+    { label: 'KLPT foundations', href: '/klpt-foundations' },
+    { label: 'Conducting and documenting quality observations', current: true },
+  ];
   
   observationTranscript: string = '';
   purposeOfObservationTranscript: string = '';

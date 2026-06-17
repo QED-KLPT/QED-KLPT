@@ -1,6 +1,7 @@
 import { ViewportScroller } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit, computed, inject } from '@angular/core';
 import { DomainAssetModeService } from '../../services/domain-asset-mode.service';
+import { BreadcrumbComponent, BreadcrumbItem } from '../shared/breadcrumb';
 import { DomainCard } from '../shared/domain-card/domain-card';
 
 type FoundationNavCard = {
@@ -22,7 +23,7 @@ const DARK_BLUE_CARD_BACKGROUND = 'var(--doe-color-primary)';
 
 @Component({
   selector: 'app-foundations',
-  imports: [DomainCard],
+  imports: [BreadcrumbComponent, DomainCard],
   templateUrl: './foundations.html',
   styleUrl: './foundations.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -30,6 +31,10 @@ const DARK_BLUE_CARD_BACKGROUND = 'var(--doe-color-primary)';
 
 export class Foundations implements OnInit {
   private readonly domainAssetMode = inject(DomainAssetModeService);
+  protected readonly breadcrumbs: BreadcrumbItem[] = [
+    { label: 'Home', href: '/' },
+    { label: 'KLPT foundations', current: true },
+  ];
 
   constructor(private scroll: ViewportScroller) {}
 

@@ -1,5 +1,5 @@
 :host {
-  display: block;
+  display: contents;
 }
 
 .about-hero__lead {
@@ -7,7 +7,11 @@
 }
 
 .about-hero {
-  padding-block: clamp(2rem, 4.7vw, 4rem);
+  padding-block: clamp(0.95rem, 2vw, 1.7rem) clamp(1.85rem, 4vw, 3.35rem);
+}
+
+.page-content-stack {
+  display: block;
 }
 
 .about-content {

@@ -1,7 +1,7 @@
 @use "../../../styles/abstracts/foundation-detail-page" as foundation-detail;
 
 :host {
-  display: block;
+  display: contents;
 }
 
 @include foundation-detail.domain-hero-base(
