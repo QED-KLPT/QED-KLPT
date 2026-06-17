@@ -1,4 +1,20 @@
 <nav [class]="breadcrumbClasses" aria-label="breadcrumb">
+  @if (parentItem; as parent) {
+    <div class="qld__breadcrumbs__parent">
+      @if (isRouterLink(parent.href)) {
+        <a [routerLink]="parent.href" class="qld__breadcrumbs__link qld__breadcrumbs__parent-link" [attr.aria-label]="'Back to ' + parent.label">
+          <span aria-hidden="true" class="qld__breadcrumbs__parent-icon"></span>
+          <span>{{ parent.label }}</span>
+        </a>
+      } @else if (parent.href) {
+        <a [href]="parent.href" class="qld__breadcrumbs__link qld__breadcrumbs__parent-link" [attr.aria-label]="'Back to ' + parent.label">
+          <span aria-hidden="true" class="qld__breadcrumbs__parent-icon"></span>
+          <span>{{ parent.label }}</span>
+        </a>
+      }
+    </div>
+  }
+
   <ol class="qld__link-list qld__link-list--inline">
     @if (showHomeIcon) {
       <li class="qld__breadcrumbs__item">

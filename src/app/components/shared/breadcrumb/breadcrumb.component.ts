@@ -47,6 +47,10 @@ export class BreadcrumbComponent {
     return 'qld__breadcrumbs__separator';
   }
 
+  get parentItem(): BreadcrumbItem | null {
+    return this.items.length > 1 ? this.items[this.items.length - 2] : null;
+  }
+
   isRouterLink(href: string | undefined): href is string {
     return !!href && href.startsWith('/');
   }
