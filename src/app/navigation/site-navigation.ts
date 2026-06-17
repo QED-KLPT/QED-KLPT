@@ -44,10 +44,6 @@ export const SITE_NAV_ITEMS: SiteNavItem[] = [
   {
     label: 'KLPT Learning observation tool',
     path: '/klpt-learning-observation-tool',
-    children: [
-      { label: 'KLPT introduction', path: '/klpt-learning-observation-tool/introduction' },
-      { label: 'KLPT sessions', path: '/klpt-learning-observation-tool/sessions' },
-    ],
   },
   { label: 'Contact', path: '/contact' },
 ];
