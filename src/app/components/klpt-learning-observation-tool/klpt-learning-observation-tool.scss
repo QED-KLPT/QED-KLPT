@@ -19,9 +19,8 @@
 }
 
 .domain-hero--klpt {
-  border-bottom: 1px solid var(--klpt-tool-border);
   padding-block: clamp(1rem, 2.7vw, 1.7rem);
-  background: var(--klpt-tool-panel);
+  background: transparent;
 }
 
 .domain-hero--klpt .domain-hero__layout {
