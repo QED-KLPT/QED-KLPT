@@ -43,7 +43,7 @@
     letter-spacing: 0;
   }
 
-  p:not(.eyebrow) {
+  p {
     max-width: 34ch;
     margin: 0;
     color: #5e6f84;
@@ -64,15 +64,6 @@
   p {
     margin: 0;
   }
-}
-
-.eyebrow {
-  margin: 0 0 0.75rem;
-  color: #0d3b66;
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
 }
 
 .behaviour-orbit {

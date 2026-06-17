@@ -1,7 +1,6 @@
 <section class="page page--sitemap">
   <header class="sitemap-header">
     <div class="section__inner">
-      <p class="eyebrow">Site map</p>
       <h1>All pages on this site</h1>
     </div>
   </header>
@@ -11,8 +10,8 @@
       <ul class="sitemap-tree">
         @for (node of tree; track node.label) {
           <li>
-            @if (node.href) {
-              <a class="sitemap-link" [routerLink]="node.href">{{ node.label }}</a>
+            @if (node.path) {
+              <a class="sitemap-link" [routerLink]="node.path">{{ node.label }}</a>
             } @else {
               <span class="sitemap-link sitemap-link--current">{{ node.label }}</span>
             }
@@ -20,7 +19,7 @@
               <ul class="sitemap-tree">
                 @for (child of node.children; track child.label) {
                   <li>
-                    @if (child.href) {
+                    @if (child.path) {
                       <a class="sitemap-link" [routerLink]="renderLink(child)">{{ child.label }}</a>
                     } @else {
                       <span class="sitemap-link sitemap-link--current">{{ child.label }}</span>
@@ -29,7 +28,7 @@
                       <ul class="sitemap-tree">
                         @for (grandchild of child.children; track grandchild.label) {
                           <li>
-                            @if (grandchild.href) {
+                            @if (grandchild.path) {
                               <a class="sitemap-link" [routerLink]="renderLink(grandchild)">{{ grandchild.label }}</a>
                             } @else {
                               <span class="sitemap-link sitemap-link--current">{{ grandchild.label }}</span>

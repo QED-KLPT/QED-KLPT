@@ -1,7 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 
 export interface QldSideNavItem {
   label: string;
+  path?: string;
   href?: string;
   children?: QldSideNavItem[];
   icon?: string;
@@ -11,132 +13,100 @@ export interface QldSideNavItem {
 
 @Component({
   selector: 'app-qld-side-nav',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './qld-side-nav.component.html',
   styleUrl: './qld-side-nav.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class QldSideNavComponent {
+export class QldSideNavComponent implements OnChanges {
+  private readonly router = inject(Router);
+  protected readonly expandedItems = new Set<string>();
+
   @Input() items: QldSideNavItem[] = [];
-  @Input() title = 'In this section';
-  @Input() ariaLabel = 'section';
+  @Input() title = 'In this section...';
+  @Input() ariaLabel = 'Section navigation';
   @Input() collapsed = false;
 
-  protected openMenus = new Set<string>();
-
-  toggleMenu(item: QldSideNavItem): void {
-    const key = this.getItemKey(item);
-    if (this.openMenus.has(key)) {
-      this.openMenus.delete(key);
-    } else {
-      this.openMenus.add(key);
-    }
+  ngOnChanges(): void {
+    this.expandedItems.clear();
+    this.items.forEach((item) => this.expandActiveBranches(item));
   }
 
-  isExpanded(item: QldSideNavItem): boolean {
-    return this.openMenus.has(this.getItemKey(item));
+  protected hasChildren(item: QldSideNavItem): boolean {
+    return !!item.children?.length;
   }
 
-  isCurrentPage(item: QldSideNavItem): boolean {
+  protected isCurrentPage(item: QldSideNavItem): boolean {
     return item.active ?? false;
   }
 
-  hasChildren(item: QldSideNavItem): boolean {
-    return !!(item.children && item.children.length > 0);
-  }
-
-  isTitle(item: QldSideNavItem): boolean {
+  protected isTitle(item: QldSideNavItem): boolean {
     return item.isTitle ?? false;
   }
 
-  getItemKey(item: QldSideNavItem): string {
-    return item.label.replace(/\s+/g, '-').toLowerCase();
+  protected linkTarget(item: QldSideNavItem): string {
+    return item.path ?? item.href ?? '';
   }
 
-  getAsideClasses(): string {
-    return 'qld__side-nav qld__accordion';
+  protected isRouterLink(item: QldSideNavItem): boolean {
+    return this.linkTarget(item).startsWith('/');
   }
 
-  getToggleClasses(): string {
-    const classes = ['qld__side-nav__toggle', 'qld__accordion__title'];
-    if (this.collapsed) {
-      classes.push('qld__accordion--closed');
-    } else {
-      classes.push('qld__accordion--open');
+  protected itemKey(item: QldSideNavItem): string {
+    return this.linkTarget(item) || item.label;
+  }
+
+  protected panelId(item: QldSideNavItem): string {
+    return `side-nav-${this.itemKey(item).replace(/[^a-zA-Z0-9]+/g, '-').replace(/^-|-$/g, '')}`;
+  }
+
+  protected isExpanded(item: QldSideNavItem): boolean {
+    return this.expandedItems.has(this.itemKey(item));
+  }
+
+  protected toggleItem(item: QldSideNavItem): void {
+    const key = this.itemKey(item);
+
+    if (this.expandedItems.has(key)) {
+      this.expandedItems.delete(key);
+      return;
     }
-    return classes.join(' ');
+
+    this.expandedItems.add(key);
   }
 
-  getNavClasses(item: QldSideNavItem): string {
-    const classes = ['qld__side-nav__content'];
-    if (this.collapsed || !this.isExpanded(item)) {
-      classes.push('qld__accordion--closed');
-    } else {
-      classes.push('qld__accordion--open');
+  protected flattenedItems(): QldSideNavItem[] {
+    return this.flattenItems(this.items.filter((item) => !this.isTitle(item)));
+  }
+
+  protected onMobileNavChange(event: Event): void {
+    const select = event.target as HTMLSelectElement;
+    const target = select.value;
+
+    if (!target) {
+      return;
     }
-    return classes.join(' ');
-  }
 
-  getNavId(item: QldSideNavItem): string {
-    return `nav-${this.getItemKey(item)}`;
-  }
-
-  getTitleClasses(): string {
-    return 'qld__sidenav__title';
-  }
-
-  getLinkClasses(item: QldSideNavItem): string {
-    const classes = ['qld__sidenav__link'];
-    return classes.join(' ');
-  }
-
-  getListItemClasses(item: QldSideNavItem): string {
-    const classes: string[] = [];
-    if (this.isCurrentPage(item)) {
-      classes.push('active');
-    } else if (this.hasChildren(item)) {
-      classes.push('qld__side-nav__item--has-children');
+    if (target.startsWith('/')) {
+      void this.router.navigateByUrl(target);
+      return;
     }
-    return classes.join(' ');
+
+    window.location.href = target;
   }
 
-  getLinkListClasses(): string {
-    return 'qld__link-list';
+  private flattenItems(items: QldSideNavItem[]): QldSideNavItem[] {
+    return items.flatMap((item) => [item, ...this.flattenItems(item.children ?? [])]);
   }
 
-  getIconClasses(): string {
-    return 'qld__icon qld__icon--sm';
-  }
+  private expandActiveBranches(item: QldSideNavItem): boolean {
+    const hasActiveChild = item.children?.some((child) => this.expandActiveBranches(child)) ?? false;
+    const isActiveBranch = this.isCurrentPage(item) || hasActiveChild;
 
-  getChevronClasses(): string {
-    return 'qld__icon qld__icon--sm';
-  }
+    if (this.hasChildren(item) && isActiveBranch) {
+      this.expandedItems.add(this.itemKey(item));
+    }
 
-  getChevronOpenPath(): string {
-    return '#chevron-up';
-  }
-
-  getChevronClosedPath(): string {
-    return '#chevron-down';
-  }
-
-  getToggleAriaExpanded(): string {
-    return this.collapsed ? 'false' : 'true';
-  }
-
-  getToggleAriaSelected(): string {
-    return this.collapsed ? 'false' : 'true';
-  }
-
-  getToggleAriaControls(): string {
-    return this.items.length > 0 ? `nav-${this.getItemKey(this.items[0])}` : 'nav-default';
-  }
-
-  getNavAriaControls(): string {
-    return this.items.length > 0 ? `nav-${this.getItemKey(this.items[0])}` : 'nav-default';
-  }
-
-  getToggleId(): string {
-    return 'side-nav-toggle';
+    return isActiveBranch;
   }
 }

@@ -1,4 +1,4 @@
-@mixin domain-hero-base($background, $border-color, $eyebrow-color, $shadow-color) {
+@mixin domain-hero-base($background, $border-color, $shadow-color) {
   .domain-hero {
     padding-block: clamp(1.85rem, 4vw, 3.35rem);
     background: $background;
@@ -15,10 +15,6 @@
     max-width: 44rem;
     padding-left: 1rem;
     border-left: 4px solid $border-color;
-  }
-
-  .domain-hero .eyebrow {
-    color: $eyebrow-color;
   }
 
   .domain-hero__copy h1 {
@@ -47,10 +43,6 @@
 
   :host-context([data-domain-asset-mode="dark-blue"]) .domain-hero__copy {
     border-left-color: var(--doe-color-primary);
-  }
-
-  :host-context([data-domain-asset-mode="dark-blue"]) .domain-hero .eyebrow {
-    color: var(--doe-color-primary);
   }
 
   :host-context([data-domain-asset-mode="dark-blue"]) .domain-hero__art img {
