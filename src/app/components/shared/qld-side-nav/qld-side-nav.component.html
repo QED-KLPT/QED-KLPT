@@ -1,22 +1,22 @@
 @if (title || items.length > 0) {
   <aside class="qld-side-nav" [attr.aria-label]="ariaLabel">
-    <div class="qld-side-nav__mobile">
-      <label class="qld-side-nav__label" for="section-navigation-select">{{ title }}</label>
-      @if (items.length > 0) {
-        <select
-          id="section-navigation-select"
-          class="qld-side-nav__select"
-          (change)="onMobileNavChange($event)"
-        >
-          <option value="">Select a page</option>
-          @for (item of flattenedItems(); track linkTarget(item) + item.label) {
-            <option [value]="linkTarget(item)" [selected]="isCurrentPage(item)">{{ item.label }}</option>
-          }
-        </select>
-      }
-    </div>
+    <button
+      type="button"
+      class="qld-side-nav__mobile-toggle"
+      [attr.aria-expanded]="mobileExpanded"
+      aria-controls="section-navigation-panel"
+      (click)="toggleMobileNav()"
+    >
+      <span>In this section...</span>
+      <span class="qld-side-nav__mobile-toggle-icon" aria-hidden="true"></span>
+    </button>
 
-    <nav class="qld-side-nav__desktop" [attr.aria-label]="ariaLabel">
+    <nav
+      id="section-navigation-panel"
+      class="qld-side-nav__panel"
+      [class.qld-side-nav__panel--open]="mobileExpanded"
+      [attr.aria-label]="ariaLabel"
+    >
       <p class="qld-side-nav__heading">{{ title }}</p>
       @if (items.length > 0) {
         <ul class="qld-side-nav__list">

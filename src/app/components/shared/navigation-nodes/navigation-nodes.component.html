@@ -1,5 +1,5 @@
 ﻿<div class="session-controls" role="group" aria-label="Session controls">
-  <a class="session-controls__button" routerLink="/klpt-learning-observation-tool/sessions" aria-label="Return to saved sessions">Sessions</a>
+  <a class="session-controls__button" routerLink="/learning-observation-tool/sessions" aria-label="Return to saved sessions">Sessions</a>
   <button #clearSessionTrigger class="session-controls__button session-controls__button--danger" type="button" aria-haspopup="dialog" (click)="openClearSessionModal()">
     Clear session
   </button>
@@ -20,7 +20,6 @@
       #clearSessionDialog
       (keydown)="trapModalFocus($event)"
     >
-      <p class="clear-session-modal__eyebrow">Clear session</p>
       <h2 id="clear-session-title">Start this session again?</h2>
       <p id="clear-session-description">
         This will clear the current selections and notes for this session, then return you to the first screen.

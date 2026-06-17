@@ -669,15 +669,6 @@
   box-shadow: 0 24px 52px rgba(16, 35, 60, 0.24);
 }
 
-.delete-session-modal__eyebrow {
-  margin: 0;
-  color: #b42318;
-  font-size: 0.74rem;
-  font-weight: 850;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
 .delete-session-modal__panel h2 {
   margin: 0;
   color: #26364b;
@@ -685,7 +676,7 @@
   line-height: 1.15;
 }
 
-.delete-session-modal__panel p:not(.delete-session-modal__eyebrow) {
+.delete-session-modal__panel p {
   margin: 0;
   color: #53657d;
   line-height: 1.5;

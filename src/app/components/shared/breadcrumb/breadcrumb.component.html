@@ -1,16 +1,40 @@
 <nav [class]="breadcrumbClasses" aria-label="breadcrumb">
+  @if (parentItem; as parent) {
+    <div class="qld__breadcrumbs__parent">
+      @if (isRouterLink(parent.href)) {
+        <a [routerLink]="parent.href" class="qld__breadcrumbs__link qld__breadcrumbs__parent-link" [attr.aria-label]="'Back to ' + parent.label">
+          <span aria-hidden="true" class="qld__breadcrumbs__parent-icon"></span>
+          <span>{{ parent.label }}</span>
+        </a>
+      } @else if (parent.href) {
+        <a [href]="parent.href" class="qld__breadcrumbs__link qld__breadcrumbs__parent-link" [attr.aria-label]="'Back to ' + parent.label">
+          <span aria-hidden="true" class="qld__breadcrumbs__parent-icon"></span>
+          <span>{{ parent.label }}</span>
+        </a>
+      }
+    </div>
+  }
+
   <ol class="qld__link-list qld__link-list--inline">
     @if (showHomeIcon) {
       <li class="qld__breadcrumbs__item">
-        <a [href]="homeHref" class="qld__breadcrumbs__link qld__breadcrumbs__home" aria-label="{{ homeLabel }}">
-          <i class="fa-light fa-house" aria-hidden="true"></i>
-        </a>
+        @if (isRouterLink(homeHref)) {
+          <a [routerLink]="homeHref" class="qld__breadcrumbs__link qld__breadcrumbs__home" aria-label="{{ homeLabel }}">
+            <i class="fa-light fa-house" aria-hidden="true"></i>
+          </a>
+        } @else {
+          <a [href]="homeHref" class="qld__breadcrumbs__link qld__breadcrumbs__home" aria-label="{{ homeLabel }}">
+            <i class="fa-light fa-house" aria-hidden="true"></i>
+          </a>
+        }
       </li>
     }
     @for (crumb of items; track crumb.label) {
       <li class="qld__breadcrumbs__item">
         @if (crumb.current) {
           <span aria-current="page">{{ crumb.label }}</span>
+        } @else if (isRouterLink(crumb.href)) {
+          <a [routerLink]="crumb.href" class="qld__breadcrumbs__link">{{ crumb.label }}</a>
         } @else if (crumb.href) {
           <a [href]="crumb.href" class="qld__breadcrumbs__link">{{ crumb.label }}</a>
         } @else {

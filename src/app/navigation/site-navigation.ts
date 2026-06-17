@@ -5,9 +5,16 @@ export interface SiteNavItem {
   icon?: string;
   primary?: boolean;
   sitemap?: boolean;
+  sideNav?: boolean;
   exact?: boolean;
   active?: boolean;
   isTitle?: boolean;
+}
+
+export interface SiteBreadcrumbItem {
+  label: string;
+  href?: string;
+  current?: boolean;
 }
 
 export const SITE_NAV_ITEMS: SiteNavItem[] = [
@@ -42,12 +49,9 @@ export const SITE_NAV_ITEMS: SiteNavItem[] = [
     ],
   },
   {
-    label: 'KLPT Learning observation tool',
-    path: '/klpt-learning-observation-tool',
-    children: [
-      { label: 'KLPT introduction', path: '/klpt-learning-observation-tool/introduction' },
-      { label: 'KLPT sessions', path: '/klpt-learning-observation-tool/sessions' },
-    ],
+    label: 'Learning observation tool',
+    path: '/learning-observation-tool',
+    sideNav: false,
   },
   { label: 'Contact', path: '/contact' },
 ];
@@ -100,7 +104,7 @@ export function getActiveTopLevelNavItem(url: string): SiteNavItem | null {
 export function getSideNavItems(url: string): SiteNavItem[] {
   const activeItem = getActiveTopLevelNavItem(url);
 
-  if (!activeItem) {
+  if (!activeItem || activeItem.sideNav === false) {
     return [];
   }
 
@@ -108,5 +112,55 @@ export function getSideNavItems(url: string): SiteNavItem[] {
 }
 
 export function getSideNavTitle(url: string): string | null {
-  return getActiveTopLevelNavItem(url)?.label ?? null;
+  const activeItem = getActiveTopLevelNavItem(url);
+
+  if (!activeItem || activeItem.sideNav === false) {
+    return null;
+  }
+
+  return activeItem.label;
+}
+
+export function getBreadcrumbItems(url: string): SiteBreadcrumbItem[] {
+  const currentUrl = normalizeNavUrl(url);
+
+  if (currentUrl === '/') {
+    return [];
+  }
+
+  const matchedTrail = findNavTrail(SITE_NAV_ITEMS, currentUrl);
+
+  if (!matchedTrail.length) {
+    return [{ label: 'Home', href: '/' }];
+  }
+
+  const fullTrail =
+    matchedTrail[0]?.path === '/' ? matchedTrail : [SITE_NAV_ITEMS[0], ...matchedTrail];
+
+  return fullTrail.map((item, index) => {
+    const isCurrent = index === fullTrail.length - 1;
+
+    return {
+      label: item.label,
+      ...(isCurrent ? { current: true } : { href: item.path }),
+    };
+  });
+}
+
+function findNavTrail(items: SiteNavItem[], url: string): SiteNavItem[] {
+  const sortedMatches = items
+    .filter((item) => isNavItemActive(item, url))
+    .sort((a, b) => normalizeNavUrl(b.path).length - normalizeNavUrl(a.path).length);
+
+  for (const item of sortedMatches) {
+    const childTrail = item.children ? findNavTrail(item.children, url) : [];
+
+    if (childTrail.length) {
+      return [item, ...childTrail];
+    }
+
+    return [item];
+  }
+
+  return [];
 }

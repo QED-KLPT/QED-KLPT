@@ -11,7 +11,6 @@
     @let reflectiveQuestionsList = reflectiveQuestions();
 
     <article class="statement-card">
-      <p class="eyebrow">Evidence statement</p>
       <h2>Learning progression statement</h2>
 
       @if (domain) {
@@ -108,8 +107,6 @@
         @if (reflectiveQuestionsList.length) {
           <aside class="reflection-layout__questions" aria-label="Reflective questions for selected learning domain">
             <div class="reflection-questions-card">
-              <p class="reflection-questions-card__eyebrow">Reflective prompts</p>             
-
               <div class="reflection-questions-card__accordion-group">
                 <app-accordion-item
                   title="View reflective questions"
@@ -160,13 +157,13 @@
       </label>
 
       <div class="klpt-step__actions">
-        <a class="button button--secondary" [routerLink]="['/klpt-learning-observation-tool/select-behaviours', currentSession.id]">Previous</a>
+        <a class="button button--secondary" [routerLink]="['/learning-observation-tool/select-behaviours', currentSession.id]">Previous</a>
         <a
           class="button button--primary"
           [class.button--disabled]="!canContinue()"
           [attr.aria-disabled]="!canContinue()"
           [attr.tabindex]="canContinue() ? null : -1"
-          [routerLink]="canContinue() ? ['/klpt-learning-observation-tool/review-session', currentSession.id] : null"
+          [routerLink]="canContinue() ? ['/learning-observation-tool/review-session', currentSession.id] : null"
         >
           Next
         </a>

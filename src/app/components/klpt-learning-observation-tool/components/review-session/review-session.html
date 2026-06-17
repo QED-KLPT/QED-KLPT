@@ -10,7 +10,6 @@
     @let items = progressionItems();
 
     <article class="statement-card review-card">
-      <p class="eyebrow">Final check</p>
       <p class="review-card__intro">Review and download the learning progression statement</p>
 
       <label class="klpt-form-field review-card__child">
@@ -110,7 +109,7 @@
       </section>
 
       <div class="klpt-step__actions">
-        <a class="button button--secondary" [routerLink]="['/klpt-learning-observation-tool/learning-progression-statement', currentSession.id]">Previous</a>
+        <a class="button button--secondary" [routerLink]="['/learning-observation-tool/learning-progression-statement', currentSession.id]">Previous</a>
         <div class="klpt-step__actions-group">
           <button
             #generateWordTrigger
@@ -118,7 +117,7 @@
             type="button"
             (click)="openGenerateWordModal()"
           >
-            Generate Word Document
+            Generate Word document
           </button>
           <button
             #generatePdfTrigger
@@ -149,7 +148,6 @@
       #generatePdfDialog
       (keydown)="trapGeneratePdfModalFocus($event)"
     >
-      <p class="generate-pdf-modal__eyebrow">Generate PDF</p>
       <h2 id="generate-pdf-modal-title">Generate your learning progression statement?</h2>
       <p id="generate-pdf-modal-description">
         Once your statement is generated, your session will be deleted, which means you will not be able to go back and make changes. Do you wish to continue?
@@ -180,7 +178,6 @@
       #generateWordDialog
       (keydown)="trapGenerateWordModalFocus($event)"
     >
-      <p class="generate-word-modal__eyebrow">Generate Word Document</p>
       <h2 id="generate-word-modal-title">Generate your learning progression statement?</h2>
       <p id="generate-word-modal-description">
         Once your statement is generated, your session will be deleted, which means you will not be able to go back and make changes. Do you wish to continue?

@@ -3,7 +3,7 @@
     "language-and-literacy": {
       "columns": [
         {
-          "heading": "Home Languages",
+          "heading": "Home languages",
           "intro": "Recognising and valuing Aboriginal and Torres Strait Islander languages in Queensland supports language preservation and celebrates children's strengths in speaking multiple languages. Some children use more than one language and may switch between their home language and English depending on the situation. This is called codeswitching and is a strength that enables children to adapt their language use to suit different contexts. ",
           "videos": [
             {
@@ -87,6 +87,49 @@
           ]
         }
       ]
-    }
+    },
+     "quality-observations": {
+      "columns": [
+        {
+          "heading": "Observation and assessment through play",
+          "intro": "This video explores how teachers’ and educators’ approaches to observation and assessment are responsive to the way young children learn through play.",
+          "videos": [
+            {
+              "slot": "observation-assessment-play",
+              "title": "",
+              "description": "",
+              "youtubeUrl": "https://www.youtube.com/watch?v=A9paIS5z5wI",
+              "transcriptFile": "assets/content/transcripts/quality-observations/obs-assess-play.txt"
+            }
+          ]
+        },
+        {
+          "heading": "The purpose of observation",
+          "intro": "This video explores the intent to observe—to pause, notice, listen and think— as the starting point for recording quality observations and gaining deeper insights into children’s learning.",
+          "videos": [
+            {
+              "slot": "purpose-of-observation",
+              "title": "",
+              "description": "",
+              "youtubeUrl": "https://www.youtube.com/watch?v=8Nf9SgBs8GE",
+              "transcriptFile": "assets/content/transcripts/quality-observations/the-purpose-of-observation.txt"
+            }
+          ]
+        },
+        {
+          "heading": "A deep dive: types of observation and assessment",
+          "intro": "This video explores the many ways to observe and document children’s learning.  It highlights how different types of observation provide different information about children’s learning, development and wellbeing.",
+          "videos": [
+            {
+              "slot": "types-of-observation",
+              "title": "",
+              "description": "",
+              "youtubeUrl": "https://www.youtube.com/watch?v=8Nf9SgBs8GE",
+              "transcriptFile": "assets/content/transcripts/quality-observations/the-purpose-of-observation"
+            }
+          ]
+        }
+      ]
+    }   
   }
 }

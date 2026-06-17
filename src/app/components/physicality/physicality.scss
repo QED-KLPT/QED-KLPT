@@ -20,10 +20,6 @@
   border-left: 4px solid #b7d894;
 }
 
-.domain-hero .eyebrow {
-  color: #5f7d3a;
-}
-
 .domain-hero__copy h1 {
   margin-bottom: 0.85rem;
 }
@@ -50,10 +46,6 @@
 
 :host-context([data-domain-asset-mode="dark-blue"]) .domain-hero__copy {
   border-left-color: var(--doe-color-primary);
-}
-
-:host-context([data-domain-asset-mode="dark-blue"]) .domain-hero .eyebrow {
-  color: var(--doe-color-primary);
 }
 
 :host-context([data-domain-asset-mode="dark-blue"]) .domain-hero__art img {

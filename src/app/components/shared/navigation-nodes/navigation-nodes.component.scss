@@ -80,15 +80,6 @@
   box-shadow: 0 30px 90px rgba(24, 35, 63, 0.24);
 }
 
-.clear-session-modal__eyebrow {
-  margin: 0;
-  color: #0d3b66;
-  font-size: 0.78rem;
-  font-weight: 850;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-}
-
 .clear-session-modal__panel h2 {
   margin: 0;
   color: #10233c;
@@ -97,7 +88,7 @@
   letter-spacing: 0;
 }
 
-.clear-session-modal__panel p:not(.clear-session-modal__eyebrow) {
+.clear-session-modal__panel p {
   margin: 0;
   color: #5e6f84;
   line-height: 1.6;

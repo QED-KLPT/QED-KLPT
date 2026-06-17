@@ -9,14 +9,15 @@ import {
 import { filter, fromEvent, tap, timer } from 'rxjs';import { Footer } from './_layout/footer/footer';
 import { Header } from './_layout/header/header';
 import { BackToTopComponent } from './components/shared/back-to-top';
+import { BreadcrumbComponent, BreadcrumbItem } from './components/shared/breadcrumb';
 import { QldSideNavComponent } from './components/shared/qld-side-nav/qld-side-nav.component';
-import { getSideNavItems, getSideNavTitle, SiteNavItem } from './navigation/site-navigation';
+import { getBreadcrumbItems, getSideNavItems, getSideNavTitle, SiteNavItem } from './navigation/site-navigation';
 
 const UPDATE_RECHECK_DELAY_MS = 2 * 60 * 1000;
 
 @Component({
   selector: 'app-root',
-  imports: [BackToTopComponent, Footer, Header, QldSideNavComponent, RouterOutlet],
+  imports: [BackToTopComponent, BreadcrumbComponent, Footer, Header, QldSideNavComponent, RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
@@ -32,6 +33,7 @@ export class App implements OnInit {
   protected pageAnnouncement = '';
   protected sideNavItems: SiteNavItem[] = [];
   protected sideNavTitle: string | null = null;
+  protected breadcrumbItems: BreadcrumbItem[] = [];
   protected updateFailureMessage =
     'An update was detected but could not be installed yet. Please try again in a few minutes.';
 
@@ -46,10 +48,10 @@ export class App implements OnInit {
       )
       .subscribe(() => {
         this.announceRouteChange();
-        this.updateSideNav();
+        this.updatePageNavigation();
       });
 
-    this.updateSideNav();
+    this.updatePageNavigation();
 
     if (!this.swUpdate.isEnabled) {
       console.info('[SW] Service worker updates are disabled in this build.');
@@ -130,9 +132,10 @@ export class App implements OnInit {
     this.pageAnnouncement = `${title} loaded`;
   }
 
-  private updateSideNav(): void {
+  private updatePageNavigation(): void {
     this.sideNavItems = getSideNavItems(this.router.url);
     this.sideNavTitle = getSideNavTitle(this.router.url);
+    this.breadcrumbItems = getBreadcrumbItems(this.router.url);
   }
 
   protected dismissUpdateNotice(): void {

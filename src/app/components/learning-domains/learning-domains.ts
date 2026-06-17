@@ -51,7 +51,7 @@ export class LearningDomains implements OnInit {
   private readonly domains: DomainNavCard[] = [
     {
       title: 'Language and literacy',
-      description: 'Support vocabulary, phonological awareness, and early reading and writing skills.',
+      description: 'Supports children to communicate, make meaning and connect with others through language, literacy and diverse forms of communication.',
       url: '/learning-domains/language-and-literacy',
       imageAlt: 'Language and literacy icon',
       imageName: 'language-literacy',
@@ -62,7 +62,7 @@ export class LearningDomains implements OnInit {
     },
     {
       title: 'Executive function',
-      description: 'Develop working memory, attention, cognitive flexibility, and problem-solving skills.',
+      description: 'Supports children to manage attention, adapt to change and work towards goals in learning and everyday experiences.',
       url: '/learning-domains/executive-function',
       imageAlt: 'Executive function icon',
       imageName: 'executive-function',
@@ -73,7 +73,7 @@ export class LearningDomains implements OnInit {
     },
     {
       title: 'Social and emotional learning',
-      description: 'Foster self-awareness, emotion regulation, empathy, and positive relationships.',
+      description: 'Supports children to understand themselves and others, build relationships, and manage emotions.',
       url: '/learning-domains/social-and-emotional-learning',
       imageAlt: 'Social and emotional learning icon',
       imageName: 'social-emotional-learning',
@@ -84,7 +84,7 @@ export class LearningDomains implements OnInit {
     },
     {
       title: 'Physicality',
-      description: 'Enhance gross and fine motor skills, coordination, and physical confidence.',
+      description: 'Supports children to develop movement, coordination, body awareness and confidence.',
       url: '/learning-domains/physicality',
       imageAlt: 'Physicality icon',
       imageName: 'physicality',
@@ -95,7 +95,7 @@ export class LearningDomains implements OnInit {
     },
     {
       title: 'Mathematics and numeracy',
-      description: 'Build number sense, pattern recognition, spatial reasoning, and mathematical thinking.',
+      description: 'Supports children to understand and use numbers, patterns, measurement and spatial concepts.',
       url: '/learning-domains/mathematics-and-numeracy',
       imageAlt: 'Mathematics and numeracy icon',
       imageName: 'mathematics-numeracy',
