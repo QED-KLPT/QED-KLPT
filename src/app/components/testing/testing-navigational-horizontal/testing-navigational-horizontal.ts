@@ -14,7 +14,7 @@ export class TestingNavigationalHorizontal {
     { label: 'Quality observations', href: '/klpt-foundations/quality-observations' },
     { label: 'Analysing data', href: '/klpt-foundations/analysing-data' },
     { label: 'Learning domains', href: '/learning-domains' },
-    { label: 'KLPT', href: '/klpt-learning-observation-tool' },
+    { label: 'KLPT', href: '/learning-observation-tool' },
     { label: 'Practice supports', href: '/learning-domains/language-and-literacy' },
   ];
 
@@ -22,7 +22,7 @@ export class TestingNavigationalHorizontal {
     { label: 'Quality observations', href: '/klpt-foundations/quality-observations' },
     { label: 'Analysing data', href: '/klpt-foundations/analysing-data' },
     { label: 'Learning domains', href: '/learning-domains' },
-    { label: 'KLPT', href: '/klpt-learning-observation-tool' },
+    { label: 'KLPT', href: '/learning-observation-tool' },
     { label: 'Practice supports', href: '/learning-domains/language-and-literacy' },
   ];
 
@@ -30,7 +30,7 @@ export class TestingNavigationalHorizontal {
     { label: 'Quality observations', href: '/klpt-foundations/quality-observations', icon: 'fa-light fa-eye' },
     { label: 'Analysing data', href: '/klpt-foundations/analysing-data', icon: 'fa-light fa-chart-bar' },
     { label: 'Learning domains', href: '/learning-domains', icon: 'fa-light fa-book-open' },
-    { label: 'KLPT', href: '/klpt-learning-observation-tool', icon: 'fa-light fa-tools' },
+    { label: 'KLPT', href: '/learning-observation-tool', icon: 'fa-light fa-tools' },
     { label: 'Practice supports', href: '/practice-supports', icon: 'fa-light fa-hands-helping' },
   ];
 
@@ -40,7 +40,7 @@ export class TestingNavigationalHorizontal {
       { label: 'Analysing data', href: '/klpt-foundations/analysing-data' },
     ]},
     { label: 'Learning domains', href: '/learning-domains' },
-    { label: 'KLPT', href: '/klpt-learning-observation-tool' },
+    { label: 'KLPT', href: '/learning-observation-tool' },
     { label: 'Practice supports', href: '/learning-domains/language-and-literacy' },
   ];
 
@@ -54,7 +54,7 @@ export class TestingNavigationalHorizontal {
       { label: 'Reporting', href: '#' },
     ]},
     { label: 'Learning domains', href: '/learning-domains' },
-    { label: 'KLPT', href: '/klpt-learning-observation-tool' },
+    { label: 'KLPT', href: '/learning-observation-tool' },
   ];
 
   example6Items: NavItem[] = [
@@ -67,7 +67,7 @@ export class TestingNavigationalHorizontal {
       { label: 'Reporting', href: '#', description: 'Communicating assessment findings to stakeholders.' },
     ]},
     { label: 'Learning domains', href: '/learning-domains' },
-    { label: 'KLPT', href: '/klpt-learning-observation-tool' },
+    { label: 'KLPT', href: '/learning-observation-tool' },
   ];
 
   example7Items: NavItem[] = [
@@ -80,14 +80,14 @@ export class TestingNavigationalHorizontal {
       { label: 'Reporting', href: '#' },
     ]},
     { label: 'Learning domains', href: '/learning-domains' },
-    { label: 'KLPT', href: '/klpt-learning-observation-tool' },
+    { label: 'KLPT', href: '/learning-observation-tool' },
   ];
 
   example8Items: NavItem[] = [
     { label: 'Quality observations', href: '/klpt-foundations/quality-observations' },
     { label: 'Analysing data', href: '/klpt-foundations/analysing-data' },
     { label: 'Learning domains', href: '/learning-domains' },
-    { label: 'KLPT', href: '/klpt-learning-observation-tool' },
+    { label: 'KLPT', href: '/learning-observation-tool' },
     { label: 'Practice supports', href: '/learning-domains/language-and-literacy' },
   ];
 
@@ -109,7 +109,7 @@ export class TestingNavigationalHorizontal {
       { label: 'Analysing data', href: '/klpt-foundations/analysing-data' },
     ]},
     { label: 'Learning domains', href: '/learning-domains', icon: 'fa-light fa-graduation-cap' },
-    { label: 'KLPT', href: '/klpt-learning-observation-tool', icon: 'fa-light fa-wrench' },
+    { label: 'KLPT', href: '/learning-observation-tool', icon: 'fa-light fa-wrench' },
     { label: 'Practice supports', href: '/practice-supports', icon: 'fa-light fa-handshake' },
     { label: 'About', href: '/about', icon: 'fa-light fa-circle-info' },
   ];

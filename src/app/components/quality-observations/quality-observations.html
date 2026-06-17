@@ -6,7 +6,7 @@
       <div class="domain-hero__copy">
         <h1>Conducting and documenting quality observations</h1>
         <p>     
-          Early childhood teachers and educators are keen observers of children’s play and participation in kindergarten programs. The intent to observe, to pause, notice, listen and think is the starting point for recording quality observations. The act of observing incorporates genuine curiosity, listening, thinking and attunement to individual children. Purposeful observation underpins the recording of meaningful data to provide insights into children’s learning, development and wellbeing through analysis and interpretation.
+          Engage with information on the diverse types and different purposes of observation in kindergarten contexts. Consider what to notice, how to document meaningful observations, and how quality observations can deepen insights into children’s learning to support responsive teaching practice.  
         </p>       
       </div>
 
@@ -18,35 +18,41 @@
 </section>
 
 <section class="section section--white domain-overview">
-  <div class="section__inner">    
-    <div class="videos-row">
-      <app-youtube-player
-        title="Observation and assessment through play"
-        description=""
-        [youtubeUrl]="'https://www.youtube.com/watch?v=A9paIS5z5wI'"
-        [transcript]="observationTranscript"
-      >
-      </app-youtube-player>
-      <app-youtube-player
-        title="The purpose of observation "
-        description=""
-        [youtubeUrl]="'https://www.youtube.com/watch?v=8Nf9SgBs8GE'"
-        [transcript]="purposeOfObservationTranscript"
-      >
-      </app-youtube-player>      
+  <div class="section__inner">
+    <div class="content-header">
+      <h2></h2>
+      <p>
+        The following videos explore key concepts that support quality observation practices in kindergarten. The guidebook expands on the concepts explored in the videos and includes detailed information and reflective questions to support professional learning and build on existing observation and documentation practices. 
+      </p>    
     </div>
-    <div class="videos-row">
-      <app-youtube-player
-        title="A deep dive: Types of observation and assessment"
-        description=""
-        [youtubeUrl]="'https://www.youtube.com/watch?v=8Nf9SgBs8GE'"
-        [transcript]="deepDiveTranscript"
-      >
-      </app-youtube-player>
+    
+    <div class="video-columns" *ngIf="videoColumns$ | async as videoColumns; else loadingState">
+      <article class="video-column" *ngFor="let column of videoColumns">
+        <header class="video-column__header">
+          <h3>{{ column.heading }}</h3>
+          <p>{{ column.intro }}</p>
+        </header>
+
+        <div class="video-stack">
+          <app-youtube-player
+            *ngFor="let video of column.videos"
+            [title]="video.title"
+            [description]="video.description"
+            [youtubeUrl]="video.youtubeUrl"
+            [transcript]="video.transcript"
+          >
+          </app-youtube-player>
+        </div>
+      </article>
     </div>
+
+    <ng-template #loadingState>
+      <p>Loading curated videos...</p>
+    </ng-template>
+
     <a class="pdf-guide-link" href="assets/content/pdfs/qklg-principle-rrls-poster.pdf" rel="noopener" type="application/pdf">
-      <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
-      <span>Download guide (PDF, 0.1MB)</span>
-    </a>
-  </div>
+        <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
+        <span>Download guide (PDF, 0.1MB)</span>
+    </a>  
+</div>
 </section>

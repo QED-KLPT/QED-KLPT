@@ -75,7 +75,7 @@ export class LanguageAndLiteracy implements OnInit {
     }
 
     event.preventDefault();
-    void this.router.navigateByUrl('/klpt-learning-observation-tool');
+    void this.router.navigateByUrl('/learning-observation-tool');
   }
 
     protected readonly practiceSupports: { title: string; summary: string; accordionItems: { title: string; body: string[] }[]; pdfLabel: string; pdfPath: string } = {

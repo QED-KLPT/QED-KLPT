@@ -12,21 +12,21 @@ export const reviewSessionGuard: CanActivateFn = (route, state) => {
   const sessionId = route.paramMap.get('sessionId');
 
   if (!sessionId) {
-    return router.parseUrl('/klpt-learning-observation-tool/sessions');
+    return router.parseUrl('/learning-observation-tool/sessions');
   }
 
   const session = sessionManagement.getSession(sessionId);
 
   if (!session) {
-    return router.parseUrl('/klpt-learning-observation-tool/sessions');
+    return router.parseUrl('/learning-observation-tool/sessions');
   }
 
   if (!hasSelectedElements(session)) {
-    return router.parseUrl(`/klpt-learning-observation-tool/select-domains/${sessionId}`);
+    return router.parseUrl(`/learning-observation-tool/select-domains/${sessionId}`);
   }
 
   if (!hasSelectedBehaviours(session, domainData)) {
-    return router.parseUrl(`/klpt-learning-observation-tool/select-behaviours/${sessionId}`);
+    return router.parseUrl(`/learning-observation-tool/select-behaviours/${sessionId}`);
   }
 
   return true;
