@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, inject } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { ChangeDetectionStrategy, Component, Input, OnChanges } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 export interface QldSideNavItem {
   label: string;
@@ -19,8 +19,8 @@ export interface QldSideNavItem {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class QldSideNavComponent implements OnChanges {
-  private readonly router = inject(Router);
   protected readonly expandedItems = new Set<string>();
+  protected mobileExpanded = false;
 
   @Input() items: QldSideNavItem[] = [];
   @Input() title = 'In this section...';
@@ -64,6 +64,10 @@ export class QldSideNavComponent implements OnChanges {
     return this.expandedItems.has(this.itemKey(item));
   }
 
+  protected toggleMobileNav(): void {
+    this.mobileExpanded = !this.mobileExpanded;
+  }
+
   protected toggleItem(item: QldSideNavItem): void {
     const key = this.itemKey(item);
 
@@ -73,30 +77,6 @@ export class QldSideNavComponent implements OnChanges {
     }
 
     this.expandedItems.add(key);
-  }
-
-  protected flattenedItems(): QldSideNavItem[] {
-    return this.flattenItems(this.items.filter((item) => !this.isTitle(item)));
-  }
-
-  protected onMobileNavChange(event: Event): void {
-    const select = event.target as HTMLSelectElement;
-    const target = select.value;
-
-    if (!target) {
-      return;
-    }
-
-    if (target.startsWith('/')) {
-      void this.router.navigateByUrl(target);
-      return;
-    }
-
-    window.location.href = target;
-  }
-
-  private flattenItems(items: QldSideNavItem[]): QldSideNavItem[] {
-    return items.flatMap((item) => [item, ...this.flattenItems(item.children ?? [])]);
   }
 
   private expandActiveBranches(item: QldSideNavItem): boolean {

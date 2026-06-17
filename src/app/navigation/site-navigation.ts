@@ -5,6 +5,7 @@ export interface SiteNavItem {
   icon?: string;
   primary?: boolean;
   sitemap?: boolean;
+  sideNav?: boolean;
   exact?: boolean;
   active?: boolean;
   isTitle?: boolean;
@@ -50,6 +51,7 @@ export const SITE_NAV_ITEMS: SiteNavItem[] = [
   {
     label: 'KLPT Learning observation tool',
     path: '/klpt-learning-observation-tool',
+    sideNav: false,
   },
   { label: 'Contact', path: '/contact' },
 ];
@@ -102,7 +104,7 @@ export function getActiveTopLevelNavItem(url: string): SiteNavItem | null {
 export function getSideNavItems(url: string): SiteNavItem[] {
   const activeItem = getActiveTopLevelNavItem(url);
 
-  if (!activeItem) {
+  if (!activeItem || activeItem.sideNav === false) {
     return [];
   }
 
@@ -110,7 +112,13 @@ export function getSideNavItems(url: string): SiteNavItem[] {
 }
 
 export function getSideNavTitle(url: string): string | null {
-  return getActiveTopLevelNavItem(url)?.label ?? null;
+  const activeItem = getActiveTopLevelNavItem(url);
+
+  if (!activeItem || activeItem.sideNav === false) {
+    return null;
+  }
+
+  return activeItem.label;
 }
 
 export function getBreadcrumbItems(url: string): SiteBreadcrumbItem[] {
