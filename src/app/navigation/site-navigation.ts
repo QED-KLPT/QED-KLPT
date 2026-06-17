@@ -49,7 +49,7 @@ export const SITE_NAV_ITEMS: SiteNavItem[] = [
     ],
   },
   {
-    label: 'KLPT Learning observation tool',
+    label: 'KLPT learning observation tool',
     path: '/klpt-learning-observation-tool',
     sideNav: false,
   },
