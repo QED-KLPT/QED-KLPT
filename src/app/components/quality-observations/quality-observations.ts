@@ -53,6 +53,6 @@ export class QualityObservations implements OnInit {
     }
 
     event.preventDefault();
-    void this.router.navigateByUrl('/klpt-learning-observation-tool');
+    void this.router.navigateByUrl('/learning-observation-tool');
   }
 }

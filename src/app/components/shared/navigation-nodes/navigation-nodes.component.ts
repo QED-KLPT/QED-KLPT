@@ -55,25 +55,25 @@ export class NavigationNodesComponent implements OnChanges {
       id: 'select-domains',
       title: 'Domains',
       description: 'Select the domain, subdomain and one or more elements.',
-      route: '/klpt-learning-observation-tool/select-domains',
+      route: '/learning-observation-tool/select-domains',
     },
     {
       id: 'select-behaviours',
       title: 'Behaviours',
       description: "Select the behaviour that best describes the child's current learning journey.",
-      route: '/klpt-learning-observation-tool/select-behaviours',
+      route: '/learning-observation-tool/select-behaviours',
     },
     {
       id: 'statement',
       title: 'Learning Statement',
       description: 'Complete the learning progression statement and observation notes.',
-      route: '/klpt-learning-observation-tool/learning-progression-statement',
+      route: '/learning-observation-tool/learning-progression-statement',
     },
     {
       id: 'review',
       title: 'Review and generate PDF',
       description: 'Review the saved statement and prepare a PDF copy.',
-      route: '/klpt-learning-observation-tool/review-session',
+      route: '/learning-observation-tool/review-session',
     },
   ];
 
@@ -124,7 +124,7 @@ export class NavigationNodesComponent implements OnChanges {
     }
 
     this.isClearSessionModalOpen = false;
-    void this.router.navigate(['/klpt-learning-observation-tool/select-domains', this.sessionId]);
+    void this.router.navigate(['/learning-observation-tool/select-domains', this.sessionId]);
   }
 
   protected trapModalFocus(event: KeyboardEvent): void {

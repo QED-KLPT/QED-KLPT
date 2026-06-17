@@ -69,7 +69,7 @@ export const routes: Routes = [
   },
   { path: 'practice-supports', component: PracticeSupports, title: 'Practice supports' },
   {
-    path: 'klpt-learning-observation-tool',
+    path: 'learning-observation-tool',
     loadChildren: () => import('./components/klpt-learning-observation-tool/klpt-learning-observation-tool-routing.module').then((m) => m.KlptRoutingModule),
   },
   { path: 'about', component: About, title: 'About' },

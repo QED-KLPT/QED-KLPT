@@ -90,7 +90,7 @@ export class ReviewSession implements OnInit, OnDestroy {
 
     this.sessionManagement.deleteSession(this.currentSession.id);
     this.isLeavingAfterPdf = true;
-    void this.router.navigateByUrl('/klpt-learning-observation-tool/sessions');
+    void this.router.navigateByUrl('/learning-observation-tool/sessions');
   }
 
   protected openGenerateWordModal(): void {
@@ -111,7 +111,7 @@ export class ReviewSession implements OnInit, OnDestroy {
 
     this.sessionManagement.deleteSession(this.currentSession.id);
     this.isLeavingAfterPdf = true;
-    void this.router.navigateByUrl('/klpt-learning-observation-tool/sessions');
+    void this.router.navigateByUrl('/learning-observation-tool/sessions');
   }
 
   protected trapGenerateWordModalFocus(event: KeyboardEvent): void {

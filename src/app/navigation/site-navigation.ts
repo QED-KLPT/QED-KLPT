@@ -50,7 +50,7 @@ export const SITE_NAV_ITEMS: SiteNavItem[] = [
   },
   {
     label: 'Learning observation tool',
-    path: '/klpt-learning-observation-tool',
+    path: '/learning-observation-tool',
     sideNav: false,
   },
   { label: 'Contact', path: '/contact' },

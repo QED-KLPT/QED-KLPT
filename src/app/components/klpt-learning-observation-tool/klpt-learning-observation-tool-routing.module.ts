@@ -12,22 +12,22 @@ import { reviewSessionGuard } from './guards/review-session.guard';
 const routes: Routes = [
   {
     path: '',
-    title: 'KLPT Learning observation tool',
+    title: 'Learning observation tool',
     component: Klpt,
     children: [
-      { path: '', component: Introduction, title: 'KLPT Learning observation tool' },
-      { path: 'introduction', component: Introduction, title: 'KLPT Learning observation tool' },
-      { path: 'sessions', component: ListSessions, title: 'KLPT Learning observation tool' },
+      { path: '', component: Introduction, title: 'Learning observation tool' },
+      { path: 'introduction', component: Introduction, title: 'Learning observation tool' },
+      { path: 'sessions', component: ListSessions, title: 'Learning observation tool' },
       { path: 'create-session', redirectTo: 'sessions', pathMatch: 'full' },
-      { path: 'select-domains/:sessionId', component: SelectDomains, title: 'KLPT Learning observation tool' },
-      { path: 'select-behaviours/:sessionId', component: SelectBehaviours, title: 'KLPT Learning observation tool' },
+      { path: 'select-domains/:sessionId', component: SelectDomains, title: 'Learning observation tool' },
+      { path: 'select-behaviours/:sessionId', component: SelectBehaviours, title: 'Learning observation tool' },
       {
         path: 'learning-progression-statement/:sessionId',
         component: LearningProgressionStatement,
-        title: 'KLPT Learning observation tool',
+        title: 'Learning observation tool',
         canActivate: [reviewSessionGuard],
       },
-      { path: 'review-session/:sessionId', component: ReviewSession, title: 'KLPT Learning observation tool', canActivate: [reviewSessionGuard] },
+      { path: 'review-session/:sessionId', component: ReviewSession, title: 'Learning observation tool', canActivate: [reviewSessionGuard] },
     ],
   },
 ];
