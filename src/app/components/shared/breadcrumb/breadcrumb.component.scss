@@ -36,8 +36,8 @@
     display: inline;
 
     &:not(:last-child)::after {
-      content: ' / ';
-      margin-inline-start: 0.5rem;
+      content: '/';
+      margin-inline: 0.5rem;
     }
 
     span[aria-current='page'] {

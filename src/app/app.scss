@@ -19,12 +19,22 @@
   width: 100%;
 }
 
+.app-breadcrumb-shell {
+  width: min(var(--doe-container-width), calc(100% - 2rem));
+  margin-inline: auto;
+  padding-block: 0.9rem 0.65rem;
+}
+
 .app-content-shell--with-side-nav {
   display: grid;
   width: min(var(--doe-container-width), calc(100% - 2rem));
   margin-inline: auto;
   gap: 1.5rem;
   padding-block: 1.25rem 0;
+}
+
+.app-content-shell--with-side-nav.app-content-shell--after-breadcrumbs {
+  padding-block-start: 0.35rem;
 }
 
 .app-content-shell--with-side-nav .app-main {
