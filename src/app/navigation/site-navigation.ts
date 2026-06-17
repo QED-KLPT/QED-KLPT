@@ -10,6 +10,12 @@ export interface SiteNavItem {
   isTitle?: boolean;
 }
 
+export interface SiteBreadcrumbItem {
+  label: string;
+  href?: string;
+  current?: boolean;
+}
+
 export const SITE_NAV_ITEMS: SiteNavItem[] = [
   { label: 'Home', path: '/', icon: 'fa-regular fa-house', exact: true, sitemap: false },
   { label: 'About', path: '/about' },
@@ -105,4 +111,48 @@ export function getSideNavItems(url: string): SiteNavItem[] {
 
 export function getSideNavTitle(url: string): string | null {
   return getActiveTopLevelNavItem(url)?.label ?? null;
+}
+
+export function getBreadcrumbItems(url: string): SiteBreadcrumbItem[] {
+  const currentUrl = normalizeNavUrl(url);
+
+  if (currentUrl === '/') {
+    return [];
+  }
+
+  const matchedTrail = findNavTrail(SITE_NAV_ITEMS, currentUrl);
+
+  if (!matchedTrail.length) {
+    return [{ label: 'Home', href: '/' }];
+  }
+
+  const fullTrail =
+    matchedTrail[0]?.path === '/' ? matchedTrail : [SITE_NAV_ITEMS[0], ...matchedTrail];
+
+  return fullTrail.map((item, index) => {
+    const isCurrent = index === fullTrail.length - 1;
+
+    return {
+      label: item.label,
+      ...(isCurrent ? { current: true } : { href: item.path }),
+    };
+  });
+}
+
+function findNavTrail(items: SiteNavItem[], url: string): SiteNavItem[] {
+  const sortedMatches = items
+    .filter((item) => isNavItemActive(item, url))
+    .sort((a, b) => normalizeNavUrl(b.path).length - normalizeNavUrl(a.path).length);
+
+  for (const item of sortedMatches) {
+    const childTrail = item.children ? findNavTrail(item.children, url) : [];
+
+    if (childTrail.length) {
+      return [item, ...childTrail];
+    }
+
+    return [item];
+  }
+
+  return [];
 }

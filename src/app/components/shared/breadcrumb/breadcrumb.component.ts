@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 export interface BreadcrumbItem {
   label: string;
@@ -10,7 +11,7 @@ export type BreadcrumbVariant = 'default' | 'alt';
 
 @Component({
   selector: 'app-breadcrumb',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './breadcrumb.component.html',
   styleUrl: './breadcrumb.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -44,5 +45,13 @@ export class BreadcrumbComponent {
 
   get separatorClass(): string {
     return 'qld__breadcrumbs__separator';
+  }
+
+  get parentItem(): BreadcrumbItem | null {
+    return this.items.length > 1 ? this.items[this.items.length - 2] : null;
+  }
+
+  isRouterLink(href: string | undefined): href is string {
+    return !!href && href.startsWith('/');
   }
 }
