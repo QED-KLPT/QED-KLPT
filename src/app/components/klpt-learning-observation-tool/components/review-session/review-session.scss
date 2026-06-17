@@ -34,15 +34,6 @@
   }
 }
 
-.eyebrow {
-  margin: 0;
-  color: #0d3b66;
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-}
-
 .review-card__child {
   max-width: 32rem;
 }
@@ -85,15 +76,6 @@
   box-shadow: 0 30px 90px rgba(24, 35, 63, 0.24);
 }
 
-.generate-pdf-modal__eyebrow {
-  margin: 0;
-  color: #0d3b66;
-  font-size: 0.78rem;
-  font-weight: 850;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-}
-
 .generate-pdf-modal__panel h2 {
   margin: 0;
   color: #10233c;
@@ -102,7 +84,7 @@
   letter-spacing: 0;
 }
 
-.generate-pdf-modal__panel p:not(.generate-pdf-modal__eyebrow) {
+.generate-pdf-modal__panel p {
   margin: 0;
   color: #5e6f84;
   line-height: 1.6;
@@ -189,15 +171,6 @@
   box-shadow: 0 30px 90px rgba(24, 35, 63, 0.24);
 }
 
-.generate-word-modal__eyebrow {
-  margin: 0;
-  color: #0d3b66;
-  font-size: 0.78rem;
-  font-weight: 850;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-}
-
 .generate-word-modal__panel h2 {
   margin: 0;
   color: #10233c;
@@ -206,7 +179,7 @@
   letter-spacing: 0;
 }
 
-.generate-word-modal__panel p:not(.generate-word-modal__eyebrow) {
+.generate-word-modal__panel p {
   margin: 0;
   color: #5e6f84;
   line-height: 1.6;
