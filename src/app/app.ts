@@ -6,8 +6,7 @@ import {
   VersionInstallationFailedEvent,
   VersionReadyEvent,
 } from '@angular/service-worker';
-import { filter, fromEvent, timer } from 'rxjs';
-import { Footer } from './_layout/footer/footer';
+import { filter, fromEvent, tap, timer } from 'rxjs';import { Footer } from './_layout/footer/footer';
 import { Header } from './_layout/header/header';
 import { BackToTopComponent } from './components/shared/back-to-top';
 import { QldSideNavComponent } from './components/shared/qld-side-nav/qld-side-nav.component';
@@ -106,6 +105,18 @@ export class App implements OnInit {
         takeUntilDestroyed(this.destroyRef),
       )
       .subscribe(() => void this.checkForSiteUpdate());
+
+    // Intercept return from external PDF links (QKLG). When pushState + hash fragment
+    // brings the user back, replace the URL with the clean return URL to keep them on Step 3.
+    fromEvent(window, 'popstate')
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        const state = window.history.state as Record<string, string> | null;
+
+        if (state?.['_klptReturn']) {
+          window.history.replaceState(null, '', state['_klptReturn']);
+        }
+      });
   }
 
   private announceRouteChange(): void {

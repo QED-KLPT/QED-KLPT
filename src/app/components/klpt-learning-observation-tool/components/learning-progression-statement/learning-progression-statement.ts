@@ -156,6 +156,24 @@ export class LearningProgressionStatement implements OnInit, OnDestroy {
     return hasSelectedBehaviours(this.currentSession, this.domainData);
   }
 
+  protected openQklgPdf(): void {
+    const url = 'https://www.qcaa.qld.edu.au/downloads/kindergarten/qklg_align_eylf.pdf';
+
+    // Build a clean return URL (origin + pathname + search, no hash)
+    const returnUrl = `${window.location.origin}${window.location.pathname}${window.location.search}`;
+
+    // Push a distinct history entry via a hash fragment so the browser creates a new stack slot.
+    // When the user clicks Back from the PDF, popstate fires on this entry and app.ts
+    // replaces it with the clean URL — keeping them on Step 3.
+    window.history.pushState(
+      { _klptReturn: returnUrl },
+      '',
+      window.location.pathname + '#_klpt_return',
+    );
+
+    window.location.href = url;
+  }
+
   private mergeFormFields(fields: NameValuePair[]): NameValuePair[] {
     const requiredFields = [
       'date',
