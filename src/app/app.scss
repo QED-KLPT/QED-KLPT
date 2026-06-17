@@ -123,6 +123,10 @@
   .update-snackbar__button {
     flex: 1 1 100%;
   }
+
+  .app-breadcrumb-shell {
+    padding-block: 4px 4px;
+  }
 }
 
 @media (min-width: 56rem) {
