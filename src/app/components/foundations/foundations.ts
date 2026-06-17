@@ -52,7 +52,7 @@ export class Foundations implements OnInit {
   protected readonly foundations: FoundationNavCard[] = [
     {
       title: 'Conducting and documenting quality observations',
-      description: 'Early childhood teachers and educators are keen observers of children’s play and participation in kindergarten programs. The intent and act of observing underpins the recording of meaningful data to provide insights into children’s learning, development and wellbeing through analysis and interpretation. ',
+      description: 'Engage with information about the diverse types and different purposes of observation in kindergarten contexts. Consider what to notice, how to document meaningful observations, and how quality observations can deepen insights into children’s learning to support responsive teaching practice.',
       url: '/klpt-foundations/conducting-and-documenting-quality-observations',
       imageAlt: 'Conducting and documenting quality observations illustration',
       imageName: 'conducting-documenting',
@@ -61,7 +61,7 @@ export class Foundations implements OnInit {
     },
     {
       title: 'Analysing and interpreting observational data',
-      description: 'Observational data becomes meaningful through a process of analysis and interpretation. Analysis of observational data helps teachers and educators understand what children know and can do: their thinking, knowledge, skills, dispositions and preferences. Analysis is a specialised skill drawing on content knowledge, pedagogy knowledge and theoretical perspectives.   ',
+      description: 'Explore information on how analysis and interpretation of observational data can support assessment and planning. Consider the importance of analysis in understanding children’s learning and informing responsive ‘where to next’ learning opportunities for individual children and groups.',
       url: '/klpt-foundations/analysing-and-interpreting-observational-data',
       imageAlt: 'Analysing and interpreting observational data illustration',
       imageName: 'analysing-interpreting',
