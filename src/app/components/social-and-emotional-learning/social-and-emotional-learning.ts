@@ -44,8 +44,8 @@ export class SocialAndEmotionalLearning implements OnInit {
   }
 
   protected readonly practiceSupports = {
-    pdfLabel: 'Download social and emotional learning practice supports (PDF, 1.3MB)',
-    pdfPath: 'assets/content/pdfs/qklg-principle-rrls-poster.pdf',
+    pdfLabel: 'Download social and emotional learning practice support (PDF, 1.01 MB)',
+    pdfPath: 'assets/content/pdfs/social-emotional-learning-practice-support.pdf',
   };
 
   protected readonly cards: DesignCard[] = [
