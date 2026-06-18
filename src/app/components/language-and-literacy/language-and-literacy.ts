@@ -77,9 +77,9 @@ export class LanguageAndLiteracy implements OnInit {
     void this.router.navigateByUrl('/learning-observation-tool');
   }
 
-    protected readonly practiceSupports = {
-    pdfLabel: 'Download language and literacy practice supports (PDF, 1.0MB)',
-    pdfPath: 'assets/content/pdfs/klpt-langlit-pracsupp.pdf',
+  protected readonly practiceSupports = {
+    pdfLabel: 'Download language and literacy practice support (PDF, 1.01 MB)',
+    pdfPath: 'assets/content/pdfs/language-literacy-practice-support.pdf',
   };
 
   protected readonly themedCards = computed<ThemedDesignCard[]>(() => {
