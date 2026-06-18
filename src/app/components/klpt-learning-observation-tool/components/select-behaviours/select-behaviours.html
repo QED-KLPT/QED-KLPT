@@ -13,11 +13,9 @@
     @if (elements.length) {
       <div class="behaviour-screen">
         <article class="behaviour-intro">
-          <div>
-            <h2>Select a behaviour for each element</h2>
-            <p>Select the description that best describes the child's current behaviour. There are no right or wrong answers, use your professional judgement to select the option that most closely reflects your observations.</p>
-          </div>
-          <p>{{ selectedElementCountLabel(elements.length) }}. Tap a behaviour to update the detail panel.</p>
+          <h2>Select a behaviour for each element</h2>
+          <p>Select the description that best describes the child's current behaviour. There are no right or wrong answers, use your professional judgement to select the option that most closely reflects your observations.</p>
+          <p class="behaviour-intro__count">{{ selectedElementCountLabel(elements.length) }}. Tap a behaviour to update the detail panel.</p>
         </article>
 
         <div class="behaviour-orbit" aria-label="Selected element behaviours">
