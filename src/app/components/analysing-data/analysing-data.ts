@@ -2,6 +2,7 @@ import { CommonModule, ViewportScroller } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { YoutubePlayerModule } from '../shared/youtube-player/public-api';
+import { BreadcrumbComponent, BreadcrumbItem } from '../shared/breadcrumb';
 import { DomainAssetModeService } from '../../services/domain-asset-mode.service';
 
 type MockVideo = {
@@ -19,12 +20,17 @@ type MockColumn = {
 
 @Component({
   selector: 'app-analysing-data',
-  imports: [CommonModule, YoutubePlayerModule],
+  imports: [CommonModule, BreadcrumbComponent, YoutubePlayerModule],
   templateUrl: './analysing-data.html',
   styleUrl: './analysing-data.scss',
 })
 export class AnalysingData implements OnInit {
   protected readonly domainAssets = inject(DomainAssetModeService);
+  protected readonly breadcrumbs: BreadcrumbItem[] = [
+    { label: 'Home', href: '/' },
+    { label: 'KLPT foundations', href: '/klpt-foundations' },
+    { label: 'Analysing and interpreting observational data', current: true },
+  ];
 
   constructor(
     private scroll: ViewportScroller,

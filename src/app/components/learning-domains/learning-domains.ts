@@ -1,6 +1,7 @@
 import { ViewportScroller } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit, computed, inject } from '@angular/core';
 import { DomainAssetModeService } from '../../services/domain-asset-mode.service';
+import { BreadcrumbComponent, BreadcrumbItem } from '../shared/breadcrumb';
 import { DomainCard } from '../shared/domain-card/domain-card';
 
 type DomainNavCard = {
@@ -22,13 +23,17 @@ type ThemedDomainNavCard = Omit<DomainNavCard, 'imageName'> & {
 
 @Component({
   selector: 'app-learning-domains',
-  imports: [DomainCard],
+  imports: [BreadcrumbComponent, DomainCard],
   templateUrl: './learning-domains.html',
   styleUrl: './learning-domains.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LearningDomains implements OnInit {
   private readonly domainAssetMode = inject(DomainAssetModeService);
+  protected readonly breadcrumbs: BreadcrumbItem[] = [
+    { label: 'Home', href: '/' },
+    { label: 'Learning domains', current: true },
+  ];
 
   constructor(private scroll: ViewportScroller) {}
 
