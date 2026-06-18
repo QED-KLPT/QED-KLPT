@@ -1,13 +1,15 @@
 ﻿<section class="section domain-hero domain-hero--executive">
   <div class="section__inner">
+    <app-breadcrumb class="domain-hero__breadcrumbs" [items]="breadcrumbs" />
+
     <div class="domain-hero__layout">
       <div class="domain-hero__copy">
         <h1>Executive function</h1>
         <p>
-         Executive function is a set of skills that help children manage impulses, stay focused and work towards goals. These skills support learning and development across all areas and are shaped by each child’s cultural, social and emotional experiences.  
+         Executive function is a set of skills that support children to manage impulses, focus attention, adapt to change and work towards goals. These skills help children to remember instructions, switch between tasks and keep trying when things get tricky. Executive functions skills support learning and development across all areas and are shaped by each child’s cultural, social and emotional experiences.
         </p>
         <p class="domain-hero__lead"> 
-         Families are children’s first teachers, so executive function skills are influenced by family routines, relationships and community values. Recognising the whole child means seeing these relationships as central to their learning, wellbeing and identity. For Aboriginal and Torres Strait Islander children, awareness of their kinship networks and connections to Country are important to developing identity, which supports growth in executive function skills. 
+         Families are children’s first teachers, so executive function skills are influenced by family routines, relationships and community values. Recognising the whole child means seeing these relationships as central to their learning, wellbeing and identity. For Aboriginal and Torres Strait Islander children, awareness of their kinship networks and connections to Country are important to developing identity, which supports growth in executive function skills.
         </p>
       </div>
 
@@ -22,32 +24,15 @@
   <div class="section__inner">
     <h2>Overview</h2>
     <p>
-      Children begin developing executive function in early childhood. It includes 3 key skills: 
+      In the early years, children begin building the foundations for executive function. These skills support learning, relationships and wellbeing. They help children manage everyday challenges and grow as confident, capable learners.  They include working memory, inhibitory control and cognitive flexibility. While we can’t see these brain processes directly, we can notice them through behaviours like persistence, problem solving and adaptability.  
     </p>
-      <ul>
-        <li>
-          <b>Working memory</b> makes it possible to keep information in mind, such as remembering instructions long enough to carry them out.
-        </li>
-        <li>
-          <b>Inhibitory control</b> supports the ability to pause before acting and choose a suitable response.
-        </li>
-        <li>
-          <b>Cognitive flexibility</b> enables attention to shift and adapt from one task to another.
-        </li>
-      </ul> 
 
-      <p>
-        Executive function skills are difficult to observe because they are internal cognitive processes. 
+    <p>
+      Aboriginal and Torres Strait Islander ways of learning offer inclusive and holistic approaches to developing executive function. Learning through story, song, art, dance and connection to Country encourages children to plan, reflect and adapt.  Strategies may include traditional storytelling and songs that build planning, organisation and decision-making; traditional art that nurtures attention to detail; and traditional games that strengthen flexible thinking and teamwork. When we invite Elders and community members to share cultural knowledge, stories and experiences, we create rich, respectful learning environments that strengthen executive function and celebrate diverse ways of knowing, being and belonging.  
+    </p>
 
-        Teachers and educators can see executive function in action through observable behaviours like persistence, adaptability and problem solving. 
-      </p>
-      <ul>
-        <li><b>Persistence:</b> staying on task, trying again after challenges and completing activities.</li>
-        <li><b>Adaptability:</b> adjusting when routines change, responding to new information and staying calm under uncertainty.</li>
-        <li><b>Problem solving:</b> exploring ideas, testing strategies and reflecting on what works.</li>
-      </ul>
-      <p>
-        These behaviours draw on different aspects of executive function, for example, persistence involves inhibitory control, adaptability reflects cognitive flexibility and problem-solving uses working memory. 
+    <p>
+      Deepen your understanding of executive function through the following fact sheet and video. The fact sheet provides an overview of the Executive Function learning domain and its key elements of persistence, adaptability and problem solving. The video explores how these skills can be observed and supported in everyday kindergarten contexts.
     </p>
     <div class="videos-row">
       <app-youtube-player
@@ -58,26 +43,14 @@
       >
       </app-youtube-player>
     </div>
-    <a class="factsheet-link" href="assets/content/pdfs/klpt-exec-factsheet.pdf" rel="noopener" type="application/pdf">
+    <a class="factsheet-link" href="assets/content/pdfs/executive-function-factsheet.pdf" rel="noopener" type="application/pdf">
       <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
-      <span>Download fact sheets (PDF, 1.1MB)</span>
+      <span>Download executive function fact sheet (PDF, 1.06 MB)</span>
     </a>
 
     <div id="practice-supports" class="practice-supports-inline">
       <h2>Practice supports</h2>
-      <p class="practice-supports-inline__summary">{{ practiceSupports.summary }}</p>
-    
-      @if (practiceSupports.accordionItems.length) {
-        <div class="practice-supports-inline__accordion-group">
-          @for (item of practiceSupports.accordionItems; track item.title) {
-            <app-accordion-item [title]="item.title" [alt]="true">
-              @for (paragraph of item.body; track paragraph) {
-                <p>{{ paragraph }}</p>
-              }
-            </app-accordion-item>
-          }
-        </div>
-      }
+      <p>The practice supports provide examples of intentional teaching strategies and play-based learning experiences that can be adapted to suit children's strengths, interests and learning needs. They are designed to support professional judgement and should be considered alongside your knowledge of children, families and local contexts.</p>
 
       <a class="factsheet-link" [href]="practiceSupports.pdfPath" rel="noopener" type="application/pdf">
         <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>

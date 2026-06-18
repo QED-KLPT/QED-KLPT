@@ -1,10 +1,12 @@
 ﻿<section class="section domain-hero domain-hero--physicality">
   <div class="section__inner">
+    <app-breadcrumb class="domain-hero__breadcrumbs" [items]="breadcrumbs" />
+
     <div class="domain-hero__layout">
       <div class="domain-hero__copy">
         <h1>Physicality</h1>
-        <p>
-         <b>Physical learning</b> is the skills and abilities that support children to learn to move with stability, control and awareness of their environment and to manage the control of objects. The physicality core skill addresses gross motor development, fine motor development and integrates consideration of sensory learning. 
+       <p>
+          Physical development involves skills and abilities that support children to move confidently and control objects. The physicality learning domain consists of two sub-domains - gross motor (including sensory awareness) and fine motor development.
         </p>
         <p class="domain-hero__lead">         
         </p>
@@ -21,8 +23,13 @@
   <div class="section__inner">
     <h2>Overview</h2>
     <p>
-      Watch the video to understand the key elements of physicality, and how to
-      observe these in everyday contexts.
+      Large, whole-body movements (gross motor skills) rely on stability, strength, coordination and control. Fine motor skills involve coordinating actions to manipulate objects with confidence and control using the hand, wrist and arm.
+    </p>
+    <p>
+      By actively participating in physical play and learning experiences in early childhood settings, children develop and enhance gross and fine motor skills that lay the foundation for development and lifelong habits.
+    </p>
+    <p>
+      It is important to work with Aboriginal and Torres Strait Islander Elders and community members to understand and incorporate Aboriginal and Torres Strait Islander physicality values and practices. Explore and connect with local elders, resources and knowledge to ensure activities are culturally responsive and inclusive. Aboriginal and Torres Strait Islander physicality strategies may include but are not limited to outdoor and nature-based learning, physical storytelling through dance and other forms of kinaesthetic expression, traditional games, bushcraft and art.
     </p>
     <div class="videos-row">
       <app-youtube-player
@@ -33,31 +40,19 @@
       >
       </app-youtube-player>
     </div>
-    <a class="factsheet-link" href="assets/content/pdfs/qklg-principle-rdiv-poster.pdf" rel="noopener" type="application/pdf">
+    <!--<a class="factsheet-link" href="assets/content/pdfs/physicality-factsheet.pdf" rel="noopener" type="application/pdf">
       <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
-      <span>Download fact sheets (PDF, 1.4MB)</span>
-    </a>
+      <span>Download physicality fact sheet (PDF, 1.06 MB)</span>
+    </a>-->
 
     <div id="practice-supports" class="practice-supports-inline">
       <h2>Practice supports</h2>
-      <p class="practice-supports-inline__summary">{{ practiceSupports.summary }}</p>    
+      <p>The practice supports provide examples of intentional teaching strategies and play-based learning experiences that can be adapted to suit children's strengths, interests and learning needs. They are designed to support professional judgement and should be considered alongside your knowledge of children, families and local contexts.</p>
 
-      @if (practiceSupports.accordionItems.length) {
-        <div class="practice-supports-inline__accordion-group">
-          @for (item of practiceSupports.accordionItems; track item.title) {
-            <app-accordion-item [title]="item.title" [alt]="true">
-              @for (paragraph of item.body; track paragraph) {
-                <p>{{ paragraph }}</p>
-              }
-            </app-accordion-item>
-          }
-        </div>
-      }
-
-      <a class="factsheet-link" [href]="practiceSupports.pdfPath" rel="noopener" type="application/pdf">
+      <!--<a class="factsheet-link" [href]="practiceSupports.pdfPath" rel="noopener" type="application/pdf">
         <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
         <span>{{ practiceSupports.pdfLabel }}</span>
-      </a>
+      </a>-->
     </div>
 
     <div class="domain-page-cta">

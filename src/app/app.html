@@ -9,13 +9,19 @@
 
   <div class="sr-only" aria-live="polite" aria-atomic="true">{{ pageAnnouncement }}</div>
 
-  @if (breadcrumbItems.length) {
+  @if (breadcrumbItems.length && !hasInlineHeroLayout) {
     <section class="app-breadcrumb-shell" aria-label="Page location">
       <app-breadcrumb [items]="breadcrumbItems" />
     </section>
   }
 
-  <div class="app-content-shell" [class.app-content-shell--with-side-nav]="sideNavTitle" [class.app-content-shell--after-breadcrumbs]="breadcrumbItems.length">
+  <div
+    class="app-content-shell"
+    [class.app-content-shell--with-side-nav]="sideNavTitle"
+    [class.app-content-shell--after-breadcrumbs]="breadcrumbItems.length && !hasInlineHeroLayout"
+    [class.app-content-shell--inline-hero]="hasInlineHeroLayout"
+    [class.app-content-shell--compact-inline-hero]="hasCompactInlineHeroLayout"
+  >
     @if (sideNavTitle) {
       <aside class="app-side-nav">
         <app-qld-side-nav [items]="sideNavItems" [title]="sideNavTitle" ariaLabel="Secondary navigation" />

@@ -114,7 +114,7 @@ export function getSideNavItems(url: string): SiteNavItem[] {
 export function getSideNavTitle(url: string): string | null {
   const activeItem = getActiveTopLevelNavItem(url);
 
-  if (!activeItem || activeItem.sideNav === false) {
+  if (!activeItem || activeItem.sideNav === false || !activeItem.children?.length) {
     return null;
   }
 

@@ -1,3 +1,5 @@
+@use "../../../styles/abstracts/foundation-detail-page" as foundation-detail;
+
 :host {
   display: block;
 }
@@ -43,6 +45,23 @@
 .home-hero__title {
   max-width: 52rem;
   margin-block: 0.85rem 1.25rem;
+}
+
+.home-hero__title-group {
+  max-width: 52rem;
+  margin: 0 auto;
+  text-align: center;
+
+  h1 {
+    margin: 0;
+    max-width: 100%;
+  }
+
+  p {
+    max-width: 100%;
+    font-size: 1.1rem;
+    margin-block: 1.25rem 0;
+  }
 }
 
 .home-hero__title h1 {
@@ -377,3 +396,5 @@
     grid-template-columns: 1fr;
   }
 }
+
+@include foundation-detail.pdf-guide-link;

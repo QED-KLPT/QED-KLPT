@@ -1,13 +1,12 @@
 ﻿<section class="section domain-hero domain-hero--social">
   <div class="section__inner">
+    <app-breadcrumb class="domain-hero__breadcrumbs" [items]="breadcrumbs" />
+
     <div class="domain-hero__layout">
       <div class="domain-hero__copy">
         <h1>Social and emotional learning</h1>
         <p>
-          <b>Social learning</b> involves children learning in pairs, small groups or as a whole group. Collaborative learning opportunities in early childhood help the development of children’s communication skills, social skills, social regulation skills and awareness of others.
-        </p>
-        <p class="domain-hero__lead">
-         <b>Emotional learning</b> begins in infancy and continues into adolescence. Children learn to identify and regulate their emotions and understand the emotions of others.           
+          Social and Emotional (SEL) skills help children build self-awareness, develop positive relationships, and navigate everyday challenges. Developing strong social and emotional skills enable children to thrive in their learning environment, leading to better holistic wellbeing. Social and emotional learning refers to two groups of closely related skills that help shape who children are, how they manage emotions and thoughts and how they communicate and relate to others while exploring the world around them. These skills are essential for children to have a sense of belonging, being and becoming as outlined in the EYLF V2.0.
         </p>
       </div>
 
@@ -22,8 +21,17 @@
   <div class="section__inner">
     <h2>Overview</h2>
     <p>
-      Watch the video to understand the key elements of social and emotional learning, and how to
-      observe these in everyday contexts.
+      <b>Social learning</b> focuses on building positive relationships with others. This occurs when children play and learn together in pairs, small groups or as a whole class. Collaborative learning opportunities in early childhood are essential for developing children’s communication, social, and self-regulation skills, as well as their awareness of themselves and others. Research shows that learning through collaboration can build confidence, enhance attention, motivation, and responsiveness among children. 
+    </p>
+    <p>
+      Encouraging young children to work together can increase their motivation and engagement in new and unfamiliar tasks. Through collaboration, children learn to respond to others, understand different perspectives, and foster positive social connections. Working together also allows children to learn from peers, accept differences, negotiate roles and ideas and support one another. 
+    </p>
+    <p>
+      <b>Emotional learning</b> begins in infancy and continues into adolescence. Children increasingly learn to identify and regulate their emotions, as well as recognise, understand and respond to the emotions of others. It involves the increasing capability to plan, monitor, and manage emotions (known as self-regulation). This supports activities like focusing attention, staying calm, bouncing back from setbacks, solving problems, pause before acting or persisting through challenges. 
+      While these skills take time to develop, emotional regulation is linked with better future academic performance, healthier relationships, and fewer behavioural difficulties. 
+    </p>
+    <p>
+      A holistic and culturally safe, inclusive and responsive approach to Aboriginal and Torres Strait Islander ways of learning should be considered in all learning and development opportunities. Recognising, respecting and authentically embedding Aboriginal and Torres Strait Islander perspectives into programming benefits all children. Elders should have an opportunity to share their knowledge across aspects of social and emotional learning including key principles and strategies. These may include cultural traditions, values and worldviews, community and family involvement, storytelling to convey social and emotional lessons and incorporating connections to land and nature.    
     </p>
     <div class="videos-row">
       <app-youtube-player
@@ -34,31 +42,19 @@
       >
       </app-youtube-player>
     </div>
-    <a class="factsheet-link" href="assets/content/pdfs/qklg-princ-sustn.pdf" rel="noopener" type="application/pdf">
+    <!--<a class="factsheet-link" href="assets/content/pdfs/social-emotional-learning-factsheet.pdf" rel="noopener" type="application/pdf">
       <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
-      <span>Download fact sheets (PDF, 1.2MB)</span>
-    </a>
+      <span>Download social and emotional learning fact sheet (PDF, 1.06 MB)</span>
+    </a>-->
 
     <div id="practice-supports" class="practice-supports-inline">
       <h2>Practice supports</h2>
-      <p class="practice-supports-inline__summary">{{ practiceSupports.summary }}</p>    
+      <p>The practice supports provide examples of intentional teaching strategies and play-based learning experiences that can be adapted to suit children's strengths, interests and learning needs. They are designed to support professional judgement and should be considered alongside your knowledge of children, families and local contexts.</p>
 
-      @if (practiceSupports.accordionItems.length) {
-        <div class="practice-supports-inline__accordion-group">
-          @for (item of practiceSupports.accordionItems; track item.title) {
-            <app-accordion-item [title]="item.title" [alt]="true">
-              @for (paragraph of item.body; track paragraph) {
-                <p>{{ paragraph }}</p>
-              }
-            </app-accordion-item>
-          }
-        </div>
-      }
-
-      <a class="factsheet-link" [href]="practiceSupports.pdfPath" rel="noopener" type="application/pdf">
+      <!--<a class="factsheet-link" [href]="practiceSupports.pdfPath" rel="noopener" type="application/pdf">
         <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
         <span>{{ practiceSupports.pdfLabel }}</span>
-      </a>
+      </a>-->
     </div>
 
     <div class="domain-page-cta">

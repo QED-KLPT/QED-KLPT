@@ -4,7 +4,7 @@
       "columns": [
         {
           "heading": "Home languages",
-          "intro": "Recognising and valuing Aboriginal and Torres Strait Islander languages in Queensland supports language preservation and celebrates children's strengths in speaking multiple languages. Some children use more than one language and may switch between their home language and English depending on the situation. This is called codeswitching and is a strength that enables children to adapt their language use to suit different contexts. ",
+          "intro": "The fact sheet provides an overview of the importance of recognising, valuing and supporting children’s home languages. It highlights how home languages contribute to children’s identities, culture, wellbeing and learning, and how applying a culturally responsive lens can support quality observations, assessment and planning. The video includes examples of practice that recognises, considers and values home languages in kindergarten contexts.",
           "videos": [
             {
               "slot": "home-languages-primary",
@@ -17,7 +17,7 @@
         },
         {
           "heading": "Language and Literacy",
-          "intro": "By supporting each child's strengths and individual communication methods, we can foster their language and literacy development, helping them build confidence and feel a sense of belonging. Children show literacy behaviours when they pretend to read, write or use images and print in their play, including on devices. These everyday actions help them understand how language works. ",
+          "intro": "The fact sheet provides an overview of the Language and Literacy learning domain, its sub domains of sounds and speech and comprehension, and its key elements. The video explores how these skills can be observed and supported in everyday kindergarten contexts.",
           "videos": [
             {
               "slot": "language-and-literacy-primary",
@@ -33,59 +33,44 @@
     "analysing-data": {
       "columns": [
         {
-          "heading": "Observation snapshots",
-          "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vehicula, nibh vel sagittis hendrerit, lectus turpis volutpat nisl, et volutpat est erat non purus.",
+          "heading": "Observational data and the planning cycle",
+          "intro": "This video explores how observe sits alongside assess, plan, implement and evaluate as the five key components of the Early Years Learning Framework planning cycle.",
           "videos": [
             {
               "slot": "observation-snapshots-patterns",
-              "title": "Pattern spotting in everyday routines",
-              "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus at sapien non purus fermentum dignissim.",
+              "title": "",
+              "description": "",
               "youtubeUrl": "https://www.youtube.com/watch?v=RCmiHUNHa8c",
               "transcriptFile": "assets/content/transcripts/analysing-data/obs-snap-patterns.txt"
-            },
-            {
-              "slot": "observation-snapshots-notes",
-              "title": "Connecting notes to next steps",
-              "description": "Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui.",
-              "youtubeUrl": "https://www.youtube.com/watch?v=t_TQXaHyjZM",
-              "transcriptFile": "assets/content/transcripts/analysing-data/obs-snap-notes.txt"
-            },
-            {
-              "slot": "observation-snapshots-trends",
-              "title": "Interpreting trends across the week",
-              "description": "Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum.",
-              "youtubeUrl": "https://www.youtube.com/watch?v=Rg_Bk8mhsQI",
-              "transcriptFile": "assets/content/transcripts/analysing-data/obs-snap-trends.txt"
-            }
+            }                  
           ]
         },
         {
-          "heading": "Planning responses",
-          "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.",
+          "heading": "A collaborative approach to observation and assessment  ",
+          "intro": "This video explores how a collaborative approach to observation and assessment supports a more detailed and objective understanding of children’s learning, development and wellbeing.",
           "videos": [
             {
-              "slot": "planning-responses-participation",
-              "title": "Analysing group participation",
-              "description": "Nullam quis risus eget urna mollis ornare vel eu leo. Vestibulum id ligula porta felis euismod semper.",
-              "youtubeUrl": "https://www.youtube.com/watch?v=1BbO3pI1GVk",
-              "transcriptFile": "assets/content/transcripts/analysing-data/plan-resp-participation.txt"
-            },
-            {
-              "slot": "planning-responses-conversations",
-              "title": "Using evidence in reflective conversations",
-              "description": "Donec ullamcorper nulla non metus auctor fringilla. Morbi leo risus, porta ac consectetur ac.",
-              "youtubeUrl": "https://www.youtube.com/watch?v=XneIolMk42s",
-              "transcriptFile": "assets/content/transcripts/analysing-data/plan-resp-conversations.txt"
-            },
-            {
-              "slot": "planning-responses-intentional-teaching",
-              "title": "Turning insights into intentional teaching",
-              "description": "Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.",
-              "youtubeUrl": "https://www.youtube.com/watch?v=oyQmlHPgKPE",
-              "transcriptFile": "assets/content/transcripts/analysing-data/plan-resp-intent-teach.txt"
-            }
+              "slot": "observation-snapshots-patterns",
+              "title": "",
+              "description": "",
+              "youtubeUrl": "https://www.youtube.com/watch?v=t_TQXaHyjZM",
+              "transcriptFile": "assets/content/transcripts/analysing-data/obs-snap-patterns.txt"
+            }                  
           ]
-        }
+        },
+        {
+          "heading": "A strengths-based approach to observation and assessment",
+          "intro": "This video explores how recording and analysing observations through a strengths-based lens involves careful consideration of language, tone, and the ways in which children’s capabilities are recognised and represented.",
+          "videos": [
+            {
+              "slot": "observation-snapshots-patterns",
+              "title": "",
+              "description": "",
+              "youtubeUrl": "https://www.youtube.com/watch?v=Rg_Bk8mhsQI",
+              "transcriptFile": "assets/content/transcripts/analysing-data/obs-snap-patterns.txt"
+            }                  
+          ]
+        }               
       ]
     },
      "quality-observations": {
@@ -125,7 +110,7 @@
               "title": "",
               "description": "",
               "youtubeUrl": "https://www.youtube.com/watch?v=8Nf9SgBs8GE",
-              "transcriptFile": "assets/content/transcripts/quality-observations/the-purpose-of-observation"
+              "transcriptFile": "assets/content/transcripts/quality-observations/the-purpose-of-observation.txt"
             }
           ]
         }

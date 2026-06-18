@@ -1,6 +1,8 @@
-<main class="klpt-subsite">
-  <section class="section domain-hero domain-hero--klpt">
+<main class="klpt-subsite" [class.klpt-subsite--tool-active]="isToolActive()">
+  <section class="section section--cream domain-hero page-placeholder top-level-hero domain-hero--klpt">
     <div class="section__inner">
+      <app-breadcrumb class="domain-hero__breadcrumbs" [items]="breadcrumbs" />
+
       <div class="domain-hero__layout">
         <div class="domain-hero__copy">
           <h1>Learning observation tool</h1>

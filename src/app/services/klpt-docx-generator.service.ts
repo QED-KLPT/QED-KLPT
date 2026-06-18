@@ -4,6 +4,7 @@ import { KlptDomainDataService } from '../components/klpt-learning-observation-t
 import type { KlptBehaviour } from '../components/klpt-learning-observation-tool/models/klpt-behaviour';
 import type { KlptDomain } from '../components/klpt-learning-observation-tool/models/klpt-domain';
 import type { KlptElement } from '../components/klpt-learning-observation-tool/models/klpt-element';
+import type { KlptSubDomain } from '../components/klpt-learning-observation-tool/models/klpt-sub-domain';
 import { HIGHEST_BEHAVIOUR_HTML } from '../components/klpt-learning-observation-tool/components/shared/klpt-constants';
 import {
   Document,
@@ -68,6 +69,7 @@ const TYPOGRAPHY = {
 
 
 interface DocxProgressionItem {
+  subDomain: KlptSubDomain | undefined;
   element: KlptElement;
   behaviour: KlptBehaviour;
   nextBehaviour: KlptBehaviour | undefined;
@@ -261,10 +263,25 @@ export class KlptDocxGeneratorService {
 
     const paragraphs: Paragraph[] = [];
 
+    if (item.subDomain) {
+      paragraphs.push(
+        new Paragraph({
+          children: [
+            new TextRun({ text: 'SUBDOMAIN: ', ...TYPOGRAPHY.subheading }),
+            new TextRun({ text: item.subDomain.name.toUpperCase(), ...TYPOGRAPHY.subheading }),
+          ],
+          spacing: { before: 400, after: 80 },
+        }),
+      );
+    }
+
     paragraphs.push(
       new Paragraph({
-        children: [new TextRun({ text: item.element.name, ...TYPOGRAPHY.heading })],
-        spacing: { before: 400, after: 200 },
+        children: [
+          new TextRun({ text: 'KEY ELEMENT: ', ...TYPOGRAPHY.subheading }),
+          new TextRun({ text: item.element.name.toUpperCase(), ...TYPOGRAPHY.heading }),
+        ],
+        spacing: { before: item.subDomain ? 0 : 400, after: 200 },
       }),
     );
 
@@ -432,6 +449,7 @@ export class KlptDocxGeneratorService {
 
   private progressionItems(session: SessionModel): DocxProgressionItem[] {
     const allElements = this.allElements();
+    const subDomain = this.resolveSubDomain(session.subDomain);
 
     return session.elements
       .map((selectedElement) => {
@@ -445,6 +463,7 @@ export class KlptDocxGeneratorService {
         }
 
         return {
+          subDomain,
           element,
           behaviour,
           nextBehaviour: element.behaviours.find(
@@ -462,6 +481,17 @@ export class KlptDocxGeneratorService {
         ...(domain.elements ?? []),
         ...(domain.subDomains ?? []).flatMap((subDomain) => subDomain.elements ?? []),
       ]);
+  }
+
+  private resolveSubDomain(subDomainId: string | undefined): KlptSubDomain | undefined {
+    if (!subDomainId) {
+      return undefined;
+    }
+
+    return this.domainData
+      .getAllDomains()
+      .flatMap((domain) => domain.subDomains ?? [])
+      .find((subDomain) => subDomain.id === subDomainId);
   }
 
   private formValue(session: SessionModel, name: string): string {

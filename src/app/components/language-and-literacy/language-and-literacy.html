@@ -1,15 +1,19 @@
 ﻿<section class="section domain-hero domain-hero--language">
   <div class="section__inner">
+    <app-breadcrumb class="domain-hero__breadcrumbs" [items]="breadcrumbs" />
+
     <div class="domain-hero__layout">
       <div class="domain-hero__copy">
         <h1>Language and literacy</h1>
         <p>
-         Language and literacy learning in the KLPT focuses on communication skills and literacy related language including age and developmentally appropriate exposure to text and stories. These skills develop over time and are shaped by who children are, their identity, culture, the language they speak at home, and their daily experiences. 
+          Language and literacy is about how children communicate and make meaning. It includes spoken language, sign, Augmentative and Alternative Communication (AAC) and written language. Strong language skills help children express their thoughts, ideas and feelings. They also lay the foundation for learning to read and write. Language and literacy skills develop over time and are shaped by who children are, their identity, culture, the language they speak at home, and their daily experiences.
         </p>
-        <p class="domain-hero__lead">        
+        <p>
+          Families are children’s first teachers. They shape language from birth and help children build knowledge, identity and connection.   
+        </p>
+        <p class="domain-hero__lead">
         </p>
       </div>
-
       <div class="domain-hero__art">
         <img [src]="domainAssets.iconPath('language-literacy')" alt="Language and literacy illustration" />
       </div>
@@ -21,9 +25,26 @@
   <div class="section__inner">
     <div class="content-header">
       <h2>Overview</h2>
-      <p>
-        The <b>Language and literacy</b> progression focuses on how children use words through speech, sign, or Augmentative and Alternative Communication (AAC) in order to share their thoughts and understand what others say, sign or write.
-      </p>
+      <p>In the early years, children begin to explore sounds, words and print. Learning experiences like rhyming,
+        storytelling, books and recognising their name in print help to build phonological awareness (sounds in words)
+        and phonics skills (the sounds associated with letters in print). These early experiences support literacy
+        development and help children become confident communicators. </p>
+      <p>Language and literacy learning should be culturally responsive, inclusive and suited to each child’s age and
+        stage. Everyday experiences with language and literacy build strong communication skills and support overall
+        development. They also spark joy, curiosity and a love of reading. These experiences help children feel
+        confident, capable and proud.</p>
+      <p>First languages shape how children see and describe the world. They connect children to family, identity and
+        culture. Aboriginal and Torres Strait Islander children may be developing skills across one or more languages
+        when they begin early learning. A child’s home language should be recognised, respected and supported.</p>
+      <p>Teachers and educators can build language and literacy by collaborating with families, Elders and community
+        members. Story, song, art and dance support meaningful language learning. Strategies include sharing Dreaming
+        stories, using first language words, scribing children’s ideas, offering visual supports and encouraging talk
+        through play.</p>
+      <p>Queensland is home to many distinct Aboriginal languages and Torres Strait Islander languages. Each language
+        belongs to a group of people who are its custodians. When we respect and include these languages in early
+        learning, we help keep them strong and strengthen identity, culture and connection for all children. We also
+        create respectful, inclusive environments where all children feel seen, heard and valued.</p>
+      <p>Deepen your understanding of language and literacy through the following fact sheets and videos.</p>
     </div>
 
     <div class="video-columns" *ngIf="videoColumns$ | async as videoColumns; else loadingState">
@@ -34,13 +55,8 @@
         </header>
 
         <div class="video-stack">
-          <app-youtube-player
-            *ngFor="let video of column.videos"
-            [title]="video.title"
-            [description]="video.description"
-            [youtubeUrl]="video.youtubeUrl"
-            [transcript]="video.transcript"
-          >
+          <app-youtube-player *ngFor="let video of column.videos" [title]="video.title"
+            [description]="video.description" [youtubeUrl]="video.youtubeUrl" [transcript]="video.transcript">
           </app-youtube-player>
         </div>
       </article>
@@ -50,26 +66,15 @@
       <p>Loading curated videos...</p>
     </ng-template>
 
-    <a class="factsheet-link" href="assets/content/pdfs/klpt-langlit-factsheet.pdf" rel="noopener" type="application/pdf">
+    <a class="factsheet-link" href="assets/content/pdfs/language-literacy-factsheet.pdf" rel="noopener"
+      type="application/pdf">
       <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
-      <span>Download fact sheets (PDF, 0.9MB)</span>
+      <span>Download language and literacy fact sheet (PDF, 909 KB)</span>
     </a>
 
     <div id="practice-supports" class="practice-supports-inline">
       <h2>Practice supports</h2>
-      <p class="practice-supports-inline__summary">{{ practiceSupports.summary }}</p>    
-
-      @if (practiceSupports.accordionItems.length) {
-        <div class="practice-supports-inline__accordion-group">
-          @for (item of practiceSupports.accordionItems; track item.title) {
-            <app-accordion-item [title]="item.title" [alt]="true">
-              @for (paragraph of item.body; track paragraph) {
-                <p>{{ paragraph }}</p>
-              }
-            </app-accordion-item>
-          }
-        </div>
-      }
+      <p>The practice supports provide examples of intentional teaching strategies and play-based learning experiences that can be adapted to suit children's strengths, interests and learning needs. They are designed to support professional judgement and should be considered alongside your knowledge of children, families and local contexts.</p>
 
       <a class="factsheet-link" [href]="practiceSupports.pdfPath" rel="noopener" type="application/pdf">
         <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
@@ -78,16 +83,10 @@
     </div>
 
     <div class="domain-page-cta">
-      <a
-        class="button button--primary"
-        routerLink="/learning-observation-tool"
-        (touchstart)="captureKlptTouchStart($event)"
-        (touchend)="openKlptFromTouch($event)"
-      >
+      <a class="button button--primary" routerLink="/learning-observation-tool"
+        (touchstart)="captureKlptTouchStart($event)" (touchend)="openKlptFromTouch($event)">
         Open the learning observation tool
       </a>
     </div>
   </div>
 </section>
-
-

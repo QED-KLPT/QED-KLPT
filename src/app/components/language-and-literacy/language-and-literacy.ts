@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, OnInit, computed, inject } from '@a
 import { Router, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
-import { AccordionItemComponent } from '../shared/accordion-item/accordion-item.component';
+import { BreadcrumbComponent, BreadcrumbItem } from '../shared/breadcrumb';
 import { KlptVideoContentService, PageVideoColumn } from '../../services/klpt-video-content.service';
 import { DomainAssetModeService } from '../../services/domain-asset-mode.service';
 
@@ -25,13 +25,18 @@ const DARK_BLUE_CARD_BACKGROUND = '#003e96';
 
 @Component({
   selector: 'app-language-and-literacy',
-  imports: [CommonModule, RouterLink, AccordionItemComponent, YoutubePlayerModule],
+  imports: [CommonModule, RouterLink, BreadcrumbComponent, YoutubePlayerModule],
   templateUrl: './language-and-literacy.html',
   styleUrl: './language-and-literacy.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LanguageAndLiteracy implements OnInit {
   protected readonly domainAssets = inject(DomainAssetModeService);
+  protected readonly breadcrumbs: BreadcrumbItem[] = [
+    { label: 'Home', href: '/' },
+    { label: 'Learning domains', href: '/learning-domains' },
+    { label: 'Language and literacy', current: true },
+  ];
   protected readonly videoColumns$: Observable<PageVideoColumn[]>;
   private klptTouchStart: { x: number; y: number } | undefined;
 
@@ -72,27 +77,9 @@ export class LanguageAndLiteracy implements OnInit {
     void this.router.navigateByUrl('/learning-observation-tool');
   }
 
-    protected readonly practiceSupports: { title: string; summary: string; accordionItems: { title: string; body: string[] }[]; pdfLabel: string; pdfPath: string } = {
-    title: 'Language and literacy',
-    summary: 'Practice supports for language and literacy can help teams strengthen communication-rich environments, shared reading routines, and responsive interactions that invite children to experiment with speaking, listening, reading, and mark making.',
-    accordionItems: [
-      {
-        title: 'Intentional teaching strategies',
-        body: [
-          'Model rich oral language, extend children\'s ideas during conversations, and use repeated story experiences to build comprehension and vocabulary.',
-          'Offer visual supports, songs, predictable routines, and opportunities for children to revisit new words in meaningful contexts.',
-        ],
-      },
-      {
-        title: 'Learning experiences',
-        body: [
-          'Create inviting spaces for storytelling, role play, book browsing, drawing, and shared writing so children can explore language in different ways.',
-          'Plan playful experiences that connect language to movement, music, dramatic play, and children\'s interests.',
-        ],
-      },
-    ],
-    pdfLabel: 'Download language and literacy practice supports (PDF, 1.0MB)',
-    pdfPath: 'assets/content/pdfs/klpt-langlit-pracsupp.pdf',
+  protected readonly practiceSupports = {
+    pdfLabel: 'Download language and literacy practice support (PDF, 1.01 MB)',
+    pdfPath: 'assets/content/pdfs/language-literacy-practice-support.pdf',
   };
 
   protected readonly themedCards = computed<ThemedDesignCard[]>(() => {

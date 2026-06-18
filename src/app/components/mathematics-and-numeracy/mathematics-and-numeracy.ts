@@ -2,7 +2,7 @@ import { ViewportScroller } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
-import { AccordionItemComponent } from '../shared/accordion-item/accordion-item.component';
+import { BreadcrumbComponent, BreadcrumbItem } from '../shared/breadcrumb';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
 import { DomainAssetModeService } from '../../services/domain-asset-mode.service';
 
@@ -18,12 +18,17 @@ type DesignCard = {
 
 @Component({
   selector: 'app-mathematics-and-numeracy',
-  imports: [RouterLink, AccordionItemComponent, YoutubePlayerModule],
+  imports: [RouterLink, BreadcrumbComponent, YoutubePlayerModule],
   templateUrl: './mathematics-and-numeracy.html',
   styleUrl: './mathematics-and-numeracy.scss',
 })
 export class MathematicsAndNumeracy implements OnInit {
   protected readonly domainAssets = inject(DomainAssetModeService);
+  protected readonly breadcrumbs: BreadcrumbItem[] = [
+    { label: 'Home', href: '/' },
+    { label: 'Learning domains', href: '/learning-domains' },
+    { label: 'Mathematics and numeracy', current: true },
+  ];
   
   mathematicsAndNumeracyTranscript: string = '';
 
@@ -38,27 +43,9 @@ export class MathematicsAndNumeracy implements OnInit {
     this.scroll.scrollToPosition([0, 0]);
   }
 
-  protected readonly practiceSupports: { title: string; summary: string; accordionItems: { title: string; body: string[] }[]; pdfLabel: string; pdfPath: string } = {
-    title: 'Mathematics and numeracy',
-    summary: 'These supports invite children to explore number, pattern, measurement, spatial reasoning, and problem solving through purposeful play and everyday routines.',
-    accordionItems: [
-      {
-        title: 'Intentional teaching strategies',
-        body: [
-          'Use mathematical language naturally during play, model curiosity, and pose questions that encourage children to compare, estimate, count, and explain their thinking.',
-          'Link mathematics to meaningful contexts such as cooking, construction, collecting, sorting, and movement.',
-        ],
-      },
-      {
-        title: 'Learning experiences',
-        body: [
-          'Create opportunities for building, pattern making, measuring, ordering, mapping, and representing quantities with real materials.',
-          'Revisit key concepts across routines and play so children can notice relationships and apply ideas in new settings.',
-        ],
-      },
-    ],
-    pdfLabel: 'Download mathematics and numeracy practice supports (PDF, 1.3MB)',
-    pdfPath: 'assets/content/pdfs/qklg-principle-cpt-poster.pdf',
+  protected readonly practiceSupports = {
+    pdfLabel: 'Download mathematics and numeracy practice support (PDF, 1.01 MB)',
+    pdfPath: 'assets/content/pdfs/mathematics-numeracy-practice-support.pdf',
   };
 
   protected readonly cards: DesignCard[] = [

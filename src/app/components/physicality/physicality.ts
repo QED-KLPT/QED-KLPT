@@ -2,7 +2,7 @@ import { ViewportScroller } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
-import { AccordionItemComponent } from '../shared/accordion-item/accordion-item.component';
+import { BreadcrumbComponent, BreadcrumbItem } from '../shared/breadcrumb';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
 import { DomainAssetModeService } from '../../services/domain-asset-mode.service';
 
@@ -18,12 +18,17 @@ type DesignCard = {
 
 @Component({
   selector: 'app-physicality',
-  imports: [RouterLink, AccordionItemComponent, YoutubePlayerModule],
+  imports: [RouterLink, BreadcrumbComponent, YoutubePlayerModule],
   templateUrl: './physicality.html',
   styleUrl: './physicality.scss',
 })
 export class Physicality implements OnInit {
   protected readonly domainAssets = inject(DomainAssetModeService);
+  protected readonly breadcrumbs: BreadcrumbItem[] = [
+    { label: 'Home', href: '/' },
+    { label: 'Learning domains', href: '/learning-domains' },
+    { label: 'Physicality', current: true },
+  ];
   
   physicalityTranscript: string = '';
 
@@ -38,27 +43,9 @@ export class Physicality implements OnInit {
     this.scroll.scrollToPosition([0, 0]);
   }
 
-  protected readonly practiceSupports: { title: string; summary: string; accordionItems: { title: string; body: string[] }[]; pdfLabel: string; pdfPath: string } = {
-    title: 'Physicality',
-    summary: 'Practice supports in physicality can help educators strengthen coordination, confidence, sensory regulation, and participation across indoor and outdoor experiences.',    
-    accordionItems: [
-      {
-        title: 'Intentional teaching strategies',
-        body: [
-          'Model safe movement, provide graduated levels of challenge, and give children time to practise skills repeatedly in playful contexts.',
-          'Use verbal cues, demonstrations, and physical set-ups that help children understand how to organise their bodies and actions.',
-        ],
-      },
-      {
-        title: 'Learning experiences',
-        body: [
-          'Plan obstacle courses, fine-motor stations, sensory exploration, and outdoor play experiences that support strength, coordination, and body awareness.',
-          'Offer tools and materials that can be adapted to suit different confidence levels and developmental needs.',
-        ],
-      },
-    ],
-    pdfLabel: 'Download physicality practice supports (PDF, 1.3MB)',
-    pdfPath: 'assets/content/pdfs/qklg-principle-rdiv-poster.pdf',
+  protected readonly practiceSupports = {
+    pdfLabel: 'Download physicality practice support (PDF, 1.01 MB)',
+    pdfPath: 'assets/content/pdfs/physicality-practice-support.pdf',
   };
 
   protected readonly cards: DesignCard[] = [

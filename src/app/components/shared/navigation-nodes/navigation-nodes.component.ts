@@ -54,25 +54,25 @@ export class NavigationNodesComponent implements OnChanges {
     {
       id: 'select-domains',
       title: 'Domains',
-      description: 'Select the domain, subdomain and one or more elements.',
+      description: 'Select the domain, subdomain and one or more elements',
       route: '/learning-observation-tool/select-domains',
     },
     {
       id: 'select-behaviours',
       title: 'Behaviours',
-      description: "Select the behaviour that best describes the child's current learning journey.",
+      description: "Select the behaviour that best describes the child's current learning journey",
       route: '/learning-observation-tool/select-behaviours',
     },
     {
       id: 'statement',
       title: 'Learning Statement',
-      description: 'Complete the learning progression statement and observation notes.',
+      description: 'Complete the learning progression statement and observation notes',
       route: '/learning-observation-tool/learning-progression-statement',
     },
     {
       id: 'review',
-      title: 'Review and generate PDF',
-      description: 'Review the saved statement and prepare a PDF copy.',
+      title: 'Review and download statement',
+      description: 'Review the saved statement and prepare a copy for download',
       route: '/learning-observation-tool/review-session',
     },
   ];

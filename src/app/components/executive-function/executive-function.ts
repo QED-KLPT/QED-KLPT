@@ -2,7 +2,7 @@ import { ViewportScroller } from '@angular/common';
 import { Component, OnInit, computed, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
-import { AccordionItemComponent } from '../shared/accordion-item/accordion-item.component';
+import { BreadcrumbComponent, BreadcrumbItem } from '../shared/breadcrumb';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
 import { DomainAssetModeService } from '../../services/domain-asset-mode.service';
 
@@ -24,12 +24,17 @@ const DARK_BLUE_CARD_BACKGROUND = '#003e96';
 
 @Component({
   selector: 'app-executive-function',
-  imports: [RouterLink, AccordionItemComponent, YoutubePlayerModule],
+  imports: [RouterLink, BreadcrumbComponent, YoutubePlayerModule],
   templateUrl: './executive-function.html',
   styleUrl: './executive-function.scss',
 })
 export class ExecutiveFunction implements OnInit {
   protected readonly domainAssets = inject(DomainAssetModeService);
+  protected readonly breadcrumbs: BreadcrumbItem[] = [
+    { label: 'Home', href: '/' },
+    { label: 'Learning domains', href: '/learning-domains' },
+    { label: 'Executive function', current: true },
+  ];
   
   executiveFunctionTranscript: string = '';
 
@@ -74,8 +79,8 @@ export class ExecutiveFunction implements OnInit {
         ],
       },
     ],
-    pdfLabel: 'Download executive function practice supports (PDF, 1.7MB)',
-    pdfPath: 'assets/content/pdfs/klpt-exec-pracsupp.pdf',
+    pdfLabel: 'Download executive function practice support (PDF, 1.62 MB)',
+    pdfPath: 'assets/content/pdfs/executive-function-practice-support.pdf',
   };
 
   private readonly cards: DesignCard[] = [

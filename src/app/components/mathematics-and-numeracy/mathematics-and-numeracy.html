@@ -1,10 +1,12 @@
 ﻿<section class="section domain-hero domain-hero--mathematics">
   <div class="section__inner">
+    <app-breadcrumb class="domain-hero__breadcrumbs" [items]="breadcrumbs" />
+
     <div class="domain-hero__layout">
       <div class="domain-hero__copy">
         <h1>Mathematics and numeracy</h1>
-        <p>
-         The <b>mathematics and numeracy</b> progressions relate to children’s ability to understand, describe, discuss, and think about their environment. This progression describes the development of numbers for counting and understanding quantity. It supports the use of rich language to talk and think about concepts of time, length, distance, capacity, and area in everyday activities. 
+       <p>
+          The mathematics and numeracy learning domain focuses on children's ability to understand, describe, discuss, and think about what they see in their environment. This domain outlines the development of foundational concepts needed for using numbers meaningfully, such as counting and understanding quantity. It supports the use of rich, specific language to talk and think about time, length, distance, capacity, and area, integrating these concepts into everyday activities.
         </p>
         <p class="domain-hero__lead">        
         </p>
@@ -21,8 +23,13 @@
   <div class="section__inner">
     <h2>Overview</h2>
     <p>
-      Watch the video to understand the key elements of mathematics and
-      numeracy, and how to observe these in everyday contexts.
+      Mathematics and numeracy skills support the development of critical thinking and inquiry as children explore, ask questions, solve problems, estimate, predict, test their ideas, reflect on their thinking, and adjust their views based on new information.
+    </p>
+    <p>
+      Educators and teachers use hands-on play-based learning opportunities, games and everyday experiences to help children grasp these concepts
+    </p>
+    <p>
+      Creating mathematics and numeracy learning opportunities in early childhood that explore Aboriginal and Torres Strait Islander ways of learning for all children requires a culturally safe, inclusive and responsive approach. Establishing partnerships with local First Nations Elders, community members, and knowledge holders will assist you in embedding Aboriginal and Torres Strait Islander perspectives into the curriculum. Mathematics and numeracy learning opportunities that integrate Aboriginal and Torres Strait Islander ways of learning may include the use and exploration of First Nations counting systems and symbols and units of measurement. First Nations stories often contain mathematical elements, such as counting, pattern-making and spatial relationships. Engaging children in numeracy projects with cultural relevance, such as measuring land, resource management, or respectfully creating cultural artworks with mathematical themes is another way to incorporate Aboriginal and Torres Strait Islander ways of learning into learning opportunities. By integrating First Nations ways of learning into mathematics and numeracy education, you promote cultural respect, understanding and diversity while enhancing mathematics skills for all children. This approach fosters a sense of belonging and cultural appreciation within the learning environment.
     </p>
     <div class="videos-row">
       <app-youtube-player
@@ -33,31 +40,19 @@
       >
       </app-youtube-player>
     </div>
-    <a class="factsheet-link" href="assets/content/pdfs/qklg-principle-epd-poster.pdf" rel="noopener" type="application/pdf">
+    <!--<a class="factsheet-link" href="assets/content/pdfs/mathematics-and-numeracy-factsheet.pdf" rel="noopener" type="application/pdf">
       <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
-      <span>Download fact sheets (PDF, 1.9MB)</span>
-    </a>
+      <span>Download mathematics and numeracy fact sheet (PDF, 1.06 MB)</span>
+    </a>-->
 
     <div id="practice-supports" class="practice-supports-inline">
       <h2>Practice supports</h2>
-      <p class="practice-supports-inline__summary">{{ practiceSupports.summary }}</p>
-    
-      @if (practiceSupports.accordionItems.length) {
-        <div class="practice-supports-inline__accordion-group">
-          @for (item of practiceSupports.accordionItems; track item.title) {
-            <app-accordion-item [title]="item.title" [alt]="true">
-              @for (paragraph of item.body; track paragraph) {
-                <p>{{ paragraph }}</p>
-              }
-            </app-accordion-item>
-          }
-        </div>
-      }
+      <p>The practice supports provide examples of intentional teaching strategies and play-based learning experiences that can be adapted to suit children's strengths, interests and learning needs. They are designed to support professional judgement and should be considered alongside your knowledge of children, families and local contexts.</p>
 
-      <a class="factsheet-link" [href]="practiceSupports.pdfPath" rel="noopener" type="application/pdf">
+      <!--<a class="factsheet-link" [href]="practiceSupports.pdfPath" rel="noopener" type="application/pdf">
         <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
         <span>{{ practiceSupports.pdfLabel }}</span>
-      </a>
+      </a>-->
     </div>
 
     <div class="domain-page-cta">

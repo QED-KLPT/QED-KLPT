@@ -6,6 +6,7 @@ import { DomainAssetModeService } from '../../../../services/domain-asset-mode.s
 import { KlptBehaviour } from '../../models/klpt-behaviour';
 import { KlptDomain, KlptReflectiveQuestion } from '../../models/klpt-domain';
 import { KlptElement } from '../../models/klpt-element';
+import { KlptSubDomain } from '../../models/klpt-sub-domain';
 import { NameValuePair } from '../../models/name-value-pair';
 import { SessionModel } from '../../models/session-model';
 import { klptDomainStyle } from '../shared/klpt-domain-colours';
@@ -16,6 +17,7 @@ import { HIGHEST_BEHAVIOUR_HTML } from '../shared/klpt-constants';
 import { hasSelectedBehaviours } from '../shared/session-readiness';
 
 interface ProgressionItem {
+  subDomain: KlptSubDomain | undefined;
   element: KlptElement;
   behaviour: KlptBehaviour;
   nextBehaviour: KlptBehaviour | undefined;
@@ -91,6 +93,7 @@ export class LearningProgressionStatement implements OnInit, OnDestroy {
         );
 
         return {
+          subDomain: this.selectedSubDomain(),
           element,
           behaviour,
           nextBehaviour: behaviourIndex >= 0
@@ -109,6 +112,19 @@ export class LearningProgressionStatement implements OnInit, OnDestroy {
     return [...(this.selectedDomain()?.reflectiveQuestions ?? [])].sort(
       (left, right) => left.index - right.index,
     );
+  }
+
+  protected selectedSubDomain(): KlptSubDomain | undefined {
+    const subDomainId = this.currentSession.subDomain;
+
+    if (!subDomainId) {
+      return undefined;
+    }
+
+    return this.domainData
+      .getAllDomains()
+      .flatMap((domain) => domain.subDomains ?? [])
+      .find((subDomain) => subDomain.id === subDomainId);
   }
 
   protected updateFormField(name: string, value: string): void {
