@@ -1,31 +1,23 @@
 import { CommonModule, ViewportScroller } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { YoutubePlayerModule } from '../shared/youtube-player/public-api';
+import { ChangeDetectionStrategy, Component, OnInit, computed, inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { Observable } from 'rxjs';
+import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
 import { BreadcrumbComponent, BreadcrumbItem } from '../shared/breadcrumb';
 import { DomainAssetModeService } from '../../services/domain-asset-mode.service';
-
-type MockVideo = {
-  title: string;
-  description: string;
-  youtubeUrl: string;
-  transcript: string;
-};
-
-type MockColumn = {
-  heading: string;
-  intro: string;
-  videos: MockVideo[];
-};
+import { KlptVideoContentService, PageVideoColumn } from '../../services/klpt-video-content.service';
 
 @Component({
   selector: 'app-analysing-data',
   imports: [CommonModule, BreadcrumbComponent, YoutubePlayerModule],
   templateUrl: './analysing-data.html',
   styleUrl: './analysing-data.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AnalysingData implements OnInit {
   protected readonly domainAssets = inject(DomainAssetModeService);
+  protected readonly videoColumns$: Observable<PageVideoColumn[]>;
+  private klptTouchStart: { x: number; y: number } | undefined;
   protected readonly breadcrumbs: BreadcrumbItem[] = [
     { label: 'Home', href: '/' },
     { label: 'KLPT foundations', href: '/klpt-foundations' },
@@ -34,63 +26,39 @@ export class AnalysingData implements OnInit {
 
   constructor(
     private scroll: ViewportScroller,
-    private http: HttpClient,
+    private readonly router: Router,
+    private readonly videoContentService: KlptVideoContentService,
   ) {
-    this.loadTranscripts();
-  }
-
-  private loadTranscripts() {
-    const videoData = [
-      { title: 'Observational data and the planning cycle ', url: 'https://www.youtube.com/watch?v=RCmiHUNHa8c', transcriptFile: 'assets/content/transcripts/analysing-data/obs-snap-patterns.txt' },
-      { title: 'A collaborative approach to observation and assessment', url: 'https://www.youtube.com/watch?v=t_TQXaHyjZM', transcriptFile: 'assets/content/transcripts/analysing-data/obs-snap-notes.txt' },
-      { title: 'A strengths-based approach to observation and assessment', url: 'https://www.youtube.com/watch?v=Rg_Bk8mhsQI', transcriptFile: 'assets/content/transcripts/analysing-data/obs-snap-trends.txt' },
-    ];
-
-    videoData.forEach((video) => {
-      this.http.get(video.transcriptFile, { responseType: 'text' }).subscribe(t => {
-        const col = this.videoColumns[0];
-        const v = col.videos.find(v => v.title === video.title);
-        if (v) v.transcript = t;
-      });
-    });
+    this.videoColumns$ = this.videoContentService.getPageColumns('analysing-data');
   }
 
   ngOnInit(): void {
     this.scroll.scrollToPosition([0, 0]);
   }
 
-  protected readonly videoColumns: MockColumn[] = [
-    {
-      heading: 'Observation snapshots',
-      intro:
-        '',
-      videos: [
-        {
-          title: 'Observational data and the planning cycle ',
-          description:
-            '',
-          youtubeUrl: 'https://www.youtube.com/watch?v=RCmiHUNHa8c',
-          transcript: '',
-        },
-        {
-          title: 'A collaborative approach to observation and assessment',
-          description:
-            '',
-          youtubeUrl: 'https://www.youtube.com/watch?v=t_TQXaHyjZM',
-          transcript: '',
-        },
-        {
-          title: 'A strengths-based approach to observation and assessment',
-          description:
-            '',
-          youtubeUrl: 'https://www.youtube.com/watch?v=Rg_Bk8mhsQI',
-          transcript: '',
-        },
-      ],
-    }   
-  ];
+    protected captureKlptTouchStart(event: TouchEvent): void {
+    const touch = event.changedTouches[0];
 
-  protected get videos(): MockVideo[] {
-    return this.videoColumns.flatMap((column) => column.videos);
+    this.klptTouchStart = touch ? { x: touch.clientX, y: touch.clientY } : undefined;
   }
+
+  protected openKlptFromTouch(event: TouchEvent): void {
+    const touch = event.changedTouches[0];
+    const start = this.klptTouchStart;
+    this.klptTouchStart = undefined;
+
+    if (!touch || !start) {
+      return;
+    }
+
+    const moved = Math.hypot(touch.clientX - start.x, touch.clientY - start.y);
+
+    if (moved > 10) {
+      return;
+    }
+
+    event.preventDefault();
+    void this.router.navigateByUrl('/learning-observation-tool');
+  }
+
 }
