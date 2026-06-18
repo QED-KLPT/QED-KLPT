@@ -18,7 +18,7 @@ type DesignCard = {
 
 @Component({
   selector: 'app-mathematics-and-numeracy',
-  imports: [RouterLink, AccordionItemComponent, BreadcrumbComponent, YoutubePlayerModule],
+  imports: [RouterLink, BreadcrumbComponent, YoutubePlayerModule],
   templateUrl: './mathematics-and-numeracy.html',
   styleUrl: './mathematics-and-numeracy.scss',
 })
