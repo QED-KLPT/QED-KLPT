@@ -23,7 +23,9 @@
 .domain-hero--mathematics,
 .domain-hero--physicality,
 .domain-hero--executive,
-.domain-hero--social {
+.domain-hero--social,
+.domain-hero--quality-observations,
+.domain-hero--analysing-data {
   min-height: clamp(18.75rem, 24vw, 22rem);
 }
 
@@ -31,8 +33,53 @@
 .domain-hero--mathematics .domain-hero__copy,
 .domain-hero--physicality .domain-hero__copy,
 .domain-hero--executive .domain-hero__copy,
-.domain-hero--social .domain-hero__copy {
+.domain-hero--social .domain-hero__copy,
+.domain-hero--quality-observations .domain-hero__copy,
+.domain-hero--analysing-data .domain-hero__copy {
   align-self: start;
+}
+
+.app-content-shell--inline-hero .domain-hero,
+.app-content-shell--inline-hero .page-placeholder,
+.app-content-shell--inline-hero .about-hero,
+.app-content-shell--inline-hero .contact-hero,
+.app-content-shell--inline-hero .standard-hero {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+}
+
+.standard-hero {
+  padding-block: clamp(0.95rem, 2vw, 1.7rem) clamp(1.85rem, 4vw, 3.35rem);
+}
+
+.standard-hero__lead {
+  max-width: 54rem;
+}
+
+.app-content-shell--inline-hero .domain-overview,
+.app-content-shell--inline-hero .learning-literacy-data-content,
+.app-content-shell--inline-hero .domain-nav,
+.app-content-shell--inline-hero .foundation-nav,
+.app-content-shell--inline-hero .page-content-stack,
+.app-content-shell--inline-hero .about-comparison,
+.app-content-shell--inline-hero .contact-content,
+.app-content-shell--inline-hero .standard-content {
+  grid-column: 1;
+  grid-row: 3;
+  min-width: 0;
+  background: var(--klpt-cream);
+  padding-block-start: clamp(1.5rem, 3.5vw, 3rem);
+}
+
+.app-content-shell--compact-inline-hero .domain-nav,
+.app-content-shell--compact-inline-hero .foundation-nav {
+  padding-block-start: clamp(0.75rem, 1.75vw, 1.5rem);
+}
+
+.domain-hero__breadcrumbs {
+  margin-block-end: clamp(1.25rem, 2.5vw, 2rem);
 }
 
 .section__intro {
@@ -53,12 +100,29 @@
   .domain-hero--mathematics,
   .domain-hero--physicality,
   .domain-hero--executive,
-  .domain-hero--social {
+  .domain-hero--social,
+  .domain-hero--quality-observations,
+  .domain-hero--analysing-data {
     min-height: auto;
   }
 
   .card-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 56rem) {
+  .app-content-shell--inline-hero .domain-overview,
+  .app-content-shell--inline-hero .learning-literacy-data-content,
+  .app-content-shell--inline-hero .domain-nav,
+  .app-content-shell--inline-hero .foundation-nav,
+  .app-content-shell--inline-hero .page-content-stack,
+  .app-content-shell--inline-hero .about-comparison,
+  .app-content-shell--inline-hero .contact-content,
+  .app-content-shell--inline-hero .standard-content {
+    grid-column: 2;
+    grid-row: 2;
+    padding-inline: 0;
   }
 }
 

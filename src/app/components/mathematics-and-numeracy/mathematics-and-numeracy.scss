@@ -1,9 +1,9 @@
 :host {
-  display: block;
+  display: contents;
 }
 
 .domain-hero {
-  padding-block: clamp(1.85rem, 4vw, 3.35rem);
+  padding-block: clamp(0.95rem, 2vw, 1.7rem) clamp(1.85rem, 4vw, 3.35rem);
   background: linear-gradient(180deg, #fff5f5 0%, #f7d8da 100%);
 }
 

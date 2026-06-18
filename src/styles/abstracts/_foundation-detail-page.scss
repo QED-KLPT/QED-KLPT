@@ -1,6 +1,6 @@
 @mixin domain-hero-base($background, $border-color, $shadow-color) {
   .domain-hero {
-    padding-block: clamp(1.85rem, 4vw, 3.35rem);
+    padding-block: clamp(0.95rem, 2vw, 1.7rem) clamp(1.85rem, 4vw, 3.35rem);
     background: $background;
   }
 

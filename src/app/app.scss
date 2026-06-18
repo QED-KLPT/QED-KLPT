@@ -41,6 +41,28 @@
   min-width: 0;
 }
 
+.app-content-shell--with-side-nav.app-content-shell--inline-hero {
+  display: grid;
+  width: 100%;
+  margin-inline: 0;
+  gap: 0;
+  padding-block: 0;
+}
+
+.app-content-shell--inline-hero .app-main {
+  display: contents;
+}
+
+.app-content-shell--inline-hero .app-side-nav {
+  grid-row: 2;
+  width: min(var(--doe-container-width), calc(100% - 2rem));
+  margin: 1.25rem auto 0;
+}
+
+.app-content-shell--compact-inline-hero .app-side-nav {
+  margin-block-start: 0.625rem;
+}
+
 .app-side-nav {
   width: 100%;
 }
@@ -136,8 +158,29 @@
     gap: clamp(1.5rem, 3vw, 2.5rem);
   }
 
+  .app-content-shell--with-side-nav.app-content-shell--inline-hero {
+    width: min(var(--doe-container-width), calc(100% - 2rem));
+    margin-inline: auto;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+  }
+
+  .app-content-shell--with-side-nav.app-content-shell--compact-inline-hero {
+    row-gap: clamp(0.75rem, 1.5vw, 1.25rem);
+  }
+
   .app-side-nav {
     position: sticky;
     top: 1rem;
+  }
+
+  .app-content-shell--inline-hero .app-side-nav {
+    grid-column: 1;
+    grid-row: 2;
+    width: 100%;
+    margin-block-start: 1.25rem;
+  }
+
+  .app-content-shell--compact-inline-hero .app-side-nav {
+    margin-block-start: 0.625rem;
   }
 }

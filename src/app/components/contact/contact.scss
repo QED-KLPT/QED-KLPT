@@ -1,13 +1,9 @@
 :host {
-  display: block;
+  display: contents;
 }
 
-.contact-hero__lead {
-  max-width: 54rem;
-}
-
-.contact-hero {
-  padding-block: clamp(2rem, 4.7vw, 4rem);
+.contact-nav-space {
+  min-height: clamp(10rem, 20vw, 16rem);
 }
 
 .contact-content {

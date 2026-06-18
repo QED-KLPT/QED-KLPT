@@ -2,7 +2,7 @@ import { ViewportScroller } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
-import { AccordionItemComponent } from '../shared/accordion-item/accordion-item.component';
+import { BreadcrumbComponent, BreadcrumbItem } from '../shared/breadcrumb';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
 import { DomainAssetModeService } from '../../services/domain-asset-mode.service';
 
@@ -18,12 +18,17 @@ type DesignCard = {
 
 @Component({
   selector: 'app-social-and-emotional-learning',
-  imports: [RouterLink, AccordionItemComponent, YoutubePlayerModule],
+  imports: [RouterLink, BreadcrumbComponent, YoutubePlayerModule],
   templateUrl: './social-and-emotional-learning.html',
   styleUrl: './social-and-emotional-learning.scss',
 })
 export class SocialAndEmotionalLearning implements OnInit {
   protected readonly domainAssets = inject(DomainAssetModeService);
+  protected readonly breadcrumbs: BreadcrumbItem[] = [
+    { label: 'Home', href: '/' },
+    { label: 'Learning domains', href: '/learning-domains' },
+    { label: 'Social and emotional learning', current: true },
+  ];
   
   socialAndEmotionalLearningTranscript: string = '';
 
@@ -38,25 +43,7 @@ export class SocialAndEmotionalLearning implements OnInit {
     this.scroll.scrollToPosition([0, 0]);
   }
 
-  protected readonly practiceSupports: { title: string; summary: string; accordionItems: { title: string; body: string[] }[]; pdfLabel: string; pdfPath: string } = {
-    title: 'Social and emotional learning',
-    summary: 'Support children to recognise feelings, build relationships, and participate with growing confidence through responsive interactions and safe, predictable routines.',  
-    accordionItems: [
-      {
-        title: 'Intentional teaching strategies',
-        body: [
-          'Name emotions in the moment, model calm problem solving, and coach children through social situations with empathy and clear language.',
-          'Use books, visuals, and shared reflections to build a vocabulary for feelings, friendship, and belonging.',
-        ],
-      },
-      {
-        title: 'Learning experiences',
-        body: [
-          'Offer small-group games, collaborative projects, and dramatic play invitations that encourage negotiation, perspective taking, and shared joy.',
-          'Build in quiet spaces and sensory supports so children can return to regulation when needed.',
-        ],
-      },
-    ],
+  protected readonly practiceSupports = {
     pdfLabel: 'Download social and emotional learning practice supports (PDF, 1.3MB)',
     pdfPath: 'assets/content/pdfs/qklg-principle-rrls-poster.pdf',
   };

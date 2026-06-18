@@ -1,15 +1,21 @@
 import { ViewportScroller } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { BreadcrumbComponent, BreadcrumbItem } from '../shared/breadcrumb';
 import { InPageNavComponent, type InPageNavItem } from '../shared/in-page-nav/in-page-nav.component';
 
 @Component({
   selector: 'app-help',
-  imports: [InPageNavComponent],
+  imports: [BreadcrumbComponent, InPageNavComponent],
   templateUrl: './help.html',
   styleUrl: './help.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Help implements OnInit {
+  protected readonly breadcrumbs: BreadcrumbItem[] = [
+    { label: 'Home', href: '/' },
+    { label: 'Help', current: true },
+  ];
+
   inPageNavItems: InPageNavItem[] = [
     { label: 'What is the purpose of the KLPT?', href: '#faq-purpose' },
     { label: 'What are the 5 core skills addressed by the KLPT?', href: '#faq-core-skills' },
