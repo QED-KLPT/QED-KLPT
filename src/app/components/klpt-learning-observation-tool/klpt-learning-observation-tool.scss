@@ -1,5 +1,5 @@
 :host {
-  display: block;
+  display: contents;
 }
 
 .klpt-subsite {
@@ -9,18 +9,19 @@
   --klpt-tool-text: #1f2937;
   --content-max: var(--doe-container-width);
 
+  display: contents;
   min-height: 100%;
-  background: var(--klpt-tool-bg);
   color: var(--klpt-tool-text);
 }
 
 .klpt-subsite .section {
-  padding-inline: 1rem;
+  padding-inline: var(--page-gutter);
 }
 
 .domain-hero--klpt {
-  padding-block: clamp(1rem, 2.7vw, 1.7rem);
-  background: transparent;
+  min-height: clamp(16rem, 20vw, 18rem);
+  padding-block: clamp(0.95rem, 2vw, 1.7rem) clamp(1.85rem, 4vw, 3.35rem);
+  background: var(--klpt-cream);
 }
 
 .domain-hero--klpt .domain-hero__layout {
@@ -36,7 +37,7 @@
 }
 
 .klpt-subsite .klpt-step {
-  background: transparent;
+  background: var(--klpt-surface);
   padding-block: clamp(2rem, 4vw, 3rem);
 }
 
