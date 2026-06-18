@@ -63,8 +63,8 @@ export class Physicality implements OnInit {
         ],
       },
     ],
-    pdfLabel: 'Download physicality practice supports (PDF, 1.3MB)',
-    pdfPath: 'assets/content/pdfs/qklg-principle-rdiv-poster.pdf',
+    pdfLabel: 'Download physicality practice support (PDF, 1.01 MB)',
+    pdfPath: 'assets/content/pdfs/physicality-practice-support.pdf',
   };
 
   protected readonly cards: DesignCard[] = [

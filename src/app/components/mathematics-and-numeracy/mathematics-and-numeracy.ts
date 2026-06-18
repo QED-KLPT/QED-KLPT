@@ -44,8 +44,8 @@ export class MathematicsAndNumeracy implements OnInit {
   }
 
   protected readonly practiceSupports = {
-    pdfLabel: 'Download mathematics and numeracy practice supports (PDF, 1.3MB)',
-    pdfPath: 'assets/content/pdfs/qklg-principle-cpt-poster.pdf',
+    pdfLabel: 'Download mathematics and numeracy practice support (PDF, 1.01 MB)',
+    pdfPath: 'assets/content/pdfs/mathematics-numeracy-practice-support.pdf',
   };
 
   protected readonly cards: DesignCard[] = [
