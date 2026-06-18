@@ -19,7 +19,7 @@ export interface SiteBreadcrumbItem {
 
 export const SITE_NAV_ITEMS: SiteNavItem[] = [
   { label: 'Home', path: '/', icon: 'fa-regular fa-house', exact: true, sitemap: false },
-  { label: 'About', path: '/about', sideNav: true },
+  { label: 'About', path: '/about' },
   {
     label: 'KLPT foundations',
     path: '/klpt-foundations',
@@ -53,7 +53,7 @@ export const SITE_NAV_ITEMS: SiteNavItem[] = [
     path: '/learning-observation-tool',
     sideNav: false,
   },
-  { label: 'Contact', path: '/contact', sideNav: true },
+  { label: 'Contact', path: '/contact' },
 ];
 
 export function getPrimaryNavItems(): SiteNavItem[] {
@@ -114,11 +114,11 @@ export function getSideNavItems(url: string): SiteNavItem[] {
 export function getSideNavTitle(url: string): string | null {
   const activeItem = getActiveTopLevelNavItem(url);
 
-  if (!activeItem || activeItem.sideNav === false) {
+  if (!activeItem || activeItem.sideNav === false || !activeItem.children?.length) {
     return null;
   }
 
-  return activeItem.children?.length || activeItem.sideNav === true ? activeItem.label : null;
+  return activeItem.label;
 }
 
 export function getBreadcrumbItems(url: string): SiteBreadcrumbItem[] {
