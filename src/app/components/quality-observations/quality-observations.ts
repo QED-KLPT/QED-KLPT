@@ -4,18 +4,24 @@ import { Router, RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
+import { BreadcrumbComponent, BreadcrumbItem } from '../shared/breadcrumb';
 import { DomainAssetModeService } from '../../services/domain-asset-mode.service';
 import { KlptVideoContentService, PageVideoColumn } from '../../services/klpt-video-content.service';
 
 @Component({
   selector: 'app-quality-observations',
-  imports: [CommonModule, YoutubePlayerModule],
+  imports: [CommonModule, BreadcrumbComponent, YoutubePlayerModule],
   templateUrl: './quality-observations.html',
   styleUrl: './quality-observations.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class QualityObservations implements OnInit {
   protected readonly domainAssets = inject(DomainAssetModeService);
+  protected readonly breadcrumbs: BreadcrumbItem[] = [
+    { label: 'Home', href: '/' },
+    { label: 'KLPT foundations', href: '/klpt-foundations' },
+    { label: 'Conducting and documenting quality observations', current: true },
+  ];
   protected readonly videoColumns$: Observable<PageVideoColumn[]>;
   private klptTouchStart: { x: number; y: number } | undefined;
   

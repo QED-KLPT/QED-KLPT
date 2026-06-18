@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, OnInit, computed, inject } from '@a
 import { Router, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
+import { BreadcrumbComponent, BreadcrumbItem } from '../shared/breadcrumb';
 import { KlptVideoContentService, PageVideoColumn } from '../../services/klpt-video-content.service';
 import { DomainAssetModeService } from '../../services/domain-asset-mode.service';
 
@@ -24,13 +25,18 @@ const DARK_BLUE_CARD_BACKGROUND = '#003e96';
 
 @Component({
   selector: 'app-language-and-literacy',
-  imports: [CommonModule, RouterLink, YoutubePlayerModule],
+  imports: [CommonModule, RouterLink, BreadcrumbComponent, YoutubePlayerModule],
   templateUrl: './language-and-literacy.html',
   styleUrl: './language-and-literacy.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LanguageAndLiteracy implements OnInit {
   protected readonly domainAssets = inject(DomainAssetModeService);
+  protected readonly breadcrumbs: BreadcrumbItem[] = [
+    { label: 'Home', href: '/' },
+    { label: 'Learning domains', href: '/learning-domains' },
+    { label: 'Language and literacy', current: true },
+  ];
   protected readonly videoColumns$: Observable<PageVideoColumn[]>;
   private klptTouchStart: { x: number; y: number } | undefined;
 

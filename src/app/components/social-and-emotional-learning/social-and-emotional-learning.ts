@@ -3,6 +3,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
 import { AccordionItemComponent } from '../shared/accordion-item/accordion-item.component';
+import { BreadcrumbComponent, BreadcrumbItem } from '../shared/breadcrumb';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
 import { DomainAssetModeService } from '../../services/domain-asset-mode.service';
 
@@ -18,12 +19,17 @@ type DesignCard = {
 
 @Component({
   selector: 'app-social-and-emotional-learning',
-  imports: [RouterLink, AccordionItemComponent, YoutubePlayerModule],
+  imports: [RouterLink, AccordionItemComponent, BreadcrumbComponent, YoutubePlayerModule],
   templateUrl: './social-and-emotional-learning.html',
   styleUrl: './social-and-emotional-learning.scss',
 })
 export class SocialAndEmotionalLearning implements OnInit {
   protected readonly domainAssets = inject(DomainAssetModeService);
+  protected readonly breadcrumbs: BreadcrumbItem[] = [
+    { label: 'Home', href: '/' },
+    { label: 'Learning domains', href: '/learning-domains' },
+    { label: 'Social and emotional learning', current: true },
+  ];
   
   socialAndEmotionalLearningTranscript: string = '';
 

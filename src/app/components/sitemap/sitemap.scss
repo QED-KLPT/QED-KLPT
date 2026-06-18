@@ -2,12 +2,8 @@
   display: block;
 }
 
-.sitemap-header {
-  padding-block: clamp(2rem, 4.7vw, 4rem);
-
-  h1 {
-    max-width: 46rem;
-  }
+.sitemap-header h1 {
+  max-width: 46rem;
 }
 
 .sitemap-body {
