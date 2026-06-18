@@ -73,6 +73,11 @@
   padding-block-start: clamp(1.5rem, 3.5vw, 3rem);
 }
 
+.app-content-shell--compact-inline-hero .domain-nav,
+.app-content-shell--compact-inline-hero .foundation-nav {
+  padding-block-start: clamp(0.75rem, 1.75vw, 1.5rem);
+}
+
 .domain-hero__breadcrumbs {
   margin-block-end: clamp(1.25rem, 2.5vw, 2rem);
 }

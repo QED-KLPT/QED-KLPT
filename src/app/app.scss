@@ -59,6 +59,10 @@
   margin: 1.25rem auto 0;
 }
 
+.app-content-shell--compact-inline-hero .app-side-nav {
+  margin-block-start: 0.625rem;
+}
+
 .app-side-nav {
   width: 100%;
 }
@@ -160,6 +164,10 @@
     gap: clamp(1.5rem, 3vw, 2.5rem);
   }
 
+  .app-content-shell--with-side-nav.app-content-shell--compact-inline-hero {
+    row-gap: clamp(0.75rem, 1.5vw, 1.25rem);
+  }
+
   .app-side-nav {
     position: sticky;
     top: 1rem;
@@ -170,5 +178,9 @@
     grid-row: 2;
     width: 100%;
     margin-block-start: 1.25rem;
+  }
+
+  .app-content-shell--compact-inline-hero .app-side-nav {
+    margin-block-start: 0.625rem;
   }
 }

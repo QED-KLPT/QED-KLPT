@@ -3,7 +3,7 @@
 }
 
 .page-placeholder {
-  min-height: 22.75rem;
+  min-height: clamp(16rem, 20vw, 18rem);
   padding-block: clamp(0.95rem, 2vw, 1.7rem) clamp(1.85rem, 4vw, 3.35rem);
 }
 

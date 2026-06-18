@@ -18,8 +18,14 @@ const UPDATE_RECHECK_DELAY_MS = 2 * 60 * 1000;
 const INLINE_HERO_ROUTE_PREFIXES = [
   '/learning-domains',
   '/klpt-foundations',
+  '/learning-observation-tool',
 ];
 const INLINE_HERO_ROUTES = ['/about', '/contact', '/help', '/practice-supports', '/sitemap'];
+const COMPACT_INLINE_HERO_ROUTES = [
+  '/learning-domains',
+  '/klpt-foundations',
+  '/learning-observation-tool',
+];
 
 @Component({
   selector: 'app-root',
@@ -41,6 +47,7 @@ export class App implements OnInit {
   protected sideNavTitle: string | null = null;
   protected breadcrumbItems: BreadcrumbItem[] = [];
   protected hasInlineHeroLayout = false;
+  protected hasCompactInlineHeroLayout = false;
   protected updateFailureMessage =
     'An update was detected but could not be installed yet. Please try again in a few minutes.';
 
@@ -137,6 +144,7 @@ export class App implements OnInit {
       INLINE_HERO_ROUTE_PREFIXES.some((prefix) =>
         currentPath === prefix || currentPath.startsWith(`${prefix}/`),
       );
+    this.hasCompactInlineHeroLayout = COMPACT_INLINE_HERO_ROUTES.includes(currentPath);
   }
 
   protected dismissUpdateNotice(): void {

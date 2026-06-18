@@ -20,6 +20,7 @@
     [class.app-content-shell--with-side-nav]="sideNavTitle"
     [class.app-content-shell--after-breadcrumbs]="breadcrumbItems.length && !hasInlineHeroLayout"
     [class.app-content-shell--inline-hero]="hasInlineHeroLayout"
+    [class.app-content-shell--compact-inline-hero]="hasCompactInlineHeroLayout"
   >
     @if (sideNavTitle) {
       <aside class="app-side-nav">
