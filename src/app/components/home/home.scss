@@ -1,3 +1,5 @@
+@use "../../../styles/abstracts/foundation-detail-page" as foundation-detail;
+
 :host {
   display: block;
 }
@@ -377,3 +379,5 @@
     grid-template-columns: 1fr;
   }
 }
+
+@include foundation-detail.pdf-guide-link;
