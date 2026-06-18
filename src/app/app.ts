@@ -13,6 +13,29 @@ import { BreadcrumbComponent, BreadcrumbItem } from './components/shared/breadcr
 import { QldSideNavComponent } from './components/shared/qld-side-nav/qld-side-nav.component';
 import { getBreadcrumbItems, getSideNavItems, getSideNavTitle, SiteNavItem } from './navigation/site-navigation';
 
+// Handle return from external PDF BEFORE Angular bootstraps.
+// Runs at module evaluation time — two mechanisms:
+// 1) Hash + history.state (if pushState created a distinct entry)
+// 2) sessionStorage fallback (if browser coalesced pushState + navigation)
+(function handleKlptPdfReturn() {
+  const state = window.history.state as Record<string, string> | null;
+
+  if (window.location.hash === '#_klpt_return' && state?.['_klptReturn']) {
+    window.history.replaceState(null, '', state['_klptReturn']);
+    return;
+  }
+
+  const pdfReturn = sessionStorage.getItem('_klptPdfReturn');
+
+  if (pdfReturn) {
+    sessionStorage.removeItem('_klptPdfReturn');
+    // replaceState only changes the URL silently — it does NOT navigate.
+    // If pushState was coalesced and we landed on Step 2, we must actually
+    // navigate back to Step 3 before Angular bootstraps.
+    window.location.replace(pdfReturn);
+  }
+})();
+
 const UPDATE_RECHECK_DELAY_MS = 2 * 60 * 1000;
 
 @Component({
@@ -108,14 +131,24 @@ export class App implements OnInit {
       )
       .subscribe(() => void this.checkForSiteUpdate());
 
-    // Intercept return from external PDF links (QKLG). When pushState + hash fragment
-    // brings the user back, replace the URL with the clean return URL to keep them on Step 3.
+    // Handle return from external PDF links (QKLG).
+    // When the user clicks Back from the PDF, the browser does a full page load at
+    // the URL with #_klpt_return hash. popstate does NOT fire on initial load,
+    // so we must detect this synchronously before Angular router processes navigation.
+    const klptReturnState = window.history.state as Record<string, string> | null;
+
+    if (window.location.hash === '#_klpt_return' && klptReturnState?.['_klptReturn']) {
+      console.log('[QKLG] Detected return from external PDF. Restoring URL to:', klptReturnState['_klptReturn']);
+      window.history.replaceState(null, '', klptReturnState['_klptReturn']);
+    }
+
+    // Also handle popstate for subsequent Back/Forward within the SPA.
     fromEvent(window, 'popstate')
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {
         const state = window.history.state as Record<string, string> | null;
 
-        if (state?.['_klptReturn']) {
+        if (window.location.hash === '#_klpt_return' && state?.['_klptReturn']) {
           window.history.replaceState(null, '', state['_klptReturn']);
         }
       });

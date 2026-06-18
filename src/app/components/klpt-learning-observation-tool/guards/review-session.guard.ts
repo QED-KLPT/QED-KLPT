@@ -25,6 +25,14 @@ export const reviewSessionGuard: CanActivateFn = (route, state) => {
     return router.parseUrl(`/learning-observation-tool/select-domains/${sessionId}`);
   }
 
+  // Skip validation when returning from external PDF — domainData may not be loaded yet.
+  const pdfReturnBypass = sessionStorage.getItem('_klptPdfReturnBypass');
+
+  if (pdfReturnBypass) {
+    sessionStorage.removeItem('_klptPdfReturnBypass');
+    return true;
+  }
+
   if (!hasSelectedBehaviours(session, domainData)) {
     return router.parseUrl(`/learning-observation-tool/select-behaviours/${sessionId}`);
   }
