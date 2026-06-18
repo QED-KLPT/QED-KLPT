@@ -1,11 +1,13 @@
 <section class="page page--sitemap">
-  <header class="sitemap-header">
+  <header class="section section--cream standard-hero sitemap-header">
     <div class="section__inner">
+      <app-breadcrumb class="domain-hero__breadcrumbs" [items]="breadcrumbs" />
+
       <h1>All pages on this site</h1>
     </div>
   </header>
 
-  <section class="sitemap-body">
+  <section class="section section--white standard-content sitemap-body">
     <div class="section__inner">
       <ul class="sitemap-tree">
         @for (node of tree; track node.label) {
