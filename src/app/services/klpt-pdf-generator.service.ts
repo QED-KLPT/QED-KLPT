@@ -5,6 +5,7 @@ import { KlptDomainDataService } from '../components/klpt-learning-observation-t
 import type { KlptBehaviour } from '../components/klpt-learning-observation-tool/models/klpt-behaviour';
 import type { KlptDomain } from '../components/klpt-learning-observation-tool/models/klpt-domain';
 import type { KlptElement } from '../components/klpt-learning-observation-tool/models/klpt-element';
+import type { KlptSubDomain } from '../components/klpt-learning-observation-tool/models/klpt-sub-domain';
 import { HIGHEST_BEHAVIOUR_HTML } from '../components/klpt-learning-observation-tool/components/shared/klpt-constants';
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
@@ -30,6 +31,7 @@ const PDF_THEME = {
 };
 
 interface PdfProgressionItem {
+  subDomain: KlptSubDomain | undefined;
   element: KlptElement;
   behaviour: KlptBehaviour;
   nextBehaviour: KlptBehaviour | undefined;
@@ -222,7 +224,8 @@ export class KlptPdfGeneratorService {
     const nextHeight = nextText
       ? this.measurePanelHeight(doc, panelWidth, 'What is likely to be the next step in learning progression', nextText)
       : 0;
-    const itemHeight = 15 + Math.max(observedHeight, nextHeight);
+    const headingHeight = item.subDomain ? 17 : 11;
+    const itemHeight = headingHeight + Math.max(observedHeight, nextHeight);
 
     y = this.ensureSpace(doc, y, itemHeight + 5, margin, pageHeight);
     doc.setFillColor(...PDF_THEME.panel);
@@ -233,11 +236,24 @@ export class KlptPdfGeneratorService {
     doc.rect(margin, y, 2.2, itemHeight, 'F');
 
     doc.setFont('helvetica', 'bold');
-    doc.setFontSize(10);
+    doc.setFontSize(8);
     doc.setTextColor(...PDF_THEME.blue);
-    doc.text(item.element.name, margin + 7, y + 9);
+    let headingY = y + 7;
 
-    const panelY = y + 13;
+    if (item.subDomain) {
+      doc.setFont('helvetica', 'normal');
+      doc.text('SUBDOMAIN: ', margin + 7, headingY);
+      doc.setFont('helvetica', 'bold');
+      doc.text(item.subDomain.name.toUpperCase(), margin + 27, headingY);
+      headingY += 6;
+    }
+
+    doc.setFont('helvetica', 'normal');
+    doc.text('KEY ELEMENT: ', margin + 7, headingY);
+    doc.setFont('helvetica', 'bold');
+    doc.text(item.element.name.toUpperCase(), margin + 31, headingY);
+
+    const panelY = y + headingHeight;
     this.addEvidencePanel(doc, margin + 5, panelY, panelWidth, observedHeight, 'What you observed', observedText);
 
     if (nextText) {
@@ -430,6 +446,7 @@ export class KlptPdfGeneratorService {
 
   private progressionItems(session: SessionModel): PdfProgressionItem[] {
     const allElements = this.allElements();
+    const subDomain = this.resolveSubDomain(session.subDomain);
 
     return session.elements
       .map((selectedElement) => {
@@ -443,6 +460,7 @@ export class KlptPdfGeneratorService {
         }
 
         return {
+          subDomain,
           element,
           behaviour,
           nextBehaviour: element.behaviours.find(
@@ -460,6 +478,17 @@ export class KlptPdfGeneratorService {
         ...(domain.elements ?? []),
         ...(domain.subDomains ?? []).flatMap((subDomain) => subDomain.elements ?? []),
       ]);
+  }
+
+  private resolveSubDomain(subDomainId: string | undefined): KlptSubDomain | undefined {
+    if (!subDomainId) {
+      return undefined;
+    }
+
+    return this.domainData
+      .getAllDomains()
+      .flatMap((domain) => domain.subDomains ?? [])
+      .find((subDomain) => subDomain.id === subDomainId);
   }
 
   private formValue(session: SessionModel, name: string): string {

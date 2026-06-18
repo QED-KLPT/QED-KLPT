@@ -39,6 +39,31 @@
   opacity: 0.5;
 }
 
+.klpt-progression-item__heading {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.klpt-progression-item__heading p,
+.klpt-progression-item__heading h3 {
+  margin: 0;
+  color: #0d3b66;
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.klpt-progression-item__heading strong,
+.klpt-progression-item__heading h3 {
+  font-weight: 700;
+}
+
+.klpt-progression-item__heading h3 span {
+  font-weight: 500;
+}
+
 .reflection-layout {
   display: grid;
   gap: 1.25rem;
