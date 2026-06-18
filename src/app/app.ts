@@ -6,13 +6,35 @@ import {
   VersionInstallationFailedEvent,
   VersionReadyEvent,
 } from '@angular/service-worker';
-import { filter, fromEvent, timer } from 'rxjs';
-import { Footer } from './_layout/footer/footer';
+import { filter, fromEvent, tap, timer } from 'rxjs';import { Footer } from './_layout/footer/footer';
 import { Header } from './_layout/header/header';
 import { BackToTopComponent } from './components/shared/back-to-top';
 import { BreadcrumbComponent, BreadcrumbItem } from './components/shared/breadcrumb';
 import { QldSideNavComponent } from './components/shared/qld-side-nav/qld-side-nav.component';
 import { getBreadcrumbItems, getSideNavItems, getSideNavTitle, SiteNavItem } from './navigation/site-navigation';
+
+// Handle return from external PDF BEFORE Angular bootstraps.
+// Runs at module evaluation time — two mechanisms:
+// 1) Hash + history.state (if pushState created a distinct entry)
+// 2) sessionStorage fallback (if browser coalesced pushState + navigation)
+(function handleKlptPdfReturn() {
+  const state = window.history.state as Record<string, string> | null;
+
+  if (window.location.hash === '#_klpt_return' && state?.['_klptReturn']) {
+    window.history.replaceState(null, '', state['_klptReturn']);
+    return;
+  }
+
+  const pdfReturn = sessionStorage.getItem('_klptPdfReturn');
+
+  if (pdfReturn) {
+    sessionStorage.removeItem('_klptPdfReturn');
+    // replaceState only changes the URL silently — it does NOT navigate.
+    // If pushState was coalesced and we landed on Step 2, we must actually
+    // navigate back to Step 3 before Angular bootstraps.
+    window.location.replace(pdfReturn);
+  }
+})();
 
 const UPDATE_RECHECK_DELAY_MS = 2 * 60 * 1000;
 const INLINE_HERO_ROUTE_PREFIXES = [
@@ -121,6 +143,28 @@ export class App implements OnInit {
         takeUntilDestroyed(this.destroyRef),
       )
       .subscribe(() => void this.checkForSiteUpdate());
+
+    // Handle return from external PDF links (QKLG).
+    // When the user clicks Back from the PDF, the browser does a full page load at
+    // the URL with #_klpt_return hash. popstate does NOT fire on initial load,
+    // so we must detect this synchronously before Angular router processes navigation.
+    const klptReturnState = window.history.state as Record<string, string> | null;
+
+    if (window.location.hash === '#_klpt_return' && klptReturnState?.['_klptReturn']) {
+      console.log('[QKLG] Detected return from external PDF. Restoring URL to:', klptReturnState['_klptReturn']);
+      window.history.replaceState(null, '', klptReturnState['_klptReturn']);
+    }
+
+    // Also handle popstate for subsequent Back/Forward within the SPA.
+    fromEvent(window, 'popstate')
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        const state = window.history.state as Record<string, string> | null;
+
+        if (window.location.hash === '#_klpt_return' && state?.['_klptReturn']) {
+          window.history.replaceState(null, '', state['_klptReturn']);
+        }
+      });
   }
 
   private announceRouteChange(): void {

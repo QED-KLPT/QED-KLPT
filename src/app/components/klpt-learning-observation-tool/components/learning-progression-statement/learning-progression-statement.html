@@ -153,7 +153,9 @@
           (input)="updateFormField('qklg-eylf-links', $any($event.target).value)"
         ></textarea>
         <p class="klpt-form-field__hint">
-          <a href="https://www.qcaa.qld.edu.au/downloads/kindergarten/qklg_align_eylf.pdf" rel="noopener">Queensland kindergarten learning guideline (QKLG) (PDF, 147 KB)</a>
+          <button type="button" class="link-button" (click)="openQklgPdf()">
+            Queensland kindergarten learning guideline (QKLG) (PDF, 147 KB)
+          </button>
         </p>
       </label>
 

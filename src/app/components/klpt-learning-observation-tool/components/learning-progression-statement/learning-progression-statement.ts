@@ -172,6 +172,26 @@ export class LearningProgressionStatement implements OnInit, OnDestroy {
     return hasSelectedBehaviours(this.currentSession, this.domainData);
   }
 
+  protected openQklgPdf(): void {
+    const url = 'https://www.qcaa.qld.edu.au/downloads/kindergarten/qklg_align_eylf.pdf';
+    const returnUrl = `${window.location.origin}${window.location.pathname}${window.location.search}`;
+
+    window.history.pushState(
+      { _klptReturn: returnUrl },
+      '',
+      window.location.pathname + '#_klpt_return',
+    );
+
+    // Fallback: if browser coalesces pushState + navigation, sessionStorage catches the Back.
+    sessionStorage.setItem('_klptPdfReturn', returnUrl);
+    // Tell the route guard to skip validation on return (domainData may not be loaded yet).
+    sessionStorage.setItem('_klptPdfReturnBypass', '1');
+
+    queueMicrotask(() => {
+      window.location.href = url;
+    });
+  }
+
   private mergeFormFields(fields: NameValuePair[]): NameValuePair[] {
     const requiredFields = [
       'date',
