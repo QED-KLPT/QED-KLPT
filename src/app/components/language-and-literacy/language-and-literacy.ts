@@ -78,25 +78,7 @@ export class LanguageAndLiteracy implements OnInit {
     void this.router.navigateByUrl('/learning-observation-tool');
   }
 
-    protected readonly practiceSupports: { title: string; summary: string; accordionItems: { title: string; body: string[] }[]; pdfLabel: string; pdfPath: string } = {
-    title: 'Language and literacy',
-    summary: 'Practice supports for language and literacy can help teams strengthen communication-rich environments, shared reading routines, and responsive interactions that invite children to experiment with speaking, listening, reading, and mark making.',
-    accordionItems: [
-      {
-        title: 'Intentional teaching strategies',
-        body: [
-          'Model rich oral language, extend children\'s ideas during conversations, and use repeated story experiences to build comprehension and vocabulary.',
-          'Offer visual supports, songs, predictable routines, and opportunities for children to revisit new words in meaningful contexts.',
-        ],
-      },
-      {
-        title: 'Learning experiences',
-        body: [
-          'Create inviting spaces for storytelling, role play, book browsing, drawing, and shared writing so children can explore language in different ways.',
-          'Plan playful experiences that connect language to movement, music, dramatic play, and children\'s interests.',
-        ],
-      },
-    ],
+    protected readonly practiceSupports = {
     pdfLabel: 'Download language and literacy practice supports (PDF, 1.0MB)',
     pdfPath: 'assets/content/pdfs/klpt-langlit-pracsupp.pdf',
   };

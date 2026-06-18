@@ -74,19 +74,7 @@
 
     <div id="practice-supports" class="practice-supports-inline">
       <h2>Practice supports</h2>
-      <p class="practice-supports-inline__summary">{{ practiceSupports.summary }}</p>
-
-      @if (practiceSupports.accordionItems.length) {
-      <div class="practice-supports-inline__accordion-group">
-        @for (item of practiceSupports.accordionItems; track item.title) {
-        <app-accordion-item [title]="item.title" [alt]="true">
-          @for (paragraph of item.body; track paragraph) {
-          <p>{{ paragraph }}</p>
-          }
-        </app-accordion-item>
-        }
-      </div>
-      }
+      <p>The practice supports provide examples of intentional teaching strategies and play-based learning experiences that can be adapted to suit children's strengths, interests and learning needs. They are designed to support professional judgement and should be considered alongside your knowledge of children, families and local contexts.</p>
 
       <a class="factsheet-link" [href]="practiceSupports.pdfPath" rel="noopener" type="application/pdf">
         <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
