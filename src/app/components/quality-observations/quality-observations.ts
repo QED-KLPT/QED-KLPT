@@ -10,7 +10,7 @@ import { KlptVideoContentService, PageVideoColumn } from '../../services/klpt-vi
 
 @Component({
   selector: 'app-quality-observations',
-  imports: [BreadcrumbComponent, YoutubePlayerModule],
+  imports: [CommonModule, BreadcrumbComponent, YoutubePlayerModule],
   templateUrl: './quality-observations.html',
   styleUrl: './quality-observations.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

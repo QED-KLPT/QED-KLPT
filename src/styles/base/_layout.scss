@@ -42,11 +42,20 @@
 .app-content-shell--inline-hero .domain-hero,
 .app-content-shell--inline-hero .page-placeholder,
 .app-content-shell--inline-hero .about-hero,
-.app-content-shell--inline-hero .contact-hero {
+.app-content-shell--inline-hero .contact-hero,
+.app-content-shell--inline-hero .standard-hero {
   grid-column: 1 / -1;
   grid-row: 1;
   width: 100vw;
   margin-inline: calc(50% - 50vw);
+}
+
+.standard-hero {
+  padding-block: clamp(0.95rem, 2vw, 1.7rem) clamp(1.85rem, 4vw, 3.35rem);
+}
+
+.standard-hero__lead {
+  max-width: 54rem;
 }
 
 .app-content-shell--inline-hero .domain-overview,
@@ -55,7 +64,8 @@
 .app-content-shell--inline-hero .foundation-nav,
 .app-content-shell--inline-hero .page-content-stack,
 .app-content-shell--inline-hero .about-comparison,
-.app-content-shell--inline-hero .contact-content {
+.app-content-shell--inline-hero .contact-content,
+.app-content-shell--inline-hero .standard-content {
   grid-column: 1;
   grid-row: 3;
   min-width: 0;
@@ -103,7 +113,8 @@
   .app-content-shell--inline-hero .foundation-nav,
   .app-content-shell--inline-hero .page-content-stack,
   .app-content-shell--inline-hero .about-comparison,
-  .app-content-shell--inline-hero .contact-content {
+  .app-content-shell--inline-hero .contact-content,
+  .app-content-shell--inline-hero .standard-content {
     grid-column: 2;
     grid-row: 2;
     padding-inline: 0;

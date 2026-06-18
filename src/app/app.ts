@@ -19,7 +19,7 @@ const INLINE_HERO_ROUTE_PREFIXES = [
   '/learning-domains',
   '/klpt-foundations',
 ];
-const INLINE_HERO_ROUTES = ['/about', '/contact'];
+const INLINE_HERO_ROUTES = ['/about', '/contact', '/help', '/practice-supports', '/sitemap'];
 
 @Component({
   selector: 'app-root',
