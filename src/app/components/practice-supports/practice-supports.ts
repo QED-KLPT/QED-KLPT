@@ -1,16 +1,22 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
+import { BreadcrumbComponent, BreadcrumbItem } from '../shared/breadcrumb';
 
 @Component({
   selector: 'app-practice-supports',
-  imports: [],
+  imports: [BreadcrumbComponent],
   templateUrl: './practice-supports.html',
   styleUrl: './practice-supports.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PracticeSupports implements OnInit, AfterViewInit {
   constructor(private scroll: ViewportScroller) {}
+
+  protected readonly breadcrumbs: BreadcrumbItem[] = [
+    { label: 'Home', href: '/' },
+    { label: 'Practice supports', current: true },
+  ];
 
   private readonly route = inject(ActivatedRoute);
   private readonly viewportScroller = inject(ViewportScroller);

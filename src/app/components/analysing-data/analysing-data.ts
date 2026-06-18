@@ -1,15 +1,15 @@
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit, computed, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
+import { BreadcrumbComponent, BreadcrumbItem } from '../shared/breadcrumb';
 import { DomainAssetModeService } from '../../services/domain-asset-mode.service';
 import { KlptVideoContentService, PageVideoColumn } from '../../services/klpt-video-content.service';
 
 @Component({
   selector: 'app-analysing-data',
-  imports: [CommonModule, YoutubePlayerModule],
+  imports: [CommonModule, BreadcrumbComponent, YoutubePlayerModule],
   templateUrl: './analysing-data.html',
   styleUrl: './analysing-data.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -18,6 +18,11 @@ export class AnalysingData implements OnInit {
   protected readonly domainAssets = inject(DomainAssetModeService);
   protected readonly videoColumns$: Observable<PageVideoColumn[]>;
   private klptTouchStart: { x: number; y: number } | undefined;
+  protected readonly breadcrumbs: BreadcrumbItem[] = [
+    { label: 'Home', href: '/' },
+    { label: 'KLPT foundations', href: '/klpt-foundations' },
+    { label: 'Analysing and interpreting observational data', current: true },
+  ];
 
   constructor(
     private scroll: ViewportScroller,
