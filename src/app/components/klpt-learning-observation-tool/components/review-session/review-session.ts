@@ -14,6 +14,7 @@ import { DomainAssetModeService } from '../../../../services/domain-asset-mode.s
 import { KlptBehaviour } from '../../models/klpt-behaviour';
 import { KlptDomain } from '../../models/klpt-domain';
 import { KlptElement } from '../../models/klpt-element';
+import { KlptSubDomain } from '../../models/klpt-sub-domain';
 import { NameValuePair } from '../../models/name-value-pair';
 import { SessionModel } from '../../models/session-model';
 import { klptDomainStyle } from '../shared/klpt-domain-colours';
@@ -24,6 +25,7 @@ import { KlptDocxGeneratorService } from '../../../../services/klpt-docx-generat
 import { HIGHEST_BEHAVIOUR_HTML } from '../shared/klpt-constants';
 
 interface ReviewProgressionItem {
+  subDomain: KlptSubDomain | undefined;
   element: KlptElement;
   behaviour: KlptBehaviour;
   nextBehaviour: KlptBehaviour | undefined;
@@ -203,6 +205,7 @@ export class ReviewSession implements OnInit, OnDestroy {
         );
 
         return {
+          subDomain: this.selectedSubDomain(),
           element,
           behaviour,
           nextBehaviour: behaviourIndex >= 0
@@ -234,6 +237,19 @@ export class ReviewSession implements OnInit, OnDestroy {
 
   protected displayValue(value: string | undefined): string {
     return value?.trim() ? value : 'Not entered';
+  }
+
+  protected selectedSubDomain(): KlptSubDomain | undefined {
+    const subDomainId = this.currentSession.subDomain;
+
+    if (!subDomainId) {
+      return undefined;
+    }
+
+    return this.domainData
+      .getAllDomains()
+      .flatMap((domain) => domain.subDomains ?? [])
+      .find((subDomain) => subDomain.id === subDomainId);
   }
 
   protected itemStyle(element: KlptElement): Record<string, string> {
