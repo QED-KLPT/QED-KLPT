@@ -36,6 +36,20 @@
   margin: 0;
 }
 
+.klpt-subsite--tool-active .domain-hero--klpt {
+  min-height: auto;
+  padding-block: clamp(0.45rem, 1vw, 0.75rem) clamp(0.65rem, 1.4vw, 1rem);
+}
+
+.klpt-subsite--tool-active .domain-hero__breadcrumbs {
+  margin-block-end: 0.45rem;
+}
+
+.klpt-subsite--tool-active .domain-hero--klpt .domain-hero__copy h1 {
+  font-size: clamp(1.45rem, 2.4vw, 2.1rem);
+  line-height: 1.08;
+}
+
 .klpt-subsite .klpt-step {
   background: var(--klpt-surface);
   padding-block: clamp(2rem, 4vw, 3rem);
