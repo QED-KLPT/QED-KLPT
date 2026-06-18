@@ -4,7 +4,7 @@
       "columns": [
         {
           "heading": "Home languages",
-          "intro": "Recognising and valuing Aboriginal and Torres Strait Islander languages in Queensland supports language preservation and celebrates children's strengths in speaking multiple languages. Some children use more than one language and may switch between their home language and English depending on the situation. This is called codeswitching and is a strength that enables children to adapt their language use to suit different contexts. ",
+          "intro": "The fact sheet provides an overview of the importance of recognising, valuing and supporting children’s home languages. It highlights how home languages contribute to children’s identities, culture, wellbeing and learning, and how applying a culturally responsive lens can support quality observations, assessment and planning. The video includes examples of practice that recognises, considers and values home languages in kindergarten contexts.",
           "videos": [
             {
               "slot": "home-languages-primary",
@@ -17,7 +17,7 @@
         },
         {
           "heading": "Language and Literacy",
-          "intro": "By supporting each child's strengths and individual communication methods, we can foster their language and literacy development, helping them build confidence and feel a sense of belonging. Children show literacy behaviours when they pretend to read, write or use images and print in their play, including on devices. These everyday actions help them understand how language works. ",
+          "intro": "The fact sheet provides an overview of the Language and Literacy learning domain, its sub domains of sounds and speech and comprehension, and its key elements. The video explores how these skills can be observed and supported in everyday kindergarten contexts.",
           "videos": [
             {
               "slot": "language-and-literacy-primary",
@@ -125,7 +125,7 @@
               "title": "",
               "description": "",
               "youtubeUrl": "https://www.youtube.com/watch?v=8Nf9SgBs8GE",
-              "transcriptFile": "assets/content/transcripts/quality-observations/the-purpose-of-observation"
+              "transcriptFile": "assets/content/transcripts/quality-observations/the-purpose-of-observation.txt"
             }
           ]
         }
