@@ -71,8 +71,8 @@ export class NavigationNodesComponent implements OnChanges {
     },
     {
       id: 'review',
-      title: 'Review and generate PDF',
-      description: 'Review the saved statement and prepare a PDF copy.',
+      title: 'Review and download statement',
+      description: 'Review the saved statement and prepare a copy for download.',
       route: '/learning-observation-tool/review-session',
     },
   ];
