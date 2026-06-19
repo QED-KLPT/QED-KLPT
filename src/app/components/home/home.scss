@@ -232,6 +232,7 @@
   display: grid;
   place-items: center;
   padding: 1rem;
+  overflow: auto;
 }
 
 .ack-modal__backdrop {
@@ -246,7 +247,7 @@
   z-index: 1;
   display: flex;
   flex-direction: column;
-  width: min(100%, 56rem);
+  width: min(100%, 48rem);
   max-height: calc(100vh - 2rem);
   border-radius: 16px;
   background: #ffffff;
@@ -314,6 +315,12 @@
 .ack-modal__body app-youtube-player {
   display: block;
   width: 100%;
+}
+
+:host ::ng-deep .ack-modal__body app-youtube-player .youtube-player {
+  width: 100%;
+  max-width: none;
+  padding: 0;
 }
 
 .ack-modal__footer {
@@ -394,6 +401,38 @@
 
   .foundations {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 30rem), (max-height: 38rem) {
+  .ack-modal {
+    display: block;
+    padding: 0.75rem;
+  }
+
+  .ack-modal__panel {
+    width: 100%;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .ack-modal__header {
+    padding: 0.75rem 1rem;
+  }
+
+  .ack-modal__body {
+    padding: 1rem;
+    overflow: visible;
+  }
+
+  .ack-modal__footer {
+    justify-content: stretch;
+    padding: 0.75rem 1rem 1rem;
+  }
+
+  .ack-modal__footer .button {
+    width: 100%;
+    justify-content: center;
   }
 }
 

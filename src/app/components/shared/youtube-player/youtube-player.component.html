@@ -1,6 +1,8 @@
 <div class="youtube-player">
   <!-- API-based player (subtitles disabled) -->
-  <div *ngIf="!subtitles && youtubeUrl" class="video-container yt-api-player"></div>
+  <div *ngIf="!subtitles && youtubeUrl" class="video-container">
+    <div class="yt-api-player"></div>
+  </div>
 
   <!-- Simple iframe player (subtitles enabled) -->
   <div *ngIf="sanitizedUrl" class="video-container">
