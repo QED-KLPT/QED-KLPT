@@ -100,28 +100,22 @@ export class Home implements OnInit {
       title: 'Language and literacy',
       description: 'Support vocabulary, phonological awareness, and early reading and writing skills.',
       url: '/learning-domains/language-and-literacy',
-      imageSrc: 'assets/img/domain/colour/domain-lang-lit-col.png',
-      imageAlt: 'Language and literacy illustration',
-      background: 'linear-gradient(135deg, #B85A12 0%, #8F4D12 100%)',
-      hoverBorderColor: '#AC5E16',
+      background: 'linear-gradient(135deg, #679ed4 0%, #5089c0 100%)',
+      hoverBorderColor: '#679ed4',
     },
     {
       title: 'Executive function',
       description: 'Develop working memory, attention, cognitive flexibility, and problem-solving skills.',
       url: '/learning-domains/executive-function',
-      imageSrc: 'assets/img/domain/colour/domain-exec-func-col.png',
-      imageAlt: 'Executive function illustration',
-      background: 'linear-gradient(135deg, #0069AB 0%, #004A78 100%)',
-      hoverBorderColor: '#005387',
+      background: 'linear-gradient(135deg, #cddff0 0%, #b8d0e0 100%)',
+      hoverBorderColor: '#cddff0',
     },
     {
       title: 'Social-emotional learning',
       description: 'Foster self-awareness, emotion regulation, empathy, and positive relationships.',
       url: '/learning-domains/social-and-emotional-learning',
-      imageSrc: 'assets/img/domain/colour/domain-soc-emot-lrn-col.png',
-      imageAlt: 'Social-emotional learning illustration',
-      background: 'linear-gradient(135deg, #D10A7D 0%, #930758 100%)',
-      hoverBorderColor: '#A40862',
+      background: 'linear-gradient(135deg, #0063af 0%, #004a88 100%)',
+      hoverBorderColor: '#0063af',
     },
     {
       title: 'Physicality',
@@ -129,8 +123,8 @@ export class Home implements OnInit {
       url: '/learning-domains/physicality',
       imageSrc: 'assets/img/domain/colour/domain-physicality-colour.png',
       imageAlt: 'Physicality illustration',
-      background: 'linear-gradient(135deg, #247F33 0%, #185922 100%)',
-      hoverBorderColor: '#1D682A',
+      background: 'linear-gradient(135deg, #1c447e 0%, #132e5a 100%)',
+      hoverBorderColor: '#1c447e'
     },
     {
       title: 'Mathematics and numeracy',
@@ -138,8 +132,7 @@ export class Home implements OnInit {
       url: '/learning-domains/mathematics-and-numeracy',
       imageSrc: 'assets/img/domain/colour/domain-math-num-col.png',
       imageAlt: 'Mathematics and numeracy illustration',
-      background: 'linear-gradient(135deg, #BA1C23 0%, #801318 100%)',
-      hoverBorderColor: '#91161B',
-    },
-  ];
+      background: 'linear-gradient(135deg, #102548 0%, #0b1a34 100%)',
+      hoverBorderColor: '#102548'
 }
+  ];}

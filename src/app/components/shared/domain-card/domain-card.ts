@@ -17,9 +17,14 @@ export class DomainCard {
   @Input() background = '';
   @Input() hoverBorderColor = '';
   @Input() textColor = '';
+  @Input() linkColor = '';
 
   get resolvedTextColor(): string {
     return this.textColor || (this.background.includes('135deg') ? '#ffffff' : '');
+  }
+
+  get resolvedLinkColor(): string {
+    return this.linkColor || '#ffffff';
   }
 
   get initial(): string {

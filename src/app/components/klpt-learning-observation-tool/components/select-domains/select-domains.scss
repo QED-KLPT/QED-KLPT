@@ -104,9 +104,7 @@
   padding: 1.125rem;
   color: #ffffff;
   text-align: left;
-  background:
-    linear-gradient(to right, transparent, rgba(255, 255, 255, var(--depth-soften))),
-    linear-gradient(to right, var(--accent), var(--accent-glow));
+  background: var(--domain-background, linear-gradient(to right, var(--accent), var(--accent-glow)));
   box-shadow:
     0 12px 22px color-mix(in srgb, var(--accent) 18%, transparent),
     inset 0 0 0 1px color-mix(in srgb, #fff 18%, transparent);

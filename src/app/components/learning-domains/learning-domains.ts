@@ -14,11 +14,14 @@ type DomainNavCard = {
   hoverBorderColor: string;
   blueBackground: string;
   blueHoverBorderColor: string;
+  textColor?: string;
+  linkColor?: string;
 };
 
 type ThemedDomainNavCard = Omit<DomainNavCard, 'imageName'> & {
   imageSrc: string;
   textColor: string;
+  linkColor: string;
 };
 
 @Component({
@@ -49,7 +52,8 @@ export class LearningDomains implements OnInit {
       imageSrc: this.domainAssetMode.iconPath(domain.imageName),
       background: isDarkBlue ? domain.blueBackground : domain.background,
       hoverBorderColor: isDarkBlue ? domain.blueHoverBorderColor : domain.hoverBorderColor,
-      textColor: isDarkBlue ? '#ffffff' : '',
+      textColor: domain.textColor || (isDarkBlue ? '#ffffff' : ''),
+      linkColor: domain.linkColor || '',
     }));
   });
 
@@ -60,10 +64,12 @@ export class LearningDomains implements OnInit {
       url: '/learning-domains/language-and-literacy',
       imageAlt: 'Language and literacy icon',
       imageName: 'language-literacy',
-      background: 'linear-gradient(135deg, #B85A12 0%, #8F4D12 100%)',
-      hoverBorderColor: '#AC5E16',
-      blueBackground: '#003E96',
-      blueHoverBorderColor: '#003E96',
+      background: 'linear-gradient(135deg, #679ed4 0%, #5089c0 100%)',
+      hoverBorderColor: '#679ed4',
+      blueBackground: '#679ed4',
+      blueHoverBorderColor: '#679ed4',
+      textColor: '#102548',
+      linkColor: '#102548',
     },
     {
       title: 'Executive function',
@@ -71,10 +77,12 @@ export class LearningDomains implements OnInit {
       url: '/learning-domains/executive-function',
       imageAlt: 'Executive function icon',
       imageName: 'executive-function',
-      background: 'linear-gradient(135deg, #0069AB 0%, #004A78 100%)',
-      hoverBorderColor: '#005387',
-      blueBackground: '#005EB8',
-      blueHoverBorderColor: '#005EB8',
+      background: 'linear-gradient(135deg, #cddff0 0%, #b8d0e0 100%)',
+      hoverBorderColor: '#cddff0',
+      blueBackground: '#cddff0',
+      blueHoverBorderColor: '#cddff0',
+      textColor: '#102548',
+      linkColor: '#102548',
     },
     {
       title: 'Social and emotional learning',
@@ -82,10 +90,10 @@ export class LearningDomains implements OnInit {
       url: '/learning-domains/social-and-emotional-learning',
       imageAlt: 'Social and emotional learning icon',
       imageName: 'social-emotional-learning',
-      background: 'linear-gradient(135deg, #D10A7D 0%, #930758 100%)',
-      hoverBorderColor: '#A40862',
-      blueBackground: '#0077C8',
-      blueHoverBorderColor: '#0077C8',
+      background: 'linear-gradient(135deg, #0063af 0%, #004a88 100%)',
+      hoverBorderColor: '#0063af',
+      blueBackground: '#0063af',
+      blueHoverBorderColor: '#0063af',
     },
     {
       title: 'Physicality',
@@ -93,10 +101,10 @@ export class LearningDomains implements OnInit {
       url: '/learning-domains/physicality',
       imageAlt: 'Physicality icon',
       imageName: 'physicality',
-      background: 'linear-gradient(135deg, #247F33 0%, #185922 100%)',
-      hoverBorderColor: '#1D682A',
-      blueBackground: '#147EB2',
-      blueHoverBorderColor: '#147EB2',
+      background: 'linear-gradient(135deg, #1c447e 0%, #132e5a 100%)',
+      hoverBorderColor: '#1c447e',
+      blueBackground: '#1c447e',
+      blueHoverBorderColor: '#1c447e',
     },
     {
       title: 'Mathematics and numeracy',
@@ -104,10 +112,10 @@ export class LearningDomains implements OnInit {
       url: '/learning-domains/mathematics-and-numeracy',
       imageAlt: 'Mathematics and numeracy icon',
       imageName: 'mathematics-numeracy',
-      background: 'linear-gradient(135deg, #BA1C23 0%, #801318 100%)',
-      hoverBorderColor: '#91161B',
-      blueBackground: '#227FA5',
-      blueHoverBorderColor: '#227FA5',
+      background: 'linear-gradient(135deg, #102548 0%, #0b1a34 100%)',
+      hoverBorderColor: '#102548',
+      blueBackground: '#102548',
+      blueHoverBorderColor: '#102548',
     },
   ];
 }

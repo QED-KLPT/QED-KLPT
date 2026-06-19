@@ -84,7 +84,7 @@
   padding: 1.125rem;
   color: #ffffff;
   text-align: left;
-  background: linear-gradient(to right, var(--accent), var(--accent-glow, var(--accent)));
+  background: var(--domain-background, linear-gradient(to right, var(--accent), var(--accent-glow, var(--accent))));
   box-shadow:
     0 12px 22px color-mix(in srgb, var(--accent) 16%, transparent),
     inset 0 0 0 1px color-mix(in srgb, #fff 18%, transparent);
@@ -199,7 +199,7 @@
   padding: 1.125rem;
   color: #ffffff;
   text-align: left;
-  background: linear-gradient(to right, var(--accent), var(--accent-glow));
+  background: var(--domain-background, linear-gradient(to right, var(--accent), var(--accent-glow)));
   box-shadow:
     0 12px 22px color-mix(in srgb, var(--accent) 16%, transparent),
     inset 0 0 0 1px color-mix(in srgb, #fff 18%, transparent);
@@ -335,7 +335,7 @@
   border-radius: 14px;
   padding: clamp(1.5rem, 5vw, 2.75rem);
   color: #ffffff;
-  background: linear-gradient(to right, var(--accent), var(--accent-glow, var(--accent)));
+  background: var(--domain-background, linear-gradient(to right, var(--accent), var(--accent-glow, var(--accent))));
   box-shadow:
     0 16px 34px color-mix(in srgb, var(--accent) 20%, transparent),
     inset 0 0 0 1px color-mix(in srgb, #fff 18%, transparent);

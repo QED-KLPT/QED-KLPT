@@ -52,10 +52,14 @@
 }
 
 .domain-card__icon--image {
+  display: inline-grid;
   width: 5.5rem;
   height: 5.5rem;
   margin-block-end: 1.1rem;
-  background: transparent;
+  border-radius: 50%;
+  background: var(--domain-card-accent-bg, var(--klpt-purple-soft));
+  overflow: hidden;
+  place-items: center;
 }
 
 .domain-card__icon img {
@@ -79,6 +83,13 @@
   line-height: 1.35;
 }
 
+.domain-card__title-dark {
+  color: var(--domain-card-text-dark, var(--klpt-ink));
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
 .domain-card__description {
   color: var(--domain-card-text, var(--klpt-muted));
   font-size: 0.95rem;
@@ -87,6 +98,6 @@
 
 .domain-card__link {
   align-self: end;
-  color: #fff;
+  color: var(--domain-card-link, #fff);
   font-weight: 700;
 }
