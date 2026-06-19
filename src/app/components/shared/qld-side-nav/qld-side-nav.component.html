@@ -72,12 +72,12 @@
                                   <span class="qld-side-nav__row-text">{{ grandchild.label }}</span>
                                 </span>
                               } @else if (linkTarget(grandchild) && isRouterLink(grandchild)) {
-                                <a class="qld-side-nav__row qld-side-nav__row--grandchild" [routerLink]="linkTarget(grandchild)">
+                                <a class="qld-side-nav__row qld-side-nav__row--grandchild" [routerLink]="linkTarget(grandchild)" (click)="collapseMobileNav()">
                                   <span class="qld-side-nav__chevron" aria-hidden="true"></span>
                                   <span class="qld-side-nav__row-text">{{ grandchild.label }}</span>
                                 </a>
                               } @else if (linkTarget(grandchild)) {
-                                <a class="qld-side-nav__row qld-side-nav__row--grandchild" [href]="linkTarget(grandchild)">
+                                <a class="qld-side-nav__row qld-side-nav__row--grandchild" [href]="linkTarget(grandchild)" (click)="collapseMobileNav()">
                                   <span class="qld-side-nav__chevron" aria-hidden="true"></span>
                                   <span class="qld-side-nav__row-text">{{ grandchild.label }}</span>
                                 </a>
@@ -96,12 +96,12 @@
                           <span class="qld-side-nav__row-text">{{ child.label }}</span>
                         </span>
                       } @else if (linkTarget(child) && isRouterLink(child)) {
-                        <a class="qld-side-nav__row qld-side-nav__row--child" [routerLink]="linkTarget(child)">
+                        <a class="qld-side-nav__row qld-side-nav__row--child" [routerLink]="linkTarget(child)" (click)="collapseMobileNav()">
                           <span class="qld-side-nav__chevron" aria-hidden="true"></span>
                           <span class="qld-side-nav__row-text">{{ child.label }}</span>
                         </a>
                       } @else if (linkTarget(child)) {
-                        <a class="qld-side-nav__row qld-side-nav__row--child" [href]="linkTarget(child)">
+                        <a class="qld-side-nav__row qld-side-nav__row--child" [href]="linkTarget(child)" (click)="collapseMobileNav()">
                           <span class="qld-side-nav__chevron" aria-hidden="true"></span>
                           <span class="qld-side-nav__row-text">{{ child.label }}</span>
                         </a>
@@ -120,12 +120,12 @@
                   <span class="qld-side-nav__row-text">{{ item.label }}</span>
                 </span>
               } @else if (linkTarget(item) && isRouterLink(item)) {
-                <a class="qld-side-nav__row" [routerLink]="linkTarget(item)">
+                <a class="qld-side-nav__row" [routerLink]="linkTarget(item)" (click)="collapseMobileNav()">
                   <span class="qld-side-nav__chevron" aria-hidden="true"></span>
                   <span class="qld-side-nav__row-text">{{ item.label }}</span>
                 </a>
               } @else if (linkTarget(item)) {
-                <a class="qld-side-nav__row" [href]="linkTarget(item)">
+                <a class="qld-side-nav__row" [href]="linkTarget(item)" (click)="collapseMobileNav()">
                   <span class="qld-side-nav__chevron" aria-hidden="true"></span>
                   <span class="qld-side-nav__row-text">{{ item.label }}</span>
                 </a>

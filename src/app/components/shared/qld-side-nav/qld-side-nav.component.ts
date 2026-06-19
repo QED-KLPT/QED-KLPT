@@ -68,6 +68,10 @@ export class QldSideNavComponent implements OnChanges {
     this.mobileExpanded = !this.mobileExpanded;
   }
 
+  protected collapseMobileNav(): void {
+    this.mobileExpanded = false;
+  }
+
   protected toggleItem(item: QldSideNavItem): void {
     const key = this.itemKey(item);
 
