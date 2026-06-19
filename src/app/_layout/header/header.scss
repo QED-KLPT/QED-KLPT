@@ -61,7 +61,7 @@
 
 .doe-header__masthead-inner {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(18rem, 25rem);
+  grid-template-columns: minmax(0, 1fr);
   gap: 2rem;
   align-items: center;
   padding-block: 1.35rem;
@@ -70,6 +70,7 @@
 .doe-header__brand {
   display: inline-flex;
   width: fit-content;
+  max-width: 100%;
   align-items: center;
   gap: 1rem;
   color: var(--doe-color-primary);
@@ -105,6 +106,7 @@
   font-weight: 600;
   line-height: 1.25;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .doe-header__brand-title:hover,
@@ -184,5 +186,12 @@
     align-self: auto;
     border-left: 0;
     padding-left: 0;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 22.5rem) {
+  .doe-header__brand-title {
+    font-size: 0.875rem;
   }
 }
