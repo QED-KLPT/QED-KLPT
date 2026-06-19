@@ -109,6 +109,10 @@ export class Nav {
     return item.path.replace(/[^a-zA-Z0-9]+/g, '-').replace(/^-|-$/g, '') || 'home';
   }
 
+  protected isSubmenuOpen(item: SiteNavItem): boolean {
+    return this.openSubmenu() === this.itemKey(item);
+  }
+
   protected toggleSubmenu(name: string): void {
     this.suppressHoverSubmenus.set(true);
     this.openSubmenu.update((current) => (current === name ? null : name));

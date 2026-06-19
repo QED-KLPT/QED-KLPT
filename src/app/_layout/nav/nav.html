@@ -71,13 +71,21 @@
             <ul
               [id]="itemKey(item) + '-submenu'"
               class="doe-primary-nav__submenu"
-              [class.doe-primary-nav__submenu--open]="openSubmenu() === itemKey(item)"
+              [class.doe-primary-nav__submenu--open]="isSubmenuOpen(item)"
               [attr.aria-label]="item.label"
+              [attr.aria-hidden]="!isSubmenuOpen(item)"
               role="menu"
             >
               @for (child of item.children; track child.path) {
                 <li role="none">
-                  <a [routerLink]="child.path" role="menuitem" (click)="closeMenu($event)">{{ child.label }}</a>
+                  <a
+                    [routerLink]="child.path"
+                    [attr.tabindex]="isSubmenuOpen(item) ? null : -1"
+                    role="menuitem"
+                    (click)="closeMenu($event)"
+                  >
+                    {{ child.label }}
+                  </a>
                 </li>
               }
             </ul>
