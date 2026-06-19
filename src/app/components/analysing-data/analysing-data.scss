@@ -54,11 +54,12 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(1.5rem, 3vw, 2.5rem);
-  align-items: start;
+  align-items: stretch;
 }
 
 .video-column {
   display: grid;
+  grid-template-rows: auto 1fr;
   gap: 1.5rem;
 }
 
@@ -75,7 +76,18 @@
 
 .video-column__header p {
   margin: 0;
-  min-height: 8rem;
+  min-height: 12.5rem;
+}
+
+@supports (grid-template-rows: subgrid) {
+  .video-column {
+    grid-row: span 2;
+    grid-template-rows: subgrid;
+  }
+
+  .video-column__header p {
+    min-height: 0;
+  }
 }
 
 .video-stack {
@@ -96,5 +108,12 @@
 
   .video-column__header p {
     min-height: 0;
+  }
+
+  @supports (grid-template-rows: subgrid) {
+    .video-column {
+      grid-row: auto;
+      grid-template-rows: auto;
+    }
   }
 }
