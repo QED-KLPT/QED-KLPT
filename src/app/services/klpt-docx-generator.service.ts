@@ -279,7 +279,7 @@ export class KlptDocxGeneratorService {
       new Paragraph({
         children: [
           new TextRun({ text: 'KEY ELEMENT: ', ...TYPOGRAPHY.subheading }),
-          new TextRun({ text: item.element.name.toUpperCase(), ...TYPOGRAPHY.heading }),
+          new TextRun({ text: item.element.name.toUpperCase(), ...TYPOGRAPHY.subheading }),
         ],
         spacing: { before: item.subDomain ? 0 : 400, after: 200 },
       }),
