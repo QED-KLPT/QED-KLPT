@@ -270,7 +270,7 @@ export class KlptDocxGeneratorService {
             new TextRun({ text: 'SUBDOMAIN: ', ...TYPOGRAPHY.subheading }),
             new TextRun({ text: item.subDomain.name.toUpperCase(), ...TYPOGRAPHY.subheading }),
           ],
-          spacing: { before: 400, after: 80 },
+          spacing: { before: 400, after: 120 },
         }),
       );
     }
