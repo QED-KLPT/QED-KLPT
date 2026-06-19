@@ -63,11 +63,15 @@
                       [attr.data-state]="carouselItemState(item)"
                       [attr.data-selected]="isSelectedBehaviour(element, item.behaviour)"
                       [attr.data-focused]="isFocusedBehaviour(element, item.behaviour)"
+                      [attr.data-element-id]="element.id"
+                      [attr.data-behaviour-id]="item.behaviour.id"
                       [attr.aria-pressed]="isSelectedBehaviour(element, item.behaviour)"
                       [attr.aria-hidden]="!isListMode() && carouselItemState(item) === 'hidden'"
                       [attr.aria-label]="'Select behaviour for ' + element.name + ': ' + item.behaviour.name"
                       [attr.tabindex]="!isListMode() && carouselItemState(item) !== 'active' ? -1 : 0"
                       (click)="selectBehaviour(element, item.behaviour)"
+                      (keydown.tab)="onBehaviourTileTab(element, $event)"
+                      (keydown.shift.tab)="onBehaviourTileTab(element, $event)"
                     >
                       <span class="behaviour-tile__description" [innerHTML]="item.behaviour.description"></span>
                     </button>

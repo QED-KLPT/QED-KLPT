@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { NgStyle } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NavigationNodesComponent } from '../../../shared';
@@ -32,6 +32,7 @@ interface BehaviourDetail {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectBehaviours implements OnInit, OnDestroy {
+  private readonly elementRef = inject(ElementRef) as ElementRef<HTMLElement>;
   private readonly route = inject(ActivatedRoute);
   protected readonly domainData = inject(KlptDomainDataService);
   private readonly domainAssetMode = inject(DomainAssetModeService);
@@ -254,6 +255,26 @@ export class SelectBehaviours implements OnInit, OnDestroy {
     this.selectBehaviour(element, element.behaviours[activeIndex + 1]);
   }
 
+  protected onBehaviourTileTab(element: KlptElement, event: Event): void {
+    const keyboardEvent = event as KeyboardEvent;
+
+    if (this.isListMode()) {
+      return;
+    }
+
+    const activeIndex = this.activeBehaviourIndex(element);
+    const nextIndex = keyboardEvent.shiftKey ? activeIndex - 1 : activeIndex + 1;
+    const behaviour = element.behaviours[nextIndex];
+
+    if (!behaviour) {
+      return;
+    }
+
+    keyboardEvent.preventDefault();
+    this.selectBehaviour(element, behaviour);
+    this.focusBehaviourTile(element.id, behaviour.id);
+  }
+
   protected onCarouselTouchStart(element: KlptElement, event: TouchEvent): void {
     if (this.isListMode()) return;
     this.touchStartX.set(element.id, event.changedTouches[0]?.clientX ?? 0);
@@ -311,5 +332,19 @@ export class SelectBehaviours implements OnInit, OnDestroy {
   private persistCurrentSession(): void {
     this.sessionManagement.persistSession(this.currentSession);
     this.sessionVersion++;
+  }
+
+  private focusBehaviourTile(elementId: string, behaviourId: string): void {
+    window.setTimeout(() => {
+      const host = this.elementRef.nativeElement;
+      const tile = Array.from(
+        host.querySelectorAll<HTMLButtonElement>('.behaviour-tile'),
+      ).find((candidate) =>
+        candidate.dataset['elementId'] === elementId &&
+        candidate.dataset['behaviourId'] === behaviourId
+      );
+
+      tile?.focus();
+    });
   }
 }
