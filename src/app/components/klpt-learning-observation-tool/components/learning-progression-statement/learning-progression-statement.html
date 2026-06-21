@@ -7,8 +7,7 @@
     />
 
     @let domain = selectedDomain();
-    @let items = progressionItems();
-    @let reflectiveQuestionsList = reflectiveQuestions();
+    @let items = progressionItems();   
 
     <article class="statement-card">
       <h2>Learning progression statement</h2>
@@ -107,25 +106,6 @@
             (input)="updateFormField('professional-reflection', $any($event.target).value)"
           ></textarea>
         </label>
-<!--
-        @if (reflectiveQuestionsList.length) {
-          <aside class="reflection-layout__questions" aria-label="Reflective questions for selected learning domain">
-            <div class="reflection-questions-card">
-              <div class="reflection-questions-card__accordion-group">
-                <app-accordion-item
-                  title="View reflective questions"
-                  [alt]="true"                  
-                >
-                  <ul class="reflection-questions-card__list">
-                    @for (question of reflectiveQuestionsList; track question.id) {
-                      <li>{{ question.question }}</li>
-                    }
-                  </ul>
-                </app-accordion-item>
-              </div>
-            </div>
-          </aside>
-        }-->
       </section>
 
       <label class="klpt-form-field klpt-form-field--wide">
