@@ -1,8 +1,7 @@
 import { ViewportScroller } from '@angular/common';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
-import { DomainCard } from '../shared/domain-card/domain-card';
 import { YoutubePlayerModule } from '../shared/youtube-player/youtube-player.module';
 
 type DomainSummary = {
@@ -21,7 +20,7 @@ type DomainSummary = {
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
-export class Home implements OnInit {
+export class Home implements OnInit, OnDestroy {
   acknowledgementTranscript: string = '';
   introductionTranscript: string = '';
   protected isAckModalOpen = false;
@@ -40,16 +39,22 @@ export class Home implements OnInit {
     this.scroll.scrollToPosition([0, 0]);
     if (!sessionStorage.getItem('klpt-ack-seen')) {
       this.isAckModalOpen = true;
+      document.body.style.overflow = 'hidden';
       setTimeout(() => this.ackDialog?.nativeElement?.focus(), 0);
     }
   }
 
+  ngOnDestroy(): void {
+    document.body.style.overflow = '';
+  }
+
   protected closeAckModal(): void {
     this.isAckModalOpen = false;
+    document.body.style.overflow = '';
     sessionStorage.setItem('klpt-ack-seen', '1');
     window.scrollTo({ top: 0, behavior: 'instant' });
     window.setTimeout(() => {
-      document.getElementById('home-title')?.focus();
+      document.querySelector<HTMLElement>('.skip-link')?.focus();
     });
   }
 

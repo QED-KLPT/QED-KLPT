@@ -24,3 +24,10 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Improve text contrast for hero/placeholder sections on cream background */
+.page-placeholder p,
+.page-placeholder ul,
+.page-placeholder li {
+  color: var(--klpt-ink);
+}

@@ -80,13 +80,15 @@
 }
 
 .domain-card__description {
-  color: var(--domain-card-text, var(--klpt-muted));
+  /* Use a darker default for description text to improve contrast on light card backgrounds */
+  color: var(--domain-card-text, var(--klpt-ink));
   font-size: 0.95rem;
   line-height: 1.7;
 }
 
 .domain-card__link {
   align-self: end;
-  color: #fff;
+  /* Use the card text colour so 'Learn more' remains visible on light or dark backgrounds */
+  color: var(--domain-card-text, #fff);
   font-weight: 700;
 }
