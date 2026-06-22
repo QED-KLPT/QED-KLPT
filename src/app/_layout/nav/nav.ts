@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, ElementRef, HostListener, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { getPrimaryNavItems, SiteNavItem } from '../../navigation/site-navigation';
+import { DomainAssetModeService } from '../../services/domain-asset-mode.service';
 
 @Component({
   selector: 'app-nav',
@@ -11,6 +12,7 @@ import { getPrimaryNavItems, SiteNavItem } from '../../navigation/site-navigatio
 })
 export class Nav {
   private readonly elementRef = inject(ElementRef<HTMLElement>);
+  protected readonly domainAssetMode = inject(DomainAssetModeService);
 
   protected readonly isMenuOpen = signal(false);
   protected readonly openSubmenu = signal<string | null>(null);
@@ -114,6 +116,10 @@ export class Nav {
   protected toggleSubmenu(name: string): void {
     this.suppressHoverSubmenus.set(true);
     this.openSubmenu.update((current) => (current === name ? null : name));
+  }
+
+  protected toggleDomainAssetMode(): void {
+    this.domainAssetMode.toggle();
   }
 
   protected closeMenu(event: MouseEvent): void {
