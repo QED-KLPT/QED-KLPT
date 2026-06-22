@@ -232,7 +232,7 @@
   display: grid;
   place-items: center;
   padding: 1rem;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .ack-modal__backdrop {
@@ -408,6 +408,7 @@
   .ack-modal {
     display: block;
     padding: 0.75rem;
+    overflow: auto;
   }
 
   .ack-modal__panel {

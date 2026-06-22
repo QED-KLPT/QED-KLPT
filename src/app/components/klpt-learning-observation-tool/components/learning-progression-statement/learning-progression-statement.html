@@ -7,8 +7,7 @@
     />
 
     @let domain = selectedDomain();
-    @let items = progressionItems();
-    @let reflectiveQuestionsList = reflectiveQuestions();
+    @let items = progressionItems();   
 
     <article class="statement-card">
       <h2>Learning progression statement</h2>
@@ -107,36 +106,24 @@
             (input)="updateFormField('professional-reflection', $any($event.target).value)"
           ></textarea>
         </label>
-
-        @if (reflectiveQuestionsList.length) {
-          <aside class="reflection-layout__questions" aria-label="Reflective questions for selected learning domain">
-            <div class="reflection-questions-card">
-              <div class="reflection-questions-card__accordion-group">
-                <app-accordion-item
-                  title="View reflective questions"
-                  [alt]="true"                  
-                >
-                  <ul class="reflection-questions-card__list">
-                    @for (question of reflectiveQuestionsList; track question.id) {
-                      <li>{{ question.question }}</li>
-                    }
-                  </ul>
-                </app-accordion-item>
-              </div>
-            </div>
-          </aside>
-        }
       </section>
 
       <label class="klpt-form-field klpt-form-field--wide">
       <span>How can you support this learning<strong>?</strong></span>
-          <p class="klpt-form-field__hint">View the {{ selectedDomain()?.name ?? 'learning domain' }} practice supports for suggested intentional teaching strategies and learning opportunities</p>
+          <p class="klpt-form-field__hint">View the 
+             <a
+            [routerLink]="practiceSupportsLink()"
+            fragment="practice-supports"           
+          >
+            {{ selectedDomain()?.name ?? 'learning domain' }} practice supports 
+          </a>
+            for suggested intentional teaching strategies and learning opportunities</p>
           <textarea
             rows="5"
             [value]="formValue('support-learning')"
             (input)="updateFormField('support-learning', $any($event.target).value)"
           ></textarea>
-        <p class="klpt-form-field__hint">
+        <!--<p class="klpt-form-field__hint">
           <a
             [routerLink]="practiceSupportsLink()"
             fragment="practice-supports"
@@ -144,7 +131,7 @@
           >
             Link to practice supports for {{ selectedDomain()?.name ?? 'professional reflection' }}
           </a>
-        </p>
+        </p>-->
       </label>
 
      <label class="klpt-form-field klpt-form-field--wide">
@@ -155,11 +142,11 @@
             [value]="formValue('qklg-eylf-links')"
             (input)="updateFormField('qklg-eylf-links', $any($event.target).value)"
           ></textarea>
-        <p class="klpt-form-field__hint">
+        <!--<p class="klpt-form-field__hint">
           <button type="button" class="link-button" (click)="openQklgPdf()">
             Queensland kindergarten learning guideline (QKLG) (PDF, 147 KB)
           </button>
-        </p>
+        </p>-->
       </label>
 
       <div class="klpt-step__actions">

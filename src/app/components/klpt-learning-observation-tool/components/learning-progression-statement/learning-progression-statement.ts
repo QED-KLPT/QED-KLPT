@@ -12,7 +12,6 @@ import { SessionModel } from '../../models/session-model';
 import { klptDomainStyle } from '../shared/klpt-domain-colours';
 import { KlptDomainDataService } from '../shared/klpt-domain-data.service';
 import { SessionManagementService } from '../shared/session-management.service';
-import { AccordionItemComponent } from '../../../shared/accordion-item/accordion-item.component';
 import { HIGHEST_BEHAVIOUR_HTML } from '../shared/klpt-constants';
 import { hasSelectedBehaviours } from '../shared/session-readiness';
 
@@ -25,7 +24,7 @@ interface ProgressionItem {
 
 @Component({
   selector: 'app-learning-progression-statement',
-  imports: [NgStyle, RouterLink, NavigationNodesComponent, AccordionItemComponent],
+  imports: [NgStyle, RouterLink, NavigationNodesComponent],
   templateUrl: './learning-progression-statement.html',
   styleUrl: './learning-progression-statement.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
