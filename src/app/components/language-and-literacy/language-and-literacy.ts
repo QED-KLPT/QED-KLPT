@@ -78,7 +78,7 @@ export class LanguageAndLiteracy implements OnInit {
   }
 
   protected readonly practiceSupports = {
-    pdfLabel: 'Download language and literacy practice support (PDF, 1.01 MB)',
+    pdfLabel: 'Language and literacy practice support (PDF, 1.0MB)',
     pdfPath: 'assets/content/pdfs/language-literacy-practice-support.pdf',
   };
 
