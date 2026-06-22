@@ -49,7 +49,7 @@ export class Home implements OnInit {
     sessionStorage.setItem('klpt-ack-seen', '1');
     window.scrollTo({ top: 0, behavior: 'instant' });
     window.setTimeout(() => {
-      document.getElementById('home-title')?.focus();
+      document.querySelector<HTMLElement>('.skip-link')?.focus();
     });
   }
 
