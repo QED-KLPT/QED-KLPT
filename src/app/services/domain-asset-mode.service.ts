@@ -28,15 +28,15 @@ export class DomainAssetModeService {
       this.document.documentElement.dataset['domainAssetMode'] = mode;
 
       try {
-        localStorage.removeItem(STORAGE_KEY);
+        localStorage.setItem(STORAGE_KEY, mode);
       } catch {
-        // Ignore storage failures; colour remains the default in memory.
+        // Ignore storage failures; the toggle still works for the current session.
       }
     });
   }
 
   toggle(): void {
-    this.modeSignal.set('colour');
+    this.modeSignal.update((mode) => (mode === 'colour' ? 'dark-blue' : 'colour'));
   }
 
   iconPath(name: string): string {
@@ -51,6 +51,12 @@ export class DomainAssetModeService {
   }
 
   private getInitialMode(): DomainAssetMode {
-    return 'colour';
+    try {
+      const storedMode = localStorage.getItem(STORAGE_KEY);
+
+      return storedMode === 'dark-blue' ? 'dark-blue' : 'colour';
+    } catch {
+      return 'colour';
+    }
   }
 }
