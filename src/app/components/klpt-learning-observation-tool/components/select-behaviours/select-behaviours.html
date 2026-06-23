@@ -72,6 +72,8 @@
                       (click)="selectBehaviour(element, item.behaviour)"
                       (keydown.tab)="onBehaviourTileTab(element, $event)"
                       (keydown.shift.tab)="onBehaviourTileTab(element, $event)"
+                      (keydown.enter)="onBehaviourTileEnter(element, item.behaviour, $event)"
+                      (keydown.escape)="onBehaviourTileEscape(element, $event)"
                     >
                       <span class="behaviour-tile__description" [innerHTML]="item.behaviour.description"></span>
                     </button>
@@ -95,6 +97,7 @@
                     @for (behaviour of element.behaviours; track behaviour.id) {
                       <button
                         type="button"
+                        tabindex="-1"
                         [attr.data-active]="isActiveBehaviour(element, behaviour)"
                         [attr.aria-label]="'Select ' + behaviour.name"
                         (click)="selectBehaviour(element, behaviour)"
