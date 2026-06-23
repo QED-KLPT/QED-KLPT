@@ -35,7 +35,7 @@
 }
 
 .domain-card--interactive:focus-visible {
-  outline: 3px solid color-mix(in srgb, var(--klpt-gold) 65%, transparent);
+  outline: 3px solid var(--klpt-purple);
   outline-offset: 3px;
 }
 
@@ -88,7 +88,6 @@
 
 .domain-card__link {
   align-self: end;
-  /* Use the card text colour so 'Learn more' remains visible on light or dark backgrounds */
-  color: var(--domain-card-text, #fff);
+  color: var(--domain-card-text, var(--klpt-ink));
   font-weight: 700;
 }
