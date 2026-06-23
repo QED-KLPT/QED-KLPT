@@ -50,7 +50,7 @@ export class Foundations implements OnInit {
       imageSrc: this.domainAssetMode.iconPath(foundation.imageName),
       background: isDarkBlue ? DARK_BLUE_CARD_BACKGROUND : foundation.background,
       hoverBorderColor: isDarkBlue ? DARK_BLUE_CARD_BACKGROUND : foundation.hoverBorderColor,
-      textColor: isDarkBlue ? '#ffffff' : '',
+      textColor: isDarkBlue ? '#ffffff' : '#242033',
     }));
   });
 
