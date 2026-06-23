@@ -54,7 +54,7 @@ export class Home implements OnInit, OnDestroy {
     sessionStorage.setItem('klpt-ack-seen', '1');
     window.scrollTo({ top: 0, behavior: 'instant' });
     window.setTimeout(() => {
-      document.querySelector<HTMLElement>('.skip-link')?.focus();
+      document.querySelector<HTMLElement>('#home-title')?.focus();
     });
   }
 
