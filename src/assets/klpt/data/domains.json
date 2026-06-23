@@ -38,7 +38,7 @@
                   "id": "b7e4c29b-0c32-4c64-8c5c-7b1c1d07b60f",
                   "index": 4,
                   "name": "Simple Sentences",
-                  "description": "<ul><li>Speaks (communicates) in sentences of up to 5-6 words. May use one or two conjunctions (mainly 'and') and one or two pronouns making some errors.</li><li>Mainly uses simple, common nouns and a limited range of verbs appropriately to convey meaning.</li></ul>"
+                  "description": "<ul><li>Speaks (communicates) in sentences of up to 5-6 words. May use 1 or 2 conjunctions (mainly 'and') and 1 or 2 pronouns making some errors.</li><li>Mainly uses simple, common nouns and a limited range of verbs appropriately to convey meaning.</li></ul>"
                 },
                 {
                   "id": "8bff448c-e81d-45df-8368-0404e52192c6",
@@ -301,7 +301,7 @@
               "id": "6e145b2c-5aa2-4842-b539-f2bcd6946fbe",
               "index": 3,
               "name": "Multi-Step Persistence",
-              "description": "<ul><li>Persists with tasks involving multiple steps that require some time, effort, and patience (e.g. building a block tower).</li><li>Maintains focused attention when engaged in preferred tasks.</li><li>Persists after an initial set-back but may require support if challenges continue (e.g. trying to put shoes on).</li><li>Waits for their turn in a game involving two or three people (e.g. they are last in a line of children waiting and they do not express frustration verbally or physically).</li><li>May show hesitance with new or challenging tasks.</li><li>Aware of needing help but may not always ask for it.</li></ul>"
+              "description": "<ul><li>Persists with tasks involving multiple steps that require some time, effort, and patience (e.g. building a block tower).</li><li>Maintains focused attention when engaged in preferred tasks.</li><li>Persists after an initial set-back but may require support if challenges continue (e.g. trying to put shoes on).</li><li>Waits for their turn in a game involving 2 or 3 people (e.g. they are last in a line of children waiting and they do not express frustration verbally or physically).</li><li>May show hesitance with new or challenging tasks.</li><li>Aware of needing help but may not always ask for it.</li></ul>"
             },
             {
               "id": "f52eae40-c79a-46d4-8ffa-59b392bc674c",
@@ -375,13 +375,13 @@
               "id": "ab181854-236f-404f-802c-2368df534c94",
               "index": 3,
               "name": "Guided Strategy Reflection",
-              "description": "<ul><li>Communicates 1-2 ideas for how a problem with unfamiliar materials might be solved (e.g. construction of a three-dimensional object using recycled materials).</li><li>Experiments with at least two different, familiar ways to solve a problem. (e.g. how to negotiate a play space with peers, but requires some hints and ideas to try more imaginative and potentially effective approaches from a teacher or educator).</li><li>Describes, with prompting, some aspects of how they attempted to solve a problem. When prompted they can communicate what worked or did not work, reflecting on what they did.</li><li>Independently plans and sequences an activity that happens within one day (e.g. putting on a simple play including assigning roles, simple costumes, and a basic plot) as well as adjusting to minor disruptions (e.g. a conflict between two children wanting the same costume).</li><li>Evaluates their own responses and may change their solution in response to feedback.</li></ul>"
+              "description": "<ul><li>Communicates 1-2 ideas for how a problem with unfamiliar materials might be solved (e.g. construction of a three-dimensional object using recycled materials).</li><li>Experiments with at least 2 different, familiar ways to solve a problem. (e.g. how to negotiate a play space with peers, but requires some hints and ideas to try more imaginative and potentially effective approaches from a teacher or educator).</li><li>Describes, with prompting, some aspects of how they attempted to solve a problem. When prompted they can communicate what worked or did not work, reflecting on what they did.</li><li>Independently plans and sequences an activity that happens within one day (e.g. putting on a simple play including assigning roles, simple costumes, and a basic plot) as well as adjusting to minor disruptions (e.g. a conflict between 2 children wanting the same costume).</li><li>Evaluates their own responses and may change their solution in response to feedback.</li></ul>"
             },
             {
               "id": "b2dcfc4c-b135-4856-ad09-d6af3b78cf88",
               "index": 4,
               "name": "Flexible Problem Planning",
-              "description": "<ul><li>Communicates several ideas for how an unfamiliar problem might be solved (e.g. how to dismantle a piece of unfamiliar equipment with spanners and screwdrivers).</li><li>Experiments with diverse and imaginative ways to solve an unfamiliar problem (e.g. incorporating new and unfamiliar resources into an activity).</li><li>Describes, without prompting, how they attempted to solve a problem providing some reasons for what they did, or did not do, why it worked or did not work and what they might do differently next time.</li><li>Independently or collaboratively plan and sequence an activity with peers that involves a series of steps to take place over two or more days (e.g. putting on an elaborate play with a detailed plot and consideration of how to engage the audience), including adjusting to disruptions and unanticipated events (e.g. rain during an outdoor scene in the play).</li></ul>"
+              "description": "<ul><li>Communicates several ideas for how an unfamiliar problem might be solved (e.g. how to dismantle a piece of unfamiliar equipment with spanners and screwdrivers).</li><li>Experiments with diverse and imaginative ways to solve an unfamiliar problem (e.g. incorporating new and unfamiliar resources into an activity).</li><li>Describes, without prompting, how they attempted to solve a problem providing some reasons for what they did, or did not do, why it worked or did not work and what they might do differently next time.</li><li>Independently or collaboratively plan and sequence an activity with peers that involves a series of steps to take place over 2 or more days (e.g. putting on an elaborate play with a detailed plot and consideration of how to engage the audience), including adjusting to disruptions and unanticipated events (e.g. rain during an outdoor scene in the play).</li></ul>"
             },
             {
               "id": "b5adaa54-a3f3-44f5-9d72-56e362838e00",
