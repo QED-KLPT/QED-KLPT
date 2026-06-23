@@ -275,6 +275,42 @@ export class SelectBehaviours implements OnInit, OnDestroy {
     this.focusBehaviourTile(element.id, behaviour.id);
   }
 
+  protected onBehaviourTileEnter(element: KlptElement, behaviour: KlptBehaviour, event: Event): void {
+    if (this.isListMode()) {
+      return;
+    }
+
+    event.preventDefault();
+    this.selectBehaviour(element, behaviour);
+    this.focusNextElementCarousel(element);
+  }
+
+  protected onBehaviourTileEscape(element: KlptElement, event: Event): void {
+    if (this.isListMode()) {
+      return;
+    }
+
+    event.preventDefault();
+    this.focusNextElementCarousel(element);
+  }
+
+  private focusNextElementCarousel(currentElement: KlptElement): void {
+    const elements = this.selectedElements();
+    const currentIndex = elements.findIndex((e) => e.id === currentElement.id);
+    const nextElement = elements[currentIndex + 1];
+
+    if (nextElement) {
+      const nextBehaviour = this.activeBehaviour(nextElement);
+      if (nextBehaviour) {
+        this.focusBehaviourTile(nextElement.id, nextBehaviour.id);
+      }
+    } else {
+      const host = this.elementRef.nativeElement;
+      const nextButton = host.querySelector<HTMLElement>('.klpt-step__actions .button--primary');
+      nextButton?.focus();
+    }
+  }
+
   protected onCarouselTouchStart(element: KlptElement, event: TouchEvent): void {
     if (this.isListMode()) return;
     this.touchStartX.set(element.id, event.changedTouches[0]?.clientX ?? 0);
