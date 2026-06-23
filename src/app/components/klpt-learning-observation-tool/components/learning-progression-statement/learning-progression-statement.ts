@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { NgStyle } from '@angular/common';
+import { LowerCasePipe, NgStyle } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NavigationNodesComponent } from '../../../shared';
 import { DomainAssetModeService } from '../../../../services/domain-asset-mode.service';
@@ -25,7 +25,7 @@ interface ProgressionItem {
 
 @Component({
   selector: 'app-learning-progression-statement',
-  imports: [NgStyle, RouterLink, NavigationNodesComponent, AccordionItemComponent],
+  imports: [NgStyle, LowerCasePipe, RouterLink, NavigationNodesComponent, AccordionItemComponent],
   templateUrl: './learning-progression-statement.html',
   styleUrl: './learning-progression-statement.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
