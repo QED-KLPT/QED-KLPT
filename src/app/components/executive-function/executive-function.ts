@@ -79,7 +79,7 @@ export class ExecutiveFunction implements OnInit {
         ],
       },
     ],
-    pdfLabel: 'Download executive function practice support (PDF, 1.62 MB)',
+    pdfLabel: 'Executive function practice support (PDF, 1.6MB)',
     pdfPath: 'assets/content/pdfs/executive-function-practice-support.pdf',
   };
 
