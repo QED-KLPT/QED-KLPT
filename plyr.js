@@ -4817,7 +4817,7 @@ typeof navigator === "object" && (function (global, factory) {
           }
         });
 
-        // Hide thumbnail preview - on mouse click, mouse leave, and video play/seek. All four are required, e.g., for buffering
+        // Hide thumbnail preview - on mouse click, mouse leave, and video play/seek. All four are required, e.g. for buffering
         this.bind(elements.progress, 'mouseleave touchend click', () => {
           const {
             previewThumbnails
@@ -4891,7 +4891,7 @@ typeof navigator === "object" && (function (global, factory) {
           elements.controls.pressed = ['mousedown', 'touchstart'].includes(event.type);
         });
 
-        // Show controls when they receive focus (e.g., when using keyboard tab key)
+        // Show controls when they receive focus (e.g. when using keyboard tab key)
         this.bind(elements.controls, 'focusin', () => {
           const {
             config,
@@ -6969,7 +6969,7 @@ typeof navigator === "object" && (function (global, factory) {
 
           // Resolve promise
           const sortAndResolve = () => {
-            // Sort smallest to biggest (e.g., [120p, 480p, 1080p])
+            // Sort smallest to biggest (e.g. [120p, 480p, 1080p])
             this.thumbnails.sort((x, y) => x.height - y.height);
             this.player.debug.log('Preview thumbnails', this.thumbnails);
             resolve();
@@ -7104,7 +7104,7 @@ typeof navigator === "object" && (function (global, factory) {
        * Setup hooks for Plyr and window events
        */
       _defineProperty$1(this, "listeners", () => {
-        // Hide thumbnail preview - on mouse click, mouse leave (in listeners.js for now), and video play/seek. All four are required, e.g., for buffering
+        // Hide thumbnail preview - on mouse click, mouse leave (in listeners.js for now), and video play/seek. All four are required, e.g. for buffering
         this.player.on('play', () => {
           this.toggleThumbContainer(false, true);
         });
@@ -7130,7 +7130,7 @@ typeof navigator === "object" && (function (global, factory) {
         });
         this.elements.thumb.container.appendChild(this.elements.thumb.imageContainer);
 
-        // Create HTML element, parent+span: time text (e.g., 01:32:00)
+        // Create HTML element, parent+span: time text (e.g. 01:32:00)
         const timeContainer = createElement('div', {
           class: this.player.config.classNames.previewThumbnails.timeContainer
         });
