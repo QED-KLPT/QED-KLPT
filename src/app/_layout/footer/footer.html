@@ -1,4 +1,8 @@
 <footer id="footer" class="site-footer" role="contentinfo" tabindex="-1">
+  @if (lastUpdatedDate) {
+    <div class="site-footer__updated">Last updated {{ lastUpdatedDate }}</div>
+  }
+
   <div class="site-footer__graphic" aria-hidden="true"></div>
 
   <div class="site-footer__inner">
