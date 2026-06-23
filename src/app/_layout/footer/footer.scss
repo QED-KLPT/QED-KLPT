@@ -3,6 +3,15 @@
   color: #ffffff;
 }
 
+.site-footer__updated {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.85rem;
+  padding: 0.65rem var(--page-gutter);
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
 .site-footer__graphic {
   height: 8px;
   background: var(--doe-color-accent);
