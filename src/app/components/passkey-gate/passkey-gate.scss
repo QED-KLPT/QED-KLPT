@@ -1,0 +1,162 @@
+.passkey-gate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40vh;
+  padding: 32px 16px;
+}
+
+.passkey-gate__form {
+  width: 100%;
+  max-width: 560px;
+  padding: 40px;
+  border: 1px solid #b8c3cc;
+  border-top: 5px solid var(--doe-blue-600, #005eb8);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(0, 94, 184, 0.07), transparent 55%),
+    #fff;
+  box-shadow: 0 8px 24px rgba(20, 46, 70, 0.1);
+}
+
+.passkey-gate__header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.passkey-gate__lock {
+  display: grid;
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--doe-blue-600, #005eb8);
+  color: #fff;
+  font-size: 1.25rem;
+}
+
+.passkey-gate__heading {
+  margin: 0;
+  color: #1d252d;
+  font-size: 1.5rem;
+  line-height: 1.3;
+}
+
+.passkey-gate__description {
+  margin: 0 0 24px;
+  color: #34495a;
+}
+
+.passkey-gate__label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.passkey-gate__input-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+}
+
+.passkey-gate__input {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 52px 8px 12px;
+  border: 2px solid #6c7882;
+  border-radius: 4px;
+  background: #fff;
+  font: inherit;
+
+  &:focus-visible {
+    outline: 3px solid #ffdd00;
+    outline-offset: 2px;
+  }
+}
+
+.passkey-gate__visibility {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: grid;
+  width: 44px;
+  min-height: 44px;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  border-radius: 0 3px 3px 0;
+  background: transparent;
+  color: #005eb8;
+  font-size: 1.125rem;
+  cursor: pointer;
+
+  &:focus-visible {
+    z-index: 1;
+    outline: 3px solid #ffdd00;
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    cursor: wait;
+    opacity: 0.7;
+  }
+}
+
+.passkey-gate__error {
+  margin: 16px 0 0;
+  color: #b90824;
+  font-weight: 600;
+}
+
+.passkey-gate__button {
+  min-height: 44px;
+  margin-top: 24px;
+  padding: 10px 24px;
+  border: 2px solid #005eb8;
+  border-radius: 4px;
+  background: #005eb8;
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background: #003e7e;
+    border-color: #003e7e;
+  }
+
+  &:focus-visible {
+    outline: 3px solid #ffdd00;
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    cursor: wait;
+    opacity: 0.7;
+  }
+}
+
+.passkey-gate__announcement {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 480px) {
+  .passkey-gate__form {
+    padding: 24px 16px;
+  }
+
+  .passkey-gate__header {
+    align-items: flex-start;
+  }
+}

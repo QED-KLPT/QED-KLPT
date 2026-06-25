@@ -1,18 +1,20 @@
 <header class="doe-header" role="banner">
-  <div class="doe-header__pre">
-    <div class="doe-header__container doe-header__pre-inner">
-      <nav class="doe-header__site-tools" aria-label="Site tools">
-        <ul class="doe-header__site-tools-list">
-          <li>
-            <a href="https://qed.qld.gov.au/"><i aria-hidden=true class="fa-solid fa-globe"></i>&nbsp;QLD Education website</a>
-          </li>
-          <li>
-            <a href="https://qed-klpt.github.io/QED-KLPT/contact"><i aria-hidden=true class="fa fa-phone"></i>&nbsp;Contact us</a>
-          </li>
-        </ul>
-      </nav>
+  @if (!bareMode()) {
+    <div class="doe-header__pre">
+      <div class="doe-header__container doe-header__pre-inner">
+        <nav class="doe-header__site-tools" aria-label="Site tools">
+          <ul class="doe-header__site-tools-list">
+            <li>
+              <a href="https://qed.qld.gov.au/"><i aria-hidden=true class="fa-solid fa-globe"></i>&nbsp;QLD Education website</a>
+            </li>
+            <li>
+              <a href="https://qed-klpt.github.io/QED-KLPT/contact"><i aria-hidden=true class="fa fa-phone"></i>&nbsp;Contact us</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
-  </div>
+  }
 
   <div class="doe-header__masthead">
     <div class="doe-header__container doe-header__masthead-inner">
@@ -31,9 +33,11 @@
     </div>
   </div>
 
-  <app-nav />
+  @if (!bareMode()) {
+    <app-nav />
+  }
 
-  @if (showDraftContentDisclaimer) {
+  @if (!bareMode() && showDraftContentDisclaimer) {
     <app-global-alert type="general" [dismissible]="false">
       This site contains draft and placeholder content and may change. It should not be treated as final or official content. Please do not share the website or content with anyone not involved in the pilot.
     </app-global-alert>

@@ -64,6 +64,7 @@ export class App implements OnInit {
   protected showUpdateNotice = false;
   protected showUpdateFailureNotice = false;
   protected isRefreshing = false;
+  protected isPasskeyRoute = false;
   protected pageAnnouncement = '';
   protected sideNavItems: SiteNavItem[] = [];
   protected sideNavTitle: string | null = null;
@@ -83,10 +84,12 @@ export class App implements OnInit {
         takeUntilDestroyed(this.destroyRef),
       )
       .subscribe(() => {
+        this.isPasskeyRoute = this.router.url.startsWith('/passkey');
         this.announceRouteChange();
         this.updatePageNavigation();
       });
 
+    this.isPasskeyRoute = this.router.url.startsWith('/passkey');
     this.updatePageNavigation();
 
     if (!this.swUpdate.isEnabled) {

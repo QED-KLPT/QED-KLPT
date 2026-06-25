@@ -1,15 +1,17 @@
 <div class="app-shell">
   <nav class="skip-links" aria-label="Skip links">
     <a class="skip-link" href="#main-content">Skip to main content</a>
-    <a class="skip-link" href="#primary-navigation">Skip to primary nav</a>
+    @if (!isPasskeyRoute) {
+      <a class="skip-link" href="#primary-navigation">Skip to primary nav</a>
+    }
     <a class="skip-link" href="#footer">Skip to footer</a>
   </nav>
 
-  <app-header />
+  <app-header [bareMode]="isPasskeyRoute" />
 
   <div class="sr-only" aria-live="polite" aria-atomic="true">{{ pageAnnouncement }}</div>
 
-  @if (breadcrumbItems.length && !hasInlineHeroLayout) {
+  @if (!isPasskeyRoute && breadcrumbItems.length && !hasInlineHeroLayout) {
     <section class="app-breadcrumb-shell" aria-label="Page location">
       <app-breadcrumb [items]="breadcrumbItems" />
     </section>
@@ -33,10 +35,12 @@
     </main>
   </div>
 
-  <app-footer />
+  <app-footer [bareMode]="isPasskeyRoute" />
 </div>
 
-<app-back-to-top />
+@if (!isPasskeyRoute) {
+  <app-back-to-top />
+}
 
 @if (showUpdateNotice) {
   <aside class="update-snackbar" aria-live="polite" aria-atomic="true">

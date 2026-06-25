@@ -9,66 +9,68 @@
     <h2 class="site-footer__title" id="siteTitle">Department of Education</h2>
 
     <div class="site-footer__columns">
-      <section class="site-footer__contact" aria-labelledby="footer-contact-title">
-        <h3 id="footer-contact-title">Contact us</h3>
-        <p>Get in touch for enquiries, feedback, complaints and compliments.</p>
-        <p class="site-footer__phone">
-          <span aria-hidden="true">Phone:</span>
-          <a href="tel:137468">13 QGOV (13 74 68)</a>
-        </p>
-        <a class="site-footer__button" href="https://qed-klpt.github.io/QED-KLPT/contact">
-          Contact us
-        </a>
-      </section>
+      @if (!bareMode()) {
+        <section class="site-footer__contact" aria-labelledby="footer-contact-title">
+          <h3 id="footer-contact-title">Contact us</h3>
+          <p>Get in touch for enquiries, feedback, complaints and compliments.</p>
+          <p class="site-footer__phone">
+            <span aria-hidden="true">Phone:</span>
+            <a href="tel:137468">13 QGOV (13 74 68)</a>
+          </p>
+          <a class="site-footer__button" href="https://qed-klpt.github.io/QED-KLPT/contact">
+            Contact us
+          </a>
+        </section>
 
-      <nav class="site-footer__links" aria-label="Footer">
-        <ul>
-          <li><a href="https://qed.qld.gov.au/copyright-statement">Copyright</a></li>
-          <li><a href="https://qed.qld.gov.au/disclaimer/">Disclaimer</a></li>
-          <li><a href="https://qed.qld.gov.au/privacy/">Privacy</a></li>
-          <li><a href="https://qed.qld.gov.au/about-us/rti">Right to information</a></li>
-          <li><a href="https://www.qld.gov.au/help/accessibility/">Accessibility</a></li>
-          <li><a href="https://smartjobs.qld.gov.au/">Jobs in Queensland Government</a></li>
-          <li><a href="https://www.qld.gov.au/languages/">Other languages</a></li>
-          <li><a routerLink="/sitemap">Site map</a></li>
-        </ul>
-      </nav>
+        <nav class="site-footer__links" aria-label="Footer">
+          <ul>
+            <li><a href="https://qed.qld.gov.au/copyright-statement">Copyright</a></li>
+            <li><a href="https://qed.qld.gov.au/disclaimer/">Disclaimer</a></li>
+            <li><a href="https://qed.qld.gov.au/privacy/">Privacy</a></li>
+            <li><a href="https://qed.qld.gov.au/about-us/rti">Right to information</a></li>
+            <li><a href="https://www.qld.gov.au/help/accessibility/">Accessibility</a></li>
+            <li><a href="https://smartjobs.qld.gov.au/">Jobs in Queensland Government</a></li>
+            <li><a href="https://www.qld.gov.au/languages/">Other languages</a></li>
+            <li><a routerLink="/sitemap">Site map</a></li>
+          </ul>
+        </nav>
 
-      <nav class="site-footer__social" aria-labelledby="footer-social-title">
-        <h3 id="footer-social-title">Follow us</h3>
-        <ul>
-          <li>
-            <a href="https://www.facebook.com/QueenslandDepartmentofEducation">
-              <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
-              <span>Facebook</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://x.com/QLDEducation">
-              <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
-              <span>Twitter</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://www.youtube.com/QueenslandDepartmentofEducation">
-              <i class="fa-brands fa-youtube" aria-hidden="true"></i>
-              <span>YouTube</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://www.instagram.com/qldeducation/">
-              <i class="fa-brands fa-instagram" aria-hidden="true"></i>
-              <span>Instagram</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://www.linkedin.com/company/queensland-department-of-education/">
-              <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
-              <span>LinkedIn</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+        <nav class="site-footer__social" aria-labelledby="footer-social-title">
+          <h3 id="footer-social-title">Follow us</h3>
+          <ul>
+            <li>
+              <a href="https://www.facebook.com/QueenslandDepartmentofEducation">
+                <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+                <span>Facebook</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://x.com/QLDEducation">
+                <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+                <span>Twitter</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.youtube.com/QueenslandDepartmentofEducation">
+                <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+                <span>YouTube</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/qldeducation/">
+                <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                <span>Instagram</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/company/queensland-department-of-education/">
+                <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+                <span>LinkedIn</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      }
 
       <section class="site-footer__acknowledgement" aria-label="Acknowledgement">
         <p>
