@@ -72,6 +72,12 @@
   background: #fff;
   font: inherit;
 
+  &::-ms-reveal,
+  &::-webkit-contacts-auto-fill-button,
+  &::-webkit-credentials-auto-fill-button {
+    display: none;
+  }
+
   &:focus-visible {
     outline: 3px solid #ffdd00;
     outline-offset: 2px;
