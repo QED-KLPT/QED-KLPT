@@ -37,15 +37,15 @@ export class SiteAccessService {
       accessToken: response.accessToken,
       accessTokenExpiresAt: response.accessTokenExpiresAt,
     };
-    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(stored));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(stored));
   }
 
   clearAccessToken(): void {
-    sessionStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(STORAGE_KEY);
   }
 
   private getValidStoredAccess(): StoredSiteAccess | null {
-    const storedValue = sessionStorage.getItem(STORAGE_KEY);
+    const storedValue = localStorage.getItem(STORAGE_KEY);
     if (!storedValue) return null;
 
     try {
