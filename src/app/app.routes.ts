@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { siteAccessGuard } from './guards/site-access.guard';
+import { PasskeyGate } from './components/passkey-gate/passkey-gate';
 import { About } from './components/about/about';
 import { AnalysingData } from './components/analysing-data/analysing-data';
 import { Contact } from './components/contact/contact';
@@ -49,6 +51,11 @@ import { Sitemap } from './components/sitemap/sitemap';
 
 
 export const routes: Routes = [
+  { path: 'passkey', component: PasskeyGate, title: 'Site access' },
+  {
+    path: '',
+    canActivate: [siteAccessGuard],
+    children: [
   { path: '', component: Home, title: 'Home' },
   { path: 'klpt-foundations', component: Foundations, title: 'KLPT foundations', data: { lastUpdated: '19 June 2026' } },
   { path: 'klpt-foundations/conducting-and-documenting-quality-observations', component: QualityObservations, title: 'Conducting and documenting quality observations', data: { lastUpdated: '19 June 2026' } },
@@ -109,5 +116,7 @@ export const routes: Routes = [
   { path: 'testing/testing-tables', component: TestingTables, title: 'Testing Tables' },
   { path: 'testing/tag', component: TestingTag, title: 'Testing Tag' },
   { path: 'testing/side-navigation', component: TestingSideNavigation, title: 'Testing Side Navigation' },
-  { path: '**', redirectTo: '' },
+      { path: '**', redirectTo: '' },
+    ],
+  },
 ];

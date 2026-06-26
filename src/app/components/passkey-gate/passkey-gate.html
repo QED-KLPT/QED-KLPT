@@ -1,0 +1,70 @@
+<div class="passkey-gate">
+  <form
+    class="passkey-gate__form"
+    novalidate
+    [attr.aria-busy]="loading"
+    (ngSubmit)="submitPasskey()"
+  >
+    <div class="passkey-gate__header">
+      <span class="passkey-gate__lock" aria-hidden="true">
+        <i class="fa-solid fa-lock"></i>
+      </span>
+      <h1 class="passkey-gate__heading">Site access</h1>
+    </div>
+
+    <p class="passkey-gate__description">
+      Enter the passkey provided to you to access this site.
+    </p>
+
+    <label class="passkey-gate__label" for="site-passkey">Passkey</label>
+    <div class="passkey-gate__input-wrap">
+      <input
+        class="passkey-gate__input"
+        id="site-passkey"
+        name="passkey"
+        #passkeyInput
+        [type]="showPasskey ? 'text' : 'password'"
+        autocomplete="current-password"
+        required
+        [disabled]="loading"
+        [(ngModel)]="passkey"
+        (ngModelChange)="clearPasskeyError()"
+        [attr.aria-invalid]="errorMessage ? 'true' : null"
+        [attr.aria-describedby]="errorMessage ? 'site-access-error' : null"
+      />
+      <button
+        class="passkey-gate__visibility"
+        type="button"
+        [disabled]="loading"
+        [attr.aria-label]="showPasskey ? 'Hide passkey' : 'Show passkey'"
+        [attr.aria-pressed]="showPasskey"
+        (click)="togglePasskeyVisibility()"
+      >
+        <i
+          class="fa-solid"
+          [class.fa-eye]="!showPasskey"
+          [class.fa-eye-slash]="showPasskey"
+          aria-hidden="true"
+        ></i>
+      </button>
+    </div>
+
+    @if (errorMessage) {
+      <p
+        class="passkey-gate__error"
+        id="site-access-error"
+        role="alert"
+      >
+        {{ errorMessage }}
+      </p>
+    }
+
+    <button class="passkey-gate__button" type="submit" [disabled]="loading">
+      {{ loading ? 'Checking access...' : 'Access site' }}
+    </button>
+
+    <span class="passkey-gate__announcement" aria-live="polite" aria-atomic="true">
+      {{ loading ? 'Checking site access.' : '' }}
+    </span>
+  </form>
+</div>

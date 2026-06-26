@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, ChangeDetectorRef, inject } from '@angular/core';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { ChangeDetectionStrategy, Component, ChangeDetectorRef, inject, input } from '@angular/core';
+import { Router, NavigationEnd, ActivatedRoute, RouterLink } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 function getDeepestRoute(route: ActivatedRoute): ActivatedRoute {
@@ -14,12 +14,13 @@ function getDeepestRoute(route: ActivatedRoute): ActivatedRoute {
 
 @Component({
   selector: 'app-footer',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './footer.html',
   styleUrl: './footer.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Footer {
+  readonly bareMode = input(false);
   lastUpdatedDate: string | null = null;
 
   private cdr = inject(ChangeDetectorRef);
