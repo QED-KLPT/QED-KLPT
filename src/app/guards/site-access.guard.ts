@@ -7,7 +7,7 @@ export const siteAccessGuard: CanActivateFn = (_route, state) => {
   const siteAccess = inject(SiteAccessService);
   const router = inject(Router);
 
-  if (siteAccess.hasAccess()) {
+  if (siteAccess.hasValidAccessToken()) {
     return true;
   }
 

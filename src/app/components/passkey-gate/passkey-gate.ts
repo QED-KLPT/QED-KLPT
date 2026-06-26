@@ -54,7 +54,7 @@ export class PasskeyGate implements AfterViewInit {
         this.changeDetector.markForCheck();
       }))
       .subscribe({
-        next: () => this.handleAccessGranted(),
+        next: (response) => this.handleAccessGranted(response),
         error: (error: unknown) => this.handleAccessError(error),
       });
   }
@@ -67,8 +67,8 @@ export class PasskeyGate implements AfterViewInit {
     this.errorMessage = '';
   }
 
-  private handleAccessGranted(): void {
-    this.siteAccess.grantAccess();
+  private handleAccessGranted(response: { accessToken: string; accessTokenExpiresAt: string }): void {
+    this.siteAccess.storeAccessToken(response);
     const returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] as string ?? '/';
     const safeReturnUrl = returnUrl.startsWith('/') ? returnUrl : '/';
     void this.router.navigateByUrl(safeReturnUrl);
