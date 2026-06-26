@@ -65,15 +65,22 @@
 .passkey-gate__input {
   display: block;
   width: 100%;
-  min-height: 44px;
-  padding: 8px 52px 8px 12px;
-  border: 2px solid #6c7882;
-  border-radius: 4px;
-  background: #fff;
+  min-height: 3.375rem;
+  padding: 0.8125rem 3.25rem 0.8125rem 1rem;
+  border: 1px solid rgba(13, 59, 102, 0.18);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.94);
   font: inherit;
 
-  &:focus-visible {
-    outline: 3px solid #ffdd00;
+  &::-ms-reveal,
+  &::-webkit-contacts-auto-fill-button,
+  &::-webkit-credentials-auto-fill-button {
+    display: none;
+  }
+
+  &:focus {
+    border-color: #0d3b66;
+    outline: 3px solid rgba(13, 59, 102, 0.18);
     outline-offset: 2px;
   }
 }
