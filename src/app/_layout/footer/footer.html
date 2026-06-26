@@ -8,7 +8,7 @@
   <div class="site-footer__inner">
     <h2 class="site-footer__title" id="siteTitle">Department of Education</h2>
 
-    <div class="site-footer__columns">
+    <div class="site-footer__columns" [class.site-footer__columns--bare]="bareMode()">
       @if (!bareMode()) {
         <section class="site-footer__contact" aria-labelledby="footer-contact-title">
           <h3 id="footer-contact-title">Contact us</h3>
@@ -68,6 +68,14 @@
                 <span>LinkedIn</span>
               </a>
             </li>
+          </ul>
+        </nav>
+      }
+
+      @if (bareMode()) {
+        <nav class="site-footer__links" aria-label="Footer">
+          <ul>
+            <li><a href="https://qed.qld.gov.au/privacy/">Privacy</a></li>
           </ul>
         </nav>
       }

@@ -45,6 +45,15 @@
   min-width: 0;
 }
 
+.site-footer__columns--bare {
+  grid-template-columns: 1fr;
+
+  .site-footer__links {
+    border: 0;
+    padding: 0;
+  }
+}
+
 .site-footer h3 {
   margin: 0 0 0.85rem;
   color: #ffffff;
@@ -144,7 +153,7 @@
     align-items: stretch;
   }
 
-  .site-footer__columns > * + * {
+  .site-footer__columns:not(.site-footer__columns--bare) > * + * {
     border-left: 2px solid var(--doe-color-accent);
     padding-left: clamp(1.5rem, 3vw, 2rem);
   }

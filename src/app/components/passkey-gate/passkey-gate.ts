@@ -80,9 +80,10 @@ export class PasskeyGate implements AfterViewInit {
 
     if (error instanceof HttpErrorResponse && error.status === 401) {
       this.errorMessage = 'The passkey is incorrect. Please try again.';
-      return;
+    } else {
+      this.errorMessage = 'Unable to verify the passkey. Please try again.';
     }
 
-    this.errorMessage = 'Unable to verify the passkey. Please try again.';
+    setTimeout(() => this.passkeyInputRef?.nativeElement.focus());
   }
 }
