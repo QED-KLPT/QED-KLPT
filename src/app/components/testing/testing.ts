@@ -6,7 +6,6 @@ import {
   signal,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { RouterLink } from '@angular/router';
 import { merge, timer } from 'rxjs';
 
 import { VideoAccessService } from '../../services/video-access.service';
@@ -15,7 +14,7 @@ import { VidPlayerModule } from '../shared/vid-player/vid-player.module';
 
 @Component({
   selector: 'app-testing',
-  imports: [RouterLink, PlyrPlayerModule, VidPlayerModule],
+  imports: [PlyrPlayerModule, VidPlayerModule],
   templateUrl: './testing.html',
   styleUrl: './testing.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
