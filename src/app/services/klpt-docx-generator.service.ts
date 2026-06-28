@@ -287,26 +287,36 @@ export class KlptDocxGeneratorService {
 
     paragraphs.push(
       new Paragraph({
-        children: [
-          new TextRun({ text: 'What you observed:', ...TYPOGRAPHY.subheading }),
-          new TextRun({ text: ' ', ...TYPOGRAPHY.body }),
-          ...observedLines.map(line => new TextRun({ text: line, ...TYPOGRAPHY.body })),
-        ],
-        spacing: { before: 100, after: 100 },
+        children: [new TextRun({ text: 'What you observed:', ...TYPOGRAPHY.subheading })],
+        spacing: { before: 100, after: 40 },
       }),
     );
+
+    for (const line of observedLines) {
+      paragraphs.push(
+        new Paragraph({
+          children: [new TextRun({ text: line, ...TYPOGRAPHY.body })],
+          spacing: { before: 2, after: 2 },
+        }),
+      );
+    }
 
     if (nextText) {
       paragraphs.push(
         new Paragraph({
-          children: [
-            new TextRun({ text: 'What is likely to be the next step in learning progression:', ...TYPOGRAPHY.subheading }),
-            new TextRun({ text: ' ', ...TYPOGRAPHY.body }),
-            ...nextLines.map(line => new TextRun({ text: line, ...TYPOGRAPHY.body })),
-          ],
-          spacing: { before: 200, after: 100 },
+          children: [new TextRun({ text: 'What is likely to be the next step in learning progression:', ...TYPOGRAPHY.subheading })],
+          spacing: { before: 200, after: 40 },
         }),
       );
+
+      for (const line of nextLines) {
+        paragraphs.push(
+          new Paragraph({
+            children: [new TextRun({ text: line, ...TYPOGRAPHY.body })],
+            spacing: { before: 2, after: 2 },
+          }),
+        );
+      }
     }
 
     return paragraphs;
@@ -354,31 +364,38 @@ export class KlptDocxGeneratorService {
   }
 
   private wrapText(text: string, maxCharsPerLine: number): string[] {
-    const words = text.split(' ');
+    // Split on newlines first to preserve paragraph/bullet structure from htmlToText.
+    const segments = text.split('\n');
     const lines: string[] = [];
-    let currentLine = '';
 
-    for (const word of words) {
-      if ((currentLine + word).length > maxCharsPerLine && currentLine) {
+    for (const segment of segments) {
+      if (!segment.trim()) continue;
+
+      const words = segment.trim().split(' ');
+      let currentLine = '';
+
+      for (const word of words) {
+        if ((currentLine + word).length > maxCharsPerLine && currentLine) {
+          lines.push(currentLine);
+          currentLine = word;
+        } else {
+          currentLine = currentLine ? `${currentLine} ${word}` : word;
+        }
+      }
+
+      if (currentLine) {
         lines.push(currentLine);
-        currentLine = word;
-      } else {
-        currentLine = currentLine ? `${currentLine} ${word}` : word;
       }
     }
 
-    if (currentLine) {
-      lines.push(currentLine);
-    }
-
-    return lines || ['Not entered'];
+    return lines.length > 0 ? lines : ['Not entered'];
   }
 
   private htmlToText(value: string): string {
     return value
-      .replace(/<\/li>\s*<li>/gi, '\n')
-      .replace(/<li>/gi, '- ')
-      .replace(/<\/?(ul|ol)>/gi, '\n')
+      .replace(/<\/li>\s*<li>/gi, '\n• ')
+      .replace(/<li>/gi, '• ')
+      .replace(/<\/?(ul|ol)>/gi, '')
       .replace(/<br\s*\/?>/gi, '\n')
       .replace(/<\/p>\s*<p>/gi, '\n\n')
       .replace(/<[^>]+>/g, '')
