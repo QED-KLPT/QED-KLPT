@@ -324,7 +324,7 @@ export class KlptPdfGeneratorService {
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(8.4);
     doc.setTextColor(...PDF_THEME.ink);
-    const lines = doc.splitTextToSize(body || 'Not entered', width);
+    const lines = this.wrapText(doc, body, width);
     doc.text(lines, x, y + titleLines.length * 3.2 + 3, { lineHeightFactor: 1.25 });
   }
 
@@ -336,11 +336,31 @@ export class KlptPdfGeneratorService {
   ): number {
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(8.4);
-    const lines = doc.splitTextToSize(body || 'Not entered', width - 12);
+    const lines = this.wrapText(doc, body, width - 12);
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(7);
     const titleLines = doc.splitTextToSize(title, width - 12);
     return Math.max(18, 5 + titleLines.length * 3.2 + lines.length * 3.8);
+  }
+
+  private wrapText(doc: JsPdfDocument, text: string, maxWidth: number): string[] {
+    const normalizedText = this.normalizeLineEndings(text).trim();
+
+    if (!normalizedText) {
+      return ['Not entered'];
+    }
+
+    return normalizedText
+      .split('\n')
+      .flatMap((line) => {
+        const trimmedLine = line.trim();
+
+        if (!trimmedLine) {
+          return [''];
+        }
+
+        return doc.splitTextToSize(trimmedLine, maxWidth) as string[];
+      });
   }
 
   private ensureSpace(
@@ -505,6 +525,7 @@ export class KlptPdfGeneratorService {
 
   private htmlToText(value: string): string {
     return value
+      .replace(/\r\n?/g, '\n')
       .replace(/<\/li>\s*<li>/gi, '\n')
       .replace(/<li>/gi, '- ')
       .replace(/<\/?(ul|ol)>/gi, '\n')
@@ -519,5 +540,9 @@ export class KlptPdfGeneratorService {
       .replace(/&gt;/g, '>')
       .replace(/\n{3,}/g, '\n\n')
       .trim();
+  }
+
+  private normalizeLineEndings(value: string): string {
+    return value.replace(/\r\n?/g, '\n');
   }
 }

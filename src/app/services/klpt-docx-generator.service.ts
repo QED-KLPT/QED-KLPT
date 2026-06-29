@@ -364,14 +364,23 @@ export class KlptDocxGeneratorService {
   }
 
   private wrapText(text: string, maxCharsPerLine: number): string[] {
+    const normalizedText = text.replace(/\r\n?/g, '\n').trim();
+
+    if (!normalizedText) {
+      return ['Not entered'];
+    }
+
     // Split on newlines first to preserve paragraph/bullet structure from htmlToText.
-    const segments = text.split('\n');
+    const segments = normalizedText.split('\n');
     const lines: string[] = [];
 
     for (const segment of segments) {
-      if (!segment.trim()) continue;
+      if (!segment.trim()) {
+        lines.push('');
+        continue;
+      }
 
-      const words = segment.trim().split(' ');
+      const words = segment.trim().split(/\s+/);
       let currentLine = '';
 
       for (const word of words) {
@@ -388,11 +397,12 @@ export class KlptDocxGeneratorService {
       }
     }
 
-    return lines.length > 0 ? lines : ['Not entered'];
+    return lines;
   }
 
   private htmlToText(value: string): string {
     return value
+      .replace(/\r\n?/g, '\n')
       .replace(/<\/li>\s*<li>/gi, '\n• ')
       .replace(/<li>/gi, '• ')
       .replace(/<\/?(ul|ol)>/gi, '')
