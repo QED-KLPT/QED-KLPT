@@ -52,9 +52,14 @@ export class ReviewSession implements OnInit, OnDestroy {
   @ViewChild('generatePdfTrigger') private generatePdfTrigger?: ElementRef<HTMLButtonElement>;
   @ViewChild('generateWordDialog') private generateWordDialog?: ElementRef<HTMLElement>;
   @ViewChild('generateWordTrigger') private generateWordTrigger?: ElementRef<HTMLButtonElement>;
+  @ViewChild('wordSuccessDialog') private wordSuccessDialog?: ElementRef<HTMLElement>;
+  @ViewChild('wordSuccessTrigger') private wordSuccessTrigger?: ElementRef<HTMLAnchorElement>;
   protected childName = '';
   protected isGeneratePdfModalOpen = false;
   protected isGenerateWordModalOpen = false;
+  protected isWordSuccessModalOpen = false;
+  protected wordDocumentUrl = '';
+  protected wordDocumentFilename = '';
   private isLeavingAfterPdf = false;
 
   protected readonly highestBehaviourText = HIGHEST_BEHAVIOUR_HTML;
@@ -107,13 +112,57 @@ export class ReviewSession implements OnInit, OnDestroy {
 
   protected async confirmGenerateWord(): Promise<void> {
     this.isGenerateWordModalOpen = false;
-    await this.docxGenerator.generateSessionDocx(this.currentSession, {
+    const result = await this.docxGenerator.generateSessionDocx(this.currentSession, {
       learnerName: this.childName,
     });
+
+    this.wordDocumentUrl = result.blobUrl;
+    this.wordDocumentFilename = result.filename;
+    this.isWordSuccessModalOpen = true;
+  }
+
+  protected closeWordSuccessModal(): void {
+    if (this.wordDocumentUrl) {
+      URL.revokeObjectURL(this.wordDocumentUrl);
+      this.wordDocumentUrl = '';
+      this.wordDocumentFilename = '';
+    }
+    this.isWordSuccessModalOpen = false;
 
     this.sessionManagement.deleteSession(this.currentSession.id);
     this.isLeavingAfterPdf = true;
     void this.router.navigateByUrl('/learning-observation-tool/sessions');
+  }
+
+  protected trapWordSuccessModalFocus(event: KeyboardEvent): void {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      this.closeWordSuccessModal();
+      return;
+    }
+
+    if (event.key !== 'Tab') {
+      return;
+    }
+
+    const focusableElements = this.getWordSuccessModalFocusableElements();
+
+    if (!focusableElements.length) {
+      event.preventDefault();
+      this.wordSuccessDialog?.nativeElement.focus();
+      return;
+    }
+
+    const first = focusableElements[0];
+    const last = focusableElements[focusableElements.length - 1];
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
   }
 
   protected trapGenerateWordModalFocus(event: KeyboardEvent): void {
@@ -330,7 +379,6 @@ export class ReviewSession implements OnInit, OnDestroy {
       ),
     ).filter((element) => !element.hasAttribute('inert'));
   }
-
   private getWordModalFocusableElements(): HTMLElement[] {
     const dialog = this.generateWordDialog?.nativeElement;
 
@@ -344,4 +392,19 @@ export class ReviewSession implements OnInit, OnDestroy {
       ),
     ).filter((element) => !element.hasAttribute('inert'));
   }
+
+  private getWordSuccessModalFocusableElements(): HTMLElement[] {
+    const dialog = this.wordSuccessDialog?.nativeElement;
+
+    if (!dialog) {
+      return [];
+    }
+
+    return Array.from(
+      dialog.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      ),
+    ).filter((element) => !element.hasAttribute('inert'));
+  }
+
 }

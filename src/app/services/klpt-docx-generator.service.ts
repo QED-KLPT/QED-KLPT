@@ -86,7 +86,7 @@ export class KlptDocxGeneratorService {
   async generateSessionDocx(
     session: SessionModel,
     options: GenerateSessionDocxOptions = {},
-  ): Promise<void> {
+  ): Promise<{ filename: string; blobUrl: string }> {
     const domain = this.resolveDomain(session.domain);
     const progressionItems = this.progressionItems(session);
 
@@ -167,7 +167,8 @@ export class KlptDocxGeneratorService {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+
+    return { filename, blobUrl: url };
   }
 
   private createHeaderBar(): Paragraph {

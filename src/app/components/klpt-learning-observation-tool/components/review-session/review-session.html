@@ -197,3 +197,39 @@
     </section>
   </div>
 }
+
+@if (isWordSuccessModalOpen) {
+  <div class="word-success-modal" role="presentation">
+    <div class="word-success-modal__backdrop" (click)="closeWordSuccessModal()"></div>
+    <section
+      class="word-success-modal__panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="word-success-modal-title"
+      aria-describedby="word-success-modal-description"
+      tabindex="-1"
+      #wordSuccessDialog
+      (keydown)="trapWordSuccessModalFocus($event)"
+    >
+      <h2 id="word-success-modal-title">Your learning progression statement has been generated!</h2>
+      <p id="word-success-modal-description">
+        Your document was downloaded automatically. You can also open it below in a new tab.
+      </p>
+
+      <div class="word-success-modal__actions">
+        <a
+          #wordSuccessTrigger
+          class="word-success-modal__button word-success-modal__button--primary"
+          [href]="wordDocumentUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Open document
+        </a>
+        <button class="word-success-modal__button word-success-modal__button--secondary" type="button" (click)="closeWordSuccessModal()">
+          Close
+        </button>
+      </div>
+    </section>
+  </div>
+}
