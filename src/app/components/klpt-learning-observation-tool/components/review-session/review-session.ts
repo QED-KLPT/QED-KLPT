@@ -119,6 +119,10 @@ export class ReviewSession implements OnInit, OnDestroy {
     this.wordDocumentUrl = result.blobUrl;
     this.wordDocumentFilename = result.filename;
     this.isWordSuccessModalOpen = true;
+    window.setTimeout(() => {
+      const firstButton = this.wordSuccessDialog?.nativeElement.querySelector<HTMLElement>('a:not([disabled])');
+      (firstButton ?? this.wordSuccessDialog?.nativeElement)?.focus();
+    });
   }
 
   protected closeWordSuccessModal(): void {
