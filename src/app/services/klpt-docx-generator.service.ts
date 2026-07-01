@@ -21,9 +21,6 @@ import {
   PageNumber,
 } from 'docx';
 
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
 const FORM_FIELD_LABELS: Record<string, string> = {
   'child-name': 'Child name',
   'date': 'Date',
@@ -86,7 +83,8 @@ export class KlptDocxGeneratorService {
   async generateSessionDocx(
     session: SessionModel,
     options: GenerateSessionDocxOptions = {},
-  ): Promise<void> {
+    docxWindow: Window | null = null,
+  ): Promise<{ url: string; filename: string; type: 'docx' } | null> {
     const domain = this.resolveDomain(session.domain);
     const progressionItems = this.progressionItems(session);
 
@@ -150,24 +148,59 @@ export class KlptDocxGeneratorService {
     const blob = await Packer.toBlob(doc);
     const learnerCode = session.learnerCode || 'unknown';
     const now = new Date();
-    const day = now.getDate();
-    const month = MONTHS[now.getMonth()];
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0');
     const year = now.getFullYear();
-    const hours = now.getHours();
+    const hours = String(now.getHours()).padStart(2, '0');
     const minutes = String(now.getMinutes()).padStart(2, '0');
-    const ampm = hours >= 12 ? 'pm' : 'am';
-    const displayHours = String(hours % 12 || 12).padStart(2, '0');
-    const dateStr = `${year}-${month}-${String(day).padStart(2, '0')}-${displayHours}${minutes}${ampm}`;
+    const dateStr = `${day}-${month}-${year}-${hours}${minutes}`;
     const filename = `klpt-session-${learnerCode}-${dateStr}.docx`;
 
     const url = URL.createObjectURL(blob);
+
+    if (docxWindow && !docxWindow.closed) {
+      docxWindow.location.href = url;
+      window.setTimeout(() => URL.revokeObjectURL(url), 60000);
+      return null;
+    }
+
     const link = document.createElement('a');
     link.href = url;
     link.download = filename;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+
+    return { url, filename, type: 'docx' };
+  }
+
+  openDocxWindowForIosSafari(): Window | null {
+    if (!this.isIosSafari()) {
+      return null;
+    }
+
+    const win = window.open('', '_blank');
+
+    if (win) {
+      win.opener = null;
+      win.document.title = 'Preparing KLPT document';
+      win.document.body.innerHTML = '<p style="font-family: sans-serif; padding: 1rem;">Preparing document...</p>';
+    }
+
+    return win;
+  }
+
+  private isIosSafari(): boolean {
+    if (typeof window === 'undefined' || typeof navigator === 'undefined') {
+      return false;
+    }
+
+    const ua = navigator.userAgent;
+    const isIos = /iPad|iPhone|iPod/.test(ua) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    const isSafari = /Safari/.test(ua) && !/CriOS|FxiOS|EdgiOS|OPiOS/.test(ua);
+
+    return isIos && isSafari;
   }
 
   private createHeaderBar(): Paragraph {
@@ -422,10 +455,7 @@ export class KlptDocxGeneratorService {
   formatDateForDocx(date: Date | string): string {
     const d = typeof date === 'string' ? new Date(date) : date;
     if (isNaN(d.getTime())) return 'Not specified';
-    const day = d.getDate();
-    const month = MONTHS[d.getMonth()];
-    const year = d.getFullYear();
-    return `${day} ${month} ${year}`;
+    return d.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' });
   }
 
   formatEducatorName(name: string | undefined): string {
