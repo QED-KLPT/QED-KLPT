@@ -22,6 +22,7 @@ import { KlptDomainDataService } from '../shared/klpt-domain-data.service';
 import { SessionManagementService } from '../shared/session-management.service';
 import { KlptPdfGeneratorService } from '../../../../services/klpt-pdf-generator.service';
 import { KlptDocxGeneratorService } from '../../../../services/klpt-docx-generator.service';
+import { DocumentDownloadService } from '../../../../services/document-download.service';
 import { HIGHEST_BEHAVIOUR_HTML } from '../shared/klpt-constants';
 
 interface ReviewProgressionItem {
@@ -44,6 +45,7 @@ export class ReviewSession implements OnInit, OnDestroy {
   private readonly sessionManagement = inject(SessionManagementService);
   private readonly pdfGenerator = inject(KlptPdfGeneratorService);
   private readonly docxGenerator = inject(KlptDocxGeneratorService);
+  private readonly downloadService = inject(DocumentDownloadService);
   private readonly domainAssetMode = inject(DomainAssetModeService);
   private readonly router = inject(Router);
 
@@ -86,9 +88,13 @@ export class ReviewSession implements OnInit, OnDestroy {
   protected async confirmGeneratePdf(): Promise<void> {
     this.isGeneratePdfModalOpen = false;
     const pdfWindow = this.pdfGenerator.openPdfPreviewWindowForIosSafari();
-    await this.pdfGenerator.generateSessionPdf(this.currentSession, pdfWindow, {
+    const download = await this.pdfGenerator.generateSessionPdf(this.currentSession, pdfWindow, {
       learnerName: this.childName,
     });
+
+    if (download) {
+      this.downloadService.set(download);
+    }
 
     this.sessionManagement.deleteSession(this.currentSession.id);
     this.isLeavingAfterPdf = true;
@@ -107,9 +113,14 @@ export class ReviewSession implements OnInit, OnDestroy {
 
   protected async confirmGenerateWord(): Promise<void> {
     this.isGenerateWordModalOpen = false;
-    await this.docxGenerator.generateSessionDocx(this.currentSession, {
+    const docxWindow = this.docxGenerator.openDocxWindowForIosSafari();
+    const download = await this.docxGenerator.generateSessionDocx(this.currentSession, {
       learnerName: this.childName,
-    });
+    }, docxWindow);
+
+    if (download) {
+      this.downloadService.set(download);
+    }
 
     this.sessionManagement.deleteSession(this.currentSession.id);
     this.isLeavingAfterPdf = true;
