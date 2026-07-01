@@ -17,6 +17,7 @@ import {
   WidthType,
   AlignmentType,
   BorderStyle,
+  ShadingType,
   Footer,
   PageNumber,
 } from 'docx';
@@ -30,11 +31,14 @@ const FORM_FIELD_LABELS: Record<string, string> = {
   'qklg-eylf-links': 'QKLG and EYLF Links',
 };
 
+// Mirrors PDF_THEME in klpt-pdf-generator.service.ts so the two documents share a look.
 const COLORS = {
-  ink: '000000',
+  ink: '10233C',
   muted: '526985',
   blue: '0D3B66',
   white: 'FFFFFF',
+  panel: 'EDF4FA',
+  border: 'D8E2EC',
 };
 
 const TYPOGRAPHY = {
@@ -101,7 +105,7 @@ export class KlptDocxGeneratorService {
     children.push(this.createMetadataTable(metadataFields));
 
     if (domain) {
-      children.push(new Paragraph({ spacing: { before: 200, after: 100 } }));
+      children.push(new Paragraph({ spacing: { before: 200, after: 0 } }));
       children.push(...this.createTextCard('Learning domain summary', `${domain.name}: ${domain.summary}`));
     }
 
@@ -209,16 +213,10 @@ export class KlptDocxGeneratorService {
         new TextRun({
           text: 'Learning progression statement',
           ...TYPOGRAPHY.heading,
+          bold: false,
         }),
       ],
       spacing: { before: 100, after: 200 },
-      border: {
-        bottom: {
-          style: BorderStyle.SINGLE,
-          size: 1,
-          color: '000000',
-        },
-      },
     });
   }
 
@@ -236,18 +234,18 @@ export class KlptDocxGeneratorService {
             children: [
               new Paragraph({
                 children: [
-                  new TextRun({ 
-                    text: field.label, 
-                    ...TYPOGRAPHY.muted 
+                  new TextRun({
+                    text: field.label,
+                    ...TYPOGRAPHY.muted
                   }),
                 ],
                 spacing: { before: 4, after: 2 },
               }),
               new Paragraph({
                 children: [
-                  new TextRun({ 
-                    text: field.value, 
-                    ...TYPOGRAPHY.body 
+                  new TextRun({
+                    text: field.value,
+                    ...TYPOGRAPHY.body
                   }),
                 ],
                 spacing: { before: 2, after: 4 },
@@ -255,6 +253,14 @@ export class KlptDocxGeneratorService {
             ],
             width: { size: cellWidth, type: WidthType.PERCENTAGE },
             verticalAlign: AlignmentType.CENTER,
+            shading: { fill: COLORS.white, type: ShadingType.CLEAR },
+            margins: { top: 60, bottom: 60, left: 100, right: 100 },
+            borders: {
+              top: this.createBorder(COLORS.border),
+              bottom: this.createBorder(COLORS.border),
+              left: this.createBorder(COLORS.border),
+              right: this.createBorder(COLORS.border),
+            },
           }),
         );
       }
@@ -267,92 +273,124 @@ export class KlptDocxGeneratorService {
     });
   }
 
-  private createTextCard(title: string, body: string): Paragraph[] {
+  private createTextCard(title: string, body: string): (Paragraph | Table)[] {
     const bodyText = this.htmlToText(body) || 'Not entered';
-    const bodyLines = this.wrapText(bodyText, 80);
+    const bodyLines = this.wrapText(bodyText);
 
     return [
-      new Paragraph({
-        children: [new TextRun({ text: title, ...TYPOGRAPHY.subheading })],
-        spacing: { before: 200, after: 100 },
-      }),
-      ...bodyLines.map((line) =>
+      this.createPanel([
         new Paragraph({
-          children: [new TextRun({ text: line, ...TYPOGRAPHY.body })],
-          spacing: { before: 2, after: 2 },
+          children: [new TextRun({ text: title, ...TYPOGRAPHY.subheading })],
+          spacing: { before: 0, after: 100 },
         }),
-      ),
+        ...bodyLines.map((line) =>
+          new Paragraph({
+            children: [new TextRun({ text: line || ' ', ...TYPOGRAPHY.body })],
+            spacing: { before: 2, after: 2 },
+            alignment: AlignmentType.JUSTIFIED,
+          }),
+        ),
+      ]),
     ];
   }
 
-  private createProgressionItem(item: DocxProgressionItem): Paragraph[] {
+  private createProgressionItem(item: DocxProgressionItem): (Paragraph | Table)[] {
     const observedText = this.htmlToText(item.behaviour.description);
     const nextText = item.nextBehaviour
       ? this.htmlToText(item.nextBehaviour.description)
       : this.htmlToText(HIGHEST_BEHAVIOUR_HTML);
 
-    const observedLines = this.wrapText(observedText, 80);
-    const nextLines = nextText ? this.wrapText(nextText, 80) : [];
+    const observedLines = this.wrapText(observedText);
+    const nextLines = nextText ? this.wrapText(nextText) : [];
 
-    const paragraphs: Paragraph[] = [];
+    const headingParagraphs: Paragraph[] = [];
 
     if (item.subDomain) {
-      paragraphs.push(
+      headingParagraphs.push(
         new Paragraph({
           children: [
             new TextRun({ text: 'SUBDOMAIN: ', ...TYPOGRAPHY.subheading }),
             new TextRun({ text: item.subDomain.name.toUpperCase(), ...TYPOGRAPHY.subheading }),
           ],
-          spacing: { before: 400, after: 120 },
+          spacing: { before: 0, after: 80 },
         }),
       );
     }
 
-    paragraphs.push(
+    headingParagraphs.push(
       new Paragraph({
         children: [
           new TextRun({ text: 'KEY ELEMENT: ', ...TYPOGRAPHY.subheading }),
           new TextRun({ text: item.element.name.toUpperCase(), ...TYPOGRAPHY.subheading }),
         ],
-        spacing: { before: item.subDomain ? 0 : 400, after: 200 },
+        spacing: { before: 0, after: 100 },
       }),
     );
 
-    paragraphs.push(
-      new Paragraph({
-        children: [new TextRun({ text: 'What you observed:', ...TYPOGRAPHY.subheading })],
-        spacing: { before: 100, after: 40 },
-      }),
-    );
-
-    for (const line of observedLines) {
-      paragraphs.push(
-        new Paragraph({
-          children: [new TextRun({ text: line, ...TYPOGRAPHY.body })],
-          spacing: { before: 2, after: 2 },
-        }),
-      );
-    }
+    const panelCells = [this.createEvidencePanel('What you observed', observedLines, nextText ? 50 : 100)];
 
     if (nextText) {
-      paragraphs.push(
-        new Paragraph({
-          children: [new TextRun({ text: 'What is likely to be the next step in learning progression:', ...TYPOGRAPHY.subheading })],
-          spacing: { before: 200, after: 40 },
-        }),
+      panelCells.push(
+        this.createEvidencePanel('What is likely to be the next step in learning progression', nextLines, 50),
       );
-
-      for (const line of nextLines) {
-        paragraphs.push(
-          new Paragraph({
-            children: [new TextRun({ text: line, ...TYPOGRAPHY.body })],
-            spacing: { before: 2, after: 2 },
-          }),
-        );
-      }
     }
 
-    return paragraphs;
+    const panelsTable = new Table({
+      width: { size: 100, type: WidthType.PERCENTAGE },
+      rows: [new TableRow({ children: panelCells })],
+    });
+
+    return [this.createPanel([...headingParagraphs, panelsTable], { accentColor: COLORS.blue })];
+  }
+
+  private createPanel(content: (Paragraph | Table)[], options: { accentColor?: string } = {}): Table {
+    return new Table({
+      width: { size: 100, type: WidthType.PERCENTAGE },
+      rows: [
+        new TableRow({
+          children: [
+            new TableCell({
+              children: content,
+              shading: { fill: COLORS.panel, type: ShadingType.CLEAR },
+              margins: { top: 120, bottom: 120, left: 150, right: 150 },
+              borders: {
+                top: this.createBorder(COLORS.border),
+                bottom: this.createBorder(COLORS.border),
+                left: this.createBorder(options.accentColor ?? COLORS.border, options.accentColor ? 36 : 4),
+                right: this.createBorder(COLORS.border),
+              },
+            }),
+          ],
+        }),
+      ],
+    });
+  }
+
+  private createEvidencePanel(title: string, lines: string[], widthPercent: number): TableCell {
+    return new TableCell({
+      children: [
+        new Paragraph({
+          children: [new TextRun({ text: title, ...TYPOGRAPHY.subheading, size: 16 })],
+          spacing: { before: 0, after: 60 },
+        }),
+        ...lines.map((line) =>
+          new Paragraph({
+            children: [new TextRun({ text: line || ' ', ...TYPOGRAPHY.body })],
+            spacing: { before: 2, after: 2 },
+            alignment: AlignmentType.JUSTIFIED,
+          }),
+        ),
+      ],
+      width: { size: widthPercent, type: WidthType.PERCENTAGE },
+      shading: { fill: COLORS.white, type: ShadingType.CLEAR },
+      margins: { top: 100, bottom: 100, left: 120, right: 120 },
+      borders: {
+        top: this.createBorder(COLORS.border),
+        bottom: this.createBorder(COLORS.border),
+        left: this.createBorder(COLORS.border),
+        right: this.createBorder(COLORS.border),
+      },
+    });
   }
 
 
@@ -388,57 +426,32 @@ export class KlptDocxGeneratorService {
     });
   }
 
-  private createBorder() {
+  private createBorder(color: string = COLORS.border, size: number = 4) {
     return {
       style: BorderStyle.SINGLE,
-      size: 1,
-      color: '000000',
+      size,
+      color,
     };
   }
 
-  private wrapText(text: string, maxCharsPerLine: number): string[] {
+  private wrapText(text: string): string[] {
     const normalizedText = text.replace(/\r\n?/g, '\n').trim();
 
     if (!normalizedText) {
       return ['Not entered'];
     }
 
-    // Split on newlines first to preserve paragraph/bullet structure from htmlToText.
-    const segments = normalizedText.split('\n');
-    const lines: string[] = [];
-
-    for (const segment of segments) {
-      if (!segment.trim()) {
-        lines.push('');
-        continue;
-      }
-
-      const words = segment.trim().split(/\s+/);
-      let currentLine = '';
-
-      for (const word of words) {
-        if ((currentLine + word).length > maxCharsPerLine && currentLine) {
-          lines.push(currentLine);
-          currentLine = word;
-        } else {
-          currentLine = currentLine ? `${currentLine} ${word}` : word;
-        }
-      }
-
-      if (currentLine) {
-        lines.push(currentLine);
-      }
-    }
-
-    return lines;
+    // Split only on real paragraph/bullet breaks from htmlToText; Word wraps each
+    // resulting paragraph to the full container width on its own.
+    return normalizedText.split('\n').map((segment) => segment.trim());
   }
 
   private htmlToText(value: string): string {
     return value
       .replace(/\r\n?/g, '\n')
-      .replace(/<\/li>\s*<li>/gi, '\n• ')
-      .replace(/<li>/gi, '• ')
-      .replace(/<\/?(ul|ol)>/gi, '')
+      .replace(/<\/li>\s*<li>/gi, '\n')
+      .replace(/<li>/gi, '- ')
+      .replace(/<\/?(ul|ol)>/gi, '\n')
       .replace(/<br\s*\/?>/gi, '\n')
       .replace(/<\/p>\s*<p>/gi, '\n\n')
       .replace(/<[^>]+>/g, '')
