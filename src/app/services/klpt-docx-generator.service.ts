@@ -6,6 +6,7 @@ import type { KlptDomain } from '../components/klpt-learning-observation-tool/mo
 import type { KlptElement } from '../components/klpt-learning-observation-tool/models/klpt-element';
 import type { KlptSubDomain } from '../components/klpt-learning-observation-tool/models/klpt-sub-domain';
 import { HIGHEST_BEHAVIOUR_HTML } from '../components/klpt-learning-observation-tool/components/shared/klpt-constants';
+import { isIosSafari } from '../components/klpt-learning-observation-tool/components/shared/klpt-document-delivery';
 import {
   Document,
   Packer,
@@ -87,8 +88,7 @@ export class KlptDocxGeneratorService {
   async generateSessionDocx(
     session: SessionModel,
     options: GenerateSessionDocxOptions = {},
-    docxWindow: Window | null = null,
-  ): Promise<{ url: string; filename: string; type: 'docx' } | null> {
+  ): Promise<{ blob: Blob; url: string; filename: string; type: 'docx' }> {
     const domain = this.resolveDomain(session.domain);
     const progressionItems = this.progressionItems(session);
 
@@ -162,24 +162,11 @@ export class KlptDocxGeneratorService {
 
     const url = URL.createObjectURL(blob);
 
-    if (docxWindow && !docxWindow.closed) {
-      docxWindow.location.href = url;
-      window.setTimeout(() => URL.revokeObjectURL(url), 60000);
-      return null;
-    }
-
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = filename;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-
-    return { url, filename, type: 'docx' };
+    return { blob, url, filename, type: 'docx' };
   }
 
   openDocxWindowForIosSafari(): Window | null {
-    if (!this.isIosSafari()) {
+    if (!isIosSafari()) {
       return null;
     }
 
@@ -192,19 +179,6 @@ export class KlptDocxGeneratorService {
     }
 
     return win;
-  }
-
-  private isIosSafari(): boolean {
-    if (typeof window === 'undefined' || typeof navigator === 'undefined') {
-      return false;
-    }
-
-    const ua = navigator.userAgent;
-    const isIos = /iPad|iPhone|iPod/.test(ua) ||
-      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-    const isSafari = /Safari/.test(ua) && !/CriOS|FxiOS|EdgiOS|OPiOS/.test(ua);
-
-    return isIos && isSafari;
   }
 
   private createHeaderBar(): Paragraph {

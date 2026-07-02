@@ -7,13 +7,13 @@
         <div class="klpt-download-notice">
           <div class="klpt-download-notice__body">
             <span class="klpt-download-notice__filename">{{ notification.filename }}</span>
-            @if (notification.type === 'pdf') {
+            @if (notification.type === 'pdf' && notification.url) {
               <span>has been generated &mdash;
                 <a [href]="notification.url" target="_blank" rel="noopener noreferrer" class="klpt-download-notice__action"
                    aria-label="Open document (opens in new tab)">Open document</a>
               </span>
             } @else {
-              <span>has been saved to your Downloads folder &mdash; press <kbd>Ctrl+J</kbd> <span class="klpt-download-notice__mac">(or <kbd>Cmd+Shift+J</kbd> on Mac)</span> to open your browser's Downloads panel</span>
+              <span>has been generated. {{ downloadFallbackHint() }}</span>
             }
           </div>
           <button type="button" class="klpt-download-notice__close" aria-label="Dismiss notification" (click)="dismissDownloadNotification()">&times;</button>

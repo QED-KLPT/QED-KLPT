@@ -327,6 +327,16 @@ describe('KlptPdfGeneratorService', () => {
       });
       await expect(service.generateSessionPdf(session)).resolves.not.toThrow();
     });
+
+    it('should return a blob, object URL, and filename instead of null', async () => {
+      const session = createMockSession({ learnerCode: 'ABC123' });
+      const result = await service.generateSessionPdf(session);
+
+      expect(result.blob).toBeInstanceOf(Blob);
+      expect(result.url).toMatch(/^blob:/);
+      expect(result.filename).toMatch(/^klpt-session-ABC123-.*\.pdf$/);
+      expect(result.type).toBe('pdf');
+    });
   });
 });
 
