@@ -33,22 +33,6 @@
     text-underline-offset: 0.15em;
   }
 
-  &__mac {
-    font-size: 0.8rem;
-    opacity: 0.75;
-  }
-
-  kbd {
-    display: inline-block;
-    padding: 0.1em 0.35em;
-    font-size: 0.8rem;
-    font-family: inherit;
-    background: #c8e6c8;
-    border: 1px solid #7ec97e;
-    border-radius: 3px;
-    white-space: nowrap;
-  }
-
   &__close {
     flex-shrink: 0;
     background: none;

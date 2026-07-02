@@ -7,6 +7,7 @@ import type { KlptDomain } from '../components/klpt-learning-observation-tool/mo
 import type { KlptElement } from '../components/klpt-learning-observation-tool/models/klpt-element';
 import type { KlptSubDomain } from '../components/klpt-learning-observation-tool/models/klpt-sub-domain';
 import { HIGHEST_BEHAVIOUR_HTML } from '../components/klpt-learning-observation-tool/components/shared/klpt-constants';
+import { isIosSafari } from '../components/klpt-learning-observation-tool/components/shared/klpt-document-delivery';
 
 const FORM_FIELD_LABELS: Record<string, string> = {
   'child-name': 'Child name',
@@ -43,7 +44,7 @@ export class KlptPdfGeneratorService {
   constructor(private readonly domainData: KlptDomainDataService) {}
 
   openPdfPreviewWindowForIosSafari(): Window | null {
-    if (!this.shouldOpenPdfInNewTab()) {
+    if (!isIosSafari()) {
       return null;
     }
 
@@ -60,9 +61,8 @@ export class KlptPdfGeneratorService {
 
   async generateSessionPdf(
     session: SessionModel,
-    pdfWindow: Window | null = null,
     options: GenerateSessionPdfOptions = {},
-  ): Promise<{ url: string; filename: string; type: 'pdf' } | null> {
+  ): Promise<{ blob: Blob; url: string; filename: string; type: 'pdf' }> {
     const { jsPDF } = await import('jspdf');
     const doc = new jsPDF({ unit: 'mm', format: 'a4' });
     const pageWidth = doc.internal.pageSize.getWidth();
@@ -138,23 +138,10 @@ export class KlptPdfGeneratorService {
     const dateStr = `${day}-${month}-${year}-${hours}${minutes}`;
     const filename = `klpt-session-${learnerCode}-${dateStr}.pdf`;
 
-    if (pdfWindow && !pdfWindow.closed) {
-      const pdfUrl = doc.output('bloburl');
-      pdfWindow.location.href = pdfUrl.toString();
-      window.setTimeout(() => URL.revokeObjectURL(pdfUrl.toString()), 60000);
-      return null;
-    }
+    const blob = doc.output('blob') as Blob;
+    const url = URL.createObjectURL(blob);
 
-    const pdfBlob = doc.output('blob');
-    const url = URL.createObjectURL(pdfBlob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = filename;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-
-    return { url, filename, type: 'pdf' };
+    return { blob, url, filename, type: 'pdf' };
   }
 
   private addReportHeader(
@@ -445,20 +432,6 @@ export class KlptPdfGeneratorService {
 
   getFieldLabel(fieldName: string): string {
     return FORM_FIELD_LABELS[fieldName] ?? fieldName;
-  }
-
-  private shouldOpenPdfInNewTab(): boolean {
-    if (typeof window === 'undefined' || typeof navigator === 'undefined') {
-      return false;
-    }
-
-    const userAgent = navigator.userAgent;
-    const isIosDevice =
-      /iPad|iPhone|iPod/.test(userAgent) ||
-      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-    const isSafari = /Safari/.test(userAgent) && !/CriOS|FxiOS|EdgiOS|OPiOS/.test(userAgent);
-
-    return isIosDevice && isSafari;
   }
 
   private resolveDomain(domainId: string): KlptDomain | undefined {

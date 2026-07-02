@@ -7,6 +7,7 @@ import {
   inject,
   OnDestroy,
   OnInit,
+  signal,
 } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { NavigationNodesComponent } from '../../../shared';
@@ -24,12 +25,30 @@ import { KlptPdfGeneratorService } from '../../../../services/klpt-pdf-generator
 import { KlptDocxGeneratorService } from '../../../../services/klpt-docx-generator.service';
 import { DocumentDownloadService } from '../../../../services/document-download.service';
 import { HIGHEST_BEHAVIOUR_HTML } from '../shared/klpt-constants';
+import { GuaranteedDelivery, chooseGuaranteedDelivery, getDownloadFallbackHint } from '../shared/klpt-document-delivery';
 
 interface ReviewProgressionItem {
   subDomain: KlptSubDomain | undefined;
   element: KlptElement;
   behaviour: KlptBehaviour;
   nextBehaviour: KlptBehaviour | undefined;
+}
+
+type DocGenKind = 'pdf' | 'word';
+type DocGenPhase = 'confirm' | 'generating' | 'success' | 'error';
+
+interface DocGenFile {
+  blob: Blob;
+  url: string;
+  filename: string;
+}
+
+interface DocGenState {
+  kind: DocGenKind;
+  phase: DocGenPhase;
+  delivery?: GuaranteedDelivery;
+  file?: DocGenFile;
+  errorMessage?: string;
 }
 
 @Component({
@@ -50,13 +69,11 @@ export class ReviewSession implements OnInit, OnDestroy {
   private readonly router = inject(Router);
 
   public currentSession!: SessionModel;
-  @ViewChild('generatePdfDialog') private generatePdfDialog?: ElementRef<HTMLElement>;
+  @ViewChild('docGenDialog') private docGenDialog?: ElementRef<HTMLElement>;
   @ViewChild('generatePdfTrigger') private generatePdfTrigger?: ElementRef<HTMLButtonElement>;
-  @ViewChild('generateWordDialog') private generateWordDialog?: ElementRef<HTMLElement>;
   @ViewChild('generateWordTrigger') private generateWordTrigger?: ElementRef<HTMLButtonElement>;
   protected childName = '';
-  protected isGeneratePdfModalOpen = false;
-  protected isGenerateWordModalOpen = false;
+  protected readonly docGen = signal<DocGenState | null>(null);
   private isLeavingAfterPdf = false;
 
   protected readonly highestBehaviourText = HIGHEST_BEHAVIOUR_HTML;
@@ -76,61 +93,89 @@ export class ReviewSession implements OnInit, OnDestroy {
   }
 
   protected openGeneratePdfModal(): void {
-    this.isGeneratePdfModalOpen = true;
-    window.setTimeout(() => this.focusFirstModalControl());
-  }
-
-  protected closeGeneratePdfModal(): void {
-    this.isGeneratePdfModalOpen = false;
-    window.setTimeout(() => this.generatePdfTrigger?.nativeElement.focus());
-  }
-
-  protected async confirmGeneratePdf(): Promise<void> {
-    this.isGeneratePdfModalOpen = false;
-    const pdfWindow = this.pdfGenerator.openPdfPreviewWindowForIosSafari();
-    const download = await this.pdfGenerator.generateSessionPdf(this.currentSession, pdfWindow, {
-      learnerName: this.childName,
-    });
-
-    if (download) {
-      this.downloadService.set(download);
-    }
-
-    this.sessionManagement.deleteSession(this.currentSession.id);
-    this.isLeavingAfterPdf = true;
-    void this.router.navigateByUrl('/learning-observation-tool/sessions');
+    this.docGen.set({ kind: 'pdf', phase: 'confirm' });
+    window.setTimeout(() => this.focusFirstDocGenControl());
   }
 
   protected openGenerateWordModal(): void {
-    this.isGenerateWordModalOpen = true;
-    window.setTimeout(() => this.focusFirstWordModalControl());
+    this.docGen.set({ kind: 'word', phase: 'confirm' });
+    window.setTimeout(() => this.focusFirstDocGenControl());
   }
 
-  protected closeGenerateWordModal(): void {
-    this.isGenerateWordModalOpen = false;
-    window.setTimeout(() => this.generateWordTrigger?.nativeElement.focus());
+  protected closeDocGenModal(): void {
+    const kind = this.docGen()?.kind;
+    this.docGen.set(null);
+    window.setTimeout(() => this.restoreDocGenTriggerFocus(kind));
   }
 
-  protected async confirmGenerateWord(): Promise<void> {
-    this.isGenerateWordModalOpen = false;
-    const docxWindow = this.docxGenerator.openDocxWindowForIosSafari();
-    const download = await this.docxGenerator.generateSessionDocx(this.currentSession, {
-      learnerName: this.childName,
-    }, docxWindow);
+  protected async confirmGenerateDocument(): Promise<void> {
+    const current = this.docGen();
 
-    if (download) {
-      this.downloadService.set(download);
+    if (!current) {
+      return;
     }
 
-    this.sessionManagement.deleteSession(this.currentSession.id);
-    this.isLeavingAfterPdf = true;
+    const kind = current.kind;
+    this.docGen.set({ kind, phase: 'generating' });
+
+    const preOpenedWindow = kind === 'pdf'
+      ? this.pdfGenerator.openPdfPreviewWindowForIosSafari()
+      : this.docxGenerator.openDocxWindowForIosSafari();
+
+    try {
+      const result = kind === 'pdf'
+        ? await this.pdfGenerator.generateSessionPdf(this.currentSession, { learnerName: this.childName })
+        : await this.docxGenerator.generateSessionDocx(this.currentSession, { learnerName: this.childName });
+
+      const delivery = chooseGuaranteedDelivery(navigator);
+
+      if (delivery === 'ios-new-tab' && preOpenedWindow && !preOpenedWindow.closed) {
+        preOpenedWindow.location.href = result.url;
+      } else {
+        preOpenedWindow?.close();
+        this.triggerAnchorDownload(result.url, result.filename);
+      }
+
+      this.downloadService.set({ url: result.url, filename: result.filename, type: result.type });
+
+      this.sessionManagement.deleteSession(this.currentSession.id);
+      this.isLeavingAfterPdf = true;
+
+      this.docGen.set({
+        kind,
+        phase: 'success',
+        delivery,
+        file: { blob: result.blob, url: result.url, filename: result.filename },
+      });
+    } catch {
+      preOpenedWindow?.close();
+      this.docGen.set({
+        kind,
+        phase: 'error',
+        errorMessage: 'Something went wrong generating your document. Please try again.',
+      });
+    }
+
+    window.setTimeout(() => this.focusFirstDocGenControl());
+  }
+
+  protected leaveToSessions(): void {
+    this.docGen.set(null);
     void this.router.navigateByUrl('/learning-observation-tool/sessions');
   }
 
-  protected trapGenerateWordModalFocus(event: KeyboardEvent): void {
+  protected downloadFallbackHint(): string {
+    return getDownloadFallbackHint();
+  }
+
+  protected trapDocGenModalFocus(event: KeyboardEvent): void {
     if (event.key === 'Escape') {
-      event.preventDefault();
-      this.closeGenerateWordModal();
+      const phase = this.docGen()?.phase;
+
+      if (phase === 'confirm' || phase === 'error') {
+        event.preventDefault();
+        this.closeDocGenModal();
+      }
       return;
     }
 
@@ -138,11 +183,11 @@ export class ReviewSession implements OnInit, OnDestroy {
       return;
     }
 
-    const focusableElements = this.getWordModalFocusableElements();
+    const focusableElements = this.getDocGenFocusableElements();
 
     if (!focusableElements.length) {
       event.preventDefault();
-      this.generateWordDialog?.nativeElement.focus();
+      this.docGenDialog?.nativeElement.focus();
       return;
     }
 
@@ -158,34 +203,20 @@ export class ReviewSession implements OnInit, OnDestroy {
     }
   }
 
-  protected trapGeneratePdfModalFocus(event: KeyboardEvent): void {
-    if (event.key === 'Escape') {
-      event.preventDefault();
-      this.closeGeneratePdfModal();
-      return;
-    }
+  private triggerAnchorDownload(url: string, filename: string): void {
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
 
-    if (event.key !== 'Tab') {
-      return;
-    }
-
-    const focusableElements = this.getModalFocusableElements();
-
-    if (!focusableElements.length) {
-      event.preventDefault();
-      this.generatePdfDialog?.nativeElement.focus();
-      return;
-    }
-
-    const first = focusableElements[0];
-    const last = focusableElements[focusableElements.length - 1];
-
-    if (event.shiftKey && document.activeElement === first) {
-      event.preventDefault();
-      last.focus();
-    } else if (!event.shiftKey && document.activeElement === last) {
-      event.preventDefault();
-      first.focus();
+  private restoreDocGenTriggerFocus(kind: DocGenKind | undefined): void {
+    if (kind === 'pdf') {
+      this.generatePdfTrigger?.nativeElement.focus();
+    } else if (kind === 'word') {
+      this.generateWordTrigger?.nativeElement.focus();
     }
   }
 
@@ -314,36 +345,15 @@ export class ReviewSession implements OnInit, OnDestroy {
       );
   }
 
-  private focusFirstModalControl(): void {
-    const firstButton = this.generatePdfDialog?.nativeElement.querySelector<HTMLElement>('button:not([disabled])');
-    const firstFocusable = this.getModalFocusableElements()[0];
+  private focusFirstDocGenControl(): void {
+    const firstButton = this.docGenDialog?.nativeElement.querySelector<HTMLElement>('button:not([disabled])');
+    const firstFocusable = this.getDocGenFocusableElements()[0];
 
-    (firstButton ?? firstFocusable ?? this.generatePdfDialog?.nativeElement)?.focus();
+    (firstButton ?? firstFocusable ?? this.docGenDialog?.nativeElement)?.focus();
   }
 
-  private focusFirstWordModalControl(): void {
-    const firstButton = this.generateWordDialog?.nativeElement.querySelector<HTMLElement>('button:not([disabled])');
-    const firstFocusable = this.getWordModalFocusableElements()[0];
-
-    (firstButton ?? firstFocusable ?? this.generateWordDialog?.nativeElement)?.focus();
-  }
-
-  private getModalFocusableElements(): HTMLElement[] {
-    const dialog = this.generatePdfDialog?.nativeElement;
-
-    if (!dialog) {
-      return [];
-    }
-
-    return Array.from(
-      dialog.querySelectorAll<HTMLElement>(
-        'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
-      ),
-    ).filter((element) => !element.hasAttribute('inert'));
-  }
-
-  private getWordModalFocusableElements(): HTMLElement[] {
-    const dialog = this.generateWordDialog?.nativeElement;
+  private getDocGenFocusableElements(): HTMLElement[] {
+    const dialog = this.docGenDialog?.nativeElement;
 
     if (!dialog) {
       return [];

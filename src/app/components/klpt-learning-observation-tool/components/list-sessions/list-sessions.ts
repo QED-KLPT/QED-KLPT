@@ -4,6 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { DocumentDownloadService } from '../../../../services/document-download.service';
 import { SessionModel } from '../../models/session-model';
 import { SessionManagementService } from '../shared/session-management.service';
+import { getDownloadFallbackHint } from '../shared/klpt-document-delivery';
 
 @Component({
   selector: 'app-list-sessions',
@@ -73,6 +74,10 @@ export class ListSessions implements OnInit, OnDestroy {
     window.clearTimeout(this.downloadDismissTimer);
     this.downloadDismissTimer = undefined;
     this.downloadService.clear();
+  }
+
+  protected downloadFallbackHint(): string {
+    return getDownloadFallbackHint();
   }
 
   ngOnDestroy(): void {
