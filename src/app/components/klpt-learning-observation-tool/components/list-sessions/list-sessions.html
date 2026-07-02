@@ -5,18 +5,14 @@
       @let notification = downloadService.notification();
       @if (notification) {
         <div class="klpt-download-notice">
+          <i class="fas fa-check-circle klpt-download-notice__icon" aria-hidden="true"></i>
           <div class="klpt-download-notice__body">
             <span class="klpt-download-notice__filename">{{ notification.filename }}</span>
-            @if (notification.type === 'pdf' && notification.url) {
-              <span>has been generated &mdash;
-                <a [href]="notification.url" target="_blank" rel="noopener noreferrer" class="klpt-download-notice__action"
-                   aria-label="Open document (opens in new tab)">Open document</a>
-              </span>
-            } @else {
-              <span>has been generated. {{ downloadFallbackHint() }}</span>
-            }
+            <span>has been generated.</span>
           </div>
-          <button type="button" class="klpt-download-notice__close" aria-label="Dismiss notification" (click)="dismissDownloadNotification()">&times;</button>
+          <button type="button" class="klpt-download-notice__close" aria-label="Dismiss notification" (click)="dismissDownloadNotification()">
+            <i class="fas fa-circle-xmark" aria-hidden="true"></i>
+          </button>
         </div>
       }
     </div>

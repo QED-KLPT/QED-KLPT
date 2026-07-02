@@ -25,7 +25,7 @@ import { KlptPdfGeneratorService } from '../../../../services/klpt-pdf-generator
 import { KlptDocxGeneratorService } from '../../../../services/klpt-docx-generator.service';
 import { DocumentDownloadService } from '../../../../services/document-download.service';
 import { HIGHEST_BEHAVIOUR_HTML } from '../shared/klpt-constants';
-import { GuaranteedDelivery, chooseGuaranteedDelivery, getDownloadFallbackHint } from '../shared/klpt-document-delivery';
+import { chooseGuaranteedDelivery } from '../shared/klpt-document-delivery';
 
 interface ReviewProgressionItem {
   subDomain: KlptSubDomain | undefined;
@@ -35,20 +35,9 @@ interface ReviewProgressionItem {
 }
 
 type DocGenKind = 'pdf' | 'word';
-type DocGenPhase = 'confirm' | 'generating' | 'success' | 'error';
-
-interface DocGenFile {
-  blob: Blob;
-  url: string;
-  filename: string;
-}
 
 interface DocGenState {
   kind: DocGenKind;
-  phase: DocGenPhase;
-  delivery?: GuaranteedDelivery;
-  file?: DocGenFile;
-  errorMessage?: string;
 }
 
 @Component({
@@ -93,12 +82,12 @@ export class ReviewSession implements OnInit, OnDestroy {
   }
 
   protected openGeneratePdfModal(): void {
-    this.docGen.set({ kind: 'pdf', phase: 'confirm' });
+    this.docGen.set({ kind: 'pdf' });
     window.setTimeout(() => this.focusFirstDocGenControl());
   }
 
   protected openGenerateWordModal(): void {
-    this.docGen.set({ kind: 'word', phase: 'confirm' });
+    this.docGen.set({ kind: 'word' });
     window.setTimeout(() => this.focusFirstDocGenControl());
   }
 
@@ -116,7 +105,8 @@ export class ReviewSession implements OnInit, OnDestroy {
     }
 
     const kind = current.kind;
-    this.docGen.set({ kind, phase: 'generating' });
+    this.docGen.set(null);
+    window.setTimeout(() => this.restoreDocGenTriggerFocus(kind));
 
     const preOpenedWindow = kind === 'pdf'
       ? this.pdfGenerator.openPdfPreviewWindowForIosSafari()
@@ -140,42 +130,17 @@ export class ReviewSession implements OnInit, OnDestroy {
 
       this.sessionManagement.deleteSession(this.currentSession.id);
       this.isLeavingAfterPdf = true;
-
-      this.docGen.set({
-        kind,
-        phase: 'success',
-        delivery,
-        file: { blob: result.blob, url: result.url, filename: result.filename },
-      });
+      void this.router.navigateByUrl('/learning-observation-tool/sessions');
     } catch {
       preOpenedWindow?.close();
-      this.docGen.set({
-        kind,
-        phase: 'error',
-        errorMessage: 'Something went wrong generating your document. Please try again.',
-      });
+      // Generation failed — the session is left intact so the user can try again.
     }
-
-    window.setTimeout(() => this.focusFirstDocGenControl());
-  }
-
-  protected leaveToSessions(): void {
-    this.docGen.set(null);
-    void this.router.navigateByUrl('/learning-observation-tool/sessions');
-  }
-
-  protected downloadFallbackHint(): string {
-    return getDownloadFallbackHint();
   }
 
   protected trapDocGenModalFocus(event: KeyboardEvent): void {
     if (event.key === 'Escape') {
-      const phase = this.docGen()?.phase;
-
-      if (phase === 'confirm' || phase === 'error') {
-        event.preventDefault();
-        this.closeDocGenModal();
-      }
+      event.preventDefault();
+      this.closeDocGenModal();
       return;
     }
 
