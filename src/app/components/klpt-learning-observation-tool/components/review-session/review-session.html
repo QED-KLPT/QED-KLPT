@@ -138,13 +138,9 @@
   </div>
 </section>
 
-@let doc = docGen();
-@if (doc) {
+@if (docGen()) {
   <div class="doc-gen-modal" role="presentation">
-    <div
-      class="doc-gen-modal__backdrop"
-      (click)="(doc.phase === 'confirm' || doc.phase === 'error') ? closeDocGenModal() : null"
-    ></div>
+    <div class="doc-gen-modal__backdrop" (click)="closeDocGenModal()"></div>
     <section
       class="doc-gen-modal__panel"
       role="dialog"
@@ -155,64 +151,19 @@
       #docGenDialog
       (keydown)="trapDocGenModalFocus($event)"
     >
-      @switch (doc.phase) {
-        @case ('confirm') {
-          <h2 id="doc-gen-modal-title">Generate your learning progression statement?</h2>
-          <p id="doc-gen-modal-description">
-            Once your statement is generated, this session will be deleted and you won't be able to go back and make changes.
-            Your document will be saved to your device automatically &mdash; it won't stay on this page.
-            Do you wish to continue?
-          </p>
+      <h2 id="doc-gen-modal-title">Generate your learning progression statement?</h2>
+      <p id="doc-gen-modal-description">
+        Once your statement is generated, this session will be deleted and you won't be able to go back and make changes. Do you wish to continue?
+      </p>
 
-          <div class="doc-gen-modal__actions">
-            <button class="doc-gen-modal__button doc-gen-modal__button--secondary" type="button" (click)="closeDocGenModal()">
-              Cancel
-            </button>
-            <button class="doc-gen-modal__button doc-gen-modal__button--primary" type="button" (click)="confirmGenerateDocument()">
-              Ok
-            </button>
-          </div>
-        }
-
-        @case ('generating') {
-          <h2 id="doc-gen-modal-title">Preparing your document&hellip;</h2>
-          <p id="doc-gen-modal-description" class="doc-gen-modal__status" role="status" aria-live="polite">
-            <span class="doc-gen-modal__spinner" aria-hidden="true"></span>
-            This may take a few seconds. Please don't close this tab.
-          </p>
-        }
-
-        @case ('success') {
-          <h2 id="doc-gen-modal-title">Your document is ready</h2>
-          <p id="doc-gen-modal-description" class="doc-gen-modal__filename">{{ doc.file?.filename }}</p>
-
-          @if (doc.delivery === 'ios-new-tab') {
-            <p>Your document has opened in a new browser tab.</p>
-          } @else {
-            <p>Your document has been saved to your device. {{ downloadFallbackHint() }}</p>
-          }
-
-          <div class="doc-gen-modal__actions">
-            <button class="doc-gen-modal__button doc-gen-modal__button--primary" type="button" (click)="leaveToSessions()">
-              Done
-            </button>
-          </div>
-        }
-
-        @case ('error') {
-          <h2 id="doc-gen-modal-title">Something went wrong</h2>
-          <p id="doc-gen-modal-description">{{ doc.errorMessage }}</p>
-
-          <div class="doc-gen-modal__actions">
-            <button class="doc-gen-modal__button doc-gen-modal__button--secondary" type="button" (click)="closeDocGenModal()">
-              Close
-            </button>
-            <button class="doc-gen-modal__button doc-gen-modal__button--primary" type="button" (click)="confirmGenerateDocument()">
-              Try again
-            </button>
-          </div>
-        }
-      }
+      <div class="doc-gen-modal__actions">
+        <button class="doc-gen-modal__button doc-gen-modal__button--secondary" type="button" (click)="closeDocGenModal()">
+          Cancel
+        </button>
+        <button class="doc-gen-modal__button doc-gen-modal__button--primary" type="button" (click)="confirmGenerateDocument()">
+          Ok
+        </button>
+      </div>
     </section>
   </div>
 }

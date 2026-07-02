@@ -119,40 +119,6 @@
   line-height: 1.6;
 }
 
-.doc-gen-modal__filename {
-  font-weight: 700;
-  color: #10233c;
-  word-break: break-all;
-}
-
-.doc-gen-modal__status {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.doc-gen-modal__spinner {
-  flex-shrink: 0;
-  width: 1.5rem;
-  height: 1.5rem;
-  border: 3px solid rgba(0, 94, 184, 0.2);
-  border-top-color: var(--doe-color-primary);
-  border-radius: 50%;
-  animation: doc-gen-modal-spin 0.8s linear infinite;
-}
-
-@keyframes doc-gen-modal-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .doc-gen-modal__spinner {
-    animation: none;
-  }
-}
-
 .doc-gen-modal__actions {
   display: flex;
   flex-wrap: wrap;
