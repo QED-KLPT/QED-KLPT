@@ -44,13 +44,19 @@
         belongs to a group of people who are its custodians. When we respect and include these languages in early
         learning, we help keep them strong and strengthen identity, culture and connection for all children. We also
         create respectful, inclusive environments where all children feel seen, heard and valued.</p>
-      <p>Deepen your understanding of language and literacy through the following fact sheets and videos.</p>
+      <h3><b>Explore the domain: Language and literacy</b></h3>
+      <p>Deepen your understanding of language and literacy through the following fact sheet and videos.</p>
+      <a class="factsheet-link" href="assets/content/pdfs/language-literacy-factsheet.pdf" rel="noopener"
+      type="application/pdf">
+      <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
+      <span>Language and literacy fact sheet (PDF, 909KB)</span>
+    </a>
     </div>
 
     <div class="video-columns" *ngIf="videoColumns$ | async as videoColumns; else loadingState">
       <article class="video-column" *ngFor="let column of videoColumns">
         <header class="video-column__header">
-          <h3>{{ column.heading }}</h3>
+          <h3><b>{{ column.heading }}</b></h3>
           <p>{{ column.intro }}</p>
         </header>
 
@@ -65,12 +71,6 @@
     <ng-template #loadingState>
       <p>Loading curated videos...</p>
     </ng-template>
-
-    <a class="factsheet-link" href="assets/content/pdfs/language-literacy-factsheet.pdf" rel="noopener"
-      type="application/pdf">
-      <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
-      <span>Download language and literacy fact sheet (PDF, 909 KB)</span>
-    </a>
 
     <div id="practice-supports" class="practice-supports-inline">
       <h2>Practice supports</h2>

@@ -6,6 +6,7 @@ import type { KlptDomain } from '../components/klpt-learning-observation-tool/mo
 import type { KlptElement } from '../components/klpt-learning-observation-tool/models/klpt-element';
 import type { KlptSubDomain } from '../components/klpt-learning-observation-tool/models/klpt-sub-domain';
 import { HIGHEST_BEHAVIOUR_HTML } from '../components/klpt-learning-observation-tool/components/shared/klpt-constants';
+import { isIosSafari } from '../components/klpt-learning-observation-tool/components/shared/klpt-document-delivery';
 import {
   Document,
   Packer,
@@ -17,12 +18,10 @@ import {
   WidthType,
   AlignmentType,
   BorderStyle,
+  ShadingType,
   Footer,
   PageNumber,
 } from 'docx';
-
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 const FORM_FIELD_LABELS: Record<string, string> = {
   'child-name': 'Child name',
@@ -33,11 +32,14 @@ const FORM_FIELD_LABELS: Record<string, string> = {
   'qklg-eylf-links': 'QKLG and EYLF Links',
 };
 
+// Mirrors PDF_THEME in klpt-pdf-generator.service.ts so the two documents share a look.
 const COLORS = {
-  ink: '000000',
+  ink: '10233C',
   muted: '526985',
   blue: '0D3B66',
   white: 'FFFFFF',
+  panel: 'EDF4FA',
+  border: 'D8E2EC',
 };
 
 const TYPOGRAPHY = {
@@ -86,7 +88,7 @@ export class KlptDocxGeneratorService {
   async generateSessionDocx(
     session: SessionModel,
     options: GenerateSessionDocxOptions = {},
-  ): Promise<void> {
+  ): Promise<{ blob: Blob; url: string; filename: string; type: 'docx' }> {
     const domain = this.resolveDomain(session.domain);
     const progressionItems = this.progressionItems(session);
 
@@ -103,7 +105,7 @@ export class KlptDocxGeneratorService {
     children.push(this.createMetadataTable(metadataFields));
 
     if (domain) {
-      children.push(new Paragraph({ spacing: { before: 200, after: 100 } }));
+      children.push(new Paragraph({ spacing: { before: 200, after: 0 } }));
       children.push(...this.createTextCard('Learning domain summary', `${domain.name}: ${domain.summary}`));
     }
 
@@ -150,24 +152,33 @@ export class KlptDocxGeneratorService {
     const blob = await Packer.toBlob(doc);
     const learnerCode = session.learnerCode || 'unknown';
     const now = new Date();
-    const day = now.getDate();
-    const month = MONTHS[now.getMonth()];
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0');
     const year = now.getFullYear();
-    const hours = now.getHours();
+    const hours = String(now.getHours()).padStart(2, '0');
     const minutes = String(now.getMinutes()).padStart(2, '0');
-    const ampm = hours >= 12 ? 'pm' : 'am';
-    const displayHours = String(hours % 12 || 12).padStart(2, '0');
-    const dateStr = `${year}-${month}-${String(day).padStart(2, '0')}-${displayHours}${minutes}${ampm}`;
+    const dateStr = `${day}-${month}-${year}-${hours}${minutes}`;
     const filename = `klpt-session-${learnerCode}-${dateStr}.docx`;
 
     const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = filename;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+
+    return { blob, url, filename, type: 'docx' };
+  }
+
+  openDocxWindowForIosSafari(): Window | null {
+    if (!isIosSafari()) {
+      return null;
+    }
+
+    const win = window.open('', '_blank');
+
+    if (win) {
+      win.opener = null;
+      win.document.title = 'Preparing KLPT document';
+      win.document.body.innerHTML = '<p style="font-family: sans-serif; padding: 1rem;">Preparing document...</p>';
+    }
+
+    return win;
   }
 
   private createHeaderBar(): Paragraph {
@@ -176,16 +187,10 @@ export class KlptDocxGeneratorService {
         new TextRun({
           text: 'Learning progression statement',
           ...TYPOGRAPHY.heading,
+          bold: false,
         }),
       ],
       spacing: { before: 100, after: 200 },
-      border: {
-        bottom: {
-          style: BorderStyle.SINGLE,
-          size: 1,
-          color: '000000',
-        },
-      },
     });
   }
 
@@ -203,18 +208,18 @@ export class KlptDocxGeneratorService {
             children: [
               new Paragraph({
                 children: [
-                  new TextRun({ 
-                    text: field.label, 
-                    ...TYPOGRAPHY.muted 
+                  new TextRun({
+                    text: field.label,
+                    ...TYPOGRAPHY.muted
                   }),
                 ],
                 spacing: { before: 4, after: 2 },
               }),
               new Paragraph({
                 children: [
-                  new TextRun({ 
-                    text: field.value, 
-                    ...TYPOGRAPHY.body 
+                  new TextRun({
+                    text: field.value,
+                    ...TYPOGRAPHY.body
                   }),
                 ],
                 spacing: { before: 2, after: 4 },
@@ -222,6 +227,14 @@ export class KlptDocxGeneratorService {
             ],
             width: { size: cellWidth, type: WidthType.PERCENTAGE },
             verticalAlign: AlignmentType.CENTER,
+            shading: { fill: COLORS.white, type: ShadingType.CLEAR },
+            margins: { top: 60, bottom: 60, left: 100, right: 100 },
+            borders: {
+              top: this.createBorder(COLORS.border),
+              bottom: this.createBorder(COLORS.border),
+              left: this.createBorder(COLORS.border),
+              right: this.createBorder(COLORS.border),
+            },
           }),
         );
       }
@@ -234,82 +247,124 @@ export class KlptDocxGeneratorService {
     });
   }
 
-  private createTextCard(title: string, body: string): Paragraph[] {
+  private createTextCard(title: string, body: string): (Paragraph | Table)[] {
     const bodyText = this.htmlToText(body) || 'Not entered';
-    const bodyLines = this.wrapText(bodyText, 80);
+    const bodyLines = this.wrapText(bodyText);
 
     return [
-      new Paragraph({
-        children: [new TextRun({ text: title, ...TYPOGRAPHY.subheading })],
-        spacing: { before: 200, after: 100 },
-      }),
-      ...bodyLines.map((line) =>
+      this.createPanel([
         new Paragraph({
-          children: [new TextRun({ text: line, ...TYPOGRAPHY.body })],
-          spacing: { before: 2, after: 2 },
+          children: [new TextRun({ text: title, ...TYPOGRAPHY.subheading })],
+          spacing: { before: 0, after: 100 },
         }),
-      ),
+        ...bodyLines.map((line) =>
+          new Paragraph({
+            children: [new TextRun({ text: line || ' ', ...TYPOGRAPHY.body })],
+            spacing: { before: 2, after: 2 },
+            alignment: AlignmentType.JUSTIFIED,
+          }),
+        ),
+      ]),
     ];
   }
 
-  private createProgressionItem(item: DocxProgressionItem): Paragraph[] {
+  private createProgressionItem(item: DocxProgressionItem): (Paragraph | Table)[] {
     const observedText = this.htmlToText(item.behaviour.description);
     const nextText = item.nextBehaviour
       ? this.htmlToText(item.nextBehaviour.description)
       : this.htmlToText(HIGHEST_BEHAVIOUR_HTML);
 
-    const observedLines = this.wrapText(observedText, 80);
-    const nextLines = nextText ? this.wrapText(nextText, 80) : [];
+    const observedLines = this.wrapText(observedText);
+    const nextLines = nextText ? this.wrapText(nextText) : [];
 
-    const paragraphs: Paragraph[] = [];
+    const headingParagraphs: Paragraph[] = [];
 
     if (item.subDomain) {
-      paragraphs.push(
+      headingParagraphs.push(
         new Paragraph({
           children: [
             new TextRun({ text: 'SUBDOMAIN: ', ...TYPOGRAPHY.subheading }),
             new TextRun({ text: item.subDomain.name.toUpperCase(), ...TYPOGRAPHY.subheading }),
           ],
-          spacing: { before: 400, after: 120 },
+          spacing: { before: 0, after: 80 },
         }),
       );
     }
 
-    paragraphs.push(
+    headingParagraphs.push(
       new Paragraph({
         children: [
           new TextRun({ text: 'KEY ELEMENT: ', ...TYPOGRAPHY.subheading }),
-          new TextRun({ text: item.element.name.toUpperCase(), ...TYPOGRAPHY.heading }),
+          new TextRun({ text: item.element.name.toUpperCase(), ...TYPOGRAPHY.subheading }),
         ],
-        spacing: { before: item.subDomain ? 0 : 400, after: 200 },
+        spacing: { before: 0, after: 100 },
       }),
     );
 
-    paragraphs.push(
-      new Paragraph({
-        children: [
-          new TextRun({ text: 'What you observed:', ...TYPOGRAPHY.subheading }),
-          new TextRun({ text: ' ', ...TYPOGRAPHY.body }),
-          ...observedLines.map(line => new TextRun({ text: line, ...TYPOGRAPHY.body })),
-        ],
-        spacing: { before: 100, after: 100 },
-      }),
-    );
+    const panelCells = [this.createEvidencePanel('What you observed', observedLines, nextText ? 50 : 100)];
 
     if (nextText) {
-      paragraphs.push(
-        new Paragraph({
-          children: [
-            new TextRun({ text: 'What is likely to be the next step in learning progression:', ...TYPOGRAPHY.subheading }),
-            new TextRun({ text: ' ', ...TYPOGRAPHY.body }),
-            ...nextLines.map(line => new TextRun({ text: line, ...TYPOGRAPHY.body })),
-          ],
-          spacing: { before: 200, after: 100 },
-        }),
+      panelCells.push(
+        this.createEvidencePanel('What is likely to be the next step in learning progression', nextLines, 50),
       );
     }
 
-    return paragraphs;
+    const panelsTable = new Table({
+      width: { size: 100, type: WidthType.PERCENTAGE },
+      rows: [new TableRow({ children: panelCells })],
+    });
+
+    return [this.createPanel([...headingParagraphs, panelsTable], { accentColor: COLORS.blue })];
+  }
+
+  private createPanel(content: (Paragraph | Table)[], options: { accentColor?: string } = {}): Table {
+    return new Table({
+      width: { size: 100, type: WidthType.PERCENTAGE },
+      rows: [
+        new TableRow({
+          children: [
+            new TableCell({
+              children: content,
+              shading: { fill: COLORS.panel, type: ShadingType.CLEAR },
+              margins: { top: 120, bottom: 120, left: 150, right: 150 },
+              borders: {
+                top: this.createBorder(COLORS.border),
+                bottom: this.createBorder(COLORS.border),
+                left: this.createBorder(options.accentColor ?? COLORS.border, options.accentColor ? 36 : 4),
+                right: this.createBorder(COLORS.border),
+              },
+            }),
+          ],
+        }),
+      ],
+    });
+  }
+
+  private createEvidencePanel(title: string, lines: string[], widthPercent: number): TableCell {
+    return new TableCell({
+      children: [
+        new Paragraph({
+          children: [new TextRun({ text: title, ...TYPOGRAPHY.subheading, size: 16 })],
+          spacing: { before: 0, after: 60 },
+        }),
+        ...lines.map((line) =>
+          new Paragraph({
+            children: [new TextRun({ text: line || ' ', ...TYPOGRAPHY.body })],
+            spacing: { before: 2, after: 2 },
+            alignment: AlignmentType.JUSTIFIED,
+          }),
+        ),
+      ],
+      width: { size: widthPercent, type: WidthType.PERCENTAGE },
+      shading: { fill: COLORS.white, type: ShadingType.CLEAR },
+      margins: { top: 100, bottom: 100, left: 120, right: 120 },
+      borders: {
+        top: this.createBorder(COLORS.border),
+        bottom: this.createBorder(COLORS.border),
+        left: this.createBorder(COLORS.border),
+        right: this.createBorder(COLORS.border),
+      },
+    });
   }
 
 
@@ -345,37 +400,29 @@ export class KlptDocxGeneratorService {
     });
   }
 
-  private createBorder() {
+  private createBorder(color: string = COLORS.border, size: number = 4) {
     return {
       style: BorderStyle.SINGLE,
-      size: 1,
-      color: '000000',
+      size,
+      color,
     };
   }
 
-  private wrapText(text: string, maxCharsPerLine: number): string[] {
-    const words = text.split(' ');
-    const lines: string[] = [];
-    let currentLine = '';
+  private wrapText(text: string): string[] {
+    const normalizedText = text.replace(/\r\n?/g, '\n').trim();
 
-    for (const word of words) {
-      if ((currentLine + word).length > maxCharsPerLine && currentLine) {
-        lines.push(currentLine);
-        currentLine = word;
-      } else {
-        currentLine = currentLine ? `${currentLine} ${word}` : word;
-      }
+    if (!normalizedText) {
+      return ['Not entered'];
     }
 
-    if (currentLine) {
-      lines.push(currentLine);
-    }
-
-    return lines || ['Not entered'];
+    // Split only on real paragraph/bullet breaks from htmlToText; Word wraps each
+    // resulting paragraph to the full container width on its own.
+    return normalizedText.split('\n').map((segment) => segment.trim());
   }
 
   private htmlToText(value: string): string {
     return value
+      .replace(/\r\n?/g, '\n')
       .replace(/<\/li>\s*<li>/gi, '\n')
       .replace(/<li>/gi, '- ')
       .replace(/<\/?(ul|ol)>/gi, '\n')
@@ -395,10 +442,7 @@ export class KlptDocxGeneratorService {
   formatDateForDocx(date: Date | string): string {
     const d = typeof date === 'string' ? new Date(date) : date;
     if (isNaN(d.getTime())) return 'Not specified';
-    const day = d.getDate();
-    const month = MONTHS[d.getMonth()];
-    const year = d.getFullYear();
-    return `${day} ${month} ${year}`;
+    return d.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' });
   }
 
   formatEducatorName(name: string | undefined): string {

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { NgStyle } from '@angular/common';
+import { LowerCasePipe, NgStyle } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NavigationNodesComponent } from '../../../shared';
 import { DomainAssetModeService } from '../../../../services/domain-asset-mode.service';
@@ -12,9 +12,9 @@ import { SessionModel } from '../../models/session-model';
 import { klptDomainStyle } from '../shared/klpt-domain-colours';
 import { KlptDomainDataService } from '../shared/klpt-domain-data.service';
 import { SessionManagementService } from '../shared/session-management.service';
-import { AccordionItemComponent } from '../../../shared/accordion-item/accordion-item.component';
 import { HIGHEST_BEHAVIOUR_HTML } from '../shared/klpt-constants';
 import { hasSelectedBehaviours } from '../shared/session-readiness';
+import { AccordionItemComponent } from '../../../shared/accordion-item/accordion-item.component';
 
 interface ProgressionItem {
   subDomain: KlptSubDomain | undefined;
@@ -25,7 +25,7 @@ interface ProgressionItem {
 
 @Component({
   selector: 'app-learning-progression-statement',
-  imports: [NgStyle, RouterLink, NavigationNodesComponent, AccordionItemComponent],
+  imports: [NgStyle, LowerCasePipe, RouterLink, NavigationNodesComponent, AccordionItemComponent],
   templateUrl: './learning-progression-statement.html',
   styleUrl: './learning-progression-statement.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -174,22 +174,11 @@ export class LearningProgressionStatement implements OnInit, OnDestroy {
 
   protected openQklgPdf(): void {
     const url = 'https://www.qcaa.qld.edu.au/downloads/kindergarten/qklg_align_eylf.pdf';
-    const returnUrl = `${window.location.origin}${window.location.pathname}${window.location.search}`;
+    const pdfWindow = window.open(url, '_blank', 'noopener,noreferrer');
 
-    window.history.pushState(
-      { _klptReturn: returnUrl },
-      '',
-      window.location.pathname + '#_klpt_return',
-    );
-
-    // Fallback: if browser coalesces pushState + navigation, sessionStorage catches the Back.
-    sessionStorage.setItem('_klptPdfReturn', returnUrl);
-    // Tell the route guard to skip validation on return (domainData may not be loaded yet).
-    sessionStorage.setItem('_klptPdfReturnBypass', '1');
-
-    queueMicrotask(() => {
-      window.location.href = url;
-    });
+    if (pdfWindow) {
+      pdfWindow.opener = null;
+    }
   }
 
   private mergeFormFields(fields: NameValuePair[]): NameValuePair[] {

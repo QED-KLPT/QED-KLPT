@@ -8,7 +8,7 @@
           "videos": [
             {
               "slot": "home-languages-primary",
-              "title": "Home languages",
+              "title": "",
               "description": "",
               "youtubeUrl": "https://www.youtube.com/watch?v=XneIolMk42s",
               "transcriptFile": "assets/content/transcripts/language-and-literacy/home-languages-primary.txt"
@@ -21,7 +21,7 @@
           "videos": [
             {
               "slot": "language-and-literacy-primary",
-              "title": "Language and literacy",
+              "title": "",
               "description": "",
               "youtubeUrl": "https://www.youtube.com/watch?v=oyQmlHPgKPE",
               "transcriptFile": "assets/content/transcripts/language-and-literacy/lang-lit-primary.txt"
@@ -34,7 +34,7 @@
       "columns": [
         {
           "heading": "Observational data and the planning cycle",
-          "intro": "This video explores how observe sits alongside assess, plan, implement and evaluate as the five key components of the Early Years Learning Framework planning cycle.",
+          "intro": "This video explores how observe sits alongside assess, plan, implement and evaluate as the 5 key components of the Early Years Learning Framework planning cycle.",
           "videos": [
             {
               "slot": "observation-snapshots-patterns",
@@ -90,7 +90,7 @@
         },
         {
           "heading": "The purpose of observation",
-          "intro": "This video explores the intent to observe—to pause, notice, listen and think— as the starting point for recording quality observations and gaining deeper insights into children’s learning.",
+          "intro": "This video explores the intent to observe—to pause, notice, listen and think—as the starting point for recording quality observations and gaining deeper insights into children’s learning.",
           "videos": [
             {
               "slot": "purpose-of-observation",

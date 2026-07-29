@@ -51,12 +51,13 @@ export class DomainAssetModeService {
   }
 
   private getInitialMode(): DomainAssetMode {
-    try {
-      const storedMode = localStorage.getItem(STORAGE_KEY);
+    // try {
+    //   const storedMode = localStorage.getItem(STORAGE_KEY);
 
-      return storedMode === 'dark-blue' ? 'dark-blue' : 'colour';
-    } catch {
-      return 'colour';
-    }
+    //   return storedMode === 'dark-blue' ? 'dark-blue' : 'colour';
+    // } catch {
+    //   return 'colour';
+    // }
+    return 'dark-blue';
   }
 }

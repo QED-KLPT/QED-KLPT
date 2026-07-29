@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { GlobalAlertComponent } from '../../components/shared/global-alert';
@@ -12,5 +12,6 @@ import { Nav } from '../nav/nav';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Header {
+  readonly bareMode = input(false);
   protected readonly showDraftContentDisclaimer = environment.showDraftContentDisclaimer;
 }

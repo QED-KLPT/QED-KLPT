@@ -1,6 +1,22 @@
 ﻿<section class="section section--white klpt-step">
   <div class="section__inner">
 
+    <div role="status" aria-live="polite" aria-atomic="true">
+      @let notification = downloadService.notification();
+      @if (notification) {
+        <div class="klpt-download-notice">
+          <i class="fas fa-check-circle klpt-download-notice__icon" aria-hidden="true"></i>
+          <div class="klpt-download-notice__body">
+            <span class="klpt-download-notice__filename">{{ notification.filename }}</span>
+            <span>has been generated.</span>
+          </div>
+          <button type="button" class="klpt-download-notice__close" aria-label="Dismiss notification" (click)="dismissDownloadNotification()">
+            <i class="fas fa-circle-xmark" aria-hidden="true"></i>
+          </button>
+        </div>
+      }
+    </div>
+
     <div class="klpt-create-session-card">
       <h2 class="klpt-create-session-card__heading">Learning observation tool</h2>
       <button

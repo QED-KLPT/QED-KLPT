@@ -1,6 +1,7 @@
 import { DatePipe, ViewportScroller } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import { DocumentDownloadService } from '../../../../services/document-download.service';
 import { SessionModel } from '../../models/session-model';
 import { SessionManagementService } from '../shared/session-management.service';
 
@@ -11,9 +12,10 @@ import { SessionManagementService } from '../shared/session-management.service';
   styleUrl: './list-sessions.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ListSessions implements OnInit {
+export class ListSessions implements OnInit, OnDestroy {
   private readonly sessionManagement = inject(SessionManagementService);
   private readonly router = inject(Router);
+  protected readonly downloadService = inject(DocumentDownloadService);
   @ViewChild('deleteSessionDialog') private deleteSessionDialog?: ElementRef<HTMLElement>;
   @ViewChild('storageDialog') private storageDialog?: ElementRef<HTMLElement>;
 
@@ -30,6 +32,7 @@ export class ListSessions implements OnInit {
   protected bulbTooltipVisible = false;
   private readonly BULB_LONG_PRESS_MS = 500;
   private bulbLongPressTimer: number | undefined;
+  private downloadDismissTimer: number | undefined;
   private modalTrigger: HTMLElement | undefined;
   protected pendingDelete:
     | { type: 'session'; sessionId: string; learnerCode: string }
@@ -66,8 +69,22 @@ export class ListSessions implements OnInit {
     return Object.entries(groups);
   }
 
+  protected dismissDownloadNotification(): void {
+    window.clearTimeout(this.downloadDismissTimer);
+    this.downloadDismissTimer = undefined;
+    this.downloadService.clear();
+  }
+
+  ngOnDestroy(): void {
+    window.clearTimeout(this.downloadDismissTimer);
+  }
+
   ngOnInit(): void {
     this.scroll.scrollToPosition([0, 0]);
+
+    if (this.downloadService.notification()) {
+      this.downloadDismissTimer = window.setTimeout(() => this.downloadService.clear(), 300_000);
+    }
 
     this.sessionManagement.deleteAllExpiredSessions();
     const all = this.sessionManagement.getAllSessions();

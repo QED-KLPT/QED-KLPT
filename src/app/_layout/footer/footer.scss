@@ -3,6 +3,15 @@
   color: #ffffff;
 }
 
+.site-footer__updated {
+  background: var(--klpt-cream);
+  color: var(--doe-color-text);
+  font-size: 0.85rem;
+  padding: 0.65rem var(--page-gutter);
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
 .site-footer__graphic {
   height: 8px;
   background: var(--doe-color-accent);
@@ -34,6 +43,15 @@
 .site-footer__social,
 .site-footer__acknowledgement {
   min-width: 0;
+}
+
+.site-footer__columns--bare {
+  grid-template-columns: 1fr;
+
+  .site-footer__links {
+    border: 0;
+    padding: 0;
+  }
 }
 
 .site-footer h3 {
@@ -135,7 +153,7 @@
     align-items: stretch;
   }
 
-  .site-footer__columns > * + * {
+  .site-footer__columns:not(.site-footer__columns--bare) > * + * {
     border-left: 2px solid var(--doe-color-accent);
     padding-left: clamp(1.5rem, 3vw, 2rem);
   }
