@@ -37,6 +37,6 @@ jobs:
           app_location: "/"
           api_location: ""
           output_location: "dist/qed-klpt/browser"
-          app_build_command: "npm run build"
+          app_build_command: ${{ github.ref == 'refs/heads/main' && 'npm run build -- --configuration production' || 'npm run build -- --configuration development' }}
           production_branch: "main"
           github_id_token: ${{ steps.idtoken.outputs.result }}
