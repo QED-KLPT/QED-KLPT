@@ -107,8 +107,8 @@ export class Home implements OnInit, OnDestroy {
       url: '/learning-domains/language-and-literacy',
       imageSrc: 'assets/img/domain/colour/domain-lang-lit-col.png',
       imageAlt: 'Language and literacy illustration',
-      background: 'linear-gradient(135deg, #B85A12 0%, #8F4D12 100%)',
-      hoverBorderColor: '#AC5E16',
+      background: 'linear-gradient(135deg, #7D3FD1 0%, #5B219F 100%)',
+      hoverBorderColor: '#6F2DBD',
     },
     {
       title: 'Executive function',
@@ -116,8 +116,8 @@ export class Home implements OnInit, OnDestroy {
       url: '/learning-domains/executive-function',
       imageSrc: 'assets/img/domain/colour/domain-exec-func-col.png',
       imageAlt: 'Executive function illustration',
-      background: 'linear-gradient(135deg, #0069AB 0%, #004A78 100%)',
-      hoverBorderColor: '#005387',
+      background: 'linear-gradient(135deg, #008D7A 0%, #006154 100%)',
+      hoverBorderColor: '#007A6A',
     },
     {
       title: 'Social-emotional learning',
@@ -125,8 +125,8 @@ export class Home implements OnInit, OnDestroy {
       url: '/learning-domains/social-and-emotional-learning',
       imageSrc: 'assets/img/domain/colour/domain-soc-emot-lrn-col.png',
       imageAlt: 'Social-emotional learning illustration',
-      background: 'linear-gradient(135deg, #D10A7D 0%, #930758 100%)',
-      hoverBorderColor: '#A40862',
+      background: 'linear-gradient(135deg, #D72D6F 0%, #9F124B 100%)',
+      hoverBorderColor: '#C2185B',
     },
     {
       title: 'Physicality',
@@ -134,8 +134,8 @@ export class Home implements OnInit, OnDestroy {
       url: '/learning-domains/physicality',
       imageSrc: 'assets/img/domain/colour/domain-physicality-colour.png',
       imageAlt: 'Physicality illustration',
-      background: 'linear-gradient(135deg, #247F33 0%, #185922 100%)',
-      hoverBorderColor: '#1D682A',
+      background: 'linear-gradient(135deg, #D96313 0%, #9E4100 100%)',
+      hoverBorderColor: '#C45100',
     },
     {
       title: 'Mathematics and numeracy',
@@ -143,8 +143,8 @@ export class Home implements OnInit, OnDestroy {
       url: '/learning-domains/mathematics-and-numeracy',
       imageSrc: 'assets/img/domain/colour/domain-math-num-col.png',
       imageAlt: 'Mathematics and numeracy illustration',
-      background: 'linear-gradient(135deg, #BA1C23 0%, #801318 100%)',
-      hoverBorderColor: '#91161B',
+      background: 'linear-gradient(135deg, #388E3C 0%, #246B27 100%)',
+      hoverBorderColor: '#2E7D32',
     },
   ];
 }
