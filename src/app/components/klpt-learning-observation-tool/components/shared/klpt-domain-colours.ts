@@ -15,7 +15,7 @@ const KLPT_BLUE_DOMAIN_COLOURS: KlptDomainColour[] = [
 
 const KLPT_DOMAIN_COLOURS: KlptDomainColour[] = [
   { accent: '#6F2DBD', glow: '#8C4DD8' },
-  { accent: '#007A6A', glow: '#009B87' },
+  { accent: '#1D5FD1', glow: '#4A90E2' },
   { accent: '#C2185B', glow: '#E43D7C' },
   { accent: '#C45100', glow: '#E76B16' },
   { accent: '#2E7D32', glow: '#43A047' },

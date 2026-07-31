@@ -116,8 +116,8 @@ export class Home implements OnInit, OnDestroy {
       url: '/learning-domains/executive-function',
       imageSrc: 'assets/img/domain/colour/domain-exec-func-col.png',
       imageAlt: 'Executive function illustration',
-      background: 'linear-gradient(135deg, #008D7A 0%, #006154 100%)',
-      hoverBorderColor: '#007A6A',
+      background: 'linear-gradient(135deg, #2F7DE1 0%, #174EA6 100%)',
+      hoverBorderColor: '#1D5FD1',
     },
     {
       title: 'Social-emotional learning',

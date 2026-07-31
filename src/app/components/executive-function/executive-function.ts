@@ -89,8 +89,8 @@ export class ExecutiveFunction implements OnInit {
       description:
         'Staying on task, trying again after challenges and completing activities',
       url: '',
-      background: 'linear-gradient(135deg, #008D7A 0%, #006154 100%)',
-      hoverBorderColor: '#007A6A',
+      background: 'linear-gradient(135deg, #2F7DE1 0%, #174EA6 100%)',
+      hoverBorderColor: '#1D5FD1',
       imageAlt: 'Persistence',
       imageSrc: 'assets/img/exec-func-inhibitctrl.svg',
     },
@@ -99,8 +99,8 @@ export class ExecutiveFunction implements OnInit {
       description:
         'Adjusting when routies change, responding to new information and staying calm under uncertainty',
       url: '',
-      background: 'linear-gradient(135deg, #008D7A 0%, #006154 100%)',
-      hoverBorderColor: '#007A6A',
+      background: 'linear-gradient(135deg, #2F7DE1 0%, #174EA6 100%)',
+      hoverBorderColor: '#1D5FD1',
       imageAlt: 'Adaptability',
       imageSrc: 'assets/img/exec-func-workmem.svg',
     },
@@ -109,8 +109,8 @@ export class ExecutiveFunction implements OnInit {
       description:
         'Exploring ideas, testing strategies and reflecting on what works',
       url: '',
-      background: 'linear-gradient(135deg, #008D7A 0%, #006154 100%)',
-      hoverBorderColor: '#007A6A',
+      background: 'linear-gradient(135deg, #2F7DE1 0%, #174EA6 100%)',
+      hoverBorderColor: '#1D5FD1',
       imageAlt: 'Problem solving',
       imageSrc: 'assets/img/exec-func-cogflex.svg',
     },
