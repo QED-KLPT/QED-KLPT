@@ -4,7 +4,7 @@
 
 .domain-hero {
   padding-block: clamp(0.95rem, 2vw, 1.7rem) clamp(1.85rem, 4vw, 3.35rem);
-  background: linear-gradient(180deg, #fff5f5 0%, #f7d8da 100%);
+  background: linear-gradient(180deg, #f4fbf4 0%, #dff1df 100%);
 }
 
 .domain-hero__layout {
@@ -17,7 +17,7 @@
 .domain-hero__copy {
   max-width: 44rem;
   padding-left: 1rem;
-  border-left: 4px solid #e49da1;
+  border-left: 4px solid #81c784;
 }
 
 .domain-hero__copy h1 {
@@ -37,7 +37,7 @@
 .domain-hero__art img {
   width: min(100%, 17rem);
   height: auto;
-  filter: drop-shadow(0 14px 28px rgba(143, 27, 32, 0.13));
+  filter: drop-shadow(0 14px 28px rgba(46, 125, 50, 0.14));
 }
 
 :host-context([data-domain-asset-mode="dark-blue"]) .domain-hero {
