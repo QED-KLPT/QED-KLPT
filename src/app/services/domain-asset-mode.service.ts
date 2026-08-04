@@ -58,6 +58,6 @@ export class DomainAssetModeService {
     // } catch {
     //   return 'colour';
     // }
-    return 'colour';
+    return 'dark-blue';
   }
 }
