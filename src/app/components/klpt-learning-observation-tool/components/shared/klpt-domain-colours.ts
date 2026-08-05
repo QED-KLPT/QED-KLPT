@@ -14,11 +14,11 @@ const KLPT_BLUE_DOMAIN_COLOURS: KlptDomainColour[] = [
 ];
 
 const KLPT_DOMAIN_COLOURS: KlptDomainColour[] = [
-  { accent: '#AC5E16', glow: '#AF6015' },
-  { accent: '#005387', glow: '#0077C1' },
-  { accent: '#A40862', glow: '#E00C88' },
-  { accent: '#1D682A', glow: '#2A853A' },
-  { accent: '#91161B', glow: '#CF2027' },
+  { accent: '#6F2DBD', glow: '#8C4DD8' },
+  { accent: '#1D5FD1', glow: '#4A90E2' },
+  { accent: '#C2185B', glow: '#E43D7C' },
+  { accent: '#C45100', glow: '#E76B16' },
+  { accent: '#2E7D32', glow: '#43A047' },
 ];
 
 export function klptDomainColour(domainIndex: number | undefined): KlptDomainColour {
