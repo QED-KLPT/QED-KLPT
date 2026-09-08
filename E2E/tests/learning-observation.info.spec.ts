@@ -1,3 +1,4 @@
+import type { Download } from '@playwright/test';
 import { test, expect } from '../fixtures/pages.fixture';
 import { LearningObservationInfoPage } from '../pages/LearningObservationInfoPage';
 import { ObservationSessionsPage } from '../pages/ObservationSessionsPage';
@@ -26,7 +27,12 @@ test.describe('Learning observation tool — information & sessions', () => {
     });
 
     await test.step('Verify the video iframe is displayed', async () => {
-      await expect(info.videoFrame.locator('iframe, *')).toBeTruthy();
+      // NOTE: previously asserted `expect(locator).toBeTruthy()` — a Locator
+      // object is always truthy regardless of what (if anything) it matches
+      // in the page, so that never actually verified the iframe rendered.
+      // Asserting on the real Play button confirms the YouTube iframe loaded
+      // its expected content, not just that the <iframe> element exists.
+      await expect(info.videoFrame.getByRole('button', { name: /Play video/i })).toBeVisible();
       console.log('Video iframe present');
     });
 
@@ -36,7 +42,7 @@ test.describe('Learning observation tool — information & sessions', () => {
     });
   });
 
-  test('Learning observation tool fact sheet opens in the same tab', async ({ page, klptHomePage }) => {
+  test('Learning observation tool fact sheet opens in the same tab', async ({ page, context, klptHomePage }) => {
     await klptHomePage.open();
     const info = new LearningObservationInfoPage(page);
     await info.open();
@@ -46,7 +52,21 @@ test.describe('Learning observation tool — information & sessions', () => {
       console.log(`Pages before click: ${pagesBefore}`);
     });
 
-    await test.step('Click the fact sheet PDF link and verify navigation in same tab', async () => {
+    // CONFIRMED REAL BROWSER-DEPENDENT BEHAVIOUR: which of two outcomes
+    // happens when this link is clicked depends on the browser's PDF
+    // handling — a browser with a built-in PDF viewer (real Google Chrome,
+    // or headed Chromium) navigates this same tab to the PDF, so page.url()
+    // changes. A browser with no PDF viewer (Playwright's bundled Chromium
+    // in headless mode) downloads the file instead — the tab's own URL never
+    // changes, but a 'download' event fires. Both are handled here rather
+    // than assuming one (the same pattern already used for the alignment PDF
+    // control in the full end-to-end spec).
+    let download: Download | null = null;
+    context.once('download', (d) => {
+      download = d;
+    });
+
+    await test.step('Click the fact sheet PDF link and verify the PDF response', async () => {
       const [response] = await Promise.all([
         page.waitForResponse((r) => r.url().includes('learning-observation-tool-fact-sheet') && r.status() === 200, { timeout: 15000 }),
         info.factSheetLink.click(),
@@ -56,15 +76,34 @@ test.describe('Learning observation tool — information & sessions', () => {
       const ct = response.headers()['content-type'] || response.headers()['Content-Type'];
       console.log('PDF response content-type:', ct);
       expect(ct.toLowerCase()).toContain('application/pdf');
+    });
 
-      // Verify current page url includes the pdf file
-      await page.waitForLoadState('load');
-      expect(page.url()).toContain('learning-observation-tool-fact-sheet.pdf');
-      console.log('Navigation to PDF occurred in the same tab');
+    await test.step('Verifying the PDF was opened in the same tab, however this browser handles it', async () => {
+      // Give whichever outcome is going to happen a moment to actually occur
+      // (URL change or 'download' event) before checking which one did.
+      await Promise.race([
+        page.waitForURL(/learning-observation-tool-fact-sheet\.pdf/i, { timeout: 5_000 }).catch(() => {}),
+        new Promise<void>((resolve) => setTimeout(resolve, 5_000)),
+      ]);
+
+      if (download) {
+        expect((download as Download).url()).toContain('learning-observation-tool-fact-sheet.pdf');
+        console.log('PDF downloaded in the same tab (no built-in PDF viewer available in this browser)');
+      } else {
+        expect(page.url()).toContain('learning-observation-tool-fact-sheet.pdf');
+        console.log('Navigation to PDF occurred in the same tab');
+      }
+
+      // Only one page ever existed throughout — confirms "same tab" either way.
+      expect(context.pages().length).toBe(1);
     });
 
     await test.step('Return to the Learning observation tool page', async () => {
-      await page.goBack();
+      // If the browser downloaded the PDF instead of navigating, the tab
+      // never left the info page, so there's nothing to go back from.
+      if (!download) {
+        await page.goBack();
+      }
       await expect(info.heading).toBeVisible();
       console.log('Returned to the Learning observation tool information page');
     });
@@ -81,6 +120,18 @@ test.describe('Learning observation tool — information & sessions', () => {
     });
 
     await test.step('Click Play inside the iframe', async () => {
+      // CONFIRMED REAL BROWSER LIMITATION: the video iframe sits below the
+      // fold, and clicking an element inside a cross-origin iframe does not
+      // reliably auto-scroll the *outer* page into view first — in
+      // Playwright's bundled Chromium (headless), the click's actionability
+      // "stable" check then hangs indefinitely (confirmed via isolated
+      // reproduction: bounding box was static across samples, yet the wait
+      // still never resolved; scrolling the outer iframe element into view
+      // first made the click succeed immediately). Scrolling the outer
+      // <iframe> element on the top-level page — not the inner frame content
+      // — resolves this regardless of which browser/project runs the test.
+      await page.locator('iframe').first().scrollIntoViewIfNeeded();
+
       const frame = info.videoFrame;
       const playButton = frame.getByRole('button', { name: /Play video/i }).first();
       await playButton.click();

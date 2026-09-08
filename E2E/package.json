@@ -9,6 +9,7 @@
     "test:ui": "playwright test --ui",
     "test:debug": "playwright test --debug",
     "test:chromium": "playwright test --project=chromium",
+    "test:chrome": "playwright test --project=chrome",
     "test:report": "playwright show-report artifacts/html-report",
     "codegen": "node utils/codegen.js"
   },

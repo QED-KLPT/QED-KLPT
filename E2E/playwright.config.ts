@@ -57,7 +57,14 @@ export default defineConfig({
     video: 'retain-on-failure',
 
     actionTimeout: 10_000,
-    navigationTimeout: 15_000,
+    // CONFIRMED REAL-WORLD FLAKINESS: with the default local worker count
+    // (several parallel browser contexts all hitting the initial page load
+    // at once), the very first navigation in a test has been observed to
+    // exceed a 15s budget purely from that contention — never reproduces
+    // when the same test is re-run in isolation. 20s gives real slow-start
+    // contention enough headroom without masking a genuinely broken/down
+    // environment (which would still fail well within 20s).
+    navigationTimeout: 20_000,
   },
 
   // Where Playwright writes traces/screenshots/videos collected during a run.
@@ -74,6 +81,15 @@ export default defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
+    },
+
+    // Runs against the real, installed Google Chrome browser (not Playwright's
+    // bundled Chromium) via Playwright's "chrome" channel. Requires Google
+    // Chrome to be installed locally/on CI — `npx playwright install chrome`
+    // installs it if it's missing.
+    {
+      name: 'chrome',
+      use: { ...devices['Desktop Chrome'], channel: 'chrome' },
     },
 
     {
