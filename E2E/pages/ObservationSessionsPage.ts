@@ -12,9 +12,7 @@ export class ObservationSessionsPage extends BasePage {
   constructor(page: Page) {
     super(page);
     this.startNewButton = page.getByRole('button').filter({ hasText: /Start a new observation/i }).first();
-    // Use the placeholder to avoid collision with the help button which has an
-    // aria-label containing the same text (strict-mode collisions). The input
-    // also has id="learner-code" and placeholder "e.g. 123".
+    // Matched by placeholder — the help button's aria-label contains the same text.
     this.learnerCodeInput = page.getByPlaceholder('e.g. 123');
     this.observerNameInput = page.getByLabel("Observer's name");
     this.createButton = page.getByRole('button', { name: /Create session/i });

@@ -52,10 +52,7 @@ test.describe('Learning progression statement', () => {
     });
 
     await test.step('Filling and verifying the QKLG/EYLF reflection field', async () => {
-      // NOTE: this field has no accessible name at all on the real site (a
-      // confirmed accessibility gap — see LearningStatementPage.qklgReflectionInput),
-      // so it's located via DOM position relative to its confirmed, unique
-      // static label text rather than getByLabel/getByRole(..., { name }).
+      // This field has no accessible name, so it's located by DOM position (see the page object).
       await statementPage.qklgReflectionInput.click();
       await statementPage.qklgReflectionInput.fill(qklgReflectionText);
       await expect(statementPage.qklgReflectionInput).toHaveValue(qklgReflectionText);
@@ -81,17 +78,9 @@ test.describe('Learning progression statement', () => {
     });
 
     await test.step('Clicking the control by its accessible name and verifying it expands', async () => {
-      // Clicking via its accessible name ("View reflective questions") — the
-      // chevron icon inside is aria-hidden, so this always targets the real
-      // control, never just the icon.
       await statementPage.reflectiveQuestionsToggle.click();
       await expect(statementPage.reflectiveQuestionsToggle).toHaveAttribute('aria-expanded', 'true');
-      // CONFIRMED REAL BEHAVIOUR: unlike a typical accordion, this control's
-      // content is already visually present (non-zero bounding box) even
-      // while aria-expanded="false" — expanding does not actually toggle
-      // visibility, only the aria-expanded flag. So this step verifies the
-      // state change and content presence, not a hidden->visible transition
-      // that doesn't occur in the real app.
+      // The content stays visible even when collapsed — only aria-expanded actually toggles.
       await expect(statementPage.reflectiveQuestionsListItems.first()).toBeVisible();
     });
 
@@ -117,8 +106,7 @@ test.describe('Learning progression statement', () => {
       const [newPage] = await Promise.all([context.waitForEvent('page'), link.click()]);
       await newPage.waitForLoadState();
 
-      // href is site-relative ("/learning-domains/..."), so resolve it
-      // against the current origin before comparing to the new tab's URL.
+      // Resolve the relative link before comparing URLs.
       const expectedUrl = new URL(href!, page.url()).toString();
       await expect(newPage).toHaveURL(expectedUrl);
 
@@ -128,12 +116,7 @@ test.describe('Learning progression statement', () => {
     });
 
     await test.step('Verifying the PDF alignment control opens a new tab without disturbing the original page', async () => {
-      // CONFIRMED REAL MARKUP: this control is a <button class="link-button">
-      // with NO href attribute (not an <a>) — its own visible text is the
-      // only place "opens in a new tab" appears (see
-      // LearningStatementPage.alignmentPdfControl for the full accessibility
-      // gap this represents). There is therefore no href to read/compare
-      // up front, unlike the link above.
+      // This control is a button, not a link, so there's no href to check up front.
       const control = statementPage.alignmentPdfControl;
       await expect(control).toBeVisible();
       await expect(control.getByText(/opens in a new tab/i)).toBeVisible();
@@ -142,7 +125,6 @@ test.describe('Learning progression statement', () => {
       const [newPage] = await Promise.all([context.waitForEvent('page'), control.click()]);
 
       expect(context.pages().length).toBe(pageCountBefore + 1);
-      // Original KLPT page remains open and on the same screen.
       await expect(statementPage.heading).toBeVisible({ timeout: 10_000 });
 
       await newPage.close();
@@ -163,11 +145,7 @@ test.describe('Learning progression statement', () => {
       await statementPage.professionalReflectionInput.fill(professionalReflectionText);
       await statementPage.supportLearningInput.fill(supportLearningText);
       await statementPage.qklgReflectionInput.fill(qklgReflectionText);
-      // CONFIRMED REAL BEHAVIOUR: the app appears to save field values on
-      // blur; navigating away immediately after fill() (with the field still
-      // focused) can race that save and lose the last-edited field's value.
-      // An explicit blur here mirrors what a real user does before clicking
-      // another control, and made this reliably reproducible across repeated runs.
+      // Blur before navigating — the app saves on blur, and leaving the field focused can race that save.
       await statementPage.qklgReflectionInput.blur();
     });
 
@@ -189,9 +167,7 @@ test.describe('Learning progression statement', () => {
 
     await test.step("Verifying Next navigates to the Review and download screen", async () => {
       await statementPage.nextButton.click();
-      // NOTE: confirmed on the real site that this screen's title renders as
-      // a plain paragraph, not a role="heading" element — matched on its
-      // real visible text rather than an (absent) heading role.
+      // The page title is plain text rather than a heading.
       await expect(page.getByText('Review and download the learning progression statement')).toBeVisible({
         timeout: 10_000,
       });

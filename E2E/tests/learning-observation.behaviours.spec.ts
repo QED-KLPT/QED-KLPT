@@ -36,8 +36,7 @@ test.describe('Behaviour selection workflow', () => {
     });
 
     await test.step('Selecting a Behaviour and verifying it is selected', async () => {
-      // Select at least one behaviour so there are selections/notes for the
-      // Clear session popup to actually clear.
+      // Select one so there's something for Clear session to actually clear.
       await behaviourPage.selectFirstAvailableBehaviour();
       await expect(behaviourPage.behaviourOptionButtons.first()).toHaveAttribute('aria-pressed', 'true');
     });
@@ -63,14 +62,8 @@ test.describe('Behaviour selection workflow', () => {
     });
 
     await test.step('Verifying the session was reset to the first screen', async () => {
-      // First Learning Observation screen: domain / key element selection.
       await expect(domainPage.domainButtons.first()).toBeVisible({ timeout: 10000 });
-      // Previous Domain/Subdomain/Key element/Behaviour selections and notes
-      // are cleared:
-      //  - no Domain shows as selected (aria-pressed) any more, and
-      //  - Next is back to its disabled state — confirmed on the real site
-      //    to render as plain non-interactive text (no link/button role) at
-      //    all while disabled, so its absence here is what confirms "cleared".
+      // Next disappears entirely when disabled, so its absence confirms the reset.
       await expect(domainPage.domainButtons.first()).not.toHaveAttribute('aria-pressed', 'true');
       await expect(domainPage.nextButton).toHaveCount(0);
     });

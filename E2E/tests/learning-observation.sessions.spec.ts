@@ -35,13 +35,11 @@ test.describe('Learning observation sessions — create and cancel', () => {
       const code = String(Math.floor(100 + Math.random() * 900));
       await sessions.learnerCodeInput.fill(code);
       await sessions.observerNameInput.fill('Playwright Tester');
-      // Verify create enabled after valid input
       await expect(sessions.createButton).toBeEnabled();
       await sessions.createButton.click();
     });
 
     await test.step('Verify navigation to the Learning observation workflow (Domains)', async () => {
-      // Expect a heading indicating Domains step
       const domainsHeading = page.getByRole('heading').filter({ hasText: /Domains|Domain selection/i }).first();
       await expect(domainsHeading).toBeVisible({ timeout: 10000 });
     });

@@ -49,16 +49,12 @@ test.describe('Domain selection workflow', () => {
         const card = domainPage.keyElementButtons.nth(i);
         await expect(card).toBeVisible();
         await expect(card).toBeEnabled();
-        // Non-empty accessible name — confirmed real pattern is "Toggle
-        // element <name>", carried entirely via aria-label.
         await expect(card).toHaveAccessibleName(/.+/);
       }
     });
 
     await test.step('Verifying Next is unavailable before any Key element is selected', async () => {
-      // Confirmed on the real site: while disabled, Next renders as plain
-      // non-interactive text with no link/button role at all, so its
-      // ABSENCE here is what confirms the disabled state.
+      // Next disappears entirely when disabled, so its absence confirms this.
       await expect(domainPage.nextButton).toHaveCount(0);
     });
 
