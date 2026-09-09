@@ -38,3 +38,11 @@ export const learningStatementText = {
   qklgReflection:
     'This learning reflects the QKLG Communicating Learning and Development Area and the EYLF Learning Outcome: Children are effective communicators.',
 };
+
+/**
+ * Shape of {@link learningStatementText} — used by shared helpers (see
+ * fillLearningStatementFields in tests/helpers/learningObservationFlow.ts) so
+ * every per-Domain end-to-end scenario spec can fill the Learning statement
+ * fields the same way without retyping the field list.
+ */
+export type LearningStatementText = typeof learningStatementText;

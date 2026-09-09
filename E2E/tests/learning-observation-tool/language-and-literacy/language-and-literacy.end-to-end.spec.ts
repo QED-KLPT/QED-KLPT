@@ -1,16 +1,30 @@
 import type { Download } from '@playwright/test';
-import { test, expect } from '../fixtures/pages.fixture';
-import { LearningStatementPage } from '../pages/LearningStatementPage';
-import { ReviewDownloadPage } from '../pages/ReviewDownloadPage';
-import { reachStatementScreenWithSelections } from './helpers/learningObservationFlow';
-import { randomChildName, randomObserverName, learningStatementText } from '../test-data/learningObservation.data';
+import { test, expect } from '../../../fixtures/pages.fixture';
+import { LearningStatementPage } from '../../../pages/LearningStatementPage';
+import { ReviewDownloadPage } from '../../../pages/ReviewDownloadPage';
+import {
+  reachStatementScreenWithSelections,
+  fillLearningStatementFields,
+  expectLearningStatementFieldsToHaveValues,
+  verifySelectionsOnReviewScreen,
+} from '../../helpers/learningObservationFlow';
+import { randomChildName, randomObserverName, learningStatementText } from '../../../test-data/learningObservation.data';
 
 /**
- * Full end-to-end Learning Observation Toolkit scenario: from launching a new
- * observation session, through Domain/Subdomain/Key element/Behaviour
- * selection and the Learning progression statement, to the Review and
- * download screen — verifying every selected/entered value is reflected
- * correctly on the final screen.
+ * Full end-to-end Learning Observation Toolkit scenario for the Language and
+ * literacy Domain: from launching a new observation session, through
+ * Domain/Subdomain/Key element/Behaviour selection and the Learning
+ * progression statement, to the Review and download screen — verifying every
+ * selected/entered value is reflected correctly on the final screen.
+ *
+ * This follows the same valid Learning Observation Tool workflow as every
+ * other spec in this project (one Key element, one Behaviour — the default
+ * behaviour of the shared flow helpers), explicitly naming "Language and
+ * literacy" as the Domain to select rather than relying on it being first in
+ * the list. Compare with the Executive function scenario
+ * (tests/learning-observation-tool/executive-function/executive-function.end-to-end.spec.ts),
+ * which exercises the same shared helpers with a Domain that has multiple
+ * Key elements and a required non-first Behaviour card selection.
  *
  * Session creation and Domain/Behaviour selection are delegated to
  * reachStatementScreenWithSelections() (tests/helpers/learningObservationFlow.ts),
@@ -18,7 +32,7 @@ import { randomChildName, randomObserverName, learningStatementText } from '../t
  * Behaviour) as it goes, so this spec can verify them later without
  * re-querying the earlier screens.
  */
-test.describe('Learning observation toolkit — full end-to-end scenario', () => {
+test.describe('Learning observation toolkit — Language and literacy end-to-end scenario', () => {
   test('Launch session through to Review and download, with all selections and entries verified', async ({
     page,
     klptHomePage,
@@ -27,24 +41,19 @@ test.describe('Learning observation toolkit — full end-to-end scenario', () =>
     const observerName = randomObserverName();
 
     // Steps 1-6: launch a session (random Learner code + Observer name), then
-    // Domain, Subdomain (if available), Key element and Behaviour selection,
-    // landing on the Learning progression statement screen. Every selected
-    // value is captured for verification on the Review and download screen.
-    const selections = await reachStatementScreenWithSelections(page, klptHomePage, observerName);
+    // the Language and literacy Domain, Subdomain (if available), Key
+    // element and Behaviour selection, landing on the Learning progression
+    // statement screen. Every selected value is captured for verification on
+    // the Review and download screen.
+    const selections = await reachStatementScreenWithSelections(page, klptHomePage, observerName, {
+      domainName: 'Language and literacy',
+    });
 
     const statementPage = new LearningStatementPage(page);
     await expect(statementPage.heading).toBeVisible({ timeout: 10_000 });
 
     await test.step('Filling in the Learning statement fields', async () => {
-      await statementPage.descriptionInput.fill(learningStatementText.description);
-      await statementPage.professionalReflectionInput.fill(learningStatementText.professionalReflection);
-      await statementPage.supportLearningInput.fill(learningStatementText.supportLearning);
-      await statementPage.qklgReflectionInput.fill(learningStatementText.qklgReflection);
-
-      await expect(statementPage.descriptionInput).toHaveValue(learningStatementText.description);
-      await expect(statementPage.professionalReflectionInput).toHaveValue(learningStatementText.professionalReflection);
-      await expect(statementPage.supportLearningInput).toHaveValue(learningStatementText.supportLearning);
-      await expect(statementPage.qklgReflectionInput).toHaveValue(learningStatementText.qklgReflection);
+      await fillLearningStatementFields(statementPage, learningStatementText);
     });
 
     await test.step('Opening the "How can you support this learning?" practice supports link in a new tab and verifying it', async () => {
@@ -72,10 +81,7 @@ test.describe('Learning observation toolkit — full end-to-end scenario', () =>
     });
 
     await test.step('Confirming the Learning statement fields survived the practice supports tab', async () => {
-      await expect(statementPage.descriptionInput).toHaveValue(learningStatementText.description);
-      await expect(statementPage.professionalReflectionInput).toHaveValue(learningStatementText.professionalReflection);
-      await expect(statementPage.supportLearningInput).toHaveValue(learningStatementText.supportLearning);
-      await expect(statementPage.qklgReflectionInput).toHaveValue(learningStatementText.qklgReflection);
+      await expectLearningStatementFieldsToHaveValues(statementPage, learningStatementText);
     });
 
     await test.step(
@@ -122,10 +128,7 @@ test.describe('Learning observation toolkit — full end-to-end scenario', () =>
     );
 
     await test.step('Confirming the Learning statement fields survived the alignment PDF tab', async () => {
-      await expect(statementPage.descriptionInput).toHaveValue(learningStatementText.description);
-      await expect(statementPage.professionalReflectionInput).toHaveValue(learningStatementText.professionalReflection);
-      await expect(statementPage.supportLearningInput).toHaveValue(learningStatementText.supportLearning);
-      await expect(statementPage.qklgReflectionInput).toHaveValue(learningStatementText.qklgReflection);
+      await expectLearningStatementFieldsToHaveValues(statementPage, learningStatementText);
     });
 
     await test.step('Continuing to the Review and download screen', async () => {
@@ -140,26 +143,7 @@ test.describe('Learning observation toolkit — full end-to-end scenario', () =>
 
     const reviewPage = new ReviewDownloadPage(page);
 
-    await test.step('Verifying the Learner code and Observer name are displayed', async () => {
-      await expect(page.getByText(selections.learnerCode).first()).toBeVisible();
-      await expect(page.getByText(selections.observerName).first()).toBeVisible();
-    });
-
-    await test.step('Verifying the selected Domain, Subdomain, Key element and Behaviour are displayed', async () => {
-      await expect(page.getByText(selections.domainName).first()).toBeVisible();
-
-      if (selections.subdomainName) {
-        await expect(page.getByText(selections.subdomainName).first()).toBeVisible();
-      }
-
-      await expect(page.getByText(`Key element: ${selections.keyElementName}`)).toBeVisible();
-
-      // The Behaviour's "What you observed" description is reproduced
-      // verbatim on the Review page, one line per list item.
-      for (const line of selections.behaviourDescription.split('\n').filter(Boolean)) {
-        await expect(page.getByText(line, { exact: true }).first()).toBeVisible();
-      }
-    });
+    await verifySelectionsOnReviewScreen(page, selections);
 
     await test.step('Verifying the Learning statement text is displayed', async () => {
       await expect(page.getByText(learningStatementText.description)).toBeVisible();

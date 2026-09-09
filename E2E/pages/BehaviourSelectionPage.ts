@@ -111,4 +111,35 @@ export class BehaviourSelectionPage extends BasePage {
     await this.clearSessionConfirmButton.click();
     await expect(this.clearSessionDialog).toBeHidden();
   }
+
+  /**
+   * Selects one Behaviour option in EVERY section (one per selected Key
+   * element) at the given zero-based card index within each section (e.g.
+   * index 1 selects the second card) — used by scenarios that must select a
+   * specific, non-first card (e.g. the Executive function end-to-end spec,
+   * which must avoid the first card in each section). Falls back to the
+   * last available option in any section that has fewer than
+   * `cardIndex + 1` cards, so a domain with only 1 or 2 behaviour levels
+   * still gets a valid selection rather than an out-of-range click. Returns
+   * each selected option's description text, in section order, for later
+   * verification.
+   */
+  async selectBehaviourInEachSectionAndGetDescriptions(cardIndex: number): Promise<string[]> {
+    await expect(this.heading).toBeVisible({ timeout: 10_000 });
+    await expect(this.behaviourSections.first()).toBeVisible({ timeout: 10_000 });
+
+    const sectionCount = await this.behaviourSections.count();
+    const descriptions: string[] = [];
+
+    for (let i = 0; i < sectionCount; i++) {
+      const options = this.behaviourSections.nth(i).getByRole('button', { name: /^Select behaviour for /i });
+      const optionCount = await options.count();
+      const option = options.nth(Math.min(cardIndex, optionCount - 1));
+      await expect(option).toBeVisible({ timeout: 10_000 });
+      descriptions.push((await option.innerText()).trim());
+      await option.click();
+    }
+
+    return descriptions;
+  }
 }

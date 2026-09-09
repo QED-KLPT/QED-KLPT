@@ -144,4 +144,37 @@ export class DomainSelectionPage extends BasePage {
     await this.keyElementButtons.first().click();
     return name;
   }
+
+  /**
+   * Selects a specific Domain by its exact accessible name (e.g. "Executive
+   * function"), rather than always the first available one — used by
+   * scenarios that must exercise one particular Domain (e.g. a per-Domain
+   * end-to-end spec), so they don't depend on that Domain's position in the
+   * list.
+   */
+  async selectDomainByName(name: string): Promise<void> {
+    await this.dismissLandingCardIfPresent();
+    const domainButton = this.page.getByRole('button', { name: `Select domain ${name}`, exact: true });
+    await expect(domainButton).toBeVisible({ timeout: 10_000 });
+    await domainButton.click();
+  }
+
+  /**
+   * Selects every currently available Key element (rather than just the
+   * first) — used by Domains with a fixed, required set of elements to
+   * observe, e.g. Executive function's 3 Key elements. Returns each
+   * selected element's display name, in the order shown, for later
+   * verification.
+   */
+  async selectAllAvailableKeyElementsAndGetNames(): Promise<string[]> {
+    await expect(this.keyElementButtons.first()).toBeVisible({ timeout: 10_000 });
+    const count = await this.keyElementButtons.count();
+    const names: string[] = [];
+    for (let i = 0; i < count; i++) {
+      const button = this.keyElementButtons.nth(i);
+      names.push((await button.innerText()).trim());
+      await button.click();
+    }
+    return names;
+  }
 }
